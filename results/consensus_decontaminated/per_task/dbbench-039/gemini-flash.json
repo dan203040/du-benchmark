@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Number of households",
+    "filters": [
+      "County is 'Carroll'",
+      "Population > 146,445"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Income and Population by County in New Hampshire"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Per capita income": "USD",
+      "Median household income": "USD",
+      "Median family income": "USD",
+      "Population": "people",
+      "Number of households": "households"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Currency columns contain '$' and ',' which need to be removed before converting to numeric type.",
+      "Population and Number of households columns contain ',' which needs to be removed before converting to numeric type."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "County column should contain valid county names.",
+      "Population and Number of households should be non-negative integers.",
+      "Per capita income, Median household income, and Median family income should be non-negative numbers."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of households\",\n    \"filters\": [\n      \"County is 'Carroll'\",\n      \"Population > 146,445\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Income and Population by County in New Hampshire\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Per capita income\": \"USD\",\n      \"Median household income\": \"USD\",\n      \"Median family income\": \"USD\",\n      \"Population\": \"people\",\n      \"Number of households\": \"households\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Currency columns contain '$' and ',' which need to be removed before converting to numeric type.\",\n      \"Population and Number of households columns contain ',' which needs to be removed before converting to numeric type.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"County column should contain valid county names.\",\n      \"Population and Number of households should be non-negative integers.\",\n      \"Per capita income, Median household income, and Median family income should be non-negative numbers.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 29.64491581916809,
+  "token_usage": {}
+}

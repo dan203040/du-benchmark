@@ -1,0 +1,109 @@
+{
+  "m_q": {
+    "target_metric": "Correlation coefficient between fire size and median wind speed for fires occurring in July",
+    "filters": [
+      "Filter to fires occurring in July (month extracted from start_date)",
+      "Exclude records with missing or null values for fire size and wind_med"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What column represents fire size in the dataset?",
+      "How to extract month from start_date to filter for July fires?",
+      "What correlation threshold constitutes 'strong correlation'?",
+      "Should the answer be based on Pearson or Spearman correlation?",
+      "What p-value threshold should be used to determine statistical significance?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "noaa_wildfires_variabledescrip.csv",
+        "left_column": "column_names",
+        "right_column": "Variable Name",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "Fire size column is not explicitly identified in the provided column list",
+      "Need to determine which column represents fire size (likely 'hec' for hectares or related to incident scale)"
+    ],
+    "column_mappings": {
+      "wind_med": "median_wind_speed",
+      "start_date": "fire_start_date"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "wind_med": "miles per hour",
+      "hec": "hectares (assumed fire size)",
+      "start_date": "MM/DD/YYYY format",
+      "avrh_mean": "percentage",
+      "erc_med": "BTUs per square foot",
+      "rain_sum": "precipitation amount (units not specified)"
+    },
+    "scale_issues": [
+      "Fire size unit needs confirmation (hec likely represents hectares)",
+      "Wind speed in miles per hour may need standardization for correlation analysis"
+    ],
+    "cross_source_conflicts": [
+      "Variable description file does not provide explicit mapping for fire size variable"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "start_date is stored as string in MM/DD/YYYY format requiring parsing",
+      "Some float64 columns (erc_med) may contain NaN values",
+      "Date parsing required to extract month for July filtering",
+      "Missing value in sample data: erc_med shows 0.0 in some rows which may be sentinel"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include fires that started in July (month == 7)",
+      "Fire size must be non-null and non-zero",
+      "wind_med must be non-null",
+      "Correlation result must be classified as strong or not strong"
+    ],
+    "derived_filters": [
+      "Extract month from start_date column",
+      "Filter where month == 7 (July)",
+      "Remove records where hec (fire size) is null or zero",
+      "Remove records where wind_med is null"
+    ],
+    "statistical_tests": [
+      "Calculate Pearson correlation coefficient between fire size (hec) and wind_med",
+      "Calculate p-value for correlation significance",
+      "Apply threshold for 'strong correlation' (typically |r| > 0.7 or |r| > 0.5 depending on domain standards)",
+      "Test for statistical significance (p < 0.05)"
+    ],
+    "output_format_requirements": [
+      "Final answer must be 'Yes' or 'No'",
+      "Yes if correlation is strong (absolute value above threshold and statistically significant)",
+      "No if correlation is weak or not statistically significant"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Correlation coefficient between fire size and median wind speed for fires occurring in July\",\n    \"filters\": [\n      \"Filter to fires occurring in July (month extracted from start_date)\",\n      \"Exclude records with missing or null values for fire size and wind_med\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What column represents fire size in the dataset?\",\n      \"How to extract month from start_date to filter for July fires?\",\n      \"What correlation threshold constitutes 'strong correlation'?\",\n      \"Should the answer be based on Pearson or Spearman correlation?\",\n      \"What p-value threshold should be used to determine statistical significance?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"noaa_wildfires_variabledescrip.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"noaa_wildfires.csv\",\n        \"right_source\": \"noaa_wildfires_variabledescrip.csv\",\n        \"left_column\": \"column_names\",\n        \"right_column\": \"Variable Name\",\n        \"join_type\": \"left\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Fire size column is not explicitly identified in the provided column list\",\n      \"Need to determine which column represents fire size (likely 'hec' for hectares or related to incident scale)\"\n    ],\n    \"column_mappings\": {\n      \"wind_med\": \"median_wind_speed\",\n      \"start_date\": \"fire_start_date\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"wind_med\": \"miles per hour\",\n      \"hec\": \"hectares (assumed fire size)\",\n      \"start_date\": \"MM/DD/YYYY format\",\n      \"avrh_mean\": \"percentage\",\n      \"erc_med\": \"BTUs per square foot\",\n      \"rain_sum\": \"precipitation amount (units not specified)\"\n    },\n    \"scale_issues\": [\n      \"Fire size unit needs confirmation (hec likely represents hectares)\",\n      \"Wind speed in miles per hour may need standardization for correlation analysis\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Variable description file does not provide explicit mapping for fire size variable\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"start_date is stored as string in MM/DD/YYYY format requiring parsing\",\n      \"Some float64 columns (erc_med) may contain NaN values\",\n      \"Date parsing required to extract month for July filtering\",\n      \"Missing value in sample data: erc_med shows 0.0 in some rows which may be sentinel\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include fires that started in July (month == 7)\",\n      \"Fire size must be non-null and non-zero\",\n      \"wind_med must be non-null\",\n      \"Correlation result must be classified as strong or not strong\"\n    ],\n    \"derived_filters\": [\n      \"Extract month from start_date column\",\n      \"Filter where month == 7 (July)\",\n      \"Remove records where hec (fire size) is null or zero\",\n      \"Remove records where wind_med is null\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate Pearson correlation coefficient between fire size (hec) and wind_med\",\n      \"Calculate p-value for correlation significance\",\n      \"Apply threshold for 'strong correlation' (typically |r| > 0.7 or |r| > 0.5 depending on domain standards)\",\n      \"Test for statistical significance (p < 0.05)\"\n    ],\n    \"output_format_requirements\": [\n      \"Final answer must be 'Yes' or 'No'\",\n      \"Yes if correlation is strong (absolute value above threshold and statistically significant)\",\n      \"No if correlation is weak or not statistically significant\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 19.847584009170532,
+  "token_usage": {
+    "input_tokens": 4302,
+    "output_tokens": 1092
+  }
+}

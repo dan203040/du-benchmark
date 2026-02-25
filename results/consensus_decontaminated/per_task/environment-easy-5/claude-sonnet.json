@@ -1,0 +1,94 @@
+{
+  "m_q": {
+    "target_metric": "Total rainfall (sum of precipitation) for June, July, and August 2020",
+    "filters": [
+      "Year == 2020",
+      "Months in [Jun, Jul, Aug]"
+    ],
+    "grouping_variables": [
+      "Region"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total rainfall in Boston for June, July, August 2020?",
+      "What is the total rainfall in Chatham for June, July, August 2020?",
+      "What is the total rainfall in Amherst for June, July, August 2020?",
+      "What is the total rainfall in Ashburnham for June, July, August 2020?",
+      "Which region has the maximum total rainfall among these four regions?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv",
+      "monthly_precipitations_amherst.csv",
+      "monthly_precipitations_ashburnham.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files have identical schema with Year and 12 monthly columns plus Annual",
+      "Missing values appear as empty strings in sample data",
+      "Year 2020 data needs to be checked for presence in all files",
+      "Year values are float64 but represent integers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year 2020 must exist in all four regional datasets",
+      "Jun, Jul, Aug columns for 2020 must contain non-null numeric values",
+      "Precipitation values must be non-negative"
+    ],
+    "derived_filters": [
+      "Filter to Year == 2020 for each dataset",
+      "Extract Jun, Jul, Aug columns from 2020 row",
+      "Sum the three months for each region",
+      "Handle missing values if present in target months"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the name of the region with maximum summer 2020 rainfall",
+      "Optionally include the total rainfall values for all regions for comparison"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total rainfall (sum of precipitation) for June, July, and August 2020\",\n    \"filters\": [\"Year == 2020\", \"Months in [Jun, Jul, Aug]\"],\n    \"grouping_variables\": [\"Region\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total rainfall in Boston for June, July, August 2020?\",\n      \"What is the total rainfall in Chatham for June, July, August 2020?\",\n      \"What is the total rainfall in Amherst for June, July, August 2020?\",\n      \"What is the total rainfall in Ashburnham for June, July, August 2020?\",\n      \"Which region has the maximum total rainfall among these four regions?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"monthly_precipitations_boston.csv\",\n      \"monthly_precipitations_chatham.csv\",\n      \"monthly_precipitations_amherst.csv\",\n      \"monthly_precipitations_ashburnham.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Jan\": \"inches\",\n      \"Feb\": \"inches\",\n      \"Mar\": \"inches\",\n      \"Apr\": \"inches\",\n      \"May\": \"inches\",\n      \"Jun\": \"inches\",\n      \"Jul\": \"inches\",\n      \"Aug\": \"inches\",\n      \"Sep\": \"inches\",\n      \"Oct\": \"inches\",\n      \"Nov\": \"inches\",\n      \"Dec\": \"inches\",\n      \"Annual\": \"inches\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All files have identical schema with Year and 12 monthly columns plus Annual\",\n      \"Missing values appear as empty strings in sample data\",\n      \"Year 2020 data needs to be checked for presence in all files\",\n      \"Year values are float64 but represent integers\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year 2020 must exist in all four regional datasets\",\n      \"Jun, Jul, Aug columns for 2020 must contain non-null numeric values\",\n      \"Precipitation values must be non-negative\"\n    ],\n    \"derived_filters\": [\n      \"Filter to Year == 2020 for each dataset\",\n      \"Extract Jun, Jul, Aug columns from 2020 row\",\n      \"Sum the three months for each region\",\n      \"Handle missing values if present in target months\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the name of the region with maximum summer 2020 rainfall\",\n      \"Optionally include the total rainfall values for all regions for comparison\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.742429971694946,
+  "token_usage": {
+    "input_tokens": 5949,
+    "output_tokens": 798
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average of First Elected year",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "average of First Elected year",
+        "average of First Elected year",
+        "average of 'First Elected' year"
+      ]
+    },
+    "filters": {
+      "value": [
+        "District = '11'",
+        "Committee contains 'Environmental Matters'",
+        "District equals 11",
+        "District is 11",
+        "Committee is 'Environmental Matters'"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "District = '11'",
+          "Committee contains 'Environmental Matters'"
+        ],
+        [
+          "District equals 11",
+          "Committee contains 'Environmental Matters'"
+        ],
+        [
+          "District is 11",
+          "Committee is 'Environmental Matters'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the exact string match for District 11?",
+        "Does 'Environmental Matters' need exact match or partial match?",
+        "Should we include variations like 'Environmental Matters (Vice-Chair)'?",
+        "Filter records where District is 11",
+        "Filter records where Committee is Environmental Matters",
+        "Extract First Elected years from filtered records",
+        "Calculate average of First Elected years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the exact string match for District 11?",
+          "Does 'Environmental Matters' need exact match or partial match?",
+          "Should we include variations like 'Environmental Matters (Vice-Chair)'?"
+        ],
+        [
+          "Filter records where District is 11",
+          "Filter records where Committee is Environmental Matters",
+          "Extract First Elected years from filtered records",
+          "Calculate average of First Elected years"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Maryland State Legislature Representatives"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Maryland State Legislature Representatives"
+        ],
+        [
+          "Maryland State Legislature Representatives"
+        ],
+        [
+          "Maryland State Legislature Representatives"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "first elected": "year",
+        "district": "district_number"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "First Elected": "year"
+        },
+        {
+          "First Elected": "year",
+          "District": "district_number"
+        },
+        {
+          "First Elected": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "First Elected is stored as object/string instead of integer",
+        "District column contains mixed formats (decimal notation like '05.2 5B' and integers like '11')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First Elected is stored as object/string instead of integer"
+        ],
+        [
+          "District column contains mixed formats (decimal notation like '05.2 5B' and integers like '11')"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "First Elected should be convertible to integer",
+        "District values should be consistent for filtering",
+        "District must exactly match '11' (integer format)",
+        "First Elected must be convertible to numeric year",
+        "Committee field must contain the exact phrase 'Environmental Matters'",
+        "District column should be treated as string to handle values like '05.2 5B' and '12.1 12A'",
+        "First Elected column should be converted to numeric type (year)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First Elected should be convertible to integer",
+          "District values should be consistent for filtering"
+        ],
+        [
+          "District must exactly match '11' (integer format)",
+          "First Elected must be convertible to numeric year",
+          "Committee field must contain the exact phrase 'Environmental Matters'"
+        ],
+        [
+          "District column should be treated as string to handle values like '05.2 5B' and '12.1 12A'",
+          "First Elected column should be converted to numeric type (year)"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where District contains '11' as exact match",
+        "Filter rows where Committee contains 'Environmental Matters' substring",
+        "Committee string matching should handle variations like 'Environmental Matters (Vice-Chair)'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where District contains '11' as exact match",
+          "Filter rows where Committee contains 'Environmental Matters' substring"
+        ],
+        [
+          "Committee string matching should handle variations like 'Environmental Matters (Vice-Chair)'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check distribution of First Elected years for filtered subset"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check distribution of First Elected years for filtered subset"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Average year should be numeric, possibly with decimal places",
+        "Result should be a single numeric value representing the average year",
+        "Average should be calculated only from valid year values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Average year should be numeric, possibly with decimal places"
+        ],
+        [
+          "Result should be a single numeric value representing the average year",
+          "Average should be calculated only from valid year values"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5866666666666667
+}

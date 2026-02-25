@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "average year",
+    "filters": [
+      "Entrant = 'Belanger Motors'",
+      "Engine = 'Offenhauser L4'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have Entrant as 'Belanger Motors'?",
+      "Which rows have Engine as 'Offenhauser L4' or 'Offenhauser l4'?",
+      "What are the years that satisfy both conditions?",
+      "What is the average of those years?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "racers_database"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Points": "racing points"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column has dtype 'object' but contains numeric year values",
+      "Engine values show 'Offenhauser L4' in data (uppercase L) but question uses 'Offenhauser l4' (lowercase l) - case-insensitive matching may be needed",
+      "All columns are stored as object dtype including numeric fields"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be numeric and convertible to integer",
+      "Entrant matching must be exact for 'Belanger Motors'",
+      "Engine matching should be case-insensitive to handle 'L4' vs 'l4'"
+    ],
+    "derived_filters": [
+      "Filter rows where Entrant == 'Belanger Motors' AND Engine matches 'Offenhauser L4' (case-insensitive)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value representing the average year",
+      "If no matching records found, handle appropriately (e.g., return null or 0)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average year\",\n    \"filters\": [\n      \"Entrant = 'Belanger Motors'\",\n      \"Engine = 'Offenhauser L4'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have Entrant as 'Belanger Motors'?\",\n      \"Which rows have Engine as 'Offenhauser L4' or 'Offenhauser l4'?\",\n      \"What are the years that satisfy both conditions?\",\n      \"What is the average of those years?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"racers_database\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar year\",\n      \"Points\": \"racing points\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Year column has dtype 'object' but contains numeric year values\",\n      \"Engine values show 'Offenhauser L4' in data (uppercase L) but question uses 'Offenhauser l4' (lowercase l) - case-insensitive matching may be needed\",\n      \"All columns are stored as object dtype including numeric fields\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be numeric and convertible to integer\",\n      \"Entrant matching must be exact for 'Belanger Motors'\",\n      \"Engine matching should be case-insensitive to handle 'L4' vs 'l4'\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Entrant == 'Belanger Motors' AND Engine matches 'Offenhauser L4' (case-insensitive)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value representing the average year\",\n      \"If no matching records found, handle appropriately (e.g., return null or 0)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.42290186882019,
+  "token_usage": {
+    "input_tokens": 1211,
+    "output_tokens": 631
+  }
+}

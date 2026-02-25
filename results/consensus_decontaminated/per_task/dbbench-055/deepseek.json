@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "Identify the athlete(s) with the highest rank (lowest numerical rank value)",
+    "filters": [
+      "Exclude rows where Total Rank is '\u2013' or 'DNF' or 'DSQ'",
+      "Consider only valid numerical rank values"
+    ],
+    "grouping_variables": [
+      "Athlete"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What does '\u2013' in Total Rank column mean?",
+      "Are DNF/DSQ considered ranks?",
+      "Should we consider all events or specific events?",
+      "How to handle ties in rank?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Athlete Event Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Race 1 Time": "minutes:seconds.hundredths",
+      "Race 2 Time": "minutes:seconds.hundredths",
+      "Total Time": "minutes:seconds.hundredths"
+    },
+    "scale_issues": [
+      "Time values mix different formats (MM:SS.ss vs SS.ss)",
+      "Total Rank contains both numerical values and special codes ('\u2013', 'DNF', 'DSQ')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      "DNF",
+      "DSQ",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Time values use colon separator for minutes:seconds",
+      "Some time values have decimal points for hundredths",
+      "Special codes used for non-finishes: DNF, DSQ, \u2013"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total Rank should be numeric for valid race completions",
+      "Total Time should be sum of Race 1 Time and Race 2 Time for valid races",
+      "Athlete names should be unique per event"
+    ],
+    "derived_filters": [
+      "Filter to rows where Total Rank is numeric",
+      "Consider minimum rank value across all events per athlete"
+    ],
+    "statistical_tests": [
+      "Check consistency between Total Time and sum of Race 1 + Race 2 Times",
+      "Validate rank ordering matches time ordering"
+    ],
+    "output_format_requirements": [
+      "List athlete name(s) with highest rank",
+      "Include rank value",
+      "Handle multiple athletes if tied"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Identify the athlete(s) with the highest rank (lowest numerical rank value)\",\n        \"filters\": [\"Exclude rows where Total Rank is '\u2013' or 'DNF' or 'DSQ'\", \"Consider only valid numerical rank values\"],\n        \"grouping_variables\": [\"Athlete\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What does '\u2013' in Total Rank column mean?\", \"Are DNF/DSQ considered ranks?\", \"Should we consider all events or specific events?\", \"How to handle ties in rank?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Athlete Event Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Race 1 Time\": \"minutes:seconds.hundredths\", \"Race 2 Time\": \"minutes:seconds.hundredths\", \"Total Time\": \"minutes:seconds.hundredths\"},\n        \"scale_issues\": [\"Time values mix different formats (MM:SS.ss vs SS.ss)\", \"Total Rank contains both numerical values and special codes ('\u2013', 'DNF', 'DSQ')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\u2013\", \"DNF\", \"DSQ\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Time values use colon separator for minutes:seconds\", \"Some time values have decimal points for hundredths\", \"Special codes used for non-finishes: DNF, DSQ, \u2013\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total Rank should be numeric for valid race completions\", \"Total Time should be sum of Race 1 Time and Race 2 Time for valid races\", \"Athlete names should be unique per event\"],\n        \"derived_filters\": [\"Filter to rows where Total Rank is numeric\", \"Consider minimum rank value across all events per athlete\"],\n        \"statistical_tests\": [\"Check consistency between Total Time and sum of Race 1 + Race 2 Times\", \"Validate rank ordering matches time ordering\"],\n        \"output_format_requirements\": [\"List athlete name(s) with highest rank\", \"Include rank value\", \"Handle multiple athletes if tied\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.450546979904175,
+  "token_usage": {
+    "input_tokens": 975,
+    "output_tokens": 543
+  }
+}

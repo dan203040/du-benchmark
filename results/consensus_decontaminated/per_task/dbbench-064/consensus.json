@@ -1,0 +1,324 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Determine which individual (John F. Williams or William A. Mann) held their position first based on the 'From' date",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Determine which individual (John F. Williams or William A. Mann) held their position first based on the 'From' date",
+        "Determine temporal order - which person held their position first",
+        "Determine which of the two individuals, John F. Williams or William A. Mann, held their military leadership position first based on the 'From' date."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Name contains 'John F. Williams'",
+        "Name contains 'William A. Mann'",
+        "Name contains 'John F. Williams' or 'William A. Mann'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Name contains 'John F. Williams'",
+          "Name contains 'William A. Mann'"
+        ],
+        [
+          "Name contains 'John F. Williams' or 'William A. Mann'"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Name"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Name"
+        ],
+        [
+          "Name"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the earliest 'From' dates for each individual?",
+        "Are there multiple entries for the same person that need to be considered?",
+        "How should we handle missing 'Number' values when comparing individuals?",
+        "What is the earliest 'From' date for John F. Williams?",
+        "What is the earliest 'From' date for William A. Mann?",
+        "Which date comes first chronologically?",
+        "Extract the 'From' date for John F. Williams.",
+        "Extract the 'From' date for William A. Mann.",
+        "Compare the two 'From' dates to determine which is earlier."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What are the earliest 'From' dates for each individual?",
+          "Are there multiple entries for the same person that need to be considered?",
+          "How should we handle missing 'Number' values when comparing individuals?"
+        ],
+        [
+          "What is the earliest 'From' date for John F. Williams?",
+          "What is the earliest 'From' date for William A. Mann?",
+          "Which date comes first chronologically?"
+        ],
+        [
+          "Extract the 'From' date for John F. Williams.",
+          "Extract the 'From' date for William A. Mann.",
+          "Compare the two 'From' dates to determine which is earlier."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Military Leaders Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Military Leaders Table"
+        ],
+        [
+          "Military Leaders Table"
+        ],
+        [
+          "Military Leaders Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Missing 'Number' values for some rows (null entries)",
+        "Inconsistent rank prefixes in 'Name' column (COL, BG, MG)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Missing 'Number' values for some rows (null entries)",
+          "Inconsistent rank prefixes in 'Name' column (COL, BG, MG)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "from": "date",
+        "to": "date"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "From": "date",
+          "To": "date"
+        },
+        {
+          "From": "date (format: Month Day, Year)",
+          "To": "date (format: Month Day, Year)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Date format appears as 'Month DD, YYYY' but stored as object/string type",
+        "Need to parse dates for chronological comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date format appears as 'Month DD, YYYY' but stored as object/string type",
+          "Need to parse dates for chronological comparison"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each row represents a leadership tenure period",
+        "Same person may appear multiple times with different date ranges",
+        "Date ranges may overlap or have gaps",
+        "From dates must be parseable as valid dates",
+        "Comparison requires chronological date ordering",
+        "The 'From' column must be parsed as a date.",
+        "Multiple entries for the same person may exist; the earliest 'From' date should be used."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Each row represents a leadership tenure period",
+          "Same person may appear multiple times with different date ranges",
+          "Date ranges may overlap or have gaps"
+        ],
+        [
+          "From dates must be parseable as valid dates",
+          "Comparison requires chronological date ordering"
+        ],
+        [
+          "The 'From' column must be parsed as a date.",
+          "Multiple entries for the same person may exist; the earliest 'From' date should be used."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to rows where Name contains 'Williams' or 'Mann'",
+        "Extract earliest 'From' date for each unique individual",
+        "Filter rows where Name column contains 'John F. Williams'",
+        "Filter rows where Name column contains 'William A. Mann'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to rows where Name contains 'Williams' or 'Mann'",
+          "Extract earliest 'From' date for each unique individual"
+        ],
+        [
+          "Filter rows where Name column contains 'John F. Williams'",
+          "Filter rows where Name column contains 'William A. Mann'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for date format consistency across all rows",
+        "Validate that 'From' date is always earlier than 'To' date"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for date format consistency across all rows",
+          "Validate that 'From' date is always earlier than 'To' date"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single name of person who came first",
+        "Include supporting date evidence if needed",
+        "Return the name of the person who came first",
+        "Answer should be either 'William A. Mann' or 'John F. Williams'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single name of person who came first",
+          "Include supporting date evidence if needed"
+        ],
+        [
+          "Return the name of the person who came first",
+          "Answer should be either 'William A. Mann' or 'John F. Williams'"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6055555555555557
+}

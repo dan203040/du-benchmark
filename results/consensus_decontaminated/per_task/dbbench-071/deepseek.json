@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "total population count for districts where foreign nationals percentage equals 23.3%",
+    "filters": [
+      "Foreign nationals in % = '23,3%'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which city districts have exactly 23.3% foreign nationals?",
+      "What is the sum of Population for those districts?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "city_district_statistics"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All columns stored as object/string type despite numeric content"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Area in km\u00b2": "square kilometers",
+      "Population": "count of people",
+      "Foreign nationals": "count of people",
+      "Foreign nationals in %": "percentage"
+    },
+    "scale_issues": [
+      "Decimal separator is comma in numeric strings (e.g., '0,51 km\u00b2', '32,3%')",
+      "Thousands separator is period in numeric strings (e.g., '3.475')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Area values include unit suffix ' km\u00b2'",
+      "Percentage values include '%' symbol",
+      "Numeric values use European formatting: comma as decimal separator, period as thousands separator"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Population \u2265 0",
+      "0% \u2264 Foreign nationals in % \u2264 100%",
+      "Foreign nationals \u2264 Population"
+    ],
+    "derived_filters": [
+      "Convert 'Foreign nationals in %' to numeric for comparison with 23.3%",
+      "Convert 'Population' to numeric for summation"
+    ],
+    "statistical_tests": [
+      "Verify percentage calculation: Foreign nationals / Population \u2248 Foreign nationals in %"
+    ],
+    "output_format_requirements": [
+      "Numeric result without formatting",
+      "Consider rounding to nearest integer"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total population count for districts where foreign nationals percentage equals 23.3%\",\n        \"filters\": [\"Foreign nationals in % = '23,3%'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which city districts have exactly 23.3% foreign nationals?\", \"What is the sum of Population for those districts?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"city_district_statistics\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All columns stored as object/string type despite numeric content\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Area in km\u00b2\": \"square kilometers\",\n            \"Population\": \"count of people\",\n            \"Foreign nationals\": \"count of people\",\n            \"Foreign nationals in %\": \"percentage\"\n        },\n        \"scale_issues\": [\"Decimal separator is comma in numeric strings (e.g., '0,51 km\u00b2', '32,3%')\", \"Thousands separator is period in numeric strings (e.g., '3.475')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Area values include unit suffix ' km\u00b2'\", \"Percentage values include '%' symbol\", \"Numeric values use European formatting: comma as decimal separator, period as thousands separator\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Population \u2265 0\", \"0% \u2264 Foreign nationals in % \u2264 100%\", \"Foreign nationals \u2264 Population\"],\n        \"derived_filters\": [\"Convert 'Foreign nationals in %' to numeric for comparison with 23.3%\", \"Convert 'Population' to numeric for summation\"],\n        \"statistical_tests\": [\"Verify percentage calculation: Foreign nationals / Population \u2248 Foreign nationals in %\"],\n        \"output_format_requirements\": [\"Numeric result without formatting\", \"Consider rounding to nearest integer\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.13796091079712,
+  "token_usage": {
+    "input_tokens": 1091,
+    "output_tokens": 490
+  }
+}

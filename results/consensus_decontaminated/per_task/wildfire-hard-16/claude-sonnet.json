@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "Chi-square test statistic and p-value for the relationship between geographical region and fire cause",
+    "filters": [
+      "Fires starting in January, February, or March only",
+      "Fires with known causes (exclude unknown causes)"
+    ],
+    "grouping_variables": [
+      "region",
+      "cause"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What are the unique values in the 'cause' column and which represent known causes?",
+      "How to extract the month from 'start_date' to filter for January, February, and March?",
+      "What is the contingency table of region vs cause for the filtered data?",
+      "What are the chi-square statistic and p-value from the independence test?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "start_date": "date as MM/DD/YYYY",
+      "region": "categorical geographic region",
+      "cause": "categorical cause code (U=unknown, N=natural, H=human, L=lightning, O=other)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "start_date is stored as object/string type in format MM/DD/YYYY",
+      "cause column contains single letter codes that need interpretation",
+      "region column contains full geographic region names"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include fires where cause is known (exclude cause='U' for unknown)",
+      "Only include fires starting in months 1, 2, or 3 (January, February, March)",
+      "Must have valid region and cause values for chi-square test"
+    ],
+    "derived_filters": [
+      "Extract month from start_date column",
+      "Filter for month in [1, 2, 3]",
+      "Filter for cause not equal to 'U'"
+    ],
+    "statistical_tests": [
+      "Chi-square test of independence between region and cause",
+      "Contingency table creation from grouped counts"
+    ],
+    "output_format_requirements": [
+      "Return a list of exactly two numbers: [chi-square statistic, p-value]",
+      "Chi-square statistic should be the test statistic value",
+      "P-value should be the probability value from the test"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Chi-square test statistic and p-value for the relationship between geographical region and fire cause\",\n    \"filters\": [\n      \"Fires starting in January, February, or March only\",\n      \"Fires with known causes (exclude unknown causes)\"\n    ],\n    \"grouping_variables\": [\"region\", \"cause\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What are the unique values in the 'cause' column and which represent known causes?\",\n      \"How to extract the month from 'start_date' to filter for January, February, and March?\",\n      \"What is the contingency table of region vs cause for the filtered data?\",\n      \"What are the chi-square statistic and p-value from the independence test?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"noaa_wildfires.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"start_date\": \"date as MM/DD/YYYY\",\n      \"region\": \"categorical geographic region\",\n      \"cause\": \"categorical cause code (U=unknown, N=natural, H=human, L=lightning, O=other)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"start_date is stored as object/string type in format MM/DD/YYYY\",\n      \"cause column contains single letter codes that need interpretation\",\n      \"region column contains full geographic region names\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include fires where cause is known (exclude cause='U' for unknown)\",\n      \"Only include fires starting in months 1, 2, or 3 (January, February, March)\",\n      \"Must have valid region and cause values for chi-square test\"\n    ],\n    \"derived_filters\": [\n      \"Extract month from start_date column\",\n      \"Filter for month in [1, 2, 3]\",\n      \"Filter for cause not equal to 'U'\"\n    ],\n    \"statistical_tests\": [\n      \"Chi-square test of independence between region and cause\",\n      \"Contingency table creation from grouped counts\"\n    ],\n    \"output_format_requirements\": [\n      \"Return a list of exactly two numbers: [chi-square statistic, p-value]\",\n      \"Chi-square statistic should be the test statistic value\",\n      \"P-value should be the probability value from the test\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.610295057296753,
+  "token_usage": {
+    "input_tokens": 4330,
+    "output_tokens": 727
+  }
+}

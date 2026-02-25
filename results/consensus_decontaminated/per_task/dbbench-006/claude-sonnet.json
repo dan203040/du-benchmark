@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "attendance count",
+    "filters": [
+      "Tie no = 19"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the tie number column name?",
+      "What is the attendance value for tie number 19?",
+      "Is the attendance value in a format that needs parsing (e.g., comma-separated)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Attendance": "count of people"
+    },
+    "scale_issues": [
+      "Attendance values contain commas as thousands separators (e.g., '1,174')",
+      "Attendance is stored as object/string type instead of numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Attendance column contains comma-separated numeric values",
+      "Tie no is stored as object type",
+      "Score column contains special dash characters (en-dash or em-dash)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Tie no must equal 19",
+      "Attendance must be a valid numeric value after parsing"
+    ],
+    "derived_filters": [
+      "Filter rows where 'Tie no' column equals '19' (as string)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single numeric value representing attendance",
+      "Remove comma separators from attendance before returning"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"attendance count\",\n    \"filters\": [\"Tie no = 19\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the tie number column name?\",\n      \"What is the attendance value for tie number 19?\",\n      \"Is the attendance value in a format that needs parsing (e.g., comma-separated)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Football Matches\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Attendance\": \"count of people\"\n    },\n    \"scale_issues\": [\n      \"Attendance values contain commas as thousands separators (e.g., '1,174')\",\n      \"Attendance is stored as object/string type instead of numeric\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Attendance column contains comma-separated numeric values\",\n      \"Tie no is stored as object type\",\n      \"Score column contains special dash characters (en-dash or em-dash)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Tie no must equal 19\",\n      \"Attendance must be a valid numeric value after parsing\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where 'Tie no' column equals '19' (as string)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single numeric value representing attendance\",\n      \"Remove comma separators from attendance before returning\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.83302903175354,
+  "token_usage": {
+    "input_tokens": 989,
+    "output_tokens": 516
+  }
+}

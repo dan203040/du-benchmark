@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Years where Fraud reports count is at least 50% of total reports (Fraud + Identity Theft + Other)",
+    "filters": [
+      "Fraud >= 0.5 * (Fraud + Identity Theft + Other)"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Calculate total reports per year",
+      "Calculate Fraud percentage of total reports per year",
+      "Filter years where Fraud percentage >= 50%"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Fraud": "count of reports",
+      "Identity Theft": "count of reports",
+      "Other": "count of reports"
+    },
+    "scale_issues": [
+      "All count columns appear to be integers, no scaling issues evident"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column is Year, followed by three report type columns",
+      "Data appears clean with no missing values in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be sequential from 2001-2024 based on shape [24,4]",
+      "All count columns should be non-negative integers",
+      "Total reports = Fraud + Identity Theft + Other should be positive"
+    ],
+    "derived_filters": [
+      "Fraud_percentage = Fraud / (Fraud + Identity Theft + Other) * 100",
+      "Filter: Fraud_percentage >= 50"
+    ],
+    "statistical_tests": [
+      "Verify that sum of three report types equals total reports for each year"
+    ],
+    "output_format_requirements": [
+      "List of years where condition is met",
+      "Could optionally include Fraud percentage for each year"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Years where Fraud reports count is at least 50% of total reports (Fraud + Identity Theft + Other)\",\n        \"filters\": [\"Fraud >= 0.5 * (Fraud + Identity Theft + Other)\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Calculate total reports per year\", \"Calculate Fraud percentage of total reports per year\", \"Filter years where Fraud percentage >= 50%\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"calendar year\", \"Fraud\": \"count of reports\", \"Identity Theft\": \"count of reports\", \"Other\": \"count of reports\"},\n        \"scale_issues\": [\"All count columns appear to be integers, no scaling issues evident\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column is Year, followed by three report type columns\", \"Data appears clean with no missing values in sample\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be sequential from 2001-2024 based on shape [24,4]\", \"All count columns should be non-negative integers\", \"Total reports = Fraud + Identity Theft + Other should be positive\"],\n        \"derived_filters\": [\"Fraud_percentage = Fraud / (Fraud + Identity Theft + Other) * 100\", \"Filter: Fraud_percentage >= 50\"],\n        \"statistical_tests\": [\"Verify that sum of three report types equals total reports for each year\"],\n        \"output_format_requirements\": [\"List of years where condition is met\", \"Could optionally include Fraud percentage for each year\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.11631989479065,
+  "token_usage": {
+    "input_tokens": 850,
+    "output_tokens": 490
+  }
+}

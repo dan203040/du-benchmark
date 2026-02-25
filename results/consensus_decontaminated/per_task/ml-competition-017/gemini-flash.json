@@ -1,0 +1,56 @@
+{
+  "m_q": {
+    "target_metric": "Predicted essay score for each essay in test.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "test.csv",
+      "sample_submission.csv",
+      "train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": null,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'essay_id' in submission.csv must match the 'essay_id' in test.csv.",
+      "The 'score' in submission.csv must be an integer."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The submission file must be named 'submission.csv'.",
+      "The submission file must contain two columns: 'essay_id' and 'score'.",
+      "The 'essay_id' column in submission.csv should contain the same essay IDs as in test.csv.",
+      "The 'score' column in submission.csv should contain the predicted score for each essay."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Predicted essay score for each essay in test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"test.csv\",\n      \"sample_submission.csv\",\n      \"train.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": null,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'essay_id' in submission.csv must match the 'essay_id' in test.csv.\",\n      \"The 'score' in submission.csv must be an integer.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The submission file must be named 'submission.csv'.\",\n      \"The submission file must contain two columns: 'essay_id' and 'score'.\",\n      \"The 'essay_id' column in submission.csv should contain the same essay IDs as in test.csv.\",\n      \"The 'score' column in submission.csv should contain the predicted score for each essay.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.0544209480285645,
+  "token_usage": {}
+}

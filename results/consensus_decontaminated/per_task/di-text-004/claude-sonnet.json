@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Most frequent experience level (using label mapping from tips.md) and its ratio (frequency / total count)",
+    "filters": [],
+    "grouping_variables": [
+      "experience_level"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the label mapping for experience_level in tips.md?",
+      "What are the value counts for each experience_level code in ds_salaries.csv?",
+      "Which experience_level code appears most frequently?",
+      "What is the transformed/mapped label for the most frequent experience_level?",
+      "What is the ratio of the most frequent experience_level (count / total records)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "ds_salaries.csv",
+      "tips.md"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "experience_level": "experience_level_code"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "ratio": "decimal (proportion of total records)",
+      "experience_level": "categorical code requiring mapping"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "experience_level codes (EN, MI, SE, EX) in ds_salaries.csv need to be mapped to full labels from tips.md"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "ds_salaries.csv has 607 rows and 12 columns",
+      "experience_level contains categorical codes: EN, MI, SE, EX",
+      "tips.md contains label mapping documentation for experience_level codes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must use label mapping from tips.md to transform experience_level codes",
+      "Ratio must be calculated as decimal (not percentage)",
+      "Must identify the single most frequent experience level"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be in exact JSON format with keys 'The most frequent experience level' and 'ratio'",
+      "The most frequent experience level should be the mapped/transformed label (not the code)",
+      "Ratio should be a decimal value (frequency divided by total count of 607)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Most frequent experience level (using label mapping from tips.md) and its ratio (frequency / total count)\",\n    \"filters\": [],\n    \"grouping_variables\": [\"experience_level\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the label mapping for experience_level in tips.md?\",\n      \"What are the value counts for each experience_level code in ds_salaries.csv?\",\n      \"Which experience_level code appears most frequently?\",\n      \"What is the transformed/mapped label for the most frequent experience_level?\",\n      \"What is the ratio of the most frequent experience_level (count / total records)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"ds_salaries.csv\", \"tips.md\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"experience_level\": \"experience_level_code\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"ratio\": \"decimal (proportion of total records)\",\n      \"experience_level\": \"categorical code requiring mapping\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"experience_level codes (EN, MI, SE, EX) in ds_salaries.csv need to be mapped to full labels from tips.md\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"ds_salaries.csv has 607 rows and 12 columns\",\n      \"experience_level contains categorical codes: EN, MI, SE, EX\",\n      \"tips.md contains label mapping documentation for experience_level codes\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must use label mapping from tips.md to transform experience_level codes\",\n      \"Ratio must be calculated as decimal (not percentage)\",\n      \"Must identify the single most frequent experience level\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be in exact JSON format with keys 'The most frequent experience level' and 'ratio'\",\n      \"The most frequent experience level should be the mapped/transformed label (not the code)\",\n      \"Ratio should be a decimal value (frequency divided by total count of 607)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.21941089630127,
+  "token_usage": {
+    "input_tokens": 1495,
+    "output_tokens": 663
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "m_q": {
+    "target_metric": "Passenger satisfaction prediction (binary classification: 'satisfied' vs 'neutral or dissatisfied')",
+    "filters": [
+      "No explicit filters mentioned in analytical question"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features are most predictive of satisfaction?",
+      "How should missing values in Arrival Delay in Minutes be handled?",
+      "Should the 'Unnamed: 0' and 'id' columns be used as features or excluded?",
+      "What is the distribution of satisfaction classes in training data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv",
+      "test.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "test.csv lacks 'satisfaction' column (target variable)",
+      "test.csv has 24 columns vs train.csv has 25 columns",
+      "Arrival Delay in Minutes dtype differs: float64 in test.csv vs float64 in train.csv (consistent)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "Flight Distance": "miles or kilometers (unspecified)",
+      "Departure Delay in Minutes": "minutes",
+      "Arrival Delay in Minutes": "minutes",
+      "Inflight wifi service": "Likert scale 0-5",
+      "Departure/Arrival time convenient": "Likert scale 0-5",
+      "Ease of Online booking": "Likert scale 0-5",
+      "Gate location": "Likert scale 0-5",
+      "Food and drink": "Likert scale 0-5",
+      "Online boarding": "Likert scale 0-5",
+      "Seat comfort": "Likert scale 0-5",
+      "Inflight entertainment": "Likert scale 0-5",
+      "On-board service": "Likert scale 0-5",
+      "Leg room service": "Likert scale 0-5",
+      "Baggage handling": "Likert scale 0-5",
+      "Checkin service": "Likert scale 0-5",
+      "Inflight service": "Likert scale 0-5",
+      "Cleanliness": "Likert scale 0-5"
+    },
+    "scale_issues": [
+      "Service rating columns use 0-5 scale but sample shows values 0-5",
+      "Flight Distance range appears large (83 to 3987 in sample)",
+      "Delay minutes have wide range (0-117 in sample)"
+    ],
+    "cross_source_conflicts": [
+      "All service rating columns should have same scale (0-5) across both files"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 25,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column 'Unnamed: 0' appears to be row index",
+      "Column names contain spaces and special characters",
+      "Sample shows no missing values but full dataset may have them",
+      "Arrival Delay in Minutes contains float values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "satisfaction column must be predicted for all 25976 test rows",
+      "Output file must be named 'result.csv' with single 'satisfaction' column",
+      "satisfaction values must be either 'satisfied' or 'neutral or dissatisfied'",
+      "All service ratings should be between 0-5 inclusive",
+      "Age should be positive integer",
+      "Flight Distance should be non-negative",
+      "Delay minutes should be non-negative"
+    ],
+    "derived_filters": [
+      "Check for outliers in Flight Distance",
+      "Validate service ratings are within 0-5 range",
+      "Ensure Age values are realistic (e.g., >0 and <120)"
+    ],
+    "statistical_tests": [
+      "Class imbalance check in training data",
+      "Correlation analysis between service ratings and satisfaction",
+      "Check for multicollinearity among service features"
+    ],
+    "output_format_requirements": [
+      "CSV file with 'satisfaction' column only",
+      "Same row order as test.csv",
+      "No index column in output"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Passenger satisfaction prediction (binary classification: 'satisfied' vs 'neutral or dissatisfied')\",\n        \"filters\": [\"No explicit filters mentioned in analytical question\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What features are most predictive of satisfaction?\", \"How should missing values in Arrival Delay in Minutes be handled?\", \"Should the 'Unnamed: 0' and 'id' columns be used as features or excluded?\", \"What is the distribution of satisfaction classes in training data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"train.csv\", \"test.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"test.csv lacks 'satisfaction' column (target variable)\", \"test.csv has 24 columns vs train.csv has 25 columns\", \"Arrival Delay in Minutes dtype differs: float64 in test.csv vs float64 in train.csv (consistent)\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Age\": \"years\",\n            \"Flight Distance\": \"miles or kilometers (unspecified)\",\n            \"Departure Delay in Minutes\": \"minutes\",\n            \"Arrival Delay in Minutes\": \"minutes\",\n            \"Inflight wifi service\": \"Likert scale 0-5\",\n            \"Departure/Arrival time convenient\": \"Likert scale 0-5\",\n            \"Ease of Online booking\": \"Likert scale 0-5\",\n            \"Gate location\": \"Likert scale 0-5\",\n            \"Food and drink\": \"Likert scale 0-5\",\n            \"Online boarding\": \"Likert scale 0-5\",\n            \"Seat comfort\": \"Likert scale 0-5\",\n            \"Inflight entertainment\": \"Likert scale 0-5\",\n            \"On-board service\": \"Likert scale 0-5\",\n            \"Leg room service\": \"Likert scale 0-5\",\n            \"Baggage handling\": \"Likert scale 0-5\",\n            \"Checkin service\": \"Likert scale 0-5\",\n            \"Inflight service\": \"Likert scale 0-5\",\n            \"Cleanliness\": \"Likert scale 0-5\"\n        },\n        \"scale_issues\": [\"Service rating columns use 0-5 scale but sample shows values 0-5\", \"Flight Distance range appears large (83 to 3987 in sample)\", \"Delay minutes have wide range (0-117 in sample)\"],\n        \"cross_source_conflicts\": [\"All service rating columns should have same scale (0-5) across both files\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 25,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column 'Unnamed: 0' appears to be row index\", \"Column names contain spaces and special characters\", \"Sample shows no missing values but full dataset may have them\", \"Arrival Delay in Minutes contains float values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"satisfaction column must be predicted for all 25976 test rows\", \"Output file must be named 'result.csv' with single 'satisfaction' column\", \"satisfaction values must be either 'satisfied' or 'neutral or dissatisfied'\", \"All service ratings should be between 0-5 inclusive\", \"Age should be positive integer\", \"Flight Distance should be non-negative\", \"Delay minutes should be non-negative\"],\n        \"derived_filters\": [\"Check for outliers in Flight Distance\", \"Validate service ratings are within 0-5 range\", \"Ensure Age values are realistic (e.g., >0 and <120)\"],\n        \"statistical_tests\": [\"Class imbalance check in training data\", \"Correlation analysis between service ratings and satisfaction\", \"Check for multicollinearity among service features\"],\n        \"output_format_requirements\": [\"CSV file with 'satisfaction' column only\", \"Same row order as test.csv\", \"No index column in output\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 18.05299401283264,
+  "token_usage": {
+    "input_tokens": 3660,
+    "output_tokens": 923
+  }
+}

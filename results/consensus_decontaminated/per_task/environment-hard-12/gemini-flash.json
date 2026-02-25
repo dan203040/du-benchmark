@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "Number of samples that failed to meet swimming standards (Enterococcus count >= 104) for each beach, when there was no rainfall in the preceding three days, and identify the beach with the highest count.",
+    "filters": [
+      "3-Day Rain = 0",
+      "2-Day Rain = 0",
+      "1-Day Rain = 0",
+      "Enterococcus >= 104"
+    ],
+    "grouping_variables": [
+      "Beach"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "boston-harbor-beaches.txt",
+      "constitution_beach_datasheet.csv",
+      "carson_beach_datasheet.csv",
+      "pleasure_bay_and_castle_island_beach_datasheet.csv",
+      "m_street_beach_datasheet.csv",
+      "city_point_beach_datasheet.csv",
+      "malibu_beach_datasheet.csv",
+      "tenean_beach_datasheet.csv",
+      "wollaston_beach_datasheet.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "1-Day Rain": "inches",
+      "2-Day Rain": "inches",
+      "3-Day Rain": "inches",
+      "Enterococcus": "counts per 100 milliliters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Enterococcus values represented with '<' need to be converted to numeric values (e.g., <10 to 10 or a smaller value like 9)",
+      "Need to iterate through each beach datasheet file.",
+      "Need to handle different column names for Enterococcus counts across different files (e.g., Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3)."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of samples that failed to meet swimming standards (Enterococcus count >= 104) for each beach, when there was no rainfall in the preceding three days, and identify the beach with the highest count.\",\n    \"filters\": [\n      \"3-Day Rain = 0\",\n      \"2-Day Rain = 0\",\n      \"1-Day Rain = 0\",\n      \"Enterococcus >= 104\"\n    ],\n    \"grouping_variables\": [\n      \"Beach\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"boston-harbor-beaches.txt\",\n      \"constitution_beach_datasheet.csv\",\n      \"carson_beach_datasheet.csv\",\n      \"pleasure_bay_and_castle_island_beach_datasheet.csv\",\n      \"m_street_beach_datasheet.csv\",\n      \"city_point_beach_datasheet.csv\",\n      \"malibu_beach_datasheet.csv\",\n      \"tenean_beach_datasheet.csv\",\n      \"wollaston_beach_datasheet.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"1-Day Rain\": \"inches\",\n      \"2-Day Rain\": \"inches\",\n      \"3-Day Rain\": \"inches\",\n      \"Enterococcus\": \"counts per 100 milliliters\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Enterococcus values represented with '<' need to be converted to numeric values (e.g., <10 to 10 or a smaller value like 9)\",\n      \"Need to iterate through each beach datasheet file.\",\n      \"Need to handle different column names for Enterococcus counts across different files (e.g., Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3).\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.16632604598999,
+  "token_usage": {}
+}

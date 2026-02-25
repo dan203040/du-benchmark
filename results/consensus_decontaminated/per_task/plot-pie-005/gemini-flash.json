@@ -1,0 +1,64 @@
+{
+  "m_q": {
+    "target_metric": "Number of games in each of the four major genres (Strategy, Puzzle, Board, and Action) and their proportions, visualized as a pie chart.",
+    "filters": [
+      "Primary Genre is one of 'Strategy', 'Puzzle', 'Board', or 'Action'"
+    ],
+    "grouping_variables": [
+      "Primary Genre"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "appstore_games.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Size": "bytes",
+      "Price": "USD",
+      "User Rating Count": "number of ratings"
+    },
+    "scale_issues": [
+      "Size is in bytes, may need to convert to MB or GB for better readability."
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 18,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The pie chart should be sized (12, 8).",
+      "The pie chart colors should be Green, Orange, Blue, and Red.",
+      "The pie chart legend should include genre names.",
+      "The pie chart should be saved as result.png."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Pie chart with specified size, colors, and legend.",
+      "Image saved as result.png"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of games in each of the four major genres (Strategy, Puzzle, Board, and Action) and their proportions, visualized as a pie chart.\",\n    \"filters\": [\n      \"Primary Genre is one of 'Strategy', 'Puzzle', 'Board', or 'Action'\"\n    ],\n    \"grouping_variables\": [\n      \"Primary Genre\"\n    ],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"appstore_games.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Size\": \"bytes\",\n      \"Price\": \"USD\",\n      \"User Rating Count\": \"number of ratings\"\n    },\n    \"scale_issues\": [\n      \"Size is in bytes, may need to convert to MB or GB for better readability.\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 18,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The pie chart should be sized (12, 8).\",\n      \"The pie chart colors should be Green, Orange, Blue, and Red.\",\n      \"The pie chart legend should include genre names.\",\n      \"The pie chart should be saved as result.png.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Pie chart with specified size, colors, and legend.\",\n      \"Image saved as result.png\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 13.113932132720947,
+  "token_usage": {}
+}

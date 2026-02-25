@@ -1,0 +1,103 @@
+{
+  "m_q": {
+    "target_metric": "highest report density (reports per 100K population) combining all types of reports (identity theft, fraud and others)",
+    "filters": [
+      "include all states, DC, and PR"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the identity theft report density for each state?",
+      "What is the fraud and other report density for each state?",
+      "What is the total combined report density for each state?",
+      "Which state has the maximum combined report density?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+      "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+        "right_source": "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv",
+        "left_column": "State",
+        "right_column": "State",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Both files have identical column names but represent different report types",
+      "Reports per 100K Population has different dtype: float64 in identity theft file vs int64 in fraud file"
+    ],
+    "column_mappings": {
+      "Reports per 100K Population": "requires prefixing by source to avoid collision (identity_theft_per_100k, fraud_other_per_100k)",
+      "# of Reports": "requires prefixing by source to avoid collision (identity_theft_count, fraud_other_count)",
+      "Rank": "requires prefixing by source to avoid collision (identity_theft_rank, fraud_other_rank)"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Reports per 100K Population": "reports per 100,000 population",
+      "# of Reports": "absolute count of reports"
+    },
+    "scale_issues": [
+      "Reports per 100K Population is already normalized, can be directly summed across report types",
+      "Population denominator should be consistent across both files for the same state"
+    ],
+    "cross_source_conflicts": [
+      "Need to verify that both files use the same population base for calculating per 100K rates",
+      "Both datasets should cover the same states (52 entries each including DC and PR)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Both files have identical structure with 4 columns",
+      "Rank column contains float64 values (likely due to potential null handling)",
+      "Reports per 100K Population dtype differs between files (float64 vs int64)",
+      "Both files have 52 rows representing all US states plus DC and PR"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must include all 52 jurisdictions (50 states + DC + PR)",
+      "Reports per 100K Population values must be non-negative",
+      "Each state should appear exactly once in each file",
+      "Combined density is sum of identity theft density and fraud/other density"
+    ],
+    "derived_filters": [
+      "No filtering required - all states should be included in analysis"
+    ],
+    "statistical_tests": [
+      "Verify all 52 jurisdictions present in both files",
+      "Check for missing values in Reports per 100K Population columns",
+      "Validate that join produces 52 records"
+    ],
+    "output_format_requirements": [
+      "Return the state name with highest combined report density",
+      "Optionally include the combined density value",
+      "Result should be a single state (scalar output)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"highest report density (reports per 100K population) combining all types of reports (identity theft, fraud and others)\",\n    \"filters\": [\"include all states, DC, and PR\"],\n    \"grouping_variables\": [\"State\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the identity theft report density for each state?\",\n      \"What is the fraud and other report density for each state?\",\n      \"What is the total combined report density for each state?\",\n      \"Which state has the maximum combined report density?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_State_Rankings_Identity_Theft_Reports.csv\",\n      \"2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"2024_CSN_State_Rankings_Identity_Theft_Reports.csv\",\n        \"right_source\": \"2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv\",\n        \"left_column\": \"State\",\n        \"right_column\": \"State\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Both files have identical column names but represent different report types\",\n      \"Reports per 100K Population has different dtype: float64 in identity theft file vs int64 in fraud file\"\n    ],\n    \"column_mappings\": {\n      \"Reports per 100K Population\": \"requires prefixing by source to avoid collision (identity_theft_per_100k, fraud_other_per_100k)\",\n      \"# of Reports\": \"requires prefixing by source to avoid collision (identity_theft_count, fraud_other_count)\",\n      \"Rank\": \"requires prefixing by source to avoid collision (identity_theft_rank, fraud_other_rank)\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Reports per 100K Population\": \"reports per 100,000 population\",\n      \"# of Reports\": \"absolute count of reports\"\n    },\n    \"scale_issues\": [\n      \"Reports per 100K Population is already normalized, can be directly summed across report types\",\n      \"Population denominator should be consistent across both files for the same state\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Need to verify that both files use the same population base for calculating per 100K rates\",\n      \"Both datasets should cover the same states (52 entries each including DC and PR)\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Both files have identical structure with 4 columns\",\n      \"Rank column contains float64 values (likely due to potential null handling)\",\n      \"Reports per 100K Population dtype differs between files (float64 vs int64)\",\n      \"Both files have 52 rows representing all US states plus DC and PR\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must include all 52 jurisdictions (50 states + DC + PR)\",\n      \"Reports per 100K Population values must be non-negative\",\n      \"Each state should appear exactly once in each file\",\n      \"Combined density is sum of identity theft density and fraud/other density\"\n    ],\n    \"derived_filters\": [\n      \"No filtering required - all states should be included in analysis\"\n    ],\n    \"statistical_tests\": [\n      \"Verify all 52 jurisdictions present in both files\",\n      \"Check for missing values in Reports per 100K Population columns\",\n      \"Validate that join produces 52 records\"\n    ],\n    \"output_format_requirements\": [\n      \"Return the state name with highest combined report density\",\n      \"Optionally include the combined density value\",\n      \"Result should be a single state (scalar output)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.608890056610107,
+  "token_usage": {
+    "input_tokens": 1331,
+    "output_tokens": 1031
+  }
+}

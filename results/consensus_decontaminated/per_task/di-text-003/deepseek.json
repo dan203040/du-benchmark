@@ -1,0 +1,144 @@
+{
+  "m_q": {
+    "target_metric": "Birth Rate",
+    "filters": [
+      "No explicit filters mentioned"
+    ],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Calculate mean of Birth Rate column",
+      "Fill missing Birth Rate values with mean",
+      "Sort countries by Birth Rate descending",
+      "Extract top 5 highest birth rate countries",
+      "Extract top 5 lowest birth rate countries"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple columns have object dtype but contain numeric data (e.g., Density, Land Area, GDP, Population)",
+      "Birth Rate column is float64 but may have missing values"
+    ],
+    "column_mappings": {
+      "Density\n(P/Km2)": "Density",
+      "Agricultural Land( %)": "Agricultural_Land_percent",
+      "Land Area(Km2)": "Land_Area",
+      "Armed Forces size": "Armed_Forces_size",
+      "Birth Rate": "Birth_Rate",
+      "Calling Code": "Calling_Code",
+      "Capital/Major City": "Capital",
+      "Co2-Emissions": "Co2_Emissions",
+      "CPI Change (%)": "CPI_Change_percent",
+      "Currency-Code": "Currency_Code",
+      "Fertility Rate": "Fertility_Rate",
+      "Forested Area (%)": "Forested_Area_percent",
+      "Gasoline Price": "Gasoline_Price",
+      "Gross primary education enrollment (%)": "Gross_primary_education_enrollment_percent",
+      "Gross tertiary education enrollment (%)": "Gross_tertiary_education_enrollment_percent",
+      "Infant mortality": "Infant_mortality",
+      "Largest city": "Largest_city",
+      "Life expectancy": "Life_expectancy",
+      "Maternal mortality ratio": "Maternal_mortality_ratio",
+      "Minimum wage": "Minimum_wage",
+      "Official language": "Official_language",
+      "Out of pocket health expenditure": "Out_of_pocket_health_expenditure",
+      "Physicians per thousand": "Physicians_per_thousand",
+      "Population: Labor force participation (%)": "Labor_force_participation_percent",
+      "Tax revenue (%)": "Tax_revenue_percent",
+      "Total tax rate": "Total_tax_rate",
+      "Unemployment rate": "Unemployment_rate",
+      "Urban_population": "Urban_population"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Birth Rate": "births per 1,000 population per year",
+      "Density": "persons per square kilometer",
+      "Agricultural_Land_percent": "percentage",
+      "Land_Area": "square kilometers",
+      "Co2_Emissions": "metric tons",
+      "CPI_Change_percent": "percentage",
+      "Fertility_Rate": "births per woman",
+      "Forested_Area_percent": "percentage",
+      "Gasoline_Price": "USD per liter",
+      "GDP": "USD",
+      "Gross_primary_education_enrollment_percent": "percentage",
+      "Gross_tertiary_education_enrollment_percent": "percentage",
+      "Infant_mortality": "deaths per 1,000 live births",
+      "Life_expectancy": "years",
+      "Maternal_mortality_ratio": "deaths per 100,000 live births",
+      "Minimum_wage": "USD per hour",
+      "Out_of_pocket_health_expenditure": "percentage",
+      "Physicians_per_thousand": "physicians per 1,000 people",
+      "Population": "persons",
+      "Labor_force_participation_percent": "percentage",
+      "Tax_revenue_percent": "percentage",
+      "Total_tax_rate": "percentage",
+      "Unemployment_rate": "percentage",
+      "Urban_population": "persons"
+    },
+    "scale_issues": [
+      "Some numeric columns stored as objects with commas and currency symbols (e.g., GDP: '$19,101,353,833')",
+      "Some percentage columns have '%' symbol in values",
+      "Some columns have mixed numeric and text data"
+    ],
+    "cross_source_conflicts": [
+      "Single source file, no cross-source conflicts"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null",
+      "NaN"
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column name contains newline character: 'Density\\n(P/Km2)'",
+      "Some values contain commas as thousands separators",
+      "Some values contain currency symbols and spaces",
+      "Some percentage values include '%' symbol",
+      "Some rows have missing values for certain columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Birth Rate must be numeric or missing",
+      "Country must be unique identifier",
+      "195 rows expected based on shape information",
+      "Mean calculation should exclude missing values before imputation"
+    ],
+    "derived_filters": [
+      "Remove rows where Country is missing",
+      "Consider only rows with valid Birth Rate values for initial mean calculation"
+    ],
+    "statistical_tests": [
+      "Check for outliers in Birth Rate distribution",
+      "Verify mean imputation doesn't distort distribution significantly"
+    ],
+    "output_format_requirements": [
+      "JSON format with two arrays: 'Top 5 countries with High Birth Rate' and 'Top 5 countries with Lowest Birth Rate'",
+      "Countries should be sorted from highest to lowest birth rate within each array"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Birth Rate\",\n        \"filters\": [\"No explicit filters mentioned\"],\n        \"grouping_variables\": [\"Country\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Calculate mean of Birth Rate column\", \"Fill missing Birth Rate values with mean\", \"Sort countries by Birth Rate descending\", \"Extract top 5 highest birth rate countries\", \"Extract top 5 lowest birth rate countries\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"world-data-2023.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Multiple columns have object dtype but contain numeric data (e.g., Density, Land Area, GDP, Population)\", \"Birth Rate column is float64 but may have missing values\"],\n        \"column_mappings\": {\"Density\\n(P/Km2)\": \"Density\", \"Agricultural Land( %)\": \"Agricultural_Land_percent\", \"Land Area(Km2)\": \"Land_Area\", \"Armed Forces size\": \"Armed_Forces_size\", \"Birth Rate\": \"Birth_Rate\", \"Calling Code\": \"Calling_Code\", \"Capital/Major City\": \"Capital\", \"Co2-Emissions\": \"Co2_Emissions\", \"CPI Change (%)\": \"CPI_Change_percent\", \"Currency-Code\": \"Currency_Code\", \"Fertility Rate\": \"Fertility_Rate\", \"Forested Area (%)\": \"Forested_Area_percent\", \"Gasoline Price\": \"Gasoline_Price\", \"Gross primary education enrollment (%)\": \"Gross_primary_education_enrollment_percent\", \"Gross tertiary education enrollment (%)\": \"Gross_tertiary_education_enrollment_percent\", \"Infant mortality\": \"Infant_mortality\", \"Largest city\": \"Largest_city\", \"Life expectancy\": \"Life_expectancy\", \"Maternal mortality ratio\": \"Maternal_mortality_ratio\", \"Minimum wage\": \"Minimum_wage\", \"Official language\": \"Official_language\", \"Out of pocket health expenditure\": \"Out_of_pocket_health_expenditure\", \"Physicians per thousand\": \"Physicians_per_thousand\", \"Population: Labor force participation (%)\": \"Labor_force_participation_percent\", \"Tax revenue (%)\": \"Tax_revenue_percent\", \"Total tax rate\": \"Total_tax_rate\", \"Unemployment rate\": \"Unemployment_rate\", \"Urban_population\": \"Urban_population\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Birth Rate\": \"births per 1,000 population per year\", \"Density\": \"persons per square kilometer\", \"Agricultural_Land_percent\": \"percentage\", \"Land_Area\": \"square kilometers\", \"Co2_Emissions\": \"metric tons\", \"CPI_Change_percent\": \"percentage\", \"Fertility_Rate\": \"births per woman\", \"Forested_Area_percent\": \"percentage\", \"Gasoline_Price\": \"USD per liter\", \"GDP\": \"USD\", \"Gross_primary_education_enrollment_percent\": \"percentage\", \"Gross_tertiary_education_enrollment_percent\": \"percentage\", \"Infant_mortality\": \"deaths per 1,000 live births\", \"Life_expectancy\": \"years\", \"Maternal_mortality_ratio\": \"deaths per 100,000 live births\", \"Minimum_wage\": \"USD per hour\", \"Out_of_pocket_health_expenditure\": \"percentage\", \"Physicians_per_thousand\": \"physicians per 1,000 people\", \"Population\": \"persons\", \"Labor_force_participation_percent\": \"percentage\", \"Tax_revenue_percent\": \"percentage\", \"Total_tax_rate\": \"percentage\", \"Unemployment_rate\": \"percentage\", \"Urban_population\": \"persons\"},\n        \"scale_issues\": [\"Some numeric columns stored as objects with commas and currency symbols (e.g., GDP: '$19,101,353,833')\", \"Some percentage columns have '%' symbol in values\", \"Some columns have mixed numeric and text data\"],\n        \"cross_source_conflicts\": [\"Single source file, no cross-source conflicts\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\", \"NaN\"],\n        \"expected_columns\": 35,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column name contains newline character: 'Density\\\\n(P/Km2)'\", \"Some values contain commas as thousands separators\", \"Some values contain currency symbols and spaces\", \"Some percentage values include '%' symbol\", \"Some rows have missing values for certain columns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Birth Rate must be numeric or missing\", \"Country must be unique identifier\", \"195 rows expected based on shape information\", \"Mean calculation should exclude missing values before imputation\"],\n        \"derived_filters\": [\"Remove rows where Country is missing\", \"Consider only rows with valid Birth Rate values for initial mean calculation\"],\n        \"statistical_tests\": [\"Check for outliers in Birth Rate distribution\", \"Verify mean imputation doesn't distort distribution significantly\"],\n        \"output_format_requirements\": [\"JSON format with two arrays: 'Top 5 countries with High Birth Rate' and 'Top 5 countries with Lowest Birth Rate'\", \"Countries should be sorted from highest to lowest birth rate within each array\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 22.587268114089966,
+  "token_usage": {
+    "input_tokens": 3658,
+    "output_tokens": 1187
+  }
+}

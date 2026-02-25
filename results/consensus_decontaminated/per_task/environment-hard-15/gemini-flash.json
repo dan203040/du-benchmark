@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "average exceedance rate of fresh water beaches since 2020",
+    "filters": [
+      "Year >= 2020",
+      "Beach Type Description == 'Fresh'",
+      "Beaches present in all years from 2020 to 2023"
+    ],
+    "grouping_variables": [
+      "Beach Name"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Identify fresh water beaches.",
+      "For each fresh water beach, calculate the exceedance rate for each year from 2020 to 2023.",
+      "Identify beaches present in all years from 2020 to 2023.",
+      "Calculate the average exceedance rate for each beach across the years 2020-2023.",
+      "Find the beach with the highest average exceedance rate."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Violation column has inconsistent values ('No' vs 'NO' vs 'Yes' vs 'YES')."
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "cfu/100mL"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date column might need parsing to datetime format."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Ensure 'Year' column contains only valid year values (2020, 2021, 2022, 2023).",
+      "Ensure 'Beach Type Description' column contains valid values (e.g., 'Fresh', 'Marine').",
+      "Ensure 'Violation' column contains only 'Yes' or 'No' (case-insensitive) values."
+    ],
+    "derived_filters": [
+      "Exceedance: Violation == 'Yes' (case-insensitive)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output the name of the most polluted fresh water beach."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average exceedance rate of fresh water beaches since 2020\",\n    \"filters\": [\n      \"Year >= 2020\",\n      \"Beach Type Description == 'Fresh'\",\n      \"Beaches present in all years from 2020 to 2023\"\n    ],\n    \"grouping_variables\": [\n      \"Beach Name\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Identify fresh water beaches.\",\n      \"For each fresh water beach, calculate the exceedance rate for each year from 2020 to 2023.\",\n      \"Identify beaches present in all years from 2020 to 2023.\",\n      \"Calculate the average exceedance rate for each beach across the years 2020-2023.\",\n      \"Find the beach with the highest average exceedance rate.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Violation column has inconsistent values ('No' vs 'NO' vs 'Yes' vs 'YES').\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"cfu/100mL\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date column might need parsing to datetime format.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Ensure 'Year' column contains only valid year values (2020, 2021, 2022, 2023).\",\n      \"Ensure 'Beach Type Description' column contains valid values (e.g., 'Fresh', 'Marine').\",\n      \"Ensure 'Violation' column contains only 'Yes' or 'No' (case-insensitive) values.\"\n    ],\n    \"derived_filters\": [\n      \"Exceedance: Violation == 'Yes' (case-insensitive)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output the name of the most polluted fresh water beach.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.9240288734436035,
+  "token_usage": {}
+}

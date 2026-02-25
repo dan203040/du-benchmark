@@ -1,0 +1,473 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "seasonal exceedance rate (percentage) for Chatham's Bucks Creek Beach in summer months (June, July, August) with the most rainfall in its area",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "seasonal exceedance rate (percentage) for Chatham's Bucks Creek Beach in summer months (June, July, August) with the most rainfall in its area",
+        "Seasonal exceedance rate (percentage with 2 decimal places) for Bucks Creek Beach in Chatham during the summer with the most rainfall",
+        "Seasonal exceedance rate (percentage to 2 decimal places) of Chatham's Bucks Creek Beach in the summer (June, July, August) with the most rainfall in its area, imputing missing monthly rainfall values with the median of the month in non-missing years."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Community = 'Chatham'",
+        "Beach Name = 'Bucks Creek Beach'",
+        "Month in [6,7,8] (June, July, August)",
+        "Year = year with highest summer rainfall in Chatham area",
+        "Sample Date month in (June, July, August)",
+        "Summer year with maximum total rainfall (Jun + Jul + Aug)",
+        "Months in ['June', 'July', 'August']"
+      ],
+      "confidence": 0.4761904761904762,
+      "votes": [
+        [
+          "Community = 'Chatham'",
+          "Beach Name = 'Bucks Creek Beach'",
+          "Month in [6,7,8] (June, July, August)",
+          "Year = year with highest summer rainfall in Chatham area"
+        ],
+        [
+          "Community = 'Chatham'",
+          "Beach Name = 'Bucks Creek Beach'",
+          "Sample Date month in (June, July, August)",
+          "Summer year with maximum total rainfall (Jun + Jul + Aug)"
+        ],
+        [
+          "Beach Name = 'Bucks Creek Beach'",
+          "Months in ['June', 'July', 'August']"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year",
+        "Month",
+        "Summer season (June, July, August)"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "Year",
+          "Month"
+        ],
+        [
+          "Year",
+          "Summer season (June, July, August)"
+        ],
+        [
+          "Year"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which year had the highest summer rainfall in Chatham area?",
+        "What is the median monthly precipitation for each summer month across non-missing years?",
+        "How many water quality samples were taken at Bucks Creek Beach during the target summer?",
+        "What percentage of those samples had 'Violation' = 'yes'?",
+        "Which years have water quality data for Bucks Creek Beach in Chatham?",
+        "What are the summer (Jun, Jul, Aug) rainfall totals for each year in Chatham?",
+        "Which summer has the maximum total rainfall?",
+        "How to impute missing monthly precipitation values using median of the month across non-missing years?",
+        "What is the exceedance rate for that specific summer (violations / total samples)?",
+        "How to convert exceedance rate to percentage with 2 decimal places?",
+        "Identify the year with the most rainfall in June, July, and August combined.",
+        "Calculate the number of exceedances for Bucks Creek Beach in June, July, and August of the identified year.",
+        "Calculate the total number of samples for Bucks Creek Beach in June, July, and August of the identified year.",
+        "Divide the number of exceedances by the total number of samples and multiply by 100 to get the exceedance rate.",
+        "Impute missing monthly rainfall values with the median of the month in non-missing years."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Which year had the highest summer rainfall in Chatham area?",
+          "What is the median monthly precipitation for each summer month across non-missing years?",
+          "How many water quality samples were taken at Bucks Creek Beach during the target summer?",
+          "What percentage of those samples had 'Violation' = 'yes'?"
+        ],
+        [
+          "Which years have water quality data for Bucks Creek Beach in Chatham?",
+          "What are the summer (Jun, Jul, Aug) rainfall totals for each year in Chatham?",
+          "Which summer has the maximum total rainfall?",
+          "How to impute missing monthly precipitation values using median of the month across non-missing years?",
+          "What is the exceedance rate for that specific summer (violations / total samples)?",
+          "How to convert exceedance rate to percentage with 2 decimal places?"
+        ],
+        [
+          "Identify the year with the most rainfall in June, July, and August combined.",
+          "Calculate the number of exceedances for Bucks Creek Beach in June, July, and August of the identified year.",
+          "Calculate the total number of samples for Bucks Creek Beach in June, July, and August of the identified year.",
+          "Divide the number of exceedances by the total number of samples and multiply by 100 to get the exceedance rate.",
+          "Impute missing monthly rainfall values with the median of the month in non-missing years."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "monthly_precipitations_chatham.csv",
+        "water-body-testing-2016.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "monthly_precipitations_chatham.csv",
+          "water-body-testing-2016.csv"
+        ],
+        [
+          "monthly_precipitations_chatham.csv",
+          "water-body-testing-2016.csv"
+        ],
+        [
+          "monthly_precipitations_chatham.csv",
+          "water-body-testing-2016.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Year column type mismatch (float64 vs int64)",
+        "Different time granularity (monthly vs daily samples)",
+        "Precipitation data only for Chatham area while water testing covers multiple communities",
+        "Year column types differ (int64 in water-body-testing vs float64 in precipitation)",
+        "Sample Date is string format, needs parsing to extract month",
+        "Community in water-body-testing needs to match Chatham location"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column type mismatch (float64 vs int64)",
+          "Different time granularity (monthly vs daily samples)",
+          "Precipitation data only for Chatham area while water testing covers multiple communities"
+        ],
+        [
+          "Year column types differ (int64 in water-body-testing vs float64 in precipitation)",
+          "Sample Date is string format, needs parsing to extract month",
+          "Community in water-body-testing needs to match Chatham location"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "jan-dec columns": "inches (precipitation)",
+        "indicator level": "MPN/100mL (bacteria concentration)",
+        "annual": "inches",
+        "jan": "inches",
+        "feb": "inches",
+        "mar": "inches",
+        "apr": "inches",
+        "may": "inches",
+        "jun": "inches",
+        "jul": "inches",
+        "aug": "inches",
+        "sep": "inches",
+        "oct": "inches",
+        "nov": "inches",
+        "dec": "inches"
+      },
+      "confidence": 0.6888888888888888,
+      "votes": [
+        {
+          "Jan-Dec columns": "inches (precipitation)",
+          "Indicator Level": "MPN/100mL (bacteria concentration)",
+          "Annual": "inches (total annual precipitation)"
+        },
+        {
+          "Jan": "inches",
+          "Feb": "inches",
+          "Mar": "inches",
+          "Apr": "inches",
+          "May": "inches",
+          "Jun": "inches",
+          "Jul": "inches",
+          "Aug": "inches",
+          "Sep": "inches",
+          "Oct": "inches",
+          "Nov": "inches",
+          "Dec": "inches",
+          "Annual": "inches",
+          "Indicator Level": "Enterococci count (CFU/100mL or MPN/100mL)"
+        },
+        {
+          "Jan": "inches",
+          "Feb": "inches",
+          "Mar": "inches",
+          "Apr": "inches",
+          "May": "inches",
+          "Jun": "inches",
+          "Jul": "inches",
+          "Aug": "inches",
+          "Sep": "inches",
+          "Oct": "inches",
+          "Nov": "inches",
+          "Dec": "inches",
+          "Annual": "inches",
+          "Indicator Level": "CFU/100mL"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Precipitation data has missing values (empty cells)",
+        "Water testing data only available for 2016, limiting temporal analysis",
+        "Precipitation data covers 2000-2019 but water testing only for 2016",
+        "Violation is categorical ('yes'/'no'), needs binary conversion for rate calculation",
+        "Precipitation values may have missing data requiring imputation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Precipitation data has missing values (empty cells)",
+          "Water testing data only available for 2016, limiting temporal analysis",
+          "Precipitation data covers 2000-2019 but water testing only for 2016"
+        ],
+        [
+          "Violation is categorical ('yes'/'no'), needs binary conversion for rate calculation",
+          "Precipitation values may have missing data requiring imputation"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Precipitation data is area-wide (Chatham) while water testing is beach-specific",
+        "Time periods don't fully overlap - precipitation data goes to 2019 but water testing only 2016",
+        "Precipitation data spans 2000-2019, water quality data filename suggests 2016 only",
+        "Need to verify year coverage overlap between datasets"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Precipitation data is area-wide (Chatham) while water testing is beach-specific",
+          "Time periods don't fully overlap - precipitation data goes to 2019 but water testing only 2016"
+        ],
+        [
+          "Precipitation data spans 2000-2019, water quality data filename suggests 2016 only",
+          "Need to verify year coverage overlap between datasets"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 14.0,
+      "confidence": 0.7333333333333334,
+      "votes": [
+        14.0,
+        14.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Violation column values are 'yes'/'no'",
+        "Organism column should be 'Enterococci' for beach water quality",
+        "Beach Type Description should be 'Marine'",
+        "Year values must be between 2000-2019 for precipitation data",
+        "Month values must be between 1-12",
+        "Only include Chatham community data",
+        "Only include Bucks Creek Beach",
+        "Only include summer months (June=6, July=7, August=8)",
+        "Impute missing precipitation values with median of the specific month across non-missing years",
+        "Identify the single summer with maximum total rainfall (Jun+Jul+Aug)",
+        "Calculate exceedance rate only for that specific summer year",
+        "Exceedance is determined by the 'Violation' column in water-body-testing-2016.csv.",
+        "Summer months are defined as June, July, and August.",
+        "Missing rainfall data should be imputed using the median for that month across all available years."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Violation column values are 'yes'/'no'",
+          "Organism column should be 'Enterococci' for beach water quality",
+          "Beach Type Description should be 'Marine'",
+          "Year values must be between 2000-2019 for precipitation data",
+          "Month values must be between 1-12"
+        ],
+        [
+          "Only include Chatham community data",
+          "Only include Bucks Creek Beach",
+          "Only include summer months (June=6, July=7, August=8)",
+          "Impute missing precipitation values with median of the specific month across non-missing years",
+          "Identify the single summer with maximum total rainfall (Jun+Jul+Aug)",
+          "Calculate exceedance rate only for that specific summer year"
+        ],
+        [
+          "Exceedance is determined by the 'Violation' column in water-body-testing-2016.csv.",
+          "Summer months are defined as June, July, and August.",
+          "Missing rainfall data should be imputed using the median for that month across all available years."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter water testing to only Enterococci samples",
+        "Extract month from Sample Date for summer filtering",
+        "Calculate summer rainfall sum from Jun, Jul, Aug columns",
+        "Identify year with maximum summer rainfall after imputation",
+        "Extract month from Sample Date to filter summer months",
+        "Calculate summer_total_rainfall = Jun + Jul + Aug (after imputation)",
+        "Identify max_rainfall_summer = argmax(summer_total_rainfall)",
+        "Filter water quality data to year of max_rainfall_summer",
+        "Isolate Chatham data based on Community or County Description.",
+        "Filter water quality data for 'Bucks Creek Beach'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Filter water testing to only Enterococci samples",
+          "Extract month from Sample Date for summer filtering",
+          "Calculate summer rainfall sum from Jun, Jul, Aug columns",
+          "Identify year with maximum summer rainfall after imputation"
+        ],
+        [
+          "Extract month from Sample Date to filter summer months",
+          "Calculate summer_total_rainfall = Jun + Jul + Aug (after imputation)",
+          "Identify max_rainfall_summer = argmax(summer_total_rainfall)",
+          "Filter water quality data to year of max_rainfall_summer"
+        ],
+        [
+          "Isolate Chatham data based on Community or County Description.",
+          "Filter water quality data for 'Bucks Creek Beach'."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Median imputation for missing monthly precipitation values",
+        "Percentage calculation: (violation samples / total samples) * 100",
+        "Round final percentage to 2 decimal places",
+        "Median imputation for missing monthly values within each month column",
+        "Exceedance rate = (count of Violation='yes') / (total count of samples)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Median imputation for missing monthly precipitation values",
+          "Percentage calculation: (violation samples / total samples) * 100",
+          "Round final percentage to 2 decimal places"
+        ],
+        [
+          "Median imputation for missing monthly values within each month column",
+          "Exceedance rate = (count of Violation='yes') / (total count of samples)"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Percentage to 2 decimal places",
+        "Only consider summer months (June, July, August)",
+        "Use median of month across non-missing years for imputation",
+        "Target year is the one with highest summer rainfall after imputation",
+        "Output as percentage (multiply rate by 100)",
+        "Round to exactly 2 decimal places",
+        "Scalar numeric value",
+        "Exceedance rate should be expressed as a percentage with 2 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage to 2 decimal places",
+          "Only consider summer months (June, July, August)",
+          "Use median of month across non-missing years for imputation",
+          "Target year is the one with highest summer rainfall after imputation"
+        ],
+        [
+          "Output as percentage (multiply rate by 100)",
+          "Round to exactly 2 decimal places",
+          "Scalar numeric value"
+        ],
+        [
+          "Exceedance rate should be expressed as a percentage with 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6143650793650794
+}

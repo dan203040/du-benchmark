@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "The name of the building that was first designated as the tallest",
+    "filters": [
+      "Years as tallest must contain a valid year range",
+      "Height ft (m) must contain valid height data"
+    ],
+    "grouping_variables": [
+      "Years as tallest"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the earliest start year in Years as tallest column?",
+      "Which building corresponds to that earliest start year?",
+      "How should we handle buildings with the same start year?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Tall Buildings in Minneapolis"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height ft (m)": "feet (meters)",
+      "Floors": "count"
+    },
+    "scale_issues": [
+      "Height ft (m) column contains both feet and meters in same string",
+      "Years as tallest contains ranges with en dash separator"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Years as tallest column uses en dash (\u2013) as range separator",
+      "Height ft (m) column contains both imperial and metric units in parentheses",
+      "Some rows have missing data (e.g., Nicollet Mall row with '-' values)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Years as tallest must be parsed to extract start year",
+      "Rows with '-' in Years as tallest should be excluded",
+      "First building is determined by minimum start year"
+    ],
+    "derived_filters": [
+      "Exclude rows where Years as tallest = '-'",
+      "Exclude rows where Height ft (m) = '-'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate start years",
+      "Validate year range format"
+    ],
+    "output_format_requirements": [
+      "Return single building name",
+      "Include supporting year information"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"The name of the building that was first designated as the tallest\",\n        \"filters\": [\"Years as tallest must contain a valid year range\", \"Height ft (m) must contain valid height data\"],\n        \"grouping_variables\": [\"Years as tallest\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the earliest start year in Years as tallest column?\", \"Which building corresponds to that earliest start year?\", \"How should we handle buildings with the same start year?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Tall Buildings in Minneapolis\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Height ft (m)\": \"feet (meters)\", \"Floors\": \"count\"},\n        \"scale_issues\": [\"Height ft (m) column contains both feet and meters in same string\", \"Years as tallest contains ranges with en dash separator\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"-\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Years as tallest column uses en dash (\u2013) as range separator\", \"Height ft (m) column contains both imperial and metric units in parentheses\", \"Some rows have missing data (e.g., Nicollet Mall row with '-' values)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Years as tallest must be parsed to extract start year\", \"Rows with '-' in Years as tallest should be excluded\", \"First building is determined by minimum start year\"],\n        \"derived_filters\": [\"Exclude rows where Years as tallest = '-'\", \"Exclude rows where Height ft (m) = '-'\"],\n        \"statistical_tests\": [\"Check for duplicate start years\", \"Validate year range format\"],\n        \"output_format_requirements\": [\"Return single building name\", \"Include supporting year information\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.065534830093384,
+  "token_usage": {
+    "input_tokens": 982,
+    "output_tokens": 474
+  }
+}

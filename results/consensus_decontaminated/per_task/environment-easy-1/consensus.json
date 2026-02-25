@@ -1,0 +1,347 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "percentage of water samples that exceeded bacterial standards (Violation = 'yes') during the 2013 bathing season in Massachusetts beaches",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "percentage of water samples that exceeded bacterial standards (Violation = 'yes') during the 2013 bathing season in Massachusetts beaches",
+        "Percentage of water samples that exceeded bacterial standards (Violation='yes') to 3 decimal places",
+        "Percentage of water samples from Massachusetts beaches in 2013 that exceeded bacterial standards, leading to temporary closures."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2013",
+        "Violation = 'yes'",
+        "State = Massachusetts (implied from data context)",
+        "Year == 2013",
+        "Community is in Massachusetts (all records appear to be from MA)",
+        "Bathing season samples only (likely June-August based on sample dates)",
+        "Location is in Massachusetts",
+        "Violation is 'yes'"
+      ],
+      "confidence": 0.375,
+      "votes": [
+        [
+          "Year = 2013",
+          "Violation = 'yes'",
+          "State = Massachusetts (implied from data context)"
+        ],
+        [
+          "Year == 2013",
+          "Community is in Massachusetts (all records appear to be from MA)",
+          "Bathing season samples only (likely June-August based on sample dates)"
+        ],
+        [
+          "Year = 2013",
+          "Location is in Massachusetts",
+          "Violation is 'yes'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total number of water samples collected in 2013?",
+        "How many samples had Violation = 'yes'?",
+        "What dates constitute the 'bathing season' in Massachusetts?",
+        "What constitutes the bathing season timeframe?",
+        "How many total water samples were collected?",
+        "How many samples had Violation='yes'?",
+        "What is the percentage calculation: (violations/total)*100?",
+        "How many water samples were collected from Massachusetts beaches in 2013?",
+        "How many water samples from Massachusetts beaches in 2013 exceeded bacterial standards (Violation = 'yes')?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the total number of water samples collected in 2013?",
+          "How many samples had Violation = 'yes'?",
+          "What dates constitute the 'bathing season' in Massachusetts?"
+        ],
+        [
+          "What constitutes the bathing season timeframe?",
+          "How many total water samples were collected?",
+          "How many samples had Violation='yes'?",
+          "What is the percentage calculation: (violations/total)*100?"
+        ],
+        [
+          "How many water samples were collected from Massachusetts beaches in 2013?",
+          "How many water samples from Massachusetts beaches in 2013 exceeded bacterial standards (Violation = 'yes')?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "water-body-testing-2013.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "water-body-testing-2013.csv"
+        ],
+        [
+          "water-body-testing-2013.csv"
+        ],
+        [
+          "water-body-testing-2013.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "indicator level": "bacterial concentration units (varies by Organism)",
+        "sample date": "datetime (YYYY-MM-DD HH:MM:SS)",
+        "year": "year",
+        "violation": "categorical (yes/no)"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Indicator Level": "bacterial concentration units (varies by Organism)"
+        },
+        {
+          "Indicator Level": "CFU/100mL or MPN/100mL (bacterial count)",
+          "Sample Date": "datetime (YYYY-MM-DD HH:MM:SS)",
+          "Year": "year",
+          "Violation": "categorical (yes/no)"
+        },
+        {
+          "Indicator Level": "CFU/100mL"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Sample Date stored as object/string instead of datetime",
+        "Violation column uses 'yes'/'no' strings instead of boolean"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sample Date stored as object/string instead of datetime",
+          "Violation column uses 'yes'/'no' strings instead of boolean"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year column should only contain 2013",
+        "Violation column should only contain 'yes' or 'no'",
+        "Indicator Level should be non-negative",
+        "Violation column must have values 'yes' or 'no'",
+        "Year must equal 2013",
+        "Sample Date must be valid datetime",
+        "Exclude null/missing Violation values from calculation",
+        "The 'Sample Date' column should be checked for valid date formats.",
+        "The 'Violation' column should be checked for consistent values (e.g., 'yes', 'no')."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column should only contain 2013",
+          "Violation column should only contain 'yes' or 'no'",
+          "Indicator Level should be non-negative"
+        ],
+        [
+          "Violation column must have values 'yes' or 'no'",
+          "Year must equal 2013",
+          "Sample Date must be valid datetime",
+          "Exclude null/missing Violation values from calculation"
+        ],
+        [
+          "The 'Sample Date' column should be checked for valid date formats.",
+          "The 'Violation' column should be checked for consistent values (e.g., 'yes', 'no')."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to Massachusetts beaches (all data appears to be from Massachusetts based on county names)",
+        "Determine bathing season date range (typically summer months)",
+        "Filter to bathing season dates (need to confirm: typically Memorial Day to Labor Day or June-August)",
+        "Include only valid samples with non-null Violation values",
+        "Isolate samples from Massachusetts beaches (implicit based on the data source).",
+        "Define 'exceeded bacterial standards' as 'Violation' == 'yes'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to Massachusetts beaches (all data appears to be from Massachusetts based on county names)",
+          "Determine bathing season date range (typically summer months)"
+        ],
+        [
+          "Filter to bathing season dates (need to confirm: typically Memorial Day to Labor Day or June-August)",
+          "Include only valid samples with non-null Violation values"
+        ],
+        [
+          "Isolate samples from Massachusetts beaches (implicit based on the data source).",
+          "Define 'exceeded bacterial standards' as 'Violation' == 'yes'."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate samples",
+        "Validate that Violation='yes' corresponds to high Indicator Level values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate samples",
+          "Validate that Violation='yes' corresponds to high Indicator Level values"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Percentage to 3 decimal places",
+        "Include only 2013 data",
+        "Consider only samples during bathing season",
+        "Output as percentage with exactly 3 decimal places",
+        "Format: XX.XXX%",
+        "Round to 3 decimal places, not truncate",
+        "Percentage should be formatted to 3 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage to 3 decimal places",
+          "Include only 2013 data",
+          "Consider only samples during bathing season"
+        ],
+        [
+          "Output as percentage with exactly 3 decimal places",
+          "Format: XX.XXX%",
+          "Round to 3 decimal places, not truncate"
+        ],
+        [
+          "Percentage should be formatted to 3 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5604166666666668
+}

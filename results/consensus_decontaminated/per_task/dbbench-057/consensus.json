@@ -1,0 +1,328 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "earliest game date where the score is exactly '99-89'",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "earliest game date where the score is exactly '99-89'",
+        "earliest game number with a score of 99-89",
+        "earliest date of a game with a score of 99-89"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Score == '99-89'",
+        "Score = '99-89'",
+        "Score is equal to '99-89'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score == '99-89'"
+        ],
+        [
+          "Score = '99-89'"
+        ],
+        [
+          "Score is equal to '99-89'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which games have score 99-89?",
+        "Among those games, which has the earliest date?",
+        "How should date strings be parsed for chronological ordering?",
+        "Which games have a score of exactly 99-89?",
+        "Among games with score 99-89, which has the smallest game number?",
+        "What does 'earliest' mean - chronologically by date or by game sequence number?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which games have score 99-89?",
+          "Among those games, which has the earliest date?",
+          "How should date strings be parsed for chronological ordering?"
+        ],
+        [
+          "Which games have a score of exactly 99-89?",
+          "Among games with score 99-89, which has the smallest game number?",
+          "What does 'earliest' mean - chronologically by date or by game sequence number?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Game Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Game Results"
+        ],
+        [
+          "Game Results"
+        ],
+        [
+          "Game Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Duplicate 'Game' column values (e.g., Game 3 appears twice with different data)",
+        "Inconsistent ordering - rows not sorted by Game number or Date"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Duplicate 'Game' column values (e.g., Game 3 appears twice with different data)",
+          "Inconsistent ordering - rows not sorted by Game number or Date"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "score": "points-team1-points-team2",
+        "record": "wins-losses",
+        "game": "game_number",
+        "date": "date_string"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Score": "points-team1-points-team2",
+          "Record": "wins-losses"
+        },
+        {
+          "Game": "game_number",
+          "Date": "date_string",
+          "Score": "points_home_vs_away",
+          "Record": "wins_losses"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Date format varies (e.g., 'Fri. Nov. 2', 'Thu. Nov. 29') - need consistent parsing",
+        "Score column contains OT notation (e.g., '84-88 (OT)')",
+        "Game column contains non-numeric values (may need parsing)",
+        "Date format varies (abbreviated month names with day and year)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date format varies (e.g., 'Fri. Nov. 2', 'Thu. Nov. 29') - need consistent parsing",
+          "Score column contains OT notation (e.g., '84-88 (OT)')"
+        ],
+        [
+          "Game column contains non-numeric values (may need parsing)",
+          "Date format varies (abbreviated month names with day and year)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Score format: 'XX-YY' or 'XX-YY (OT)'",
+        "Date format: 'Day. Month. DayNumber'",
+        "Game numbers should be unique but aren't in this sample",
+        "Score must exactly match '99-89' format",
+        "Game number should be interpretable as integer for comparison",
+        "Result should be a single game number",
+        "The 'Date' column needs to be parsed into a datetime object to determine the earliest date."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score format: 'XX-YY' or 'XX-YY (OT)'",
+          "Date format: 'Day. Month. DayNumber'",
+          "Game numbers should be unique but aren't in this sample"
+        ],
+        [
+          "Score must exactly match '99-89' format",
+          "Game number should be interpretable as integer for comparison",
+          "Result should be a single game number"
+        ],
+        [
+          "The 'Date' column needs to be parsed into a datetime object to determine the earliest date."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Score contains '99-89' (exact match)",
+        "Filter rows where Score == '99-89'",
+        "Parse Game column as integer if needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Score contains '99-89' (exact match)"
+        ],
+        [
+          "Filter rows where Score == '99-89'",
+          "Parse Game column as integer if needed"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Game values",
+        "Validate date parsing logic"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Game values",
+          "Validate date parsing logic"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single date value",
+        "If multiple games with score 99-89, return earliest",
+        "If no games with score 99-89, return null/empty",
+        "Return the game number as integer or string",
+        "If multiple games have score 99-89, return the one with minimum game number",
+        "If no games match, indicate no result found",
+        "Output should be a date in a standard format (e.g., YYYY-MM-DD)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single date value",
+          "If multiple games with score 99-89, return earliest",
+          "If no games with score 99-89, return null/empty"
+        ],
+        [
+          "Return the game number as integer or string",
+          "If multiple games have score 99-89, return the one with minimum game number",
+          "If no games match, indicate no result found"
+        ],
+        [
+          "Output should be a date in a standard format (e.g., YYYY-MM-DD)."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5750000000000002
+}

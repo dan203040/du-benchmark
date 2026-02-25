@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "Nation names that have Gold > 0 and Silver = 0",
+    "filters": [
+      "Gold > 0",
+      "Silver = 0"
+    ],
+    "grouping_variables": [
+      "Nation"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which nations have at least one gold medal?",
+      "Which nations have zero silver medals?",
+      "What is the intersection of these two sets?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medals"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rank": "ordinal position",
+      "Gold": "count of gold medals",
+      "Silver": "count of silver medals",
+      "Bronze": "count of bronze medals",
+      "Total": "sum of all medals"
+    },
+    "scale_issues": [
+      "Rank column appears to restart at 1 in the sample data (e.g., row 1 is Cuba, row 10 is Japan with Rank 1), suggesting possible grouping by region or event type not shown in sample"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 20 rows but shape indicates 19 rows total - possible header row counted differently",
+      "Rank column has duplicate values (e.g., two nations with Rank 8)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total = Gold + Silver + Bronze for each row",
+      "All medal counts should be non-negative integers",
+      "Rank should be positive integer"
+    ],
+    "derived_filters": [
+      "Gold > 0 AND Silver = 0"
+    ],
+    "statistical_tests": [
+      "Verify Total column consistency: sum(Gold + Silver + Bronze) = Total for each row"
+    ],
+    "output_format_requirements": [
+      "List of nation names",
+      "Should include all nations meeting criteria across entire dataset"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Nation names that have Gold > 0 and Silver = 0\",\n        \"filters\": [\"Gold > 0\", \"Silver = 0\"],\n        \"grouping_variables\": [\"Nation\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which nations have at least one gold medal?\", \"Which nations have zero silver medals?\", \"What is the intersection of these two sets?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Olympic Medals\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Rank\": \"ordinal position\", \"Gold\": \"count of gold medals\", \"Silver\": \"count of silver medals\", \"Bronze\": \"count of bronze medals\", \"Total\": \"sum of all medals\"},\n        \"scale_issues\": [\"Rank column appears to restart at 1 in the sample data (e.g., row 1 is Cuba, row 10 is Japan with Rank 1), suggesting possible grouping by region or event type not shown in sample\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 20 rows but shape indicates 19 rows total - possible header row counted differently\", \"Rank column has duplicate values (e.g., two nations with Rank 8)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total = Gold + Silver + Bronze for each row\", \"All medal counts should be non-negative integers\", \"Rank should be positive integer\"],\n        \"derived_filters\": [\"Gold > 0 AND Silver = 0\"],\n        \"statistical_tests\": [\"Verify Total column consistency: sum(Gold + Silver + Bronze) = Total for each row\"],\n        \"output_format_requirements\": [\"List of nation names\", \"Should include all nations meeting criteria across entire dataset\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.633936166763306,
+  "token_usage": {
+    "input_tokens": 836,
+    "output_tokens": 487
+  }
+}

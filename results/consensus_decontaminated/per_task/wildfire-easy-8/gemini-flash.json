@@ -1,0 +1,55 @@
+{
+  "m_q": {
+    "target_metric": "Count of fires caused by 'Lightning' vs. 'Human' where 'gt_100' is 1, and return the cause with the higher count.",
+    "filters": [
+      "gt_100 == 1",
+      "cause in ['Lightning', 'Human']"
+    ],
+    "grouping_variables": [
+      "cause"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'cause' column should only contain 'Lightning' or 'Human' after filtering."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be either 'Lightning' or 'Human'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of fires caused by 'Lightning' vs. 'Human' where 'gt_100' is 1, and return the cause with the higher count.\",\n    \"filters\": [\n      \"gt_100 == 1\",\n      \"cause in ['Lightning', 'Human']\"\n    ],\n    \"grouping_variables\": [\n      \"cause\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Fire_Weather_Data_2002-2014_2016.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'cause' column should only contain 'Lightning' or 'Human' after filtering.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be either 'Lightning' or 'Human'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.524135112762451,
+  "token_usage": {}
+}

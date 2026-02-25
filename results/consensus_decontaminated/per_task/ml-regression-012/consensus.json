@@ -1,0 +1,468 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Mileage (float64)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Mileage (float64)",
+        "Mileage prediction for vehicles in test.csv",
+        "Mileage"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Only vehicles in test.csv need predictions",
+        "All rows in test.csv must have Mileage predictions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only vehicles in test.csv need predictions",
+          "All rows in test.csv must have Mileage predictions"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "brand",
+        "Year",
+        "Model",
+        "new&used",
+        "Fuel type",
+        "Transmission"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "brand",
+          "Year",
+          "Model",
+          "new&used",
+          "Fuel type",
+          "Transmission"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How does vehicle age affect mileage?",
+        "How do different brands/models have different mileage patterns?",
+        "How does new vs used status affect mileage?",
+        "What features (MPG, Engine, etc.) correlate with mileage?",
+        "How to handle missing values in training data?",
+        "What features from New_York_cars.csv are most predictive of Mileage?",
+        "How can Car_Rates.csv ratings be joined to enhance prediction?",
+        "What is the distribution of Mileage in the training data?",
+        "Are there missing values in key predictor columns?",
+        "What is the relationship between Year, new&used status, and Mileage?",
+        "How does brand and model affect Mileage?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "How does vehicle age affect mileage?",
+          "How do different brands/models have different mileage patterns?",
+          "How does new vs used status affect mileage?",
+          "What features (MPG, Engine, etc.) correlate with mileage?",
+          "How to handle missing values in training data?"
+        ],
+        [
+          "What features from New_York_cars.csv are most predictive of Mileage?",
+          "How can Car_Rates.csv ratings be joined to enhance prediction?",
+          "What is the distribution of Mileage in the training data?",
+          "Are there missing values in key predictor columns?",
+          "What is the relationship between Year, new&used status, and Mileage?",
+          "How does brand and model affect Mileage?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Car_Rates.csv",
+        "New_York_cars.csv",
+        "test.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Car_Rates.csv",
+          "New_York_cars.csv",
+          "test.csv"
+        ],
+        [
+          "New_York_cars.csv",
+          "Car_Rates.csv",
+          "test.csv"
+        ],
+        [
+          "New_York_cars.csv",
+          "test.csv",
+          "Car_Rates.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Car_Rates.csv uses 'Brand' vs New_York_cars.csv uses 'brand'",
+        "Car_Rates.csv uses 'Car_name' vs New_York_cars.csv uses 'name'",
+        "Car_Rates.csv has rating columns not in other files",
+        "test.csv missing 'Mileage' column (target)",
+        "Brand column in Car_Rates.csv vs brand column in New_York_cars.csv and test.csv (capitalization difference)",
+        "test.csv lacks Mileage column which is present in New_York_cars.csv",
+        "Model column present in all three files but may have formatting differences",
+        "The 'name' column in New_York_cars.csv and test.csv might contain the year, brand, and model information, which are also present in separate columns. This redundancy needs to be handled.",
+        "The 'MPG' column in New_York_cars.csv and test.csv is of type object and contains a range. It needs to be parsed and converted to a numerical representation.",
+        "The 'Car_name' column in Car_Rates.csv contains year, brand and model information. This redundancy needs to be handled."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Car_Rates.csv uses 'Brand' vs New_York_cars.csv uses 'brand'",
+          "Car_Rates.csv uses 'Car_name' vs New_York_cars.csv uses 'name'",
+          "Car_Rates.csv has rating columns not in other files",
+          "test.csv missing 'Mileage' column (target)"
+        ],
+        [
+          "Brand column in Car_Rates.csv vs brand column in New_York_cars.csv and test.csv (capitalization difference)",
+          "test.csv lacks Mileage column which is present in New_York_cars.csv",
+          "Model column present in all three files but may have formatting differences"
+        ],
+        [
+          "The 'name' column in New_York_cars.csv and test.csv might contain the year, brand, and model information, which are also present in separate columns. This redundancy needs to be handled.",
+          "The 'MPG' column in New_York_cars.csv and test.csv is of type object and contains a range. It needs to be parsed and converted to a numerical representation.",
+          "The 'Car_name' column in Car_Rates.csv contains year, brand and model information. This redundancy needs to be handled."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "money": "currency units (dollars)",
+        "mileage": "miles",
+        "mpg": "miles per gallon",
+        "engine": "liters",
+        "year": "year",
+        "general_rate": "rating scale",
+        "comfort": "rating scale",
+        "interior design": "rating scale",
+        "performance": "rating scale",
+        "value for the money": "rating scale",
+        "exterior styling": "rating scale",
+        "reliability": "rating scale",
+        "num_of_reviews": "count"
+      },
+      "confidence": 0.5128205128205127,
+      "votes": [
+        {
+          "money": "currency units (dollars)",
+          "Mileage": "miles",
+          "MPG": "miles per gallon",
+          "Engine": "liters",
+          "Year": "calendar year"
+        },
+        {
+          "Mileage": "miles",
+          "MPG": "miles per gallon (range format)",
+          "money": "currency units",
+          "Year": "year",
+          "General_rate": "rating scale",
+          "Comfort": "rating scale",
+          "Interior design": "rating scale",
+          "Performance": "rating scale",
+          "Value for the money": "rating scale",
+          "Exterior styling": "rating scale",
+          "Reliability": "rating scale",
+          "Num_of_reviews": "count"
+        },
+        {
+          "Mileage": "miles",
+          "money": "USD",
+          "Year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "MPG column contains range strings (e.g., '26\u201333') not numeric values",
+        "Mileage has very wide range (0 to 147179+)",
+        "money values vary widely by vehicle type",
+        "MPG is stored as range string (e.g., '26\u201333') requiring parsing",
+        "Rating columns in Car_Rates.csv contain float values with many missing entries",
+        "Mileage values range from 0.0 (new vehicles) to 150000+"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "MPG column contains range strings (e.g., '26\u201333') not numeric values",
+          "Mileage has very wide range (0 to 147179+)",
+          "money values vary widely by vehicle type"
+        ],
+        [
+          "MPG is stored as range string (e.g., '26\u201333') requiring parsing",
+          "Rating columns in Car_Rates.csv contain float values with many missing entries",
+          "Mileage values range from 0.0 (new vehicles) to 150000+"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Car_Rates.csv has many missing values (empty cells)",
+        "New_York_cars.csv has inconsistent formatting in feature columns (spaces, lists)",
+        "test.csv has certification types (e.g., 'Ford Certified') not in training",
+        "Brand naming convention differs between Car_Rates.csv and New_York_cars.csv/test.csv",
+        "Model names may have trailing periods or formatting differences across sources"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Car_Rates.csv has many missing values (empty cells)",
+          "New_York_cars.csv has inconsistent formatting in feature columns (spaces, lists)",
+          "test.csv has certification types (e.g., 'Ford Certified') not in training"
+        ],
+        [
+          "Brand naming convention differs between Car_Rates.csv and New_York_cars.csv/test.csv",
+          "Model names may have trailing periods or formatting differences across sources"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "None",
+        "None Reported"
+      ],
+      "confidence": 0.8,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "None",
+          " "
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          "None Reported"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 24.0,
+      "confidence": 1.0,
+      "votes": [
+        24.0,
+        24.0,
+        24.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Mileage must be non-negative",
+        "New vehicles typically have low mileage (<100)",
+        "Year must be reasonable (e.g., 2000-2023)",
+        "MPG ranges must be valid positive numbers",
+        "Mileage predictions must be written to result.csv",
+        "Mileage must be non-negative float values",
+        "Predictions required for all 26324 rows in test.csv",
+        "Output must be written to result.csv with column name 'Mileage'",
+        "New vehicles (new&used='New') typically have Mileage near 0",
+        "Used vehicles should have Mileage > 0",
+        "Year should be between reasonable bounds (e.g., 2000-2023)",
+        "Training data from New_York_cars.csv has 149166 samples",
+        "The predicted 'Mileage' values should be non-negative.",
+        "The predicted 'Mileage' values should be within a reasonable range based on the 'Year' of the vehicle."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Mileage must be non-negative",
+          "New vehicles typically have low mileage (<100)",
+          "Year must be reasonable (e.g., 2000-2023)",
+          "MPG ranges must be valid positive numbers",
+          "Mileage predictions must be written to result.csv"
+        ],
+        [
+          "Mileage must be non-negative float values",
+          "Predictions required for all 26324 rows in test.csv",
+          "Output must be written to result.csv with column name 'Mileage'",
+          "New vehicles (new&used='New') typically have Mileage near 0",
+          "Used vehicles should have Mileage > 0",
+          "Year should be between reasonable bounds (e.g., 2000-2023)",
+          "Training data from New_York_cars.csv has 149166 samples"
+        ],
+        [
+          "The predicted 'Mileage' values should be non-negative.",
+          "The predicted 'Mileage' values should be within a reasonable range based on the 'Year' of the vehicle."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude vehicles with Year < 2000",
+        "Consider separate models for new vs used vehicles",
+        "Filter out extreme outliers in Mileage (>300,000)",
+        "Filter out rows with critical missing values in training data if necessary",
+        "Identify and handle outliers in Mileage values",
+        "Consider vehicle age (2024 - Year) as derived feature"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude vehicles with Year < 2000",
+          "Consider separate models for new vs used vehicles",
+          "Filter out extreme outliers in Mileage (>300,000)"
+        ],
+        [
+          "Filter out rows with critical missing values in training data if necessary",
+          "Identify and handle outliers in Mileage values",
+          "Consider vehicle age (2024 - Year) as derived feature"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Correlation between Year and Mileage",
+        "ANOVA of Mileage by brand",
+        "Regression of Mileage on vehicle features",
+        "Test for missing data patterns",
+        "Check correlation between Year and Mileage",
+        "Analyze Mileage distribution by brand and model",
+        "Test relationship between new&used status and Mileage",
+        "Evaluate feature importance for prediction model",
+        "Validate prediction model using cross-validation on New_York_cars.csv",
+        "Correlation analysis between numerical features (Year, money) and Mileage in New_York_cars.csv.",
+        "Distribution analysis of Mileage in New_York_cars.csv to identify potential outliers."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Correlation between Year and Mileage",
+          "ANOVA of Mileage by brand",
+          "Regression of Mileage on vehicle features",
+          "Test for missing data patterns"
+        ],
+        [
+          "Check correlation between Year and Mileage",
+          "Analyze Mileage distribution by brand and model",
+          "Test relationship between new&used status and Mileage",
+          "Evaluate feature importance for prediction model",
+          "Validate prediction model using cross-validation on New_York_cars.csv"
+        ],
+        [
+          "Correlation analysis between numerical features (Year, money) and Mileage in New_York_cars.csv.",
+          "Distribution analysis of Mileage in New_York_cars.csv to identify potential outliers."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "result.csv must have same row count as test.csv",
+        "Column name must be 'Mileage'",
+        "Predictions must be numeric (float)",
+        "Output file must be named result.csv",
+        "Must contain column named 'Mileage'",
+        "Must have exactly 26324 predictions matching test.csv row count",
+        "Mileage values should be numeric (float)",
+        "No missing values allowed in output",
+        "The output file should be named 'result.csv'.",
+        "The output file should contain a column named 'Mileage' with the predicted mileage values.",
+        "The output file should have the same number of rows as test.csv."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "result.csv must have same row count as test.csv",
+          "Column name must be 'Mileage'",
+          "Predictions must be numeric (float)"
+        ],
+        [
+          "Output file must be named result.csv",
+          "Must contain column named 'Mileage'",
+          "Must have exactly 26324 predictions matching test.csv row count",
+          "Mileage values should be numeric (float)",
+          "No missing values allowed in output"
+        ],
+        [
+          "The output file should be named 'result.csv'.",
+          "The output file should contain a column named 'Mileage' with the predicted mileage values.",
+          "The output file should have the same number of rows as test.csv."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5823076923076924
+}

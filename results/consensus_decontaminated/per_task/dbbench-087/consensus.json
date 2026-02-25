@@ -1,0 +1,339 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round",
+        "Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round",
+        "latest year when Real Colorado Foxes did not qualify for playoffs but made it to Open Cup 2nd Round"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Playoffs = 'Did not qualify'",
+        "Open Cup = '2nd Round'",
+        "Playoffs == 'Did not qualify'",
+        "Open Cup == '2nd Round'"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "Playoffs = 'Did not qualify'",
+          "Open Cup = '2nd Round'"
+        ],
+        [
+          "Playoffs == 'Did not qualify'",
+          "Open Cup == '2nd Round'"
+        ],
+        [
+          "Playoffs = 'Did not qualify'",
+          "Open Cup = '2nd Round'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What years did the team not qualify for playoffs?",
+        "What years did the team reach Open Cup 2nd Round?",
+        "What is the intersection of these two sets?",
+        "What is the maximum year in that intersection?",
+        "Which years did the team not qualify for playoffs?",
+        "Which years did the team reach Open Cup 2nd Round?",
+        "What is the intersection of these two conditions?",
+        "What is the maximum/latest year from this intersection?",
+        "Identify all years where Playoffs is 'Did not qualify' and Open Cup is '2nd Round'.",
+        "From the identified years, find the maximum year."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What years did the team not qualify for playoffs?",
+          "What years did the team reach Open Cup 2nd Round?",
+          "What is the intersection of these two sets?",
+          "What is the maximum year in that intersection?"
+        ],
+        [
+          "Which years did the team not qualify for playoffs?",
+          "Which years did the team reach Open Cup 2nd Round?",
+          "What is the intersection of these two conditions?",
+          "What is the maximum/latest year from this intersection?"
+        ],
+        [
+          "Identify all years where Playoffs is 'Did not qualify' and Open Cup is '2nd Round'.",
+          "From the identified years, find the maximum year."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Soccer Team Performance"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Soccer Team Performance"
+        ],
+        [
+          "Soccer Team Performance"
+        ],
+        [
+          "Soccer Team Performance"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "division": "league tier number",
+        "league": "league name",
+        "regular season": "standing with division name",
+        "playoffs": "playoff result or qualification status",
+        "open cup": "tournament round reached or qualification status"
+      },
+      "confidence": 0.5555555555555556,
+      "votes": [
+        {
+          "Year": "calendar year"
+        },
+        {
+          "Year": "year (integer or string)",
+          "Division": "league tier number",
+          "League": "league name",
+          "Regular Season": "standing with division name",
+          "Playoffs": "playoff result or qualification status",
+          "Open Cup": "tournament round reached or qualification status"
+        },
+        {
+          "Year": "year",
+          "Division": "division level",
+          "League": "league name"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column is stored as object/string instead of integer"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column is stored as object/string instead of integer"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "Canceled",
+        "Did not qualify"
+      ],
+      "confidence": 0.6,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "Canceled"
+        ],
+        [
+          "Canceled",
+          "Did not qualify"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be between 2009-2023",
+        "Playoffs column contains specific values: 'Did not qualify', 'Division Final', 'Conference Semifinal', etc.",
+        "Open Cup column contains specific values: 'Did not qualify', '1st Round', '2nd Round'",
+        "Year must be parseable as integer for comparison",
+        "Playoffs value must exactly match 'Did not qualify'",
+        "Open Cup value must exactly match '2nd Round'",
+        "Result must be a single year value",
+        "Year must be a valid year.",
+        "Playoffs and Open Cup columns should contain consistent values (e.g., 'Did not qualify', '2nd Round', etc.)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be between 2009-2023",
+          "Playoffs column contains specific values: 'Did not qualify', 'Division Final', 'Conference Semifinal', etc.",
+          "Open Cup column contains specific values: 'Did not qualify', '1st Round', '2nd Round'"
+        ],
+        [
+          "Year must be parseable as integer for comparison",
+          "Playoffs value must exactly match 'Did not qualify'",
+          "Open Cup value must exactly match '2nd Round'",
+          "Result must be a single year value"
+        ],
+        [
+          "Year must be a valid year.",
+          "Playoffs and Open Cup columns should contain consistent values (e.g., 'Did not qualify', '2nd Round', etc.)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude Year 2020 where all performance metrics are 'Canceled'",
+        "Filter rows where Playoffs column equals 'Did not qualify' AND Open Cup column equals '2nd Round'",
+        "From filtered rows, select the maximum Year value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude Year 2020 where all performance metrics are 'Canceled'"
+        ],
+        [
+          "Filter rows where Playoffs column equals 'Did not qualify' AND Open Cup column equals '2nd Round'",
+          "From filtered rows, select the maximum Year value"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate years",
+        "Verify chronological order of years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate years",
+          "Verify chronological order of years"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Year should be returned as integer",
+        "Return the latest (maximum) year as a single value",
+        "Year should be returned as integer or year format",
+        "Output should be a single year."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year should be returned as integer"
+        ],
+        [
+          "Return the latest (maximum) year as a single value",
+          "Year should be returned as integer or year format"
+        ],
+        [
+          "Output should be a single year."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.582777777777778
+}

@@ -1,0 +1,341 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "median of Log2_variant_per_Mbp for serous tumor samples",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "median of Log2_variant_per_Mbp for serous tumor samples",
+        "median number of variants per Mbp",
+        "median of Log2_variant_per_Mbp"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Histologic_type == 'Serous'",
+        "Proteomics_Tumor_Normal == 'Tumor'",
+        "Histologic_type is Serous"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Histologic_type == 'Serous'",
+          "Proteomics_Tumor_Normal == 'Tumor'"
+        ],
+        [
+          "Histologic_type == 'Serous'"
+        ],
+        [
+          "Histologic_type is Serous"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Identify serous tumor samples in 1-s2.0-S0092867420301070-mmc1.xlsx",
+        "Extract Log2_variant_per_Mbp values for those samples",
+        "Calculate median of those values",
+        "Round result to 4 decimal places",
+        "Which samples have Histologic_type equal to 'Serous'?",
+        "What is the variants per Mbp value for each serous sample?",
+        "What is the median of these values?",
+        "How should the result be rounded to 4 decimal places?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Identify serous tumor samples in 1-s2.0-S0092867420301070-mmc1.xlsx",
+          "Extract Log2_variant_per_Mbp values for those samples",
+          "Calculate median of those values",
+          "Round result to 4 decimal places"
+        ],
+        [
+          "Which samples have Histologic_type equal to 'Serous'?",
+          "What is the variants per Mbp value for each serous sample?",
+          "What is the median of these values?",
+          "How should the result be rounded to 4 decimal places?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc1.xlsx"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "log2_variant_per_mbp": "log2(variants per megabase pair)",
+        "variants_per_mbp": "variants per megabase pair (derived from Log2_variant_per_Mbp)",
+        "age": "years",
+        "tumor_size_cm": "cm",
+        "estrogen_receptor_%": "%",
+        "progesterone_receptor_%": "%",
+        "bmi": "kg/m^2"
+      },
+      "confidence": 0.42857142857142855,
+      "votes": [
+        {
+          "Log2_variant_per_Mbp": "log2(variants per megabase pair)"
+        },
+        {
+          "Log2_variant_per_Mbp": "log2 transformed variants per megabase pair",
+          "variants_per_Mbp": "variants per megabase pair (derived from Log2_variant_per_Mbp)"
+        },
+        {
+          "Log2_variant_per_Mbp": "log2(variants/Mbp)",
+          "Age": "years",
+          "Tumor_Size_cm": "cm",
+          "Estrogen_Receptor_%": "%",
+          "Progesterone_Receptor_%": "%",
+          "BMI": "kg/m^2"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Log2_variant_per_Mbp is log2-transformed, need to convert back to linear scale for interpretation",
+        "Log2_variant_per_Mbp is in log2 scale and needs to be converted to linear scale: variants_per_Mbp = 2^Log2_variant_per_Mbp",
+        "Log2_variant_per_Mbp is log2 transformed, need to exponentiate to get variants per Mbp"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Log2_variant_per_Mbp is log2-transformed, need to convert back to linear scale for interpretation"
+        ],
+        [
+          "Log2_variant_per_Mbp is in log2 scale and needs to be converted to linear scale: variants_per_Mbp = 2^Log2_variant_per_Mbp"
+        ],
+        [
+          "Log2_variant_per_Mbp is log2 transformed, need to exponentiate to get variants per Mbp"
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "Cannot be determined",
+        "Staging Incomplete"
+      ],
+      "confidence": 0.8,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined",
+          "Staging Incomplete"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 179.0,
+      "confidence": 1.0,
+      "votes": [
+        179.0,
+        179.0,
+        179.0
+      ]
+    },
+    "file_format": {
+      "value": "xlsx",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "excel",
+        "xlsx",
+        "xlsx"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Histologic_type column must contain 'Serous' values",
+        "Log2_variant_per_Mbp must be numeric",
+        "Proteomics_Tumor_Normal must distinguish tumor vs normal",
+        "Only include samples where Histologic_type is 'Serous'",
+        "Exclude samples where Log2_variant_per_Mbp is null or missing",
+        "Convert Log2_variant_per_Mbp to linear scale before calculating median",
+        "Histologic_type must be 'Serous'",
+        "Round the median to 4 decimal places"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Histologic_type column must contain 'Serous' values",
+          "Log2_variant_per_Mbp must be numeric",
+          "Proteomics_Tumor_Normal must distinguish tumor vs normal"
+        ],
+        [
+          "Only include samples where Histologic_type is 'Serous'",
+          "Exclude samples where Log2_variant_per_Mbp is null or missing",
+          "Convert Log2_variant_per_Mbp to linear scale before calculating median"
+        ],
+        [
+          "Histologic_type must be 'Serous'",
+          "Round the median to 4 decimal places"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude Case_excluded == 'Yes' if present",
+        "Filter for tumor samples only",
+        "Filter to serous tumor samples using Histologic_type column",
+        "Remove any samples with missing variant data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude Case_excluded == 'Yes' if present",
+          "Filter for tumor samples only"
+        ],
+        [
+          "Filter to serous tumor samples using Histologic_type column",
+          "Remove any samples with missing variant data"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Median calculation",
+        "Rounding to 4 decimal places",
+        "Calculate median (50th percentile) of variants per Mbp for filtered samples"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Median calculation",
+          "Rounding to 4 decimal places"
+        ],
+        [
+          "Calculate median (50th percentile) of variants per Mbp for filtered samples"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Numeric value with 4 decimal places",
+        "No additional formatting",
+        "Round final result to exactly 4 decimal places",
+        "Return single scalar value representing median variants per Mbp",
+        "The output must be a single numerical value rounded to 4 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Numeric value with 4 decimal places",
+          "No additional formatting"
+        ],
+        [
+          "Round final result to exactly 4 decimal places",
+          "Return single scalar value representing median variants per Mbp"
+        ],
+        [
+          "The output must be a single numerical value rounded to 4 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5336507936507938
+}

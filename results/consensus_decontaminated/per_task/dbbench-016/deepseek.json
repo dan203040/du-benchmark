@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "League Apps count for Ted Davis",
+    "filters": [
+      "Name = 'Ted Davis'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Is Ted Davis present in the data?",
+      "What is the exact value of League Apps for Ted Davis?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football_Player_Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "League Apps": "count",
+      "League Goals": "count",
+      "FA Cup Apps": "count",
+      "FA Cup Goals": "count",
+      "Total Apps": "count",
+      "Total Goals": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names provided match sample data",
+      "Data types specified match integer and object types in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "League Apps should be non-negative integer",
+      "Total Apps should equal League Apps + FA Cup Apps",
+      "Name column should be unique for each player"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"League Apps count for Ted Davis\",\n        \"filters\": [\"Name = 'Ted Davis'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Is Ted Davis present in the data?\", \"What is the exact value of League Apps for Ted Davis?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Football_Player_Stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"League Apps\": \"count\", \"League Goals\": \"count\", \"FA Cup Apps\": \"count\", \"FA Cup Goals\": \"count\", \"Total Apps\": \"count\", \"Total Goals\": \"count\"},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names provided match sample data\", \"Data types specified match integer and object types in sample\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"League Apps should be non-negative integer\", \"Total Apps should equal League Apps + FA Cup Apps\", \"Name column should be unique for each player\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [],\n        \"output_format_requirements\": [\"Return single integer value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.550257921218872,
+  "token_usage": {
+    "input_tokens": 1055,
+    "output_tokens": 366
+  }
+}

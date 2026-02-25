@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "minimum number of report categories that collectively account for at least 50% of total reports",
+    "filters": [
+      "year == 2024"
+    ],
+    "grouping_variables": [
+      "Category"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports across all categories in 2024?",
+      "What percentage threshold equals 50% of total reports?",
+      "When categories are sorted by number of reports (descending), what is the cumulative sum at each rank?",
+      "At what rank does the cumulative percentage first reach or exceed 50%?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage_string",
+      "Rank": "ordinal_position"
+    },
+    "scale_issues": [
+      "Percentage column is stored as string with '%' symbol and needs parsing",
+      "Percentage values may need conversion to decimal for calculations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage column contains percentage sign (%) that needs to be stripped",
+      "Data is already sorted by Rank (descending by # of Reports)",
+      "Rank column provides ordering of categories by report volume"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Rank must be sequential integers starting from 1",
+      "# of Reports must be non-negative integers",
+      "Percentage values when summed should equal approximately 100%",
+      "Categories must be unique"
+    ],
+    "derived_filters": [
+      "cumulative_percentage >= 50%"
+    ],
+    "statistical_tests": [
+      "Verify sum of '# of Reports' matches expected total",
+      "Verify percentage calculations are consistent with report counts"
+    ],
+    "output_format_requirements": [
+      "Output must be a single integer representing the minimum number of categories",
+      "The result should be the rank at which cumulative percentage first reaches 50%"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"minimum number of report categories that collectively account for at least 50% of total reports\",\n    \"filters\": [\"year == 2024\"],\n    \"grouping_variables\": [\"Category\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of reports across all categories in 2024?\",\n      \"What percentage threshold equals 50% of total reports?\",\n      \"When categories are sorted by number of reports (descending), what is the cumulative sum at each rank?\",\n      \"At what rank does the cumulative percentage first reach or exceed 50%?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Report_Categories.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Percentage\": \"percentage_string\",\n      \"Rank\": \"ordinal_position\"\n    },\n    \"scale_issues\": [\n      \"Percentage column is stored as string with '%' symbol and needs parsing\",\n      \"Percentage values may need conversion to decimal for calculations\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Percentage column contains percentage sign (%) that needs to be stripped\",\n      \"Data is already sorted by Rank (descending by # of Reports)\",\n      \"Rank column provides ordering of categories by report volume\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Rank must be sequential integers starting from 1\",\n      \"# of Reports must be non-negative integers\",\n      \"Percentage values when summed should equal approximately 100%\",\n      \"Categories must be unique\"\n    ],\n    \"derived_filters\": [\n      \"cumulative_percentage >= 50%\"\n    ],\n    \"statistical_tests\": [\n      \"Verify sum of '# of Reports' matches expected total\",\n      \"Verify percentage calculations are consistent with report counts\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be a single integer representing the minimum number of categories\",\n      \"The result should be the rank at which cumulative percentage first reaches 50%\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.023345708847046,
+  "token_usage": {
+    "input_tokens": 1004,
+    "output_tokens": 652
+  }
+}

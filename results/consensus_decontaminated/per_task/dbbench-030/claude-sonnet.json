@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "count of different values of Raiders first downs",
+    "filters": [
+      "Game == 9"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the value of 'Raiders first downs' for Game 9?",
+      "How many distinct values exist for that entry?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "raiders_game_stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Raiders first downs": "count",
+      "Raiders points": "points",
+      "Opponents": "points",
+      "Attendance": "people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Game column contains integer values as strings",
+      "All numeric columns are stored as strings and need type conversion",
+      "Date column contains abbreviated month names"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Game must equal 9",
+      "Raiders first downs must be a valid numeric value"
+    ],
+    "derived_filters": [
+      "Filter rows where Game == '9' (string comparison) or Game == 9 (numeric comparison)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer representing the count of distinct Raiders first downs values for Game 9",
+      "Since Game 9 is a single row, the answer should be 1 (one distinct value)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"count of different values of Raiders first downs\",\n    \"filters\": [\"Game == 9\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the value of 'Raiders first downs' for Game 9?\",\n      \"How many distinct values exist for that entry?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"raiders_game_stats\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Raiders first downs\": \"count\",\n      \"Raiders points\": \"points\",\n      \"Opponents\": \"points\",\n      \"Attendance\": \"people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Game column contains integer values as strings\",\n      \"All numeric columns are stored as strings and need type conversion\",\n      \"Date column contains abbreviated month names\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Game must equal 9\",\n      \"Raiders first downs must be a valid numeric value\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Game == '9' (string comparison) or Game == 9 (numeric comparison)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer representing the count of distinct Raiders first downs values for Game 9\",\n      \"Since Game 9 is a single row, the answer should be 1 (one distinct value)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.7510199546813965,
+  "token_usage": {
+    "input_tokens": 1073,
+    "output_tokens": 505
+  }
+}

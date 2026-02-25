@@ -1,0 +1,403 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Team performance metrics (likely wins/losses/draws or points) over specified period",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Team performance metrics (likely wins/losses/draws or points) over specified period",
+        "Team performance metrics (likely goals scored, wins, or match counts) over a specified time period",
+        "Number of goals scored by each team"
+      ]
+    },
+    "filters": {
+      "value": [
+        "date range (unspecified in question)",
+        "team selection (unspecified in question)",
+        "date range (specified period - not explicitly defined in question)",
+        "potentially filter by team"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "date range (unspecified in question)",
+          "team selection (unspecified in question)"
+        ],
+        [
+          "date range (specified period - not explicitly defined in question)",
+          "potentially filter by team"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "team",
+        "period (likely date aggregation)"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "team",
+          "period (likely date aggregation)"
+        ],
+        [
+          "team"
+        ],
+        [
+          "team"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "plot",
+      "confidence": 1.0,
+      "votes": [
+        "plot",
+        "plot",
+        "plot"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What constitutes 'team performance'? (wins, goals, points?)",
+        "What is the specified period?",
+        "Which teams should be included?",
+        "What aggregation level for time? (year, month, tournament?)",
+        "What constitutes 'team performance' - goals scored, wins, matches played, or win rate?",
+        "What is the 'specified period' for filtering dates?",
+        "Which teams should be included in the analysis?",
+        "What settings are specified in 'plot.yaml' for the chart configuration?",
+        "Should performance be aggregated from results.csv, goalscorers.csv, or both?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What constitutes 'team performance'? (wins, goals, points?)",
+          "What is the specified period?",
+          "Which teams should be included?",
+          "What aggregation level for time? (year, month, tournament?)"
+        ],
+        [
+          "What constitutes 'team performance' - goals scored, wins, matches played, or win rate?",
+          "What is the 'specified period' for filtering dates?",
+          "Which teams should be included in the analysis?",
+          "What settings are specified in 'plot.yaml' for the chart configuration?",
+          "Should performance be aggregated from results.csv, goalscorers.csv, or both?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "goalscorers.csv",
+        "results.csv",
+        "shootouts.csv",
+        "plot.yaml"
+      ],
+      "confidence": 0.5833333333333333,
+      "votes": [
+        [
+          "goalscorers.csv",
+          "results.csv",
+          "shootouts.csv"
+        ],
+        [
+          "results.csv",
+          "goalscorers.csv",
+          "plot.yaml"
+        ],
+        [
+          "goalscorers.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "date column is object type (should be datetime)",
+        "team name consistency across files needs verification",
+        "goalscorers.csv has 'team' column while results.csv has 'home_team'/'away_team'",
+        "Team names appear in multiple columns in results.csv (home_team, away_team) but single column in goalscorers.csv (team)",
+        "Need to unpivot or union team data from home_team and away_team to get all team performances"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "date column is object type (should be datetime)",
+          "team name consistency across files needs verification",
+          "goalscorers.csv has 'team' column while results.csv has 'home_team'/'away_team'"
+        ],
+        [
+          "Team names appear in multiple columns in results.csv (home_team, away_team) but single column in goalscorers.csv (team)",
+          "Need to unpivot or union team data from home_team and away_team to get all team performances"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "date": "YYYY-MM-DD",
+        "minute": "minutes in match",
+        "home_score": "goals",
+        "away_score": "goals"
+      },
+      "confidence": 0.7499999999999999,
+      "votes": [
+        {
+          "date": "YYYY-MM-DD",
+          "minute": "minutes in match",
+          "home_score": "goals",
+          "away_score": "goals"
+        },
+        {
+          "date": "ISO date format (YYYY-MM-DD)",
+          "home_score": "count (goals)",
+          "away_score": "count (goals)",
+          "minute": "minutes into match (0-120+)"
+        },
+        {
+          "minute": "minute of the match"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Data spans 1872 to present - very long time period",
+        "Tournament types vary widely",
+        "Team names may change over time",
+        "Date column is object type, needs conversion to datetime for filtering",
+        "Goals scored needs to be aggregated at team level from both home and away perspectives"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data spans 1872 to present - very long time period",
+          "Tournament types vary widely",
+          "Team names may change over time"
+        ],
+        [
+          "Date column is object type, needs conversion to datetime for filtering",
+          "Goals scored needs to be aggregated at team level from both home and away perspectives"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "goalscorers.csv only has 44110 rows while results.csv has 46442 rows - missing goal data for some matches",
+        "shootouts.csv only has 605 rows - rare event",
+        "Team performance could be calculated from results.csv (wins/draws/losses) or goalscorers.csv (total goals)",
+        "Date ranges may differ between files"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "goalscorers.csv only has 44110 rows while results.csv has 46442 rows - missing goal data for some matches",
+          "shootouts.csv only has 605 rows - rare event"
+        ],
+        [
+          "Team performance could be calculated from results.csv (wins/draws/losses) or goalscorers.csv (total goals)",
+          "Date ranges may differ between files"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "False",
+        "True",
+        "NaN"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "False",
+          "True"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 0.8888888888888888,
+      "votes": [
+        8.0,
+        9.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "home_score >= 0",
+        "away_score >= 0",
+        "minute between 0-120 (plus extra time)",
+        "date must be valid",
+        "team names not null",
+        "Output must be saved as 'team.png'",
+        "Chart type must be bar chart",
+        "Must adhere to settings specified in 'plot.yaml'",
+        "Must filter data by specified period (date range)",
+        "Each bar represents a team's performance"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "home_score >= 0",
+          "away_score >= 0",
+          "minute between 0-120 (plus extra time)",
+          "date must be valid",
+          "team names not null"
+        ],
+        [
+          "Output must be saved as 'team.png'",
+          "Chart type must be bar chart",
+          "Must adhere to settings specified in 'plot.yaml'",
+          "Must filter data by specified period (date range)",
+          "Each bar represents a team's performance"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter by date range (unspecified)",
+        "Filter by tournament type (if relevant)",
+        "Exclude own goals if calculating team performance",
+        "date >= start_date AND date <= end_date (from specified period)",
+        "Potentially filter out own_goal = True when counting performance"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter by date range (unspecified)",
+          "Filter by tournament type (if relevant)",
+          "Exclude own goals if calculating team performance"
+        ],
+        [
+          "date >= start_date AND date <= end_date (from specified period)",
+          "Potentially filter out own_goal = True when counting performance"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate matches",
+        "Validate home_score + away_score matches total goals in goalscorers",
+        "Check temporal consistency of team performance"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate matches",
+          "Validate home_score + away_score matches total goals in goalscorers",
+          "Check temporal consistency of team performance"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Save as 'team.png'",
+        "Follow settings in 'plot.yaml'",
+        "Bar chart visualization",
+        "Clear labeling of teams and performance metric",
+        "Output format: PNG image file",
+        "Filename: 'team.png'",
+        "Chart type: bar chart",
+        "X-axis: team names",
+        "Y-axis: performance metric (goals/wins/matches)",
+        "Must follow plot.yaml configuration for styling, colors, dimensions, labels",
+        "Save the resulting chart as 'team.png'",
+        "Adhere to the settings specified in 'plot.yaml'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Save as 'team.png'",
+          "Follow settings in 'plot.yaml'",
+          "Bar chart visualization",
+          "Clear labeling of teams and performance metric"
+        ],
+        [
+          "Output format: PNG image file",
+          "Filename: 'team.png'",
+          "Chart type: bar chart",
+          "X-axis: team names",
+          "Y-axis: performance metric (goals/wins/matches)",
+          "Must follow plot.yaml configuration for styling, colors, dimensions, labels"
+        ],
+        [
+          "Save the resulting chart as 'team.png'",
+          "Adhere to the settings specified in 'plot.yaml'"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5944444444444446
+}

@@ -1,0 +1,316 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Compare the arrival order of Tony Maggs and Jo Siffert in the race",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Compare the arrival order of Tony Maggs and Jo Siffert in the race",
+        "Compare finishing positions to determine who came in earlier between Tony Maggs and Jo Siffert",
+        "Determine who finished earlier between Tony Maggs and Jo Siffert in a Grand Prix."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Driver in ['Tony Maggs', 'Jo Siffert']",
+        "Driver equals 'Tony Maggs' OR Driver equals 'Jo Siffert'",
+        "Driver is either 'Tony Maggs' or 'Jo Siffert'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Driver in ['Tony Maggs', 'Jo Siffert']"
+        ],
+        [
+          "Driver equals 'Tony Maggs' OR Driver equals 'Jo Siffert'"
+        ],
+        [
+          "Driver is either 'Tony Maggs' or 'Jo Siffert'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Driver"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Driver"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What were the finishing positions of Tony Maggs and Jo Siffert?",
+        "Which driver had the lower position number (indicating earlier arrival)?",
+        "What is the 'Pos' value for Tony Maggs?",
+        "What is the 'Pos' value for Jo Siffert?",
+        "Which driver has the lower 'Pos' value (earlier finish)?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What were the finishing positions of Tony Maggs and Jo Siffert?",
+          "Which driver had the lower position number (indicating earlier arrival)?"
+        ],
+        [
+          "What is the 'Pos' value for Tony Maggs?",
+          "What is the 'Pos' value for Jo Siffert?",
+          "Which driver has the lower 'Pos' value (earlier finish)?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Grand Prix Result"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Grand Prix Result"
+        ],
+        [
+          "Grand Prix Result"
+        ],
+        [
+          "Grand Prix Result"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "time/retired": "race time or retirement reason",
+        "grid": "starting position",
+        "pos": "race finishing position (ordinal rank)"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "Time/Retired": "race time or retirement reason",
+          "Grid": "starting position"
+        },
+        {
+          "Pos": "race finishing position (ordinal rank)",
+          "Time/Retired": "time difference from winner or reason for retirement",
+          "Grid": "starting grid position (ordinal rank)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Time/Retired column contains mixed data types: time durations (e.g., '2.02:58.6') and retirement reasons (e.g., 'Engine')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time/Retired column contains mixed data types: time durations (e.g., '2.02:58.6') and retirement reasons (e.g., 'Engine')"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Pos values should be integers for finished drivers",
+        "Grid values should be integers between 1 and starting grid size",
+        "Both Tony Maggs and Jo Siffert must exist in the Driver column",
+        "Pos values determine finishing order where lower values indicate earlier (better) finish",
+        "Null Pos values indicate did not finish (DNF) which is ranked after all finishers",
+        "Need to handle 'Time/Retired' column which contains both finishing times and reasons for retirement.",
+        "Need to parse 'Time/Retired' to determine finishing order. If 'Time/Retired' contains 'laps', the lower the number of laps, the earlier the driver came in. If it contains a time, the lower the time, the earlier the driver came in."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pos values should be integers for finished drivers",
+          "Grid values should be integers between 1 and starting grid size"
+        ],
+        [
+          "Both Tony Maggs and Jo Siffert must exist in the Driver column",
+          "Pos values determine finishing order where lower values indicate earlier (better) finish",
+          "Null Pos values indicate did not finish (DNF) which is ranked after all finishers"
+        ],
+        [
+          "Need to handle 'Time/Retired' column which contains both finishing times and reasons for retirement.",
+          "Need to parse 'Time/Retired' to determine finishing order. If 'Time/Retired' contains 'laps', the lower the number of laps, the earlier the driver came in. If it contains a time, the lower the time, the earlier the driver came in."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Pos not null (to filter out retired drivers)",
+        "Driver contains 'Tony Maggs' or 'Jo Siffert'",
+        "Tony Maggs has Pos = 5",
+        "Jo Siffert has Pos = 11",
+        "Driver = 'Tony Maggs'",
+        "Driver = 'Jo Siffert'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pos not null (to filter out retired drivers)",
+          "Driver contains 'Tony Maggs' or 'Jo Siffert'"
+        ],
+        [
+          "Tony Maggs has Pos = 5",
+          "Jo Siffert has Pos = 11"
+        ],
+        [
+          "Driver = 'Tony Maggs'",
+          "Driver = 'Jo Siffert'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Compare Pos values for the two drivers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Compare Pos values for the two drivers"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return driver name who came earlier",
+        "If both retired, compare lap counts from Time/Retired column",
+        "Return the name of the driver who came in earlier (had lower Pos value)",
+        "If one driver has a Pos value and the other does not, the one with Pos value came in earlier",
+        "Output the name of the driver who came in earlier."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return driver name who came earlier",
+          "If both retired, compare lap counts from Time/Retired column"
+        ],
+        [
+          "Return the name of the driver who came in earlier (had lower Pos value)",
+          "If one driver has a Pos value and the other does not, the one with Pos value came in earlier"
+        ],
+        [
+          "Output the name of the driver who came in earlier."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5777777777777778
+}

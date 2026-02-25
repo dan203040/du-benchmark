@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "count of locomotives with operational status",
+    "filters": [
+      "Status = 'Operational'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What does 'Operational' status mean in this dataset?",
+      "Are there any locomotives with ambiguous operational status?",
+      "Should locomotives 'Under restoration' or 'Under Repair' be considered operational?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Locomotive Inventory"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [
+      "Status column contains categorical values that need consistent interpretation"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "~"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Notes column uses '~' to indicate missing/empty values",
+      "Some Number column values are empty strings",
+      "Livery column contains quoted values with internal quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Status column must contain consistent values",
+      "Each locomotive should have a unique identifier (Number or Name)"
+    ],
+    "derived_filters": [
+      "Exclude rows where Status is not 'Operational'",
+      "Consider if 'Under restoration' or 'Under Repair' should be excluded"
+    ],
+    "statistical_tests": [
+      "Count distinct values in Status column",
+      "Check for missing values in Status column"
+    ],
+    "output_format_requirements": [
+      "Single integer count",
+      "Should include locomotives with empty Number but valid Name"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of locomotives with operational status\",\n        \"filters\": [\"Status = 'Operational'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What does 'Operational' status mean in this dataset?\", \"Are there any locomotives with ambiguous operational status?\", \"Should locomotives 'Under restoration' or 'Under Repair' be considered operational?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Locomotive Inventory\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [\"Status column contains categorical values that need consistent interpretation\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"~\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Notes column uses '~' to indicate missing/empty values\", \"Some Number column values are empty strings\", \"Livery column contains quoted values with internal quotes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Status column must contain consistent values\", \"Each locomotive should have a unique identifier (Number or Name)\"],\n        \"derived_filters\": [\"Exclude rows where Status is not 'Operational'\", \"Consider if 'Under restoration' or 'Under Repair' should be excluded\"],\n        \"statistical_tests\": [\"Count distinct values in Status column\", \"Check for missing values in Status column\"],\n        \"output_format_requirements\": [\"Single integer count\", \"Should include locomotives with empty Number but valid Name\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.369527101516724,
+  "token_usage": {
+    "input_tokens": 1182,
+    "output_tokens": 408
+  }
+}

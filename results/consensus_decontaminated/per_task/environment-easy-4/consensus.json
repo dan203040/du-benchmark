@@ -1,0 +1,394 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "percentage of time (as integer) that water quality at Quincy's Wollaston Beach met swimming standards from 2019 to 2023 inclusive",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "percentage of time (as integer) that water quality at Quincy's Wollaston Beach met swimming standards from 2019 to 2023 inclusive",
+        "Percentage (to integer) of water quality samples that met swimming standards (Violation = 'NO' or 'No')",
+        "Percentage of time (days) between 2019 and 2023 (inclusive) that water quality at Quincy's Wollaston Beach met swimming standards."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Community = 'Quincy'",
+        "Beach Name = 'Wollaston Beach'",
+        "Year between 2019 and 2023 inclusive",
+        "Year IN (2019, 2020, 2021, 2022, 2023)",
+        "Year between 2019 and 2023 (inclusive)",
+        "Beach Name is 'Wollaston Beach'",
+        "Community is 'Quincy'"
+      ],
+      "confidence": 0.42857142857142855,
+      "votes": [
+        [
+          "Community = 'Quincy'",
+          "Beach Name = 'Wollaston Beach'",
+          "Year between 2019 and 2023 inclusive"
+        ],
+        [
+          "Community = 'Quincy'",
+          "Beach Name = 'Wollaston Beach'",
+          "Year IN (2019, 2020, 2021, 2022, 2023)"
+        ],
+        [
+          "Year between 2019 and 2023 (inclusive)",
+          "Beach Name is 'Wollaston Beach'",
+          "Community is 'Quincy'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year",
+        "Sample Date"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year",
+          "Sample Date"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What constitutes 'meeting swimming standards'? (Violation = 'NO' or 'No')",
+        "How to handle multiple samples on same date?",
+        "How to calculate percentage of time from discrete samples?",
+        "Should we consider all organisms or just Enterococci?",
+        "How many total samples were taken at Wollaston Beach in Quincy from 2019-2023?",
+        "How many samples had Violation = 'NO' or 'No' (case-insensitive)?",
+        "What is the percentage and how to round to integer?",
+        "For each year, how many days were samples taken at Wollaston Beach in Quincy?",
+        "For each year, how many days had a 'Violation' value of 'NO' at Wollaston Beach in Quincy?",
+        "What is the total number of days samples were taken at Wollaston Beach in Quincy between 2019 and 2023?",
+        "What is the total number of days between 2019 and 2023 that Wollaston Beach in Quincy met swimming standards (Violation = 'NO')?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What constitutes 'meeting swimming standards'? (Violation = 'NO' or 'No')",
+          "How to handle multiple samples on same date?",
+          "How to calculate percentage of time from discrete samples?",
+          "Should we consider all organisms or just Enterococci?"
+        ],
+        [
+          "How many total samples were taken at Wollaston Beach in Quincy from 2019-2023?",
+          "How many samples had Violation = 'NO' or 'No' (case-insensitive)?",
+          "What is the percentage and how to round to integer?"
+        ],
+        [
+          "For each year, how many days were samples taken at Wollaston Beach in Quincy?",
+          "For each year, how many days had a 'Violation' value of 'NO' at Wollaston Beach in Quincy?",
+          "What is the total number of days samples were taken at Wollaston Beach in Quincy between 2019 and 2023?",
+          "What is the total number of days between 2019 and 2023 that Wollaston Beach in Quincy met swimming standards (Violation = 'NO')?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "water-body-testing-2019.csv",
+        "water-body-testing-2020.csv",
+        "water-body-testing-2021.csv",
+        "water-body-testing-2022.csv",
+        "water-body-testing-2023.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "water-body-testing-2019.csv",
+          "water-body-testing-2020.csv",
+          "water-body-testing-2021.csv",
+          "water-body-testing-2022.csv",
+          "water-body-testing-2023.csv"
+        ],
+        [
+          "water-body-testing-2019.csv",
+          "water-body-testing-2020.csv",
+          "water-body-testing-2021.csv",
+          "water-body-testing-2022.csv",
+          "water-body-testing-2023.csv"
+        ],
+        [
+          "water-body-testing-2019.csv",
+          "water-body-testing-2020.csv",
+          "water-body-testing-2021.csv",
+          "water-body-testing-2022.csv",
+          "water-body-testing-2023.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Violation column has inconsistent capitalization: 'NO'/'YES' vs 'No'/'Yes'",
+        "Sample Date format appears consistent but should verify parsing",
+        "Violation column has inconsistent casing: 'YES'/'NO' in 2019 and 2021, 'Yes'/'No' in 2020, 2022, and 2023",
+        "In water-body-testing-2020.csv, the 'Violation' column has values 'No' instead of 'NO'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Violation column has inconsistent capitalization: 'NO'/'YES' vs 'No'/'Yes'",
+          "Sample Date format appears consistent but should verify parsing"
+        ],
+        [
+          "Violation column has inconsistent casing: 'YES'/'NO' in 2019 and 2021, 'Yes'/'No' in 2020, 2022, and 2023"
+        ],
+        [
+          "In water-body-testing-2020.csv, the 'Violation' column has values 'No' instead of 'NO'."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "indicator level": "CFU/100mL (colony forming units per 100 milliliters)",
+        "year": "calendar year",
+        "sample date": "timestamp",
+        "community code": "integer code",
+        "county code": "integer code"
+      },
+      "confidence": 0.5333333333333333,
+      "votes": [
+        {
+          "Indicator Level": "CFU/100mL (colony forming units per 100 milliliters)"
+        },
+        {
+          "Indicator Level": "colony forming units or MPN per 100mL",
+          "Year": "calendar year",
+          "Sample Date": "timestamp"
+        },
+        {
+          "Indicator Level": "level of organism",
+          "Year": "year",
+          "Community Code": "integer code",
+          "County Code": "integer code"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Indicator Level values range from 1.0 to 400.0 in samples, but swimming standards threshold not specified"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Indicator Level values range from 1.0 to 400.0 in samples, but swimming standards threshold not specified"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Violation column inconsistency across years: 2019 uses 'NO'/'YES', 2020-2023 use 'No'/'Yes'",
+        "Violation values use different casing across years (uppercase vs title case)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Violation column inconsistency across years: 2019 uses 'NO'/'YES', 2020-2023 use 'No'/'Yes'"
+        ],
+        [
+          "Violation values use different casing across years (uppercase vs title case)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Violation must be 'NO', 'YES', 'No', or 'Yes'",
+        "Year must be between 2019 and 2023",
+        "Indicator Level should be positive numeric",
+        "Sample Date must be valid date",
+        "Community must equal 'Quincy'",
+        "Beach Name must equal 'Wollaston Beach'",
+        "Year must be between 2019 and 2023 inclusive",
+        "Violation column must be normalized for case-insensitive comparison",
+        "The 'Year' column should contain only valid years.",
+        "The 'Beach Name' column should contain only valid beach names.",
+        "The 'Violation' column should contain only 'YES' or 'NO' (case-insensitive)."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Violation must be 'NO', 'YES', 'No', or 'Yes'",
+          "Year must be between 2019 and 2023",
+          "Indicator Level should be positive numeric",
+          "Sample Date must be valid date"
+        ],
+        [
+          "Community must equal 'Quincy'",
+          "Beach Name must equal 'Wollaston Beach'",
+          "Year must be between 2019 and 2023 inclusive",
+          "Violation column must be normalized for case-insensitive comparison"
+        ],
+        [
+          "The 'Year' column should contain only valid years.",
+          "The 'Beach Name' column should contain only valid beach names.",
+          "The 'Violation' column should contain only 'YES' or 'NO' (case-insensitive)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to Quincy community",
+        "Filter to Wollaston Beach",
+        "Filter to years 2019-2023",
+        "Count records where UPPER(Violation) = 'NO' (meeting standards)",
+        "Count total records matching location and time filters",
+        "A day meets swimming standards if 'Violation' is 'NO' (case-insensitive)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to Quincy community",
+          "Filter to Wollaston Beach",
+          "Filter to years 2019-2023"
+        ],
+        [
+          "Count records where UPPER(Violation) = 'NO' (meeting standards)",
+          "Count total records matching location and time filters"
+        ],
+        [
+          "A day meets swimming standards if 'Violation' is 'NO' (case-insensitive)."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count samples meeting standards vs total samples",
+        "Check for duplicate samples on same date",
+        "Verify temporal coverage across years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count samples meeting standards vs total samples",
+          "Check for duplicate samples on same date",
+          "Verify temporal coverage across years"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Percentage as integer (rounded)",
+        "Time period clearly specified: 2019-2023",
+        "Return percentage as integer (rounded)",
+        "Formula: ROUND(100 * count_no_violation / total_count)",
+        "Output should be a single integer representing the percentage.",
+        "Percentage should be rounded to the nearest integer."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage as integer (rounded)",
+          "Time period clearly specified: 2019-2023"
+        ],
+        [
+          "Return percentage as integer (rounded)",
+          "Formula: ROUND(100 * count_no_violation / total_count)"
+        ],
+        [
+          "Output should be a single integer representing the percentage.",
+          "Percentage should be rounded to the nearest integer."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6036507936507938
+}

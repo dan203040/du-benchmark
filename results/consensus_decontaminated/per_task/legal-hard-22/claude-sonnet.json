@@ -1,0 +1,84 @@
+{
+  "m_q": {
+    "target_metric": "Proportion of all reports that are identity theft reports with Bank Account (Theft Type) and New Accounts (Theft Subtype), rounded to 4 decimal places",
+    "filters": [
+      "Theft Type == 'Bank Account'",
+      "Theft Subtype == 'New Accounts'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of all reports across all categories?",
+      "What is the number of identity theft reports with Bank Account as Theft Type and New Accounts as Theft Subtype?",
+      "What is the ratio of Bank Account/New Accounts identity theft reports to total reports?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Type__Report Type",
+      "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Different granularity: Report Type file has aggregated report counts by type, while Identity Theft file has detailed theft subtypes"
+    ],
+    "column_mappings": {
+      "# of Reports": "number_of_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "proportion": "decimal fraction"
+    },
+    "scale_issues": [
+      "Need to sum all report types (Fraud, Identity Theft, Other) to get total reports",
+      "Bank Account New Accounts is a subset of Identity Theft reports"
+    ],
+    "cross_source_conflicts": [
+      "Total Identity Theft count in Report Type file (1135291) should match sum of all Theft Type counts in Identity Theft Types file",
+      "Bank Account count in Identity Theft Types (114608) should match sum of Bank Account subtypes in Identity Theft Reports by Type"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Report Type file has an 'Unnamed: 2' column with percentage descriptions",
+      "Percentage strings in '% Difference From Previous Year' may need parsing",
+      "Numbers with commas in some files need to be handled"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total reports = Fraud + Identity Theft + Other",
+      "Bank Account New Accounts reports must be <= total Bank Account reports",
+      "Bank Account New Accounts reports must be <= total Identity Theft reports",
+      "Proportion must be between 0 and 1"
+    ],
+    "derived_filters": [
+      "Filter Identity Theft Reports by Type where Theft Type='Bank Account' AND Theft Subtype='New Accounts'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Round result to exactly 4 decimal places",
+      "Output should be a single numeric value representing a proportion"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Proportion of all reports that are identity theft reports with Bank Account (Theft Type) and New Accounts (Theft Subtype), rounded to 4 decimal places\",\n    \"filters\": [\n      \"Theft Type == 'Bank Account'\",\n      \"Theft Subtype == 'New Accounts'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of all reports across all categories?\",\n      \"What is the number of identity theft reports with Bank Account as Theft Type and New Accounts as Theft Subtype?\",\n      \"What is the ratio of Bank Account/New Accounts identity theft reports to total reports?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Report_Type__Report Type\",\n      \"2024_CSN_Identity_Theft_Reports_by_Type.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Different granularity: Report Type file has aggregated report counts by type, while Identity Theft file has detailed theft subtypes\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports\": \"number_of_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"proportion\": \"decimal fraction\"\n    },\n    \"scale_issues\": [\n      \"Need to sum all report types (Fraud, Identity Theft, Other) to get total reports\",\n      \"Bank Account New Accounts is a subset of Identity Theft reports\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Total Identity Theft count in Report Type file (1135291) should match sum of all Theft Type counts in Identity Theft Types file\",\n      \"Bank Account count in Identity Theft Types (114608) should match sum of Bank Account subtypes in Identity Theft Reports by Type\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Report Type file has an 'Unnamed: 2' column with percentage descriptions\",\n      \"Percentage strings in '% Difference From Previous Year' may need parsing\",\n      \"Numbers with commas in some files need to be handled\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Total reports = Fraud + Identity Theft + Other\",\n      \"Bank Account New Accounts reports must be <= total Bank Account reports\",\n      \"Bank Account New Accounts reports must be <= total Identity Theft reports\",\n      \"Proportion must be between 0 and 1\"\n    ],\n    \"derived_filters\": [\n      \"Filter Identity Theft Reports by Type where Theft Type='Bank Account' AND Theft Subtype='New Accounts'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Round result to exactly 4 decimal places\",\n      \"Output should be a single numeric value representing a proportion\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.597985029220581,
+  "token_usage": {
+    "input_tokens": 1948,
+    "output_tokens": 819
+  }
+}

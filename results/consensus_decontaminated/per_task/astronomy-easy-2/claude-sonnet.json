@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Ratio of peak atmospheric mass density (March 2014 / July 2018)",
+    "filters": [
+      "Timestamp between 2014-03-14 and 2014-03-17 (inclusive)",
+      "Timestamp between 2018-07-18 and 2018-07-21 (inclusive)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum value of 'Orbit Mean Density (kg/m^3)' in March 14-17, 2014?",
+      "What is the maximum value of 'Orbit Mean Density (kg/m^3)' in July 18-21, 2018?",
+      "What is the ratio of the 2014 peak to the 2018 peak?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "swarma-wu016-20140314_to_20140317.csv",
+      "swarma-wu545-20180718_to_20180721.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Orbit Mean Density (kg/m^3)": "kg/m^3",
+      "Timestamp": "ISO 8601 datetime string"
+    },
+    "scale_issues": [
+      "Density values are in scientific notation with magnitudes around 1e-12 to 1e-13",
+      "2014 density values (~1.17e-12 kg/m^3) are approximately 10x higher than 2018 values (~1.5e-13 kg/m^3)"
+    ],
+    "cross_source_conflicts": [
+      "Significant magnitude difference between 2014 and 2018 density measurements suggests different atmospheric conditions or orbital parameters"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Timestamp column contains datetime strings in 'YYYY-MM-DD HH:MM:SS' format",
+      "Density values are in scientific notation (float64)",
+      "Both files have identical structure with 433 rows",
+      "Data sampled at 10-minute intervals"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Timestamp must be parseable as datetime",
+      "Orbit Mean Density (kg/m^3) must be positive non-zero float",
+      "First dataset must contain data only from 2014-03-14 to 2014-03-17",
+      "Second dataset must contain data only from 2018-07-18 to 2018-07-21"
+    ],
+    "derived_filters": [
+      "Extract maximum density from March 2014 dataset",
+      "Extract maximum density from July 2018 dataset"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single scalar ratio value",
+      "Ratio format: peak_density_2014 / peak_density_2018",
+      "Result should be dimensionless (units cancel out)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Ratio of peak atmospheric mass density (March 2014 / July 2018)\",\n    \"filters\": [\n      \"Timestamp between 2014-03-14 and 2014-03-17 (inclusive)\",\n      \"Timestamp between 2018-07-18 and 2018-07-21 (inclusive)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the maximum value of 'Orbit Mean Density (kg/m^3)' in March 14-17, 2014?\",\n      \"What is the maximum value of 'Orbit Mean Density (kg/m^3)' in July 18-21, 2018?\",\n      \"What is the ratio of the 2014 peak to the 2018 peak?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"swarma-wu016-20140314_to_20140317.csv\",\n      \"swarma-wu545-20180718_to_20180721.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Orbit Mean Density (kg/m^3)\": \"kg/m^3\",\n      \"Timestamp\": \"ISO 8601 datetime string\"\n    },\n    \"scale_issues\": [\n      \"Density values are in scientific notation with magnitudes around 1e-12 to 1e-13\",\n      \"2014 density values (~1.17e-12 kg/m^3) are approximately 10x higher than 2018 values (~1.5e-13 kg/m^3)\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Significant magnitude difference between 2014 and 2018 density measurements suggests different atmospheric conditions or orbital parameters\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Timestamp column contains datetime strings in 'YYYY-MM-DD HH:MM:SS' format\",\n      \"Density values are in scientific notation (float64)\",\n      \"Both files have identical structure with 433 rows\",\n      \"Data sampled at 10-minute intervals\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Timestamp must be parseable as datetime\",\n      \"Orbit Mean Density (kg/m^3) must be positive non-zero float\",\n      \"First dataset must contain data only from 2014-03-14 to 2014-03-17\",\n      \"Second dataset must contain data only from 2018-07-18 to 2018-07-21\"\n    ],\n    \"derived_filters\": [\n      \"Extract maximum density from March 2014 dataset\",\n      \"Extract maximum density from July 2018 dataset\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single scalar ratio value\",\n      \"Ratio format: peak_density_2014 / peak_density_2018\",\n      \"Result should be dimensionless (units cancel out)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.888963222503662,
+  "token_usage": {
+    "input_tokens": 1785,
+    "output_tokens": 872
+  }
+}

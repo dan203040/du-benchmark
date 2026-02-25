@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "total number of identity theft reporters",
+    "filters": [
+      "State = 'Alabama'",
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the sum of '# of Reports' for Alabama across all theft types?",
+      "Does the data represent 2024 specifically or is that inferred from the filename?",
+      "Are there any duplicate entries for Alabama that need to be checked?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Identity_Theft_Reports.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of reports",
+      "Percentage": "percentage of total reports for the state"
+    },
+    "scale_issues": [
+      "Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "File contains 364 rows with 4 columns as described",
+      "Sample shows consistent formatting with quoted strings and numeric values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Sum of percentages for each state should equal 100% (or close due to rounding)",
+      "# of Reports should be non-negative integers",
+      "Each state-theft type combination should be unique"
+    ],
+    "derived_filters": [
+      "Filter rows where State = 'Alabama'",
+      "Group by State and sum '# of Reports'"
+    ],
+    "statistical_tests": [
+      "Check if sum of '# of Reports' for Alabama matches expected total based on percentages"
+    ],
+    "output_format_requirements": [
+      "Single numeric value representing total reporters",
+      "Should be integer format"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total number of identity theft reporters\",\n        \"filters\": [\"State = 'Alabama'\", \"Year = 2024\"],\n        \"grouping_variables\": [\"State\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the sum of '# of Reports' for Alabama across all theft types?\", \"Does the data represent 2024 specifically or is that inferred from the filename?\", \"Are there any duplicate entries for Alabama that need to be checked?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_State_Identity_Theft_Reports.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of reports\", \"Percentage\": \"percentage of total reports for the state\"},\n        \"scale_issues\": [\"Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"File contains 364 rows with 4 columns as described\", \"Sample shows consistent formatting with quoted strings and numeric values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Sum of percentages for each state should equal 100% (or close due to rounding)\", \"# of Reports should be non-negative integers\", \"Each state-theft type combination should be unique\"],\n        \"derived_filters\": [\"Filter rows where State = 'Alabama'\", \"Group by State and sum '# of Reports'\"],\n        \"statistical_tests\": [\"Check if sum of '# of Reports' for Alabama matches expected total based on percentages\"],\n        \"output_format_requirements\": [\"Single numeric value representing total reporters\", \"Should be integer format\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.851030111312866,
+  "token_usage": {
+    "input_tokens": 826,
+    "output_tokens": 465
+  }
+}

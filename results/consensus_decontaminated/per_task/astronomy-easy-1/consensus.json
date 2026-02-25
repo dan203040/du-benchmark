@@ -1,0 +1,395 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast made on March 9, 2025 for the period March 10-12, 2025",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast made on March 9, 2025 for the period March 10-12, 2025",
+        "Mean Absolute Error (MAE) between NOAA SWPC's 3-day forecast of AP index issued on March 9, 2025 and actual AP values for March 10-12, 2025",
+        "Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast from March 9, 2025, for the period March 10-12, 2025"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date range: March 10-12, 2025",
+        "Forecast issued date: March 9, 2025",
+        "Forecast issued on March 9, 2025",
+        "Forecast period: March 10-12, 2025",
+        "3-day forecast only"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date range: March 10-12, 2025",
+          "Forecast issued date: March 9, 2025"
+        ],
+        [
+          "Forecast issued on March 9, 2025",
+          "Forecast period: March 10-12, 2025",
+          "3-day forecast only"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "forecast_day"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "forecast_day"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the forecasted AP values for March 10-12, 2025 from the March 9 forecast?",
+        "What are the actual AP values for March 10-12, 2025?",
+        "How to calculate MAE from forecast vs actual AP values?",
+        "What are the forecasted AP values for March 10, 11, and 12, 2025 from the March 9 forecast?",
+        "What are the actual AP values for March 10, 11, and 12, 2025?",
+        "What is the absolute error for each day (March 10, 11, 12)?",
+        "What is the mean of the three absolute errors?",
+        "Extract the AP forecast values for March 10, 11, and 12, 2025 from the '0309geomag_forecast.txt' file.",
+        "Determine the actual AP values for March 10, 11, and 12, 2025.  Since these are forecasts, we need to assume that the actual values are in the forecasts issued on March 10, 11, and 12 respectively. Extract the AP forecast values for March 10 from '0310geomag_forecast.txt', March 11 from '0311geomag_forecast.txt', and March 12 from '0312geomag_forecast.txt'.",
+        "Calculate the absolute error between the forecasted and actual AP values for each of the three days.",
+        "Calculate the mean of the three absolute errors."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What are the forecasted AP values for March 10-12, 2025 from the March 9 forecast?",
+          "What are the actual AP values for March 10-12, 2025?",
+          "How to calculate MAE from forecast vs actual AP values?"
+        ],
+        [
+          "What are the forecasted AP values for March 10, 11, and 12, 2025 from the March 9 forecast?",
+          "What are the actual AP values for March 10, 11, and 12, 2025?",
+          "What is the absolute error for each day (March 10, 11, 12)?",
+          "What is the mean of the three absolute errors?"
+        ],
+        [
+          "Extract the AP forecast values for March 10, 11, and 12, 2025 from the '0309geomag_forecast.txt' file.",
+          "Determine the actual AP values for March 10, 11, and 12, 2025.  Since these are forecasts, we need to assume that the actual values are in the forecasts issued on March 10, 11, and 12 respectively. Extract the AP forecast values for March 10 from '0310geomag_forecast.txt', March 11 from '0311geomag_forecast.txt', and March 12 from '0312geomag_forecast.txt'.",
+          "Calculate the absolute error between the forecasted and actual AP values for each of the three days.",
+          "Calculate the mean of the three absolute errors."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "0309geomag_forecast.txt",
+        "0311geomag_forecast.txt",
+        "0312geomag_forecast.txt",
+        "0313geomag_forecast.txt"
+      ],
+      "confidence": 0.9166666666666666,
+      "votes": [
+        [
+          "0309geomag_forecast.txt",
+          "0311geomag_forecast.txt",
+          "0312geomag_forecast.txt",
+          "0313geomag_forecast.txt"
+        ],
+        [
+          "0309geomag_forecast.txt",
+          "0311geomag_forecast.txt",
+          "0312geomag_forecast.txt",
+          "0313geomag_forecast.txt"
+        ],
+        [
+          "0309geomag_forecast.txt",
+          "0311geomag_forecast.txt",
+          "0312geomag_forecast.txt"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "All files have identical column names but different data values",
+        "Column names are not descriptive (':Product:' and filename columns)",
+        "File structure is non-standard with unclear column headers",
+        "Data appears to be in fixed-format text rather than standard CSV",
+        "Column names ':Product:' and filename do not represent actual data fields"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All files have identical column names but different data values",
+          "Column names are not descriptive (':Product:' and filename columns)"
+        ],
+        [
+          "File structure is non-standard with unclear column headers",
+          "Data appears to be in fixed-format text rather than standard CSV",
+          "Column names ':Product:' and filename do not represent actual data fields"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "forecast_mar9": "AP index",
+        "actual_mar11": "AP index",
+        "actual_mar12": "AP index",
+        "actual_mar13": "AP index",
+        "ap": "dimensionless geomagnetic index",
+        "forecast_date": "date (UTC)",
+        "target_date": "date (UTC)",
+        "ap_value_0309": "unitless AP index",
+        "ap_value_0311": "unitless AP index",
+        "ap_value_0312": "unitless AP index"
+      },
+      "confidence": 0.33333333333333337,
+      "votes": [
+        {
+          "forecast_mar9": "AP index",
+          "actual_mar11": "AP index",
+          "actual_mar12": "AP index",
+          "actual_mar13": "AP index"
+        },
+        {
+          "AP": "dimensionless geomagnetic index",
+          "forecast_date": "date (UTC)",
+          "target_date": "date (UTC)"
+        },
+        {
+          "AP_Value_0309": "unitless AP index",
+          "AP_Value_0311": "unitless AP index",
+          "AP_Value_0312": "unitless AP index"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "AP values appear to be in standard AP index units (typically 0-400)",
+        "AP values appear to be in raw index form (0-400 scale)",
+        "Need to verify if values like '025-020-012' represent three sequential day forecasts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "AP values appear to be in standard AP index units (typically 0-400)"
+        ],
+        [
+          "AP values appear to be in raw index form (0-400 scale)",
+          "Need to verify if values like '025-020-012' represent three sequential day forecasts"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Need to verify that all files use same AP measurement scale and methodology",
+        "Files from different dates may contain forecasts vs actuals",
+        "Later files (0311, 0312, 0313) may contain actual observed values for March 10-12"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Need to verify that all files use same AP measurement scale and methodology"
+        ],
+        [
+          "Files from different dates may contain forecasts vs actuals",
+          "Later files (0311, 0312, 0313) may contain actual observed values for March 10-12"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 0.6666666666666666,
+      "votes": [
+        true,
+        false,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          " ",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          " "
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Forecast period must be exactly March 10-12, 2025",
+        "Forecast must be from March 9, 2025 issuance",
+        "AP values must be non-negative integers",
+        "Forecast must be from March 9, 2025 (0309geomag_forecast.txt)",
+        "Target period must be March 10-12, 2025",
+        "Must extract 3-day forecast values (025-020-012 format)",
+        "Actual values must be obtained from subsequent daily reports",
+        "MAE = mean(|forecast - actual|) for all three days",
+        "The AP forecast values for March 10, 11, and 12, 2025 are located in specific rows of the '0309geomag_forecast.txt' file. The exact row numbers need to be determined by inspecting the file structure.",
+        "The AP values for March 10, 11, and 12 are embedded in the 'Mar' row, and need to be extracted by splitting the string."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Forecast period must be exactly March 10-12, 2025",
+          "Forecast must be from March 9, 2025 issuance",
+          "AP values must be non-negative integers"
+        ],
+        [
+          "Forecast must be from March 9, 2025 (0309geomag_forecast.txt)",
+          "Target period must be March 10-12, 2025",
+          "Must extract 3-day forecast values (025-020-012 format)",
+          "Actual values must be obtained from subsequent daily reports",
+          "MAE = mean(|forecast - actual|) for all three days"
+        ],
+        [
+          "The AP forecast values for March 10, 11, and 12, 2025 are located in specific rows of the '0309geomag_forecast.txt' file. The exact row numbers need to be determined by inspecting the file structure.",
+          "The AP values for March 10, 11, and 12 are embedded in the 'Mar' row, and need to be extracted by splitting the string."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract only rows containing AP forecast/actual values",
+        "Filter out metadata rows (UTC, month names, blank rows)",
+        "Extract forecast values from row containing 'Mar' and hyphenated values in 0309geomag_forecast.txt",
+        "Extract actual AP values for March 10, 11, 12 from files 0311, 0312, 0313 respectively",
+        "Parse hyphen-separated values to individual daily forecasts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract only rows containing AP forecast/actual values",
+          "Filter out metadata rows (UTC, month names, blank rows)"
+        ],
+        [
+          "Extract forecast values from row containing 'Mar' and hyphenated values in 0309geomag_forecast.txt",
+          "Extract actual AP values for March 10, 11, 12 from files 0311, 0312, 0313 respectively",
+          "Parse hyphen-separated values to individual daily forecasts"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in forecast/actual pairs",
+        "Validate AP value ranges (typically 0-400)",
+        "Calculate absolute error for each day: |forecast_day - actual_day|",
+        "Calculate MAE: (|error_Mar10| + |error_Mar11| + |error_Mar12|) / 3"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in forecast/actual pairs",
+          "Validate AP value ranges (typically 0-400)"
+        ],
+        [
+          "Calculate absolute error for each day: |forecast_day - actual_day|",
+          "Calculate MAE: (|error_Mar10| + |error_Mar11| + |error_Mar12|) / 3"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "MAE should be calculated as: MAE = mean(|forecast - actual|) for March 10-12",
+        "Result should be a single numeric value with appropriate precision",
+        "Return single scalar MAE value",
+        "MAE should be in same units as AP index",
+        "Round to appropriate precision (typically 1-2 decimal places)",
+        "The final output should be a single numerical value representing the MAE."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "MAE should be calculated as: MAE = mean(|forecast - actual|) for March 10-12",
+          "Result should be a single numeric value with appropriate precision"
+        ],
+        [
+          "Return single scalar MAE value",
+          "MAE should be in same units as AP index",
+          "Round to appropriate precision (typically 1-2 decimal places)"
+        ],
+        [
+          "The final output should be a single numerical value representing the MAE."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5791666666666668
+}

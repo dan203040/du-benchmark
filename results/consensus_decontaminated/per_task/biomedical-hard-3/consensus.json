@@ -1,0 +1,372 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Age of the patient with the lowest APP_Z_score",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Age of the patient with the lowest APP_Z_score",
+        "Age of the patient with the lowest APP-Z score",
+        "Age of the patient with the lowest APP_Z_score"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Case_excluded == 'No'",
+        "Proteomics_Tumor_Normal == 'Tumor'",
+        "Exclude patients where APP_Z_score is null or missing",
+        "Exclude patients where Age is null or missing"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Case_excluded == 'No'",
+          "Proteomics_Tumor_Normal == 'Tumor'"
+        ],
+        [
+          "Exclude patients where APP_Z_score is null or missing",
+          "Exclude patients where Age is null or missing"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the minimum APP_Z_score value?",
+        "Which patient (idx) has the minimum APP_Z_score?",
+        "What is the Age value for that patient?",
+        "What is the minimum APP_Z_score across all patients?",
+        "Which patient has the minimum APP_Z_score?",
+        "What is the Age of that patient?",
+        "Find the minimum APP_Z_score.",
+        "Identify the patient(s) with the minimum APP_Z_score.",
+        "Retrieve the age of the identified patient(s)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the minimum APP_Z_score value?",
+          "Which patient (idx) has the minimum APP_Z_score?",
+          "What is the Age value for that patient?"
+        ],
+        [
+          "What is the minimum APP_Z_score across all patients?",
+          "Which patient has the minimum APP_Z_score?",
+          "What is the Age of that patient?"
+        ],
+        [
+          "Find the minimum APP_Z_score.",
+          "Identify the patient(s) with the minimum APP_Z_score.",
+          "Retrieve the age of the identified patient(s)."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "1-s2.0-S0092867420301070-mmc7__B-APM subtypes"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc7__B-APM subtypes"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc7__B-APM subtypes"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc7__B-APM subtypes"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Both files have 'Log2_variant_per_Mbp' column - need to verify consistency",
+        "mmc1 has 'Age' column while APM subtypes doesn't",
+        "Both files contain 'idx' and 'Log2_variant_per_Mbp' columns",
+        "mutation_classification in mmc7 may relate to MSI_status or Genomics_subtype in mmc1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Both files have 'Log2_variant_per_Mbp' column - need to verify consistency",
+          "mmc1 has 'Age' column while APM subtypes doesn't"
+        ],
+        [
+          "Both files contain 'idx' and 'Log2_variant_per_Mbp' columns",
+          "mutation_classification in mmc7 may relate to MSI_status or Genomics_subtype in mmc1"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "age": "years",
+        "app_z_score": "standard deviations",
+        "log2_variant_per_mbp": "log2(variants per megabase)",
+        "bmi": "kg/m\u00b2",
+        "tumor_size_cm": "centimeters"
+      },
+      "confidence": 0.6666666666666667,
+      "votes": [
+        {
+          "Age": "years",
+          "APP_Z_score": "standard deviations",
+          "Log2_variant_per_Mbp": "log2(variants per megabase)",
+          "BMI": "kg/m\u00b2",
+          "Tumor_Size_cm": "centimeters"
+        },
+        {
+          "Age": "years",
+          "APP_Z_score": "standardized z-score (dimensionless)",
+          "Log2_variant_per_Mbp": "log2 scale"
+        },
+        {
+          "Age": "years",
+          "APP_Z_score": "z-score"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "APP_Z_score appears to be standardized (mean=0, SD=1)",
+        "Some immune cell columns have negative values suggesting z-scores",
+        "APP_Z_score is a standardized score with mean 0 and standard deviation 1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "APP_Z_score appears to be standardized (mean=0, SD=1)",
+          "Some immune cell columns have negative values suggesting z-scores"
+        ],
+        [
+          "APP_Z_score is a standardized score with mean 0 and standard deviation 1"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Sample count mismatch: mmc1 has 153 rows, APM subtypes has 95 rows",
+        "Log2_variant_per_Mbp appears in both files - need to verify consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sample count mismatch: mmc1 has 153 rows, APM subtypes has 95 rows"
+        ],
+        [
+          "Log2_variant_per_Mbp appears in both files - need to verify consistency"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "Cannot be determined",
+        "Staging Incomplete",
+        "Normal",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "",
+          "Cannot be determined",
+          "Staging Incomplete",
+          "Normal"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined",
+          "Staging Incomplete"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 179.0,
+      "confidence": 0.33,
+      "votes": [
+        179.0,
+        179.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "xlsx",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Excel (converted to CSV for display)",
+        "xlsx",
+        "xlsx"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Age should be positive (0-120)",
+        "APP_Z_score should be continuous numeric",
+        "idx values should match between files",
+        "Proteomics_Participant_ID should be unique per patient",
+        "APP_Z_score must be numeric and not null",
+        "Age must be numeric and not null",
+        "idx must match between both data sources",
+        "APP_Z_score must be a numerical value.",
+        "Age must be a numerical value."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age should be positive (0-120)",
+          "APP_Z_score should be continuous numeric",
+          "idx values should match between files",
+          "Proteomics_Participant_ID should be unique per patient"
+        ],
+        [
+          "APP_Z_score must be numeric and not null",
+          "Age must be numeric and not null",
+          "idx must match between both data sources"
+        ],
+        [
+          "APP_Z_score must be a numerical value.",
+          "Age must be a numerical value."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Case_excluded != 'No'",
+        "Consider only Tumor samples (Proteomics_Tumor_Normal == 'Tumor')",
+        "Filter for complete APP_Z_score values",
+        "Filter to patients with valid APP_Z_score in mmc7 sheet",
+        "Filter to patients with valid Age in mmc1 file",
+        "Only consider patients present in both datasets after join"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Case_excluded != 'No'",
+          "Consider only Tumor samples (Proteomics_Tumor_Normal == 'Tumor')",
+          "Filter for complete APP_Z_score values"
+        ],
+        [
+          "Filter to patients with valid APP_Z_score in mmc7 sheet",
+          "Filter to patients with valid Age in mmc1 file",
+          "Only consider patients present in both datasets after join"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for normal distribution of APP_Z_score",
+        "Verify correlation between Age and APP_Z_score",
+        "Test for outliers in APP_Z_score"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for normal distribution of APP_Z_score",
+          "Verify correlation between Age and APP_Z_score",
+          "Test for outliers in APP_Z_score"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Age should be reported as numeric value",
+        "Include patient identifier (idx or Proteomics_Participant_ID)",
+        "Report APP_Z_score value for verification",
+        "Return a single numeric value representing age in years",
+        "If multiple patients have the same minimum APP_Z_score, return the age of one patient",
+        "Output should be a single numerical value representing the age."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age should be reported as numeric value",
+          "Include patient identifier (idx or Proteomics_Participant_ID)",
+          "Report APP_Z_score value for verification"
+        ],
+        [
+          "Return a single numeric value representing age in years",
+          "If multiple patients have the same minimum APP_Z_score, return the age of one patient"
+        ],
+        [
+          "Output should be a single numerical value representing the age."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5498333333333334
+}

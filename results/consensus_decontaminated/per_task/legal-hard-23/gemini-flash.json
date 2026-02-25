@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "State with the highest total reports per 100K population across all report types (identity theft, fraud, and others)",
+    "filters": [],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the total reports per 100K population for each state by summing the 'Reports per 100K Population' from both datasets.",
+      "Identify the state with the maximum 'Total Reports per 100K Population'."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+      "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+        "right_source": "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv",
+        "left_column": "State",
+        "right_column": "State",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "The 'Reports per 100K Population' column has different data types across the two CSV files (float64 in Identity Theft, int64 in Fraud and Other).",
+      "The 'Rank' column is not needed for the final calculation and can be dropped."
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Reports per 100K Population": "reports per 100,000 people",
+      "# of Reports": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'State' column should contain valid U.S. state names, including DC and PR.",
+      "The 'Reports per 100K Population' and '# of Reports' columns should contain non-negative numerical values."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single state name."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"State with the highest total reports per 100K population across all report types (identity theft, fraud, and others)\",\n    \"filters\": [],\n    \"grouping_variables\": [\"State\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the total reports per 100K population for each state by summing the 'Reports per 100K Population' from both datasets.\",\n      \"Identify the state with the maximum 'Total Reports per 100K Population'.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_State_Rankings_Identity_Theft_Reports.csv\",\n      \"2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"2024_CSN_State_Rankings_Identity_Theft_Reports.csv\",\n        \"right_source\": \"2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv\",\n        \"left_column\": \"State\",\n        \"right_column\": \"State\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"The 'Reports per 100K Population' column has different data types across the two CSV files (float64 in Identity Theft, int64 in Fraud and Other).\",\n      \"The 'Rank' column is not needed for the final calculation and can be dropped.\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Reports per 100K Population\": \"reports per 100,000 people\",\n      \"# of Reports\": \"number of reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'State' column should contain valid U.S. state names, including DC and PR.\",\n      \"The 'Reports per 100K Population' and '# of Reports' columns should contain non-negative numerical values.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a single state name.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 63.767630100250244,
+  "token_usage": {}
+}

@@ -1,0 +1,90 @@
+{
+  "m_q": {
+    "target_metric": "Seasonal exceedance rate (percentage to 2 decimal places) of Chatham's Bucks Creek Beach in the summer (June, July, August) with the most rainfall in its area, imputing missing monthly rainfall values with the median of the month in non-missing years.",
+    "filters": [
+      "Beach Name = 'Bucks Creek Beach'",
+      "Months in ['June', 'July', 'August']"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify the year with the most rainfall in June, July, and August combined.",
+      "Calculate the number of exceedances for Bucks Creek Beach in June, July, and August of the identified year.",
+      "Calculate the total number of samples for Bucks Creek Beach in June, July, and August of the identified year.",
+      "Divide the number of exceedances by the total number of samples and multiply by 100 to get the exceedance rate.",
+      "Impute missing monthly rainfall values with the median of the month in non-missing years."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "monthly_precipitations_chatham.csv",
+      "water-body-testing-2016.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "monthly_precipitations_chatham.csv",
+        "right_source": "water-body-testing-2016.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches",
+      "Indicator Level": "CFU/100mL"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Exceedance is determined by the 'Violation' column in water-body-testing-2016.csv.",
+      "Summer months are defined as June, July, and August.",
+      "Missing rainfall data should be imputed using the median for that month across all available years."
+    ],
+    "derived_filters": [
+      "Isolate Chatham data based on Community or County Description.",
+      "Filter water quality data for 'Bucks Creek Beach'."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Exceedance rate should be expressed as a percentage with 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Seasonal exceedance rate (percentage to 2 decimal places) of Chatham's Bucks Creek Beach in the summer (June, July, August) with the most rainfall in its area, imputing missing monthly rainfall values with the median of the month in non-missing years.\",\n    \"filters\": [\n      \"Beach Name = 'Bucks Creek Beach'\",\n      \"Months in ['June', 'July', 'August']\"\n    ],\n    \"grouping_variables\": [\n      \"Year\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify the year with the most rainfall in June, July, and August combined.\",\n      \"Calculate the number of exceedances for Bucks Creek Beach in June, July, and August of the identified year.\",\n      \"Calculate the total number of samples for Bucks Creek Beach in June, July, and August of the identified year.\",\n      \"Divide the number of exceedances by the total number of samples and multiply by 100 to get the exceedance rate.\",\n      \"Impute missing monthly rainfall values with the median of the month in non-missing years.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"monthly_precipitations_chatham.csv\",\n      \"water-body-testing-2016.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"monthly_precipitations_chatham.csv\",\n        \"right_source\": \"water-body-testing-2016.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Jan\": \"inches\",\n      \"Feb\": \"inches\",\n      \"Mar\": \"inches\",\n      \"Apr\": \"inches\",\n      \"May\": \"inches\",\n      \"Jun\": \"inches\",\n      \"Jul\": \"inches\",\n      \"Aug\": \"inches\",\n      \"Sep\": \"inches\",\n      \"Oct\": \"inches\",\n      \"Nov\": \"inches\",\n      \"Dec\": \"inches\",\n      \"Annual\": \"inches\",\n      \"Indicator Level\": \"CFU/100mL\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Exceedance is determined by the 'Violation' column in water-body-testing-2016.csv.\",\n      \"Summer months are defined as June, July, and August.\",\n      \"Missing rainfall data should be imputed using the median for that month across all available years.\"\n    ],\n    \"derived_filters\": [\n      \"Isolate Chatham data based on Community or County Description.\",\n      \"Filter water quality data for 'Bucks Creek Beach'.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Exceedance rate should be expressed as a percentage with 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.29654598236084,
+  "token_usage": {}
+}

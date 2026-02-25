@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "minimum value of 'Games played' column",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Are there any clubs with fewer games played than others?",
+      "Is the 'Games played' value consistent across all rows?",
+      "Do we need to handle any non-numeric values in 'Games played' column?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_standings"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'Games played' has object dtype but contains numeric data",
+      "All columns have object dtype despite containing numeric values"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Games played": "count of matches",
+      "Goals scored": "count of goals",
+      "Goals conceded": "count of goals",
+      "Points": "league points"
+    },
+    "scale_issues": [
+      "Data appears to contain multiple leagues/competitions mixed together (rows 1-17 show Lithuanian teams, rows 18-20 show Spanish teams)",
+      "Different leagues may have different numbers of games in a season"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column appears to be 'Position' but contains duplicate values (multiple '1' positions)",
+      "Sample shows 20 rows but shape indicates 27 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "'Games played' should be positive integers",
+      "'Games played' should be consistent within the same competition",
+      "Position numbers should be unique within a competition"
+    ],
+    "derived_filters": [
+      "Filter to specific competition if analyzing within one league",
+      "Remove rows with non-numeric 'Games played' values"
+    ],
+    "statistical_tests": [
+      "Check for consistency of 'Games played' values within data subsets",
+      "Identify outliers in 'Games played' column"
+    ],
+    "output_format_requirements": [
+      "Return single numeric value",
+      "Handle potential ties if multiple clubs have same minimum games played"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum value of 'Games played' column\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Are there any clubs with fewer games played than others?\", \"Is the 'Games played' value consistent across all rows?\", \"Do we need to handle any non-numeric values in 'Games played' column?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"football_standings\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Column 'Games played' has object dtype but contains numeric data\", \"All columns have object dtype despite containing numeric values\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Games played\": \"count of matches\", \"Goals scored\": \"count of goals\", \"Goals conceded\": \"count of goals\", \"Points\": \"league points\"},\n        \"scale_issues\": [\"Data appears to contain multiple leagues/competitions mixed together (rows 1-17 show Lithuanian teams, rows 18-20 show Spanish teams)\", \"Different leagues may have different numbers of games in a season\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column appears to be 'Position' but contains duplicate values (multiple '1' positions)\", \"Sample shows 20 rows but shape indicates 27 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"'Games played' should be positive integers\", \"'Games played' should be consistent within the same competition\", \"Position numbers should be unique within a competition\"],\n        \"derived_filters\": [\"Filter to specific competition if analyzing within one league\", \"Remove rows with non-numeric 'Games played' values\"],\n        \"statistical_tests\": [\"Check for consistency of 'Games played' values within data subsets\", \"Identify outliers in 'Games played' column\"],\n        \"output_format_requirements\": [\"Return single numeric value\", \"Handle potential ties if multiple clubs have same minimum games played\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.655326843261719,
+  "token_usage": {
+    "input_tokens": 1099,
+    "output_tokens": 513
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Solar activity cycle period and top five years of minimum and maximum activity based on sunspot numbers between 1960 and 2020.",
+    "filters": [
+      "Years between 1960 and 2020",
+      "Peaks with prominence >= 20 and distance >= 5",
+      "Minimums with prominence >= 20 and distance >= 5"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Determine the yearly mean sunspot numbers.",
+      "Identify peaks (maximums) in sunspot numbers with prominence >= 20 and distance >= 5.",
+      "Identify minimums in sunspot numbers with prominence >= 20 and distance >= 5.",
+      "Calculate the period of solar activity cycles based on the identified peaks/minimums.",
+      "Rank the years of minimum and maximum activity based on sunspot numbers.",
+      "Select the top five years of minimum and maximum activity."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "SN_y_tot_V2.0.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "1700.5;   8.3; -1.0;    -1;1": "data"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "data": "Yearly mean sunspot number"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ";",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-1"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The single column 'data' needs to be split into multiple columns based on the delimiter ';'.",
+      "The year is represented as a float (e.g., 1700.5)."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be between 1960 and 2020.",
+      "Prominence of peaks must be >= 20.",
+      "Distance between peaks must be >= 5.",
+      "Prominence of minimums must be >= 20.",
+      "Distance between minimums must be >= 5."
+    ],
+    "derived_filters": [
+      "Year >= 1960",
+      "Year <= 2020"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Table showing top 5 years of minimum activity with corresponding sunspot numbers.",
+      "Table showing top 5 years of maximum activity with corresponding sunspot numbers.",
+      "Approximate period of solar activity cycles."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Solar activity cycle period and top five years of minimum and maximum activity based on sunspot numbers between 1960 and 2020.\",\n    \"filters\": [\n      \"Years between 1960 and 2020\",\n      \"Peaks with prominence >= 20 and distance >= 5\",\n      \"Minimums with prominence >= 20 and distance >= 5\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Determine the yearly mean sunspot numbers.\",\n      \"Identify peaks (maximums) in sunspot numbers with prominence >= 20 and distance >= 5.\",\n      \"Identify minimums in sunspot numbers with prominence >= 20 and distance >= 5.\",\n      \"Calculate the period of solar activity cycles based on the identified peaks/minimums.\",\n      \"Rank the years of minimum and maximum activity based on sunspot numbers.\",\n      \"Select the top five years of minimum and maximum activity.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"SN_y_tot_V2.0.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"1700.5;   8.3; -1.0;    -1;1\": \"data\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"data\": \"Yearly mean sunspot number\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": false,\n    \"delimiter\": \";\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"-1\"\n    ],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The single column 'data' needs to be split into multiple columns based on the delimiter ';'.\",\n      \"The year is represented as a float (e.g., 1700.5).\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be between 1960 and 2020.\",\n      \"Prominence of peaks must be >= 20.\",\n      \"Distance between peaks must be >= 5.\",\n      \"Prominence of minimums must be >= 20.\",\n      \"Distance between minimums must be >= 5.\"\n    ],\n    \"derived_filters\": [\n      \"Year >= 1960\",\n      \"Year <= 2020\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Table showing top 5 years of minimum activity with corresponding sunspot numbers.\",\n      \"Table showing top 5 years of maximum activity with corresponding sunspot numbers.\",\n      \"Approximate period of solar activity cycles.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.698062181472778,
+  "token_usage": {}
+}

@@ -1,0 +1,289 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Total medals count for United States",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Total medals count for United States",
+        "total number of medals won by United States",
+        "Total number of medals won by the United States"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Nation contains 'United States'",
+        "Nation equals 'United States (USA)'",
+        "Nation = 'United States\u00a0(USA)'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Nation contains 'United States'"
+        ],
+        [
+          "Nation equals 'United States (USA)'"
+        ],
+        [
+          "Nation = 'United States\u00a0(USA)'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the value in the 'Total' column for the row where Nation contains 'United States'?",
+        "Identify the row corresponding to United States",
+        "Extract the Total column value for United States"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the value in the 'Total' column for the row where Nation contains 'United States'?"
+        ],
+        [
+          "Identify the row corresponding to United States",
+          "Extract the Total column value for United States"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Olympic Medals"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Olympic Medals"
+        ],
+        [
+          "Olympic Medals"
+        ],
+        [
+          "Olympic Medals"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "gold": "count",
+        "silver": "count",
+        "bronze": "count",
+        "total": "count",
+        "rank": "ordinal position"
+      },
+      "confidence": 0.8666666666666666,
+      "votes": [
+        {
+          "Gold": "count",
+          "Silver": "count",
+          "Bronze": "count",
+          "Total": "count"
+        },
+        {
+          "Gold": "count of medals",
+          "Silver": "count of medals",
+          "Bronze": "count of medals",
+          "Total": "count of medals",
+          "Rank": "ordinal position"
+        },
+        {
+          "Gold": "number of medals",
+          "Silver": "number of medals",
+          "Bronze": "number of medals",
+          "Total": "number of medals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total = Gold + Silver + Bronze for each row",
+        "Rank values should be unique or tied",
+        "Nation values should be unique",
+        "Total column should equal sum of Gold, Silver, and Bronze columns",
+        "All medal counts should be non-negative integers",
+        "Total medals must be the sum of Gold, Silver, and Bronze medals for each nation."
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Total = Gold + Silver + Bronze for each row",
+          "Rank values should be unique or tied",
+          "Nation values should be unique"
+        ],
+        [
+          "Total column should equal sum of Gold, Silver, and Bronze columns",
+          "Nation values should be unique",
+          "All medal counts should be non-negative integers"
+        ],
+        [
+          "Total medals must be the sum of Gold, Silver, and Bronze medals for each nation."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter Nation column where it contains 'United States' or 'USA'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Filter Nation column where it contains 'United States' or 'USA'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single integer value",
+        "Return a single integer value representing total medals",
+        "Value should be extracted from the Total column for United States row"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single integer value"
+        ],
+        [
+          "Return a single integer value representing total medals",
+          "Value should be extracted from the Total column for United States row"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5294444444444446
+}

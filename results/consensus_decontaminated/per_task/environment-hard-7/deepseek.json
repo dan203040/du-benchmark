@@ -1,0 +1,108 @@
+{
+  "m_q": {
+    "target_metric": "Difference in bacterial exceedance rates (percentage points) between communities with >50% EJ populations and communities with <25% EJ populations, calculated as: (exceedance_rate_high_EJ - exceedance_rate_low_EJ) \u00d7 100, rounded to 2 decimal places",
+    "filters": [
+      "Year = 2023",
+      "Beach Type Description = 'Marine'",
+      "EJ population categories: >50% and <25%"
+    ],
+    "grouping_variables": [
+      "Community",
+      "EJ population category (>50% vs <25%)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the bacterial exceedance rate for communities with >50% EJ populations?",
+      "What is the bacterial exceedance rate for communities with <25% EJ populations?",
+      "How are communities categorized by EJ population percentage?",
+      "How is bacterial exceedance defined (Violation = 'Yes')?",
+      "Which samples are from marine beaches in 2023?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "environmental-justice-populations.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "environmental-justice-populations.csv",
+        "right_source": "water-body-testing-2023.csv",
+        "left_column": "Municipality",
+        "right_column": "Community",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Municipality name format may differ between files (e.g., 'Provincetown' vs 'Provincetown')",
+      "EJ data has 187 municipalities while water testing has many communities - potential mismatch"
+    ],
+    "column_mappings": {
+      "Percent of population in EJ BGs": "EJ_population_percent",
+      "Violation": "exceedance_indicator"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Percent of population in EJ BGs": "percentage",
+      "Indicator Level": "bacterial count units (CFU/100mL)",
+      "Number of EJ block groups": "count",
+      "Total population": "count"
+    },
+    "scale_issues": [
+      "EJ percentages range 0-100%, need to categorize into >50% and <25% groups",
+      "Indicator Level values vary widely (5-178 in sample)"
+    ],
+    "cross_source_conflicts": [
+      "EJ data uses 'Municipality' while water testing uses 'Community' - may not match exactly",
+      "Water testing includes multiple samples per beach/date while EJ data is municipality-level"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date includes timestamp but only date is relevant",
+      "EJ criteria column has codes (M, I, MI, MIE) that may need interpretation",
+      "Violation column has 'Yes'/'No' values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only marine beach samples from 2023",
+      "EJ population percentage must be >50% or <25% (exclude 25-50%)",
+      "Exceedance defined as Violation = 'Yes'",
+      "Rate calculation: (violations/total_samples) \u00d7 100"
+    ],
+    "derived_filters": [
+      "Filter water testing to Year=2023 and Beach Type Description='Marine'",
+      "Categorize municipalities: EJ_population_percent > 50, EJ_population_percent < 25",
+      "Identify exceedances: Violation = 'Yes'"
+    ],
+    "statistical_tests": [
+      "Proportion test for difference in exceedance rates between groups",
+      "Confidence intervals for each group's exceedance rate"
+    ],
+    "output_format_requirements": [
+      "Difference to 2 decimal places",
+      "Positive value means higher exceedance in high-EJ communities",
+      "Result as percentage points difference"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Difference in bacterial exceedance rates (percentage points) between communities with >50% EJ populations and communities with <25% EJ populations, calculated as: (exceedance_rate_high_EJ - exceedance_rate_low_EJ) \u00d7 100, rounded to 2 decimal places\",\n        \"filters\": [\"Year = 2023\", \"Beach Type Description = 'Marine'\", \"EJ population categories: >50% and <25%\"],\n        \"grouping_variables\": [\"Community\", \"EJ population category (>50% vs <25%)\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the bacterial exceedance rate for communities with >50% EJ populations?\", \"What is the bacterial exceedance rate for communities with <25% EJ populations?\", \"How are communities categorized by EJ population percentage?\", \"How is bacterial exceedance defined (Violation = 'Yes')?\", \"Which samples are from marine beaches in 2023?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"environmental-justice-populations.csv\", \"water-body-testing-2023.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"environmental-justice-populations.csv\",\n                \"right_source\": \"water-body-testing-2023.csv\",\n                \"left_column\": \"Municipality\",\n                \"right_column\": \"Community\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"Municipality name format may differ between files (e.g., 'Provincetown' vs 'Provincetown')\", \"EJ data has 187 municipalities while water testing has many communities - potential mismatch\"],\n        \"column_mappings\": {\"Percent of population in EJ BGs\": \"EJ_population_percent\", \"Violation\": \"exceedance_indicator\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Percent of population in EJ BGs\": \"percentage\", \"Indicator Level\": \"bacterial count units (CFU/100mL)\", \"Number of EJ block groups\": \"count\", \"Total population\": \"count\"},\n        \"scale_issues\": [\"EJ percentages range 0-100%, need to categorize into >50% and <25% groups\", \"Indicator Level values vary widely (5-178 in sample)\"],\n        \"cross_source_conflicts\": [\"EJ data uses 'Municipality' while water testing uses 'Community' - may not match exactly\", \"Water testing includes multiple samples per beach/date while EJ data is municipality-level\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample Date includes timestamp but only date is relevant\", \"EJ criteria column has codes (M, I, MI, MIE) that may need interpretation\", \"Violation column has 'Yes'/'No' values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Only marine beach samples from 2023\", \"EJ population percentage must be >50% or <25% (exclude 25-50%)\", \"Exceedance defined as Violation = 'Yes'\", \"Rate calculation: (violations/total_samples) \u00d7 100\"],\n        \"derived_filters\": [\"Filter water testing to Year=2023 and Beach Type Description='Marine'\", \"Categorize municipalities: EJ_population_percent > 50, EJ_population_percent < 25\", \"Identify exceedances: Violation = 'Yes'\"],\n        \"statistical_tests\": [\"Proportion test for difference in exceedance rates between groups\", \"Confidence intervals for each group's exceedance rate\"],\n        \"output_format_requirements\": [\"Difference to 2 decimal places\", \"Positive value means higher exceedance in high-EJ communities\", \"Result as percentage points difference\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.06519389152527,
+  "token_usage": {
+    "input_tokens": 2309,
+    "output_tokens": 874
+  }
+}

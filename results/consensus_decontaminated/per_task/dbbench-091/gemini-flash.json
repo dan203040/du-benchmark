@@ -1,0 +1,54 @@
+{
+  "m_q": {
+    "target_metric": "maximum engine volume",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Car_model_info"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Volume": "Liters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Volume column needs to be cleaned to remove 'L' and convert to numeric type."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Volume column must be numeric to find the maximum."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single numeric value representing the maximum engine volume in Liters."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"maximum engine volume\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"Car_model_info\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"Volume\": \"Liters\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"Volume column needs to be cleaned to remove 'L' and convert to numeric type.\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\"Volume column must be numeric to find the maximum.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The output should be a single numeric value representing the maximum engine volume in Liters.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 2.9896488189697266,
+  "token_usage": {}
+}

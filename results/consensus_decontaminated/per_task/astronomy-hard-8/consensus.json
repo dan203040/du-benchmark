@@ -1,0 +1,428 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "RMSE values for two single-variable linear regression models forecasting Swarm Alpha's along-track acceleration 3 hours ahead during May 11, 2024",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "RMSE values for two single-variable linear regression models forecasting Swarm Alpha's along-track acceleration 3 hours ahead during May 11, 2024",
+        "RMSE (Root Mean Square Error) for two separate single-variable linear regression models predicting Swarm Alpha along-track acceleration 3 hours ahead",
+        "RMSE of two single-variable linear regression models predicting Swarm Alpha's along-track acceleration 3 hours ahead"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date = May 11, 2024",
+        "Forecast horizon = 3 hours ahead",
+        "Model 1: OMNI Kp index only",
+        "Model 2: OMNI solar wind dynamic pressure (Pdyn) only",
+        "Date equals May 11, 2024 (day 132 of 2024)",
+        "Satellite: Swarm Alpha",
+        "Prediction horizon: 3 hours ahead",
+        "Data limited to May 11, 2024"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date = May 11, 2024",
+          "Forecast horizon = 3 hours ahead",
+          "Model 1: OMNI Kp index only",
+          "Model 2: OMNI solar wind dynamic pressure (Pdyn) only"
+        ],
+        [
+          "Date equals May 11, 2024 (day 132 of 2024)",
+          "Satellite: Swarm Alpha",
+          "Prediction horizon: 3 hours ahead"
+        ],
+        [
+          "Data limited to May 11, 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "model_type",
+        "Model type (Model 1: Kp index input, Model 2: Pdyn input)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "model_type"
+        ],
+        [
+          "Model type (Model 1: Kp index input, Model 2: Pdyn input)"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the RMSE for Model 1 (Kp input)?",
+        "What is the RMSE for Model 2 (Pdyn input)?",
+        "Which model has better predictive accuracy?",
+        "What is the structure and temporal resolution of OMNI Kp index data for May 11, 2024?",
+        "What is the structure and temporal resolution of OMNI solar wind dynamic pressure (Pdyn) data for May 11, 2024?",
+        "What is the along-track acceleration data for Swarm Alpha on May 11, 2024?",
+        "How to align temporal resolutions between OMNI data (hourly) and Swarm acceleration data?",
+        "How to create lagged features for 3-hour ahead prediction?",
+        "How to split data into training and test sets?",
+        "What is the RMSE for Model 1 (Kp as predictor) on the test set?",
+        "What is the RMSE for Model 2 (Pdyn as predictor) on the test set?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What is the RMSE for Model 1 (Kp input)?",
+          "What is the RMSE for Model 2 (Pdyn input)?",
+          "Which model has better predictive accuracy?"
+        ],
+        [
+          "What is the structure and temporal resolution of OMNI Kp index data for May 11, 2024?",
+          "What is the structure and temporal resolution of OMNI solar wind dynamic pressure (Pdyn) data for May 11, 2024?",
+          "What is the along-track acceleration data for Swarm Alpha on May 11, 2024?",
+          "How to align temporal resolutions between OMNI data (hourly) and Swarm acceleration data?",
+          "How to create lagged features for 3-hour ahead prediction?",
+          "How to split data into training and test sets?",
+          "What is the RMSE for Model 1 (Kp as predictor) on the test set?",
+          "What is the RMSE for Model 2 (Pdyn as predictor) on the test set?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "omni2_Kp_Index.lst",
+        "omni2_Flow_Pressure.lst",
+        "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "omni2_Kp_Index.lst",
+          "omni2_Flow_Pressure.lst",
+          "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+        ],
+        [
+          "omni2_Kp_Index.lst",
+          "omni2_Flow_Pressure.lst",
+          "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+        ],
+        [
+          "omni2_Kp_Index.lst",
+          "omni2_Flow_Pressure.lst",
+          "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column names are numeric strings (e.g., '2024', '132', '0', '90') which are not descriptive",
+        "Kp file has integer values for the 4th column while Pdyn file has float values for the 4th column",
+        "CDF file appears to have parsing error with only 'error' column",
+        "omni2_Kp_Index.lst and omni2_Flow_Pressure.lst have unnamed columns requiring interpretation",
+        "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf failed to parse - only contains error message",
+        "Column headers not present in OMNI files - must infer from context (year, day of year, hour, value)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column names are numeric strings (e.g., '2024', '132', '0', '90') which are not descriptive",
+          "Kp file has integer values for the 4th column while Pdyn file has float values for the 4th column",
+          "CDF file appears to have parsing error with only 'error' column"
+        ],
+        [
+          "omni2_Kp_Index.lst and omni2_Flow_Pressure.lst have unnamed columns requiring interpretation",
+          "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf failed to parse - only contains error message",
+          "Column headers not present in OMNI files - must infer from context (year, day of year, hour, value)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "kp_index": "Kp index units (0-9 scale)",
+        "pdyn": "nPa (nanopascals)",
+        "kp_index_value": "Kp index (unitless, scaled by 10, e.g., 90 = 9.0, 83 = 8.3, 77 = 7.7)",
+        "pdyn_value": "nPa (nanoPascals) - solar wind dynamic pressure",
+        "hour": "hours (0-23)",
+        "day_of_year": "day number (132 = May 11 in leap year 2024)",
+        "swarm_acceleration": "m/s\u00b2 (expected unit for along-track acceleration)",
+        "omni_kp": "unitless Kp index",
+        "omni_pdyn": "nPa",
+        "omni_year": "year",
+        "omni_day_of_year": "day of year",
+        "omni_hour": "hour of day"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {
+          "Kp_index": "Kp index units (0-9 scale)",
+          "Pdyn": "nPa (nanopascals)"
+        },
+        {
+          "kp_index_value": "Kp index (unitless, scaled by 10, e.g., 90 = 9.0, 83 = 8.3, 77 = 7.7)",
+          "pdyn_value": "nPa (nanoPascals) - solar wind dynamic pressure",
+          "hour": "hours (0-23)",
+          "day_of_year": "day number (132 = May 11 in leap year 2024)",
+          "swarm_acceleration": "m/s\u00b2 (expected unit for along-track acceleration)"
+        },
+        {
+          "omni_Kp": "unitless Kp index",
+          "omni_Pdyn": "nPa",
+          "omni_year": "year",
+          "omni_day_of_year": "day of year",
+          "omni_hour": "hour of day"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Kp index is on 0-9 scale while Pdyn values range ~7-49 nPa",
+        "Need to align time scales: Kp and Pdyn data appear to be hourly while acceleration data may have different temporal resolution",
+        "Kp index values appear to be scaled by 10 (90 = Kp 9.0, 83 = Kp 8.3)",
+        "Time resolution mismatch: OMNI data is hourly, Swarm data temporal resolution unknown due to CDF parse error",
+        "3-hour prediction lag requires temporal alignment and indexing"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Kp index is on 0-9 scale while Pdyn values range ~7-49 nPa",
+          "Need to align time scales: Kp and Pdyn data appear to be hourly while acceleration data may have different temporal resolution"
+        ],
+        [
+          "Kp index values appear to be scaled by 10 (90 = Kp 9.0, 83 = Kp 8.3)",
+          "Time resolution mismatch: OMNI data is hourly, Swarm data temporal resolution unknown due to CDF parse error",
+          "3-hour prediction lag requires temporal alignment and indexing"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Missing acceleration data from CDF file due to parsing error",
+        "Unclear how to map hourly Kp/Pdyn data to 3-hour ahead acceleration forecast",
+        "Swarm CDF file failed to parse - no acceleration data available",
+        "Cannot determine temporal resolution or data availability for Swarm Alpha acceleration",
+        "Unable to verify date/time alignment between OMNI and Swarm data sources"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Missing acceleration data from CDF file due to parsing error",
+          "Unclear how to map hourly Kp/Pdyn data to 3-hour ahead acceleration forecast"
+        ],
+        [
+          "Swarm CDF file failed to parse - no acceleration data available",
+          "Cannot determine temporal resolution or data availability for Swarm Alpha acceleration",
+          "Unable to verify date/time alignment between OMNI and Swarm data sources"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": false,
+      "confidence": 1.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "999.9",
+        "9999.99",
+        "99999",
+        "-1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "999.9",
+          "9999.99",
+          "99999",
+          "-1"
+        ],
+        []
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Data limited to May 11, 2024 (day 132 of 2024)",
+        "Only 23 hourly data points available for Kp and Pdyn",
+        "Acceleration data unavailable due to CDF parsing error",
+        "Need test set definition for RMSE calculation",
+        "Date must be May 11, 2024 (day 132 of year 2024)",
+        "Prediction horizon fixed at 3 hours ahead",
+        "Two separate models: Model 1 uses only Kp, Model 2 uses only Pdyn",
+        "Both models are single-variable linear regression",
+        "Output must be a list with exactly 2 numbers: [RMSE_Kp, RMSE_Pdyn]",
+        "RMSE calculated on test set only",
+        "The SWARM data file is either empty or cannot be parsed, so the along-track acceleration cannot be extracted.",
+        "The OMNI data needs to be converted to a datetime format to be used for time series analysis."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data limited to May 11, 2024 (day 132 of 2024)",
+          "Only 23 hourly data points available for Kp and Pdyn",
+          "Acceleration data unavailable due to CDF parsing error",
+          "Need test set definition for RMSE calculation"
+        ],
+        [
+          "Date must be May 11, 2024 (day 132 of year 2024)",
+          "Prediction horizon fixed at 3 hours ahead",
+          "Two separate models: Model 1 uses only Kp, Model 2 uses only Pdyn",
+          "Both models are single-variable linear regression",
+          "Output must be a list with exactly 2 numbers: [RMSE_Kp, RMSE_Pdyn]",
+          "RMSE calculated on test set only"
+        ],
+        [
+          "The SWARM data file is either empty or cannot be parsed, so the along-track acceleration cannot be extracted.",
+          "The OMNI data needs to be converted to a datetime format to be used for time series analysis."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to day_of_year = 132",
+        "Align timestamps for 3-hour forecast lag",
+        "Create lagged predictors: use Kp(t) to predict acceleration(t+3h) for Model 1",
+        "Create lagged predictors: use Pdyn(t) to predict acceleration(t+3h) for Model 2",
+        "Filter out rows where 3-hour ahead target is not available",
+        "Split data chronologically into training and test sets"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to day_of_year = 132",
+          "Align timestamps for 3-hour forecast lag"
+        ],
+        [
+          "Create lagged predictors: use Kp(t) to predict acceleration(t+3h) for Model 1",
+          "Create lagged predictors: use Pdyn(t) to predict acceleration(t+3h) for Model 2",
+          "Filter out rows where 3-hour ahead target is not available",
+          "Split data chronologically into training and test sets"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Linear regression coefficient significance",
+        "RMSE comparison between models",
+        "Time series stationarity check",
+        "Linear regression fitting for Model 1: acceleration(t+3) ~ Kp(t)",
+        "Linear regression fitting for Model 2: acceleration(t+3) ~ Pdyn(t)",
+        "RMSE calculation: sqrt(mean((y_predicted - y_actual)^2))"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Linear regression coefficient significance",
+          "RMSE comparison between models",
+          "Time series stationarity check"
+        ],
+        [
+          "Linear regression fitting for Model 1: acceleration(t+3) ~ Kp(t)",
+          "Linear regression fitting for Model 2: acceleration(t+3) ~ Pdyn(t)",
+          "RMSE calculation: sqrt(mean((y_predicted - y_actual)^2))"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List format: [RMSE_Kp, RMSE_Pdyn]",
+        "Both RMSE values as numbers",
+        "Output must be a list with exactly 2 numeric values",
+        "Format: [RMSE_for_Kp_model, RMSE_for_Pdyn_model]",
+        "RMSE values should be positive real numbers",
+        "Values represent test set performance only",
+        "Output must be a list of two numbers: [RMSE_Kp, RMSE_Pdyn]"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List format: [RMSE_Kp, RMSE_Pdyn]",
+          "Both RMSE values as numbers"
+        ],
+        [
+          "Output must be a list with exactly 2 numeric values",
+          "Format: [RMSE_for_Kp_model, RMSE_for_Pdyn_model]",
+          "RMSE values should be positive real numbers",
+          "Values represent test set performance only"
+        ],
+        [
+          "Output must be a list of two numbers: [RMSE_Kp, RMSE_Pdyn]"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5666666666666668
+}

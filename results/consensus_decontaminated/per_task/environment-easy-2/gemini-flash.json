@@ -1,0 +1,96 @@
+{
+  "m_q": {
+    "target_metric": "Years between 2002 and 2023 (inclusive) with a freshwater beach bacterial exceedance rate higher than the average freshwater beach exceedance rate (to 2 decimal places)",
+    "filters": [
+      "Year between 2002 and 2023 (inclusive)",
+      "Beach Type Description is 'Fresh'"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Calculate the average freshwater beach exceedance rate across all years between 2002 and 2023.",
+      "For each year between 2002 and 2023, calculate the freshwater beach exceedance rate.",
+      "Compare each year's freshwater beach exceedance rate to the overall average freshwater beach exceedance rate.",
+      "Identify the years where the freshwater beach exceedance rate is higher than the overall average."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2002.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Violation column has inconsistent values (yes/no vs YES/NO).",
+      "Violation column has inconsistent capitalization (Violation vs violation)."
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "bacterial level",
+      "Year": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files are in CSV format with a header row.",
+      "Date format in 'Sample Date' column is consistent across all files."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Ensure 'Beach Type Description' is accurately filtered for 'Fresh' water beaches.",
+      "Handle potential missing values in 'Indicator Level' appropriately (e.g., imputation or exclusion).",
+      "Ensure consistent interpretation of 'Violation' column (e.g., 'yes'/'no' or 'YES'/'NO') across all files."
+    ],
+    "derived_filters": [
+      "Freshwater beach exceedance rate for each year: (Number of 'Violation' = 'yes' where 'Beach Type Description' = 'Fresh') / (Total number of samples where 'Beach Type Description' = 'Fresh') for each year.",
+      "Overall average freshwater beach exceedance rate: Average of the freshwater beach exceedance rates across all years from 2002 to 2023."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a list of years.",
+      "The average exceedance rate should be rounded to two decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Years between 2002 and 2023 (inclusive) with a freshwater beach bacterial exceedance rate higher than the average freshwater beach exceedance rate (to 2 decimal places)\",\n    \"filters\": [\n      \"Year between 2002 and 2023 (inclusive)\",\n      \"Beach Type Description is 'Fresh'\"\n    ],\n    \"grouping_variables\": [\n      \"Year\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Calculate the average freshwater beach exceedance rate across all years between 2002 and 2023.\",\n      \"For each year between 2002 and 2023, calculate the freshwater beach exceedance rate.\",\n      \"Compare each year's freshwater beach exceedance rate to the overall average freshwater beach exceedance rate.\",\n      \"Identify the years where the freshwater beach exceedance rate is higher than the overall average.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2002.csv\",\n      \"water-body-testing-2003.csv\",\n      \"water-body-testing-2004.csv\",\n      \"water-body-testing-2005.csv\",\n      \"water-body-testing-2006.csv\",\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2009.csv\",\n      \"water-body-testing-2010.csv\",\n      \"water-body-testing-2011.csv\",\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\",\n      \"water-body-testing-2014.csv\",\n      \"water-body-testing-2015.csv\",\n      \"water-body-testing-2016.csv\",\n      \"water-body-testing-2017.csv\",\n      \"water-body-testing-2018.csv\",\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Violation column has inconsistent values (yes/no vs YES/NO).\",\n      \"Violation column has inconsistent capitalization (Violation vs violation).\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"bacterial level\",\n      \"Year\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All files are in CSV format with a header row.\",\n      \"Date format in 'Sample Date' column is consistent across all files.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Ensure 'Beach Type Description' is accurately filtered for 'Fresh' water beaches.\",\n      \"Handle potential missing values in 'Indicator Level' appropriately (e.g., imputation or exclusion).\",\n      \"Ensure consistent interpretation of 'Violation' column (e.g., 'yes'/'no' or 'YES'/'NO') across all files.\"\n    ],\n    \"derived_filters\": [\n      \"Freshwater beach exceedance rate for each year: (Number of 'Violation' = 'yes' where 'Beach Type Description' = 'Fresh') / (Total number of samples where 'Beach Type Description' = 'Fresh') for each year.\",\n      \"Overall average freshwater beach exceedance rate: Average of the freshwater beach exceedance rates across all years from 2002 to 2023.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a list of years.\",\n      \"The average exceedance rate should be rounded to two decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.923350095748901,
+  "token_usage": {}
+}

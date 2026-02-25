@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round",
+    "filters": [
+      "Playoffs == 'Did not qualify'",
+      "Open Cup == '2nd Round'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which years did the team not qualify for playoffs?",
+      "Which years did the team reach Open Cup 2nd Round?",
+      "What is the intersection of these two conditions?",
+      "What is the maximum/latest year from this intersection?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Soccer Team Performance"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year (integer or string)",
+      "Division": "league tier number",
+      "League": "league name",
+      "Regular Season": "standing with division name",
+      "Playoffs": "playoff result or qualification status",
+      "Open Cup": "tournament round reached or qualification status"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "Canceled",
+      "Did not qualify"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column contains string representations of years",
+      "Playoffs column contains either playoff round names or 'Did not qualify'",
+      "Open Cup column contains tournament rounds ('1st Round', '2nd Round') or 'Did not qualify' or 'Canceled'",
+      "Regular Season contains ordinal position and division name"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be parseable as integer for comparison",
+      "Playoffs value must exactly match 'Did not qualify'",
+      "Open Cup value must exactly match '2nd Round'",
+      "Result must be a single year value"
+    ],
+    "derived_filters": [
+      "Filter rows where Playoffs column equals 'Did not qualify' AND Open Cup column equals '2nd Round'",
+      "From filtered rows, select the maximum Year value"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the latest (maximum) year as a single value",
+      "Year should be returned as integer or year format"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round\",\n    \"filters\": [\n      \"Playoffs == 'Did not qualify'\",\n      \"Open Cup == '2nd Round'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which years did the team not qualify for playoffs?\",\n      \"Which years did the team reach Open Cup 2nd Round?\",\n      \"What is the intersection of these two conditions?\",\n      \"What is the maximum/latest year from this intersection?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Soccer Team Performance\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year (integer or string)\",\n      \"Division\": \"league tier number\",\n      \"League\": \"league name\",\n      \"Regular Season\": \"standing with division name\",\n      \"Playoffs\": \"playoff result or qualification status\",\n      \"Open Cup\": \"tournament round reached or qualification status\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"Canceled\", \"Did not qualify\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Year column contains string representations of years\",\n      \"Playoffs column contains either playoff round names or 'Did not qualify'\",\n      \"Open Cup column contains tournament rounds ('1st Round', '2nd Round') or 'Did not qualify' or 'Canceled'\",\n      \"Regular Season contains ordinal position and division name\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be parseable as integer for comparison\",\n      \"Playoffs value must exactly match 'Did not qualify'\",\n      \"Open Cup value must exactly match '2nd Round'\",\n      \"Result must be a single year value\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Playoffs column equals 'Did not qualify' AND Open Cup column equals '2nd Round'\",\n      \"From filtered rows, select the maximum Year value\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the latest (maximum) year as a single value\",\n      \"Year should be returned as integer or year format\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.95023798942566,
+  "token_usage": {
+    "input_tokens": 1055,
+    "output_tokens": 666
+  }
+}

@@ -1,0 +1,388 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Identify top 10 authors by three criteria: highest average rating, highest average price, and highest total number of ratings",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Identify top 10 authors by three criteria: highest average rating, highest average price, and highest total number of ratings",
+        "Identify top 10 best-rated authors, most expensive authors, and authors with most ratings",
+        "Top 10 best-rated authors, most expensive authors, and authors with the most ratings"
+      ]
+    },
+    "filters": {
+      "value": [
+        "None specified - use all available data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "None specified - use all available data"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Author"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Author"
+        ],
+        [
+          "Author"
+        ],
+        [
+          "Author"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table with 10 rows and 4 columns (id, Best-Rated Author, Most Expensive Author, Most Rated Author)",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate average rating per author",
+        "Calculate average price per author",
+        "Calculate total 'No. of People rated' per author",
+        "Rank authors for each metric",
+        "Select top 10 for each metric",
+        "Combine results into single table matching sample_result.csv format",
+        "What are the top 10 authors with highest average Rating?",
+        "What are the top 10 authors with highest average Price?",
+        "What are the top 10 authors with highest total 'No. of People rated'?",
+        "Identify the top 10 authors with the highest average rating.",
+        "Identify the top 10 authors with the highest average price.",
+        "Identify the top 10 authors with the highest total number of ratings."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate average rating per author",
+          "Calculate average price per author",
+          "Calculate total 'No. of People rated' per author",
+          "Rank authors for each metric",
+          "Select top 10 for each metric",
+          "Combine results into single table matching sample_result.csv format"
+        ],
+        [
+          "What are the top 10 authors with highest average Rating?",
+          "What are the top 10 authors with highest average Price?",
+          "What are the top 10 authors with highest total 'No. of People rated'?"
+        ],
+        [
+          "Identify the top 10 authors with the highest average rating.",
+          "Identify the top 10 authors with the highest average price.",
+          "Identify the top 10 authors with the highest total number of ratings."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Books_df.csv",
+        "Genre_df.csv",
+        "Sub_Genre_df.csv"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "Books_df.csv",
+          "Genre_df.csv",
+          "Sub_Genre_df.csv"
+        ],
+        [
+          "Books_df.csv"
+        ],
+        [
+          "Books_df.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Books_df.csv has 'Main Genre' column while Genre_df.csv has 'Title' for genre names",
+        "Books_df.csv has 'Sub Genre' column while Sub_Genre_df.csv has 'Title' for sub-genre names",
+        "Genre and Sub_Genre dataframes appear to be metadata not needed for author analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Books_df.csv has 'Main Genre' column while Genre_df.csv has 'Title' for genre names",
+          "Books_df.csv has 'Sub Genre' column while Sub_Genre_df.csv has 'Title' for sub-genre names",
+          "Genre and Sub_Genre dataframes appear to be metadata not needed for author analysis"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "price": "Indian Rupees (\u20b9)",
+        "rating": "Stars (0-5 scale)",
+        "no. of people rated": "Count"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Price": "Indian Rupees (\u20b9)",
+          "Rating": "Stars (0-5 scale)",
+          "No. of People rated": "Count"
+        },
+        {
+          "Price": "Indian Rupees (\u20b9)",
+          "Rating": "scale 0-5",
+          "No. of People rated": "count"
+        },
+        {
+          "Price": "\u20b9",
+          "Rating": "out of 5",
+          "No. of People rated": "number of people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Price column contains currency symbol and commas (e.g., '\u20b92,132.78') - needs cleaning for numerical operations",
+        "Rating is float64 but may have different scales (some ratings show 4.4, 4.5, 4.6 suggesting 0-5 scale)",
+        "Price column contains currency symbol '\u20b9' and comma separators that need to be removed for numerical operations",
+        "Price values need conversion from string to numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Price column contains currency symbol and commas (e.g., '\u20b92,132.78') - needs cleaning for numerical operations",
+          "Rating is float64 but may have different scales (some ratings show 4.4, 4.5, 4.6 suggesting 0-5 scale)"
+        ],
+        [
+          "Price column contains currency symbol '\u20b9' and comma separators that need to be removed for numerical operations",
+          "Price values need conversion from string to numeric"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Genre_df.csv and Sub_Genre_df.csv appear to be reference tables but not directly needed for author analysis based on question"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Genre_df.csv and Sub_Genre_df.csv appear to be reference tables but not directly needed for author analysis based on question"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 1.0,
+      "votes": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Rating must be between 0 and 5",
+        "Price must be non-negative",
+        "No. of People rated must be non-negative integer",
+        "Author names should be non-empty strings",
+        "Output must have exactly 10 rows with id column from 0 to 9",
+        "Each author ranking list must contain top 10 authors",
+        "Rating values must be valid floats between 0 and 5",
+        "Price must be positive numeric values after cleaning",
+        "No. of People rated must be non-negative",
+        "The 'Price' column contains currency symbols and needs to be converted to a numerical type.",
+        "The 'No. of People rated' column should be treated as an integer."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Rating must be between 0 and 5",
+          "Price must be non-negative",
+          "No. of People rated must be non-negative integer",
+          "Author names should be non-empty strings"
+        ],
+        [
+          "Output must have exactly 10 rows with id column from 0 to 9",
+          "Each author ranking list must contain top 10 authors",
+          "Rating values must be valid floats between 0 and 5",
+          "Price must be positive numeric values after cleaning",
+          "No. of People rated must be non-negative"
+        ],
+        [
+          "The 'Price' column contains currency symbols and needs to be converted to a numerical type.",
+          "The 'No. of People rated' column should be treated as an integer."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove rows with missing Author",
+        "Remove rows with Price = 0 or missing",
+        "Consider only authors with sufficient ratings (e.g., > 0 ratings)",
+        "Filter out rows where Rating is null or invalid",
+        "Filter out rows where Price cannot be parsed to numeric",
+        "Filter out rows where No. of People rated is null or zero for most rated calculation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows with missing Author",
+          "Remove rows with Price = 0 or missing",
+          "Consider only authors with sufficient ratings (e.g., > 0 ratings)"
+        ],
+        [
+          "Filter out rows where Rating is null or invalid",
+          "Filter out rows where Price cannot be parsed to numeric",
+          "Filter out rows where No. of People rated is null or zero for most rated calculation"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate books by same author",
+        "Verify rating distribution per author",
+        "Identify outliers in price data",
+        "Check for authors with single vs multiple books"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate books by same author",
+          "Verify rating distribution per author",
+          "Identify outliers in price data",
+          "Check for authors with single vs multiple books"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Must match sample_result.csv structure: 10 rows, 4 columns",
+        "Columns: id (0-9), Best-Rated Author, Most Expensive Author, Most Rated Author",
+        "Author names should be strings (not floats as shown in sample dtypes)",
+        "Save as author.csv",
+        "Output file must be named author.csv",
+        "Output must have columns: id, Best-Rated Author, Most Expensive Author, Most Rated Author",
+        "Output must have exactly 10 rows with id values 0-9",
+        "Each cell should contain author name or be empty if no data",
+        "Format must match sample_result.csv structure",
+        "The output should be a CSV file named 'author.csv'.",
+        "The output CSV should contain columns: 'Best-Rated Author', 'Most Expensive Author', and 'Most Rated Author'.",
+        "The output should contain the top 10 authors for each category."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Must match sample_result.csv structure: 10 rows, 4 columns",
+          "Columns: id (0-9), Best-Rated Author, Most Expensive Author, Most Rated Author",
+          "Author names should be strings (not floats as shown in sample dtypes)",
+          "Save as author.csv"
+        ],
+        [
+          "Output file must be named author.csv",
+          "Output must have columns: id, Best-Rated Author, Most Expensive Author, Most Rated Author",
+          "Output must have exactly 10 rows with id values 0-9",
+          "Each cell should contain author name or be empty if no data",
+          "Format must match sample_result.csv structure"
+        ],
+        [
+          "The output should be a CSV file named 'author.csv'.",
+          "The output CSV should contain columns: 'Best-Rated Author', 'Most Expensive Author', and 'Most Rated Author'.",
+          "The output should contain the top 10 authors for each category."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6144444444444446
+}

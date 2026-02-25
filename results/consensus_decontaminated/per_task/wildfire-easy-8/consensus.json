@@ -1,0 +1,340 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Compare total count of fires impacting above 100 acres caused by lightning versus humans",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Compare total count of fires impacting above 100 acres caused by lightning versus humans",
+        "Count of fires by cause category for fires impacting above 100 acres",
+        "Count of fires caused by 'Lightning' vs. 'Human' where 'gt_100' is 1, and return the cause with the higher count."
+      ]
+    },
+    "filters": {
+      "value": [
+        "gt_100 == 1",
+        "cause in ['L', 'H']",
+        "cause in ['Lightning', 'Human']"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "gt_100 == 1",
+          "cause in ['L', 'H']"
+        ],
+        [
+          "gt_100 == 1"
+        ],
+        [
+          "gt_100 == 1",
+          "cause in ['Lightning', 'Human']"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "cause"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "cause"
+        ],
+        [
+          "cause"
+        ],
+        [
+          "cause"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the count of fires with gt_100=1 where cause='L'?",
+        "What is the count of fires with gt_100=1 where cause='H'?",
+        "Which count is larger?",
+        "How many fires with gt_100 == 1 were caused by lightning?",
+        "How many fires with gt_100 == 1 were caused by humans?",
+        "Which cause category (lightning or human) has the higher count?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the count of fires with gt_100=1 where cause='L'?",
+          "What is the count of fires with gt_100=1 where cause='H'?",
+          "Which count is larger?"
+        ],
+        [
+          "How many fires with gt_100 == 1 were caused by lightning?",
+          "How many fires with gt_100 == 1 were caused by humans?",
+          "Which cause category (lightning or human) has the higher count?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Fire_Weather_Data_2002-2014_2016.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ],
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ],
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage?",
+        "wind_med": "speed units?",
+        "erc_med": "energy release component",
+        "rain_sum": "precipitation units?",
+        "duration": "days",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "start_day_of_year": "day number",
+        "control_day_of_year": "day number",
+        "gt_100": "binary indicator (1=fire impacted above 100 acres, 0=otherwise)",
+        "cause": "categorical fire cause code"
+      },
+      "confidence": 0.33333333333333337,
+      "votes": [
+        {
+          "avrh_mean": "percentage?",
+          "wind_med": "speed units?",
+          "erc_med": "energy release component",
+          "rain_sum": "precipitation units?",
+          "duration": "days",
+          "latitude": "degrees",
+          "longitude": "degrees",
+          "start_day_of_year": "day number",
+          "control_day_of_year": "day number"
+        },
+        {
+          "gt_100": "binary indicator (1=fire impacted above 100 acres, 0=otherwise)",
+          "cause": "categorical fire cause code"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "latitude and longitude stored as integers (likely scaled)",
+        "Some columns like prim_threatened_aggregate have large ranges"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "latitude and longitude stored as integers (likely scaled)",
+          "Some columns like prim_threatened_aggregate have large ranges"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "gt_100 is binary (0 or 1)",
+        "cause_ind likely maps to cause (0=U, 1=H, etc.)",
+        "start_year should match control_year for most rows",
+        "gt_100 must equal 1",
+        "cause values must be mapped to 'Lightning' or 'Human' categories",
+        "The 'cause' column should only contain 'Lightning' or 'Human' after filtering."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "gt_100 is binary (0 or 1)",
+          "cause_ind likely maps to cause (0=U, 1=H, etc.)",
+          "start_year should match control_year for most rows"
+        ],
+        [
+          "gt_100 must equal 1",
+          "cause values must be mapped to 'Lightning' or 'Human' categories"
+        ],
+        [
+          "The 'cause' column should only contain 'Lightning' or 'Human' after filtering."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to rows where gt_100 == 1",
+        "Map cause codes: 'L' = Lightning, 'H' = Human",
+        "Filter rows where gt_100 == 1",
+        "Map cause 'L' to Lightning category",
+        "Map cause 'H' to Human category",
+        "Determine mapping for other cause codes (U, N, etc.)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to rows where gt_100 == 1",
+          "Map cause codes: 'L' = Lightning, 'H' = Human"
+        ],
+        [
+          "Filter rows where gt_100 == 1",
+          "Map cause 'L' to Lightning category",
+          "Map cause 'H' to Human category",
+          "Determine mapping for other cause codes (U, N, etc.)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count comparison between cause='L' and cause='H' for gt_100=1",
+        "Compare count of Lightning-caused fires vs Human-caused fires where gt_100 == 1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count comparison between cause='L' and cause='H' for gt_100=1"
+        ],
+        [
+          "Compare count of Lightning-caused fires vs Human-caused fires where gt_100 == 1"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Final answer must be exactly 'Lightning' or 'Human' with no additional text",
+        "Return only the word 'Lightning' or 'Human'",
+        "No explanation or additional text",
+        "Return the cause category with higher count of fires impacting above 100 acres",
+        "Output must be either 'Lightning' or 'Human'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Final answer must be exactly 'Lightning' or 'Human' with no additional text"
+        ],
+        [
+          "Return only the word 'Lightning' or 'Human'",
+          "No explanation or additional text",
+          "Return the cause category with higher count of fires impacting above 100 acres"
+        ],
+        [
+          "Output must be either 'Lightning' or 'Human'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6111111111111113
+}

@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Count of fires, grouped by whether the state is predominantly Democratic or Republican",
+    "filters": [],
+    "grouping_variables": [
+      "political leaning"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Determine the political leaning of each state based on the democratic_vs_republican_votes_by_usa_state_2020.csv file.",
+      "Count the total number of fires for states leaning Democratic.",
+      "Count the total number of fires for states leaning Republican.",
+      "Compare the counts of fires between Democratic and Republican leaning states."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv",
+      "democratic_vs_republican_votes_by_usa_state_2020.csv",
+      "wildfire_total_fires_p45_54.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "wildfire_total_fires_p45_54.csv",
+        "right_source": "democratic_vs_republican_votes_by_usa_state_2020.csv",
+        "left_column": "State",
+        "right_column": "state",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "acres",
+      "Population": "people",
+      "DEM": "votes",
+      "REP": "votes",
+      "percent_democrat": "percentage",
+      "Total Fires": "number of fires"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Determine political leaning based on 'percent_democrat' column in democratic_vs_republican_votes_by_usa_state_2020.csv. States with >50% are Democratic, <=50% are Republican.",
+      "The District of Columbia should be considered Democratic."
+    ],
+    "derived_filters": [
+      "States leaning Democratic",
+      "States leaning Republican"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output either 'Democratic' or 'Republican'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of fires, grouped by whether the state is predominantly Democratic or Republican\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"political leaning\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Determine the political leaning of each state based on the democratic_vs_republican_votes_by_usa_state_2020.csv file.\",\n      \"Count the total number of fires for states leaning Democratic.\",\n      \"Count the total number of fires for states leaning Republican.\",\n      \"Compare the counts of fires between Democratic and Republican leaning states.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Wildfire_Acres_by_State.csv\",\n      \"democratic_vs_republican_votes_by_usa_state_2020.csv\",\n      \"wildfire_total_fires_p45_54.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"wildfire_total_fires_p45_54.csv\",\n        \"right_source\": \"democratic_vs_republican_votes_by_usa_state_2020.csv\",\n        \"left_column\": \"State\",\n        \"right_column\": \"state\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total Acres Burned\": \"acres\",\n      \"Population\": \"people\",\n      \"DEM\": \"votes\",\n      \"REP\": \"votes\",\n      \"percent_democrat\": \"percentage\",\n      \"Total Fires\": \"number of fires\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Determine political leaning based on 'percent_democrat' column in democratic_vs_republican_votes_by_usa_state_2020.csv. States with >50% are Democratic, <=50% are Republican.\",\n      \"The District of Columbia should be considered Democratic.\"\n    ],\n    \"derived_filters\": [\n      \"States leaning Democratic\",\n      \"States leaning Republican\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output either 'Democratic' or 'Republican'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.87891697883606,
+  "token_usage": {}
+}

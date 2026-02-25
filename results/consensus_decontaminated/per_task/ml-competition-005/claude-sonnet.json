@@ -1,0 +1,111 @@
+{
+  "m_q": {
+    "target_metric": "Predict probability distribution over three Status outcomes (C, CL, D) for each patient in test.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the distribution of Status categories in the training data?",
+      "Which features are most predictive of cirrhosis outcomes?",
+      "What is the relationship between N_Days and Status?",
+      "How do clinical measurements (Bilirubin, Albumin, Copper, etc.) correlate with Status?",
+      "What is the effect of Drug treatment on Status outcomes?",
+      "How should missing values in features be handled for prediction?",
+      "What is the baseline probability distribution for Status (C, CL, D)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv",
+      "test.csv",
+      "sample_submission.csv",
+      "cirrhosis.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "train.csv has 'Status' column (target), test.csv does not",
+      "cirrhosis.csv has 'ID' column (uppercase), train.csv and test.csv have 'id' column (lowercase)",
+      "cirrhosis.csv contains 418 rows, train.csv contains 6719 rows - different datasets for training"
+    ],
+    "column_mappings": {
+      "ID": "id"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "N_Days": "days",
+      "Age": "days",
+      "Bilirubin": "mg/dL",
+      "Cholesterol": "mg/dL",
+      "Albumin": "g/dL",
+      "Copper": "\u03bcg/day",
+      "Alk_Phos": "U/L",
+      "SGOT": "U/mL",
+      "Tryglicerides": "mg/dL",
+      "Platelets": "cubic mL/1000",
+      "Prothrombin": "seconds",
+      "Stage": "ordinal (1-4)"
+    },
+    "scale_issues": [
+      "Age is measured in days, not years - needs conversion or normalization",
+      "Large scale differences between features (e.g., Alk_Phos in thousands vs Albumin in single digits)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "nan"
+    ],
+    "expected_columns": 20,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "train.csv has 20 columns including target 'Status'",
+      "test.csv has 19 columns without target 'Status'",
+      "sample_submission.csv has 4 columns: id and three probability columns",
+      "Missing values present in multiple numeric columns (Cholesterol, Platelets, etc.)",
+      "Status values are categorical: C (Censored), CL (Censored due to liver transplant), D (Death)",
+      "Binary categorical features: Sex (M/F), Ascites (Y/N), Hepatomegaly (Y/N), Spiders (Y/N)",
+      "Edema has three values: N (no edema), S (edema without diuretics), Y (edema despite diuretics)",
+      "Drug has two values: D-penicillamine, Placebo",
+      "Stage is float type but represents ordinal categories 1-4"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Predictions must be probabilities summing to 1.0 for each row",
+      "All three probability columns (Status_C, Status_CL, Status_D) must be between 0 and 1",
+      "Output must contain exactly same number of rows as test.csv (1186 rows)",
+      "Output id column must match test.csv id values exactly",
+      "No missing values allowed in submission"
+    ],
+    "derived_filters": [
+      "Only use patients from train.csv for model training",
+      "Apply same preprocessing to both train and test data"
+    ],
+    "statistical_tests": [
+      "Verify probability distributions sum to 1.0",
+      "Check for class imbalance in training data Status distribution",
+      "Validate feature distributions between train and test sets",
+      "Assess multicollinearity among clinical measurements"
+    ],
+    "output_format_requirements": [
+      "Output format must match sample_submission.csv structure exactly",
+      "Column order: id, Status_C, Status_CL, Status_D",
+      "File name must be submission.csv",
+      "CSV format with header row",
+      "id values must be integers, probability values must be floats"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Predict probability distribution over three Status outcomes (C, CL, D) for each patient in test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the distribution of Status categories in the training data?\",\n      \"Which features are most predictive of cirrhosis outcomes?\",\n      \"What is the relationship between N_Days and Status?\",\n      \"How do clinical measurements (Bilirubin, Albumin, Copper, etc.) correlate with Status?\",\n      \"What is the effect of Drug treatment on Status outcomes?\",\n      \"How should missing values in features be handled for prediction?\",\n      \"What is the baseline probability distribution for Status (C, CL, D)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"train.csv\", \"test.csv\", \"sample_submission.csv\", \"cirrhosis.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"train.csv has 'Status' column (target), test.csv does not\",\n      \"cirrhosis.csv has 'ID' column (uppercase), train.csv and test.csv have 'id' column (lowercase)\",\n      \"cirrhosis.csv contains 418 rows, train.csv contains 6719 rows - different datasets for training\"\n    ],\n    \"column_mappings\": {\n      \"ID\": \"id\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"N_Days\": \"days\",\n      \"Age\": \"days\",\n      \"Bilirubin\": \"mg/dL\",\n      \"Cholesterol\": \"mg/dL\",\n      \"Albumin\": \"g/dL\",\n      \"Copper\": \"\u03bcg/day\",\n      \"Alk_Phos\": \"U/L\",\n      \"SGOT\": \"U/mL\",\n      \"Tryglicerides\": \"mg/dL\",\n      \"Platelets\": \"cubic mL/1000\",\n      \"Prothrombin\": \"seconds\",\n      \"Stage\": \"ordinal (1-4)\"\n    },\n    \"scale_issues\": [\n      \"Age is measured in days, not years - needs conversion or normalization\",\n      \"Large scale differences between features (e.g., Alk_Phos in thousands vs Albumin in single digits)\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"nan\"],\n    \"expected_columns\": 20,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"train.csv has 20 columns including target 'Status'\",\n      \"test.csv has 19 columns without target 'Status'\",\n      \"sample_submission.csv has 4 columns: id and three probability columns\",\n      \"Missing values present in multiple numeric columns (Cholesterol, Platelets, etc.)\",\n      \"Status values are categorical: C (Censored), CL (Censored due to liver transplant), D (Death)\",\n      \"Binary categorical features: Sex (M/F), Ascites (Y/N), Hepatomegaly (Y/N), Spiders (Y/N)\",\n      \"Edema has three values: N (no edema), S (edema without diuretics), Y (edema despite diuretics)\",\n      \"Drug has two values: D-penicillamine, Placebo\",\n      \"Stage is float type but represents ordinal categories 1-4\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Predictions must be probabilities summing to 1.0 for each row\",\n      \"All three probability columns (Status_C, Status_CL, Status_D) must be between 0 and 1\",\n      \"Output must contain exactly same number of rows as test.csv (1186 rows)\",\n      \"Output id column must match test.csv id values exactly\",\n      \"No missing values allowed in submission\"\n    ],\n    \"derived_filters\": [\n      \"Only use patients from train.csv for model training\",\n      \"Apply same preprocessing to both train and test data\"\n    ],\n    \"statistical_tests\": [\n      \"Verify probability distributions sum to 1.0\",\n      \"Check for class imbalance in training data Status distribution\",\n      \"Validate feature distributions between train and test sets\",\n      \"Assess multicollinearity among clinical measurements\"\n    ],\n    \"output_format_requirements\": [\n      \"Output format must match sample_submission.csv structure exactly\",\n      \"Column order: id, Status_C, Status_CL, Status_D\",\n      \"File name must be submission.csv\",\n      \"CSV format with header row\",\n      \"id values must be integers, probability values must be floats\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 21.038742065429688,
+  "token_usage": {
+    "input_tokens": 6206,
+    "output_tokens": 1230
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Maximum stadium capacity among venues used in the 2008-2009 Iran Pro League season",
+    "filters": [
+      "2008-2009 season (implicit from Past Season column referring to previous season)"
+    ],
+    "grouping_variables": [
+      "Venue"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What venues were used in the 2008-2009 season?",
+      "What is the capacity of each venue?",
+      "Which venue has the maximum capacity?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_teams"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Capacity": "number of spectators"
+    },
+    "scale_issues": [
+      "Capacity values contain commas as thousands separators (e.g., '35,000')",
+      "Capacity stored as string/object type but represents numeric values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Capacity column contains comma-separated numeric values in quotes",
+      "Multiple teams may share the same venue",
+      "Past Season column indicates ranking or status from previous season"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "All teams in the dataset represent the 2008-2009 Iran Pro League season",
+      "Capacity must be converted from string to numeric for comparison",
+      "Need to handle duplicate venues when multiple teams share the same stadium"
+    ],
+    "derived_filters": [
+      "Remove duplicate venues to get unique venue-capacity pairs"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the venue name with the highest capacity",
+      "May optionally include the capacity value for context"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum stadium capacity among venues used in the 2008-2009 Iran Pro League season\",\n    \"filters\": [\"2008-2009 season (implicit from Past Season column referring to previous season)\"],\n    \"grouping_variables\": [\"Venue\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What venues were used in the 2008-2009 season?\",\n      \"What is the capacity of each venue?\",\n      \"Which venue has the maximum capacity?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"football_teams\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Capacity\": \"number of spectators\"\n    },\n    \"scale_issues\": [\n      \"Capacity values contain commas as thousands separators (e.g., '35,000')\",\n      \"Capacity stored as string/object type but represents numeric values\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Capacity column contains comma-separated numeric values in quotes\",\n      \"Multiple teams may share the same venue\",\n      \"Past Season column indicates ranking or status from previous season\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"All teams in the dataset represent the 2008-2009 Iran Pro League season\",\n      \"Capacity must be converted from string to numeric for comparison\",\n      \"Need to handle duplicate venues when multiple teams share the same stadium\"\n    ],\n    \"derived_filters\": [\n      \"Remove duplicate venues to get unique venue-capacity pairs\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the venue name with the highest capacity\",\n      \"May optionally include the capacity value for context\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.03490686416626,
+  "token_usage": {
+    "input_tokens": 1504,
+    "output_tokens": 561
+  }
+}

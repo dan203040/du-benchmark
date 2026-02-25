@@ -1,0 +1,362 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "proportion of all reports who reported identity theft with Bank Account (Theft Type) and New Accounts (Theft Subtype)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "proportion of all reports who reported identity theft with Bank Account (Theft Type) and New Accounts (Theft Subtype)",
+        "Proportion of all reports that are identity theft reports with Bank Account (Theft Type) and New Accounts (Theft Subtype), rounded to 4 decimal places",
+        "Proportion of reports with Identity Theft where Theft Type is 'Bank Account' and Theft Subtype is 'New Accounts'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Theft Type = 'Bank Account'",
+        "Theft Subtype = 'New Accounts'",
+        "Theft Type == 'Bank Account'",
+        "Theft Subtype == 'New Accounts'"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "Theft Type = 'Bank Account'",
+          "Theft Subtype = 'New Accounts'"
+        ],
+        [
+          "Theft Type == 'Bank Account'",
+          "Theft Subtype == 'New Accounts'"
+        ],
+        [
+          "Theft Type = 'Bank Account'",
+          "Theft Subtype = 'New Accounts'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total number of reports for Bank Account/New Accounts?",
+        "What is the total number of all reports across all categories?",
+        "What is the number of identity theft reports with Bank Account as Theft Type and New Accounts as Theft Subtype?",
+        "What is the ratio of Bank Account/New Accounts identity theft reports to total reports?",
+        "What is the total number of reports with Identity Theft?",
+        "What is the number of reports with Identity Theft, Theft Type 'Bank Account', and Theft Subtype 'New Accounts'?"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "What is the total number of reports for Bank Account/New Accounts?",
+          "What is the total number of all reports across all categories?"
+        ],
+        [
+          "What is the total number of all reports across all categories?",
+          "What is the number of identity theft reports with Bank Account as Theft Type and New Accounts as Theft Subtype?",
+          "What is the ratio of Bank Account/New Accounts identity theft reports to total reports?"
+        ],
+        [
+          "What is the total number of reports with Identity Theft?",
+          "What is the number of reports with Identity Theft, Theft Type 'Bank Account', and Theft Subtype 'New Accounts'?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Report_Type__Report Type",
+        "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Report_Type__Report Type",
+          "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Report_Type__Report Type",
+          "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Report_Type__Report Type",
+          "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "2024_CSN_Report_Type__Report Type has an 'Unnamed: 2' column with percentage text",
+        "2024_CSN_Identity_Theft_Reports_by_Type.csv has '% Difference From Previous Year' column with percentage text",
+        "Different granularity: Report Type file has aggregated report counts by type, while Identity Theft file has detailed theft subtypes"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Report_Type__Report Type has an 'Unnamed: 2' column with percentage text",
+          "2024_CSN_Identity_Theft_Reports_by_Type.csv has '% Difference From Previous Year' column with percentage text"
+        ],
+        [
+          "Different granularity: Report Type file has aggregated report counts by type, while Identity Theft file has detailed theft subtypes"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count",
+        "% reporting $ loss": "percentage",
+        "total $ loss": "dollars",
+        "median $ loss": "dollars",
+        "% difference from previous year": "percentage",
+        "proportion": "decimal fraction"
+      },
+      "confidence": 0.4444444444444444,
+      "votes": [
+        {
+          "# of Reports": "count",
+          "% Reporting $ Loss": "percentage",
+          "Total $ Loss": "dollars",
+          "Median $ Loss": "dollars",
+          "% Difference From Previous Year": "percentage"
+        },
+        {
+          "# of Reports": "count",
+          "proportion": "decimal fraction"
+        },
+        {
+          "# of Reports": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Total $ Loss column contains 'M' suffix for millions (e.g., '$2,952M')",
+        "Percentage columns contain '%' symbol and need conversion to numeric",
+        "Need to sum all report types (Fraud, Identity Theft, Other) to get total reports",
+        "Bank Account New Accounts is a subset of Identity Theft reports"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total $ Loss column contains 'M' suffix for millions (e.g., '$2,952M')",
+          "Percentage columns contain '%' symbol and need conversion to numeric"
+        ],
+        [
+          "Need to sum all report types (Fraud, Identity Theft, Other) to get total reports",
+          "Bank Account New Accounts is a subset of Identity Theft reports"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "2024_CSN_Report_Type__Report Type shows total reports = 2600678 + 1135291 + 2759963 = 6,495,932",
+        "2024_CSN_Report_Type.csv shows top 10 categories sum to much smaller numbers",
+        "Total Identity Theft count in Report Type file (1135291) should match sum of all Theft Type counts in Identity Theft Types file",
+        "Bank Account count in Identity Theft Types (114608) should match sum of Bank Account subtypes in Identity Theft Reports by Type"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Report_Type__Report Type shows total reports = 2600678 + 1135291 + 2759963 = 6,495,932",
+          "2024_CSN_Report_Type.csv shows top 10 categories sum to much smaller numbers"
+        ],
+        [
+          "Total Identity Theft count in Report Type file (1135291) should match sum of all Theft Type counts in Identity Theft Types file",
+          "Bank Account count in Identity Theft Types (114608) should match sum of Bank Account subtypes in Identity Theft Reports by Type"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 0.33,
+      "votes": [
+        10.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Proportion must be rounded to 4 decimal places",
+        "Bank Account theft type has 3 subtypes in 2024_CSN_Identity_Theft_Reports_by_Type.csv",
+        "Total reports count must come from 2024_CSN_Report_Type__Report Type",
+        "Total reports = Fraud + Identity Theft + Other",
+        "Bank Account New Accounts reports must be <= total Bank Account reports",
+        "Bank Account New Accounts reports must be <= total Identity Theft reports",
+        "Proportion must be between 0 and 1",
+        "The proportion must be rounded to 4 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proportion must be rounded to 4 decimal places",
+          "Bank Account theft type has 3 subtypes in 2024_CSN_Identity_Theft_Reports_by_Type.csv",
+          "Total reports count must come from 2024_CSN_Report_Type__Report Type"
+        ],
+        [
+          "Total reports = Fraud + Identity Theft + Other",
+          "Bank Account New Accounts reports must be <= total Bank Account reports",
+          "Bank Account New Accounts reports must be <= total Identity Theft reports",
+          "Proportion must be between 0 and 1"
+        ],
+        [
+          "The proportion must be rounded to 4 decimal places."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Report Type = 'Identity Theft'",
+        "Theft Type = 'Bank Account'",
+        "Theft Subtype = 'New Accounts'",
+        "Filter Identity Theft Reports by Type where Theft Type='Bank Account' AND Theft Subtype='New Accounts'",
+        "Isolate Identity Theft reports from '2024_CSN_Report_Type__Report Type'",
+        "Filter '2024_CSN_Identity_Theft_Reports_by_Type.csv' for 'Theft Type' = 'Bank Account' and 'Theft Subtype' = 'New Accounts'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Report Type = 'Identity Theft'",
+          "Theft Type = 'Bank Account'",
+          "Theft Subtype = 'New Accounts'"
+        ],
+        [
+          "Filter Identity Theft Reports by Type where Theft Type='Bank Account' AND Theft Subtype='New Accounts'"
+        ],
+        [
+          "Isolate Identity Theft reports from '2024_CSN_Report_Type__Report Type'",
+          "Filter '2024_CSN_Identity_Theft_Reports_by_Type.csv' for 'Theft Type' = 'Bank Account' and 'Theft Subtype' = 'New Accounts'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify that sum of all # of Reports in 2024_CSN_Report_Type__Report Type equals sum of all reports across all files"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify that sum of all # of Reports in 2024_CSN_Report_Type__Report Type equals sum of all reports across all files"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Proportion as decimal rounded to 4 places",
+        "Calculation: (# Bank Account/New Accounts reports) / (Total all reports)",
+        "Round result to exactly 4 decimal places",
+        "Output should be a single numeric value representing a proportion",
+        "Output must be a JSON object.",
+        "The proportion must be a number."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proportion as decimal rounded to 4 places",
+          "Calculation: (# Bank Account/New Accounts reports) / (Total all reports)"
+        ],
+        [
+          "Round result to exactly 4 decimal places",
+          "Output should be a single numeric value representing a proportion"
+        ],
+        [
+          "Output must be a JSON object.",
+          "The proportion must be a number."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5665000000000001
+}

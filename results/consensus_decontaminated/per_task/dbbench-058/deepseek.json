@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Compare the arrival order of Tony Maggs and Jo Siffert in the race",
+    "filters": [
+      "Driver in ['Tony Maggs', 'Jo Siffert']"
+    ],
+    "grouping_variables": [
+      "Driver"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What were the finishing positions of Tony Maggs and Jo Siffert?",
+      "Which driver had the lower position number (indicating earlier arrival)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Grand Prix Result"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Time/Retired": "race time or retirement reason",
+      "Grid": "starting position"
+    },
+    "scale_issues": [
+      "Time/Retired column contains mixed data types: time durations (e.g., '2.02:58.6') and retirement reasons (e.g., 'Engine')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Missing values in Pos column are represented by empty strings",
+      "Time/Retired column contains both time values and retirement reasons"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Pos values should be integers for finished drivers",
+      "Grid values should be integers between 1 and starting grid size"
+    ],
+    "derived_filters": [
+      "Pos not null (to filter out retired drivers)",
+      "Driver contains 'Tony Maggs' or 'Jo Siffert'"
+    ],
+    "statistical_tests": [
+      "Compare Pos values for the two drivers"
+    ],
+    "output_format_requirements": [
+      "Return driver name who came earlier",
+      "If both retired, compare lap counts from Time/Retired column"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Compare the arrival order of Tony Maggs and Jo Siffert in the race\",\n        \"filters\": [\"Driver in ['Tony Maggs', 'Jo Siffert']\"],\n        \"grouping_variables\": [\"Driver\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What were the finishing positions of Tony Maggs and Jo Siffert?\", \"Which driver had the lower position number (indicating earlier arrival)?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Grand Prix Result\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Time/Retired\": \"race time or retirement reason\", \"Grid\": \"starting position\"},\n        \"scale_issues\": [\"Time/Retired column contains mixed data types: time durations (e.g., '2.02:58.6') and retirement reasons (e.g., 'Engine')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Missing values in Pos column are represented by empty strings\", \"Time/Retired column contains both time values and retirement reasons\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Pos values should be integers for finished drivers\", \"Grid values should be integers between 1 and starting grid size\"],\n        \"derived_filters\": [\"Pos not null (to filter out retired drivers)\", \"Driver contains 'Tony Maggs' or 'Jo Siffert'\"],\n        \"statistical_tests\": [\"Compare Pos values for the two drivers\"],\n        \"output_format_requirements\": [\"Return driver name who came earlier\", \"If both retired, compare lap counts from Time/Retired column\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.873899936676025,
+  "token_usage": {
+    "input_tokens": 1050,
+    "output_tokens": 454
+  }
+}

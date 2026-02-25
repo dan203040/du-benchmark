@@ -1,0 +1,496 @@
+{
+  "m_q": {
+    "target_metric": "average number of reported identity thefts for metropolitan areas with population greater than one million in 2023",
+    "filters": [
+      "metropolitan area population > 1,000,000 in 2023",
+      "valid metropolitan area name match between fraud reports and population data"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "extract metropolitan area names and number of reports from state-level CSV files",
+      "extract metropolitan area names and populations from the HTML file",
+      "normalize metropolitan area names for matching",
+      "estimate 2023 population by linear interpolation if necessary",
+      "filter metropolitan areas with population > 1,000,000 in 2023",
+      "calculate the average number of reported identity thefts for the filtered metropolitan areas"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "metropolitan_statistics.html",
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "Alabama.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Alaska.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Arizona.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Arkansas.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "California.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Colorado.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Connecticut.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Delaware.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "DistrictofColumbia.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Florida.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Georgia.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Hawaii.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Idaho.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Illinois.csv",
+        "right_source": "name",
+        "left_column": "Metropolitan Area",
+        "right_column": "",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Indiana.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Iowa.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Kansas.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Kentucky.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Louisiana.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Maine.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Maryland.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Massachusetts.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Michigan.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Minnesota.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Mississippi.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Missouri.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Montana.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Nebraska.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Nevada.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "NewHampshire.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "NewJersey.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "NewMexico.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "NewYork.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "NorthCarolina.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "NorthDakota.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Ohio.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Oklahoma.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Oregon.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Pennsylvania.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "PuertoRico.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "RhodeIsland.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "SouthCarolina.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "SouthDakota.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Tennessee.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Texas.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Utah.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Vermont.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Virginia.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Washington.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "WestVirginia.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Wisconsin.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "Wyoming.csv",
+        "right_source": "metropolitan_statistics.html",
+        "left_column": "Metropolitan Area",
+        "right_column": "name",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column names are inconsistent across state CSV files (e.g., '# of Reports' vs '# of reports')",
+      "The metropolitan_statistics.html file contains population data in HTML format, requiring parsing",
+      "The metropolitan_statistics.html file contains multiple tables, requiring identification of the correct table",
+      "The metropolitan_statistics.html file contains population data for multiple years, requiring filtering and interpolation"
+    ],
+    "column_mappings": {
+      "# of Reports": "NumberOfReports",
+      "Metropolitan Area": "MetropolitanAreaName"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "NumberOfReports": "number of identity theft reports",
+      "population": "number of people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Each state CSV file contains metropolitan area name and number of reports",
+      "The last row of each state CSV file contains a note about the data source and ranking method and should be removed"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Metropolitan area names must be normalized to ensure accurate matching across data sources",
+      "Population data must be available for at least two census years to allow for linear interpolation",
+      "Metropolitan areas with missing population data should be excluded from the analysis"
+    ],
+    "derived_filters": [
+      "Population in 2023 > 1,000,000",
+      "Valid metropolitan area name match"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The average number of reported identity thefts should be rounded to 4 decimal places"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average number of reported identity thefts for metropolitan areas with population greater than one million in 2023\",\n    \"filters\": [\n      \"metropolitan area population > 1,000,000 in 2023\",\n      \"valid metropolitan area name match between fraud reports and population data\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"extract metropolitan area names and number of reports from state-level CSV files\",\n      \"extract metropolitan area names and populations from the HTML file\",\n      \"normalize metropolitan area names for matching\",\n      \"estimate 2023 population by linear interpolation if necessary\",\n      \"filter metropolitan areas with population > 1,000,000 in 2023\",\n      \"calculate the average number of reported identity thefts for the filtered metropolitan areas\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"metropolitan_statistics.html\",\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"Alabama.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Alaska.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Arizona.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Arkansas.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"California.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Colorado.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Connecticut.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Delaware.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"DistrictofColumbia.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Florida.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Georgia.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Hawaii.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Idaho.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Illinois.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_source\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Indiana.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Iowa.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Kansas.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Kentucky.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Louisiana.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Maine.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Maryland.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Massachusetts.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Michigan.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Minnesota.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Mississippi.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Missouri.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Montana.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Nebraska.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Nevada.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"NewHampshire.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"NewJersey.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"NewMexico.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"NewYork.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"NorthCarolina.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"NorthDakota.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Ohio.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Oklahoma.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Oregon.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Pennsylvania.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"PuertoRico.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"RhodeIsland.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"SouthCarolina.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"SouthDakota.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Tennessee.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Texas.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Utah.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Vermont.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Virginia.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Washington.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"WestVirginia.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Wisconsin.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"Wyoming.csv\",\n        \"right_source\": \"metropolitan_statistics.html\",\n        \"left_column\": \"Metropolitan Area\",\n        \"right_column\": \"name\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Column names are inconsistent across state CSV files (e.g., '# of Reports' vs '# of reports')\",\n      \"The metropolitan_statistics.html file contains population data in HTML format, requiring parsing\",\n      \"The metropolitan_statistics.html file contains multiple tables, requiring identification of the correct table\",\n      \"The metropolitan_statistics.html file contains population data for multiple years, requiring filtering and interpolation\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports\": \"NumberOfReports\",\n      \"Metropolitan Area\": \"MetropolitanAreaName\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"NumberOfReports\": \"number of identity theft reports\",\n      \"population\": \"number of people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Each state CSV file contains metropolitan area name and number of reports\",\n      \"The last row of each state CSV file contains a note about the data source and ranking method and should be removed\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Metropolitan area names must be normalized to ensure accurate matching across data sources\",\n      \"Population data must be available for at least two census years to allow for linear interpolation\",\n      \"Metropolitan areas with missing population data should be excluded from the analysis\"\n    ],\n    \"derived_filters\": [\n      \"Population in 2023 > 1,000,000\",\n      \"Valid metropolitan area name match\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The average number of reported identity thefts should be rounded to 4 decimal places\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 150.71522784233093,
+  "token_usage": {}
+}

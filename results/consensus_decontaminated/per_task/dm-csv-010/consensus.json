@@ -1,0 +1,391 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Average monthly sales volume (units sold) for each bike category",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Average monthly sales volume (units sold) for each bike category",
+        "Average monthly sales volume (units sold) for each bike category",
+        "Average monthly sales volume (number of units sold) for each bike category"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Only orders with order_status=4 (completed orders) should be considered",
+        "Only include months where sales occurred for each category"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only orders with order_status=4 (completed orders) should be considered",
+          "Only include months where sales occurred for each category"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "category_name",
+        "year-month (extracted from order_date)",
+        "year-month"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "category_name",
+          "year-month (extracted from order_date)"
+        ],
+        [
+          "category_name",
+          "year-month"
+        ],
+        [
+          "category_name"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the monthly total quantity sold per category?",
+        "What is the mean of monthly totals across all months for each category?",
+        "How should months with zero sales be handled in the average calculation?",
+        "What is the total quantity of products sold for each order?",
+        "What category does each product belong to?",
+        "What is the order date for each order to extract year-month?",
+        "What is the monthly total sales volume (sum of quantities) for each category?",
+        "What is the average of monthly totals for each category across all months?",
+        "Calculate the total sales volume (number of units sold) for each bike category per month.",
+        "Calculate the average of the monthly sales volumes for each bike category across all months."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What is the monthly total quantity sold per category?",
+          "What is the mean of monthly totals across all months for each category?",
+          "How should months with zero sales be handled in the average calculation?"
+        ],
+        [
+          "What is the total quantity of products sold for each order?",
+          "What category does each product belong to?",
+          "What is the order date for each order to extract year-month?",
+          "What is the monthly total sales volume (sum of quantities) for each category?",
+          "What is the average of monthly totals for each category across all months?"
+        ],
+        [
+          "Calculate the total sales volume (number of units sold) for each bike category per month.",
+          "Calculate the average of the monthly sales volumes for each bike category across all months."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "order_items.csv",
+        "orders.csv",
+        "products.csv",
+        "categories.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "order_items.csv",
+          "orders.csv",
+          "products.csv",
+          "categories.csv"
+        ],
+        [
+          "order_items.csv",
+          "orders.csv",
+          "products.csv",
+          "categories.csv"
+        ],
+        [
+          "orders.csv",
+          "order_items.csv",
+          "products.csv",
+          "categories.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "order_date in orders.csv is object type but should be datetime for month extraction",
+        "sample_result.csv has empty values in Average Units Sold column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "order_date in orders.csv is object type but should be datetime for month extraction",
+          "sample_result.csv has empty values in Average Units Sold column"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "quantity": "units",
+        "list_price": "currency",
+        "discount": "percentage (0-1)",
+        "order_date": "date",
+        "model_year": "year",
+        "average units sold": "units per month"
+      },
+      "confidence": 0.5555555555555556,
+      "votes": [
+        {
+          "quantity": "units",
+          "list_price": "currency",
+          "discount": "percentage (0-1)",
+          "order_date": "date",
+          "model_year": "year"
+        },
+        {
+          "quantity": "units",
+          "Average Units Sold": "units per month",
+          "order_date": "date (YYYY-MM-DD)"
+        },
+        {
+          "quantity": "units",
+          "list_price": "USD"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "discount values range 0-1 (e.g., 0.2 = 20%)",
+        "list_price has varying scales from 269.99 to 3999.99"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "discount values range 0-1 (e.g., 0.2 = 20%)",
+          "list_price has varying scales from 269.99 to 3999.99"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "product_id exists in order_items, products, and stocks - need to ensure consistent product definitions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "product_id exists in order_items, products, and stocks - need to ensure consistent product definitions"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 9.0,
+      "confidence": 0.33,
+      "votes": [
+        10.0,
+        2.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "quantity in order_items must be positive integer",
+        "order_status=4 indicates completed orders",
+        "discount must be between 0 and 1 inclusive",
+        "list_price must be positive",
+        "Only include completed orders (order_status = 4) or all orders depending on business logic",
+        "Average must be calculated as mean of monthly totals, not overall mean",
+        "All 7 categories from categories.csv should be present in output",
+        "Categories with no sales should have appropriate handling (0 or null)",
+        "order_status in orders.csv should be a valid status (e.g., 4 for completed)",
+        "quantity in order_items.csv should be a positive integer"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "quantity in order_items must be positive integer",
+          "order_status=4 indicates completed orders",
+          "discount must be between 0 and 1 inclusive",
+          "list_price must be positive"
+        ],
+        [
+          "Only include completed orders (order_status = 4) or all orders depending on business logic",
+          "Average must be calculated as mean of monthly totals, not overall mean",
+          "All 7 categories from categories.csv should be present in output",
+          "Categories with no sales should have appropriate handling (0 or null)"
+        ],
+        [
+          "order_status in orders.csv should be a valid status (e.g., 4 for completed)",
+          "quantity in order_items.csv should be a positive integer"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter orders where order_status = 4",
+        "Extract year-month from order_date for grouping",
+        "Sum quantity per category per month",
+        "Extract year-month from order_date field",
+        "Group by category_name and year-month to get monthly totals",
+        "Then compute mean across all months for each category"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter orders where order_status = 4",
+          "Extract year-month from order_date for grouping",
+          "Sum quantity per category per month"
+        ],
+        [
+          "Extract year-month from order_date field",
+          "Group by category_name and year-month to get monthly totals",
+          "Then compute mean across all months for each category"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing order dates",
+        "Verify no negative quantities",
+        "Validate category_id references exist in categories.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing order dates",
+          "Verify no negative quantities",
+          "Validate category_id references exist in categories.csv"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file named avg_units_sold.csv",
+        "Two columns: Category and Average Units Sold",
+        "7 rows (one per bike category)",
+        "Average Units Sold as float with appropriate precision",
+        "Match ordering/layout of sample_result.csv",
+        "Output file must be named avg_units_sold.csv",
+        "Must match format of sample_result.csv with columns: Category, Average Units Sold",
+        "Category names must match exactly with category_name from categories.csv",
+        "Average Units Sold should be numeric with appropriate decimal precision",
+        "All 7 categories must be present in output: Children Bicycles, Comfort Bicycles, Cruisers Bicycles, Cyclocross Bicycles, Electric Bikes, Mountain Bikes, Road Bikes",
+        "Output should be a CSV file named avg_units_sold.csv",
+        "Output CSV should have columns 'Category' and 'Average Units Sold'",
+        "The 'Average Units Sold' column should contain the mean of monthly sales volume for each category"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CSV file named avg_units_sold.csv",
+          "Two columns: Category and Average Units Sold",
+          "7 rows (one per bike category)",
+          "Average Units Sold as float with appropriate precision",
+          "Match ordering/layout of sample_result.csv"
+        ],
+        [
+          "Output file must be named avg_units_sold.csv",
+          "Must match format of sample_result.csv with columns: Category, Average Units Sold",
+          "Category names must match exactly with category_name from categories.csv",
+          "Average Units Sold should be numeric with appropriate decimal precision",
+          "All 7 categories must be present in output: Children Bicycles, Comfort Bicycles, Cruisers Bicycles, Cyclocross Bicycles, Electric Bikes, Mountain Bikes, Road Bikes"
+        ],
+        [
+          "Output should be a CSV file named avg_units_sold.csv",
+          "Output CSV should have columns 'Category' and 'Average Units Sold'",
+          "The 'Average Units Sold' column should contain the mean of monthly sales volume for each category"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5970555555555557
+}

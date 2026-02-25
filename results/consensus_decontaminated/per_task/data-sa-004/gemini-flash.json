@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Hypothesis test results (test type, p-value, hypothesis decision, and comment) comparing bike rentals ('count') across different weather conditions ('weather').",
+    "filters": [],
+    "grouping_variables": [
+      "weather"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "yulu_bike_sharing_dataset.csv",
+      "weather.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "temp": "Celsius",
+      "atemp": "Celsius",
+      "humidity": "%",
+      "windspeed": "km/h",
+      "casual": "number of rentals",
+      "registered": "number of rentals",
+      "count": "number of rentals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The output must be a single row in weather.csv with columns 'Test Type', 'Kruskal Statistic', 'P-Value', 'Hypothesis', and 'Comment'."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Kruskal-Wallis test to compare 'count' across different 'weather' conditions."
+    ],
+    "output_format_requirements": [
+      "Output must be a single row CSV string."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Hypothesis test results (test type, p-value, hypothesis decision, and comment) comparing bike rentals ('count') across different weather conditions ('weather').\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"weather\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"yulu_bike_sharing_dataset.csv\",\n      \"weather.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"temp\": \"Celsius\",\n      \"atemp\": \"Celsius\",\n      \"humidity\": \"%\",\n      \"windspeed\": \"km/h\",\n      \"casual\": \"number of rentals\",\n      \"registered\": \"number of rentals\",\n      \"count\": \"number of rentals\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The output must be a single row in weather.csv with columns 'Test Type', 'Kruskal Statistic', 'P-Value', 'Hypothesis', and 'Comment'.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Kruskal-Wallis test to compare 'count' across different 'weather' conditions.\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be a single row CSV string.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.9916341304779053,
+  "token_usage": {}
+}

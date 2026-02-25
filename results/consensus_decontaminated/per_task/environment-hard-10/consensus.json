@@ -1,0 +1,470 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Pearson correlation coefficient (to 3 decimal places) between rainfall in the past 3 days and Enterococcus levels",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Pearson correlation coefficient (to 3 decimal places) between rainfall in the past 3 days and Enterococcus levels",
+        "Pearson correlation coefficient between rainfall in the past 3 days and Enterococcus levels, rounded to 3 decimal places",
+        "Pearson correlation between rainfall in the past 3 days and adjusted Enterococcus levels for Boston Harbor beaches in communities with >90% EJ populations"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Boston Harbor beaches only",
+        "Communities with >90% environmental justice populations",
+        "Organism = Enterococci",
+        "Beach Type Description = Marine",
+        "Year = 2023",
+        "Handle Indicator Level tags: '< x' as x/2, '> x' as x",
+        "Communities with more than 90% environmental justice (EJ) populations",
+        "Beach Type Description = 'Marine' (Boston Harbor context)",
+        "Municipality has >90% EJ population",
+        "Beach is a Boston Harbor beach"
+      ],
+      "confidence": 0.3666666666666667,
+      "votes": [
+        [
+          "Boston Harbor beaches only",
+          "Communities with >90% environmental justice populations",
+          "Organism = Enterococci",
+          "Beach Type Description = Marine",
+          "Year = 2023",
+          "Handle Indicator Level tags: '< x' as x/2, '> x' as x"
+        ],
+        [
+          "Boston Harbor beaches only",
+          "Communities with more than 90% environmental justice (EJ) populations",
+          "Beach Type Description = 'Marine' (Boston Harbor context)"
+        ],
+        [
+          "Municipality has >90% EJ population",
+          "Beach is a Boston Harbor beach"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Community",
+        "Beach Name",
+        "Sample Date"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Community",
+          "Beach Name",
+          "Sample Date"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which communities have >90% EJ populations?",
+        "Which beaches are in Boston Harbor?",
+        "How to match rainfall data to beach testing dates?",
+        "How to handle multiple Enterococcus measurements per beach per day?",
+        "Which communities have more than 90% EJ populations (Percent of population in EJ BGs > 90)?",
+        "Which beaches in water-body-testing-2023.csv are located in Boston Harbor?",
+        "Which beaches are in communities meeting the >90% EJ threshold?",
+        "How to map beaches to rainfall data (wollaston_beach_datasheet.csv appears specific to Wollaston Beach)?",
+        "How to handle Enterococcus values with '<' and '>' tags (e.g., '<10' becomes 5, '>100' becomes 100)?",
+        "What is the 3-day rainfall for each beach sample date?",
+        "What statistical method to compute Pearson correlation?",
+        "Identify communities with >90% EJ populations.",
+        "Identify Boston Harbor beaches and their corresponding communities.",
+        "For each beach, adjust Enterococcus levels: if < x, set to x/2; if > x, set to x.",
+        "Calculate the Pearson correlation between 3-day rainfall and adjusted Enterococcus levels."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Which communities have >90% EJ populations?",
+          "Which beaches are in Boston Harbor?",
+          "How to match rainfall data to beach testing dates?",
+          "How to handle multiple Enterococcus measurements per beach per day?"
+        ],
+        [
+          "Which communities have more than 90% EJ populations (Percent of population in EJ BGs > 90)?",
+          "Which beaches in water-body-testing-2023.csv are located in Boston Harbor?",
+          "Which beaches are in communities meeting the >90% EJ threshold?",
+          "How to map beaches to rainfall data (wollaston_beach_datasheet.csv appears specific to Wollaston Beach)?",
+          "How to handle Enterococcus values with '<' and '>' tags (e.g., '<10' becomes 5, '>100' becomes 100)?",
+          "What is the 3-day rainfall for each beach sample date?",
+          "What statistical method to compute Pearson correlation?"
+        ],
+        [
+          "Identify communities with >90% EJ populations.",
+          "Identify Boston Harbor beaches and their corresponding communities.",
+          "For each beach, adjust Enterococcus levels: if < x, set to x/2; if > x, set to x.",
+          "Calculate the Pearson correlation between 3-day rainfall and adjusted Enterococcus levels."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "environmental-justice-populations.csv",
+        "water-body-testing-2023.csv",
+        "wollaston_beach_datasheet.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "environmental-justice-populations.csv",
+          "water-body-testing-2023.csv",
+          "wollaston_beach_datasheet.csv"
+        ],
+        [
+          "environmental-justice-populations.csv",
+          "water-body-testing-2023.csv",
+          "wollaston_beach_datasheet.csv"
+        ],
+        [
+          "environmental-justice-populations.csv",
+          "water-body-testing-2023.csv",
+          "wollaston_beach_datasheet.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Date format mismatch: '2023-07-10 00:00:00' vs 'September 1, 2024'",
+        "Municipality vs Community name matching may have inconsistencies",
+        "Multiple Enterococcus columns in wollaston_beach_datasheet.csv (Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3)",
+        "Date format differences: water-body-testing-2023.csv uses 'YYYY-MM-DD HH:MM:SS', wollaston_beach_datasheet.csv uses 'Month DD, YYYY'",
+        "Organism vs Enterococcus naming: water-body-testing-2023.csv has 'Organism' column with value 'Enterococci', wollaston_beach_datasheet.csv has multiple 'Enterococcus' columns with location tags",
+        "Indicator Level in water-body-testing-2023.csv vs Enterococcus columns in wollaston_beach_datasheet.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date format mismatch: '2023-07-10 00:00:00' vs 'September 1, 2024'",
+          "Municipality vs Community name matching may have inconsistencies",
+          "Multiple Enterococcus columns in wollaston_beach_datasheet.csv (Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3)"
+        ],
+        [
+          "Date format differences: water-body-testing-2023.csv uses 'YYYY-MM-DD HH:MM:SS', wollaston_beach_datasheet.csv uses 'Month DD, YYYY'",
+          "Organism vs Enterococcus naming: water-body-testing-2023.csv has 'Organism' column with value 'Enterococci', wollaston_beach_datasheet.csv has multiple 'Enterococcus' columns with location tags",
+          "Indicator Level in water-body-testing-2023.csv vs Enterococcus columns in wollaston_beach_datasheet.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "indicator level": "CFU/100mL",
+        "enterococcus": "CFU/100mL",
+        "1-day rain": "inches",
+        "2-day rain": "inches",
+        "3-day rain": "inches",
+        "percent of population in ej bgs": "percentage",
+        "enterococcus.1": "CFU/100mL",
+        "enterococcus.2": "CFU/100mL",
+        "enterococcus.3": "CFU/100mL"
+      },
+      "confidence": 0.7037037037037036,
+      "votes": [
+        {
+          "Indicator Level": "CFU/100mL",
+          "Enterococcus": "CFU/100mL",
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Percent of population in EJ BGs": "percentage"
+        },
+        {
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Indicator Level": "MPN/100mL or CFU/100mL",
+          "Enterococcus": "MPN/100mL or CFU/100mL",
+          "Percent of population in EJ BGs": "percentage"
+        },
+        {
+          "Percent of population in EJ BGs": "%",
+          "3-Day Rain": "inches",
+          "Indicator Level": "CFU/100mL",
+          "Enterococcus": "CFU/100mL",
+          "Enterococcus.1": "CFU/100mL",
+          "Enterococcus.2": "CFU/100mL",
+          "Enterococcus.3": "CFU/100mL"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Rainfall data appears to be in inches but needs verification",
+        "Enterococcus levels may have different measurement scales across datasets",
+        "EJ percentages are already normalized to 0-100 scale",
+        "Enterococcus levels with '<' tags need conversion: '<x' becomes x/2",
+        "Enterococcus levels with '>' tags need conversion: '>x' becomes x",
+        "EJ population threshold is 90% (>90 means strictly greater than 90)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Rainfall data appears to be in inches but needs verification",
+          "Enterococcus levels may have different measurement scales across datasets",
+          "EJ percentages are already normalized to 0-100 scale"
+        ],
+        [
+          "Enterococcus levels with '<' tags need conversion: '<x' becomes x/2",
+          "Enterococcus levels with '>' tags need conversion: '>x' becomes x",
+          "EJ population threshold is 90% (>90 means strictly greater than 90)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "wollaston_beach_datasheet.csv has 2024 dates while water-body-testing-2023.csv has 2023 dates",
+        "Different measurement protocols for Enterococcus across datasets",
+        "Potential duplicate beach names across different communities",
+        "wollaston_beach_datasheet.csv contains only Wollaston Beach data (appears to be Quincy), not all Boston Harbor beaches",
+        "water-body-testing-2023.csv contains statewide data, need to identify Boston Harbor beaches specifically",
+        "Boston Harbor geography definition needed to identify relevant communities and beaches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "wollaston_beach_datasheet.csv has 2024 dates while water-body-testing-2023.csv has 2023 dates",
+          "Different measurement protocols for Enterococcus across datasets",
+          "Potential duplicate beach names across different communities"
+        ],
+        [
+          "wollaston_beach_datasheet.csv contains only Wollaston Beach data (appears to be Quincy), not all Boston Harbor beaches",
+          "water-body-testing-2023.csv contains statewide data, need to identify Boston Harbor beaches specifically",
+          "Boston Harbor geography definition needed to identify relevant communities and beaches"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.8181818181818181,
+      "votes": [
+        10.0,
+        11.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "EJ population percentage > 90",
+        "Beach location must be in Boston Harbor",
+        "Only Enterococci organism measurements",
+        "Only marine beach types",
+        "Year must be 2023",
+        "Rainfall data must be available for corresponding dates",
+        "Filter environmental-justice-populations.csv where 'Percent of population in EJ BGs' > 90",
+        "Identify Boston Harbor beaches (County Description = 'Suffolk' or 'Norfolk' with marine/coastal beaches)",
+        "Filter water-body-testing-2023.csv for Organism = 'Enterococci' or similar",
+        "Match communities from filtered EJ data with beach communities",
+        "Beach Type Description should indicate marine/harbor beaches",
+        "Environmental Justice population percentage must be greater than 90%.",
+        "Beach must be located in Boston Harbor.",
+        "Enterococcus levels labeled as '< x' should be estimated as x/2.",
+        "Enterococcus levels labeled as '> x' should be estimated as x.",
+        "Pearson correlation should be rounded to 3 decimal places."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "EJ population percentage > 90",
+          "Beach location must be in Boston Harbor",
+          "Only Enterococci organism measurements",
+          "Only marine beach types",
+          "Year must be 2023",
+          "Rainfall data must be available for corresponding dates"
+        ],
+        [
+          "Filter environmental-justice-populations.csv where 'Percent of population in EJ BGs' > 90",
+          "Identify Boston Harbor beaches (County Description = 'Suffolk' or 'Norfolk' with marine/coastal beaches)",
+          "Filter water-body-testing-2023.csv for Organism = 'Enterococci' or similar",
+          "Match communities from filtered EJ data with beach communities",
+          "Beach Type Description should indicate marine/harbor beaches"
+        ],
+        [
+          "Environmental Justice population percentage must be greater than 90%.",
+          "Beach must be located in Boston Harbor.",
+          "Enterococcus levels labeled as '< x' should be estimated as x/2.",
+          "Enterococcus levels labeled as '> x' should be estimated as x.",
+          "Pearson correlation should be rounded to 3 decimal places."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter environmental-justice-populations.csv where 'Percent of population in EJ BGs' > 90",
+        "Filter water-body-testing-2023.csv where 'Organism' = 'Enterococci' and 'Beach Type Description' = 'Marine'",
+        "Identify Boston Harbor beaches from beach names or community information",
+        "Convert tagged Enterococcus values: '< x' \u2192 x/2, '> x' \u2192 x",
+        "Boston Harbor communities: likely include Boston, Quincy, Winthrop, Hull, possibly Revere, Chelsea",
+        "High EJ communities (>90%): from environmental-justice-populations.csv where 'Percent of population in EJ BGs' > 90.0",
+        "Valid Enterococcus measurements: exclude null or invalid values after tag processing",
+        "Communities with >90% EJ populations",
+        "Boston Harbor beaches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter environmental-justice-populations.csv where 'Percent of population in EJ BGs' > 90",
+          "Filter water-body-testing-2023.csv where 'Organism' = 'Enterococci' and 'Beach Type Description' = 'Marine'",
+          "Identify Boston Harbor beaches from beach names or community information",
+          "Convert tagged Enterococcus values: '< x' \u2192 x/2, '> x' \u2192 x"
+        ],
+        [
+          "Boston Harbor communities: likely include Boston, Quincy, Winthrop, Hull, possibly Revere, Chelsea",
+          "High EJ communities (>90%): from environmental-justice-populations.csv where 'Percent of population in EJ BGs' > 90.0",
+          "Valid Enterococcus measurements: exclude null or invalid values after tag processing"
+        ],
+        [
+          "Communities with >90% EJ populations",
+          "Boston Harbor beaches"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation test between rainfall_3day and Enterococcus_level",
+        "Check for normality of variables before correlation",
+        "Handle censored data appropriately in correlation calculation",
+        "Pearson correlation coefficient between 3-Day Rain and processed Enterococcus levels",
+        "Apply transformation: if Tag='<', Enterococcus_adjusted = Enterococcus/2; if Tag='>', Enterococcus_adjusted = Enterococcus; else Enterococcus_adjusted = Enterococcus",
+        "Pearson correlation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation test between rainfall_3day and Enterococcus_level",
+          "Check for normality of variables before correlation",
+          "Handle censored data appropriately in correlation calculation"
+        ],
+        [
+          "Pearson correlation coefficient between 3-Day Rain and processed Enterococcus levels",
+          "Apply transformation: if Tag='<', Enterococcus_adjusted = Enterococcus/2; if Tag='>', Enterococcus_adjusted = Enterococcus; else Enterococcus_adjusted = Enterococcus"
+        ],
+        [
+          "Pearson correlation"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Correlation coefficient to 3 decimal places",
+        "Must specify sample size used in calculation",
+        "Should note any data limitations or assumptions made",
+        "Single numeric value: Pearson correlation coefficient",
+        "Rounded to exactly 3 decimal places",
+        "Format: X.XXX (e.g., 0.456 or -0.234)",
+        "Output must be a single Pearson correlation value rounded to 3 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Correlation coefficient to 3 decimal places",
+          "Must specify sample size used in calculation",
+          "Should note any data limitations or assumptions made"
+        ],
+        [
+          "Single numeric value: Pearson correlation coefficient",
+          "Rounded to exactly 3 decimal places",
+          "Format: X.XXX (e.g., 0.456 or -0.234)"
+        ],
+        [
+          "Output must be a single Pearson correlation value rounded to 3 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5977609427609429
+}

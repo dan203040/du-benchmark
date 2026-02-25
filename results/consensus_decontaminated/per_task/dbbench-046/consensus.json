@@ -1,0 +1,334 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Round",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Round",
+        "Round value(s)",
+        "Round"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Winner = 'Ivanovic'",
+        "Year < 2008",
+        "Tournament = 'Paris'",
+        "Winner is \"Ivanovic\"",
+        "Year is less than 2008",
+        "Tournament is \"Paris\""
+      ],
+      "confidence": 0.5000000000000001,
+      "votes": [
+        [
+          "Winner = 'Ivanovic'",
+          "Year < 2008",
+          "Tournament = 'Paris'"
+        ],
+        [
+          "Winner = 'Ivanovic'",
+          "Year < 2008",
+          "Tournament = 'Paris'"
+        ],
+        [
+          "Winner is \"Ivanovic\"",
+          "Year is less than 2008",
+          "Tournament is \"Paris\""
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the round value when all three conditions are satisfied?",
+        "Are there multiple matches that satisfy these conditions?",
+        "Filter records where Winner is 'Ivanovic'",
+        "Filter records where Year is less than 2008",
+        "Filter records where Tournament is 'Paris'",
+        "Extract Round value from filtered results"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the round value when all three conditions are satisfied?",
+          "Are there multiple matches that satisfy these conditions?"
+        ],
+        [
+          "Filter records where Winner is 'Ivanovic'",
+          "Filter records where Year is less than 2008",
+          "Filter records where Tournament is 'Paris'",
+          "Extract Round value from filtered results"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "tennis_results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "tennis_results"
+        ],
+        [
+          "tennis_results"
+        ],
+        [
+          "tennis_results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "round": "tournament_stage_code",
+        "score": "game_score_format"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "Year": "calendar year"
+        },
+        {
+          "Year": "calendar_year",
+          "Round": "tournament_stage_code",
+          "Score": "game_score_format"
+        },
+        {
+          "Year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column is stored as object/string type but contains numeric years",
+        "Score column contains inconsistent formatting with spaces around commas"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column is stored as object/string type but contains numeric years",
+          "Score column contains inconsistent formatting with spaces around commas"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be numeric years",
+        "Round values should be valid tennis round notations",
+        "Winner and Tournament should be non-empty strings",
+        "Year must be numeric and less than 2008",
+        "Winner must exactly match 'Ivanovic'",
+        "Tournament must exactly match 'Paris'",
+        "Year must be a valid year format",
+        "Tournament values must be consistent",
+        "Winner values must be consistent",
+        "Round values must be consistent"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Year values should be numeric years",
+          "Round values should be valid tennis round notations",
+          "Winner and Tournament should be non-empty strings"
+        ],
+        [
+          "Year must be numeric and less than 2008",
+          "Winner must exactly match 'Ivanovic'",
+          "Tournament must exactly match 'Paris'"
+        ],
+        [
+          "Year must be a valid year format",
+          "Tournament values must be consistent",
+          "Winner values must be consistent",
+          "Round values must be consistent"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Winner = 'Ivanovic'",
+        "Filter rows where Year < 2008",
+        "Filter rows where Tournament = 'Paris'",
+        "Year column needs conversion from object to numeric for comparison Year < 2008",
+        "Case-sensitive string matching for Winner and Tournament",
+        "Year < 2008"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Winner = 'Ivanovic'",
+          "Filter rows where Year < 2008",
+          "Filter rows where Tournament = 'Paris'"
+        ],
+        [
+          "Year column needs conversion from object to numeric for comparison Year < 2008",
+          "Case-sensitive string matching for Winner and Tournament"
+        ],
+        [
+          "Year < 2008"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if exactly one row satisfies all three conditions",
+        "Verify Year values can be converted to integers for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if exactly one row satisfies all three conditions",
+          "Verify Year values can be converted to integers for comparison"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single Round value if exactly one match found",
+        "Return list of Round values if multiple matches found",
+        "Return null/empty if no matches found",
+        "Return the Round value as a string",
+        "If multiple matches exist, return all matching Round values",
+        "If no matches exist, return null or empty result"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single Round value if exactly one match found",
+          "Return list of Round values if multiple matches found",
+          "Return null/empty if no matches found"
+        ],
+        [
+          "Return the Round value as a string",
+          "If multiple matches exist, return all matching Round values",
+          "If no matches exist, return null or empty result"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.563888888888889
+}

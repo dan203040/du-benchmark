@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Correlation between fire size and median wind speed in July",
+    "filters": [
+      "start_date is in July (month = 7)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "wind_med": "miles per hour",
+      "duration": "days"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "start_date must be parsed to extract the month",
+      "Fire size needs to be determined.  Duration could be a proxy, or total_fire_region/total_fire_west could be used if they represent fire size.  Otherwise, this question cannot be answered.",
+      "wind_med represents the median wind speed."
+    ],
+    "derived_filters": [
+      "start_month = month(start_date)"
+    ],
+    "statistical_tests": [
+      "Pearson correlation between fire size and wind_med for July fires"
+    ],
+    "output_format_requirements": [
+      "Output should be Yes if the absolute value of the correlation coefficient is greater than 0.7, otherwise No."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Correlation between fire size and median wind speed in July\",\n    \"filters\": [\n      \"start_date is in July (month = 7)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"noaa_wildfires_variabledescrip.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"wind_med\": \"miles per hour\",\n      \"duration\": \"days\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"start_date must be parsed to extract the month\",\n      \"Fire size needs to be determined.  Duration could be a proxy, or total_fire_region/total_fire_west could be used if they represent fire size.  Otherwise, this question cannot be answered.\",\n      \"wind_med represents the median wind speed.\"\n    ],\n    \"derived_filters\": [\n      \"start_month = month(start_date)\"\n    ],\n    \"statistical_tests\": [\n      \"Pearson correlation between fire size and wind_med for July fires\"\n    ],\n    \"output_format_requirements\": [\n      \"Output should be Yes if the absolute value of the correlation coefficient is greater than 0.7, otherwise No.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.346764087677002,
+  "token_usage": {}
+}

@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Platform names",
+    "filters": [
+      "Year > 2006",
+      "Developer = '3G Studios'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Filter games where Year > 2006",
+      "Filter games where Developer is '3G Studios'",
+      "Extract Platform values from filtered rows"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "SWAT Games"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year"
+    },
+    "scale_issues": [
+      "Year column is object type instead of numeric, may contain non-numeric values or need type conversion"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Platform column contains comma-separated values in some rows (e.g., 'PlayStation 2 , Xbox')",
+      "Sample data shows non-SWAT games mixed in (e.g., Super Mario Bros.)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be convertible to numeric for comparison > 2006",
+      "Developer name matching must be exact (case-sensitive: '3G Studios' vs '3g studios' in question)"
+    ],
+    "derived_filters": [
+      "Year > 2006",
+      "Developer = '3G Studios'"
+    ],
+    "statistical_tests": [
+      "Check Year column for non-numeric values",
+      "Check Developer column for variations of '3G Studios'"
+    ],
+    "output_format_requirements": [
+      "List of unique platform names",
+      "Case-sensitive platform names as they appear in data"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Platform names\",\n        \"filters\": [\"Year > 2006\", \"Developer = '3G Studios'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Filter games where Year > 2006\", \"Filter games where Developer is '3G Studios'\", \"Extract Platform values from filtered rows\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"SWAT Games\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"calendar year\"},\n        \"scale_issues\": [\"Year column is object type instead of numeric, may contain non-numeric values or need type conversion\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Platform column contains comma-separated values in some rows (e.g., 'PlayStation 2 , Xbox')\", \"Sample data shows non-SWAT games mixed in (e.g., Super Mario Bros.)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year must be convertible to numeric for comparison > 2006\", \"Developer name matching must be exact (case-sensitive: '3G Studios' vs '3g studios' in question)\"],\n        \"derived_filters\": [\"Year > 2006\", \"Developer = '3G Studios'\"],\n        \"statistical_tests\": [\"Check Year column for non-numeric values\", \"Check Developer column for variations of '3G Studios'\"],\n        \"output_format_requirements\": [\"List of unique platform names\", \"Case-sensitive platform names as they appear in data\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.121686220169067,
+  "token_usage": {
+    "input_tokens": 929,
+    "output_tokens": 441
+  }
+}

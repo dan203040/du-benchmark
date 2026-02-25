@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Year of First Appearance for the Black Knights drum corps",
+    "filters": [
+      "Corps Name equals 'Black Knights'",
+      "Number of Finals Appearances is less than 1"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which drum corps is named 'Black Knights'?",
+      "What is the Number of Finals Appearances for the Black Knights?",
+      "Is the Number of Finals Appearances for Black Knights less than 1?",
+      "What is the Year of First Appearance for the Black Knights if they meet the filter criteria?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Finals Appearances by Drum Corps"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Number of Finals Appearances": "count",
+      "Year of First Appearance": "year",
+      "Year of Most Recent Appearance": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Number of Finals Appearances stored as object/string, may need conversion to integer",
+      "Year columns stored as object/string, may need conversion to integer",
+      "All Years of Finals Appearances contains range notation (e.g., '1972\u20132013') and comma-separated values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Corps Name must match exactly 'Black Knights' (case-sensitive check recommended)",
+      "Number of Finals Appearances must be convertible to numeric type for comparison",
+      "Filter condition 'less than 1' means Number of Finals Appearances must be 0 or negative (likely 0)",
+      "Year of First Appearance must exist for filtered records"
+    ],
+    "derived_filters": [
+      "Convert 'Number of Finals Appearances' from string to integer before applying < 1 filter"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single year value",
+      "If no records match the filter criteria, return null or appropriate indicator",
+      "Output should be a year in integer format"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Year of First Appearance for the Black Knights drum corps\",\n    \"filters\": [\n      \"Corps Name equals 'Black Knights'\",\n      \"Number of Finals Appearances is less than 1\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which drum corps is named 'Black Knights'?\",\n      \"What is the Number of Finals Appearances for the Black Knights?\",\n      \"Is the Number of Finals Appearances for Black Knights less than 1?\",\n      \"What is the Year of First Appearance for the Black Knights if they meet the filter criteria?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Finals Appearances by Drum Corps\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Number of Finals Appearances\": \"count\",\n      \"Year of First Appearance\": \"year\",\n      \"Year of Most Recent Appearance\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Number of Finals Appearances stored as object/string, may need conversion to integer\",\n      \"Year columns stored as object/string, may need conversion to integer\",\n      \"All Years of Finals Appearances contains range notation (e.g., '1972\u20132013') and comma-separated values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Corps Name must match exactly 'Black Knights' (case-sensitive check recommended)\",\n      \"Number of Finals Appearances must be convertible to numeric type for comparison\",\n      \"Filter condition 'less than 1' means Number of Finals Appearances must be 0 or negative (likely 0)\",\n      \"Year of First Appearance must exist for filtered records\"\n    ],\n    \"derived_filters\": [\n      \"Convert 'Number of Finals Appearances' from string to integer before applying < 1 filter\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single year value\",\n      \"If no records match the filter criteria, return null or appropriate indicator\",\n      \"Output should be a year in integer format\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.545646667480469,
+  "token_usage": {
+    "input_tokens": 1231,
+    "output_tokens": 672
+  }
+}

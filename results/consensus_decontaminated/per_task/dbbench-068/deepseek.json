@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "total pick # for D position from Chilliwack Bruins",
+    "filters": [
+      "Position = 'D'",
+      "Team from = 'Chilliwack Bruins'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the sum of Pick # values for all players with Position D and Team from Chilliwack Bruins?",
+      "How many D players came from Chilliwack Bruins?",
+      "What are the individual Pick # values for D players from Chilliwack Bruins?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "hockey_players"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Pick #": "ordinal selection number"
+    },
+    "scale_issues": [
+      "Pick # column is stored as object/string type but contains numeric values that should be summed"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Sample shows 20 rows but shape indicates 40 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Pick # values should be convertible to numeric for summation",
+      "Position values should be exact matches (case-sensitive)",
+      "Team from values should be exact matches (case-sensitive)"
+    ],
+    "derived_filters": [
+      "Filter rows where Position contains 'D'",
+      "Filter rows where Team from contains 'Chilliwack Bruins'"
+    ],
+    "statistical_tests": [
+      "Check for missing Pick # values in filtered subset",
+      "Verify all Pick # values are numeric"
+    ],
+    "output_format_requirements": [
+      "Single numeric total",
+      "Should handle potential multiple D players from Chilliwack Bruins"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total pick # for D position from Chilliwack Bruins\",\n        \"filters\": [\"Position = 'D'\", \"Team from = 'Chilliwack Bruins'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the sum of Pick # values for all players with Position D and Team from Chilliwack Bruins?\", \"How many D players came from Chilliwack Bruins?\", \"What are the individual Pick # values for D players from Chilliwack Bruins?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"hockey_players\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Pick #\": \"ordinal selection number\"},\n        \"scale_issues\": [\"Pick # column is stored as object/string type but contains numeric values that should be summed\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Sample shows 20 rows but shape indicates 40 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Pick # values should be convertible to numeric for summation\", \"Position values should be exact matches (case-sensitive)\", \"Team from values should be exact matches (case-sensitive)\"],\n        \"derived_filters\": [\"Filter rows where Position contains 'D'\", \"Filter rows where Team from contains 'Chilliwack Bruins'\"],\n        \"statistical_tests\": [\"Check for missing Pick # values in filtered subset\", \"Verify all Pick # values are numeric\"],\n        \"output_format_requirements\": [\"Single numeric total\", \"Should handle potential multiple D players from Chilliwack Bruins\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.019168138504028,
+  "token_usage": {
+    "input_tokens": 1043,
+    "output_tokens": 457
+  }
+}

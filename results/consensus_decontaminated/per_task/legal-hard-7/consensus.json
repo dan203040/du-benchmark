@@ -1,0 +1,345 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "relative growth rate (percentage change) of identity theft reports between 2020 and 2024 for each theft category",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "relative growth rate (percentage change) of identity theft reports between 2020 and 2024 for each theft category",
+        "Identity theft category with fastest relative growth rate between 2020 and 2024",
+        "Relative growth rate of each identity theft category between 2020 and 2024"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year between 2020 and 2024 inclusive",
+        "Theft Type in top three categories: Bank Account, Credit Card, Loan or Lease",
+        "Year IN (2020, 2024)",
+        "Years 2020 and 2024"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year between 2020 and 2024 inclusive",
+          "Theft Type in top three categories: Bank Account, Credit Card, Loan or Lease"
+        ],
+        [
+          "Year IN (2020, 2024)"
+        ],
+        [
+          "Years 2020 and 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Theft Type"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Theft Type"
+        ],
+        [
+          "Theft Type"
+        ],
+        [
+          "Theft Type"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "table",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the number of reports for each theft type in 2020?",
+        "What is the number of reports for each theft type in 2024?",
+        "How to calculate relative growth: (2024_reports - 2020_reports) / 2020_reports * 100%?",
+        "Which theft type has the highest percentage growth from 2020 to 2024?",
+        "What are the number of reports for each theft type in 2020?",
+        "What are the number of reports for each theft type in 2024?",
+        "What is the relative growth rate (percentage change) for each theft type from 2020 to 2024?",
+        "Which theft type has the maximum relative growth rate?",
+        "What is the relative growth rate for each theft type between 2020 and 2024?"
+      ],
+      "confidence": 0.40740740740740744,
+      "votes": [
+        [
+          "What is the number of reports for each theft type in 2020?",
+          "What is the number of reports for each theft type in 2024?",
+          "How to calculate relative growth: (2024_reports - 2020_reports) / 2020_reports * 100%?",
+          "Which theft type has the highest percentage growth from 2020 to 2024?"
+        ],
+        [
+          "What are the number of reports for each theft type in 2020?",
+          "What are the number of reports for each theft type in 2024?",
+          "What is the relative growth rate (percentage change) for each theft type from 2020 to 2024?",
+          "Which theft type has the maximum relative growth rate?"
+        ],
+        [
+          "What is the number of reports for each theft type in 2020?",
+          "What is the number of reports for each theft type in 2024?",
+          "What is the relative growth rate for each theft type between 2020 and 2024?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+        ],
+        [
+          "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+        ],
+        [
+          "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account' in sample data - likely mislabeled dtype",
+        "Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in the data",
+        "Column 'Year' has dtype object but contains numeric year values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account' in sample data - likely mislabeled dtype"
+        ],
+        [
+          "Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in the data",
+          "Column 'Year' has dtype object but contains numeric year values"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count of identity theft reports",
+        "year": "year",
+        "theft type": "categorical"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "# of Reports": "count of identity theft reports"
+        },
+        {
+          "# of Reports": "count",
+          "Year": "year",
+          "Theft Type": "categorical"
+        },
+        {
+          "# of Reports": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Data appears to be aggregated yearly counts - no scaling issues evident"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data appears to be aggregated yearly counts - no scaling issues evident"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Only one data source provided - no cross-source conflicts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only one data source provided - no cross-source conflicts"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 1.0,
+      "votes": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be 2020-2024 inclusive",
+        "Theft Type should be one of: Bank Account, Credit Card, Loan or Lease",
+        "# of Reports should be non-negative integers",
+        "Only years 2020 and 2024 are needed for the analysis",
+        "Relative growth calculated as ((2024 value - 2020 value) / 2020 value) * 100",
+        "All three theft categories must have data for both 2020 and 2024",
+        "Theft Type should be one of 'Bank Account', 'Credit Card', 'Loan or Lease'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be 2020-2024 inclusive",
+          "Theft Type should be one of: Bank Account, Credit Card, Loan or Lease",
+          "# of Reports should be non-negative integers"
+        ],
+        [
+          "Only years 2020 and 2024 are needed for the analysis",
+          "Relative growth calculated as ((2024 value - 2020 value) / 2020 value) * 100",
+          "All three theft categories must have data for both 2020 and 2024"
+        ],
+        [
+          "Theft Type should be one of 'Bank Account', 'Credit Card', 'Loan or Lease'"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to only include years 2020 and 2024 for growth calculation",
+        "Ensure each theft type has data for both 2020 and 2024",
+        "Filter to baseline year 2020 and end year 2024",
+        "Year is 2020 or 2024"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to only include years 2020 and 2024 for growth calculation",
+          "Ensure each theft type has data for both 2020 and 2024"
+        ],
+        [
+          "Filter to baseline year 2020 and end year 2024"
+        ],
+        [
+          "Year is 2020 or 2024"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing years for any theft category",
+        "Verify monotonic growth/decline patterns are reasonable"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing years for any theft category",
+          "Verify monotonic growth/decline patterns are reasonable"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Table showing theft type, 2020 reports, 2024 reports, percentage growth",
+        "Sort by percentage growth descending to identify fastest growing",
+        "Return the single theft category name with highest relative growth",
+        "Include the growth rate percentage as supporting information",
+        "List of theft types sorted by relative growth rate in descending order"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Table showing theft type, 2020 reports, 2024 reports, percentage growth",
+          "Sort by percentage growth descending to identify fastest growing"
+        ],
+        [
+          "Return the single theft category name with highest relative growth",
+          "Include the growth rate percentage as supporting information"
+        ],
+        [
+          "List of theft types sorted by relative growth rate in descending order"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6148148148148149
+}

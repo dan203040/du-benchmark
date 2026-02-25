@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Count of award-winning films",
+    "filters": [
+      "Opening Film equals 'Encounters at the End of the World'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which year had 'Encounters at the End of the World' as the opening film?",
+      "What is the award-winning film for that year?",
+      "How many award-winning films are listed for that specific row?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "International Documentary Film Festival Amsterdam (IDFA)"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Date (Opening)": "date string (Month Day)",
+      "Date (Closing)": "date string (Month Day)",
+      "Number of Screening": "count of films with mixed format text",
+      "Award-Winning Film": "film title (text)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Number of Screening column contains mixed format text like '43 films 43 televised'",
+      "Opening Film and Award-Winning Film columns contain text values that may be comma-separated or single values",
+      "Date columns do not include year information"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Opening Film must match 'Encounters at the End of the World' exactly",
+      "Award-Winning Film column may contain single film or multiple films"
+    ],
+    "derived_filters": [
+      "Filter rows where Opening Film = 'Encounters at the End of the World'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric count",
+      "If Award-Winning Film contains multiple films separated by delimiters, count them appropriately",
+      "If only one film is listed, return 1"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of award-winning films\",\n    \"filters\": [\"Opening Film equals 'Encounters at the End of the World'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which year had 'Encounters at the End of the World' as the opening film?\",\n      \"What is the award-winning film for that year?\",\n      \"How many award-winning films are listed for that specific row?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"International Documentary Film Festival Amsterdam (IDFA)\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar year\",\n      \"Date (Opening)\": \"date string (Month Day)\",\n      \"Date (Closing)\": \"date string (Month Day)\",\n      \"Number of Screening\": \"count of films with mixed format text\",\n      \"Award-Winning Film\": \"film title (text)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Number of Screening column contains mixed format text like '43 films 43 televised'\",\n      \"Opening Film and Award-Winning Film columns contain text values that may be comma-separated or single values\",\n      \"Date columns do not include year information\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Opening Film must match 'Encounters at the End of the World' exactly\",\n      \"Award-Winning Film column may contain single film or multiple films\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Opening Film = 'Encounters at the End of the World'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric count\",\n      \"If Award-Winning Film contains multiple films separated by delimiters, count them appropriately\",\n      \"If only one film is listed, return 1\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.20860505104065,
+  "token_usage": {
+    "input_tokens": 1288,
+    "output_tokens": 601
+  }
+}

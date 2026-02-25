@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "FloodProbability for each id in test.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "sample_submission.csv",
+      "test.csv",
+      "train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "MonsoonIntensity": "ordinal scale",
+      "TopographyDrainage": "ordinal scale",
+      "RiverManagement": "ordinal scale",
+      "Deforestation": "ordinal scale",
+      "Urbanization": "ordinal scale",
+      "ClimateChange": "ordinal scale",
+      "DamsQuality": "ordinal scale",
+      "Siltation": "ordinal scale",
+      "AgriculturalPractices": "ordinal scale",
+      "Encroachments": "ordinal scale",
+      "IneffectiveDisasterPreparedness": "ordinal scale",
+      "DrainageSystems": "ordinal scale",
+      "CoastalVulnerability": "ordinal scale",
+      "Landslides": "ordinal scale",
+      "Watersheds": "ordinal scale",
+      "DeterioratingInfrastructure": "ordinal scale",
+      "PopulationScore": "ordinal scale",
+      "WetlandLoss": "ordinal scale",
+      "InadequatePlanning": "ordinal scale",
+      "PoliticalFactors": "ordinal scale",
+      "FloodProbability": "probability"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 22,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "FloodProbability in sample_submission.csv should be between 0 and 1",
+      "FloodProbability in train.csv should be between 0 and 1"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for multicollinearity among independent variables in train.csv",
+      "Evaluate feature importance using a suitable model"
+    ],
+    "output_format_requirements": [
+      "submission.csv must contain 'id' and 'FloodProbability' columns",
+      "submission.csv must have the same number of rows as test.csv",
+      "FloodProbability values in submission.csv must be between 0 and 1"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"FloodProbability for each id in test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"sample_submission.csv\",\n      \"test.csv\",\n      \"train.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"MonsoonIntensity\": \"ordinal scale\",\n      \"TopographyDrainage\": \"ordinal scale\",\n      \"RiverManagement\": \"ordinal scale\",\n      \"Deforestation\": \"ordinal scale\",\n      \"Urbanization\": \"ordinal scale\",\n      \"ClimateChange\": \"ordinal scale\",\n      \"DamsQuality\": \"ordinal scale\",\n      \"Siltation\": \"ordinal scale\",\n      \"AgriculturalPractices\": \"ordinal scale\",\n      \"Encroachments\": \"ordinal scale\",\n      \"IneffectiveDisasterPreparedness\": \"ordinal scale\",\n      \"DrainageSystems\": \"ordinal scale\",\n      \"CoastalVulnerability\": \"ordinal scale\",\n      \"Landslides\": \"ordinal scale\",\n      \"Watersheds\": \"ordinal scale\",\n      \"DeterioratingInfrastructure\": \"ordinal scale\",\n      \"PopulationScore\": \"ordinal scale\",\n      \"WetlandLoss\": \"ordinal scale\",\n      \"InadequatePlanning\": \"ordinal scale\",\n      \"PoliticalFactors\": \"ordinal scale\",\n      \"FloodProbability\": \"probability\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 22,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"FloodProbability in sample_submission.csv should be between 0 and 1\",\n      \"FloodProbability in train.csv should be between 0 and 1\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Check for multicollinearity among independent variables in train.csv\",\n      \"Evaluate feature importance using a suitable model\"\n    ],\n    \"output_format_requirements\": [\n      \"submission.csv must contain 'id' and 'FloodProbability' columns\",\n      \"submission.csv must have the same number of rows as test.csv\",\n      \"FloodProbability values in submission.csv must be between 0 and 1\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.1851959228515625,
+  "token_usage": {}
+}

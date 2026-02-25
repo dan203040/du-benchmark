@@ -1,0 +1,342 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "most frequent experience level and its corresponding ratio as a decimal",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "most frequent experience level and its corresponding ratio as a decimal",
+        "Most frequent experience level (using label mapping from tips.md) and its ratio (frequency / total count)",
+        "Most frequent transformed experience level and its ratio"
+      ]
+    },
+    "filters": {
+      "value": [
+        "employment_type = 'FT' (implied from sample data)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "employment_type = 'FT' (implied from sample data)"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "experience_level",
+        "experience_level_transformed"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "experience_level"
+        ],
+        [
+          "experience_level"
+        ],
+        [
+          "experience_level_transformed"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the label mapping from tips.md?",
+        "How to transform experience_level labels using the mapping?",
+        "What is the frequency distribution of transformed experience levels?",
+        "Which experience level has the highest frequency?",
+        "What is the ratio of that level's count to total count?",
+        "What is the label mapping for experience_level in tips.md?",
+        "What are the value counts for each experience_level code in ds_salaries.csv?",
+        "Which experience_level code appears most frequently?",
+        "What is the transformed/mapped label for the most frequent experience_level?",
+        "What is the ratio of the most frequent experience_level (count / total records)?",
+        "Transform the 'experience_level' column using the provided mapping.",
+        "Calculate the frequency of each transformed experience level.",
+        "Identify the most frequent transformed experience level.",
+        "Calculate the ratio of the most frequent experience level to the total number of entries."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the label mapping from tips.md?",
+          "How to transform experience_level labels using the mapping?",
+          "What is the frequency distribution of transformed experience levels?",
+          "Which experience level has the highest frequency?",
+          "What is the ratio of that level's count to total count?"
+        ],
+        [
+          "What is the label mapping for experience_level in tips.md?",
+          "What are the value counts for each experience_level code in ds_salaries.csv?",
+          "Which experience_level code appears most frequently?",
+          "What is the transformed/mapped label for the most frequent experience_level?",
+          "What is the ratio of the most frequent experience_level (count / total records)?"
+        ],
+        [
+          "Transform the 'experience_level' column using the provided mapping.",
+          "Calculate the frequency of each transformed experience level.",
+          "Identify the most frequent transformed experience level.",
+          "Calculate the ratio of the most frequent experience level to the total number of entries."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "ds_salaries.csv",
+        "tips.md"
+      ],
+      "confidence": 0.8333333333333333,
+      "votes": [
+        [
+          "ds_salaries.csv",
+          "tips.md"
+        ],
+        [
+          "ds_salaries.csv",
+          "tips.md"
+        ],
+        [
+          "ds_salaries.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "tips.md file not provided in data files list"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "tips.md file not provided in data files list"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "salary": "currency units vary by salary_currency",
+        "salary_in_usd": "USD",
+        "remote_ratio": "percentage (0-100)",
+        "ratio": "decimal (proportion of total records)",
+        "experience_level": "categorical code requiring mapping"
+      },
+      "confidence": 0.4666666666666666,
+      "votes": [
+        {
+          "salary": "currency units vary by salary_currency",
+          "salary_in_usd": "USD",
+          "remote_ratio": "percentage (0-100)"
+        },
+        {
+          "ratio": "decimal (proportion of total records)",
+          "experience_level": "categorical code requiring mapping"
+        },
+        {
+          "salary": "currency",
+          "salary_in_usd": "USD"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "salary column has extreme values (e.g., 11000000 HUF) that need currency conversion",
+        "salary_in_usd provides normalized values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "salary column has extreme values (e.g., 11000000 HUF) that need currency conversion",
+          "salary_in_usd provides normalized values"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "tips.md content unknown - needed for label mapping",
+        "experience_level codes (EN, MI, SE, EX) in ds_salaries.csv need to be mapped to full labels from tips.md"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "tips.md content unknown - needed for label mapping"
+        ],
+        [
+          "experience_level codes (EN, MI, SE, EX) in ds_salaries.csv need to be mapped to full labels from tips.md"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 1.0,
+      "votes": [
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "experience_level should be transformed using tips.md mapping",
+        "ratio should be calculated as decimal (0-1)",
+        "Only FT employment_type considered based on sample",
+        "Must use label mapping from tips.md to transform experience_level codes",
+        "Ratio must be calculated as decimal (not percentage)",
+        "Must identify the single most frequent experience level"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "experience_level should be transformed using tips.md mapping",
+          "ratio should be calculated as decimal (0-1)",
+          "Only FT employment_type considered based on sample"
+        ],
+        [
+          "Must use label mapping from tips.md to transform experience_level codes",
+          "Ratio must be calculated as decimal (not percentage)",
+          "Must identify the single most frequent experience level"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "employment_type = 'FT' (full-time)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "employment_type = 'FT' (full-time)"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Frequency count of transformed experience_level",
+        "Maximum frequency identification"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Frequency count of transformed experience_level",
+          "Maximum frequency identification"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "JSON format with 'The most frequent experience level' and 'ratio' keys",
+        "ratio as decimal",
+        "Output must be in exact JSON format with keys 'The most frequent experience level' and 'ratio'",
+        "The most frequent experience level should be the mapped/transformed label (not the code)",
+        "Ratio should be a decimal value (frequency divided by total count of 607)",
+        "The most frequent experience level should be a string.",
+        "The ratio should be a decimal."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "JSON format with 'The most frequent experience level' and 'ratio' keys",
+          "ratio as decimal"
+        ],
+        [
+          "Output must be in exact JSON format with keys 'The most frequent experience level' and 'ratio'",
+          "The most frequent experience level should be the mapped/transformed label (not the code)",
+          "Ratio should be a decimal value (frequency divided by total count of 607)"
+        ],
+        [
+          "The most frequent experience level should be a string.",
+          "The ratio should be a decimal."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5900000000000001
+}

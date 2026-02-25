@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "maximum engine volume across all engines",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the Volume column format and unit?",
+      "How should volume values be parsed from the 'Volume' column?",
+      "Are there any null or missing values in the Volume column?",
+      "What is the maximum numeric value in the Volume column?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Car_model_info"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Volume": "liters (L)"
+    },
+    "scale_issues": [
+      "Volume column is stored as object/string type (e.g., '2.8L', '5.4L') and needs to be parsed to numeric",
+      "Volume values include unit suffix 'L' that must be stripped for numeric comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Volume column contains values in format '<number>L' (e.g., '2.8L', '5.4L')",
+      "Volume needs string parsing to extract numeric value",
+      "Some 'Produced' values appear to be missing/empty in the sample data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Volume values must be positive numbers",
+      "Volume column must be converted from string to numeric type",
+      "Extract numeric value by removing 'L' suffix from Volume column"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single numeric value representing maximum volume in liters",
+      "Include unit (L) in final output for clarity"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"maximum engine volume across all engines\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the Volume column format and unit?\",\n      \"How should volume values be parsed from the 'Volume' column?\",\n      \"Are there any null or missing values in the Volume column?\",\n      \"What is the maximum numeric value in the Volume column?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Car_model_info\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Volume\": \"liters (L)\"\n    },\n    \"scale_issues\": [\n      \"Volume column is stored as object/string type (e.g., '2.8L', '5.4L') and needs to be parsed to numeric\",\n      \"Volume values include unit suffix 'L' that must be stripped for numeric comparison\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Volume column contains values in format '<number>L' (e.g., '2.8L', '5.4L')\",\n      \"Volume needs string parsing to extract numeric value\",\n      \"Some 'Produced' values appear to be missing/empty in the sample data\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Volume values must be positive numbers\",\n      \"Volume column must be converted from string to numeric type\",\n      \"Extract numeric value by removing 'L' suffix from Volume column\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single numeric value representing maximum volume in liters\",\n      \"Include unit (L) in final output for clarity\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.062711954116821,
+  "token_usage": {
+    "input_tokens": 1847,
+    "output_tokens": 563
+  }
+}

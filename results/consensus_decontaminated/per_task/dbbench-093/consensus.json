@@ -1,0 +1,341 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average number of laps driven per race in Tony Gulotta's Indianapolis 500 career",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "average number of laps driven per race in Tony Gulotta's Indianapolis 500 career",
+        "average number of laps driven in the Indianapolis 500 in Tony Gulotta's career",
+        "average number of laps driven by Tony Gulotta"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Filter to Tony Gulotta's race results only",
+        "Exclude races where Laps data is missing or invalid",
+        "Tony Gulotta's career races",
+        "Indianapolis 500 races only",
+        "driver is Tony Gulotta"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to Tony Gulotta's race results only",
+          "Exclude races where Laps data is missing or invalid"
+        ],
+        [
+          "Tony Gulotta's career races",
+          "Indianapolis 500 races only"
+        ],
+        [
+          "driver is Tony Gulotta"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many Indianapolis 500 races did Tony Gulotta participate in?",
+        "What is the total number of laps driven across all races?",
+        "Are there any races with incomplete lap data that should be excluded?",
+        "What is the sum of laps divided by number of races?"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "How many Indianapolis 500 races did Tony Gulotta participate in?",
+          "What is the total number of laps driven across all races?",
+          "Are there any races with incomplete lap data that should be excluded?"
+        ],
+        [
+          "How many Indianapolis 500 races did Tony Gulotta participate in?",
+          "What is the total number of laps driven across all races?",
+          "What is the sum of laps divided by number of races?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Race Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Race Results"
+        ],
+        [
+          "Race Results"
+        ],
+        [
+          "Race Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "All columns are stored as object/string type despite containing numeric data (Year, Laps, Led, etc.)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All columns are stored as object/string type despite containing numeric data (Year, Laps, Led, etc.)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "year",
+        "car": "car number",
+        "start": "starting position",
+        "qual": "qualifying speed (mph)",
+        "rank": "qualifying rank",
+        "finish": "finishing position",
+        "laps": "number of laps completed",
+        "led": "number of laps led",
+        "retired": "reason for retirement"
+      },
+      "confidence": 0.48148148148148145,
+      "votes": [
+        {
+          "Year": "year",
+          "Car": "car number",
+          "Start": "starting position",
+          "Qual": "qualifying speed (mph)",
+          "Rank": "qualifying rank",
+          "Finish": "finishing position",
+          "Laps": "number of laps completed",
+          "Led": "number of laps led",
+          "Retired": "reason for retirement"
+        },
+        {
+          "Laps": "count",
+          "Qual": "mph",
+          "Led": "count"
+        },
+        {
+          "Laps": "laps"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Laps column contains string values that need conversion to numeric",
+        "Year column contains string values that need conversion to numeric",
+        "Some Laps values may represent incomplete races (less than 200 laps)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Laps column contains string values that need conversion to numeric",
+          "Year column contains string values that need conversion to numeric",
+          "Some Laps values may represent incomplete races (less than 200 laps)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 9.0,
+      "confidence": 1.0,
+      "votes": [
+        9.0,
+        9.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Laps should be numeric values between 0 and 200 for Indianapolis 500",
+        "Year should be between 1911 and present for Indianapolis 500",
+        "Finish position should be numeric or 'DNS'/'DNQ' for non-starters",
+        "Laps column must be numeric and non-negative",
+        "Only count races where Laps value is valid/non-null",
+        "Each row represents one Indianapolis 500 race entry",
+        "The 'Laps' column must be numeric to calculate the average."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Laps should be numeric values between 0 and 200 for Indianapolis 500",
+          "Year should be between 1911 and present for Indianapolis 500",
+          "Finish position should be numeric or 'DNS'/'DNQ' for non-starters"
+        ],
+        [
+          "Laps column must be numeric and non-negative",
+          "Only count races where Laps value is valid/non-null",
+          "Each row represents one Indianapolis 500 race entry"
+        ],
+        [
+          "The 'Laps' column must be numeric to calculate the average."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to only rows where Laps is a valid numeric value",
+        "Exclude rows where Laps is 0 or represents a DNS/DNQ situation",
+        "Exclude rows where Laps cannot be converted to numeric",
+        "Include all rows as they represent Indianapolis 500 races",
+        "Identify rows where the driver is Tony Gulotta. This requires a separate data source or external knowledge, as the provided data does not contain driver names."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to only rows where Laps is a valid numeric value",
+          "Exclude rows where Laps is 0 or represents a DNS/DNQ situation"
+        ],
+        [
+          "Exclude rows where Laps cannot be converted to numeric",
+          "Include all rows as they represent Indianapolis 500 races"
+        ],
+        [
+          "Identify rows where the driver is Tony Gulotta. This requires a separate data source or external knowledge, as the provided data does not contain driver names."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Laps column (values significantly below 200 may indicate DNFs)",
+        "Verify data completeness across years (missing 1936 in sample)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Laps column (values significantly below 200 may indicate DNFs)",
+          "Verify data completeness across years (missing 1936 in sample)"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Average should be calculated as mean(Laps) for all Tony Gulotta's races",
+        "Result should be a single numeric value with appropriate precision",
+        "Result should be a single numeric value",
+        "Should represent average laps per race",
+        "Round to reasonable precision (e.g., 2 decimal places)",
+        "Output should be a single numerical value representing the average number of laps."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Average should be calculated as mean(Laps) for all Tony Gulotta's races",
+          "Result should be a single numeric value with appropriate precision"
+        ],
+        [
+          "Result should be a single numeric value",
+          "Should represent average laps per race",
+          "Round to reasonable precision (e.g., 2 decimal places)"
+        ],
+        [
+          "Output should be a single numerical value representing the average number of laps."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5824074074074075
+}

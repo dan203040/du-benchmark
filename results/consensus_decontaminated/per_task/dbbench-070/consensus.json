@@ -1,0 +1,325 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "sum of crowd numbers for matches at Glenferrie Oval",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "sum of crowd numbers for matches at Glenferrie Oval",
+        "total crowd attendance",
+        "Total crowd attendance for matches played at Glenferrie Oval"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Venue = 'Glenferrie Oval'",
+        "Venue equals 'Glenferrie Oval'",
+        "Venue is Glenferrie Oval"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Venue = 'Glenferrie Oval'"
+        ],
+        [
+          "Venue equals 'Glenferrie Oval'"
+        ],
+        [
+          "Venue is Glenferrie Oval"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total crowd attendance across all matches at Glenferrie Oval?",
+        "How many matches were played at Glenferrie Oval?",
+        "What is the average crowd size at Glenferrie Oval?",
+        "Which rows have Venue = 'Glenferrie Oval'?",
+        "What are the Crowd values for those rows?",
+        "Sum all Crowd values for Glenferrie Oval matches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the total crowd attendance across all matches at Glenferrie Oval?",
+          "How many matches were played at Glenferrie Oval?",
+          "What is the average crowd size at Glenferrie Oval?"
+        ],
+        [
+          "Which rows have Venue = 'Glenferrie Oval'?",
+          "What are the Crowd values for those rows?",
+          "Sum all Crowd values for Glenferrie Oval matches"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Aussie Rules Football Match Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Aussie Rules Football Match Results"
+        ],
+        [
+          "Aussie Rules Football Match Results"
+        ],
+        [
+          "Aussie Rules Football Match Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Crowd column is stored as object/string type but contains numeric data with commas",
+        "Score columns (Home team score, Away team score) contain both points format (e.g., '7.9 (51)') and numeric values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Crowd column is stored as object/string type but contains numeric data with commas",
+          "Score columns (Home team score, Away team score) contain both points format (e.g., '7.9 (51)') and numeric values"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "crowd": "number of people",
+        "date": "date",
+        "home team score": "Australian rules football score format",
+        "away team score": "Australian rules football score format"
+      },
+      "confidence": 0.5833333333333333,
+      "votes": [
+        {
+          "Crowd": "number of people",
+          "Date": "date",
+          "Home team score": "Australian rules football score format",
+          "Away team score": "Australian rules football score format"
+        },
+        {
+          "Crowd": "number of people (count)",
+          "Date": "date format"
+        },
+        {
+          "Crowd": "number of people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Crowd numbers contain commas as thousands separators (e.g., '17,000') which need to be removed for numerical operations",
+        "Date format appears inconsistent (historical dates like '1 July 1939' vs modern dates like '12 May 2021')",
+        "Crowd values contain commas as thousands separators (e.g., '8,000')",
+        "Crowd column has dtype 'object' but represents numeric values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Crowd numbers contain commas as thousands separators (e.g., '17,000') which need to be removed for numerical operations",
+          "Date format appears inconsistent (historical dates like '1 July 1939' vs modern dates like '12 May 2021')"
+        ],
+        [
+          "Crowd values contain commas as thousands separators (e.g., '8,000')",
+          "Crowd column has dtype 'object' but represents numeric values"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Crowd values must be non-negative integers",
+        "Venue names should be consistent (exact match required for 'Glenferrie Oval')",
+        "Date values should be valid dates",
+        "Venue must exactly match 'Glenferrie Oval' (case-sensitive)",
+        "Crowd values must be parsed from string format with commas removed",
+        "Only sum non-null Crowd values",
+        "Crowd column must be converted to numeric type after removing commas."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Crowd values must be non-negative integers",
+          "Venue names should be consistent (exact match required for 'Glenferrie Oval')",
+          "Date values should be valid dates"
+        ],
+        [
+          "Venue must exactly match 'Glenferrie Oval' (case-sensitive)",
+          "Crowd values must be parsed from string format with commas removed",
+          "Only sum non-null Crowd values"
+        ],
+        [
+          "Crowd column must be converted to numeric type after removing commas."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Venue column contains 'Glenferrie Oval' (case-sensitive exact match)",
+        "Remove commas from Crowd column before summation",
+        "Convert Crowd column to numeric type",
+        "Filter rows where Venue == 'Glenferrie Oval'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Venue column contains 'Glenferrie Oval' (case-sensitive exact match)",
+          "Remove commas from Crowd column before summation",
+          "Convert Crowd column to numeric type"
+        ],
+        [
+          "Filter rows where Venue == 'Glenferrie Oval'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in Crowd column for Glenferrie Oval matches",
+        "Verify that all filtered rows have valid numeric crowd values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in Crowd column for Glenferrie Oval matches",
+          "Verify that all filtered rows have valid numeric crowd values"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Total should be presented as a single integer",
+        "Consider formatting the result with thousands separators for readability",
+        "Return total as numeric value",
+        "Total should be sum of all matching crowd values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total should be presented as a single integer",
+          "Consider formatting the result with thousands separators for readability"
+        ],
+        [
+          "Return total as numeric value",
+          "Total should be sum of all matching crowd values"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5791666666666668
+}

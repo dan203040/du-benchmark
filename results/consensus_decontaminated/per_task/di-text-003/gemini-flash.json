@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "Top 5 countries with highest and lowest birth rates after imputing missing values with the mean.",
+    "filters": [],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Calculate the mean of 'Birth Rate'.",
+      "Impute missing values in 'Birth Rate' with the calculated mean.",
+      "Identify the top 5 countries with the highest 'Birth Rate'.",
+      "Identify the top 5 countries with the lowest 'Birth Rate'.",
+      "Sort the top 5 highest and lowest birth rate countries from highest to lowest."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Birth Rate": "births per 1,000 population"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Density column has newline character in the name: 'Density\\n(P/Km2)'",
+      "Percentage columns have '%' in the name, e.g., 'Agricultural Land( %)'",
+      "GDP column contains '$' and commas, e.g., '$19,101,353,833 '",
+      "Some columns have mixed data types (e.g., numeric and string)."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Birth Rate' column may contain missing values that need to be handled.",
+      "The 'Birth Rate' column needs to be numeric for calculating the mean and sorting."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a JSON object with two keys: 'Top 5 countries with High Birth Rate' and 'Top 5 countries with Lowest Birth Rate'.",
+      "Each key should have a list of country names sorted from highest to lowest birth rate."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 5 countries with highest and lowest birth rates after imputing missing values with the mean.\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"Country\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Calculate the mean of 'Birth Rate'.\",\n      \"Impute missing values in 'Birth Rate' with the calculated mean.\",\n      \"Identify the top 5 countries with the highest 'Birth Rate'.\",\n      \"Identify the top 5 countries with the lowest 'Birth Rate'.\",\n      \"Sort the top 5 highest and lowest birth rate countries from highest to lowest.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"world-data-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Birth Rate\": \"births per 1,000 population\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 35,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Density column has newline character in the name: 'Density\\\\n(P/Km2)'\",\n      \"Percentage columns have '%' in the name, e.g., 'Agricultural Land( %)'\",\n      \"GDP column contains '$' and commas, e.g., '$19,101,353,833 '\",\n      \"Some columns have mixed data types (e.g., numeric and string).\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Birth Rate' column may contain missing values that need to be handled.\",\n      \"The 'Birth Rate' column needs to be numeric for calculating the mean and sorting.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a JSON object with two keys: 'Top 5 countries with High Birth Rate' and 'Top 5 countries with Lowest Birth Rate'.\",\n      \"Each key should have a list of country names sorted from highest to lowest birth rate.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 22.023746967315674,
+  "token_usage": {}
+}

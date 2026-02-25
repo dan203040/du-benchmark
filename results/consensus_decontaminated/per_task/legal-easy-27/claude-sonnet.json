@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Count of distinct states that have 'Prizes, Sweepstakes and Lotteries' in their top-10 report categories",
+    "filters": [
+      "Category equals 'Prizes, Sweepstakes and Lotteries'",
+      "Year is 2024"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which states have 'Prizes, Sweepstakes and Lotteries' as one of their categories?",
+      "How many unique states are represented in the filtered dataset?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Top_Ten_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage (with % symbol)"
+    },
+    "scale_issues": [
+      "Percentage column contains string values with '%' symbol rather than numeric decimals or floats"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Each state has exactly 10 rows representing their top-10 categories",
+      "Category names may contain commas and are properly quoted",
+      "Percentage values are stored as strings with '%' suffix"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each state should have exactly 10 category entries (top-10)",
+      "Category name must match exactly: 'Prizes, Sweepstakes and Lotteries'",
+      "Data is already filtered to 2024 based on filename"
+    ],
+    "derived_filters": [
+      "Filter rows where Category == 'Prizes, Sweepstakes and Lotteries'",
+      "Count unique values in State column after filtering"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer representing the count of states",
+      "The answer should be between 0 and 52 (50 states + DC + territories)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of distinct states that have 'Prizes, Sweepstakes and Lotteries' in their top-10 report categories\",\n    \"filters\": [\n      \"Category equals 'Prizes, Sweepstakes and Lotteries'\",\n      \"Year is 2024\"\n    ],\n    \"grouping_variables\": [\n      \"State\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which states have 'Prizes, Sweepstakes and Lotteries' as one of their categories?\",\n      \"How many unique states are represented in the filtered dataset?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_State_Top_Ten_Report_Categories.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Percentage\": \"percentage (with % symbol)\"\n    },\n    \"scale_issues\": [\n      \"Percentage column contains string values with '%' symbol rather than numeric decimals or floats\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Each state has exactly 10 rows representing their top-10 categories\",\n      \"Category names may contain commas and are properly quoted\",\n      \"Percentage values are stored as strings with '%' suffix\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Each state should have exactly 10 category entries (top-10)\",\n      \"Category name must match exactly: 'Prizes, Sweepstakes and Lotteries'\",\n      \"Data is already filtered to 2024 based on filename\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Category == 'Prizes, Sweepstakes and Lotteries'\",\n      \"Count unique values in State column after filtering\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer representing the count of states\",\n      \"The answer should be between 0 and 52 (50 states + DC + territories)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.094151258468628,
+  "token_usage": {
+    "input_tokens": 957,
+    "output_tokens": 648
+  }
+}

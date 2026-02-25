@@ -1,0 +1,334 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "year with greatest relative increase in total reports (Fraud, Identity Theft and Other) compared to previous year",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "year with greatest relative increase in total reports (Fraud, Identity Theft and Other) compared to previous year",
+        "Year with greatest relative increase (percentage change) in total reports compared to previous year",
+        "Year with the greatest relative increase in total reports compared to the previous year, between 2002 and 2024 inclusive."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year >= 2002",
+        "Year <= 2024"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Year >= 2002",
+          "Year <= 2024"
+        ],
+        [
+          "Year >= 2002",
+          "Year <= 2024"
+        ],
+        [
+          "Year >= 2002",
+          "Year <= 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate total reports for each year",
+        "Calculate year-over-year relative increase for each year",
+        "Identify maximum relative increase",
+        "What is the total number of reports for each year from 2002 to 2024?",
+        "What is the year-over-year absolute change in reports for each consecutive year pair?",
+        "What is the year-over-year relative (percentage) change in reports for each consecutive year pair?",
+        "Which year has the maximum relative increase compared to its previous year?",
+        "Calculate the total number of reports for each year.",
+        "Calculate the relative increase in total reports for each year compared to the previous year.",
+        "Identify the year with the maximum relative increase."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Calculate total reports for each year",
+          "Calculate year-over-year relative increase for each year",
+          "Identify maximum relative increase"
+        ],
+        [
+          "What is the total number of reports for each year from 2002 to 2024?",
+          "What is the year-over-year absolute change in reports for each consecutive year pair?",
+          "What is the year-over-year relative (percentage) change in reports for each consecutive year pair?",
+          "Which year has the maximum relative increase compared to its previous year?"
+        ],
+        [
+          "Calculate the total number of reports for each year.",
+          "Calculate the relative increase in total reports for each year compared to the previous year.",
+          "Identify the year with the maximum relative increase."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Report_Count.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Report_Count.csv"
+        ],
+        [
+          "2024_CSN_Report_Count.csv"
+        ],
+        [
+          "2024_CSN_Report_Count.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "# of reports": "count of reports",
+        "number of reports": "number of reports"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Year": "calendar year",
+          "# of Reports": "count of reports"
+        },
+        {
+          "Year": "calendar year (integer)",
+          "# of Reports": "count (integer)"
+        },
+        {
+          "Year": "year",
+          "Number of Reports": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column appears as float64 but contains integer years",
+        "# of Reports column is float64 but contains integer counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column appears as float64 but contains integer years",
+          "# of Reports column is float64 but contains integer counts"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be integers between 2001-2024",
+        "# of Reports should be non-negative integers",
+        "Data should be sorted by Year ascending",
+        "Year must be between 2002 and 2024 inclusive",
+        "Previous year data must exist to calculate relative increase (2002 requires 2001 data)",
+        "# of Reports must be positive and non-zero for valid percentage calculation",
+        "Year must be an integer.",
+        "Number of Reports must be a non-negative number."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be integers between 2001-2024",
+          "# of Reports should be non-negative integers",
+          "Data should be sorted by Year ascending"
+        ],
+        [
+          "Year must be between 2002 and 2024 inclusive",
+          "Previous year data must exist to calculate relative increase (2002 requires 2001 data)",
+          "# of Reports must be positive and non-zero for valid percentage calculation"
+        ],
+        [
+          "Year must be an integer.",
+          "Number of Reports must be a non-negative number."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude 2001 as baseline year for comparison",
+        "Require consecutive years for year-over-year calculation",
+        "Filter out Year = 2001 from final analysis (but retain for calculating 2002's increase)",
+        "Only consider years from 2002 to 2024 as candidates for greatest increase"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude 2001 as baseline year for comparison",
+          "Require consecutive years for year-over-year calculation"
+        ],
+        [
+          "Filter out Year = 2001 from final analysis (but retain for calculating 2002's increase)",
+          "Only consider years from 2002 to 2024 as candidates for greatest increase"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing years in sequence",
+        "Verify monotonic increase in reports over time"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing years in sequence",
+          "Verify monotonic increase in reports over time"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Year value as integer",
+        "Relative increase as percentage",
+        "Return the specific year (between 2002-2024) with the greatest relative increase",
+        "Relative increase calculated as: ((current_year - previous_year) / previous_year) * 100",
+        "Output the year with the greatest relative increase."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year value as integer",
+          "Relative increase as percentage"
+        ],
+        [
+          "Return the specific year (between 2002-2024) with the greatest relative increase",
+          "Relative increase calculated as: ((current_year - previous_year) / previous_year) * 100"
+        ],
+        [
+          "Output the year with the greatest relative increase."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6333333333333335
+}

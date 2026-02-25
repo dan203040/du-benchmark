@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "Model with the highest total Quantity",
+    "filters": [],
+    "grouping_variables": [
+      "Model"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total quantity for each model?",
+      "Which model has the maximum total quantity?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Vehicle_Data"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Length (feet)": "feet",
+      "Quantity": "count"
+    },
+    "scale_issues": [
+      "Length (feet) column contains text values with units (e.g., '60 (articulated)')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Newline characters in Powertrain column values",
+      "Fleet Series contains ranges and special characters (*)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Quantity must be non-negative integer",
+      "Year should be reasonable (e.g., 1900-2024)"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Sum of Quantity by Model",
+      "Maximum of aggregated Quantity"
+    ],
+    "output_format_requirements": [
+      "Model name",
+      "Total Quantity"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Model with the highest total Quantity\",\n        \"filters\": [],\n        \"grouping_variables\": [\"Model\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total quantity for each model?\", \"Which model has the maximum total quantity?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Vehicle_Data\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Length (feet)\": \"feet\", \"Quantity\": \"count\"},\n        \"scale_issues\": [\"Length (feet) column contains text values with units (e.g., '60 (articulated)')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 8,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Newline characters in Powertrain column values\", \"Fleet Series contains ranges and special characters (*)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Quantity must be non-negative integer\", \"Year should be reasonable (e.g., 1900-2024)\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [\"Sum of Quantity by Model\", \"Maximum of aggregated Quantity\"],\n        \"output_format_requirements\": [\"Model name\", \"Total Quantity\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.789175987243652,
+  "token_usage": {
+    "input_tokens": 1244,
+    "output_tokens": 360
+  }
+}

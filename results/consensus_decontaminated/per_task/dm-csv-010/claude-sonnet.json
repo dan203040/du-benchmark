@@ -1,0 +1,111 @@
+{
+  "m_q": {
+    "target_metric": "Average monthly sales volume (units sold) for each bike category",
+    "filters": [],
+    "grouping_variables": [
+      "category_name",
+      "year-month"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the total quantity of products sold for each order?",
+      "What category does each product belong to?",
+      "What is the order date for each order to extract year-month?",
+      "What is the monthly total sales volume (sum of quantities) for each category?",
+      "What is the average of monthly totals for each category across all months?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "order_items.csv",
+      "orders.csv",
+      "products.csv",
+      "categories.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "order_items.csv",
+        "right_source": "orders.csv",
+        "left_column": "order_id",
+        "right_column": "order_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "order_items.csv",
+        "right_source": "products.csv",
+        "left_column": "product_id",
+        "right_column": "product_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "products.csv",
+        "right_source": "categories.csv",
+        "left_column": "category_id",
+        "right_column": "category_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "category_name": "Category",
+      "average_monthly_units": "Average Units Sold"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "quantity": "units",
+      "Average Units Sold": "units per month",
+      "order_date": "date (YYYY-MM-DD)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Output file avg_units_sold.csv should have exactly 2 columns: Category and Average Units Sold",
+      "Category column should contain category names matching categories.csv",
+      "Average Units Sold should be numeric values (float) representing mean of monthly totals",
+      "Output should have 7 rows (one per category) matching sample_result.csv structure",
+      "order_date in orders.csv is in string format and needs to be parsed to extract year-month"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include completed orders (order_status = 4) or all orders depending on business logic",
+      "Average must be calculated as mean of monthly totals, not overall mean",
+      "All 7 categories from categories.csv should be present in output",
+      "Categories with no sales should have appropriate handling (0 or null)"
+    ],
+    "derived_filters": [
+      "Extract year-month from order_date field",
+      "Group by category_name and year-month to get monthly totals",
+      "Then compute mean across all months for each category"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named avg_units_sold.csv",
+      "Must match format of sample_result.csv with columns: Category, Average Units Sold",
+      "Category names must match exactly with category_name from categories.csv",
+      "Average Units Sold should be numeric with appropriate decimal precision",
+      "All 7 categories must be present in output: Children Bicycles, Comfort Bicycles, Cruisers Bicycles, Cyclocross Bicycles, Electric Bikes, Mountain Bikes, Road Bikes"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average monthly sales volume (units sold) for each bike category\",\n    \"filters\": [],\n    \"grouping_variables\": [\"category_name\", \"year-month\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the total quantity of products sold for each order?\",\n      \"What category does each product belong to?\",\n      \"What is the order date for each order to extract year-month?\",\n      \"What is the monthly total sales volume (sum of quantities) for each category?\",\n      \"What is the average of monthly totals for each category across all months?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"order_items.csv\", \"orders.csv\", \"products.csv\", \"categories.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"order_items.csv\",\n        \"right_source\": \"orders.csv\",\n        \"left_column\": \"order_id\",\n        \"right_column\": \"order_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"order_items.csv\",\n        \"right_source\": \"products.csv\",\n        \"left_column\": \"product_id\",\n        \"right_column\": \"product_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"products.csv\",\n        \"right_source\": \"categories.csv\",\n        \"left_column\": \"category_id\",\n        \"right_column\": \"category_id\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"category_name\": \"Category\",\n      \"average_monthly_units\": \"Average Units Sold\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"quantity\": \"units\",\n      \"Average Units Sold\": \"units per month\",\n      \"order_date\": \"date (YYYY-MM-DD)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Output file avg_units_sold.csv should have exactly 2 columns: Category and Average Units Sold\",\n      \"Category column should contain category names matching categories.csv\",\n      \"Average Units Sold should be numeric values (float) representing mean of monthly totals\",\n      \"Output should have 7 rows (one per category) matching sample_result.csv structure\",\n      \"order_date in orders.csv is in string format and needs to be parsed to extract year-month\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include completed orders (order_status = 4) or all orders depending on business logic\",\n      \"Average must be calculated as mean of monthly totals, not overall mean\",\n      \"All 7 categories from categories.csv should be present in output\",\n      \"Categories with no sales should have appropriate handling (0 or null)\"\n    ],\n    \"derived_filters\": [\n      \"Extract year-month from order_date field\",\n      \"Group by category_name and year-month to get monthly totals\",\n      \"Then compute mean across all months for each category\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named avg_units_sold.csv\",\n      \"Must match format of sample_result.csv with columns: Category, Average Units Sold\",\n      \"Category names must match exactly with category_name from categories.csv\",\n      \"Average Units Sold should be numeric with appropriate decimal precision\",\n      \"All 7 categories must be present in output: Children Bicycles, Comfort Bicycles, Cruisers Bicycles, Cyclocross Bicycles, Electric Bikes, Mountain Bikes, Road Bikes\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.49617099761963,
+  "token_usage": {
+    "input_tokens": 4875,
+    "output_tokens": 1032
+  }
+}

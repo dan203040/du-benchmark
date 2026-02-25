@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Count of trains that run daily",
+    "filters": [
+      "Day == 'Daily'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which column indicates the frequency/schedule of train runs?",
+      "What value in the Day column represents daily trains?",
+      "How many unique trains have 'Daily' in the Day column?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Sr. No.": "sequential_number",
+      "Train No.": "train_identifier",
+      "Arrival": "time_HH:MM",
+      "Departure": "time_HH:MM",
+      "Day": "frequency_schedule"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/a",
+      "NA"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Day column contains mixed format values: 'Daily' for daily trains and abbreviated day codes (M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday) separated by commas",
+      "Time format in Arrival and Departure is HH:MM in 24-hour format",
+      "Some Arrival/Departure values may be 'N/a' for terminal stations"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Day column must be checked for exact match 'Daily' (case-sensitive)",
+      "Each Train No. should be unique per record",
+      "Result should be a non-negative integer count"
+    ],
+    "derived_filters": [
+      "Filter where Day column exactly equals 'Daily' (not partial match with comma-separated days)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer value representing total count of daily trains",
+      "Include verification that count matches number of rows where Day='Daily'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of trains that run daily\",\n    \"filters\": [\"Day == 'Daily'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which column indicates the frequency/schedule of train runs?\",\n      \"What value in the Day column represents daily trains?\",\n      \"How many unique trains have 'Daily' in the Day column?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Train Schedule\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Sr. No.\": \"sequential_number\",\n      \"Train No.\": \"train_identifier\",\n      \"Arrival\": \"time_HH:MM\",\n      \"Departure\": \"time_HH:MM\",\n      \"Day\": \"frequency_schedule\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/a\", \"NA\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Day column contains mixed format values: 'Daily' for daily trains and abbreviated day codes (M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday) separated by commas\",\n      \"Time format in Arrival and Departure is HH:MM in 24-hour format\",\n      \"Some Arrival/Departure values may be 'N/a' for terminal stations\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Day column must be checked for exact match 'Daily' (case-sensitive)\",\n      \"Each Train No. should be unique per record\",\n      \"Result should be a non-negative integer count\"\n    ],\n    \"derived_filters\": [\n      \"Filter where Day column exactly equals 'Daily' (not partial match with comma-separated days)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single integer value representing total count of daily trains\",\n      \"Include verification that count matches number of rows where Day='Daily'\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.105994939804077,
+  "token_usage": {
+    "input_tokens": 1254,
+    "output_tokens": 610
+  }
+}

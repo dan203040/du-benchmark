@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "Country with highest percentage of agricultural land",
+    "filters": [],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the mean value of Agricultural Land( %) for non-missing values?",
+      "Which values in Agricultural Land( %) are missing?",
+      "After filling missing values with mean, which country has the maximum Agricultural Land( %)?",
+      "What is the Agricultural Land( %) value for the country with highest percentage?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Agricultural Land( %)": "Agricultural_Land_Percent"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Agricultural Land( %)": "percentage",
+      "Land Area(Km2)": "square_kilometers",
+      "Density\n(P/Km2)": "persons_per_square_kilometer"
+    },
+    "scale_issues": [
+      "Agricultural Land( %) appears to be stored as string with % symbol, needs conversion to numeric",
+      "Land Area(Km2) stored as string with comma separators, needs conversion to numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "nan"
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Agricultural Land( %) column stored as object dtype with percentage symbols",
+      "Multiple columns stored as object dtype that should be numeric",
+      "Column name 'Density\\n(P/Km2)' contains newline character",
+      "Percentage values include % symbol requiring parsing",
+      "Numeric values may contain commas as thousands separators"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Agricultural Land( %) should be between 0 and 100",
+      "Each country should appear only once in the dataset",
+      "Missing values must be filled with mean before identifying maximum"
+    ],
+    "derived_filters": [
+      "Convert Agricultural Land( %) from string to numeric by removing % symbol",
+      "Handle missing/null values in Agricultural Land( %) column",
+      "Calculate mean of non-missing Agricultural Land( %) values"
+    ],
+    "statistical_tests": [
+      "Verify mean calculation excludes missing values",
+      "Confirm maximum value after imputation is valid"
+    ],
+    "output_format_requirements": [
+      "Output must be in exact JSON format with keys 'highest country' and 'Agricultural Land %'",
+      "Values should be provided as lists even for single values",
+      "Agricultural Land % should be numeric value (without % symbol in output)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Country with highest percentage of agricultural land\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Country\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the mean value of Agricultural Land( %) for non-missing values?\",\n      \"Which values in Agricultural Land( %) are missing?\",\n      \"After filling missing values with mean, which country has the maximum Agricultural Land( %)?\",\n      \"What is the Agricultural Land( %) value for the country with highest percentage?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"world-data-2023.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Agricultural Land( %)\": \"Agricultural_Land_Percent\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Agricultural Land( %)\": \"percentage\",\n      \"Land Area(Km2)\": \"square_kilometers\",\n      \"Density\\n(P/Km2)\": \"persons_per_square_kilometer\"\n    },\n    \"scale_issues\": [\n      \"Agricultural Land( %) appears to be stored as string with % symbol, needs conversion to numeric\",\n      \"Land Area(Km2) stored as string with comma separators, needs conversion to numeric\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"nan\"],\n    \"expected_columns\": 35,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Agricultural Land( %) column stored as object dtype with percentage symbols\",\n      \"Multiple columns stored as object dtype that should be numeric\",\n      \"Column name 'Density\\\\n(P/Km2)' contains newline character\",\n      \"Percentage values include % symbol requiring parsing\",\n      \"Numeric values may contain commas as thousands separators\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Agricultural Land( %) should be between 0 and 100\",\n      \"Each country should appear only once in the dataset\",\n      \"Missing values must be filled with mean before identifying maximum\"\n    ],\n    \"derived_filters\": [\n      \"Convert Agricultural Land( %) from string to numeric by removing % symbol\",\n      \"Handle missing/null values in Agricultural Land( %) column\",\n      \"Calculate mean of non-missing Agricultural Land( %) values\"\n    ],\n    \"statistical_tests\": [\n      \"Verify mean calculation excludes missing values\",\n      \"Confirm maximum value after imputation is valid\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be in exact JSON format with keys 'highest country' and 'Agricultural Land %'\",\n      \"Values should be provided as lists even for single values\",\n      \"Agricultural Land % should be numeric value (without % symbol in output)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 14.309998035430908,
+  "token_usage": {
+    "input_tokens": 3991,
+    "output_tokens": 767
+  }
+}

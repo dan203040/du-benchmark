@@ -1,0 +1,99 @@
+{
+  "m_q": {
+    "target_metric": "Mileage",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "New_York_cars.csv",
+      "test.csv",
+      "Car_Rates.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "New_York_cars.csv",
+        "right_source": "Car_Rates.csv",
+        "left_column": "Model",
+        "right_column": "Model",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "New_York_cars.csv",
+        "right_source": "Car_Rates.csv",
+        "left_column": "Brand",
+        "right_column": "Brand",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "test.csv",
+        "right_source": "Car_Rates.csv",
+        "left_column": "Model",
+        "right_column": "Model",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "test.csv",
+        "right_source": "Car_Rates.csv",
+        "left_column": "brand",
+        "right_column": "Brand",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "The 'name' column in New_York_cars.csv and test.csv might contain the year, brand, and model information, which are also present in separate columns. This redundancy needs to be handled.",
+      "The 'MPG' column in New_York_cars.csv and test.csv is of type object and contains a range. It needs to be parsed and converted to a numerical representation.",
+      "The 'Car_name' column in Car_Rates.csv contains year, brand and model information. This redundancy needs to be handled."
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Mileage": "miles",
+      "money": "USD",
+      "Year": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 24,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'MPG' column in New_York_cars.csv and test.csv contains ranges (e.g., '26\u201333'). This needs to be parsed into a single numerical value (e.g., average or median).",
+      "The 'Car_name' column in Car_Rates.csv contains combined information (Year, Brand, Model).",
+      "The 'name' column in New_York_cars.csv and test.csv contains combined information (Year, Brand, Model)."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The predicted 'Mileage' values should be non-negative.",
+      "The predicted 'Mileage' values should be within a reasonable range based on the 'Year' of the vehicle."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Correlation analysis between numerical features (Year, money) and Mileage in New_York_cars.csv.",
+      "Distribution analysis of Mileage in New_York_cars.csv to identify potential outliers."
+    ],
+    "output_format_requirements": [
+      "The output file should be named 'result.csv'.",
+      "The output file should contain a column named 'Mileage' with the predicted mileage values.",
+      "The output file should have the same number of rows as test.csv."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mileage\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"New_York_cars.csv\",\n      \"test.csv\",\n      \"Car_Rates.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"New_York_cars.csv\",\n        \"right_source\": \"Car_Rates.csv\",\n        \"left_column\": \"Model\",\n        \"right_column\": \"Model\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"New_York_cars.csv\",\n        \"right_source\": \"Car_Rates.csv\",\n        \"left_column\": \"Brand\",\n        \"right_column\": \"Brand\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"test.csv\",\n        \"right_source\": \"Car_Rates.csv\",\n        \"left_column\": \"Model\",\n        \"right_column\": \"Model\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"test.csv\",\n        \"right_source\": \"Car_Rates.csv\",\n        \"left_column\": \"brand\",\n        \"right_column\": \"Brand\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"The 'name' column in New_York_cars.csv and test.csv might contain the year, brand, and model information, which are also present in separate columns. This redundancy needs to be handled.\",\n      \"The 'MPG' column in New_York_cars.csv and test.csv is of type object and contains a range. It needs to be parsed and converted to a numerical representation.\",\n      \"The 'Car_name' column in Car_Rates.csv contains year, brand and model information. This redundancy needs to be handled.\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Mileage\": \"miles\",\n      \"money\": \"USD\",\n      \"Year\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 24,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'MPG' column in New_York_cars.csv and test.csv contains ranges (e.g., '26\u201333'). This needs to be parsed into a single numerical value (e.g., average or median).\",\n      \"The 'Car_name' column in Car_Rates.csv contains combined information (Year, Brand, Model).\",\n      \"The 'name' column in New_York_cars.csv and test.csv contains combined information (Year, Brand, Model).\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The predicted 'Mileage' values should be non-negative.\",\n      \"The predicted 'Mileage' values should be within a reasonable range based on the 'Year' of the vehicle.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Correlation analysis between numerical features (Year, money) and Mileage in New_York_cars.csv.\",\n      \"Distribution analysis of Mileage in New_York_cars.csv to identify potential outliers.\"\n    ],\n    \"output_format_requirements\": [\n      \"The output file should be named 'result.csv'.\",\n      \"The output file should contain a column named 'Mileage' with the predicted mileage values.\",\n      \"The output file should have the same number of rows as test.csv.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 8.390128135681152,
+  "token_usage": {}
+}

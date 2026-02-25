@@ -1,0 +1,424 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Pearson correlation coefficient between (1) annual difference in number of fires (NOAA minus NIFC) and (2) annual difference in acres burned (NOAA minus NIFC)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Pearson correlation coefficient between (1) annual difference in number of fires (NOAA minus NIFC) and (2) annual difference in acres burned (NOAA minus NIFC)",
+        "Pearson correlation coefficient between annual difference in number of fires (NOAA - NIFC) and annual difference in acres burned (NOAA - NIFC)",
+        "Pearson correlation between the annual difference in number of fires reported by NOAA and NIFC, and the annual difference in acres burned reported by NOAA and NIFC."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Annual aggregation required",
+        "Data must be available for same years in both sources",
+        "Years where both NOAA and NIFC data exist"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Annual aggregation required",
+          "Data must be available for same years in both sources"
+        ],
+        [
+          "Years where both NOAA and NIFC data exist"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ],
+        [
+          "year"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to extract year from NOAA monthly Date column (format YYYYMM)?",
+        "How to parse NIFC data with inconsistent formatting?",
+        "How to handle missing or malformed values in NIFC data?",
+        "What are the annual totals of Number of Fires from NOAA data?",
+        "What are the annual totals of Acres Burned from NOAA data?",
+        "What are the annual Number of Fires from NIFC data?",
+        "What are the annual Acres Burned from NIFC data?",
+        "What is the difference between NOAA and NIFC Number of Fires per year?",
+        "What is the difference between NOAA and NIFC Acres Burned per year?",
+        "What is the correlation between these two difference series?",
+        "Calculate the annual number of fires reported by NOAA.",
+        "Calculate the annual acres burned reported by NOAA.",
+        "Calculate the annual number of fires reported by NIFC.",
+        "Calculate the annual acres burned reported by NIFC.",
+        "Calculate the annual difference in number of fires (NOAA - NIFC).",
+        "Calculate the annual difference in acres burned (NOAA - NIFC)."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "How to extract year from NOAA monthly Date column (format YYYYMM)?",
+          "How to parse NIFC data with inconsistent formatting?",
+          "How to handle missing or malformed values in NIFC data?"
+        ],
+        [
+          "What are the annual totals of Number of Fires from NOAA data?",
+          "What are the annual totals of Acres Burned from NOAA data?",
+          "What are the annual Number of Fires from NIFC data?",
+          "What are the annual Acres Burned from NIFC data?",
+          "What is the difference between NOAA and NIFC Number of Fires per year?",
+          "What is the difference between NOAA and NIFC Acres Burned per year?",
+          "What is the correlation between these two difference series?"
+        ],
+        [
+          "Calculate the annual number of fires reported by NOAA.",
+          "Calculate the annual acres burned reported by NOAA.",
+          "Calculate the annual number of fires reported by NIFC.",
+          "Calculate the annual acres burned reported by NIFC.",
+          "Calculate the annual difference in number of fires (NOAA - NIFC).",
+          "Calculate the annual difference in acres burned (NOAA - NIFC)."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires_monthly_stats.csv",
+        "nifc_wildfires.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "nifc_wildfires.csv"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "nifc_wildfires.csv"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "nifc_wildfires.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "NOAA data is monthly, NIFC appears annual",
+        "NOAA Date format is YYYYMM integer, NIFC year format unclear",
+        "NIFC column names appear corrupted with tabs and numbers",
+        "NOAA data is monthly with Date as YYYYMM format, NIFC data is annual",
+        "NIFC column names appear malformed with tab characters in header",
+        "NIFC first column appears to contain Year and Fire count combined",
+        "Column names are inconsistent across datasets (e.g., 'Acres Burned' vs implicit columns in nifc_wildfires.csv).",
+        "nifc_wildfires.csv has combined columns that need to be split."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NOAA data is monthly, NIFC appears annual",
+          "NOAA Date format is YYYYMM integer, NIFC year format unclear",
+          "NIFC column names appear corrupted with tabs and numbers"
+        ],
+        [
+          "NOAA data is monthly with Date as YYYYMM format, NIFC data is annual",
+          "NIFC column names appear malformed with tab characters in header",
+          "NIFC first column appears to contain Year and Fire count combined"
+        ],
+        [
+          "Column names are inconsistent across datasets (e.g., 'Acres Burned' vs implicit columns in nifc_wildfires.csv).",
+          "nifc_wildfires.csv has combined columns that need to be split."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "acres burned (noaa)": "acres",
+        "number of fires (noaa)": "count",
+        "acres burned per fire (noaa)": "acres per fire",
+        "acres burned (nifc)": "acres (likely)",
+        "number of fires (nifc)": "count (likely)",
+        "acres burned": "acres",
+        "number of fires": "count",
+        "acres burned per fire": "acres per fire",
+        "date": "YYYYMM integer format",
+        "noaa_acres_burned": "acres",
+        "noaa_number_of_fires": "count",
+        "nifc_acres_burned": "acres",
+        "nifc_number_of_fires": "count"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {
+          "Acres Burned (NOAA)": "acres",
+          "Number of Fires (NOAA)": "count",
+          "Acres Burned per Fire (NOAA)": "acres per fire",
+          "Acres Burned (NIFC)": "acres (likely)",
+          "Number of Fires (NIFC)": "count (likely)"
+        },
+        {
+          "Acres Burned": "acres",
+          "Number of Fires": "count",
+          "Acres Burned per Fire": "acres per fire",
+          "Date": "YYYYMM integer format"
+        },
+        {
+          "NOAA_Acres_Burned": "acres",
+          "NOAA_Number_of_Fires": "count",
+          "NIFC_Acres_Burned": "acres",
+          "NIFC_Number_of_Fires": "count"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "NIFC data appears to use commas as thousands separators within numbers",
+        "NIFC column 3 (924) and column 4 (884) meaning unclear - possibly acres burned with formatting issues",
+        "NOAA data is monthly and needs aggregation to annual",
+        "NIFC acres values appear split across multiple columns with comma separators"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NIFC data appears to use commas as thousands separators within numbers",
+          "NIFC column 3 (924) and column 4 (884) meaning unclear - possibly acres burned with formatting issues"
+        ],
+        [
+          "NOAA data is monthly and needs aggregation to annual",
+          "NIFC acres values appear split across multiple columns with comma separators"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "NOAA reports monthly, NIFC appears annual - need annual aggregation for NOAA",
+        "NIFC data formatting inconsistent with commas and asterisks in values",
+        "Different temporal granularity: NOAA is monthly, NIFC is annual",
+        "NIFC data format suggests tab-delimited parsing issue resulting in split numeric values",
+        "Potential differences in reporting methodologies between NOAA and NIFC."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NOAA reports monthly, NIFC appears annual - need annual aggregation for NOAA",
+          "NIFC data formatting inconsistent with commas and asterisks in values"
+        ],
+        [
+          "Different temporal granularity: NOAA is monthly, NIFC is annual",
+          "NIFC data format suggests tab-delimited parsing issue resulting in split numeric values"
+        ],
+        [
+          "Potential differences in reporting methodologies between NOAA and NIFC."
+        ]
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "Missing:-999",
+        "*",
+        "NA",
+        "N/A",
+        "",
+        "-999"
+      ],
+      "confidence": 0.7222222222222222,
+      "votes": [
+        [
+          "Missing:-999",
+          "*",
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "-999",
+          "*"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Correlation must be calculated on annual basis",
+        "Result must be to three decimal places",
+        "Only years with data in both sources can be used",
+        "Output correlation coefficient to exactly three decimal places",
+        "Only include years where both NOAA and NIFC data are available",
+        "NOAA monthly data must be aggregated to annual totals before comparison",
+        "Calculate differences as NOAA minus NIFC for both fires and acres",
+        "Ensure that the years are consistent across both datasets.",
+        "Handle missing data appropriately."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Correlation must be calculated on annual basis",
+          "Result must be to three decimal places",
+          "Only years with data in both sources can be used"
+        ],
+        [
+          "Output correlation coefficient to exactly three decimal places",
+          "Only include years where both NOAA and NIFC data are available",
+          "NOAA monthly data must be aggregated to annual totals before comparison",
+          "Calculate differences as NOAA minus NIFC for both fires and acres"
+        ],
+        [
+          "Ensure that the years are consistent across both datasets.",
+          "Handle missing data appropriately."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract year from NOAA Date column (first 4 digits)",
+        "Clean NIFC data: remove commas, handle asterisks, parse tab-separated values",
+        "Aggregate NOAA monthly data to annual totals",
+        "Extract year from NOAA Date column (first 4 digits of YYYYMM)",
+        "Filter to complete years only (all 12 months present for NOAA data)",
+        "Remove or correct malformed NIFC records with asterisks or incorrect comma placement"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract year from NOAA Date column (first 4 digits)",
+          "Clean NIFC data: remove commas, handle asterisks, parse tab-separated values",
+          "Aggregate NOAA monthly data to annual totals"
+        ],
+        [
+          "Extract year from NOAA Date column (first 4 digits of YYYYMM)",
+          "Filter to complete years only (all 12 months present for NOAA data)",
+          "Remove or correct malformed NIFC records with asterisks or incorrect comma placement"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation test",
+        "Check for normality of differences",
+        "Pearson correlation between fire count differences and acres burned differences",
+        "Pearson correlation coefficient"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation test",
+          "Check for normality of differences"
+        ],
+        [
+          "Pearson correlation between fire count differences and acres burned differences"
+        ],
+        [
+          "Pearson correlation coefficient"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single correlation coefficient to three decimal places",
+        "Annual data table showing differences for verification",
+        "Single numeric value rounded to 3 decimal places",
+        "Format: X.XXX",
+        "Report the correlation coefficient to three decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single correlation coefficient to three decimal places",
+          "Annual data table showing differences for verification"
+        ],
+        [
+          "Single numeric value rounded to 3 decimal places",
+          "Format: X.XXX"
+        ],
+        [
+          "Report the correlation coefficient to three decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6194444444444445
+}

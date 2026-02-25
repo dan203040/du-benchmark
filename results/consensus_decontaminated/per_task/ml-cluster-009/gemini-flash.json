@@ -1,0 +1,90 @@
+{
+  "m_q": {
+    "target_metric": "Clustering of countries into 3 clusters based on available features.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Density\n(P/Km2)": "people/km^2",
+      "Agricultural Land( %)": "%",
+      "Land Area(Km2)": "km^2",
+      "Armed Forces size": "number of personnel",
+      "Birth Rate": "births per 1000 population",
+      "Co2-Emissions": "metric tons",
+      "CPI Change (%)": "%",
+      "Fertility Rate": "births per woman",
+      "Forested Area (%)": "%",
+      "Gasoline Price": "USD",
+      "GDP": "USD",
+      "Gross primary education enrollment (%)": "%",
+      "Gross tertiary education enrollment (%)": "%",
+      "Infant mortality": "deaths per 1000 live births",
+      "Life expectancy": "years",
+      "Maternal mortality ratio": "deaths per 100,000 live births",
+      "Minimum wage": "USD",
+      "Out of pocket health expenditure": "%",
+      "Physicians per thousand": "physicians per 1000 population",
+      "Population": "number of people",
+      "Population: Labor force participation (%)": "%",
+      "Tax revenue (%)": "% of GDP",
+      "Total tax rate": "%",
+      "Unemployment rate": "%",
+      "Urban_population": "number of people",
+      "Latitude": "degrees",
+      "Longitude": "degrees"
+    },
+    "scale_issues": [
+      "GDP and Population are represented as strings with inconsistent formatting (e.g., commas).",
+      "Density is a string and needs to be converted to numeric.",
+      "Several percentage columns need to have the '%' character removed and be converted to numeric."
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some columns contain percentage signs that need to be removed before converting to numeric.",
+      "Some numeric columns contain commas that need to be removed before converting to numeric.",
+      "The 'Density\\n(P/Km2)' column name contains a newline character."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The output file 'cluster.csv' must contain columns named 'Feature_i' and 'Cluster'.",
+      "The number of clusters must be 3."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Appropriateness of chosen clustering algorithm (e.g., silhouette score for K-means)."
+    ],
+    "output_format_requirements": [
+      "The output file must be in CSV format.",
+      "The 'Cluster' column must contain the cluster labels (0, 1, or 2)."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Clustering of countries into 3 clusters based on available features.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"world-data-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Density\\n(P/Km2)\": \"people/km^2\",\n      \"Agricultural Land( %)\": \"%\",\n      \"Land Area(Km2)\": \"km^2\",\n      \"Armed Forces size\": \"number of personnel\",\n      \"Birth Rate\": \"births per 1000 population\",\n      \"Co2-Emissions\": \"metric tons\",\n      \"CPI Change (%)\": \"%\",\n      \"Fertility Rate\": \"births per woman\",\n      \"Forested Area (%)\": \"%\",\n      \"Gasoline Price\": \"USD\",\n      \"GDP\": \"USD\",\n      \"Gross primary education enrollment (%)\": \"%\",\n      \"Gross tertiary education enrollment (%)\": \"%\",\n      \"Infant mortality\": \"deaths per 1000 live births\",\n      \"Life expectancy\": \"years\",\n      \"Maternal mortality ratio\": \"deaths per 100,000 live births\",\n      \"Minimum wage\": \"USD\",\n      \"Out of pocket health expenditure\": \"%\",\n      \"Physicians per thousand\": \"physicians per 1000 population\",\n      \"Population\": \"number of people\",\n      \"Population: Labor force participation (%)\": \"%\",\n      \"Tax revenue (%)\": \"% of GDP\",\n      \"Total tax rate\": \"%\",\n      \"Unemployment rate\": \"%\",\n      \"Urban_population\": \"number of people\",\n      \"Latitude\": \"degrees\",\n      \"Longitude\": \"degrees\"\n    },\n    \"scale_issues\": [\n      \"GDP and Population are represented as strings with inconsistent formatting (e.g., commas).\",\n      \"Density is a string and needs to be converted to numeric.\",\n      \"Several percentage columns need to have the '%' character removed and be converted to numeric.\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 35,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Some columns contain percentage signs that need to be removed before converting to numeric.\",\n      \"Some numeric columns contain commas that need to be removed before converting to numeric.\",\n      \"The 'Density\\\\n(P/Km2)' column name contains a newline character.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The output file 'cluster.csv' must contain columns named 'Feature_i' and 'Cluster'.\",\n      \"The number of clusters must be 3.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Appropriateness of chosen clustering algorithm (e.g., silhouette score for K-means).\"\n    ],\n    \"output_format_requirements\": [\n      \"The output file must be in CSV format.\",\n      \"The 'Cluster' column must contain the cluster labels (0, 1, or 2).\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.55204701423645,
+  "token_usage": {}
+}

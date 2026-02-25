@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "Pearson correlation coefficient between the proportion of generally unsafe air quality days and the amount of land affected by fires in 2024, rounded to 2 decimal places.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the proportion of generally unsafe air quality days for each state.",
+      "Calculate the total acres burned for each state.",
+      "Merge the air quality data and wildfire data by state.",
+      "Calculate the Pearson correlation coefficient between the proportion of generally unsafe air quality days and the total acres burned.",
+      "Round the correlation coefficient to 2 decimal places."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv",
+      "annual_aqi_by_county_2024.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "Wildfire_Acres_by_State.csv",
+        "right_source": "annual_aqi_by_county_2024.csv",
+        "left_column": "State",
+        "right_column": "State",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "acres",
+      "Population": "people",
+      "Days with AQI": "days",
+      "Good Days": "days",
+      "Moderate Days": "days",
+      "Unhealthy for Sensitive Groups Days": "days",
+      "Unhealthy Days": "days",
+      "Very Unhealthy Days": "days",
+      "Hazardous Days": "days"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Missing values in 'Total Acres Burned' should be handled appropriately (e.g., imputation or removal)."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The proportion of generally unsafe air quality days is calculated as (Unhealthy for Sensitive Groups Days + Unhealthy Days + Very Unhealthy Days + Hazardous Days) / Days with AQI.",
+      "Ensure that 'Days with AQI' is not zero to avoid division by zero errors.",
+      "Handle potential missing values in 'Total Acres Burned' column in Wildfire_Acres_by_State.csv."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Pearson correlation coefficient"
+    ],
+    "output_format_requirements": [
+      "The final result should be a single floating-point number rounded to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Pearson correlation coefficient between the proportion of generally unsafe air quality days and the amount of land affected by fires in 2024, rounded to 2 decimal places.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the proportion of generally unsafe air quality days for each state.\",\n      \"Calculate the total acres burned for each state.\",\n      \"Merge the air quality data and wildfire data by state.\",\n      \"Calculate the Pearson correlation coefficient between the proportion of generally unsafe air quality days and the total acres burned.\",\n      \"Round the correlation coefficient to 2 decimal places.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Wildfire_Acres_by_State.csv\",\n      \"annual_aqi_by_county_2024.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"Wildfire_Acres_by_State.csv\",\n        \"right_source\": \"annual_aqi_by_county_2024.csv\",\n        \"left_column\": \"State\",\n        \"right_column\": \"State\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total Acres Burned\": \"acres\",\n      \"Population\": \"people\",\n      \"Days with AQI\": \"days\",\n      \"Good Days\": \"days\",\n      \"Moderate Days\": \"days\",\n      \"Unhealthy for Sensitive Groups Days\": \"days\",\n      \"Unhealthy Days\": \"days\",\n      \"Very Unhealthy Days\": \"days\",\n      \"Hazardous Days\": \"days\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Missing values in 'Total Acres Burned' should be handled appropriately (e.g., imputation or removal).\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The proportion of generally unsafe air quality days is calculated as (Unhealthy for Sensitive Groups Days + Unhealthy Days + Very Unhealthy Days + Hazardous Days) / Days with AQI.\",\n      \"Ensure that 'Days with AQI' is not zero to avoid division by zero errors.\",\n      \"Handle potential missing values in 'Total Acres Burned' column in Wildfire_Acres_by_State.csv.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Pearson correlation coefficient\"\n    ],\n    \"output_format_requirements\": [\n      \"The final result should be a single floating-point number rounded to 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.931730031967163,
+  "token_usage": {}
+}

@@ -1,0 +1,89 @@
+{
+  "m_q": {
+    "target_metric": "Count of people in each age group who filled out the survey",
+    "filters": [],
+    "grouping_variables": [
+      "age_group"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What column contains age data?",
+      "What are the age group definitions from AgeGroup.md?",
+      "How to categorize respondents into age groups?",
+      "How to count respondents per age group?",
+      "How to create a bar chart with specified formatting?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "multipleChoiceResponses.csv",
+      "SurveySchema.csv",
+      "AgeGroup.md"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "SurveySchema.csv appears to be metadata/schema description file, not actual survey responses",
+      "Q2 column in SurveySchema.csv is labeled as age question, but actual data is in multipleChoiceResponses.csv"
+    ],
+    "column_mappings": {
+      "Q2": "age"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Q2": "years"
+    },
+    "scale_issues": [
+      "Age data in Q2 may be categorical ranges rather than numeric values",
+      "Need to verify format of age values (e.g., '18-21', '22-24', or numeric)"
+    ],
+    "cross_source_conflicts": [
+      "SurveySchema.csv has 12 rows while multipleChoiceResponses.csv has 23860 rows - different purposes"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "nan"
+    ],
+    "expected_columns": 395,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "multipleChoiceResponses.csv has 395 columns including Q2 for age data",
+      "All columns in multipleChoiceResponses.csv are object dtype, may need type conversion",
+      "AgeGroup.md file needs to be read to understand age grouping methodology"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must follow age group division method from AgeGroup.md",
+      "Exclude header/metadata rows if present in data",
+      "Handle missing or invalid age values appropriately"
+    ],
+    "derived_filters": [
+      "Filter out rows where Q2 (age) is null or invalid",
+      "Apply age group categorization based on AgeGroup.md specifications"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Save output as 'result.png'",
+      "Chart title: 'Age Group Distribution'",
+      "X-axis label: 'Age Group'",
+      "Y-axis label: 'Count'",
+      "Chart type: bar chart"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of people in each age group who filled out the survey\",\n    \"filters\": [],\n    \"grouping_variables\": [\"age_group\"],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"What column contains age data?\",\n      \"What are the age group definitions from AgeGroup.md?\",\n      \"How to categorize respondents into age groups?\",\n      \"How to count respondents per age group?\",\n      \"How to create a bar chart with specified formatting?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"multipleChoiceResponses.csv\", \"SurveySchema.csv\", \"AgeGroup.md\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"SurveySchema.csv appears to be metadata/schema description file, not actual survey responses\",\n      \"Q2 column in SurveySchema.csv is labeled as age question, but actual data is in multipleChoiceResponses.csv\"\n    ],\n    \"column_mappings\": {\n      \"Q2\": \"age\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Q2\": \"years\"\n    },\n    \"scale_issues\": [\n      \"Age data in Q2 may be categorical ranges rather than numeric values\",\n      \"Need to verify format of age values (e.g., '18-21', '22-24', or numeric)\"\n    ],\n    \"cross_source_conflicts\": [\n      \"SurveySchema.csv has 12 rows while multipleChoiceResponses.csv has 23860 rows - different purposes\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"nan\"],\n    \"expected_columns\": 395,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"multipleChoiceResponses.csv has 395 columns including Q2 for age data\",\n      \"All columns in multipleChoiceResponses.csv are object dtype, may need type conversion\",\n      \"AgeGroup.md file needs to be read to understand age grouping methodology\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must follow age group division method from AgeGroup.md\",\n      \"Exclude header/metadata rows if present in data\",\n      \"Handle missing or invalid age values appropriately\"\n    ],\n    \"derived_filters\": [\n      \"Filter out rows where Q2 (age) is null or invalid\",\n      \"Apply age group categorization based on AgeGroup.md specifications\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Save output as 'result.png'\",\n      \"Chart title: 'Age Group Distribution'\",\n      \"X-axis label: 'Age Group'\",\n      \"Y-axis label: 'Count'\",\n      \"Chart type: bar chart\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.927744150161743,
+  "token_usage": {
+    "input_tokens": 15105,
+    "output_tokens": 773
+  }
+}

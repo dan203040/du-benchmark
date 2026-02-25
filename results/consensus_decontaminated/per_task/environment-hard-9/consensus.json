@@ -1,0 +1,374 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Beaches that had 100% of samples meeting the swimming standard (Enterococcus < 104 counts per 100mL) between 2020-2024 inclusive",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "",
+        "Beaches that had 100% of samples meeting the swimming standard (Enterococcus < 104 counts per 100mL) between 2020-2024 inclusive",
+        "List of Boston Harbor beaches that met swimming standards 100% of the time between 2020 and 2024 (inclusive). A sample meets the standard if it contains fewer than 104 counts of Enterococcus per 100 milliliters of water."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date >= 2020-01-01 AND Date <= 2024-12-31",
+        "Enterococcus < 104 counts per 100mL for swimming standard compliance",
+        "Years between 2020 and 2024 (inclusive)",
+        "Enterococcus count < 104"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Date >= 2020-01-01 AND Date <= 2024-12-31",
+          "Enterococcus < 104 counts per 100mL for swimming standard compliance"
+        ],
+        [
+          "Years between 2020 and 2024 (inclusive)",
+          "Enterococcus count < 104"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Beach name",
+        "Beach"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Beach name"
+        ],
+        [
+          "Beach"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the date range covered in each beach datasheet?",
+        "How many samples were taken at each beach between 2020-2024?",
+        "How many samples at each beach exceeded 104 counts per 100mL?",
+        "What is the compliance rate (% of samples meeting standard) for each beach?",
+        "Which beaches have 100% compliance rate?",
+        "What are all the unique beach names?",
+        "For each beach, what are the Enterococcus counts for each date between 2020 and 2024?",
+        "For each beach, what percentage of samples meet the Enterococcus standard?",
+        "Which beaches have a 100% compliance rate?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "What is the date range covered in each beach datasheet?",
+          "How many samples were taken at each beach between 2020-2024?",
+          "How many samples at each beach exceeded 104 counts per 100mL?",
+          "What is the compliance rate (% of samples meeting standard) for each beach?",
+          "Which beaches have 100% compliance rate?"
+        ],
+        [
+          "What are all the unique beach names?",
+          "For each beach, what are the Enterococcus counts for each date between 2020 and 2024?",
+          "For each beach, what percentage of samples meet the Enterococcus standard?",
+          "Which beaches have a 100% compliance rate?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "constitution_beach_datasheet.csv",
+        "carson_beach_datasheet.csv",
+        "pleasure_bay_and_castle_island_beach_datasheet.csv",
+        "m_street_beach_datasheet.csv",
+        "city_point_beach_datasheet.csv",
+        "malibu_beach_datasheet.csv",
+        "tenean_beach_datasheet.csv",
+        "wollaston_beach_datasheet.csv",
+        "boston-harbor-beaches.txt"
+      ],
+      "confidence": 0.6296296296296295,
+      "votes": [
+        [],
+        [
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ],
+        [
+          "boston-harbor-beaches.txt",
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different number of Enterococcus measurement columns across beaches (constitution has 3, carson has 2, m_street has 1, etc.)",
+        "Inconsistent column naming: some files use 'Tag' and 'Enterococcus', others use 'Tag.1', 'Enterococcus.1', 'Tag.2', 'Enterococcus.2', etc.",
+        "Enterococcus dtype varies: float64 in some files, int64 in others",
+        "Different datasheet files have different numbers of Enterococcus columns (e.g., 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2', 'Enterococcus.3').",
+        "Some datasheet files have 'Tag' columns associated with each 'Enterococcus' column, while others do not.",
+        "The 'Enterococcus' column has different dtypes across files (int64, float64)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Different number of Enterococcus measurement columns across beaches (constitution has 3, carson has 2, m_street has 1, etc.)",
+          "Inconsistent column naming: some files use 'Tag' and 'Enterococcus', others use 'Tag.1', 'Enterococcus.1', 'Tag.2', 'Enterococcus.2', etc.",
+          "Enterococcus dtype varies: float64 in some files, int64 in others"
+        ],
+        [
+          "Different datasheet files have different numbers of Enterococcus columns (e.g., 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2', 'Enterococcus.3').",
+          "Some datasheet files have 'Tag' columns associated with each 'Enterococcus' column, while others do not.",
+          "The 'Enterococcus' column has different dtypes across files (int64, float64)."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "enterococcus": "counts per 100 milliliters",
+        "1-day rain": "inches",
+        "2-day rain": "inches",
+        "3-day rain": "inches"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {},
+        {
+          "Enterococcus": "counts per 100 milliliters",
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches"
+        },
+        {
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Enterococcus": "counts per 100 milliliters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Enterococcus values sometimes have '<' tags indicating values below detection limit",
+        "Need to handle inequality tags (Tag, Tag.1, Tag.2, Tag.3) which contain '<' symbols"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Enterococcus values sometimes have '<' tags indicating values below detection limit",
+          "Need to handle inequality tags (Tag, Tag.1, Tag.2, Tag.3) which contain '<' symbols"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Some beaches have multiple measurement locations per date (up to 4 for Wollaston), others have single measurements",
+        "Missing values represented as NaN/blank in some Enterococcus columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Some beaches have multiple measurement locations per date (up to 4 for Wollaston), others have single measurements",
+          "Missing values represented as NaN/blank in some Enterococcus columns"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "NaN",
+        "N/A",
+        "<"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [],
+        [
+          "",
+          "NA",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "<"
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        0.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Date must be parsed from string format to datetime for filtering 2020-2024 range",
+        "Swimming standard: Enterococcus count < 104 per 100mL",
+        "All samples from a beach must meet the standard for 100% compliance",
+        "Handle '<' tag values: if Tag contains '<', the actual value is less than the reported Enterococcus value",
+        "Each row may contain multiple samples (different Enterococcus columns), all must be evaluated",
+        "The 'Date' column must be parsed to extract the year for filtering.",
+        "The 'Enterococcus' columns may contain '<' characters, indicating values below a detection limit. These need to be handled appropriately (e.g., replaced with the detection limit value).",
+        "Need to handle multiple Enterococcus columns in some files by combining them into a single Enterococcus reading for a given date and beach."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Date must be parsed from string format to datetime for filtering 2020-2024 range",
+          "Swimming standard: Enterococcus count < 104 per 100mL",
+          "All samples from a beach must meet the standard for 100% compliance",
+          "Handle '<' tag values: if Tag contains '<', the actual value is less than the reported Enterococcus value",
+          "Each row may contain multiple samples (different Enterococcus columns), all must be evaluated"
+        ],
+        [
+          "The 'Date' column must be parsed to extract the year for filtering.",
+          "The 'Enterococcus' columns may contain '<' characters, indicating values below a detection limit. These need to be handled appropriately (e.g., replaced with the detection limit value).",
+          "Need to handle multiple Enterococcus columns in some files by combining them into a single Enterococcus reading for a given date and beach."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract year from Date string and filter for year >= 2020 AND year <= 2024",
+        "For each Enterococcus measurement: if Tag is '<', value is below detection limit and meets standard; otherwise compare value < 104",
+        "Exclude NaN/missing Enterococcus values from compliance calculation",
+        "Year >= 2020",
+        "Year <= 2024",
+        "Enterococcus < 104"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Extract year from Date string and filter for year >= 2020 AND year <= 2024",
+          "For each Enterococcus measurement: if Tag is '<', value is below detection limit and meets standard; otherwise compare value < 104",
+          "Exclude NaN/missing Enterococcus values from compliance calculation"
+        ],
+        [
+          "Year >= 2020",
+          "Year <= 2024",
+          "Enterococcus < 104"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Calculate total valid samples per beach in date range",
+        "Calculate number of compliant samples per beach (Enterococcus < 104)",
+        "Calculate compliance percentage: (compliant samples / total samples) * 100"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Calculate total valid samples per beach in date range",
+          "Calculate number of compliant samples per beach (Enterococcus < 104)",
+          "Calculate compliance percentage: (compliant samples / total samples) * 100"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return list of beach names that achieved 100% compliance",
+        "Beach names should match the source file naming (e.g., 'Constitution Beach', 'Carson Beach', etc.)",
+        "The output should be a list of beach names."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Return list of beach names that achieved 100% compliance",
+          "Beach names should match the source file naming (e.g., 'Constitution Beach', 'Carson Beach', etc.)"
+        ],
+        [
+          "The output should be a list of beach names."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5548148148148149
+}

@@ -1,0 +1,327 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum value of 'Int yards' column",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum value of 'Int yards' column",
+        "minimum value of 'Int yards' (interception yards)",
+        "minimum 'Int yards'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Sacks = 11.5",
+        "Sacks == 11.5",
+        "'Sacks' is equal to 11.5"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sacks = 11.5"
+        ],
+        [
+          "Sacks == 11.5"
+        ],
+        [
+          "'Sacks' is equal to 11.5"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Find all rows where Sacks equals 11.5",
+        "Among those rows, identify the minimum value in the 'Int yards' column",
+        "Return that minimum value",
+        "Which players have exactly 11.5 sacks?",
+        "What are the interception yards for players with 11.5 sacks?",
+        "What is the minimum interception yards among those players?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Find all rows where Sacks equals 11.5",
+          "Among those rows, identify the minimum value in the 'Int yards' column",
+          "Return that minimum value"
+        ],
+        [
+          "Which players have exactly 11.5 sacks?",
+          "What are the interception yards for players with 11.5 sacks?",
+          "What is the minimum interception yards among those players?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Player Stats"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Player Stats"
+        ],
+        [
+          "Player Stats"
+        ],
+        [
+          "Player Stats"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "sacks": "count (decimal allowed)",
+        "int yards": "yards",
+        "int avg.": "yards per interception",
+        "g": "games",
+        "tackles": "count",
+        "solo": "count",
+        "assts": "count",
+        "int": "count",
+        "int td": "count",
+        "fum. rec": "count",
+        "fum. rec td": "count"
+      },
+      "confidence": 0.4242424242424242,
+      "votes": [
+        {
+          "Sacks": "count (decimal allowed)",
+          "Int yards": "yards"
+        },
+        {
+          "Int yards": "yards",
+          "Int avg.": "yards per interception",
+          "Sacks": "count",
+          "G": "games",
+          "Tackles": "count",
+          "Solo": "count",
+          "Assts": "count",
+          "Int": "count",
+          "Int TD": "count",
+          "Fum. rec": "count",
+          "Fum. rec TD": "count"
+        },
+        {
+          "Int yards": "yards"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "All numeric columns are stored as object/string dtype, requiring type conversion for numerical operations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All numeric columns are stored as object/string dtype, requiring type conversion for numerical operations"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "0",
+        "0.0"
+      ],
+      "confidence": 0.5333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "0",
+          "0.0"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 1.0,
+      "votes": [
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Sacks column contains decimal values like 11.5, 1.0, 0.0",
+        "Int yards column contains integer values",
+        "Only one data source needed for this analysis",
+        "Sacks must equal exactly 11.5",
+        "Int yards must be a valid numeric value",
+        "Result should be the minimum value among all matching records",
+        "'Sacks' and 'Int yards' should be numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sacks column contains decimal values like 11.5, 1.0, 0.0",
+          "Int yards column contains integer values",
+          "Only one data source needed for this analysis"
+        ],
+        [
+          "Sacks must equal exactly 11.5",
+          "Int yards must be a valid numeric value",
+          "Result should be the minimum value among all matching records"
+        ],
+        [
+          "'Sacks' and 'Int yards' should be numeric"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert Sacks column to numeric type for comparison with 11.5",
+        "Convert Int yards column to numeric type for finding minimum",
+        "Filter rows where Sacks == 11.5",
+        "Exclude non-numeric or null values in Int yards column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert Sacks column to numeric type for comparison with 11.5",
+          "Convert Int yards column to numeric type for finding minimum"
+        ],
+        [
+          "Filter rows where Sacks == 11.5",
+          "Exclude non-numeric or null values in Int yards column"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in Sacks and Int yards columns",
+        "Verify that Sacks=11.5 filter returns at least one row"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in Sacks and Int yards columns",
+          "Verify that Sacks=11.5 filter returns at least one row"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric value representing the least Int yards when Sacks is 11.5",
+        "Return a single numeric value representing the minimum Int yards",
+        "If multiple players have 11.5 sacks, return only the minimum Int yards value among them",
+        "If no players have 11.5 sacks, return null or appropriate indication"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric value representing the least Int yards when Sacks is 11.5"
+        ],
+        [
+          "Return a single numeric value representing the minimum Int yards",
+          "If multiple players have 11.5 sacks, return only the minimum Int yards value among them",
+          "If no players have 11.5 sacks, return null or appropriate indication"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5312121212121214
+}

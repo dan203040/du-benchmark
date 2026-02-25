@@ -1,0 +1,322 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "List of competition names",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "List of competition names",
+        "List of competitions competed in before the 2001 World Championships",
+        "List of competitions the athlete participated in before the 2001 World Championships."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year < 2001",
+        "Competition != 'World Championships'",
+        "Year < 2001 OR (Year = 2001 AND Competition occurs before World Championships)",
+        "Competition != 'World Championships' or Year != 2001"
+      ],
+      "confidence": 0.41666666666666663,
+      "votes": [
+        [
+          "Year < 2001",
+          "Competition != 'World Championships'"
+        ],
+        [
+          "Year < 2001 OR (Year = 2001 AND Competition occurs before World Championships)"
+        ],
+        [
+          "Year < 2001",
+          "Competition != 'World Championships' or Year != 2001"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the earliest competition year?",
+        "Are there multiple competitions in the same year before 2001?",
+        "Does 'before 2001 world championships' include competitions in 2001 but before the world championships event?",
+        "What is the chronological order of competitions in 2001?",
+        "Which competitions occurred before 2001?",
+        "How to identify the 2001 World Championships row?",
+        "What competitions are listed in rows prior to 2001 World Championships?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the earliest competition year?",
+          "Are there multiple competitions in the same year before 2001?",
+          "Does 'before 2001 world championships' include competitions in 2001 but before the world championships event?"
+        ],
+        [
+          "What is the chronological order of competitions in 2001?",
+          "Which competitions occurred before 2001?",
+          "How to identify the 2001 World Championships row?",
+          "What competitions are listed in rows prior to 2001 World Championships?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Athletics Performances"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Athletics Performances"
+        ],
+        [
+          "Athletics Performances"
+        ],
+        [
+          "Athletics Performances"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "notes": "meters (m) for throw distances",
+        "year": "calendar_year"
+      },
+      "confidence": 0.5,
+      "votes": [
+        {
+          "Notes": "meters (m) for throw distances"
+        },
+        {
+          "Year": "calendar_year",
+          "Notes": "meters (m) for performance distances"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column uses Int64 type which may handle missing values differently than standard int"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column uses Int64 type which may handle missing values differently than standard int"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be between 1999 and 2015 based on sample",
+        "Position values follow ordinal pattern (1st, 2nd, 3rd, etc.)",
+        "Competition names are categorical",
+        "Year must be less than or equal to 2001",
+        "For Year = 2001, only include competitions that chronologically occur before World Championships",
+        "2001 World Championships is identified by Year=2001 AND Competition='World Championships'",
+        "The 'Year' column must be an integer.",
+        "The 'Competition' column must be a string.",
+        "The 'Venue' column must be a string.",
+        "The 'Position' column must be a string.",
+        "The 'Notes' column must be a string."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Year values should be between 1999 and 2015 based on sample",
+          "Position values follow ordinal pattern (1st, 2nd, 3rd, etc.)",
+          "Competition names are categorical"
+        ],
+        [
+          "Year must be less than or equal to 2001",
+          "For Year = 2001, only include competitions that chronologically occur before World Championships",
+          "2001 World Championships is identified by Year=2001 AND Competition='World Championships'"
+        ],
+        [
+          "The 'Year' column must be an integer.",
+          "The 'Competition' column must be a string.",
+          "The 'Venue' column must be a string.",
+          "The 'Position' column must be a string.",
+          "The 'Notes' column must be a string."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude 2001 World Championships from results",
+        "Include only rows where Year < 2001 OR (Year = 2001 AND Competition != 'World Championships')",
+        "Filter rows where Year < 2001",
+        "Filter rows where Year = 2001 AND Competition in ['World Youth Championships', 'World Junior Championships', 'European Junior Championships'] based on temporal ordering",
+        "Year < 2001"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude 2001 World Championships from results",
+          "Include only rows where Year < 2001 OR (Year = 2001 AND Competition != 'World Championships')"
+        ],
+        [
+          "Filter rows where Year < 2001",
+          "Filter rows where Year = 2001 AND Competition in ['World Youth Championships', 'World Junior Championships', 'European Junior Championships'] based on temporal ordering"
+        ],
+        [
+          "Year < 2001"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate competition entries in same year",
+        "Verify chronological order of competitions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate competition entries in same year",
+          "Verify chronological order of competitions"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List competitions in chronological order",
+        "Include year with each competition name",
+        "Return list of Competition names",
+        "Include Venue information for context",
+        "Maintain chronological order by Year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List competitions in chronological order",
+          "Include year with each competition name"
+        ],
+        [
+          "Return list of Competition names",
+          "Include Venue information for context",
+          "Maintain chronological order by Year"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5569444444444446
+}

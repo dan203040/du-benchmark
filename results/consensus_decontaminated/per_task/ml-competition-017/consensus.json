@@ -1,0 +1,355 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "score (integer essay score)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "score (integer essay score)",
+        "Predicted essay scores for test.csv essays",
+        "Predicted essay score for each essay in test.csv"
+      ]
+    },
+    "filters": {
+      "value": [
+        "test.csv data only"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv data only"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "essay_id"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "essay_id"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Predict scores for 2597 test essays",
+        "Match submission format to sample_submission.csv",
+        "Ensure essay_id-score mapping is preserved",
+        "What features can be extracted from essay text to predict scores?",
+        "What is the distribution of scores in the training data?",
+        "What is the relationship between essay characteristics (length, vocabulary, grammar) and scores?",
+        "What machine learning model should be used for essay scoring?",
+        "How should predictions be formatted for submission?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Predict scores for 2597 test essays",
+          "Match submission format to sample_submission.csv",
+          "Ensure essay_id-score mapping is preserved"
+        ],
+        [
+          "What features can be extracted from essay text to predict scores?",
+          "What is the distribution of scores in the training data?",
+          "What is the relationship between essay characteristics (length, vocabulary, grammar) and scores?",
+          "What machine learning model should be used for essay scoring?",
+          "How should predictions be formatted for submission?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "train.csv",
+        "test.csv",
+        "sample_submission.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "train.csv",
+          "test.csv",
+          "sample_submission.csv"
+        ],
+        [
+          "train.csv",
+          "test.csv",
+          "sample_submission.csv"
+        ],
+        [
+          "test.csv",
+          "sample_submission.csv",
+          "train.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "train.csv has 'score' column, test.csv lacks 'score' column",
+        "sample_submission.csv has only 2 columns while train.csv has 3 columns",
+        "train.csv has 'score' column while test.csv does not",
+        "sample_submission.csv contains only essay_id and score columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "train.csv has 'score' column, test.csv lacks 'score' column",
+          "sample_submission.csv has only 2 columns while train.csv has 3 columns"
+        ],
+        [
+          "train.csv has 'score' column while test.csv does not",
+          "sample_submission.csv contains only essay_id and score columns"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "score": "integer rating scale (likely 1-6 or similar)",
+        "essay_id": "unique identifier string",
+        "full_text": "free text essay content"
+      },
+      "confidence": 0.4444444444444444,
+      "votes": [
+        {
+          "score": "integer rating scale (likely 1-6 or similar)"
+        },
+        {
+          "score": "integer scale (observed values: 3, 4 in samples)",
+          "essay_id": "unique identifier string",
+          "full_text": "free text essay content"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Score scale range needs verification from train.csv distribution",
+        "Need to determine full score range from train.csv (only samples show 3 and 4)",
+        "Score distribution and range must be analyzed from complete training data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score scale range needs verification from train.csv distribution"
+        ],
+        [
+          "Need to determine full score range from train.csv (only samples show 3 and 4)",
+          "Score distribution and range must be analyzed from complete training data"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "test.csv lacks target variable 'score' for prediction"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv lacks target variable 'score' for prediction"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null"
+      ],
+      "confidence": 0.5833333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 0.75,
+      "votes": [
+        3.0,
+        2.0,
+        0.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "essay_id must be unique across all files",
+        "score must be integer",
+        "submission must match sample_submission.csv format exactly",
+        "Predictions must be generated for all 2597 essays in test.csv",
+        "Output must contain essay_id from test.csv",
+        "Scores must be integers within the valid range observed in train.csv",
+        "essay_id values in submission must exactly match those in test.csv",
+        "The 'essay_id' in submission.csv must match the 'essay_id' in test.csv.",
+        "The 'score' in submission.csv must be an integer."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "essay_id must be unique across all files",
+          "score must be integer",
+          "submission must match sample_submission.csv format exactly"
+        ],
+        [
+          "Predictions must be generated for all 2597 essays in test.csv",
+          "Output must contain essay_id from test.csv",
+          "Scores must be integers within the valid range observed in train.csv",
+          "essay_id values in submission must exactly match those in test.csv"
+        ],
+        [
+          "The 'essay_id' in submission.csv must match the 'essay_id' in test.csv.",
+          "The 'score' in submission.csv must be an integer."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove essays with empty full_text",
+        "Ensure predicted scores are within training score range"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove essays with empty full_text",
+          "Ensure predicted scores are within training score range"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check score distribution in train.csv",
+        "Validate essay length distribution across train/test"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check score distribution in train.csv",
+          "Validate essay length distribution across train/test"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file named submission.csv",
+        "Columns: essay_id,score",
+        "2597 rows matching test.csv",
+        "No header quotes, comma delimiter",
+        "Output file must be named submission.csv",
+        "Must contain exactly 2 columns: essay_id and score",
+        "Must include header row matching sample_submission.csv format",
+        "Must contain 2597 rows (excluding header)",
+        "essay_id column must be string/object type",
+        "score column must be int64 type",
+        "The submission file must be named 'submission.csv'.",
+        "The submission file must contain two columns: 'essay_id' and 'score'.",
+        "The 'essay_id' column in submission.csv should contain the same essay IDs as in test.csv.",
+        "The 'score' column in submission.csv should contain the predicted score for each essay."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CSV file named submission.csv",
+          "Columns: essay_id,score",
+          "2597 rows matching test.csv",
+          "No header quotes, comma delimiter"
+        ],
+        [
+          "Output file must be named submission.csv",
+          "Must contain exactly 2 columns: essay_id and score",
+          "Must include header row matching sample_submission.csv format",
+          "Must contain 2597 rows (excluding header)",
+          "essay_id column must be string/object type",
+          "score column must be int64 type"
+        ],
+        [
+          "The submission file must be named 'submission.csv'.",
+          "The submission file must contain two columns: 'essay_id' and 'score'.",
+          "The 'essay_id' column in submission.csv should contain the same essay IDs as in test.csv.",
+          "The 'score' column in submission.csv should contain the predicted score for each essay."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5722222222222223
+}

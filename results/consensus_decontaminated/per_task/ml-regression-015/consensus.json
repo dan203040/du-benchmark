@@ -1,0 +1,449 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Appliances energy consumption prediction values",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Appliances energy consumption prediction values",
+        "Predict appliance energy consumption for test dataset",
+        "Appliance energy consumption"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Based on test.csv data only (no training data filtering needed)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Based on test.csv data only (no training data filtering needed)"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "list",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features are most predictive of appliance energy consumption?",
+        "How should the model be trained on KAG_energydata_complete.csv?",
+        "What preprocessing is needed for test.csv?",
+        "What model type is appropriate for this regression task?",
+        "What features from training data best predict Appliances energy consumption?",
+        "How to handle temporal patterns in the date column?",
+        "What model should be used for regression prediction?",
+        "How to evaluate prediction quality on training data before applying to test?",
+        "How to map predictions to test.csv rows maintaining order?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What features are most predictive of appliance energy consumption?",
+          "How should the model be trained on KAG_energydata_complete.csv?",
+          "What preprocessing is needed for test.csv?",
+          "What model type is appropriate for this regression task?"
+        ],
+        [
+          "What features from training data best predict Appliances energy consumption?",
+          "How to handle temporal patterns in the date column?",
+          "What model should be used for regression prediction?",
+          "How to evaluate prediction quality on training data before applying to test?",
+          "How to map predictions to test.csv rows maintaining order?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "KAG_energydata_complete.csv",
+        "test.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "KAG_energydata_complete.csv",
+          "test.csv"
+        ],
+        [
+          "KAG_energydata_complete.csv",
+          "test.csv"
+        ],
+        [
+          "KAG_energydata_complete.csv",
+          "test.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "test.csv missing 'Appliances' column (target variable)",
+        "KAG_energydata_complete.csv has 29 columns, test.csv has 28 columns",
+        "Both files have 'date' column but join not required - separate train/test split"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "test.csv missing 'Appliances' column (target variable)",
+          "KAG_energydata_complete.csv has 29 columns, test.csv has 28 columns"
+        ],
+        [
+          "test.csv missing 'Appliances' column (target variable)",
+          "Both files have 'date' column but join not required - separate train/test split"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "t1-t9, t_out, tdewpoint": "degrees Celsius",
+        "rh_1-rh_9, rh_out": "percentage",
+        "press_mm_hg": "millimeters of mercury",
+        "windspeed": "meters per second",
+        "visibility": "kilometers",
+        "lights": "watt-hours",
+        "appliances": "watt-hours",
+        "rv1, rv2": "random variables (unitless)",
+        "t1": "degrees Celsius",
+        "t2": "degrees Celsius",
+        "t3": "degrees Celsius",
+        "t4": "degrees Celsius",
+        "t5": "degrees Celsius",
+        "t6": "degrees Celsius",
+        "t7": "degrees Celsius",
+        "t8": "degrees Celsius",
+        "t9": "degrees Celsius",
+        "t_out": "degrees Celsius",
+        "tdewpoint": "degrees Celsius",
+        "rh_1": "percentage",
+        "rh_2": "percentage",
+        "rh_3": "percentage",
+        "rh_4": "percentage",
+        "rh_5": "percentage",
+        "rh_6": "percentage",
+        "rh_7": "percentage",
+        "rh_8": "percentage",
+        "rh_9": "percentage",
+        "rh_out": "percentage",
+        "rv1": "random variable (dimensionless)",
+        "rv2": "random variable (dimensionless)"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "T1-T9, T_out, Tdewpoint": "degrees Celsius",
+          "RH_1-RH_9, RH_out": "percentage",
+          "Press_mm_hg": "millimeters of mercury",
+          "Windspeed": "meters per second",
+          "Visibility": "kilometers",
+          "lights": "watt-hours",
+          "Appliances": "watt-hours",
+          "rv1, rv2": "random variables (unitless)"
+        },
+        {
+          "Appliances": "Wh (Watt-hours)",
+          "lights": "Wh (Watt-hours)",
+          "T1": "degrees Celsius",
+          "T2": "degrees Celsius",
+          "T3": "degrees Celsius",
+          "T4": "degrees Celsius",
+          "T5": "degrees Celsius",
+          "T6": "degrees Celsius",
+          "T7": "degrees Celsius",
+          "T8": "degrees Celsius",
+          "T9": "degrees Celsius",
+          "T_out": "degrees Celsius",
+          "Tdewpoint": "degrees Celsius",
+          "RH_1": "percentage",
+          "RH_2": "percentage",
+          "RH_3": "percentage",
+          "RH_4": "percentage",
+          "RH_5": "percentage",
+          "RH_6": "percentage",
+          "RH_7": "percentage",
+          "RH_8": "percentage",
+          "RH_9": "percentage",
+          "RH_out": "percentage",
+          "Press_mm_hg": "mmHg (millimeters of mercury)",
+          "Windspeed": "m/s (meters per second)",
+          "Visibility": "km (kilometers)",
+          "rv1": "random variable (dimensionless)",
+          "rv2": "random variable (dimensionless)"
+        },
+        {
+          "Appliances": "Wh",
+          "lights": "W",
+          "T1": "\u00b0C",
+          "RH_1": "%",
+          "T2": "\u00b0C",
+          "RH_2": "%",
+          "T3": "\u00b0C",
+          "RH_3": "%",
+          "T4": "\u00b0C",
+          "RH_4": "%",
+          "T5": "\u00b0C",
+          "RH_5": "%",
+          "T6": "\u00b0C",
+          "RH_6": "%",
+          "T7": "\u00b0C",
+          "RH_7": "%",
+          "T8": "\u00b0C",
+          "RH_8": "%",
+          "T9": "\u00b0C",
+          "RH_9": "%",
+          "T_out": "\u00b0C",
+          "Press_mm_hg": "mmHg",
+          "RH_out": "%",
+          "Windspeed": "m/s",
+          "Visibility": "km",
+          "Tdewpoint": "\u00b0C"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Temperature values have different scales (indoor vs outdoor)",
+        "RH_6 shows extreme values (1.0 to 99.9) suggesting sensor variability",
+        "lights column has discrete values (0, 10, 20)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Temperature values have different scales (indoor vs outdoor)",
+          "RH_6 shows extreme values (1.0 to 99.9) suggesting sensor variability",
+          "lights column has discrete values (0, 10, 20)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "date format consistency needs verification",
+        "test.csv covers different time periods than training data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "date format consistency needs verification",
+          "test.csv covers different time periods than training data"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null"
+      ],
+      "confidence": 0.5833333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 29.0,
+      "confidence": 1.0,
+      "votes": [
+        29.0,
+        29.0,
+        29.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Appliances values must be non-negative integers",
+        "RH values should be between 0-100%",
+        "Temperature values should be within realistic ranges (-50 to 50\u00b0C)",
+        "date values should be chronological",
+        "Predictions must be non-negative (energy consumption cannot be negative)",
+        "Output must contain exactly 2961 predictions matching test.csv row count",
+        "Column names in both files match except for missing 'Appliances' in test.csv",
+        "Date ranges may differ between train and test sets",
+        "The 'date' column needs to be parsed as datetime objects.",
+        "The 'Appliances' column is only present in KAG_energydata_complete.csv and needs to be predicted for test.csv.",
+        "The 'rv1' and 'rv2' columns are identical in KAG_energydata_complete.csv.",
+        "The test.csv file is missing the target variable 'Appliances'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Appliances values must be non-negative integers",
+          "RH values should be between 0-100%",
+          "Temperature values should be within realistic ranges (-50 to 50\u00b0C)",
+          "date values should be chronological"
+        ],
+        [
+          "Predictions must be non-negative (energy consumption cannot be negative)",
+          "Output must contain exactly 2961 predictions matching test.csv row count",
+          "Column names in both files match except for missing 'Appliances' in test.csv",
+          "Date ranges may differ between train and test sets"
+        ],
+        [
+          "The 'date' column needs to be parsed as datetime objects.",
+          "The 'Appliances' column is only present in KAG_energydata_complete.csv and needs to be predicted for test.csv.",
+          "The 'rv1' and 'rv2' columns are identical in KAG_energydata_complete.csv.",
+          "The test.csv file is missing the target variable 'Appliances'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove rows with missing critical features",
+        "Check for duplicate timestamps",
+        "Validate sensor readings against physical limits"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows with missing critical features",
+          "Check for duplicate timestamps",
+          "Validate sensor readings against physical limits"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for multicollinearity among temperature/RH features",
+        "Test stationarity of time series data",
+        "Validate distribution of target variable",
+        "Assess feature importance for model selection",
+        "Check for multicollinearity among temperature and humidity features",
+        "Validate prediction distribution matches training data distribution",
+        "Check for temporal autocorrelation in residuals"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for multicollinearity among temperature/RH features",
+          "Test stationarity of time series data",
+          "Validate distribution of target variable",
+          "Assess feature importance for model selection"
+        ],
+        [
+          "Check for multicollinearity among temperature and humidity features",
+          "Validate prediction distribution matches training data distribution",
+          "Check for temporal autocorrelation in residuals"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output file must be named 'appliance.csv'",
+        "Single column named 'Appliances'",
+        "2961 rows matching test.csv",
+        "Integer predictions",
+        "Save predictions to appliance.csv",
+        "Output must have column named 'Appliances'",
+        "Output should have 2961 rows corresponding to test.csv",
+        "Predictions should be numeric values",
+        "The output file should be named 'appliance.csv'.",
+        "The output file should contain a single column named 'Appliances'.",
+        "The 'Appliances' column should contain the predicted appliance energy consumption values for each row in test.csv."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Output file must be named 'appliance.csv'",
+          "Single column named 'Appliances'",
+          "2961 rows matching test.csv",
+          "Integer predictions"
+        ],
+        [
+          "Save predictions to appliance.csv",
+          "Output must have column named 'Appliances'",
+          "Output should have 2961 rows corresponding to test.csv",
+          "Predictions should be numeric values"
+        ],
+        [
+          "The output file should be named 'appliance.csv'.",
+          "The output file should contain a single column named 'Appliances'.",
+          "The 'Appliances' column should contain the predicted appliance energy consumption values for each row in test.csv."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5680555555555556
+}

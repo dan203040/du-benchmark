@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of water samples from Massachusetts beaches in 2013 that exceeded bacterial standards, leading to temporary closures.",
+    "filters": [
+      "Year = 2013",
+      "Location is in Massachusetts",
+      "Violation is 'yes'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many water samples were collected from Massachusetts beaches in 2013?",
+      "How many water samples from Massachusetts beaches in 2013 exceeded bacterial standards (Violation = 'yes')?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2013.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "CFU/100mL"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Sample Date' column should be checked for valid date formats.",
+      "The 'Violation' column should be checked for consistent values (e.g., 'yes', 'no')."
+    ],
+    "derived_filters": [
+      "Isolate samples from Massachusetts beaches (implicit based on the data source).",
+      "Define 'exceeded bacterial standards' as 'Violation' == 'yes'."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Percentage should be formatted to 3 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of water samples from Massachusetts beaches in 2013 that exceeded bacterial standards, leading to temporary closures.\",\n    \"filters\": [\n      \"Year = 2013\",\n      \"Location is in Massachusetts\",\n      \"Violation is 'yes'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many water samples were collected from Massachusetts beaches in 2013?\",\n      \"How many water samples from Massachusetts beaches in 2013 exceeded bacterial standards (Violation = 'yes')?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2013.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"CFU/100mL\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Sample Date' column should be checked for valid date formats.\",\n      \"The 'Violation' column should be checked for consistent values (e.g., 'yes', 'no').\"\n    ],\n    \"derived_filters\": [\n      \"Isolate samples from Massachusetts beaches (implicit based on the data source).\",\n      \"Define 'exceeded bacterial standards' as 'Violation' == 'yes'.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Percentage should be formatted to 3 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.197368621826172,
+  "token_usage": {}
+}

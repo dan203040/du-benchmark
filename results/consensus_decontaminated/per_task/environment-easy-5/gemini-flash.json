@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "Total rainfall for June, July, and August in 2020 for each region and identify the region with the most rainfall.",
+    "filters": [
+      "Year = 2020",
+      "Months in ['Jun', 'Jul', 'Aug']",
+      "Regions in ['Boston', 'Chatham', 'Amherst', 'Ashburnham']"
+    ],
+    "grouping_variables": [
+      "Region"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the sum of 'Jun', 'Jul', and 'Aug' columns for each region in 2020.",
+      "Find the maximum rainfall among all regions."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv",
+      "monthly_precipitations_amherst.csv",
+      "monthly_precipitations_ashburnham.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some rows have missing values in certain columns."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be an integer.",
+      "Rainfall values must be non-negative."
+    ],
+    "derived_filters": [
+      "Year = 2020"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Report the region with the highest total rainfall for June, July, and August 2020."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total rainfall for June, July, and August in 2020 for each region and identify the region with the most rainfall.\",\n    \"filters\": [\n      \"Year = 2020\",\n      \"Months in ['Jun', 'Jul', 'Aug']\",\n      \"Regions in ['Boston', 'Chatham', 'Amherst', 'Ashburnham']\"\n    ],\n    \"grouping_variables\": [\n      \"Region\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the sum of 'Jun', 'Jul', and 'Aug' columns for each region in 2020.\",\n      \"Find the maximum rainfall among all regions.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"monthly_precipitations_boston.csv\",\n      \"monthly_precipitations_chatham.csv\",\n      \"monthly_precipitations_amherst.csv\",\n      \"monthly_precipitations_ashburnham.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Jan\": \"inches\",\n      \"Feb\": \"inches\",\n      \"Mar\": \"inches\",\n      \"Apr\": \"inches\",\n      \"May\": \"inches\",\n      \"Jun\": \"inches\",\n      \"Jul\": \"inches\",\n      \"Aug\": \"inches\",\n      \"Sep\": \"inches\",\n      \"Oct\": \"inches\",\n      \"Nov\": \"inches\",\n      \"Dec\": \"inches\",\n      \"Annual\": \"inches\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Some rows have missing values in certain columns.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be an integer.\",\n      \"Rainfall values must be non-negative.\"\n    ],\n    \"derived_filters\": [\n      \"Year = 2020\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Report the region with the highest total rainfall for June, July, and August 2020.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.254745960235596,
+  "token_usage": {}
+}

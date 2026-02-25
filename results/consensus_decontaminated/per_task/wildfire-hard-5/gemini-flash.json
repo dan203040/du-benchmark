@@ -1,0 +1,68 @@
+{
+  "m_q": {
+    "target_metric": "Average difference in annual reported fires between NOAA and NIFC since 2000",
+    "filters": [
+      "Year >= 2000"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the annual number of fires reported by NOAA since 2000.",
+      "Calculate the annual number of fires reported by NIFC since 2000.",
+      "Calculate the difference between NOAA and NIFC annual fire counts for each year since 2000.",
+      "Calculate the average of the annual differences."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv",
+      "nifc_wildfires.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Acres Burned": "acres",
+      "Number of Fires": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "noaa_wildfires_monthly_stats.csv: Date column represents year and month (YYYYMM).",
+      "nifc_wildfires.csv: The columns are not properly separated. Need to split the first two columns."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "noaa_wildfires_monthly_stats.csv: Need to extract the year from the 'Date' column.",
+      "nifc_wildfires.csv: Need to parse the year and number of fires from the first two columns.",
+      "nifc_wildfires.csv: The number of fires column contains text and special characters that need to be removed."
+    ],
+    "derived_filters": [
+      "Year >= 2000"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Round the final answer to the nearest whole number."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average difference in annual reported fires between NOAA and NIFC since 2000\",\n    \"filters\": [\"Year >= 2000\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the annual number of fires reported by NOAA since 2000.\",\n      \"Calculate the annual number of fires reported by NIFC since 2000.\",\n      \"Calculate the difference between NOAA and NIFC annual fire counts for each year since 2000.\",\n      \"Calculate the average of the annual differences.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"noaa_wildfires_monthly_stats.csv\", \"nifc_wildfires.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Acres Burned\": \"acres\",\n      \"Number of Fires\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"noaa_wildfires_monthly_stats.csv: Date column represents year and month (YYYYMM).\",\n      \"nifc_wildfires.csv: The columns are not properly separated. Need to split the first two columns.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"noaa_wildfires_monthly_stats.csv: Need to extract the year from the 'Date' column.\",\n      \"nifc_wildfires.csv: Need to parse the year and number of fires from the first two columns.\",\n      \"nifc_wildfires.csv: The number of fires column contains text and special characters that need to be removed.\"\n    ],\n    \"derived_filters\": [\"Year >= 2000\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Round the final answer to the nearest whole number.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.483111381530762,
+  "token_usage": {}
+}

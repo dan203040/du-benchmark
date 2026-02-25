@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "minimum number of report categories needed to reach cumulative percentage >= 50%",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Category"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the cumulative percentage of reports by category?",
+      "At which rank does cumulative percentage first reach or exceed 50%?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "# of Reports": "num_reports",
+      "Percentage": "percentage"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [
+      "Percentage column contains '%' symbol and needs conversion to numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage values include '%' symbol requiring string-to-numeric conversion"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Rank values should be sequential 1-29",
+      "Sum of percentages should equal 100%",
+      "Categories are mutually exclusive"
+    ],
+    "derived_filters": [
+      "Sort by Rank ascending for cumulative calculation"
+    ],
+    "statistical_tests": [
+      "Verify percentage column sums to 100% after conversion"
+    ],
+    "output_format_requirements": [
+      "Integer count of categories"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum number of report categories needed to reach cumulative percentage >= 50%\",\n        \"filters\": [\"Year = 2024\"],\n        \"grouping_variables\": [\"Category\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the cumulative percentage of reports by category?\", \"At which rank does cumulative percentage first reach or exceed 50%?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Report_Categories.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {\"# of Reports\": \"num_reports\", \"Percentage\": \"percentage\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count\", \"Percentage\": \"percentage\"},\n        \"scale_issues\": [\"Percentage column contains '%' symbol and needs conversion to numeric\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Percentage values include '%' symbol requiring string-to-numeric conversion\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Rank values should be sequential 1-29\", \"Sum of percentages should equal 100%\", \"Categories are mutually exclusive\"],\n        \"derived_filters\": [\"Sort by Rank ascending for cumulative calculation\"],\n        \"statistical_tests\": [\"Verify percentage column sums to 100% after conversion\"],\n        \"output_format_requirements\": [\"Integer count of categories\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.020675897598267,
+  "token_usage": {
+    "input_tokens": 894,
+    "output_tokens": 390
+  }
+}

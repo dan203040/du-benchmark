@@ -1,0 +1,339 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Avg. Finish",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Avg. Finish",
+        "Avg. Finish",
+        "average of 'Avg. Finish'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Position = '70th'",
+        "filter rows where 'Position' is equal to '70th'"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Position = '70th'"
+        ],
+        [
+          "Position = '70th'"
+        ],
+        [
+          "filter rows where 'Position' is equal to '70th'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the average finish position for drivers who finished in 70th place in the championship?",
+        "Is there only one record with Position = '70th'?",
+        "Does the Avg. Finish column contain numeric values that can be averaged?",
+        "What is the value of 'Avg. Finish' column where 'Position' column equals '70th'?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the average finish position for drivers who finished in 70th place in the championship?",
+          "Is there only one record with Position = '70th'?",
+          "Does the Avg. Finish column contain numeric values that can be averaged?"
+        ],
+        [
+          "What is the value of 'Avg. Finish' column where 'Position' column equals '70th'?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Racing Stats"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Racing Stats"
+        ],
+        [
+          "Racing Stats"
+        ],
+        [
+          "Racing Stats"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "All columns are stored as object dtype, including numeric columns like Avg. Finish, Avg. Start, Winnings, Starts, Wins, Top 5, Top 10, Poles"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All columns are stored as object dtype, including numeric columns like Avg. Finish, Avg. Start, Winnings, Starts, Wins, Top 5, Top 10, Poles"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avg. start": "position",
+        "avg. finish": "position",
+        "winnings": "USD",
+        "starts": "count",
+        "wins": "count",
+        "top 5": "count",
+        "top 10": "count",
+        "poles": "count",
+        "year": "calendar year",
+        "position": "position"
+      },
+      "confidence": 0.7333333333333334,
+      "votes": [
+        {
+          "Avg. Start": "position",
+          "Avg. Finish": "position",
+          "Winnings": "USD",
+          "Starts": "count",
+          "Wins": "count",
+          "Top 5": "count",
+          "Top 10": "count",
+          "Poles": "count"
+        },
+        {
+          "Avg. Finish": "position number",
+          "Avg. Start": "position number",
+          "Winnings": "US dollars",
+          "Year": "calendar year"
+        },
+        {
+          "Year": "year",
+          "Starts": "count",
+          "Wins": "count",
+          "Top 5": "count",
+          "Top 10": "count",
+          "Poles": "count",
+          "Avg. Start": "position",
+          "Avg. Finish": "position",
+          "Winnings": "USD",
+          "Position": "position"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Winnings column contains currency symbols and commas that need to be removed for numeric operations",
+        "Position column contains ordinal suffixes (th, rd, nd) that need to be parsed",
+        "Avg. Finish and Avg. Start columns contain decimal numbers stored as strings"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Winnings column contains currency symbols and commas that need to be removed for numeric operations",
+          "Position column contains ordinal suffixes (th, rd, nd) that need to be parsed",
+          "Avg. Finish and Avg. Start columns contain decimal numbers stored as strings"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Position column should contain ordinal rankings",
+        "Avg. Finish should be between 1 and 43 (typical NASCAR field size)",
+        "Year should be between 1989 and 2018 based on sample data",
+        "Starts should be less than or equal to 36 (typical NASCAR season length)",
+        "Position column must match exactly '70th' (case-sensitive with ordinal suffix)",
+        "Only one row expected to match Position='70th'",
+        "Avg. Finish should be a numeric value",
+        "The 'Position' column needs to be cleaned to remove the 'th' suffix and converted to integer for numerical comparisons if needed for other analysis."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Position column should contain ordinal rankings",
+          "Avg. Finish should be between 1 and 43 (typical NASCAR field size)",
+          "Year should be between 1989 and 2018 based on sample data",
+          "Starts should be less than or equal to 36 (typical NASCAR season length)"
+        ],
+        [
+          "Position column must match exactly '70th' (case-sensitive with ordinal suffix)",
+          "Only one row expected to match Position='70th'",
+          "Avg. Finish should be a numeric value"
+        ],
+        [
+          "The 'Position' column needs to be cleaned to remove the 'th' suffix and converted to integer for numerical comparisons if needed for other analysis."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Position = '70th'",
+        "Convert Avg. Finish from string to float",
+        "Check for missing values in Avg. Finish column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Position = '70th'",
+          "Convert Avg. Finish from string to float",
+          "Check for missing values in Avg. Finish column"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if only one record exists for Position = '70th'",
+        "Validate numeric conversion of Avg. Finish column",
+        "Check for outliers in Avg. Finish values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if only one record exists for Position = '70th'",
+          "Validate numeric conversion of Avg. Finish column",
+          "Check for outliers in Avg. Finish values"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return a single numeric value representing the average finish",
+        "Handle potential data type conversion from string to numeric",
+        "Consider if multiple records exist for Position = '70th'",
+        "Return single numeric value for Avg. Finish",
+        "Handle potential string-to-numeric conversion for Avg. Finish column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return a single numeric value representing the average finish",
+          "Handle potential data type conversion from string to numeric",
+          "Consider if multiple records exist for Position = '70th'"
+        ],
+        [
+          "Return single numeric value for Avg. Finish",
+          "Handle potential string-to-numeric conversion for Avg. Finish column"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6116666666666667
+}

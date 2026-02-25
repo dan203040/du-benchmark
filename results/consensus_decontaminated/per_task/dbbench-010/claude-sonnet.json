@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "The team name that appears immediately after Manchester City in the list",
+    "filters": [
+      "Manchester City must be present in the Team column"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the position/row number of Manchester City in the dataset?",
+      "What team appears in the next row after Manchester City?",
+      "Are there multiple occurrences of Manchester City in the dataset?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Manager Changes"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Date of vacancy": "date",
+      "Date of appointment": "date",
+      "Position in table": "ordinal_rank"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data appears to contain multiple seasons of manager changes",
+      "Manchester City appears multiple times in the dataset (rows 1 and 11)",
+      "Row order may be significant for determining 'after' relationship"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Team column must contain 'Manchester City'",
+      "There must be at least one row after the Manchester City row(s)",
+      "The order of rows in the data file is preserved"
+    ],
+    "derived_filters": [
+      "Identify all rows where Team = 'Manchester City'",
+      "Determine which Manchester City occurrence is being referenced (first or second)",
+      "Select the row immediately following the relevant Manchester City row"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return only the team name as a string",
+      "If multiple Manchester City entries exist, clarify which 'after' is meant (likely the first occurrence)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The team name that appears immediately after Manchester City in the list\",\n    \"filters\": [\"Manchester City must be present in the Team column\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the position/row number of Manchester City in the dataset?\",\n      \"What team appears in the next row after Manchester City?\",\n      \"Are there multiple occurrences of Manchester City in the dataset?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Manager Changes\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Date of vacancy\": \"date\",\n      \"Date of appointment\": \"date\",\n      \"Position in table\": \"ordinal_rank\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data appears to contain multiple seasons of manager changes\",\n      \"Manchester City appears multiple times in the dataset (rows 1 and 11)\",\n      \"Row order may be significant for determining 'after' relationship\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Team column must contain 'Manchester City'\",\n      \"There must be at least one row after the Manchester City row(s)\",\n      \"The order of rows in the data file is preserved\"\n    ],\n    \"derived_filters\": [\n      \"Identify all rows where Team = 'Manchester City'\",\n      \"Determine which Manchester City occurrence is being referenced (first or second)\",\n      \"Select the row immediately following the relevant Manchester City row\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return only the team name as a string\",\n      \"If multiple Manchester City entries exist, clarify which 'after' is meant (likely the first occurrence)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.640964031219482,
+  "token_usage": {
+    "input_tokens": 1446,
+    "output_tokens": 564
+  }
+}

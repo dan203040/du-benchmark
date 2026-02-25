@@ -1,0 +1,56 @@
+{
+  "m_q": {
+    "target_metric": "Count of games played by the Badgers in October",
+    "filters": [
+      "Date is in October",
+      "Team is the Badgers"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Football Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Attendance": "number of attendees"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Date' column must be parsed to determine the month.",
+      "The team name 'Badgers' needs to be identified either in the 'Opponent#' or 'Site' column."
+    ],
+    "derived_filters": [
+      "Month of 'Date' = October"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of games played by the Badgers in October\",\n    \"filters\": [\"Date is in October\", \"Team is the Badgers\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"Football Schedule\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"Attendance\": \"number of attendees\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"The 'Date' column must be parsed to determine the month.\", \"The team name 'Badgers' needs to be identified either in the 'Opponent#' or 'Site' column.\"],\n    \"derived_filters\": [\"Month of 'Date' = October\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 14.926048040390015,
+  "token_usage": {}
+}

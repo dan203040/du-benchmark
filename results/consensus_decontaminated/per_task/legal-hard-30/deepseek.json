@@ -1,0 +1,134 @@
+{
+  "m_q": {
+    "target_metric": "Compare number of identity theft reports vs fraud reports for each metropolitan area in 2024",
+    "filters": [
+      "Year = 2024",
+      "Report type = identity theft OR fraud"
+    ],
+    "grouping_variables": [
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar (Yes/No)",
+    "sub_questions": [
+      "What are the report counts for identity theft per metropolitan area?",
+      "What are the report counts for fraud per metropolitan area?",
+      "For which metropolitan areas does identity theft count exceed fraud count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All files have identical schema: ['Metropolitan Area', '# of Reports']",
+      "Missing report type column - cannot distinguish identity theft vs fraud from current data"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of reports (type unspecified)"
+    },
+    "scale_issues": [
+      "Cannot determine if reports are absolute counts or per capita rates",
+      "Data includes footnote rows that are not actual data records"
+    ],
+    "cross_source_conflicts": [
+      "Metropolitan areas span multiple states (e.g., 'Columbus, GA-AL Metropolitan Statistical Area') but appear in multiple state files",
+      "No clear way to deduplicate cross-state metropolitan areas"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Each file ends with a footnote row about metropolitan area definitions",
+      "Column '# of Reports' contains float64 values but represents counts",
+      "Metropolitan Area names contain commas and are quoted"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Missing critical dimension: report type (identity theft vs fraud)",
+      "Year information not present in data",
+      "Cannot answer analytical question with current data structure"
+    ],
+    "derived_filters": [
+      "Exclude footnote rows containing 'Metropolitan Areas are defined' text"
+    ],
+    "statistical_tests": [
+      "Need to verify if any metropolitan area appears in multiple files with different counts"
+    ],
+    "output_format_requirements": [
+      "Final answer must be Yes or No only"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Compare number of identity theft reports vs fraud reports for each metropolitan area in 2024\",\n        \"filters\": [\"Year = 2024\", \"Report type = identity theft OR fraud\"],\n        \"grouping_variables\": [\"Metropolitan Area\"],\n        \"output_cardinality\": \"scalar (Yes/No)\",\n        \"sub_questions\": [\"What are the report counts for identity theft per metropolitan area?\", \"What are the report counts for fraud per metropolitan area?\", \"For which metropolitan areas does identity theft count exceed fraud count?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Alabama.csv\", \"Alaska.csv\", \"Arizona.csv\", \"Arkansas.csv\", \"California.csv\", \"Colorado.csv\", \"Connecticut.csv\", \"Delaware.csv\", \"DistrictofColumbia.csv\", \"Florida.csv\", \"Georgia.csv\", \"Hawaii.csv\", \"Idaho.csv\", \"Illinois.csv\", \"Indiana.csv\", \"Iowa.csv\", \"Kansas.csv\", \"Kentucky.csv\", \"Louisiana.csv\", \"Maine.csv\", \"Maryland.csv\", \"Massachusetts.csv\", \"Michigan.csv\", \"Minnesota.csv\", \"Mississippi.csv\", \"Missouri.csv\", \"Montana.csv\", \"Nebraska.csv\", \"Nevada.csv\", \"NewHampshire.csv\", \"NewJersey.csv\", \"NewMexico.csv\", \"NewYork.csv\", \"NorthCarolina.csv\", \"NorthDakota.csv\", \"Ohio.csv\", \"Oklahoma.csv\", \"Oregon.csv\", \"Pennsylvania.csv\", \"PuertoRico.csv\", \"RhodeIsland.csv\", \"SouthCarolina.csv\", \"SouthDakota.csv\", \"Tennessee.csv\", \"Texas.csv\", \"Utah.csv\", \"Vermont.csv\", \"Virginia.csv\", \"Washington.csv\", \"WestVirginia.csv\", \"Wisconsin.csv\", \"Wyoming.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All files have identical schema: ['Metropolitan Area', '# of Reports']\", \"Missing report type column - cannot distinguish identity theft vs fraud from current data\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of reports (type unspecified)\"},\n        \"scale_issues\": [\"Cannot determine if reports are absolute counts or per capita rates\", \"Data includes footnote rows that are not actual data records\"],\n        \"cross_source_conflicts\": [\"Metropolitan areas span multiple states (e.g., 'Columbus, GA-AL Metropolitan Statistical Area') but appear in multiple state files\", \"No clear way to deduplicate cross-state metropolitan areas\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Each file ends with a footnote row about metropolitan area definitions\", \"Column '# of Reports' contains float64 values but represents counts\", \"Metropolitan Area names contain commas and are quoted\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Missing critical dimension: report type (identity theft vs fraud)\", \"Year information not present in data\", \"Cannot answer analytical question with current data structure\"],\n        \"derived_filters\": [\"Exclude footnote rows containing 'Metropolitan Areas are defined' text\"],\n        \"statistical_tests\": [\"Need to verify if any metropolitan area appears in multiple files with different counts\"],\n        \"output_format_requirements\": [\"Final answer must be Yes or No only\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 15.930533170700073,
+  "token_usage": {
+    "input_tokens": 12822,
+    "output_tokens": 792
+  }
+}

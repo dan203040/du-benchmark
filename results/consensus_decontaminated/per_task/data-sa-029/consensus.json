@@ -1,0 +1,422 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "beak length-to-depth ratio (length/depth) for each bird, mean ratio per year, and 99% confidence intervals using bootstrap replicates",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "beak length-to-depth ratio (length/depth) for each bird, mean ratio per year, and 99% confidence intervals using bootstrap replicates",
+        "Mean beak length-to-depth ratio with 99% confidence intervals using bootstrap replicates (n=10,000) for G. scandens birds in 1975 and 2012",
+        "Mean beak length-to-depth ratio and 99% confidence interval for G. scandens birds in 1975 and 2012."
+      ]
+    },
+    "filters": {
+      "value": [
+        "species = G. scandens",
+        "location = Daphne Major",
+        "years = 1975 and 2012",
+        "Species == 'G. scandens'",
+        "Location == 'Daphne Major'",
+        "Year in [1975, 2012]"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "species = G. scandens",
+          "location = Daphne Major",
+          "years = 1975 and 2012"
+        ],
+        [
+          "Species == 'G. scandens'",
+          "Location == 'Daphne Major'",
+          "Year in [1975, 2012]"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Compute individual bird ratios",
+        "Calculate mean ratio per year",
+        "Generate 10,000 bootstrap replicates per year",
+        "Compute 99% confidence intervals from bootstrap distribution",
+        "Output results to result.csv",
+        "Compute beak length-to-depth ratio for each individual bird",
+        "Calculate mean ratio for 1975",
+        "Calculate mean ratio for 2012",
+        "Generate 10,000 bootstrap replicates for 1975 data",
+        "Generate 10,000 bootstrap replicates for 2012 data",
+        "Compute 99% confidence intervals from bootstrap distributions",
+        "Format results as specified in sample_result.csv",
+        "Calculate the beak length-to-depth ratio for each bird in 1975 and 2012.",
+        "Calculate the mean beak length-to-depth ratio for each year (1975 and 2012).",
+        "Compute the 99% confidence interval for the mean beak length-to-depth ratio for each year using bootstrap replicates (size = 10,000)."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Compute individual bird ratios",
+          "Calculate mean ratio per year",
+          "Generate 10,000 bootstrap replicates per year",
+          "Compute 99% confidence intervals from bootstrap distribution",
+          "Output results to result.csv"
+        ],
+        [
+          "Compute beak length-to-depth ratio for each individual bird",
+          "Calculate mean ratio for 1975",
+          "Calculate mean ratio for 2012",
+          "Generate 10,000 bootstrap replicates for 1975 data",
+          "Generate 10,000 bootstrap replicates for 2012 data",
+          "Compute 99% confidence intervals from bootstrap distributions",
+          "Format results as specified in sample_result.csv"
+        ],
+        [
+          "Calculate the beak length-to-depth ratio for each bird in 1975 and 2012.",
+          "Calculate the mean beak length-to-depth ratio for each year (1975 and 2012).",
+          "Compute the 99% confidence interval for the mean beak length-to-depth ratio for each year using bootstrap replicates (size = 10,000)."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "beak length data file",
+        "beak depth data file",
+        "result.csv",
+        "1975.csv",
+        "2012.csv"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "beak length data file",
+          "beak depth data file"
+        ],
+        [
+          "result.csv"
+        ],
+        [
+          "result.csv",
+          "1975.csv",
+          "2012.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Year column may exist in both files or need to be merged",
+        "Missing source data file containing beak measurements (length and depth) for G. scandens birds"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column may exist in both files or need to be merged"
+        ],
+        [
+          "Missing source data file containing beak measurements (length and depth) for G. scandens birds"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "beak_length": "mm",
+        "beak_depth": "mm",
+        "ratio": "unitless",
+        "mean ratio": "dimensionless ratio",
+        "conf": "ratio units (confidence interval width or bound)",
+        "year": "year"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "beak_length": "mm",
+          "beak_depth": "mm",
+          "ratio": "unitless"
+        },
+        {
+          "beak_length": "millimeters (assumed)",
+          "beak_depth": "millimeters (assumed)",
+          "mean ratio": "dimensionless ratio",
+          "conf": "ratio units (confidence interval width or bound)"
+        },
+        {
+          "Year": "year",
+          "mean ratio": "beak length / beak depth",
+          "conf": "beak length / beak depth"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Need to ensure consistent measurement units across years",
+        "Check for measurement precision differences between 1975 and 2012",
+        "Need to verify beak length and depth are in same units for valid ratio calculation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Need to ensure consistent measurement units across years",
+          "Check for measurement precision differences between 1975 and 2012"
+        ],
+        [
+          "Need to verify beak length and depth are in same units for valid ratio calculation"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Potential measurement protocol differences between years",
+        "Source data with beak measurements not provided in data files list"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Potential measurement protocol differences between years"
+        ],
+        [
+          "Source data with beak measurements not provided in data files list"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "NaN",
+        "null"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.36363636363636365,
+      "votes": [
+        10.0,
+        3.0,
+        0.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Bootstrap size = 10,000 replicates",
+        "Confidence level = 99%",
+        "Years limited to 1975 and 2012",
+        "Only G. scandens species",
+        "Only include G. scandens species",
+        "Only include Daphne Major location",
+        "Only include years 1975 and 2012",
+        "Bootstrap replicates must equal 10,000",
+        "Confidence level must be 99%",
+        "Beak depth must be non-zero to compute ratio",
+        "Beak length and beak depth must be positive values to calculate the ratio.",
+        "Bootstrap replicates should be generated independently for each year."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Bootstrap size = 10,000 replicates",
+          "Confidence level = 99%",
+          "Years limited to 1975 and 2012",
+          "Only G. scandens species"
+        ],
+        [
+          "Only include G. scandens species",
+          "Only include Daphne Major location",
+          "Only include years 1975 and 2012",
+          "Bootstrap replicates must equal 10,000",
+          "Confidence level must be 99%",
+          "Beak depth must be non-zero to compute ratio"
+        ],
+        [
+          "Beak length and beak depth must be positive values to calculate the ratio.",
+          "Bootstrap replicates should be generated independently for each year."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove birds with missing length or depth measurements",
+        "Exclude ratio outliers if beyond biological plausibility",
+        "Remove records with missing beak length values",
+        "Remove records with missing beak depth values",
+        "Remove records where beak depth equals zero"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove birds with missing length or depth measurements",
+          "Exclude ratio outliers if beyond biological plausibility"
+        ],
+        [
+          "Remove records with missing beak length values",
+          "Remove records with missing beak depth values",
+          "Remove records where beak depth equals zero"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Bootstrap confidence interval calculation",
+        "Mean comparison between years",
+        "Bootstrap resampling with replacement (10,000 iterations)",
+        "99% confidence interval calculation (percentile method: 0.5th and 99.5th percentiles)",
+        "Bootstrap confidence interval"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Bootstrap confidence interval calculation",
+          "Mean comparison between years"
+        ],
+        [
+          "Bootstrap resampling with replacement (10,000 iterations)",
+          "99% confidence interval calculation (percentile method: 0.5th and 99.5th percentiles)"
+        ],
+        [
+          "Bootstrap confidence interval"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file with columns: Year, mean ratio, conf",
+        "Two rows (1975 and 2012)",
+        "conf column contains confidence interval value",
+        "Format matching sample_result.csv",
+        "Output must be CSV format",
+        "Must contain exactly 3 columns: Year, mean ratio, conf",
+        "Must contain exactly 2 data rows (1975 and 2012)",
+        "Year column must be integer type",
+        "mean ratio column must be float type",
+        "conf column must be float type",
+        "Follow exact format shown in sample_result.csv",
+        "The result.csv file should contain the columns 'Year', 'mean ratio', and 'conf'.",
+        "The 'Year' column should contain the years 1975 and 2012.",
+        "The 'mean ratio' column should contain the calculated mean beak length-to-depth ratio for each year.",
+        "The 'conf' column should contain the width of the 99% confidence interval for the mean beak length-to-depth ratio for each year (e.g., half the interval width)."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "CSV file with columns: Year, mean ratio, conf",
+          "Two rows (1975 and 2012)",
+          "conf column contains confidence interval value",
+          "Format matching sample_result.csv"
+        ],
+        [
+          "Output must be CSV format",
+          "Must contain exactly 3 columns: Year, mean ratio, conf",
+          "Must contain exactly 2 data rows (1975 and 2012)",
+          "Year column must be integer type",
+          "mean ratio column must be float type",
+          "conf column must be float type",
+          "Follow exact format shown in sample_result.csv"
+        ],
+        [
+          "The result.csv file should contain the columns 'Year', 'mean ratio', and 'conf'.",
+          "The 'Year' column should contain the years 1975 and 2012.",
+          "The 'mean ratio' column should contain the calculated mean beak length-to-depth ratio for each year.",
+          "The 'conf' column should contain the width of the 99% confidence interval for the mean beak length-to-depth ratio for each year (e.g., half the interval width)."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5692929292929294
+}

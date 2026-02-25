@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of years where the ODP 967 wet-dry index showed an increasing trend",
+    "filters": [
+      "Focus on 'ODP 967 wet-dry index' column",
+      "Consider only valid numeric values",
+      "Handle potential duplicate age columns"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the time range covered by the data?",
+      "How many distinct years are represented?",
+      "For each year transition, is the wet-dry index increasing?",
+      "What percentage of year-to-year transitions show increase?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "climateMeasurements.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple 'Age_ky' columns with suffixes (.1, .2, .3) - need to identify which one corresponds to wet-dry index measurements",
+      "Unnamed columns (20, 24, 27) with unclear meaning"
+    ],
+    "column_mappings": {
+      "Age_ky.3": "wet_dry_age_ky",
+      "ODP 967 wet-dry index": "wet_dry_index"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age_ky": "thousands of years",
+      "ODP 967 wet-dry index": "unitless index",
+      "Depth below seafloor_m": "meters",
+      "Splice depth_m": "meters",
+      "Interval_cm": "centimeters"
+    },
+    "scale_issues": [
+      "Age columns appear in different scales - need to verify consistency",
+      "Wet-dry index values range from negative to positive values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "NaN"
+    ],
+    "expected_columns": 30,
+    "expected_rows": 0,
+    "file_format": "excel",
+    "format_notes": [
+      "Excel file with 8360 rows and 30 columns",
+      "Sample provided in CSV format for preview",
+      "Contains multiple measurement systems and proxy data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age values should be monotonically increasing for temporal analysis",
+      "Wet-dry index should be numeric",
+      "Need to handle potential missing values in wet-dry index column"
+    ],
+    "derived_filters": [
+      "Remove rows where 'ODP 967 wet-dry index' is null",
+      "Use 'Age_ky.3' column that appears to correspond with wet-dry index measurements",
+      "Consider only unique age values or aggregate by year"
+    ],
+    "statistical_tests": [
+      "Check for monotonicity of age values",
+      "Test for stationarity of wet-dry index time series",
+      "Calculate year-over-year differences"
+    ],
+    "output_format_requirements": [
+      "Percentage rounded to 2 decimal places",
+      "Scalar output between 0-100%"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Percentage of years where the ODP 967 wet-dry index showed an increasing trend\",\n        \"filters\": [\"Focus on 'ODP 967 wet-dry index' column\", \"Consider only valid numeric values\", \"Handle potential duplicate age columns\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the time range covered by the data?\", \"How many distinct years are represented?\", \"For each year transition, is the wet-dry index increasing?\", \"What percentage of year-to-year transitions show increase?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"climateMeasurements.xlsx\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Multiple 'Age_ky' columns with suffixes (.1, .2, .3) - need to identify which one corresponds to wet-dry index measurements\", \"Unnamed columns (20, 24, 27) with unclear meaning\"],\n        \"column_mappings\": {\"Age_ky.3\": \"wet_dry_age_ky\", \"ODP 967 wet-dry index\": \"wet_dry_index\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Age_ky\": \"thousands of years\", \"ODP 967 wet-dry index\": \"unitless index\", \"Depth below seafloor_m\": \"meters\", \"Splice depth_m\": \"meters\", \"Interval_cm\": \"centimeters\"},\n        \"scale_issues\": [\"Age columns appear in different scales - need to verify consistency\", \"Wet-dry index values range from negative to positive values\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"NaN\"],\n        \"expected_columns\": 30,\n        \"file_format\": \"excel\",\n        \"format_notes\": [\"Excel file with 8360 rows and 30 columns\", \"Sample provided in CSV format for preview\", \"Contains multiple measurement systems and proxy data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Age values should be monotonically increasing for temporal analysis\", \"Wet-dry index should be numeric\", \"Need to handle potential missing values in wet-dry index column\"],\n        \"derived_filters\": [\"Remove rows where 'ODP 967 wet-dry index' is null\", \"Use 'Age_ky.3' column that appears to correspond with wet-dry index measurements\", \"Consider only unique age values or aggregate by year\"],\n        \"statistical_tests\": [\"Check for monotonicity of age values\", \"Test for stationarity of wet-dry index time series\", \"Calculate year-over-year differences\"],\n        \"output_format_requirements\": [\"Percentage rounded to 2 decimal places\", \"Scalar output between 0-100%\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.484847068786621,
+  "token_usage": {
+    "input_tokens": 5322,
+    "output_tokens": 646
+  }
+}

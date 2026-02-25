@@ -1,0 +1,58 @@
+{
+  "m_q": {
+    "target_metric": "Count of states where 'Prizes, Sweepstakes and Lotteries' is in the top 10 report categories",
+    "filters": [
+      "Year = 2024",
+      "Category is in top 10 for each state"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Top_Ten_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "number of reports",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage column is a string with a % sign and needs to be converted to numeric."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The data represents the top 10 categories for each state, so no explicit filtering for top 10 is needed."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single integer representing the number of states."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of states where 'Prizes, Sweepstakes and Lotteries' is in the top 10 report categories\",\n    \"filters\": [\n      \"Year = 2024\",\n      \"Category is in top 10 for each state\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_State_Top_Ten_Report_Categories.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"number of reports\",\n      \"Percentage\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Percentage column is a string with a % sign and needs to be converted to numeric.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The data represents the top 10 categories for each state, so no explicit filtering for top 10 is needed.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a single integer representing the number of states.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.855107069015503,
+  "token_usage": {}
+}

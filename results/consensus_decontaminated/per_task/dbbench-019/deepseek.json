@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "Crude death rate corresponding to a specific death count of 106,000",
+    "filters": [
+      "Deaths = 106 000"
+    ],
+    "grouping_variables": [
+      "Period"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which period has exactly 106,000 deaths?",
+      "What is the crude death rate value in that same row?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Population Dynamics Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All columns stored as object/string type despite containing numeric data with spaces"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Births": "count",
+      "Deaths": "count",
+      "Difference": "count",
+      "Crude Birth Rate": "per 1000 population",
+      "Crude Death Rate": "per 1000 population",
+      "Natural Increase": "per 1000 population",
+      "Total Fertility Rate": "children per woman",
+      "Infant Mortality Rate": "per 1000 live births"
+    },
+    "scale_issues": [
+      "Numeric values contain spaces (e.g., '106 000') requiring parsing",
+      "Crude rates appear to be per 1000 based on typical demographic conventions"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Numeric values contain spaces as thousand separators",
+      "Period column contains year ranges like '1950 - 1955'",
+      "All data appears to be aggregated by 5-year periods"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Deaths column must be parsed to integer by removing spaces",
+      "Only one row should match the filter 'Deaths = 106 000'",
+      "Crude death rate should be retrieved from the same row as the matching death count"
+    ],
+    "derived_filters": [
+      "Parse 'Deaths' column to integer: replace(' ', '') then convert to int"
+    ],
+    "statistical_tests": [
+      "Verify that crude death rate values are consistent with death counts and population assumptions"
+    ],
+    "output_format_requirements": [
+      "Return single numeric value for crude death rate",
+      "Include period context in explanation if needed"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Crude death rate corresponding to a specific death count of 106,000\",\n        \"filters\": [\"Deaths = 106 000\"],\n        \"grouping_variables\": [\"Period\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which period has exactly 106,000 deaths?\", \"What is the crude death rate value in that same row?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Population Dynamics Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All columns stored as object/string type despite containing numeric data with spaces\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Births\": \"count\", \"Deaths\": \"count\", \"Difference\": \"count\", \"Crude Birth Rate\": \"per 1000 population\", \"Crude Death Rate\": \"per 1000 population\", \"Natural Increase\": \"per 1000 population\", \"Total Fertility Rate\": \"children per woman\", \"Infant Mortality Rate\": \"per 1000 live births\"},\n        \"scale_issues\": [\"Numeric values contain spaces (e.g., '106 000') requiring parsing\", \"Crude rates appear to be per 1000 based on typical demographic conventions\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Numeric values contain spaces as thousand separators\", \"Period column contains year ranges like '1950 - 1955'\", \"All data appears to be aggregated by 5-year periods\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Deaths column must be parsed to integer by removing spaces\", \"Only one row should match the filter 'Deaths = 106 000'\", \"Crude death rate should be retrieved from the same row as the matching death count\"],\n        \"derived_filters\": [\"Parse 'Deaths' column to integer: replace(' ', '') then convert to int\"],\n        \"statistical_tests\": [\"Verify that crude death rate values are consistent with death counts and population assumptions\"],\n        \"output_format_requirements\": [\"Return single numeric value for crude death rate\", \"Include period context in explanation if needed\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.184985876083374,
+  "token_usage": {
+    "input_tokens": 1248,
+    "output_tokens": 550
+  }
+}

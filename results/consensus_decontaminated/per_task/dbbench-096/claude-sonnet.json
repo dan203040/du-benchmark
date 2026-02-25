@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "average number of gold medals won by China, Japan, and North Korea",
+    "filters": [
+      "Nation in ['China', 'Japan', 'North Korea']"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the number of gold medals won by China?",
+      "What is the number of gold medals won by Japan?",
+      "What is the number of gold medals won by North Korea?",
+      "What is the mean of these three values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medals"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Gold": "count",
+      "Silver": "count",
+      "Bronze": "count",
+      "Total": "count",
+      "Rank": "ordinal"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data contains multiple ranking systems (appears to have separate rankings for different regions/competitions)",
+      "Rank values repeat, suggesting multiple competitions or groups in the same file"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Gold column must be non-negative integer",
+      "Nation names must match exactly: 'China', 'Japan', 'North Korea'",
+      "All three nations must be present in the dataset"
+    ],
+    "derived_filters": [
+      "Filter rows where Nation equals 'China', 'Japan', or 'North Korea'",
+      "Extract Gold values for filtered nations"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value representing the arithmetic mean",
+      "Result should be rounded to appropriate precision (e.g., 2 decimal places)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average number of gold medals won by China, Japan, and North Korea\",\n    \"filters\": [\"Nation in ['China', 'Japan', 'North Korea']\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the number of gold medals won by China?\",\n      \"What is the number of gold medals won by Japan?\",\n      \"What is the number of gold medals won by North Korea?\",\n      \"What is the mean of these three values?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Olympic Medals\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Gold\": \"count\",\n      \"Silver\": \"count\",\n      \"Bronze\": \"count\",\n      \"Total\": \"count\",\n      \"Rank\": \"ordinal\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data contains multiple ranking systems (appears to have separate rankings for different regions/competitions)\",\n      \"Rank values repeat, suggesting multiple competitions or groups in the same file\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Gold column must be non-negative integer\",\n      \"Nation names must match exactly: 'China', 'Japan', 'North Korea'\",\n      \"All three nations must be present in the dataset\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Nation equals 'China', 'Japan', or 'North Korea'\",\n      \"Extract Gold values for filtered nations\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value representing the arithmetic mean\",\n      \"Result should be rounded to appropriate precision (e.g., 2 decimal places)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.57280158996582,
+  "token_usage": {
+    "input_tokens": 866,
+    "output_tokens": 574
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Home team score",
+    "filters": [
+      "Venue equals 'Victoria Park'",
+      "Crowd greater than 12,000"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which matches were played at Victoria Park?",
+      "Which matches had attendance (Crowd) greater than 12,000?",
+      "What is the home team score for matches meeting both conditions?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Australian Rules Football Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Home team score": "goals.behinds (total_points)",
+      "Away team score": "goals.behinds (total_points)",
+      "Crowd": "number of people",
+      "Date": "date"
+    },
+    "scale_issues": [
+      "Crowd values contain commas and need to be parsed as integers for comparison",
+      "Home team score is in format 'goals.behinds (points)' and may need parsing depending on desired output"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Crowd column contains comma-separated thousands (e.g., '20,000')",
+      "Home team score and Away team score are in format 'goals.behinds (points)'",
+      "Date appears in format 'DD Month YYYY'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Venue must equal 'Victoria Park'",
+      "Crowd must be greater than 12,000 (numeric comparison required)",
+      "All columns contain string data types that may need conversion"
+    ],
+    "derived_filters": [
+      "Parse Crowd column to integer by removing commas before comparison",
+      "Filter rows where Venue == 'Victoria Park' AND parsed_Crowd > 12000"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return Home team score value(s) for matching rows",
+      "May return multiple scores if multiple matches meet criteria",
+      "Score format should preserve original notation (goals.behinds (points))"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Home team score\",\n    \"filters\": [\n      \"Venue equals 'Victoria Park'\",\n      \"Crowd greater than 12,000\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which matches were played at Victoria Park?\",\n      \"Which matches had attendance (Crowd) greater than 12,000?\",\n      \"What is the home team score for matches meeting both conditions?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Australian Rules Football Matches\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Home team score\": \"goals.behinds (total_points)\",\n      \"Away team score\": \"goals.behinds (total_points)\",\n      \"Crowd\": \"number of people\",\n      \"Date\": \"date\"\n    },\n    \"scale_issues\": [\n      \"Crowd values contain commas and need to be parsed as integers for comparison\",\n      \"Home team score is in format 'goals.behinds (points)' and may need parsing depending on desired output\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Crowd column contains comma-separated thousands (e.g., '20,000')\",\n      \"Home team score and Away team score are in format 'goals.behinds (points)'\",\n      \"Date appears in format 'DD Month YYYY'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Venue must equal 'Victoria Park'\",\n      \"Crowd must be greater than 12,000 (numeric comparison required)\",\n      \"All columns contain string data types that may need conversion\"\n    ],\n    \"derived_filters\": [\n      \"Parse Crowd column to integer by removing commas before comparison\",\n      \"Filter rows where Venue == 'Victoria Park' AND parsed_Crowd > 12000\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return Home team score value(s) for matching rows\",\n      \"May return multiple scores if multiple matches meet criteria\",\n      \"Score format should preserve original notation (goals.behinds (points))\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.800046682357788,
+  "token_usage": {
+    "input_tokens": 1277,
+    "output_tokens": 684
+  }
+}

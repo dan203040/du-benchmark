@@ -1,0 +1,291 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total count of distinct website entries",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total count of distinct website entries",
+        "total count of websites",
+        "Total number of websites listed in the Educational Websites Table"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Are there duplicate website names?",
+        "Should we count all rows regardless of data quality?",
+        "Does 'Name' column uniquely identify websites?",
+        "How many rows are in the Educational Websites Table?",
+        "Does each row represent a unique website?",
+        "Are there any duplicate entries that should be excluded?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Are there duplicate website names?",
+          "Should we count all rows regardless of data quality?",
+          "Does 'Name' column uniquely identify websites?"
+        ],
+        [
+          "How many rows are in the Educational Websites Table?",
+          "Does each row represent a unique website?",
+          "Are there any duplicate entries that should be excluded?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Educational Websites Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Educational Websites Table"
+        ],
+        [
+          "Educational Websites Table"
+        ],
+        [
+          "Educational Websites Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "cost": "currency/year or 'Free'",
+        "target age": "age range or grade level",
+        "name": "website name (text)",
+        "topic": "subject area (text)",
+        "advertising": "advertising presence (categorical text)"
+      },
+      "confidence": 0.4666666666666666,
+      "votes": [
+        {
+          "Cost": "currency/year or 'Free'",
+          "Target age": "age range or grade level"
+        },
+        {
+          "Name": "website name (text)",
+          "Topic": "subject area (text)",
+          "Cost": "pricing information (text with currency)",
+          "Target age": "age range (text with numeric ranges)",
+          "Advertising": "advertising presence (categorical text)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Cost column mixes 'Free' with specific currency amounts",
+        "Target age uses inconsistent formats (5+, 4-17, K-8, etc.)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Cost column mixes 'Free' with specific currency amounts",
+          "Target age uses inconsistent formats (5+, 4-17, K-8, etc.)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "?",
+        "None",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.5333333333333334,
+      "votes": [
+        [
+          "?",
+          "None",
+          ""
+        ],
+        [
+          "?",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Name column should be non-null",
+        "Each row represents one website",
+        "Each row should represent a unique website",
+        "Name column should contain non-null values for counting",
+        "Total count should match the shape information (27 rows)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Name column should be non-null",
+          "Each row represents one website"
+        ],
+        [
+          "Each row should represent a unique website",
+          "Name column should contain non-null values for counting",
+          "Total count should match the shape information (27 rows)"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Name is missing or empty"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Name is missing or empty"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct values in Name column",
+        "Check for duplicate website names"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct values in Name column",
+          "Check for duplicate website names"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer representing total count",
+        "Return a single integer representing the total number of websites",
+        "The count should include all rows in the dataset"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer representing total count"
+        ],
+        [
+          "Return a single integer representing the total number of websites",
+          "The count should include all rows in the dataset"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5166666666666668
+}

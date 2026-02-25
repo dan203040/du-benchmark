@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "earliest game number with a score of 99-89",
+    "filters": [
+      "Score = '99-89'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which games have a score of exactly 99-89?",
+      "Among games with score 99-89, which has the smallest game number?",
+      "What does 'earliest' mean - chronologically by date or by game sequence number?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Game Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Game": "game_number",
+      "Date": "date_string",
+      "Score": "points_home_vs_away",
+      "Record": "wins_losses"
+    },
+    "scale_issues": [
+      "Game column contains non-numeric values (may need parsing)",
+      "Date format varies (abbreviated month names with day and year)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Score column format is 'home_points-away_points'",
+      "Some scores include '(OT)' suffix for overtime games",
+      "Date format is 'Day. Mon. D' (e.g., 'Fri. Nov. 2')",
+      "Opponent may include '@ ' prefix for away games",
+      "Game column appears to be numeric but stored as object type"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Score must exactly match '99-89' format",
+      "Game number should be interpretable as integer for comparison",
+      "Result should be a single game number"
+    ],
+    "derived_filters": [
+      "Filter rows where Score == '99-89'",
+      "Parse Game column as integer if needed"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the game number as integer or string",
+      "If multiple games have score 99-89, return the one with minimum game number",
+      "If no games match, indicate no result found"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"earliest game number with a score of 99-89\",\n    \"filters\": [\"Score = '99-89'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which games have a score of exactly 99-89?\",\n      \"Among games with score 99-89, which has the smallest game number?\",\n      \"What does 'earliest' mean - chronologically by date or by game sequence number?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Game Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Game\": \"game_number\",\n      \"Date\": \"date_string\",\n      \"Score\": \"points_home_vs_away\",\n      \"Record\": \"wins_losses\"\n    },\n    \"scale_issues\": [\n      \"Game column contains non-numeric values (may need parsing)\",\n      \"Date format varies (abbreviated month names with day and year)\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Score column format is 'home_points-away_points'\",\n      \"Some scores include '(OT)' suffix for overtime games\",\n      \"Date format is 'Day. Mon. D' (e.g., 'Fri. Nov. 2')\",\n      \"Opponent may include '@ ' prefix for away games\",\n      \"Game column appears to be numeric but stored as object type\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Score must exactly match '99-89' format\",\n      \"Game number should be interpretable as integer for comparison\",\n      \"Result should be a single game number\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Score == '99-89'\",\n      \"Parse Game column as integer if needed\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the game number as integer or string\",\n      \"If multiple games have score 99-89, return the one with minimum game number\",\n      \"If no games match, indicate no result found\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.508190870285034,
+  "token_usage": {
+    "input_tokens": 1206,
+    "output_tokens": 649
+  }
+}

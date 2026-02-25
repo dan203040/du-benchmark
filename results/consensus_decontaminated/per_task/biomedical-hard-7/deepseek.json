@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "count of significant genes identified through acetylproteomics analysis",
+    "filters": [
+      "Sheet D-SE-acetyl contains the relevant data"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What constitutes a 'significant gene' in this context?",
+      "Are there any thresholds or criteria for significance?",
+      "Is this count of unique genes or includes duplicates?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc3.xlsx",
+      "1-s2.0-S0092867420301070-mmc3__D-SE-acetyl"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "The main Excel file has sheet descriptions but actual data is in separate files with sheet names appended"
+    ],
+    "column_mappings": {
+      "BRD8": "gene_name"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [
+      "The acetylproteomics sheet has only 15 rows, suggesting either a small number of significant genes or a filtered subset"
+    ],
+    "cross_source_conflicts": [
+      "Sheet D-SE-acetyl description says 'Significant genes by acetylproteomics in Figure 1' but doesn't specify significance criteria"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      " "
+    ],
+    "expected_columns": 1,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data appears to be extracted from Excel sheets into separate CSV-like files",
+      "The acetylproteomics file has single column with gene names"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The answer should be derived from file 1-s2.0-S0092867420301070-mmc3__D-SE-acetyl",
+      "Each row represents one significant gene",
+      "No duplicate genes appear in the sample data"
+    ],
+    "derived_filters": [
+      "Count all rows in the acetylproteomics file (excluding header)"
+    ],
+    "statistical_tests": [
+      "Simple count of rows"
+    ],
+    "output_format_requirements": [
+      "Integer count",
+      "Should match the shape row count (15)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of significant genes identified through acetylproteomics analysis\",\n        \"filters\": [\"Sheet D-SE-acetyl contains the relevant data\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What constitutes a 'significant gene' in this context?\", \"Are there any thresholds or criteria for significance?\", \"Is this count of unique genes or includes duplicates?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc3.xlsx\", \"1-s2.0-S0092867420301070-mmc3__D-SE-acetyl\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"The main Excel file has sheet descriptions but actual data is in separate files with sheet names appended\"],\n        \"column_mappings\": {\"BRD8\": \"gene_name\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [\"The acetylproteomics sheet has only 15 rows, suggesting either a small number of significant genes or a filtered subset\"],\n        \"cross_source_conflicts\": [\"Sheet D-SE-acetyl description says 'Significant genes by acetylproteomics in Figure 1' but doesn't specify significance criteria\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \" \"],\n        \"expected_columns\": 1,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data appears to be extracted from Excel sheets into separate CSV-like files\", \"The acetylproteomics file has single column with gene names\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"The answer should be derived from file 1-s2.0-S0092867420301070-mmc3__D-SE-acetyl\", \"Each row represents one significant gene\", \"No duplicate genes appear in the sample data\"],\n        \"derived_filters\": [\"Count all rows in the acetylproteomics file (excluding header)\"],\n        \"statistical_tests\": [\"Simple count of rows\"],\n        \"output_format_requirements\": [\"Integer count\", \"Should match the shape row count (15)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.548552751541138,
+  "token_usage": {
+    "input_tokens": 7183,
+    "output_tokens": 517
+  }
+}

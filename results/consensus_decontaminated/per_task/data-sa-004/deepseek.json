@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "bike rentals (count) across different weather conditions",
+    "filters": [],
+    "grouping_variables": [
+      "weather"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Perform hypothesis test comparing bike rentals across weather conditions",
+      "Save results to weather.csv as single row with Test Type, Hypothesis decision, P-Value, and Comment"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "yulu_bike_sharing_dataset.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "temp": "Celsius",
+      "atemp": "Celsius",
+      "humidity": "percentage",
+      "windspeed": "km/h",
+      "casual": "count",
+      "registered": "count",
+      "count": "total bike rentals"
+    },
+    "scale_issues": [
+      "weather column uses integer codes (1-4) representing different conditions",
+      "season uses integer codes (1-4)",
+      "holiday and workingday are binary indicators"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "datetime column contains timestamps",
+      "weather.csv is currently empty and needs to be populated with hypothesis test results"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "weather column values should be 1-4",
+      "count = casual + registered",
+      "temp and atemp should be positive",
+      "humidity should be 0-100"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Kruskal-Wallis test for comparing bike rentals across weather conditions"
+    ],
+    "output_format_requirements": [
+      "Single row output to weather.csv",
+      "Columns: Test Type, Kruskal Statistic, P-Value, Hypothesis, Comment",
+      "All fields combined into one row (not multiple rows)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"bike rentals (count) across different weather conditions\",\n        \"filters\": [],\n        \"grouping_variables\": [\"weather\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Perform hypothesis test comparing bike rentals across weather conditions\", \"Save results to weather.csv as single row with Test Type, Hypothesis decision, P-Value, and Comment\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"yulu_bike_sharing_dataset.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"temp\": \"Celsius\",\n            \"atemp\": \"Celsius\",\n            \"humidity\": \"percentage\",\n            \"windspeed\": \"km/h\",\n            \"casual\": \"count\",\n            \"registered\": \"count\",\n            \"count\": \"total bike rentals\"\n        },\n        \"scale_issues\": [\"weather column uses integer codes (1-4) representing different conditions\", \"season uses integer codes (1-4)\", \"holiday and workingday are binary indicators\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"datetime column contains timestamps\", \"weather.csv is currently empty and needs to be populated with hypothesis test results\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"weather column values should be 1-4\", \"count = casual + registered\", \"temp and atemp should be positive\", \"humidity should be 0-100\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [\"Kruskal-Wallis test for comparing bike rentals across weather conditions\"],\n        \"output_format_requirements\": [\"Single row output to weather.csv\", \"Columns: Test Type, Kruskal Statistic, P-Value, Hypothesis, Comment\", \"All fields combined into one row (not multiple rows)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.314248085021973,
+  "token_usage": {
+    "input_tokens": 1683,
+    "output_tokens": 488
+  }
+}

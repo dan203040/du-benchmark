@@ -1,0 +1,322 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total number of money befrauded summed over all payment methods in millions of dollars",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total number of money befrauded summed over all payment methods in millions of dollars",
+        "Total amount of money defrauded across all payment methods in millions of dollars",
+        "Total money defrauded in millions of dollars, summed over all payment methods."
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Extract numeric values from 'Total $ Loss' column",
+        "Convert all values to consistent millions unit",
+        "Sum all values",
+        "Format as integer",
+        "What is the Total $ Loss for each payment method?",
+        "How to parse the dollar amounts from string format with 'M' suffix and commas?",
+        "What is the sum of all parsed dollar amounts?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract numeric values from 'Total $ Loss' column",
+          "Convert all values to consistent millions unit",
+          "Sum all values",
+          "Format as integer"
+        ],
+        [
+          "What is the Total $ Loss for each payment method?",
+          "How to parse the dollar amounts from string format with 'M' suffix and commas?",
+          "What is the sum of all parsed dollar amounts?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Fraud_Reports_by_Payment_Method.csv",
+        "2024_CSN_Fraud_Reports_by_Payment_Method__section_2"
+      ],
+      "confidence": 0.8333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Fraud_Reports_by_Payment_Method.csv",
+          "2024_CSN_Fraud_Reports_by_Payment_Method__section_2"
+        ],
+        [
+          "2024_CSN_Fraud_Reports_by_Payment_Method.csv"
+        ],
+        [
+          "2024_CSN_Fraud_Reports_by_Payment_Method.csv",
+          "2024_CSN_Fraud_Reports_by_Payment_Method__section_2"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Second file has different structure with only 1 row and 3 columns",
+        "Column names in second file don't match first file"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Second file has different structure with only 1 row and 3 columns",
+          "Column names in second file don't match first file"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "total $ loss": "millions of dollars with 'M' suffix",
+        "# of reports": "count",
+        "2,600,678": "total fraud reports count"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "Total $ Loss": "millions of dollars with 'M' suffix",
+          "# of Reports": "count",
+          "2,600,678": "total fraud reports count"
+        },
+        {
+          "Total $ Loss": "millions of US dollars",
+          "# of Reports": "count"
+        },
+        {
+          "Total $ Loss": "US Dollars",
+          "# of Reports": "Number of Reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "'Total $ Loss' values contain 'M' suffix and commas in some values (e.g., '$2,089M')",
+        "Need to convert all monetary values to numeric millions",
+        "Total $ Loss column contains string values with dollar signs, 'M' suffix indicating millions, and comma separators",
+        "Values need to be parsed to extract numeric amounts (e.g., '$275M' -> 275, '$2,089M' -> 2089)",
+        "The 'Total $ Loss' column is in millions of dollars, indicated by the 'M' suffix. Need to remove '$' and 'M' and convert to numeric."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Total $ Loss' values contain 'M' suffix and commas in some values (e.g., '$2,089M')",
+          "Need to convert all monetary values to numeric millions"
+        ],
+        [
+          "Total $ Loss column contains string values with dollar signs, 'M' suffix indicating millions, and comma separators",
+          "Values need to be parsed to extract numeric amounts (e.g., '$275M' -> 275, '$2,089M' -> 2089)"
+        ],
+        [
+          "The 'Total $ Loss' column is in millions of dollars, indicated by the 'M' suffix. Need to remove '$' and 'M' and convert to numeric."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Second file appears to contain summary statistics but doesn't directly contribute to the analytical question"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Second file appears to contain summary statistics but doesn't directly contribute to the analytical question"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 1.0,
+      "votes": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "All 'Total $ Loss' values must be converted to numeric millions",
+        "Sum should include all 10 payment methods from first file",
+        "Final output must be integer in millions of dollars",
+        "All Total $ Loss values should be positive numbers",
+        "All Payment Method entries should be non-null",
+        "Sum should include all 10 payment methods listed",
+        "The final result should be an integer representing millions of dollars.",
+        "The 'Total $ Loss' column needs to be cleaned by removing '$' and 'M' before summing."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All 'Total $ Loss' values must be converted to numeric millions",
+          "Sum should include all 10 payment methods from first file",
+          "Final output must be integer in millions of dollars"
+        ],
+        [
+          "All Total $ Loss values should be positive numbers",
+          "All Payment Method entries should be non-null",
+          "Sum should include all 10 payment methods listed"
+        ],
+        [
+          "The final result should be an integer representing millions of dollars.",
+          "The 'Total $ Loss' column needs to be cleaned by removing '$' and 'M' before summing."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify sum of '# of Reports' matches patterns in second file if needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify sum of '# of Reports' matches patterns in second file if needed"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Integer number",
+        "In millions of dollars",
+        "No currency symbols or commas",
+        "Output must be an integer number",
+        "Output must be in millions of dollars",
+        "No decimal places required",
+        "The output should be an integer."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Integer number",
+          "In millions of dollars",
+          "No currency symbols or commas"
+        ],
+        [
+          "Output must be an integer number",
+          "Output must be in millions of dollars",
+          "No decimal places required"
+        ],
+        [
+          "The output should be an integer."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.563888888888889
+}

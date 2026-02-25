@@ -1,0 +1,88 @@
+{
+  "m_q": {
+    "target_metric": "Count of fires by political party affiliation of states (Democratic vs Republican)",
+    "filters": [],
+    "grouping_variables": [
+      "political_party_majority"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which states are Democratic and which are Republican based on 2020 election results?",
+      "What is the total fire count for each state?",
+      "What is the sum of Total Fires for all Democratic states?",
+      "What is the sum of Total Fires for all Republican states?",
+      "Which group has more fires: Democratic or Republican states?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "wildfire_total_fires_p45_54.csv",
+      "democratic_vs_republican_votes_by_usa_state_2020.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "wildfire_total_fires_p45_54.csv",
+        "right_source": "democratic_vs_republican_votes_by_usa_state_2020.csv",
+        "left_column": "State",
+        "right_column": "usa_state",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "State column naming differs: 'State' in wildfire data vs 'usa_state' in political data"
+    ],
+    "column_mappings": {
+      "usa_state": "State"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Fires": "count",
+      "DEM": "votes",
+      "REP": "votes",
+      "percent_democrat": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "wildfire_total_fires_p45_54.csv has 50 states while political data has 51 (includes District of Columbia)",
+      "District of Columbia appears in political data but not in wildfire data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must classify each state as Democratic or Republican based on majority votes (DEM > REP or REP > DEM)",
+      "Must sum Total Fires for each political group",
+      "Must compare counts and return only 'Democratic' or 'Republican'"
+    ],
+    "derived_filters": [
+      "Democratic states: where DEM > REP",
+      "Republican states: where REP > DEM"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be exactly one word: 'Democratic' or 'Republican'",
+      "No additional explanation or data should be provided"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of fires by political party affiliation of states (Democratic vs Republican)\",\n    \"filters\": [],\n    \"grouping_variables\": [\"political_party_majority\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which states are Democratic and which are Republican based on 2020 election results?\",\n      \"What is the total fire count for each state?\",\n      \"What is the sum of Total Fires for all Democratic states?\",\n      \"What is the sum of Total Fires for all Republican states?\",\n      \"Which group has more fires: Democratic or Republican states?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"wildfire_total_fires_p45_54.csv\",\n      \"democratic_vs_republican_votes_by_usa_state_2020.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"wildfire_total_fires_p45_54.csv\",\n        \"right_source\": \"democratic_vs_republican_votes_by_usa_state_2020.csv\",\n        \"left_column\": \"State\",\n        \"right_column\": \"usa_state\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"State column naming differs: 'State' in wildfire data vs 'usa_state' in political data\"\n    ],\n    \"column_mappings\": {\n      \"usa_state\": \"State\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total Fires\": \"count\",\n      \"DEM\": \"votes\",\n      \"REP\": \"votes\",\n      \"percent_democrat\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"wildfire_total_fires_p45_54.csv has 50 states while political data has 51 (includes District of Columbia)\",\n      \"District of Columbia appears in political data but not in wildfire data\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must classify each state as Democratic or Republican based on majority votes (DEM > REP or REP > DEM)\",\n      \"Must sum Total Fires for each political group\",\n      \"Must compare counts and return only 'Democratic' or 'Republican'\"\n    ],\n    \"derived_filters\": [\n      \"Democratic states: where DEM > REP\",\n      \"Republican states: where REP > DEM\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be exactly one word: 'Democratic' or 'Republican'\",\n      \"No additional explanation or data should be provided\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.524059057235718,
+  "token_usage": {
+    "input_tokens": 1613,
+    "output_tokens": 772
+  }
+}

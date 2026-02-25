@@ -1,0 +1,297 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum release year",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum release year",
+        "earliest year from Release column",
+        "the earliest year a title was released"
+      ]
+    },
+    "filters": {
+      "value": [
+        "non-null Release values",
+        "valid year format"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "non-null Release values",
+          "valid year format"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the earliest year in the Release column?",
+        "Are there any missing or invalid values in the Release column that need to be handled?",
+        "Does the data contain releases from multiple artists or only specific ones?",
+        "What is the minimum value in the Release column?",
+        "Are all Release values valid years?",
+        "What title(s) correspond to the earliest year?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the earliest year in the Release column?",
+          "Are there any missing or invalid values in the Release column that need to be handled?",
+          "Does the data contain releases from multiple artists or only specific ones?"
+        ],
+        [
+          "What is the minimum value in the Release column?",
+          "Are all Release values valid years?",
+          "What title(s) correspond to the earliest year?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Music Releases"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Music Releases"
+        ],
+        [
+          "Music Releases"
+        ],
+        [
+          "Music Releases"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "release": "year"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Release": "year"
+        },
+        {
+          "Release": "year (YYYY format)"
+        },
+        {
+          "Release": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Release column appears to contain years as strings/objects rather than numeric values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Release column appears to contain years as strings/objects rather than numeric values"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Release column should contain valid year values",
+        "Each row represents a music release with associated metadata",
+        "Release values should be valid years",
+        "Release values should be numeric or convertible to numeric",
+        "Result should be a single year value",
+        "The 'Release' column should contain valid year values."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Release column should contain valid year values",
+          "Each row represents a music release with associated metadata"
+        ],
+        [
+          "Release values should be valid years",
+          "Release values should be numeric or convertible to numeric",
+          "Result should be a single year value"
+        ],
+        [
+          "The 'Release' column should contain valid year values."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows with missing Release values",
+        "Convert Release column to numeric type for comparison",
+        "Exclude rows where Release is null or empty",
+        "Exclude rows where Release cannot be converted to a valid year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows with missing Release values",
+          "Convert Release column to numeric type for comparison"
+        ],
+        [
+          "Exclude rows where Release is null or empty",
+          "Exclude rows where Release cannot be converted to a valid year"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for minimum value in Release column after conversion to numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for minimum value in Release column after conversion to numeric"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output should be a single year value",
+        "Year should be formatted as integer",
+        "Return the minimum year as a single integer or year value",
+        "Optionally include the title associated with that year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Output should be a single year value",
+          "Year should be formatted as integer"
+        ],
+        [
+          "Return the minimum year as a single integer or year value",
+          "Optionally include the title associated with that year"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5833333333333334
+}

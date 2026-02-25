@@ -1,0 +1,101 @@
+{
+  "m_q": {
+    "target_metric": "Appliances energy consumption prediction values",
+    "filters": [
+      "Based on test.csv data only (no training data filtering needed)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features are most predictive of appliance energy consumption?",
+      "How should the model be trained on KAG_energydata_complete.csv?",
+      "What preprocessing is needed for test.csv?",
+      "What model type is appropriate for this regression task?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "KAG_energydata_complete.csv",
+      "test.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "test.csv missing 'Appliances' column (target variable)",
+      "KAG_energydata_complete.csv has 29 columns, test.csv has 28 columns"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "T1-T9, T_out, Tdewpoint": "degrees Celsius",
+      "RH_1-RH_9, RH_out": "percentage",
+      "Press_mm_hg": "millimeters of mercury",
+      "Windspeed": "meters per second",
+      "Visibility": "kilometers",
+      "lights": "watt-hours",
+      "Appliances": "watt-hours",
+      "rv1, rv2": "random variables (unitless)"
+    },
+    "scale_issues": [
+      "Temperature values have different scales (indoor vs outdoor)",
+      "RH_6 shows extreme values (1.0 to 99.9) suggesting sensor variability",
+      "lights column has discrete values (0, 10, 20)"
+    ],
+    "cross_source_conflicts": [
+      "date format consistency needs verification",
+      "test.csv covers different time periods than training data"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 29,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First file has target column 'Appliances'",
+      "Second file missing target column for prediction",
+      "Both files have 'date' column with timestamp format",
+      "Floating point precision varies across columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Appliances values must be non-negative integers",
+      "RH values should be between 0-100%",
+      "Temperature values should be within realistic ranges (-50 to 50\u00b0C)",
+      "date values should be chronological"
+    ],
+    "derived_filters": [
+      "Remove rows with missing critical features",
+      "Check for duplicate timestamps",
+      "Validate sensor readings against physical limits"
+    ],
+    "statistical_tests": [
+      "Check for multicollinearity among temperature/RH features",
+      "Test stationarity of time series data",
+      "Validate distribution of target variable",
+      "Assess feature importance for model selection"
+    ],
+    "output_format_requirements": [
+      "Output file must be named 'appliance.csv'",
+      "Single column named 'Appliances'",
+      "2961 rows matching test.csv",
+      "Integer predictions"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Appliances energy consumption prediction values\",\n        \"filters\": [\"Based on test.csv data only (no training data filtering needed)\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What features are most predictive of appliance energy consumption?\", \"How should the model be trained on KAG_energydata_complete.csv?\", \"What preprocessing is needed for test.csv?\", \"What model type is appropriate for this regression task?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"KAG_energydata_complete.csv\", \"test.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"test.csv missing 'Appliances' column (target variable)\", \"KAG_energydata_complete.csv has 29 columns, test.csv has 28 columns\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"T1-T9, T_out, Tdewpoint\": \"degrees Celsius\",\n            \"RH_1-RH_9, RH_out\": \"percentage\",\n            \"Press_mm_hg\": \"millimeters of mercury\",\n            \"Windspeed\": \"meters per second\",\n            \"Visibility\": \"kilometers\",\n            \"lights\": \"watt-hours\",\n            \"Appliances\": \"watt-hours\",\n            \"rv1, rv2\": \"random variables (unitless)\"\n        },\n        \"scale_issues\": [\"Temperature values have different scales (indoor vs outdoor)\", \"RH_6 shows extreme values (1.0 to 99.9) suggesting sensor variability\", \"lights column has discrete values (0, 10, 20)\"],\n        \"cross_source_conflicts\": [\"date format consistency needs verification\", \"test.csv covers different time periods than training data\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 29,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First file has target column 'Appliances'\", \"Second file missing target column for prediction\", \"Both files have 'date' column with timestamp format\", \"Floating point precision varies across columns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Appliances values must be non-negative integers\", \"RH values should be between 0-100%\", \"Temperature values should be within realistic ranges (-50 to 50\u00b0C)\", \"date values should be chronological\"],\n        \"derived_filters\": [\"Remove rows with missing critical features\", \"Check for duplicate timestamps\", \"Validate sensor readings against physical limits\"],\n        \"statistical_tests\": [\"Check for multicollinearity among temperature/RH features\", \"Test stationarity of time series data\", \"Validate distribution of target variable\", \"Assess feature importance for model selection\"],\n        \"output_format_requirements\": [\"Output file must be named 'appliance.csv'\", \"Single column named 'Appliances'\", \"2961 rows matching test.csv\", \"Integer predictions\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 14.606344938278198,
+  "token_usage": {
+    "input_tokens": 6981,
+    "output_tokens": 694
+  }
+}

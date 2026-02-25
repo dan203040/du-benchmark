@@ -1,0 +1,100 @@
+{
+  "m_q": {
+    "target_metric": "Biogas Generation Estimate (cu-ft/day)",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features best predict biogas generation?",
+      "How do animal types and counts affect biogas output?",
+      "What is the relationship between waste efficiency and biogas generation?",
+      "How does digester type influence biogas production?",
+      "What impact do operational years have on biogas estimates?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "test.csv",
+      "veri_seti_son_2.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "test.csv has 28 columns while veri_seti_son_2.csv has 29 columns (missing target column)",
+      "test.csv missing 'Biogas Generation Estimate (cu-ft/day)' column needed for training"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Biogas Generation Estimate (cu-ft/day)": "cubic feet per day",
+      "Biogas_per_Animal (cu-ft/day)": "cubic feet per day per animal",
+      "Electricity Generated (kWh/yr)": "kilowatt-hours per year",
+      "Total Emission Reductions (MTCO2e/yr)": "metric tons CO2 equivalent per year",
+      "Total_Waste_kg/day": "kilograms per day",
+      "Emission_Reduction_per_Year": "MTCO2e per year per operational year",
+      "Electricity_to_Biogas_Ratio": "kWh/yr per cu-ft/day (unitless ratio)",
+      "Waste_Efficiency": "cu-ft/day per kg/day (unitless ratio)",
+      "Electricity_Efficiency": "kWh/yr per kg/day (unitless ratio)"
+    },
+    "scale_issues": [
+      "Large range in animal counts (120 to 500,000)",
+      "Biogas_per_Animal varies from 2.08 to 2985.18 cu-ft/day",
+      "Electricity Generated ranges from 0 to 16,206,000 kWh/yr"
+    ],
+    "cross_source_conflicts": [
+      "test.csv has 74 rows for prediction, veri_seti_son_2.csv has 417 rows for training"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "No-Info",
+      "NA",
+      "N/A",
+      "",
+      "0.0"
+    ],
+    "expected_columns": 28,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Quoted strings in Project Name column",
+      "Mixed case column names with spaces and special characters",
+      "Some columns contain multiple values separated by semicolons (e.g., Biogas End Use(s))"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Biogas Generation Estimate must be positive",
+      "Total_Animals >= Cattle + Dairy + Poultry + Swine",
+      "Operational Years = Current Year - Year Operational",
+      "Biogas_per_Animal = Biogas Generation Estimate / Total_Animals (when both available)"
+    ],
+    "derived_filters": [
+      "Filter out rows with Total_Animals = 0",
+      "Consider operational status for prediction relevance",
+      "Check for data completeness in key predictor columns"
+    ],
+    "statistical_tests": [
+      "Correlation analysis between biogas generation and animal counts",
+      "ANOVA for biogas generation across digester types",
+      "Regression analysis for waste efficiency vs biogas output",
+      "Check multicollinearity among predictor variables"
+    ],
+    "output_format_requirements": [
+      "Predictions must be saved in result.csv",
+      "Column name must be 'biogas_generation_estimate_cuftday'",
+      "One prediction per row in test.csv",
+      "Numeric values only"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Biogas Generation Estimate (cu-ft/day)\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What features best predict biogas generation?\", \"How do animal types and counts affect biogas output?\", \"What is the relationship between waste efficiency and biogas generation?\", \"How does digester type influence biogas production?\", \"What impact do operational years have on biogas estimates?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"test.csv\", \"veri_seti_son_2.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"test.csv has 28 columns while veri_seti_son_2.csv has 29 columns (missing target column)\", \"test.csv missing 'Biogas Generation Estimate (cu-ft/day)' column needed for training\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Biogas Generation Estimate (cu-ft/day)\": \"cubic feet per day\",\n            \"Biogas_per_Animal (cu-ft/day)\": \"cubic feet per day per animal\",\n            \"Electricity Generated (kWh/yr)\": \"kilowatt-hours per year\",\n            \"Total Emission Reductions (MTCO2e/yr)\": \"metric tons CO2 equivalent per year\",\n            \"Total_Waste_kg/day\": \"kilograms per day\",\n            \"Emission_Reduction_per_Year\": \"MTCO2e per year per operational year\",\n            \"Electricity_to_Biogas_Ratio\": \"kWh/yr per cu-ft/day (unitless ratio)\",\n            \"Waste_Efficiency\": \"cu-ft/day per kg/day (unitless ratio)\",\n            \"Electricity_Efficiency\": \"kWh/yr per kg/day (unitless ratio)\"\n        },\n        \"scale_issues\": [\"Large range in animal counts (120 to 500,000)\", \"Biogas_per_Animal varies from 2.08 to 2985.18 cu-ft/day\", \"Electricity Generated ranges from 0 to 16,206,000 kWh/yr\"],\n        \"cross_source_conflicts\": [\"test.csv has 74 rows for prediction, veri_seti_son_2.csv has 417 rows for training\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"No-Info\", \"NA\", \"N/A\", \"\", \"0.0\"],\n        \"expected_columns\": 28,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Quoted strings in Project Name column\", \"Mixed case column names with spaces and special characters\", \"Some columns contain multiple values separated by semicolons (e.g., Biogas End Use(s))\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Biogas Generation Estimate must be positive\", \"Total_Animals >= Cattle + Dairy + Poultry + Swine\", \"Operational Years = Current Year - Year Operational\", \"Biogas_per_Animal = Biogas Generation Estimate / Total_Animals (when both available)\"],\n        \"derived_filters\": [\"Filter out rows with Total_Animals = 0\", \"Consider operational status for prediction relevance\", \"Check for data completeness in key predictor columns\"],\n        \"statistical_tests\": [\"Correlation analysis between biogas generation and animal counts\", \"ANOVA for biogas generation across digester types\", \"Regression analysis for waste efficiency vs biogas output\", \"Check multicollinearity among predictor variables\"],\n        \"output_format_requirements\": [\"Predictions must be saved in result.csv\", \"Column name must be 'biogas_generation_estimate_cuftday'\", \"One prediction per row in test.csv\", \"Numeric values only\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.303181171417236,
+  "token_usage": {
+    "input_tokens": 5966,
+    "output_tokens": 828
+  }
+}

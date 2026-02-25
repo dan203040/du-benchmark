@@ -1,0 +1,102 @@
+{
+  "m_q": {
+    "target_metric": "Top 10 most popular movies calculated using a weighted rating formula from wrFormula.tex, considering only movies whose vote_count is in the top 15%",
+    "filters": [
+      "vote_count >= 85th percentile threshold"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the 85th percentile threshold for vote_count?",
+      "What is the weighted rating formula specified in wrFormula.tex?",
+      "Which movies have vote_count values in the top 15%?",
+      "How to calculate the weighted rating for each filtered movie?",
+      "What are the top 10 movies by weighted rating after applying the formula?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "tmdb_5000_movies.csv",
+      "tmdb_5000_credits.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "tmdb_5000_movies.csv",
+        "right_source": "tmdb_5000_credits.csv",
+        "left_column": "id",
+        "right_column": "movie_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "title column exists in both tmdb_5000_movies.csv and tmdb_5000_credits.csv"
+    ],
+    "column_mappings": {
+      "title_movies": "title",
+      "title_credits": "title"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "vote_count": "count",
+      "vote_average": "rating_score_0_10",
+      "popularity": "popularity_score",
+      "budget": "dollars",
+      "revenue": "dollars",
+      "runtime": "minutes"
+    },
+    "scale_issues": [
+      "vote_average appears to be on a 0-10 scale",
+      "popularity is a computed score with unknown scale"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 20,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "tmdb_5000_movies.csv has JSON-encoded strings in genres, keywords, production_companies, production_countries, and spoken_languages columns",
+      "tmdb_5000_credits.csv has JSON-encoded strings in cast and crew columns",
+      "sample_result.csv has header 'Movie' with single column format",
+      "Output should contain only movie names, one per row"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include movies with vote_count in top 15% (>=85th percentile)",
+      "Calculate weighted rating using formula from wrFormula.tex",
+      "Select top 10 movies by calculated weighted rating",
+      "Output must include movie title/name only"
+    ],
+    "derived_filters": [
+      "Calculate 85th percentile of vote_count across all movies",
+      "Filter movies where vote_count >= calculated threshold"
+    ],
+    "statistical_tests": [
+      "Percentile calculation for vote_count to determine top 15% threshold"
+    ],
+    "output_format_requirements": [
+      "CSV format with single column 'Movie'",
+      "One movie name per row",
+      "Exactly 10 rows (top 10 movies)",
+      "Header row must be 'Movie'",
+      "Follow format specified in sample_result.csv"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 10 most popular movies calculated using a weighted rating formula from wrFormula.tex, considering only movies whose vote_count is in the top 15%\",\n    \"filters\": [\n      \"vote_count >= 85th percentile threshold\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What is the 85th percentile threshold for vote_count?\",\n      \"What is the weighted rating formula specified in wrFormula.tex?\",\n      \"Which movies have vote_count values in the top 15%?\",\n      \"How to calculate the weighted rating for each filtered movie?\",\n      \"What are the top 10 movies by weighted rating after applying the formula?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"tmdb_5000_movies.csv\",\n      \"tmdb_5000_credits.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"tmdb_5000_movies.csv\",\n        \"right_source\": \"tmdb_5000_credits.csv\",\n        \"left_column\": \"id\",\n        \"right_column\": \"movie_id\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"title column exists in both tmdb_5000_movies.csv and tmdb_5000_credits.csv\"\n    ],\n    \"column_mappings\": {\n      \"title_movies\": \"title\",\n      \"title_credits\": \"title\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"vote_count\": \"count\",\n      \"vote_average\": \"rating_score_0_10\",\n      \"popularity\": \"popularity_score\",\n      \"budget\": \"dollars\",\n      \"revenue\": \"dollars\",\n      \"runtime\": \"minutes\"\n    },\n    \"scale_issues\": [\n      \"vote_average appears to be on a 0-10 scale\",\n      \"popularity is a computed score with unknown scale\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\"\n    ],\n    \"expected_columns\": 20,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"tmdb_5000_movies.csv has JSON-encoded strings in genres, keywords, production_companies, production_countries, and spoken_languages columns\",\n      \"tmdb_5000_credits.csv has JSON-encoded strings in cast and crew columns\",\n      \"sample_result.csv has header 'Movie' with single column format\",\n      \"Output should contain only movie names, one per row\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include movies with vote_count in top 15% (>=85th percentile)\",\n      \"Calculate weighted rating using formula from wrFormula.tex\",\n      \"Select top 10 movies by calculated weighted rating\",\n      \"Output must include movie title/name only\"\n    ],\n    \"derived_filters\": [\n      \"Calculate 85th percentile of vote_count across all movies\",\n      \"Filter movies where vote_count >= calculated threshold\"\n    ],\n    \"statistical_tests\": [\n      \"Percentile calculation for vote_count to determine top 15% threshold\"\n    ],\n    \"output_format_requirements\": [\n      \"CSV format with single column 'Movie'\",\n      \"One movie name per row\",\n      \"Exactly 10 rows (top 10 movies)\",\n      \"Header row must be 'Movie'\",\n      \"Follow format specified in sample_result.csv\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 15.61493706703186,
+  "token_usage": {
+    "input_tokens": 5210,
+    "output_tokens": 959
+  }
+}

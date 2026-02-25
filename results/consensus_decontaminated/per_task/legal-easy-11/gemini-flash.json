@@ -1,0 +1,59 @@
+{
+  "m_q": {
+    "target_metric": "Determine if there was any year between 2001 and 2024 (inclusive) where the 'Other' reports were more than half of the total reports (Fraud + Identity Theft + Other).",
+    "filters": [
+      "Year >= 2001",
+      "Year <= 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Fraud": "number of reports",
+      "Identity Theft": "number of reports",
+      "Other": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be an integer.",
+      "Fraud, Identity Theft, and Other must be non-negative integers."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be 'Yes' or 'No'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine if there was any year between 2001 and 2024 (inclusive) where the 'Other' reports were more than half of the total reports (Fraud + Identity Theft + Other).\",\n    \"filters\": [\n      \"Year >= 2001\",\n      \"Year <= 2024\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Number_of_Reports_by_Type.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Fraud\": \"number of reports\",\n      \"Identity Theft\": \"number of reports\",\n      \"Other\": \"number of reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be an integer.\",\n      \"Fraud, Identity Theft, and Other must be non-negative integers.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be 'Yes' or 'No'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.5691170692443848,
+  "token_usage": {}
+}

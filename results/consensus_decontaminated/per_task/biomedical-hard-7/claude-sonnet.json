@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Count of significant genes identified by acetylproteomics",
+    "filters": [
+      "Sheet = 'D-SE-acetyl'",
+      "Genes listed in the D-SE-acetyl sheet"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which sheet contains the significant genes by acetylproteomics?",
+      "How many rows/genes are in the D-SE-acetyl sheet?",
+      "Are there any duplicate genes that need to be deduplicated?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc3.xlsx",
+      "1-s2.0-S0092867420301070-mmc3__D-SE-acetyl"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "D-SE-acetyl sheet has single column with gene names starting with 'BRD8' as column header"
+    ],
+    "column_mappings": {
+      "BRD8": "Gene"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "BRD8": "gene_symbol"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 1,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": [
+      "D-SE-acetyl sheet contains a single column with gene symbols",
+      "Column header is the first gene name 'BRD8' rather than a descriptive header",
+      "Shape indicates 15 rows with 1 column",
+      "Sample data shows genes: BRD8, DHX15, SSB, FUS, PARP1, TRIM33, JADE3, CEBPZ, TBL1XR1, MYC, FBXO22, ZSCAN18, CDK1, TOP2A, H2AFJ, PMS2"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only count genes from sheet D-SE-acetyl",
+      "Count should include all non-empty gene entries",
+      "First row appears to be a gene name (BRD8) not a header"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer count of significant genes",
+      "Count should be 15 based on the shape and sample data showing all entries are gene symbols"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of significant genes identified by acetylproteomics\",\n    \"filters\": [\n      \"Sheet = 'D-SE-acetyl'\",\n      \"Genes listed in the D-SE-acetyl sheet\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which sheet contains the significant genes by acetylproteomics?\",\n      \"How many rows/genes are in the D-SE-acetyl sheet?\",\n      \"Are there any duplicate genes that need to be deduplicated?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc3.xlsx\",\n      \"1-s2.0-S0092867420301070-mmc3__D-SE-acetyl\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"D-SE-acetyl sheet has single column with gene names starting with 'BRD8' as column header\"\n    ],\n    \"column_mappings\": {\n      \"BRD8\": \"Gene\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"BRD8\": \"gene_symbol\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 1,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": [\n      \"D-SE-acetyl sheet contains a single column with gene symbols\",\n      \"Column header is the first gene name 'BRD8' rather than a descriptive header\",\n      \"Shape indicates 15 rows with 1 column\",\n      \"Sample data shows genes: BRD8, DHX15, SSB, FUS, PARP1, TRIM33, JADE3, CEBPZ, TBL1XR1, MYC, FBXO22, ZSCAN18, CDK1, TOP2A, H2AFJ, PMS2\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only count genes from sheet D-SE-acetyl\",\n      \"Count should include all non-empty gene entries\",\n      \"First row appears to be a gene name (BRD8) not a header\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single integer count of significant genes\",\n      \"Count should be 15 based on the shape and sample data showing all entries are gene symbols\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 14.98108983039856,
+  "token_usage": {
+    "input_tokens": 7887,
+    "output_tokens": 731
+  }
+}

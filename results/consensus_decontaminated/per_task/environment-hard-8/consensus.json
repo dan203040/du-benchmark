@@ -1,0 +1,334 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Percentage (to 2 decimal places) of samples that failed to meet the swimming standard (Enterococcus > 104 counts per 100mL) and had rainfall within 24 hours prior to sampling",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "",
+        "Percentage (to 2 decimal places) of samples that failed to meet the swimming standard (Enterococcus > 104 counts per 100mL) and had rainfall within 24 hours prior to sampling",
+        "Percentage of samples that failed to meet the swimming standard (Enterococcus > 104) at Boston Harbor beaches that had rainfall within 24 hours prior to sampling."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Enterococcus > 104 counts per 100 mL (failed standard)",
+        "Rainfall within 24 hours prior to sampling (1-Day Rain > 0)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Enterococcus > 104 counts per 100 mL (failed standard)",
+          "Rainfall within 24 hours prior to sampling (1-Day Rain > 0)"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total count of samples that failed to meet the swimming standard (Enterococcus > 104)?",
+        "Of those failed samples, how many had 1-Day Rain > 0?",
+        "What is the percentage calculation: (failed samples with rain / total failed samples) * 100?",
+        "Identify samples that failed to meet the swimming standard (Enterococcus > 104).",
+        "Determine if there was rainfall within 24 hours prior to each failed sample.",
+        "Calculate the percentage of failed samples with rainfall."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "What is the total count of samples that failed to meet the swimming standard (Enterococcus > 104)?",
+          "Of those failed samples, how many had 1-Day Rain > 0?",
+          "What is the percentage calculation: (failed samples with rain / total failed samples) * 100?"
+        ],
+        [
+          "Identify samples that failed to meet the swimming standard (Enterococcus > 104).",
+          "Determine if there was rainfall within 24 hours prior to each failed sample.",
+          "Calculate the percentage of failed samples with rainfall."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "constitution_beach_datasheet.csv",
+        "carson_beach_datasheet.csv",
+        "pleasure_bay_and_castle_island_beach_datasheet.csv",
+        "m_street_beach_datasheet.csv",
+        "city_point_beach_datasheet.csv",
+        "malibu_beach_datasheet.csv",
+        "tenean_beach_datasheet.csv",
+        "wollaston_beach_datasheet.csv",
+        "boston-harbor-beaches.txt"
+      ],
+      "confidence": 0.6296296296296295,
+      "votes": [
+        [],
+        [
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ],
+        [
+          "boston-harbor-beaches.txt",
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different number of Enterococcus measurement columns across beaches (constitution has 3, carson has 2, m_street has 1, wollaston has 4)",
+        "Enterococcus columns named differently: 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2', 'Enterococcus.3'",
+        "Tag columns accompany Enterococcus measurements indicating '<' for values below detection limit",
+        "pleasure_bay_and_castle_island_beach_datasheet.csv has Enterococcus as int64 while others have float64"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Different number of Enterococcus measurement columns across beaches (constitution has 3, carson has 2, m_street has 1, wollaston has 4)",
+          "Enterococcus columns named differently: 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2', 'Enterococcus.3'",
+          "Tag columns accompany Enterococcus measurements indicating '<' for values below detection limit",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv has Enterococcus as int64 while others have float64"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "enterococcus": "counts per 100 milliliters",
+        "1-day rain": "inches (implied)",
+        "2-day rain": "inches (implied)",
+        "3-day rain": "inches (implied)"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {},
+        {
+          "Enterococcus": "counts per 100 milliliters",
+          "1-Day Rain": "inches (implied)",
+          "2-Day Rain": "inches (implied)",
+          "3-Day Rain": "inches (implied)"
+        },
+        {
+          "1-Day Rain": "inches",
+          "Enterococcus": "counts per 100 milliliters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Tag columns contain '<' symbol indicating values are below detection limit (e.g., '<10' means < 10)",
+        "Rainfall measurements in decimal format suggesting inches as unit"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Tag columns contain '<' symbol indicating values are below detection limit (e.g., '<10' means < 10)",
+          "Rainfall measurements in decimal format suggesting inches as unit"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Detection limit handling varies: some files show '<' in Tag column with corresponding value, others show just the value",
+        "Missing values represented as NaN in Enterococcus columns across different beaches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Detection limit handling varies: some files show '<' in Tag column with corresponding value, others show just the value",
+          "Missing values represented as NaN in Enterococcus columns across different beaches"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 1.0,
+      "votes": [
+        0.0,
+        10.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Swimming standard threshold: Enterococcus <= 104 counts per 100mL (pass), > 104 (fail)",
+        "Rainfall within 24 hours: 1-Day Rain > 0",
+        "Only consider valid Enterococcus measurements (not NaN)",
+        "Handle '<' qualifier in Tag columns - values with '<' tag should use the numeric value as upper bound",
+        "Enterococcus values must be numeric and greater than 0.",
+        "1-Day Rain values must be numeric and greater than or equal to 0."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Swimming standard threshold: Enterococcus <= 104 counts per 100mL (pass), > 104 (fail)",
+          "Rainfall within 24 hours: 1-Day Rain > 0",
+          "Only consider valid Enterococcus measurements (not NaN)",
+          "Handle '<' qualifier in Tag columns - values with '<' tag should use the numeric value as upper bound"
+        ],
+        [
+          "Enterococcus values must be numeric and greater than 0.",
+          "1-Day Rain values must be numeric and greater than or equal to 0."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "failed_standard = Enterococcus > 104",
+        "had_rain_24h = 1-Day Rain > 0",
+        "target_samples = failed_standard AND had_rain_24h",
+        "Failed Sample: Enterococcus > 104",
+        "Rain within 24 hours: 1-Day Rain > 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "failed_standard = Enterococcus > 104",
+          "had_rain_24h = 1-Day Rain > 0",
+          "target_samples = failed_standard AND had_rain_24h"
+        ],
+        [
+          "Failed Sample: Enterococcus > 104",
+          "Rain within 24 hours: 1-Day Rain > 0"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Percentage rounded to 2 decimal places",
+        "Format: XX.XX%",
+        "Count all individual samples across all beaches and all measurement columns",
+        "Percentage to 2 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Percentage rounded to 2 decimal places",
+          "Format: XX.XX%",
+          "Count all individual samples across all beaches and all measurement columns"
+        ],
+        [
+          "Percentage to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5231481481481481
+}

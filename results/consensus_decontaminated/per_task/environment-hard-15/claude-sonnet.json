@@ -1,0 +1,111 @@
+{
+  "m_q": {
+    "target_metric": "Beach with highest average exceedance rate (violation rate) since 2020",
+    "filters": [
+      "Beach Type Description == 'Fresh Water'",
+      "Year >= 2020 and Year <= 2023",
+      "Beach must have measurements in all years: 2020, 2021, 2022, 2023"
+    ],
+    "grouping_variables": [
+      "Beach Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which beaches are classified as fresh water (Beach Type Description)?",
+      "Which beaches have data present in all four years (2020, 2021, 2022, 2023)?",
+      "For each qualifying beach, what is the exceedance rate (proportion of samples with Violation == 'Yes' or 'YES')?",
+      "Which beach has the highest average exceedance rate across all years 2020-2023?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "water-body-testing-2020.csv",
+        "right_source": "water-body-testing-2021.csv",
+        "left_column": "Beach Name",
+        "right_column": "Beach Name",
+        "join_type": "outer"
+      },
+      {
+        "left_source": "water-body-testing-2021.csv",
+        "right_source": "water-body-testing-2022.csv",
+        "left_column": "Beach Name",
+        "right_column": "Beach Name",
+        "join_type": "outer"
+      },
+      {
+        "left_source": "water-body-testing-2022.csv",
+        "right_source": "water-body-testing-2023.csv",
+        "left_column": "Beach Name",
+        "right_column": "Beach Name",
+        "join_type": "outer"
+      }
+    ],
+    "schema_conflicts": [
+      "Violation column has inconsistent case: 'No'/'Yes' in 2020, 2022, 2023 vs 'NO'/'YES' in 2021"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "MPN/100mL or CFU/100mL (bacterial concentration)",
+      "Year": "calendar year",
+      "Sample Date": "datetime"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "Violation values use different case conventions across years (uppercase in 2021, title case in other years)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date is stored as string format 'YYYY-MM-DD HH:MM:SS'",
+      "Violation column contains 'Yes'/'No' or 'YES'/'NO' values with case inconsistency",
+      "All files have identical schema structure with 11 columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include beaches where Beach Type Description == 'Fresh Water'",
+      "Only include data from years 2020, 2021, 2022, 2023 (inclusive)",
+      "Only include beaches that have at least one measurement in each of the four years 2020-2023",
+      "Exceedance rate is calculated as (count of violations) / (total count of samples) per beach across all years"
+    ],
+    "derived_filters": [
+      "Beach must appear in Year == 2020",
+      "Beach must appear in Year == 2021",
+      "Beach must appear in Year == 2022",
+      "Beach must appear in Year == 2023",
+      "All four year appearances must be for the same Beach Type Description == 'Fresh Water'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single beach name with highest average exceedance rate",
+      "Exceedance rate should be normalized for case-insensitive matching of Violation values (Yes/YES, No/NO)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Beach with highest average exceedance rate (violation rate) since 2020\",\n    \"filters\": [\n      \"Beach Type Description == 'Fresh Water'\",\n      \"Year >= 2020 and Year <= 2023\",\n      \"Beach must have measurements in all years: 2020, 2021, 2022, 2023\"\n    ],\n    \"grouping_variables\": [\n      \"Beach Name\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which beaches are classified as fresh water (Beach Type Description)?\",\n      \"Which beaches have data present in all four years (2020, 2021, 2022, 2023)?\",\n      \"For each qualifying beach, what is the exceedance rate (proportion of samples with Violation == 'Yes' or 'YES')?\",\n      \"Which beach has the highest average exceedance rate across all years 2020-2023?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"water-body-testing-2020.csv\",\n        \"right_source\": \"water-body-testing-2021.csv\",\n        \"left_column\": \"Beach Name\",\n        \"right_column\": \"Beach Name\",\n        \"join_type\": \"outer\"\n      },\n      {\n        \"left_source\": \"water-body-testing-2021.csv\",\n        \"right_source\": \"water-body-testing-2022.csv\",\n        \"left_column\": \"Beach Name\",\n        \"right_column\": \"Beach Name\",\n        \"join_type\": \"outer\"\n      },\n      {\n        \"left_source\": \"water-body-testing-2022.csv\",\n        \"right_source\": \"water-body-testing-2023.csv\",\n        \"left_column\": \"Beach Name\",\n        \"right_column\": \"Beach Name\",\n        \"join_type\": \"outer\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Violation column has inconsistent case: 'No'/'Yes' in 2020, 2022, 2023 vs 'NO'/'YES' in 2021\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"MPN/100mL or CFU/100mL (bacterial concentration)\",\n      \"Year\": \"calendar year\",\n      \"Sample Date\": \"datetime\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"Violation values use different case conventions across years (uppercase in 2021, title case in other years)\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date is stored as string format 'YYYY-MM-DD HH:MM:SS'\",\n      \"Violation column contains 'Yes'/'No' or 'YES'/'NO' values with case inconsistency\",\n      \"All files have identical schema structure with 11 columns\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include beaches where Beach Type Description == 'Fresh Water'\",\n      \"Only include data from years 2020, 2021, 2022, 2023 (inclusive)\",\n      \"Only include beaches that have at least one measurement in each of the four years 2020-2023\",\n      \"Exceedance rate is calculated as (count of violations) / (total count of samples) per beach across all years\"\n    ],\n    \"derived_filters\": [\n      \"Beach must appear in Year == 2020\",\n      \"Beach must appear in Year == 2021\",\n      \"Beach must appear in Year == 2022\",\n      \"Beach must appear in Year == 2023\",\n      \"All four year appearances must be for the same Beach Type Description == 'Fresh Water'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single beach name with highest average exceedance rate\",\n      \"Exceedance rate should be normalized for case-insensitive matching of Violation values (Yes/YES, No/NO)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 18.18497085571289,
+  "token_usage": {
+    "input_tokens": 5204,
+    "output_tokens": 1178
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "m_q": {
+    "target_metric": "Histological grades of tumors for samples where the peptide HPKPEVLGSSADGALLVSLDGLR was found.",
+    "filters": [
+      "The peptide is HPKPEVLGSSADGALLVSLDGLR"
+    ],
+    "grouping_variables": [
+      "Histologic_Grade_FIGO"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions",
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions",
+        "right_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "left_column": "Samples_With_Peptide",
+        "right_column": "Proteomics_Participant_ID",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 13,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Samples_With_Peptide in 1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions contains comma separated values, so it needs to be split into individual sample IDs before joining."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Histological grades of tumors for samples where the peptide HPKPEVLGSSADGALLVSLDGLR was found.\",\n    \"filters\": [\n      \"The peptide is HPKPEVLGSSADGALLVSLDGLR\"\n    ],\n    \"grouping_variables\": [\n      \"Histologic_Grade_FIGO\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions\",\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n        \"left_column\": \"Samples_With_Peptide\",\n        \"right_column\": \"Proteomics_Participant_ID\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 13,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Samples_With_Peptide in 1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions contains comma separated values, so it needs to be split into individual sample IDs before joining.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 16.655772924423218,
+  "token_usage": {}
+}

@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "total number of offensive awards for Colin Doyle",
+    "filters": [
+      "Offensive column contains 'Colin Doyle'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many times does 'Colin Doyle' appear in the Offensive column?",
+      "Is there any other data source needed to verify this count?",
+      "Does the data cover the entire period needed for a complete count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "lacrosse_stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Offensive": "player name",
+      "Month": "month name",
+      "Week": "week number"
+    },
+    "scale_issues": [
+      "All columns stored as object/string type including Week which appears numeric",
+      "No explicit year column - temporal scope unclear"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Data appears to be weekly award winners across different categories",
+      "Player names may contain special characters like apostrophes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Offensive column must contain only player names",
+      "Each row represents one week's awards",
+      "Player names should be consistent across occurrences"
+    ],
+    "derived_filters": [
+      "Filter rows where Offensive = 'Colin Doyle'"
+    ],
+    "statistical_tests": [
+      "Count distinct occurrences of 'Colin Doyle' in Offensive column"
+    ],
+    "output_format_requirements": [
+      "Single integer value representing total count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total number of offensive awards for Colin Doyle\",\n        \"filters\": [\"Offensive column contains 'Colin Doyle'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How many times does 'Colin Doyle' appear in the Offensive column?\", \"Is there any other data source needed to verify this count?\", \"Does the data cover the entire period needed for a complete count?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"lacrosse_stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Offensive\": \"player name\", \"Month\": \"month name\", \"Week\": \"week number\"},\n        \"scale_issues\": [\"All columns stored as object/string type including Week which appears numeric\", \"No explicit year column - temporal scope unclear\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Data appears to be weekly award winners across different categories\", \"Player names may contain special characters like apostrophes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Offensive column must contain only player names\", \"Each row represents one week's awards\", \"Player names should be consistent across occurrences\"],\n        \"derived_filters\": [\"Filter rows where Offensive = 'Colin Doyle'\"],\n        \"statistical_tests\": [\"Count distinct occurrences of 'Colin Doyle' in Offensive column\"],\n        \"output_format_requirements\": [\"Single integer value representing total count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.07779312133789,
+  "token_usage": {
+    "input_tokens": 1122,
+    "output_tokens": 429
+  }
+}

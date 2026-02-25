@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "average age of patients",
+    "filters": [
+      "Histologic_type contains 'serous'",
+      "Proteomics_Tumor_Normal == 'Tumor'",
+      "Case_excluded == 'No'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to identify serous tumor samples from Histologic_type column?",
+      "Should excluded cases be filtered out?",
+      "Should analysis include only tumor samples or also normal samples?",
+      "How to handle missing Age values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "BMI": "kg/m^2",
+      "Tumor_Size_cm": "centimeters",
+      "Estrogen_Receptor_%": "percentage",
+      "Progesterone_Receptor_%": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": [
+      "Age column is float64 type",
+      "Histologic_type column contains tumor type classifications",
+      "Case_excluded column indicates whether case should be included in analysis",
+      "Proteomics_Tumor_Normal column distinguishes tumor from normal samples"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age must be non-null for average calculation",
+      "Histologic_type must contain 'serous' substring (case-insensitive)",
+      "Only include rows where Proteomics_Tumor_Normal == 'Tumor'",
+      "Only include rows where Case_excluded == 'No'"
+    ],
+    "derived_filters": [
+      "Filter for serous histologic type: check if 'serous' appears in Histologic_type value",
+      "Exclude cases marked as excluded in Case_excluded column",
+      "Include only tumor samples, not normal tissue samples"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Single numeric value representing mean age",
+      "Round to appropriate decimal places (1-2 decimal places)",
+      "Report sample size (number of serous tumor samples included)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average age of patients\",\n    \"filters\": [\"Histologic_type contains 'serous'\", \"Proteomics_Tumor_Normal == 'Tumor'\", \"Case_excluded == 'No'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How to identify serous tumor samples from Histologic_type column?\",\n      \"Should excluded cases be filtered out?\",\n      \"Should analysis include only tumor samples or also normal samples?\",\n      \"How to handle missing Age values?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"BMI\": \"kg/m^2\",\n      \"Tumor_Size_cm\": \"centimeters\",\n      \"Estrogen_Receptor_%\": \"percentage\",\n      \"Progesterone_Receptor_%\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Cannot be determined\"],\n    \"expected_columns\": 179,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": [\n      \"Age column is float64 type\",\n      \"Histologic_type column contains tumor type classifications\",\n      \"Case_excluded column indicates whether case should be included in analysis\",\n      \"Proteomics_Tumor_Normal column distinguishes tumor from normal samples\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Age must be non-null for average calculation\",\n      \"Histologic_type must contain 'serous' substring (case-insensitive)\",\n      \"Only include rows where Proteomics_Tumor_Normal == 'Tumor'\",\n      \"Only include rows where Case_excluded == 'No'\"\n    ],\n    \"derived_filters\": [\n      \"Filter for serous histologic type: check if 'serous' appears in Histologic_type value\",\n      \"Exclude cases marked as excluded in Case_excluded column\",\n      \"Include only tumor samples, not normal tissue samples\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Single numeric value representing mean age\",\n      \"Round to appropriate decimal places (1-2 decimal places)\",\n      \"Report sample size (number of serous tumor samples included)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.23466181755066,
+  "token_usage": {
+    "input_tokens": 7744,
+    "output_tokens": 707
+  }
+}

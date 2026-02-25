@@ -1,0 +1,97 @@
+{
+  "m_q": {
+    "target_metric": "Total count of major altitude changes (>1000m within 12h) for satellite 48445 during 2024",
+    "filters": [
+      "satellite norad_id == 48445",
+      "epoch_year == 24 (2024)",
+      "altitude change > 1000m within 12-hour window"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to convert TLE orbital elements to altitude using skifield's itrf_xyz?",
+      "What is the time ordering of TLE records based on epoch_year and epoch_day?",
+      "How to compute altitude from orbital elements (mean_motion, eccentricity, inclination, etc.)?",
+      "How to identify consecutive TLE measurements within 12-hour windows?",
+      "What threshold defines a major altitude change (>1000m)?",
+      "Are there duplicate TLE entries with same epoch but different rev_number?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "48445.tle"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "epoch_day": "fractional day of year",
+      "inclination": "degrees",
+      "raan": "degrees (right ascension of ascending node)",
+      "eccentricity": "dimensionless",
+      "arg_perigee": "degrees (argument of perigee)",
+      "mean_anomaly": "degrees",
+      "mean_motion": "revolutions per day",
+      "altitude": "meters (to be derived)",
+      "time_difference": "hours (for 12h window calculation)"
+    },
+    "scale_issues": [
+      "eccentricity appears to be scaled (e.g., 0.0001342 likely represents actual eccentricity)",
+      "epoch_day is fractional day of year requiring conversion to absolute timestamp",
+      "mean_motion in revs/day needs conversion to orbital period and altitude"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "TLE (Two-Line Element) data format with parsed columns",
+      "name column appears to be empty in samples",
+      "norad_id and rev_number are stored as object dtype but represent identifiers",
+      "epoch_year is 2-digit year (24 = 2024)",
+      "epoch_day is fractional day of year (e.g., 1.44338999 = January 1st + 0.44338999 days)",
+      "Duplicate records exist with same epoch but different rev_number",
+      "Records are not strictly time-ordered"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "norad_id must equal 48445",
+      "epoch_year must equal 24 (representing 2024)",
+      "Altitude change must exceed 1000 meters",
+      "Time window must be within 12 hours between consecutive measurements",
+      "TLE records must be sorted chronologically by epoch before analysis"
+    ],
+    "derived_filters": [
+      "Convert epoch_year and epoch_day to absolute datetime for 2024",
+      "Calculate altitude from TLE orbital parameters using skifield's itrf_xyz method",
+      "Compute time differences between consecutive TLE records",
+      "Identify pairs of records where time_diff <= 12 hours AND altitude_diff > 1000m",
+      "Handle duplicate TLE entries at same epoch appropriately"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single integer count",
+      "Count represents number of major altitude change events during 2024",
+      "Major altitude change defined as >1000m within 12-hour period"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total count of major altitude changes (>1000m within 12h) for satellite 48445 during 2024\",\n    \"filters\": [\n      \"satellite norad_id == 48445\",\n      \"epoch_year == 24 (2024)\",\n      \"altitude change > 1000m within 12-hour window\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How to convert TLE orbital elements to altitude using skifield's itrf_xyz?\",\n      \"What is the time ordering of TLE records based on epoch_year and epoch_day?\",\n      \"How to compute altitude from orbital elements (mean_motion, eccentricity, inclination, etc.)?\",\n      \"How to identify consecutive TLE measurements within 12-hour windows?\",\n      \"What threshold defines a major altitude change (>1000m)?\",\n      \"Are there duplicate TLE entries with same epoch but different rev_number?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"48445.tle\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"epoch_day\": \"fractional day of year\",\n      \"inclination\": \"degrees\",\n      \"raan\": \"degrees (right ascension of ascending node)\",\n      \"eccentricity\": \"dimensionless\",\n      \"arg_perigee\": \"degrees (argument of perigee)\",\n      \"mean_anomaly\": \"degrees\",\n      \"mean_motion\": \"revolutions per day\",\n      \"altitude\": \"meters (to be derived)\",\n      \"time_difference\": \"hours (for 12h window calculation)\"\n    },\n    \"scale_issues\": [\n      \"eccentricity appears to be scaled (e.g., 0.0001342 likely represents actual eccentricity)\",\n      \"epoch_day is fractional day of year requiring conversion to absolute timestamp\",\n      \"mean_motion in revs/day needs conversion to orbital period and altitude\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\"\n    ],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"TLE (Two-Line Element) data format with parsed columns\",\n      \"name column appears to be empty in samples\",\n      \"norad_id and rev_number are stored as object dtype but represent identifiers\",\n      \"epoch_year is 2-digit year (24 = 2024)\",\n      \"epoch_day is fractional day of year (e.g., 1.44338999 = January 1st + 0.44338999 days)\",\n      \"Duplicate records exist with same epoch but different rev_number\",\n      \"Records are not strictly time-ordered\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"norad_id must equal 48445\",\n      \"epoch_year must equal 24 (representing 2024)\",\n      \"Altitude change must exceed 1000 meters\",\n      \"Time window must be within 12 hours between consecutive measurements\",\n      \"TLE records must be sorted chronologically by epoch before analysis\"\n    ],\n    \"derived_filters\": [\n      \"Convert epoch_year and epoch_day to absolute datetime for 2024\",\n      \"Calculate altitude from TLE orbital parameters using skifield's itrf_xyz method\",\n      \"Compute time differences between consecutive TLE records\",\n      \"Identify pairs of records where time_diff <= 12 hours AND altitude_diff > 1000m\",\n      \"Handle duplicate TLE entries at same epoch appropriately\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single integer count\",\n      \"Count represents number of major altitude change events during 2024\",\n      \"Major altitude change defined as >1000m within 12-hour period\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 18.45966601371765,
+  "token_usage": {
+    "input_tokens": 1819,
+    "output_tokens": 1045
+  }
+}

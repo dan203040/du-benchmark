@@ -1,0 +1,353 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total acres burned in a 3-month period",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total acres burned in a 3-month period",
+        "Maximum total acres burned in any 3-month consecutive period since January 2000",
+        "Total acres burned in the 3-month period with the highest total acres burned since January 2000"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date >= 200001 (Jan 2000 or later)",
+        "Date >= 200001 (January 2000)",
+        "Date >= 200001"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date >= 200001 (Jan 2000 or later)"
+        ],
+        [
+          "Date >= 200001 (January 2000)"
+        ],
+        [
+          "Date >= 200001"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "3-month period (rolling window)",
+        "3-month rolling window periods"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "3-month period (rolling window)"
+        ],
+        [
+          "3-month rolling window periods"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Identify all possible 3-month rolling windows since Jan 2000",
+        "Calculate sum of 'Acres Burned' for each 3-month window",
+        "Find the maximum sum value",
+        "Identify the date range of that 3-month period",
+        "What is the date range format in the Date column?",
+        "How to parse Date column (format: YYYYMM)?",
+        "How to create rolling 3-month windows from monthly data?",
+        "What is the sum of Acres Burned for each 3-month window?",
+        "Which 3-month period has the maximum total Acres Burned?",
+        "What is the total Acres Burned value for that period?",
+        "Calculate the total acres burned for each 3-month period since January 2000",
+        "Identify the 3-month period with the maximum total acres burned",
+        "What is the total acres burned in that period?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Identify all possible 3-month rolling windows since Jan 2000",
+          "Calculate sum of 'Acres Burned' for each 3-month window",
+          "Find the maximum sum value",
+          "Identify the date range of that 3-month period"
+        ],
+        [
+          "What is the date range format in the Date column?",
+          "How to parse Date column (format: YYYYMM)?",
+          "How to create rolling 3-month windows from monthly data?",
+          "What is the sum of Acres Burned for each 3-month window?",
+          "Which 3-month period has the maximum total Acres Burned?",
+          "What is the total Acres Burned value for that period?"
+        ],
+        [
+          "Calculate the total acres burned for each 3-month period since January 2000",
+          "Identify the 3-month period with the maximum total acres burned",
+          "What is the total acres burned in that period?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires_monthly_stats.csv",
+        "noaa_wildfires_monthly_stats__section_1"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "noaa_wildfires_monthly_stats.csv"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "noaa_wildfires_monthly_stats__section_1"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Second file 'noaa_wildfires_monthly_stats__section_1' appears to be metadata or documentation with different structure and no joinable columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Second file 'noaa_wildfires_monthly_stats__section_1' appears to be metadata or documentation with different structure and no joinable columns"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "acres burned": "acres",
+        "number of fires": "count",
+        "acres burned per fire": "acres per fire",
+        "date": "YYYYMM integer format"
+      },
+      "confidence": 0.8333333333333334,
+      "votes": [
+        {
+          "Acres Burned": "acres",
+          "Number of Fires": "count",
+          "Acres Burned per Fire": "acres per fire"
+        },
+        {
+          "Acres Burned": "acres",
+          "Number of Fires": "count",
+          "Acres Burned per Fire": "acres per fire",
+          "Date": "YYYYMM integer format"
+        },
+        {
+          "Acres Burned": "acres",
+          "Number of Fires": "count",
+          "Acres Burned per Fire": "acres/fire"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Date column uses YYYYMM integer format, not datetime",
+        "Acres Burned values span multiple orders of magnitude (40K to 2.5M in sample)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date column uses YYYYMM integer format, not datetime",
+          "Acres Burned values span multiple orders of magnitude (40K to 2.5M in sample)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Second file contains only a title and missing value indicator, cannot be integrated with main data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Second file contains only a title and missing value indicator, cannot be integrated with main data"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "-999",
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.41666666666666663,
+      "votes": [
+        [
+          "-999"
+        ],
+        [
+          "-999"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Data starts at 200001 (Jan 2000)",
+        "Monthly granularity requires rolling window calculation",
+        "3-month periods must be consecutive months (e.g., Jan-Mar, Feb-Apr)",
+        "Only include data from January 2000 onwards (Date >= 200001)",
+        "3-month periods must be consecutive months",
+        "Each 3-month window should roll forward by 1 month",
+        "Date must be properly sorted chronologically",
+        "Date column represents year and month (YYYYMM)",
+        "Need to convert 'Date' column to a datetime object for time-based calculations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data starts at 200001 (Jan 2000)",
+          "Monthly granularity requires rolling window calculation",
+          "3-month periods must be consecutive months (e.g., Jan-Mar, Feb-Apr)"
+        ],
+        [
+          "Only include data from January 2000 onwards (Date >= 200001)",
+          "3-month periods must be consecutive months",
+          "Each 3-month window should roll forward by 1 month",
+          "Date must be properly sorted chronologically"
+        ],
+        [
+          "Date column represents year and month (YYYYMM)",
+          "Need to convert 'Date' column to a datetime object for time-based calculations"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude any rows with Date < 200001",
+        "Handle edge cases for partial data at end of time series",
+        "Filter out any records with Date < 200001",
+        "Exclude any rows where Acres Burned = -999 (sentinel value for missing data)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude any rows with Date < 200001",
+          "Handle edge cases for partial data at end of time series"
+        ],
+        [
+          "Filter out any records with Date < 200001",
+          "Exclude any rows where Acres Burned = -999 (sentinel value for missing data)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in 'Acres Burned' column",
+        "Verify date sequence is complete and consecutive"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in 'Acres Burned' column",
+          "Verify date sequence is complete and consecutive"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Report both the 3-month period (start and end dates) and the total acres burned",
+        "Report the starting month-year of the 3-month period with highest acres burned",
+        "Report the total acres burned as an integer or float value",
+        "Clearly identify which 3 consecutive months comprise the period",
+        "The output should be a single number representing the total acres burned in the 3-month period with the highest total acres burned."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Report both the 3-month period (start and end dates) and the total acres burned"
+        ],
+        [
+          "Report the starting month-year of the 3-month period with highest acres burned",
+          "Report the total acres burned as an integer or float value",
+          "Clearly identify which 3 consecutive months comprise the period"
+        ],
+        [
+          "The output should be a single number representing the total acres burned in the 3-month period with the highest total acres burned."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5791666666666668
+}

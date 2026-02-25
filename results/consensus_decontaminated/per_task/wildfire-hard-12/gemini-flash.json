@@ -1,0 +1,61 @@
+{
+  "m_q": {
+    "target_metric": "Distribution of fire start dates across years and whether the distribution has shifted earlier or later over time.",
+    "filters": [],
+    "grouping_variables": [
+      "start_year"
+    ],
+    "output_cardinality": "Yes/No",
+    "sub_questions": [
+      "What is the distribution of 'start_day_of_year' for each 'start_year'?",
+      "How does the distribution of 'start_day_of_year' change across different 'start_year' values?",
+      "Is there a statistically significant trend in the average or median 'start_day_of_year' over time (across 'start_year')?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "start_day_of_year": "day of year",
+      "start_year": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "start_year should be within a reasonable range (e.g., 2002-2016).",
+      "start_day_of_year should be between 1 and 366."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Mann-Kendall test for trend in median start_day_of_year over start_year",
+      "Kolmogorov-Smirnov test to compare distributions of start_day_of_year between different start_years"
+    ],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Distribution of fire start dates across years and whether the distribution has shifted earlier or later over time.\",\n    \"filters\": [],\n    \"grouping_variables\": [\"start_year\"],\n    \"output_cardinality\": \"Yes/No\",\n    \"sub_questions\": [\n      \"What is the distribution of 'start_day_of_year' for each 'start_year'?\",\n      \"How does the distribution of 'start_day_of_year' change across different 'start_year' values?\",\n      \"Is there a statistically significant trend in the average or median 'start_day_of_year' over time (across 'start_year')?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Fire_Weather_Data_2002-2014_2016.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"start_day_of_year\": \"day of year\", \"start_year\": \"year\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"start_year should be within a reasonable range (e.g., 2002-2016).\", \"start_day_of_year should be between 1 and 366.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\"Mann-Kendall test for trend in median start_day_of_year over start_year\", \"Kolmogorov-Smirnov test to compare distributions of start_day_of_year between different start_years\"],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.338997840881348,
+  "token_usage": {}
+}

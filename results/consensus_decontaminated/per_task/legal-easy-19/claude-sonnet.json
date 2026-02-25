@@ -1,0 +1,86 @@
+{
+  "m_q": {
+    "target_metric": "Proportion of fraud reporters who lost between $1-$500 in 2024, rounded to 3 decimal places",
+    "filters": [
+      "Year = 2024",
+      "Amount Lost between $1 and $500"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of fraud reporters in 2024?",
+      "How many fraud reporters lost between $1-$500 in 2024?",
+      "What is the sum of reports for ranges $1-$100, $101-$200, $201-$300, $301-$400, and $401-$500?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Fraud_Reports_by_Amount_Lost__Fraud Reports by Amount Lost",
+      "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Different granularity levels for amount lost ranges across files"
+    ],
+    "column_mappings": {
+      "# of Reports": "number_of_reports",
+      "Amount Lost": "amount_lost_range"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Amount Lost": "US dollars range",
+      "Total $ Loss": "US dollars",
+      "Median $ Loss": "US dollars"
+    },
+    "scale_issues": [
+      "Amount Lost ranges are string ranges, not numeric values",
+      "Dollar amounts include currency symbols and comma separators"
+    ],
+    "cross_source_conflicts": [
+      "Total reports across sources need verification for consistency"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Amount Lost column contains string ranges with dollar signs and commas",
+      "Some numeric values in metadata file are formatted with commas as strings",
+      "File names contain double underscores indicating multiple sheets from same source"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include reports from 2024",
+      "Only include amount lost ranges from $1 to $500 inclusive",
+      "Proportion must be rounded to exactly 3 decimal places"
+    ],
+    "derived_filters": [
+      "Sum reports where Amount Lost in ['$1 - $100', '$101 - $200', '$201 - $300', '$301 - $400', '$401 - $500']",
+      "Use 'Number of Fraud Reports' value of 2,600,678 as denominator"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a single decimal number rounded to 3 decimal places",
+      "Format: 0.XXX"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Proportion of fraud reporters who lost between $1-$500 in 2024, rounded to 3 decimal places\",\n    \"filters\": [\n      \"Year = 2024\",\n      \"Amount Lost between $1 and $500\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of fraud reporters in 2024?\",\n      \"How many fraud reporters lost between $1-$500 in 2024?\",\n      \"What is the sum of reports for ranges $1-$100, $101-$200, $201-$300, $301-$400, and $401-$500?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Fraud_Reports_by_Amount_Lost__Fraud Reports by Amount Lost\",\n      \"2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Different granularity levels for amount lost ranges across files\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports\": \"number_of_reports\",\n      \"Amount Lost\": \"amount_lost_range\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Amount Lost\": \"US dollars range\",\n      \"Total $ Loss\": \"US dollars\",\n      \"Median $ Loss\": \"US dollars\"\n    },\n    \"scale_issues\": [\n      \"Amount Lost ranges are string ranges, not numeric values\",\n      \"Dollar amounts include currency symbols and comma separators\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Total reports across sources need verification for consistency\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Amount Lost column contains string ranges with dollar signs and commas\",\n      \"Some numeric values in metadata file are formatted with commas as strings\",\n      \"File names contain double underscores indicating multiple sheets from same source\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include reports from 2024\",\n      \"Only include amount lost ranges from $1 to $500 inclusive\",\n      \"Proportion must be rounded to exactly 3 decimal places\"\n    ],\n    \"derived_filters\": [\n      \"Sum reports where Amount Lost in ['$1 - $100', '$101 - $200', '$201 - $300', '$301 - $400', '$401 - $500']\",\n      \"Use 'Number of Fraud Reports' value of 2,600,678 as denominator\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a single decimal number rounded to 3 decimal places\",\n      \"Format: 0.XXX\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.224740982055664,
+  "token_usage": {
+    "input_tokens": 1172,
+    "output_tokens": 819
+  }
+}

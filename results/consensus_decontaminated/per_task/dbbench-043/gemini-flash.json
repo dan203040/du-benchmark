@@ -1,0 +1,57 @@
+{
+  "m_q": {
+    "target_metric": "List of major competitions where Yoichiro Kakitani had at least 3 starts.",
+    "filters": [
+      "Player is Yoichiro Kakitani",
+      "Appearances Start >= 3"
+    ],
+    "grouping_variables": [
+      "Competition"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "team_competition_stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Appearances Start": "number of appearances",
+      "Goals": "number of goals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Need to filter the data for Yoichiro Kakitani's appearances.",
+      "Need to handle missing values in 'Appearances Start' column."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"List of major competitions where Yoichiro Kakitani had at least 3 starts.\",\n    \"filters\": [\n      \"Player is Yoichiro Kakitani\",\n      \"Appearances Start >= 3\"\n    ],\n    \"grouping_variables\": [\n      \"Competition\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"team_competition_stats\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Appearances Start\": \"number of appearances\",\n      \"Goals\": \"number of goals\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to filter the data for Yoichiro Kakitani's appearances.\",\n      \"Need to handle missing values in 'Appearances Start' column.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.4991559982299805,
+  "token_usage": {}
+}

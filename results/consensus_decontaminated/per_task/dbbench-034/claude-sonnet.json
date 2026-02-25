@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "Country of origin",
+    "filters": [
+      "Type equals 'Disposable'",
+      "Primary cartridge equals '105mm'",
+      "Year of intro is less than 2008"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which records have Type = 'Disposable'?",
+      "Which records have Primary cartridge = '105mm'?",
+      "Which records have Year of intro < 2008?",
+      "What is the intersection of all three filter conditions?",
+      "What are the Country of origin values for the filtered records?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Rocket Propelled Grenade (RPG) Weapons"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Name/ designation": "Name_designation",
+      "Year of intro": "Year_of_intro",
+      "Country of origin": "Country_of_origin",
+      "Primary cartridge": "Primary_cartridge"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year of intro": "year",
+      "Primary cartridge": "millimeters"
+    },
+    "scale_issues": [
+      "Year of intro stored as object type, may need conversion to numeric for comparison",
+      "Primary cartridge includes 'mm' suffix in some values, may need parsing"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year of intro column is stored as object dtype, requires type conversion for numeric comparison",
+      "Primary cartridge values may contain unit suffixes that need to be handled during filtering",
+      "Column names contain spaces and special characters (forward slash)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year of intro must be numeric and less than 2008",
+      "Type must exactly match 'Disposable'",
+      "Primary cartridge must exactly match '105mm'",
+      "All three conditions must be satisfied simultaneously"
+    ],
+    "derived_filters": [
+      "Convert Year of intro from object to numeric type before applying < 2008 filter",
+      "Ensure case-sensitive matching for Type = 'Disposable'",
+      "Ensure exact string matching for Primary cartridge = '105mm'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return Country of origin value(s) that satisfy all filter conditions",
+      "Handle case where no records match the criteria",
+      "Return distinct Country of origin values if multiple records match"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Country of origin\",\n    \"filters\": [\n      \"Type equals 'Disposable'\",\n      \"Primary cartridge equals '105mm'\",\n      \"Year of intro is less than 2008\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which records have Type = 'Disposable'?\",\n      \"Which records have Primary cartridge = '105mm'?\",\n      \"Which records have Year of intro < 2008?\",\n      \"What is the intersection of all three filter conditions?\",\n      \"What are the Country of origin values for the filtered records?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Rocket Propelled Grenade (RPG) Weapons\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Name/ designation\": \"Name_designation\",\n      \"Year of intro\": \"Year_of_intro\",\n      \"Country of origin\": \"Country_of_origin\",\n      \"Primary cartridge\": \"Primary_cartridge\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year of intro\": \"year\",\n      \"Primary cartridge\": \"millimeters\"\n    },\n    \"scale_issues\": [\n      \"Year of intro stored as object type, may need conversion to numeric for comparison\",\n      \"Primary cartridge includes 'mm' suffix in some values, may need parsing\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Year of intro column is stored as object dtype, requires type conversion for numeric comparison\",\n      \"Primary cartridge values may contain unit suffixes that need to be handled during filtering\",\n      \"Column names contain spaces and special characters (forward slash)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year of intro must be numeric and less than 2008\",\n      \"Type must exactly match 'Disposable'\",\n      \"Primary cartridge must exactly match '105mm'\",\n      \"All three conditions must be satisfied simultaneously\"\n    ],\n    \"derived_filters\": [\n      \"Convert Year of intro from object to numeric type before applying < 2008 filter\",\n      \"Ensure case-sensitive matching for Type = 'Disposable'\",\n      \"Ensure exact string matching for Primary cartridge = '105mm'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return Country of origin value(s) that satisfy all filter conditions\",\n      \"Handle case where no records match the criteria\",\n      \"Return distinct Country of origin values if multiple records match\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.572664976119995,
+  "token_usage": {
+    "input_tokens": 1090,
+    "output_tokens": 751
+  }
+}

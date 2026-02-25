@@ -1,0 +1,365 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "proportion of fraud reporters who lost between $1-$500 in 2024",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "proportion of fraud reporters who lost between $1-$500 in 2024",
+        "Proportion of fraud reporters who lost between $1-$500 in 2024, rounded to 3 decimal places",
+        "Proportion of fraud reporters who lost between $1-$500 in 2024"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2024",
+        "Amount Lost between $1 and $500 inclusive",
+        "Amount Lost between $1 and $500"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year = 2024",
+          "Amount Lost between $1 and $500 inclusive"
+        ],
+        [
+          "Year = 2024",
+          "Amount Lost between $1 and $500"
+        ],
+        [
+          "Year = 2024",
+          "Amount Lost between $1 and $500"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Amount Lost"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Amount Lost"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total number of fraud reports with $1-$500 loss?",
+        "What is the total number of fraud reports with any dollar loss?",
+        "How to handle the '$1 - $1,000' aggregated category in the first file?",
+        "What is the total number of fraud reporters in 2024?",
+        "How many fraud reporters lost between $1-$500 in 2024?",
+        "What is the sum of reports for ranges $1-$100, $101-$200, $201-$300, $301-$400, and $401-$500?",
+        "What is the total number of fraud reports in 2024?",
+        "What is the number of fraud reports where the amount lost is between $1 and $500 in 2024?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the total number of fraud reports with $1-$500 loss?",
+          "What is the total number of fraud reports with any dollar loss?",
+          "How to handle the '$1 - $1,000' aggregated category in the first file?"
+        ],
+        [
+          "What is the total number of fraud reporters in 2024?",
+          "How many fraud reporters lost between $1-$500 in 2024?",
+          "What is the sum of reports for ranges $1-$100, $101-$200, $201-$300, $301-$400, and $401-$500?"
+        ],
+        [
+          "What is the total number of fraud reports in 2024?",
+          "What is the number of fraud reports where the amount lost is between $1 and $500 in 2024?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Fraud_Reports_by_Amount_Lost.csv",
+        "2024_CSN_Fraud_Reports_by_Amount_Lost__Fraud Reports by Amount Lost",
+        "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range",
+        "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv"
+      ],
+      "confidence": 0.5833333333333334,
+      "votes": [
+        [
+          "2024_CSN_Fraud_Reports_by_Amount_Lost.csv",
+          "2024_CSN_Fraud_Reports_by_Amount_Lost__Fraud Reports by Amount Lost",
+          "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range"
+        ],
+        [
+          "2024_CSN_Fraud_Reports_by_Amount_Lost__Fraud Reports by Amount Lost",
+          "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range"
+        ],
+        [
+          "2024_CSN_Fraud_Reports_by_Amount_Lost.csv",
+          "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "First file has aggregated '$1 - $1,000' category while third file has detailed breakdown of same range",
+        "Second file has different column naming with numeric column name '2,600,678' and 'Unnamed: 2'",
+        "Different granularity levels for amount lost ranges across files"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First file has aggregated '$1 - $1,000' category while third file has detailed breakdown of same range",
+          "Second file has different column naming with numeric column name '2,600,678' and 'Unnamed: 2'"
+        ],
+        [
+          "Different granularity levels for amount lost ranges across files"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "amount lost": "USD dollar ranges",
+        "# of reports": "count",
+        "number of fraud reports": "description",
+        "2,600,678": "total count",
+        "total $ loss": "USD",
+        "median $ loss": "USD"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Amount Lost": "USD dollar ranges",
+          "# of Reports": "count of reports",
+          "Number of Fraud Reports": "description",
+          "2,600,678": "total count",
+          "Total $ Loss": "USD",
+          "Median $ Loss": "USD"
+        },
+        {
+          "# of Reports": "count",
+          "Amount Lost": "US dollars range",
+          "Total $ Loss": "US dollars",
+          "Median $ Loss": "US dollars"
+        },
+        {
+          "Amount Lost": "USD",
+          "# of Reports": "count"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "First file's '$1 - $1,000' category overlaps with third file's detailed $1-$1,000 breakdown",
+        "Need to ensure no double-counting between aggregated and detailed data",
+        "Amount Lost ranges are string ranges, not numeric values",
+        "Dollar amounts include currency symbols and comma separators"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First file's '$1 - $1,000' category overlaps with third file's detailed $1-$1,000 breakdown",
+          "Need to ensure no double-counting between aggregated and detailed data"
+        ],
+        [
+          "Amount Lost ranges are string ranges, not numeric values",
+          "Dollar amounts include currency symbols and comma separators"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "First file shows 624,110 reports in '$1 - $1,000' range, third file shows sum of detailed $1-$1,000 categories = 243174+114336+67064+44982+46752+26702+19271+19664+14019+28146 = 624,110 (matches)",
+        "Total reports across sources need verification for consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First file shows 624,110 reports in '$1 - $1,000' range, third file shows sum of detailed $1-$1,000 categories = 243174+114336+67064+44982+46752+26702+19271+19664+14019+28146 = 624,110 (matches)"
+        ],
+        [
+          "Total reports across sources need verification for consistency"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Proportion must be between 0 and 1",
+        "Result must be rounded to 3 decimal places",
+        "Amount ranges are inclusive (e.g., $1-$500 includes both endpoints)",
+        "Only include reports from 2024",
+        "Only include amount lost ranges from $1 to $500 inclusive",
+        "Proportion must be rounded to exactly 3 decimal places",
+        "The sum of '# of Reports' for all 'Amount Lost' ranges in '2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv' should be less than or equal to the '# of Reports' for '$1 - $1,000' in '2024_CSN_Fraud_Reports_by_Amount_Lost.csv'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proportion must be between 0 and 1",
+          "Result must be rounded to 3 decimal places",
+          "Amount ranges are inclusive (e.g., $1-$500 includes both endpoints)"
+        ],
+        [
+          "Only include reports from 2024",
+          "Only include amount lost ranges from $1 to $500 inclusive",
+          "Proportion must be rounded to exactly 3 decimal places"
+        ],
+        [
+          "The sum of '# of Reports' for all 'Amount Lost' ranges in '2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv' should be less than or equal to the '# of Reports' for '$1 - $1,000' in '2024_CSN_Fraud_Reports_by_Amount_Lost.csv'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Use third file for detailed $1-$500 breakdown: $1-$100, $101-$200, $201-$300, $301-$400, $401-$500",
+        "Exclude '$501 - $1,000' categories from third file",
+        "Sum reports where Amount Lost in ['$1 - $100', '$101 - $200', '$201 - $300', '$301 - $400', '$401 - $500']",
+        "Use 'Number of Fraud Reports' value of 2,600,678 as denominator",
+        "Amount Lost between $1 and $500"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Use third file for detailed $1-$500 breakdown: $1-$100, $101-$200, $201-$300, $301-$400, $401-$500",
+          "Exclude '$501 - $1,000' categories from third file"
+        ],
+        [
+          "Sum reports where Amount Lost in ['$1 - $100', '$101 - $200', '$201 - $300', '$301 - $400', '$401 - $500']",
+          "Use 'Number of Fraud Reports' value of 2,600,678 as denominator"
+        ],
+        [
+          "Amount Lost between $1 and $500"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify sum of detailed $1-$1,000 categories equals aggregated '$1 - $1,000' value from first file"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify sum of detailed $1-$1,000 categories equals aggregated '$1 - $1,000' value from first file"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Proportion as decimal rounded to 3 decimal places",
+        "Need denominator: total fraud reports with dollar loss (987,520 from second file)",
+        "Output must be a single decimal number rounded to 3 decimal places",
+        "Format: 0.XXX",
+        "Round the proportion to 3 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proportion as decimal rounded to 3 decimal places",
+          "Need denominator: total fraud reports with dollar loss (987,520 from second file)"
+        ],
+        [
+          "Output must be a single decimal number rounded to 3 decimal places",
+          "Format: 0.XXX"
+        ],
+        [
+          "Round the proportion to 3 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6291666666666668
+}

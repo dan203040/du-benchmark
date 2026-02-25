@@ -1,0 +1,390 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Chi-square statistic and p-value for independence test between geographical region and fire causes for January-March fires with known causes",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Chi-square statistic and p-value for independence test between geographical region and fire causes for January-March fires with known causes",
+        "Chi-square test statistic and p-value for the relationship between geographical region and fire cause",
+        "Chi-square statistic and p-value for the association between geographical region and fire cause for fires starting in January, February, and March."
+      ]
+    },
+    "filters": {
+      "value": [
+        "cause != 'U' (exclude unknown causes)",
+        "start_date month in [1,2,3] (January, February, March)",
+        "cause is not null",
+        "region is not null",
+        "Fires starting in January, February, or March only",
+        "Fires with known causes (exclude unknown causes)",
+        "Fires with known causes (cause is not 'U')",
+        "Fires starting in January, February, or March (start_date month is 1, 2, or 3)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "cause != 'U' (exclude unknown causes)",
+          "start_date month in [1,2,3] (January, February, March)",
+          "cause is not null",
+          "region is not null"
+        ],
+        [
+          "Fires starting in January, February, or March only",
+          "Fires with known causes (exclude unknown causes)"
+        ],
+        [
+          "Fires with known causes (cause is not 'U')",
+          "Fires starting in January, February, or March (start_date month is 1, 2, or 3)"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "region",
+        "cause"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "region",
+          "cause"
+        ],
+        [
+          "region",
+          "cause"
+        ],
+        [
+          "region",
+          "cause"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Breakdown of fire causes by geographical region for January-March fires",
+        "Chi-square test of independence between region and cause",
+        "Report chi-square statistic and p-value as list of two numbers",
+        "What are the unique values in the 'cause' column and which represent known causes?",
+        "How to extract the month from 'start_date' to filter for January, February, and March?",
+        "What is the contingency table of region vs cause for the filtered data?",
+        "What are the chi-square statistic and p-value from the independence test?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Breakdown of fire causes by geographical region for January-March fires",
+          "Chi-square test of independence between region and cause",
+          "Report chi-square statistic and p-value as list of two numbers"
+        ],
+        [
+          "What are the unique values in the 'cause' column and which represent known causes?",
+          "How to extract the month from 'start_date' to filter for January, February, and March?",
+          "What is the contingency table of region vs cause for the filtered data?",
+          "What are the chi-square statistic and p-value from the independence test?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires.csv",
+        "noaa_wildfires_variabledescrip.csv"
+      ],
+      "confidence": 0.8333333333333333,
+      "votes": [
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Variable description file has different structure than main data file",
+        "Description file provides metadata but no direct join keys"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Variable description file has different structure than main data file",
+          "Description file provides metadata but no direct join keys"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage",
+        "wind_med": "miles per hour",
+        "erc_med": "BTUs/square foot",
+        "rain_sum": "total precipitation units",
+        "duration": "days",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "start_date": "date as MM/DD/YYYY",
+        "region": "categorical geographic region",
+        "cause": "categorical cause code (U=unknown, N=natural, H=human, L=lightning, O=other)"
+      },
+      "confidence": 0.5666666666666665,
+      "votes": [
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs/square foot",
+          "rain_sum": "total precipitation units",
+          "duration": "days",
+          "latitude": "degrees",
+          "longitude": "degrees"
+        },
+        {
+          "start_date": "date as MM/DD/YYYY",
+          "region": "categorical geographic region",
+          "cause": "categorical cause code (U=unknown, N=natural, H=human, L=lightning, O=other)"
+        },
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs / square foot",
+          "rain_sum": "unspecified",
+          "duration": "days",
+          "latitude": "degrees",
+          "longitude": "degrees"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "start_day_of_year ranges 1-366",
+        "control_day_of_year ranges 1-366",
+        "cause_ind appears to be numeric encoding of cause"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "start_day_of_year ranges 1-366",
+          "control_day_of_year ranges 1-366",
+          "cause_ind appears to be numeric encoding of cause"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Variable descriptions may not match actual data usage in analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Variable descriptions may not match actual data usage in analysis"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only fires with known causes (cause != 'U')",
+        "Only fires starting in January, February, or March",
+        "Region must be non-null",
+        "Cause must be non-null",
+        "Only include fires where cause is known (exclude cause='U' for unknown)",
+        "Only include fires starting in months 1, 2, or 3 (January, February, March)",
+        "Must have valid region and cause values for chi-square test",
+        "start_date needs to be parsed to extract the month",
+        "cause should not be 'U' (unknown)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only fires with known causes (cause != 'U')",
+          "Only fires starting in January, February, or March",
+          "Region must be non-null",
+          "Cause must be non-null"
+        ],
+        [
+          "Only include fires where cause is known (exclude cause='U' for unknown)",
+          "Only include fires starting in months 1, 2, or 3 (January, February, March)",
+          "Must have valid region and cause values for chi-square test"
+        ],
+        [
+          "start_date needs to be parsed to extract the month",
+          "cause should not be 'U' (unknown)"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract month from start_date column",
+        "Filter cause column for non-'U' values",
+        "Filter for month in [1, 2, 3]",
+        "Filter for cause not equal to 'U'",
+        "month = start_date.month",
+        "known_cause = cause != 'U'",
+        "jan_feb_mar = month in [1, 2, 3]"
+      ],
+      "confidence": 0.38095238095238093,
+      "votes": [
+        [
+          "Extract month from start_date column",
+          "Filter cause column for non-'U' values"
+        ],
+        [
+          "Extract month from start_date column",
+          "Filter for month in [1, 2, 3]",
+          "Filter for cause not equal to 'U'"
+        ],
+        [
+          "month = start_date.month",
+          "known_cause = cause != 'U'",
+          "jan_feb_mar = month in [1, 2, 3]"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Chi-square test of independence between region and cause categories",
+        "Chi-square test of independence between region and cause",
+        "Contingency table creation from grouped counts",
+        "Chi-square test of independence"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Chi-square test of independence between region and cause categories"
+        ],
+        [
+          "Chi-square test of independence between region and cause",
+          "Contingency table creation from grouped counts"
+        ],
+        [
+          "Chi-square test of independence"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of two numbers: [chi-square statistic, p-value]",
+        "Return a list of exactly two numbers: [chi-square statistic, p-value]",
+        "Chi-square statistic should be the test statistic value",
+        "P-value should be the probability value from the test",
+        "A list of two numbers: chi-square statistic and p-value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of two numbers: [chi-square statistic, p-value]"
+        ],
+        [
+          "Return a list of exactly two numbers: [chi-square statistic, p-value]",
+          "Chi-square statistic should be the test statistic value",
+          "P-value should be the probability value from the test"
+        ],
+        [
+          "A list of two numbers: chi-square statistic and p-value"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6390476190476191
+}

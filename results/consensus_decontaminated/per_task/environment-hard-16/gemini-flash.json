@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Count of marine beaches that had no violations from 2002 to 2023 inclusive",
+    "filters": [
+      "Year between 2002 and 2023",
+      "Beach Type Description is 'Marine'"
+    ],
+    "grouping_variables": [
+      "Beach Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "For each beach, determine if it is a marine beach",
+      "For each beach and year, determine if there was any violation",
+      "Count the number of beaches that are marine and had no violations in any year from 2002 to 2023"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2002.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "level of indicator organism",
+      "Community Code": "integer code",
+      "County Code": "integer code",
+      "Year": "year",
+      "Sample Date": "date",
+      "Beach Name": "name of beach"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date is a datetime object",
+      "Violation column has inconsistent values (yes/no, YES/NO)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be between 2002 and 2023 inclusive",
+      "Beach Type Description must be 'Marine'"
+    ],
+    "derived_filters": [
+      "A beach is considered safe in a year if either there is no data for that beach in that year, or if all entries for that beach in that year have Violation = 'no' (case-insensitive)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a single integer value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of marine beaches that had no violations from 2002 to 2023 inclusive\",\n    \"filters\": [\n      \"Year between 2002 and 2023\",\n      \"Beach Type Description is 'Marine'\"\n    ],\n    \"grouping_variables\": [\n      \"Beach Name\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"For each beach, determine if it is a marine beach\",\n      \"For each beach and year, determine if there was any violation\",\n      \"Count the number of beaches that are marine and had no violations in any year from 2002 to 2023\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2002.csv\",\n      \"water-body-testing-2003.csv\",\n      \"water-body-testing-2004.csv\",\n      \"water-body-testing-2005.csv\",\n      \"water-body-testing-2006.csv\",\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2009.csv\",\n      \"water-body-testing-2010.csv\",\n      \"water-body-testing-2011.csv\",\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\",\n      \"water-body-testing-2014.csv\",\n      \"water-body-testing-2015.csv\",\n      \"water-body-testing-2016.csv\",\n      \"water-body-testing-2017.csv\",\n      \"water-body-testing-2018.csv\",\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"level of indicator organism\",\n      \"Community Code\": \"integer code\",\n      \"County Code\": \"integer code\",\n      \"Year\": \"year\",\n      \"Sample Date\": \"date\",\n      \"Beach Name\": \"name of beach\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date is a datetime object\",\n      \"Violation column has inconsistent values (yes/no, YES/NO)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be between 2002 and 2023 inclusive\",\n      \"Beach Type Description must be 'Marine'\"\n    ],\n    \"derived_filters\": [\n      \"A beach is considered safe in a year if either there is no data for that beach in that year, or if all entries for that beach in that year have Violation = 'no' (case-insensitive)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a single integer value\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 31.492474794387817,
+  "token_usage": {}
+}

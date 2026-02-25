@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "total agricultural value in 2008/09",
+    "filters": [
+      "IME Exchange (Including spot, credit and forward transactions) = 'Agricultural - Value (billion rials)'",
+      "column '2008/09'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which row contains agricultural value data?",
+      "Is there only one agricultural value entry for 2008/09?",
+      "Are there multiple agricultural value rows that need to be summed?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "IME Exchange (Including spot, credit and forward transactions)"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Agricultural - Value (billion rials)": "billion rials",
+      "2007/08": "year",
+      "2008/09": "year",
+      "2009/10": "year",
+      "2010/11": "year",
+      "2011/12": "year"
+    },
+    "scale_issues": [
+      "Some values contain commas as thousand separators (e.g., '3,729.7') that need parsing"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column contains descriptive text",
+      "Year columns are in format YYYY/YY",
+      "Some numeric values contain thousand separators"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Agricultural value must be numeric after removing thousand separators",
+      "Only rows with 'Agricultural - Value' in first column should be considered"
+    ],
+    "derived_filters": [
+      "Filter rows where first column contains 'Agricultural - Value'",
+      "Extract value from '2008/09' column"
+    ],
+    "statistical_tests": [
+      "Check for duplicate agricultural value rows",
+      "Validate numeric conversion of values with commas"
+    ],
+    "output_format_requirements": [
+      "Numeric value in billion rials",
+      "Should handle thousand separator parsing"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total agricultural value in 2008/09\",\n        \"filters\": [\"IME Exchange (Including spot, credit and forward transactions) = 'Agricultural - Value (billion rials)'\", \"column '2008/09'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which row contains agricultural value data?\", \"Is there only one agricultural value entry for 2008/09?\", \"Are there multiple agricultural value rows that need to be summed?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"IME Exchange (Including spot, credit and forward transactions)\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Agricultural - Value (billion rials)\": \"billion rials\",\n            \"2007/08\": \"year\",\n            \"2008/09\": \"year\",\n            \"2009/10\": \"year\",\n            \"2010/11\": \"year\",\n            \"2011/12\": \"year\"\n        },\n        \"scale_issues\": [\"Some values contain commas as thousand separators (e.g., '3,729.7') that need parsing\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column contains descriptive text\", \"Year columns are in format YYYY/YY\", \"Some numeric values contain thousand separators\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Agricultural value must be numeric after removing thousand separators\", \"Only rows with 'Agricultural - Value' in first column should be considered\"],\n        \"derived_filters\": [\"Filter rows where first column contains 'Agricultural - Value'\", \"Extract value from '2008/09' column\"],\n        \"statistical_tests\": [\"Check for duplicate agricultural value rows\", \"Validate numeric conversion of values with commas\"],\n        \"output_format_requirements\": [\"Numeric value in billion rials\", \"Should handle thousand separator parsing\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.636573314666748,
+  "token_usage": {
+    "input_tokens": 1317,
+    "output_tokens": 522
+  }
+}

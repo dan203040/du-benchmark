@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "difference between Southampton's score and Sunderland's score",
+    "filters": [
+      "team name = 'Southampton' (as Home team or Away team)",
+      "team name = 'Sunderland' (as Home team or Away team)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is Southampton's score in their match(es)?",
+      "What is Sunderland's score in their match(es)?",
+      "How to parse the 'Score' column to extract individual team scores?",
+      "Which matches involve Southampton (home or away)?",
+      "Which matches involve Sunderland (home or away)?",
+      "Are there multiple matches per team or a single match to consider?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Score": "goals (format: home_goals\u2013away_goals)",
+      "Tie no": "match identifier (integer)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Score column uses en-dash (\u2013) separator between home and away scores",
+      "Some rows have empty 'Tie no' values indicating replay matches",
+      "Date format appears to be 'DD Month YYYY'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Score must be parsed to separate home team score and away team score",
+      "Must identify whether Southampton/Sunderland played as home or away team",
+      "Must handle the en-dash character (\u2013) in Score field",
+      "Need to determine which specific match is being referenced if multiple matches exist"
+    ],
+    "derived_filters": [
+      "Home team = 'Southampton' OR Away team = 'Southampton'",
+      "Home team = 'Sunderland' OR Away team = 'Sunderland'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single numeric value representing the score difference",
+      "Clarify which match is being referenced if ambiguity exists"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"difference between Southampton's score and Sunderland's score\",\n    \"filters\": [\n      \"team name = 'Southampton' (as Home team or Away team)\",\n      \"team name = 'Sunderland' (as Home team or Away team)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is Southampton's score in their match(es)?\",\n      \"What is Sunderland's score in their match(es)?\",\n      \"How to parse the 'Score' column to extract individual team scores?\",\n      \"Which matches involve Southampton (home or away)?\",\n      \"Which matches involve Sunderland (home or away)?\",\n      \"Are there multiple matches per team or a single match to consider?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Football Matches\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Score\": \"goals (format: home_goals\u2013away_goals)\",\n      \"Tie no\": \"match identifier (integer)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Score column uses en-dash (\u2013) separator between home and away scores\",\n      \"Some rows have empty 'Tie no' values indicating replay matches\",\n      \"Date format appears to be 'DD Month YYYY'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Score must be parsed to separate home team score and away team score\",\n      \"Must identify whether Southampton/Sunderland played as home or away team\",\n      \"Must handle the en-dash character (\u2013) in Score field\",\n      \"Need to determine which specific match is being referenced if multiple matches exist\"\n    ],\n    \"derived_filters\": [\n      \"Home team = 'Southampton' OR Away team = 'Southampton'\",\n      \"Home team = 'Sunderland' OR Away team = 'Sunderland'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single numeric value representing the score difference\",\n      \"Clarify which match is being referenced if ambiguity exists\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.299981832504272,
+  "token_usage": {
+    "input_tokens": 1087,
+    "output_tokens": 663
+  }
+}

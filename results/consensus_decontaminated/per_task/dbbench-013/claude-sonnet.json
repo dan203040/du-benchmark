@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "Team name that took first place (Premiers)",
+    "filters": [
+      "Year == 2008"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which team is listed in the Premiers column for the year 2008?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "AFL Cairns Grand Final Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Premiers Score": "goals.behinds (points)",
+      "Runners Up Score": "goals.behinds (points)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Score format is AFL standard: goals.behinds (total_points)",
+      "Year column is object type but contains year values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must equal 2008",
+      "Premiers column contains the first place team",
+      "Should return exactly one team name"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the team name as a string",
+      "Answer should be the value from the Premiers column for Year 2008"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Team name that took first place (Premiers)\",\n    \"filters\": [\"Year == 2008\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\"Which team is listed in the Premiers column for the year 2008?\"]\n  },\n  \"M_S\": {\n    \"sources\": [\"AFL Cairns Grand Final Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Premiers Score\": \"goals.behinds (points)\",\n      \"Runners Up Score\": \"goals.behinds (points)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"Score format is AFL standard: goals.behinds (total_points)\", \"Year column is object type but contains year values\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\"Year must equal 2008\", \"Premiers column contains the first place team\", \"Should return exactly one team name\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Return the team name as a string\", \"Answer should be the value from the Premiers column for Year 2008\"]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.669580936431885,
+  "token_usage": {
+    "input_tokens": 1283,
+    "output_tokens": 431
+  }
+}

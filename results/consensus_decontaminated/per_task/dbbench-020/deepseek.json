@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "total number of represents for Clary Sermina Delgado Cid",
+    "filters": [
+      "Contestant = 'Clary Sermina Delgado Cid'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which location does Clary Sermina Delgado Cid represent?",
+      "How many times does this contestant appear in the data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "contestants"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height (cm)": "meters (incorrectly labeled as cm)",
+      "Height (ft)": "feet and inches",
+      "Age": "years"
+    },
+    "scale_issues": [
+      "Height (cm) column appears to contain values in meters (e.g., 1.71) rather than centimeters"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Height (ft) column contains mixed format with quotes (e.g., \"5'7\"\"\")",
+      "Sample shows 20 rows but shape indicates 29 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each contestant should have exactly one 'Represents' value",
+      "Contestant names should be unique"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for duplicate contestant entries"
+    ],
+    "output_format_requirements": [
+      "Single numeric value representing count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total number of represents for Clary Sermina Delgado Cid\",\n        \"filters\": [\"Contestant = 'Clary Sermina Delgado Cid'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which location does Clary Sermina Delgado Cid represent?\", \"How many times does this contestant appear in the data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"contestants\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Height (cm)\": \"meters (incorrectly labeled as cm)\",\n            \"Height (ft)\": \"feet and inches\",\n            \"Age\": \"years\"\n        },\n        \"scale_issues\": [\"Height (cm) column appears to contain values in meters (e.g., 1.71) rather than centimeters\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Height (ft) column contains mixed format with quotes (e.g., \\\"5'7\\\"\\\"\\\")\", \"Sample shows 20 rows but shape indicates 29 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each contestant should have exactly one 'Represents' value\", \"Contestant names should be unique\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [\"Check for duplicate contestant entries\"],\n        \"output_format_requirements\": [\"Single numeric value representing count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.68386697769165,
+  "token_usage": {
+    "input_tokens": 1156,
+    "output_tokens": 420
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Identify the first player selected in the draft who attended a school located in California",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Identify the first player selected in the draft who attended a school located in California",
+        "First player picked who attended a school in California",
+        "Players who were the first pick in the draft and attended school in California"
+      ]
+    },
+    "filters": {
+      "value": [
+        "School/Club Team contains 'California'",
+        "Pick is the minimum value among filtered records",
+        "School/Club Team is located in California",
+        "Pick is minimum among California schools",
+        "Pick == 1"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "School/Club Team contains 'California'",
+          "Pick is the minimum value among filtered records"
+        ],
+        [
+          "School/Club Team is located in California",
+          "Pick is minimum among California schools"
+        ],
+        [
+          "Pick == 1",
+          "School/Club Team contains 'California'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What constitutes a 'school in California'? (e.g., contains 'California', 'CA', specific California school names)",
+        "Does 'first player picked' mean earliest pick number overall or first in chronological order?",
+        "Should we consider only US colleges or include international schools/clubs?",
+        "Which schools in the School/Club Team column are located in California?",
+        "Among players who attended California schools, what is the minimum Pick number?",
+        "What is the Player name corresponding to that minimum Pick?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What constitutes a 'school in California'? (e.g., contains 'California', 'CA', specific California school names)",
+          "Does 'first player picked' mean earliest pick number overall or first in chronological order?",
+          "Should we consider only US colleges or include international schools/clubs?"
+        ],
+        [
+          "Which schools in the School/Club Team column are located in California?",
+          "Among players who attended California schools, what is the minimum Pick number?",
+          "What is the Player name corresponding to that minimum Pick?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "NBA Draft History"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NBA Draft History"
+        ],
+        [
+          "NBA Draft History"
+        ],
+        [
+          "NBA Draft History"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "round": "draft round number",
+        "pick": "overall selection number"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Round": "draft round number",
+          "Pick": "overall selection number"
+        },
+        {
+          "Round": "draft round number",
+          "Pick": "overall draft pick number"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Pick numbers may not be sequential across all rows (e.g., jumps from 221 to 47)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick numbers may not be sequential across all rows (e.g., jumps from 221 to 47)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Pick values should be positive integers",
+        "Round should be between 1-10 typically",
+        "Player names should be non-empty",
+        "Pick number must be valid (non-null)",
+        "School/Club Team must be identifiable as California institution",
+        "Return single player with earliest/lowest pick number",
+        "Pick column should contain integer values",
+        "School/Club Team column may contain missing values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick values should be positive integers",
+          "Round should be between 1-10 typically",
+          "Player names should be non-empty"
+        ],
+        [
+          "Pick number must be valid (non-null)",
+          "School/Club Team must be identifiable as California institution",
+          "Return single player with earliest/lowest pick number"
+        ],
+        [
+          "Pick column should contain integer values",
+          "School/Club Team column may contain missing values"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where School/Club Team contains 'California' (case-insensitive)",
+        "Among filtered rows, find row with minimum Pick value",
+        "Identify California schools by matching patterns: 'California', 'Stanford', 'USC', 'UCLA', 'San Diego State', etc.",
+        "Filter to only rows where School/Club Team matches California institution"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where School/Club Team contains 'California' (case-insensitive)",
+          "Among filtered rows, find row with minimum Pick value"
+        ],
+        [
+          "Identify California schools by matching patterns: 'California', 'Stanford', 'USC', 'UCLA', 'San Diego State', etc.",
+          "Filter to only rows where School/Club Team matches California institution"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Pick values",
+        "Verify chronological ordering of picks"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Pick values",
+          "Verify chronological ordering of picks"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single player name with supporting details (Pick, School)",
+        "Return player name as string",
+        "Should be the player with minimum Pick value among California school attendees"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single player name with supporting details (Pick, School)"
+        ],
+        [
+          "Return player name as string",
+          "Should be the player with minimum Pick value among California school attendees"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5533333333333335
+}

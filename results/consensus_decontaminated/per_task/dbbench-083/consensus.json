@@ -1,0 +1,307 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum value of 'Games played' column",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum value of 'Games played' column",
+        "The minimum value in the 'Games played' column",
+        "minimum value of 'Games played'"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Are there any clubs with fewer games played than others?",
+        "Is the 'Games played' value consistent across all rows?",
+        "Do we need to handle any non-numeric values in 'Games played' column?",
+        "What are all the values in the 'Games played' column?",
+        "What is the minimum of those values?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Are there any clubs with fewer games played than others?",
+          "Is the 'Games played' value consistent across all rows?",
+          "Do we need to handle any non-numeric values in 'Games played' column?"
+        ],
+        [
+          "What are all the values in the 'Games played' column?",
+          "What is the minimum of those values?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "football_standings"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "football_standings"
+        ],
+        [
+          "football_standings"
+        ],
+        [
+          "football_standings"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column 'Games played' has object dtype but contains numeric data",
+        "All columns have object dtype despite containing numeric values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column 'Games played' has object dtype but contains numeric data",
+          "All columns have object dtype despite containing numeric values"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "games played": "count of matches",
+        "goals scored": "count of goals",
+        "goals conceded": "count of goals",
+        "points": "league points",
+        "wins": "count",
+        "draws": "count",
+        "loses": "count"
+      },
+      "confidence": 0.5238095238095238,
+      "votes": [
+        {
+          "Games played": "count of matches",
+          "Goals scored": "count of goals",
+          "Goals conceded": "count of goals",
+          "Points": "league points"
+        },
+        {
+          "Games played": "count",
+          "Wins": "count",
+          "Draws": "count",
+          "Loses": "count",
+          "Goals scored": "count",
+          "Goals conceded": "count",
+          "Points": "count"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Data appears to contain multiple leagues/competitions mixed together (rows 1-17 show Lithuanian teams, rows 18-20 show Spanish teams)",
+        "Different leagues may have different numbers of games in a season"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data appears to contain multiple leagues/competitions mixed together (rows 1-17 show Lithuanian teams, rows 18-20 show Spanish teams)",
+          "Different leagues may have different numbers of games in a season"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 9.0,
+      "confidence": 1.0,
+      "votes": [
+        9.0,
+        9.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "'Games played' should be positive integers",
+        "'Games played' should be consistent within the same competition",
+        "Position numbers should be unique within a competition",
+        "Games played should be a positive integer",
+        "Games played = Wins + Draws + Loses",
+        "All numeric columns should be non-negative integers",
+        "'Games played' column must be converted to numeric type before finding the minimum"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Games played' should be positive integers",
+          "'Games played' should be consistent within the same competition",
+          "Position numbers should be unique within a competition"
+        ],
+        [
+          "Games played should be a positive integer",
+          "Games played = Wins + Draws + Loses",
+          "All numeric columns should be non-negative integers"
+        ],
+        [
+          "'Games played' column must be converted to numeric type before finding the minimum"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to specific competition if analyzing within one league",
+        "Remove rows with non-numeric 'Games played' values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to specific competition if analyzing within one league",
+          "Remove rows with non-numeric 'Games played' values"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for consistency of 'Games played' values within data subsets",
+        "Identify outliers in 'Games played' column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for consistency of 'Games played' values within data subsets",
+          "Identify outliers in 'Games played' column"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single numeric value",
+        "Handle potential ties if multiple clubs have same minimum games played",
+        "Return a single integer value representing the minimum number of games played"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single numeric value",
+          "Handle potential ties if multiple clubs have same minimum games played"
+        ],
+        [
+          "Return a single integer value representing the minimum number of games played"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5595238095238096
+}

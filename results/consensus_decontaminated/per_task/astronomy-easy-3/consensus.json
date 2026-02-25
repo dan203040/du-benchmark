@@ -1,0 +1,761 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average atmospheric density (kg/m^3) measured between 450km and 500km altitude at 00:00 of each day in 2015",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "average atmospheric density (kg/m^3) measured between 450km and 500km altitude at 00:00 of each day in 2015",
+        "average atmospheric density measured between 450km and 500km altitude during 2015 for data points at 00:00 of each day",
+        ""
+      ]
+    },
+    "filters": {
+      "value": [
+        "Timestamp at 00:00:00",
+        "Year = 2015",
+        "Altitude between 450km and 500km",
+        "Exclude n/a values",
+        "Exclude 9.99E32 values",
+        "Altitude (km) >= 450 AND Altitude (km) <= 500",
+        "Timestamp year = 2015",
+        "Timestamp time = 00:00:00",
+        "Orbit Mean Density (kg/m^3) != 9.99E32",
+        "Orbit Mean Density (kg/m^3) IS NOT NULL"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Timestamp at 00:00:00",
+          "Year = 2015",
+          "Altitude between 450km and 500km",
+          "Exclude n/a values",
+          "Exclude 9.99E32 values"
+        ],
+        [
+          "Altitude (km) >= 450 AND Altitude (km) <= 500",
+          "Timestamp year = 2015",
+          "Timestamp time = 00:00:00",
+          "Orbit Mean Density (kg/m^3) != 9.99E32",
+          "Orbit Mean Density (kg/m^3) IS NOT NULL"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Date (daily)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date (daily)"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        ""
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Identify valid data points at 00:00 each day",
+        "Filter by altitude range",
+        "Clean density measurements",
+        "Calculate daily averages",
+        "Compute overall average across 2015",
+        "Which file IDs in initial states file correspond to dates in 2015?",
+        "Which initial state records have altitude between 450-500km at 00:00:00?",
+        "Which satellite density files contain measurements for these dates?",
+        "How to join initial states with density measurements by timestamp?",
+        "What are the valid density values after cleaning sentinel values?",
+        "What is the average of the cleaned density measurements?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Identify valid data points at 00:00 each day",
+          "Filter by altitude range",
+          "Clean density measurements",
+          "Calculate daily averages",
+          "Compute overall average across 2015"
+        ],
+        [
+          "Which file IDs in initial states file correspond to dates in 2015?",
+          "Which initial state records have altitude between 450-500km at 00:00:00?",
+          "Which satellite density files contain measurements for these dates?",
+          "How to join initial states with density measurements by timestamp?",
+          "What are the valid density values after cleaning sentinel values?",
+          "What is the average of the cleaned density measurements?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "wu001_to_wu715-initial_states.csv",
+        "swarma-wu113-20141230_to_20150102.csv",
+        "swarma-wu114-20150102_to_20150105.csv",
+        "swarma-wu115-20150105_to_20150108.csv",
+        "swarma-wu116-20150108_to_20150111.csv",
+        "swarma-wu117-20150111_to_20150114.csv",
+        "swarma-wu118-20150114_to_20150117.csv",
+        "swarma-wu119-20150117_to_20150120.csv",
+        "swarma-wu120-20150120_to_20150123.csv",
+        "swarma-wu121-20150123_to_20150126.csv",
+        "swarma-wu122-20150126_to_20150129.csv",
+        "swarma-wu123-20150129_to_20150201.csv",
+        "swarma-wu124-20150201_to_20150204.csv",
+        "swarma-wu125-20150204_to_20150207.csv",
+        "swarma-wu126-20150207_to_20150210.csv",
+        "swarma-wu127-20150210_to_20150213.csv",
+        "swarma-wu128-20150213_to_20150216.csv",
+        "swarma-wu129-20150216_to_20150219.csv",
+        "swarma-wu130-20150219_to_20150222.csv",
+        "swarma-wu131-20150222_to_20150225.csv",
+        "swarma-wu132-20150225_to_20150228.csv",
+        "swarma-wu133-20150228_to_20150303.csv",
+        "swarma-wu134-20150303_to_20150306.csv",
+        "swarma-wu135-20150306_to_20150309.csv",
+        "swarma-wu136-20150309_to_20150312.csv",
+        "swarma-wu137-20150312_to_20150315.csv",
+        "swarma-wu138-20150315_to_20150318.csv",
+        "swarma-wu139-20150318_to_20150321.csv",
+        "swarma-wu140-20150321_to_20150324.csv",
+        "swarma-wu141-20150324_to_20150327.csv",
+        "swarma-wu142-20150327_to_20150330.csv",
+        "swarma-wu143-20150330_to_20150402.csv",
+        "swarma-wu144-20150402_to_20150405.csv",
+        "swarma-wu145-20150405_to_20150408.csv",
+        "swarma-wu146-20150408_to_20150411.csv",
+        "swarma-wu147-20150411_to_20150414.csv",
+        "swarma-wu148-20150414_to_20150417.csv",
+        "swarma-wu149-20150417_to_20150420.csv",
+        "swarma-wu150-20150420_to_20150423.csv",
+        "swarma-wu151-20150423_to_20150426.csv",
+        "swarma-wu152-20150426_to_20150429.csv",
+        "swarma-wu153-20150429_to_20150502.csv",
+        "swarma-wu154-20150502_to_20150505.csv",
+        "swarma-wu155-20150505_to_20150508.csv",
+        "swarma-wu156-20150508_to_20150511.csv",
+        "swarma-wu157-20150511_to_20150514.csv",
+        "swarma-wu158-20150514_to_20150517.csv",
+        "swarma-wu159-20150517_to_20150520.csv",
+        "swarma-wu160-20150520_to_20150523.csv",
+        "swarma-wu161-20150523_to_20150526.csv",
+        "swarma-wu162-20150526_to_20150529.csv",
+        "swarma-wu163-20150529_to_20150601.csv",
+        "swarma-wu164-20150601_to_20150604.csv",
+        "swarma-wu165-20150604_to_20150607.csv",
+        "swarma-wu166-20150607_to_20150610.csv",
+        "swarma-wu167-20150610_to_20150613.csv",
+        "swarma-wu168-20150613_to_20150616.csv",
+        "swarma-wu169-20150616_to_20150619.csv",
+        "swarma-wu170-20150619_to_20150622.csv",
+        "swarma-wu171-20150622_to_20150625.csv",
+        "swarma-wu172-20150625_to_20150628.csv",
+        "swarma-wu173-20150628_to_20150701.csv",
+        "swarma-wu174-20150701_to_20150704.csv",
+        "swarma-wu175-20150704_to_20150707.csv",
+        "swarma-wu176-20150707_to_20150710.csv",
+        "swarma-wu177-20150710_to_20150713.csv",
+        "swarma-wu178-20150713_to_20150716.csv",
+        "swarma-wu179-20150716_to_20150719.csv",
+        "swarma-wu180-20150719_to_20150722.csv",
+        "swarma-wu181-20150722_to_20150725.csv",
+        "swarma-wu182-20150725_to_20150728.csv",
+        "swarma-wu183-20150728_to_20150731.csv",
+        "swarma-wu184-20150731_to_20150803.csv",
+        "swarma-wu185-20150803_to_20150806.csv",
+        "swarma-wu186-20150806_to_20150809.csv",
+        "swarma-wu187-20150809_to_20150812.csv",
+        "swarma-wu188-20150812_to_20150815.csv",
+        "swarma-wu189-20150815_to_20150818.csv",
+        "swarma-wu190-20150818_to_20150821.csv",
+        "swarma-wu191-20150821_to_20150824.csv",
+        "swarma-wu192-20150824_to_20150827.csv",
+        "swarma-wu193-20150827_to_20150830.csv",
+        "swarma-wu194-20150830_to_20150902.csv",
+        "swarma-wu195-20150902_to_20150905.csv",
+        "swarma-wu196-20150905_to_20150908.csv",
+        "swarma-wu197-20150908_to_20150911.csv",
+        "swarma-wu198-20150911_to_20150914.csv",
+        "swarma-wu199-20150914_to_20150917.csv",
+        "swarma-wu200-20150917_to_20150920.csv",
+        "swarma-wu201-20150920_to_20150923.csv",
+        "swarma-wu202-20150923_to_20150926.csv",
+        "swarma-wu203-20150926_to_20150929.csv",
+        "swarma-wu204-20150929_to_20151002.csv",
+        "swarma-wu205-20151002_to_20151005.csv",
+        "swarma-wu206-20151005_to_20151008.csv",
+        "swarma-wu207-20151008_to_20151011.csv",
+        "swarma-wu208-20151011_to_20151014.csv",
+        "swarma-wu209-20151014_to_20151017.csv",
+        "swarma-wu210-20151017_to_20151020.csv",
+        "swarma-wu211-20151020_to_20151023.csv",
+        "swarma-wu212-20151023_to_20151026.csv",
+        "swarma-wu213-20151026_to_20151029.csv",
+        "swarma-wu214-20151029_to_20151101.csv",
+        "swarma-wu215-20151101_to_20151104.csv",
+        "swarma-wu216-20151104_to_20151107.csv",
+        "swarma-wu217-20151107_to_20151110.csv",
+        "swarma-wu218-20151110_to_20151113.csv",
+        "swarma-wu219-20151113_to_20151116.csv",
+        "swarma-wu220-20151116_to_20151119.csv",
+        "swarma-wu221-20151119_to_20151122.csv",
+        "swarma-wu222-20151122_to_20151125.csv",
+        "swarma-wu223-20151125_to_20151128.csv",
+        "swarma-wu224-20151128_to_20151201.csv",
+        "swarma-wu225-20151201_to_20151204.csv",
+        "swarma-wu226-20151204_to_20151207.csv",
+        "swarma-wu227-20151207_to_20151210.csv",
+        "swarma-wu228-20151210_to_20151213.csv",
+        "swarma-wu229-20151213_to_20151216.csv",
+        "swarma-wu230-20151216_to_20151219.csv",
+        "swarma-wu231-20151219_to_20151222.csv",
+        "swarma-wu232-20151222_to_20151225.csv",
+        "swarma-wu233-20151225_to_20151228.csv",
+        "swarma-wu234-20151228_to_20151231.csv",
+        "swarma-wu235-20151231_to_20160103.csv"
+      ],
+      "confidence": 0.666666666666667,
+      "votes": [
+        [
+          "wu001_to_wu715-initial_states.csv",
+          "swarma-wu113-20141230_to_20150102.csv",
+          "swarma-wu114-20150102_to_20150105.csv",
+          "swarma-wu115-20150105_to_20150108.csv",
+          "swarma-wu116-20150108_to_20150111.csv",
+          "swarma-wu117-20150111_to_20150114.csv",
+          "swarma-wu118-20150114_to_20150117.csv",
+          "swarma-wu119-20150117_to_20150120.csv",
+          "swarma-wu120-20150120_to_20150123.csv",
+          "swarma-wu121-20150123_to_20150126.csv",
+          "swarma-wu122-20150126_to_20150129.csv",
+          "swarma-wu123-20150129_to_20150201.csv",
+          "swarma-wu124-20150201_to_20150204.csv",
+          "swarma-wu125-20150204_to_20150207.csv",
+          "swarma-wu126-20150207_to_20150210.csv",
+          "swarma-wu127-20150210_to_20150213.csv",
+          "swarma-wu128-20150213_to_20150216.csv",
+          "swarma-wu129-20150216_to_20150219.csv",
+          "swarma-wu130-20150219_to_20150222.csv",
+          "swarma-wu131-20150222_to_20150225.csv",
+          "swarma-wu132-20150225_to_20150228.csv",
+          "swarma-wu133-20150228_to_20150303.csv",
+          "swarma-wu134-20150303_to_20150306.csv",
+          "swarma-wu135-20150306_to_20150309.csv",
+          "swarma-wu136-20150309_to_20150312.csv",
+          "swarma-wu137-20150312_to_20150315.csv",
+          "swarma-wu138-20150315_to_20150318.csv",
+          "swarma-wu139-20150318_to_20150321.csv",
+          "swarma-wu140-20150321_to_20150324.csv",
+          "swarma-wu141-20150324_to_20150327.csv",
+          "swarma-wu142-20150327_to_20150330.csv",
+          "swarma-wu143-20150330_to_20150402.csv",
+          "swarma-wu144-20150402_to_20150405.csv",
+          "swarma-wu145-20150405_to_20150408.csv",
+          "swarma-wu146-20150408_to_20150411.csv",
+          "swarma-wu147-20150411_to_20150414.csv",
+          "swarma-wu148-20150414_to_20150417.csv",
+          "swarma-wu149-20150417_to_20150420.csv",
+          "swarma-wu150-20150420_to_20150423.csv",
+          "swarma-wu151-20150423_to_20150426.csv",
+          "swarma-wu152-20150426_to_20150429.csv",
+          "swarma-wu153-20150429_to_20150502.csv",
+          "swarma-wu154-20150502_to_20150505.csv",
+          "swarma-wu155-20150505_to_20150508.csv",
+          "swarma-wu156-20150508_to_20150511.csv",
+          "swarma-wu157-20150511_to_20150514.csv",
+          "swarma-wu158-20150514_to_20150517.csv",
+          "swarma-wu159-20150517_to_20150520.csv",
+          "swarma-wu160-20150520_to_20150523.csv",
+          "swarma-wu161-20150523_to_20150526.csv",
+          "swarma-wu162-20150526_to_20150529.csv",
+          "swarma-wu163-20150529_to_20150601.csv",
+          "swarma-wu164-20150601_to_20150604.csv",
+          "swarma-wu165-20150604_to_20150607.csv",
+          "swarma-wu166-20150607_to_20150610.csv",
+          "swarma-wu167-20150610_to_20150613.csv",
+          "swarma-wu168-20150613_to_20150616.csv",
+          "swarma-wu169-20150616_to_20150619.csv",
+          "swarma-wu170-20150619_to_20150622.csv",
+          "swarma-wu171-20150622_to_20150625.csv",
+          "swarma-wu172-20150625_to_20150628.csv",
+          "swarma-wu173-20150628_to_20150701.csv",
+          "swarma-wu174-20150701_to_20150704.csv",
+          "swarma-wu175-20150704_to_20150707.csv",
+          "swarma-wu176-20150707_to_20150710.csv",
+          "swarma-wu177-20150710_to_20150713.csv",
+          "swarma-wu178-20150713_to_20150716.csv",
+          "swarma-wu179-20150716_to_20150719.csv",
+          "swarma-wu180-20150719_to_20150722.csv",
+          "swarma-wu181-20150722_to_20150725.csv",
+          "swarma-wu182-20150725_to_20150728.csv",
+          "swarma-wu183-20150728_to_20150731.csv",
+          "swarma-wu184-20150731_to_20150803.csv",
+          "swarma-wu185-20150803_to_20150806.csv",
+          "swarma-wu186-20150806_to_20150809.csv",
+          "swarma-wu187-20150809_to_20150812.csv",
+          "swarma-wu188-20150812_to_20150815.csv",
+          "swarma-wu189-20150815_to_20150818.csv",
+          "swarma-wu190-20150818_to_20150821.csv",
+          "swarma-wu191-20150821_to_20150824.csv",
+          "swarma-wu192-20150824_to_20150827.csv",
+          "swarma-wu193-20150827_to_20150830.csv",
+          "swarma-wu194-20150830_to_20150902.csv",
+          "swarma-wu195-20150902_to_20150905.csv",
+          "swarma-wu196-20150905_to_20150908.csv",
+          "swarma-wu197-20150908_to_20150911.csv",
+          "swarma-wu198-20150911_to_20150914.csv",
+          "swarma-wu199-20150914_to_20150917.csv",
+          "swarma-wu200-20150917_to_20150920.csv",
+          "swarma-wu201-20150920_to_20150923.csv",
+          "swarma-wu202-20150923_to_20150926.csv",
+          "swarma-wu203-20150926_to_20150929.csv",
+          "swarma-wu204-20150929_to_20151002.csv",
+          "swarma-wu205-20151002_to_20151005.csv",
+          "swarma-wu206-20151005_to_20151008.csv",
+          "swarma-wu207-20151008_to_20151011.csv",
+          "swarma-wu208-20151011_to_20151014.csv",
+          "swarma-wu209-20151014_to_20151017.csv",
+          "swarma-wu210-20151017_to_20151020.csv",
+          "swarma-wu211-20151020_to_20151023.csv",
+          "swarma-wu212-20151023_to_20151026.csv",
+          "swarma-wu213-20151026_to_20151029.csv",
+          "swarma-wu214-20151029_to_20151101.csv",
+          "swarma-wu215-20151101_to_20151104.csv",
+          "swarma-wu216-20151104_to_20151107.csv",
+          "swarma-wu217-20151107_to_20151110.csv",
+          "swarma-wu218-20151110_to_20151113.csv",
+          "swarma-wu219-20151113_to_20151116.csv",
+          "swarma-wu220-20151116_to_20151119.csv",
+          "swarma-wu221-20151119_to_20151122.csv",
+          "swarma-wu222-20151122_to_20151125.csv",
+          "swarma-wu223-20151125_to_20151128.csv",
+          "swarma-wu224-20151128_to_20151201.csv",
+          "swarma-wu225-20151201_to_20151204.csv",
+          "swarma-wu226-20151204_to_20151207.csv",
+          "swarma-wu227-20151207_to_20151210.csv",
+          "swarma-wu228-20151210_to_20151213.csv",
+          "swarma-wu229-20151213_to_20151216.csv",
+          "swarma-wu230-20151216_to_20151219.csv",
+          "swarma-wu231-20151219_to_20151222.csv",
+          "swarma-wu232-20151222_to_20151225.csv",
+          "swarma-wu233-20151225_to_20151228.csv",
+          "swarma-wu234-20151228_to_20151231.csv",
+          "swarma-wu235-20151231_to_20160103.csv"
+        ],
+        [
+          "wu001_to_wu715-initial_states.csv",
+          "swarma-wu113-20141230_to_20150102.csv",
+          "swarma-wu114-20150102_to_20150105.csv",
+          "swarma-wu115-20150105_to_20150108.csv",
+          "swarma-wu116-20150108_to_20150111.csv",
+          "swarma-wu117-20150111_to_20150114.csv",
+          "swarma-wu118-20150114_to_20150117.csv",
+          "swarma-wu119-20150117_to_20150120.csv",
+          "swarma-wu120-20150120_to_20150123.csv",
+          "swarma-wu121-20150123_to_20150126.csv",
+          "swarma-wu122-20150126_to_20150129.csv",
+          "swarma-wu123-20150129_to_20150201.csv",
+          "swarma-wu124-20150201_to_20150204.csv",
+          "swarma-wu125-20150204_to_20150207.csv",
+          "swarma-wu126-20150207_to_20150210.csv",
+          "swarma-wu127-20150210_to_20150213.csv",
+          "swarma-wu128-20150213_to_20150216.csv",
+          "swarma-wu129-20150216_to_20150219.csv",
+          "swarma-wu130-20150219_to_20150222.csv",
+          "swarma-wu131-20150222_to_20150225.csv",
+          "swarma-wu132-20150225_to_20150228.csv",
+          "swarma-wu133-20150228_to_20150303.csv",
+          "swarma-wu134-20150303_to_20150306.csv",
+          "swarma-wu135-20150306_to_20150309.csv",
+          "swarma-wu136-20150309_to_20150312.csv",
+          "swarma-wu137-20150312_to_20150315.csv",
+          "swarma-wu138-20150315_to_20150318.csv",
+          "swarma-wu139-20150318_to_20150321.csv",
+          "swarma-wu140-20150321_to_20150324.csv",
+          "swarma-wu141-20150324_to_20150327.csv",
+          "swarma-wu142-20150327_to_20150330.csv",
+          "swarma-wu143-20150330_to_20150402.csv",
+          "swarma-wu144-20150402_to_20150405.csv",
+          "swarma-wu145-20150405_to_20150408.csv",
+          "swarma-wu146-20150408_to_20150411.csv",
+          "swarma-wu147-20150411_to_20150414.csv",
+          "swarma-wu148-20150414_to_20150417.csv",
+          "swarma-wu149-20150417_to_20150420.csv",
+          "swarma-wu150-20150420_to_20150423.csv",
+          "swarma-wu151-20150423_to_20150426.csv",
+          "swarma-wu152-20150426_to_20150429.csv",
+          "swarma-wu153-20150429_to_20150502.csv",
+          "swarma-wu154-20150502_to_20150505.csv",
+          "swarma-wu155-20150505_to_20150508.csv",
+          "swarma-wu156-20150508_to_20150511.csv",
+          "swarma-wu157-20150511_to_20150514.csv",
+          "swarma-wu158-20150514_to_20150517.csv",
+          "swarma-wu159-20150517_to_20150520.csv",
+          "swarma-wu160-20150520_to_20150523.csv",
+          "swarma-wu161-20150523_to_20150526.csv",
+          "swarma-wu162-20150526_to_20150529.csv",
+          "swarma-wu163-20150529_to_20150601.csv",
+          "swarma-wu164-20150601_to_20150604.csv",
+          "swarma-wu165-20150604_to_20150607.csv",
+          "swarma-wu166-20150607_to_20150610.csv",
+          "swarma-wu167-20150610_to_20150613.csv",
+          "swarma-wu168-20150613_to_20150616.csv",
+          "swarma-wu169-20150616_to_20150619.csv",
+          "swarma-wu170-20150619_to_20150622.csv",
+          "swarma-wu171-20150622_to_20150625.csv",
+          "swarma-wu172-20150625_to_20150628.csv",
+          "swarma-wu173-20150628_to_20150701.csv",
+          "swarma-wu174-20150701_to_20150704.csv",
+          "swarma-wu175-20150704_to_20150707.csv",
+          "swarma-wu176-20150707_to_20150710.csv",
+          "swarma-wu177-20150710_to_20150713.csv",
+          "swarma-wu178-20150713_to_20150716.csv",
+          "swarma-wu179-20150716_to_20150719.csv",
+          "swarma-wu180-20150719_to_20150722.csv",
+          "swarma-wu181-20150722_to_20150725.csv",
+          "swarma-wu182-20150725_to_20150728.csv",
+          "swarma-wu183-20150728_to_20150731.csv",
+          "swarma-wu184-20150731_to_20150803.csv",
+          "swarma-wu185-20150803_to_20150806.csv",
+          "swarma-wu186-20150806_to_20150809.csv",
+          "swarma-wu187-20150809_to_20150812.csv",
+          "swarma-wu188-20150812_to_20150815.csv",
+          "swarma-wu189-20150815_to_20150818.csv",
+          "swarma-wu190-20150818_to_20150821.csv",
+          "swarma-wu191-20150821_to_20150824.csv",
+          "swarma-wu192-20150824_to_20150827.csv",
+          "swarma-wu193-20150827_to_20150830.csv",
+          "swarma-wu194-20150830_to_20150902.csv",
+          "swarma-wu195-20150902_to_20150905.csv",
+          "swarma-wu196-20150905_to_20150908.csv",
+          "swarma-wu197-20150908_to_20150911.csv",
+          "swarma-wu198-20150911_to_20150914.csv",
+          "swarma-wu199-20150914_to_20150917.csv",
+          "swarma-wu200-20150917_to_20150920.csv",
+          "swarma-wu201-20150920_to_20150923.csv",
+          "swarma-wu202-20150923_to_20150926.csv",
+          "swarma-wu203-20150926_to_20150929.csv",
+          "swarma-wu204-20150929_to_20151002.csv",
+          "swarma-wu205-20151002_to_20151005.csv",
+          "swarma-wu206-20151005_to_20151008.csv",
+          "swarma-wu207-20151008_to_20151011.csv",
+          "swarma-wu208-20151011_to_20151014.csv",
+          "swarma-wu209-20151014_to_20151017.csv",
+          "swarma-wu210-20151017_to_20151020.csv",
+          "swarma-wu211-20151020_to_20151023.csv",
+          "swarma-wu212-20151023_to_20151026.csv",
+          "swarma-wu213-20151026_to_20151029.csv",
+          "swarma-wu214-20151029_to_20151101.csv",
+          "swarma-wu215-20151101_to_20151104.csv",
+          "swarma-wu216-20151104_to_20151107.csv",
+          "swarma-wu217-20151107_to_20151110.csv",
+          "swarma-wu218-20151110_to_20151113.csv",
+          "swarma-wu219-20151113_to_20151116.csv",
+          "swarma-wu220-20151116_to_20151119.csv",
+          "swarma-wu221-20151119_to_20151122.csv",
+          "swarma-wu222-20151122_to_20151125.csv",
+          "swarma-wu223-20151125_to_20151128.csv",
+          "swarma-wu224-20151128_to_20151201.csv",
+          "swarma-wu225-20151201_to_20151204.csv",
+          "swarma-wu226-20151204_to_20151207.csv",
+          "swarma-wu227-20151207_to_20151210.csv",
+          "swarma-wu228-20151210_to_20151213.csv",
+          "swarma-wu229-20151213_to_20151216.csv",
+          "swarma-wu230-20151216_to_20151219.csv",
+          "swarma-wu231-20151219_to_20151222.csv",
+          "swarma-wu232-20151222_to_20151225.csv",
+          "swarma-wu233-20151225_to_20151228.csv",
+          "swarma-wu234-20151228_to_20151231.csv",
+          "swarma-wu235-20151231_to_20160103.csv"
+        ],
+        []
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Multiple density files with same column structure but different date ranges",
+        "Initial states file has different schema than density files",
+        "Initial states file has Altitude (km) but density files do not",
+        "Density files have Orbit Mean Density (kg/m^3) but initial states file does not"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Multiple density files with same column structure but different date ranges",
+          "Initial states file has different schema than density files"
+        ],
+        [
+          "Initial states file has Altitude (km) but density files do not",
+          "Density files have Orbit Mean Density (kg/m^3) but initial states file does not"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "semi-major axis (km)": "km",
+        "altitude (km)": "km",
+        "orbit mean density (kg/m^3)": "kg/m^3",
+        "inclination (deg)": "degrees",
+        "raan (deg)": "degrees",
+        "argument of perigee (deg)": "degrees",
+        "true anomaly (deg)": "degrees",
+        "latitude (deg)": "degrees",
+        "longitude (deg)": "degrees"
+      },
+      "confidence": 0.40740740740740744,
+      "votes": [
+        {
+          "Semi-major Axis (km)": "km",
+          "Altitude (km)": "km",
+          "Orbit Mean Density (kg/m^3)": "kg/m^3",
+          "Inclination (deg)": "degrees",
+          "RAAN (deg)": "degrees",
+          "Argument of Perigee (deg)": "degrees",
+          "True Anomaly (deg)": "degrees",
+          "Latitude (deg)": "degrees",
+          "Longitude (deg)": "degrees"
+        },
+        {
+          "Altitude (km)": "kilometers",
+          "Orbit Mean Density (kg/m^3)": "kilograms per cubic meter"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Density values in scientific notation (e-12 to e-13 scale)",
+        "Altitude values in km, need to filter 450-500km range",
+        "Altitude values in kilometers range 450-500",
+        "Density values in scientific notation (e.g., 1.5e-12)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Density values in scientific notation (e-12 to e-13 scale)",
+          "Altitude values in km, need to filter 450-500km range"
+        ],
+        [
+          "Altitude values in kilometers range 450-500",
+          "Density values in scientific notation (e.g., 1.5e-12)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Density files have 10-minute intervals, need to extract only 00:00 timestamps",
+        "Some density files have missing values (empty cells) that need cleaning",
+        "Altitude only available in initial states file, density only in satellite measurement files",
+        "Need to match timestamps exactly between files to correlate altitude with density"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Density files have 10-minute intervals, need to extract only 00:00 timestamps",
+          "Some density files have missing values (empty cells) that need cleaning"
+        ],
+        [
+          "Altitude only available in initial states file, density only in satellite measurement files",
+          "Need to match timestamps exactly between files to correlate altitude with density"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "9.99E32"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "9.99E32"
+        ],
+        [
+          "",
+          "n/a",
+          "9.99E32",
+          "9.99e32"
+        ],
+        []
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 0.33,
+      "votes": [
+        11.0,
+        2.0,
+        0.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only use data from 2015",
+        "Only use measurements at exactly 00:00:00",
+        "Altitude must be between 450km and 500km inclusive",
+        "Density values must be valid numbers (not sentinel values)",
+        "Altitude must be between 450 and 500 km inclusive",
+        "Year must be 2015",
+        "Time must be exactly 00:00:00",
+        "Density values must not be 9.99E32",
+        "Density values must not be null or empty"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only use data from 2015",
+          "Only use measurements at exactly 00:00:00",
+          "Altitude must be between 450km and 500km inclusive",
+          "Density values must be valid numbers (not sentinel values)"
+        ],
+        [
+          "Altitude must be between 450 and 500 km inclusive",
+          "Year must be 2015",
+          "Time must be exactly 00:00:00",
+          "Density values must not be 9.99E32",
+          "Density values must not be null or empty"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract date part from Timestamp",
+        "Filter by year = 2015",
+        "Filter by time = 00:00:00",
+        "Filter altitude range",
+        "Remove density values equal to 9.99E32",
+        "Remove empty/missing density values",
+        "Extract year from Timestamp column = 2015",
+        "Extract time from Timestamp column = 00:00:00",
+        "Filter Orbit Mean Density != 9.99E32 and IS NOT NULL"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract date part from Timestamp",
+          "Filter by year = 2015",
+          "Filter by time = 00:00:00",
+          "Filter altitude range",
+          "Remove density values equal to 9.99E32",
+          "Remove empty/missing density values"
+        ],
+        [
+          "Extract year from Timestamp column = 2015",
+          "Extract time from Timestamp column = 00:00:00",
+          "Filter Orbit Mean Density != 9.99E32 and IS NOT NULL"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in density measurements",
+        "Verify normal distribution of density values",
+        "Test for seasonal patterns in 2015 data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in density measurements",
+          "Verify normal distribution of density values",
+          "Test for seasonal patterns in 2015 data"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single average value in kg/m^3",
+        "Scientific notation acceptable",
+        "Include confidence interval if possible",
+        "Return single scalar value representing average density",
+        "Unit should be kg/m^3",
+        "Precision should match input data (scientific notation with appropriate significant figures)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single average value in kg/m^3",
+          "Scientific notation acceptable",
+          "Include confidence interval if possible"
+        ],
+        [
+          "Return single scalar value representing average density",
+          "Unit should be kg/m^3",
+          "Precision should match input data (scientific notation with appropriate significant figures)"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5202037037037038
+}

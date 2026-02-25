@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "ratio = (2024 credit card fraud reports) / (2020 credit card fraud reports), rounded to 4 decimal places",
+    "filters": [
+      "Theft Type = 'Credit Card'",
+      "Year in ['2020', '2024']"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the number of credit card fraud reports in 2020?",
+      "What is the number of credit card fraud reports in 2024?",
+      "How to compute the ratio between these two values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'Theft Type' has dtype 'int64' but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in sample data"
+    ],
+    "column_mappings": {
+      "Theft Type": "Theft_Type",
+      "# of Reports": "Num_Reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of fraud reports"
+    },
+    "scale_issues": [
+      "Year column is stored as object/string instead of integer"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample data shows Year column appears first, then Theft Type, then # of Reports - different from column order in header",
+      "Shape indicates 15 rows but sample shows only 15 data rows including header"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be between 2020-2024",
+      "# of Reports should be non-negative integers",
+      "Theft Type should be one of: 'Bank Account', 'Credit Card', 'Loan or Lease'"
+    ],
+    "derived_filters": [
+      "Filter to only rows where Theft Type = 'Credit Card'",
+      "Filter to only rows where Year = '2020' or Year = '2024'"
+    ],
+    "statistical_tests": [
+      "Check for missing values in Year and Theft Type columns",
+      "Verify that each (Year, Theft Type) combination appears only once"
+    ],
+    "output_format_requirements": [
+      "Ratio must be rounded to 4 decimal places",
+      "Result should be a single numeric value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"ratio = (2024 credit card fraud reports) / (2020 credit card fraud reports), rounded to 4 decimal places\",\n        \"filters\": [\"Theft Type = 'Credit Card'\", \"Year in ['2020', '2024']\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the number of credit card fraud reports in 2020?\", \"What is the number of credit card fraud reports in 2024?\", \"How to compute the ratio between these two values?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Column 'Theft Type' has dtype 'int64' but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in sample data\"],\n        \"column_mappings\": {\"Theft Type\": \"Theft_Type\", \"# of Reports\": \"Num_Reports\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of fraud reports\"},\n        \"scale_issues\": [\"Year column is stored as object/string instead of integer\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 3,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample data shows Year column appears first, then Theft Type, then # of Reports - different from column order in header\", \"Shape indicates 15 rows but sample shows only 15 data rows including header\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be between 2020-2024\", \"# of Reports should be non-negative integers\", \"Theft Type should be one of: 'Bank Account', 'Credit Card', 'Loan or Lease'\"],\n        \"derived_filters\": [\"Filter to only rows where Theft Type = 'Credit Card'\", \"Filter to only rows where Year = '2020' or Year = '2024'\"],\n        \"statistical_tests\": [\"Check for missing values in Year and Theft Type columns\", \"Verify that each (Year, Theft Type) combination appears only once\"],\n        \"output_format_requirements\": [\"Ratio must be rounded to 4 decimal places\", \"Result should be a single numeric value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.617212057113647,
+  "token_usage": {
+    "input_tokens": 749,
+    "output_tokens": 579
+  }
+}

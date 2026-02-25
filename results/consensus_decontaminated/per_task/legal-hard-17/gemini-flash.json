@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Number of reports in 2007 that would be 'Auto Related' if the category distribution matched 2024, rounded to the nearest integer.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports in 2007?",
+      "What is the percentage of 'Auto Related' reports in 2024?",
+      "Multiply the total number of reports in 2007 by the percentage of 'Auto Related' reports in 2024.",
+      "Round the result to the nearest integer."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv",
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "number of reports",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [
+      "Percentage column in 2024_CSN_Report_Categories.csv needs to be converted to a decimal by removing the '%' sign and dividing by 100."
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Year' column in 2024_CSN_Report_Count.csv should be filtered to the year 2007.",
+      "The 'Category' column in 2024_CSN_Report_Categories.csv should be filtered to the category 'Auto Related'."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer should be rounded to the nearest integer."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of reports in 2007 that would be 'Auto Related' if the category distribution matched 2024, rounded to the nearest integer.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of reports in 2007?\",\n      \"What is the percentage of 'Auto Related' reports in 2024?\",\n      \"Multiply the total number of reports in 2007 by the percentage of 'Auto Related' reports in 2024.\",\n      \"Round the result to the nearest integer.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Report_Count.csv\",\n      \"2024_CSN_Report_Categories.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"number of reports\",\n      \"Percentage\": \"percentage\"\n    },\n    \"scale_issues\": [\n      \"Percentage column in 2024_CSN_Report_Categories.csv needs to be converted to a decimal by removing the '%' sign and dividing by 100.\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Year' column in 2024_CSN_Report_Count.csv should be filtered to the year 2007.\",\n      \"The 'Category' column in 2024_CSN_Report_Categories.csv should be filtered to the category 'Auto Related'.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final answer should be rounded to the nearest integer.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.468183994293213,
+  "token_usage": {}
+}

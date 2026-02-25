@@ -1,0 +1,368 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of beaches where the bacterial exceedance rate (percentage of samples with Violation='yes') in 2013 is greater than in 2012",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of beaches where the bacterial exceedance rate (percentage of samples with Violation='yes') in 2013 is greater than in 2012",
+        "Count of beaches with higher bacterial exceedance rate in 2013 compared to 2012",
+        "Count of beaches with a higher bacterial exceedance rate in 2013 compared to 2012, excluding beaches with no samples in 2012."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2012 or 2013",
+        "Exclude beaches with no samples in 2012",
+        "Consider only samples where Violation is recorded as 'yes' or 'no'",
+        "Year = 2012 OR Year = 2013"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "Year = 2012 or 2013",
+          "Exclude beaches with no samples in 2012",
+          "Consider only samples where Violation is recorded as 'yes' or 'no'"
+        ],
+        [
+          "Exclude beaches with no samples in 2012",
+          "Year = 2012 OR Year = 2013"
+        ],
+        [
+          "Exclude beaches with no samples in 2012"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Beach Name",
+        "Year"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Beach Name",
+          "Year"
+        ],
+        [
+          "Beach Name",
+          "Year"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the bacterial exceedance rate per beach per year?",
+        "Which beaches have samples in both 2012 and 2013?",
+        "For each beach with data in both years, compare 2013 exceedance rate to 2012 exceedance rate",
+        "What is the bacterial exceedance rate for each beach in 2012?",
+        "What is the bacterial exceedance rate for each beach in 2013?",
+        "Which beaches had samples in 2012?",
+        "For beaches with samples in both years, which had higher exceedance rate in 2013?",
+        "What constitutes a bacterial exceedance (Violation = 'yes')?",
+        "How to calculate exceedance rate (violations / total samples)?",
+        "Calculate the bacterial exceedance rate for each beach in 2012.",
+        "Calculate the bacterial exceedance rate for each beach in 2013.",
+        "Identify beaches present in both 2012 and 2013.",
+        "Compare the exceedance rates for each beach between 2012 and 2013.",
+        "Count the number of beaches where the 2013 exceedance rate is higher than the 2012 exceedance rate."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the bacterial exceedance rate per beach per year?",
+          "Which beaches have samples in both 2012 and 2013?",
+          "For each beach with data in both years, compare 2013 exceedance rate to 2012 exceedance rate"
+        ],
+        [
+          "What is the bacterial exceedance rate for each beach in 2012?",
+          "What is the bacterial exceedance rate for each beach in 2013?",
+          "Which beaches had samples in 2012?",
+          "For beaches with samples in both years, which had higher exceedance rate in 2013?",
+          "What constitutes a bacterial exceedance (Violation = 'yes')?",
+          "How to calculate exceedance rate (violations / total samples)?"
+        ],
+        [
+          "Calculate the bacterial exceedance rate for each beach in 2012.",
+          "Calculate the bacterial exceedance rate for each beach in 2013.",
+          "Identify beaches present in both 2012 and 2013.",
+          "Compare the exceedance rates for each beach between 2012 and 2013.",
+          "Count the number of beaches where the 2013 exceedance rate is higher than the 2012 exceedance rate."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "water-body-testing-2012.csv",
+        "water-body-testing-2013.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "water-body-testing-2012.csv",
+          "water-body-testing-2013.csv"
+        ],
+        [
+          "water-body-testing-2012.csv",
+          "water-body-testing-2013.csv"
+        ],
+        [
+          "water-body-testing-2012.csv",
+          "water-body-testing-2013.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "No apparent schema conflicts - both files have identical column names and data types"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No apparent schema conflicts - both files have identical column names and data types"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "indicator level": "bacterial concentration units (not specified in data)",
+        "year": "calendar year",
+        "sample date": "datetime",
+        "violation": "categorical (yes/no)"
+      },
+      "confidence": 0.5833333333333333,
+      "votes": [
+        {
+          "Indicator Level": "bacterial concentration units (not specified in data)"
+        },
+        {
+          "Indicator Level": "count per 100mL or MPN per 100mL",
+          "Year": "calendar year",
+          "Sample Date": "datetime",
+          "Violation": "categorical (yes/no)"
+        },
+        {
+          "Indicator Level": "bacterial level",
+          "Year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Indicator Level values vary widely (e.g., 2.0 to 564.0 in sample data)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Indicator Level values vary widely (e.g., 2.0 to 564.0 in sample data)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Need to verify Beach Name consistency across years - same beach might have different naming conventions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Need to verify Beach Name consistency across years - same beach might have different naming conventions"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Violation must be either 'yes' or 'no'",
+        "Year must be 2012 or 2013",
+        "Beach Name must not be null",
+        "Each beach must have at least one sample in 2012",
+        "Only include beaches that have at least one sample in 2012",
+        "Beach Name must be present in both years for comparison",
+        "Violation field must be 'yes' or 'no' to calculate exceedance rate",
+        "Need to define what constitutes an 'exceedance'.  Is it based on the 'Violation' column being 'yes'?",
+        "Need to handle cases where a beach has multiple samples on the same day. How should these be aggregated?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Violation must be either 'yes' or 'no'",
+          "Year must be 2012 or 2013",
+          "Beach Name must not be null",
+          "Each beach must have at least one sample in 2012"
+        ],
+        [
+          "Only include beaches that have at least one sample in 2012",
+          "Beach Name must be present in both years for comparison",
+          "Violation field must be 'yes' or 'no' to calculate exceedance rate"
+        ],
+        [
+          "Need to define what constitutes an 'exceedance'.  Is it based on the 'Violation' column being 'yes'?",
+          "Need to handle cases where a beach has multiple samples on the same day. How should these be aggregated?"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to beaches present in both 2012 and 2013 data",
+        "Calculate exceedance rate = (count of Violation='yes') / (total samples) per beach per year",
+        "Beach must have count(samples where Year=2012) > 0",
+        "Beach must have count(samples where Year=2013) > 0 for comparison",
+        "Beach present in both 2012 and 2013"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to beaches present in both 2012 and 2013 data",
+          "Calculate exceedance rate = (count of Violation='yes') / (total samples) per beach per year"
+        ],
+        [
+          "Beach must have count(samples where Year=2012) > 0",
+          "Beach must have count(samples where Year=2013) > 0 for comparison"
+        ],
+        [
+          "Beach present in both 2012 and 2013"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Compare proportions (exceedance rates) between 2012 and 2013 for each beach",
+        "Calculate exceedance_rate_2012 = count(Violation='yes' AND Year=2012) / count(samples in 2012) per beach",
+        "Calculate exceedance_rate_2013 = count(Violation='yes' AND Year=2013) / count(samples in 2013) per beach",
+        "Compare exceedance_rate_2013 > exceedance_rate_2012 for each beach"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Compare proportions (exceedance rates) between 2012 and 2013 for each beach"
+        ],
+        [
+          "Calculate exceedance_rate_2012 = count(Violation='yes' AND Year=2012) / count(samples in 2012) per beach",
+          "Calculate exceedance_rate_2013 = count(Violation='yes' AND Year=2013) / count(samples in 2013) per beach",
+          "Compare exceedance_rate_2013 > exceedance_rate_2012 for each beach"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count of beaches",
+        "Must exclude beaches with zero samples in 2012",
+        "Output is a single integer count",
+        "Count beaches where exceedance_rate_2013 > exceedance_rate_2012",
+        "Exclude beaches with zero samples in 2012"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count of beaches",
+          "Must exclude beaches with zero samples in 2012"
+        ],
+        [
+          "Output is a single integer count",
+          "Count beaches where exceedance_rate_2013 > exceedance_rate_2012",
+          "Exclude beaches with zero samples in 2012"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6375000000000001
+}

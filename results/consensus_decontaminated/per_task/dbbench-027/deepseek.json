@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Count of award-winning films where the opening film is 'Encounters at the End of the World'",
+    "filters": [
+      "Opening Film = 'Encounters at the End of the World'",
+      "Award-Winning Film is not null"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which year had 'Encounters at the End of the World' as opening film?",
+      "What is the award-winning film for that year?",
+      "Is there exactly one matching record?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "International Documentary Film Festival Amsterdam (IDFA)"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Number of Screening": "films and televised counts",
+      "Year": "year"
+    },
+    "scale_issues": [
+      "'Number of Screening' column contains combined film and televised counts as text",
+      "Date columns are stored as text objects"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column appears to be index column",
+      "Date columns contain month and day information",
+      "Opening Film column contains film titles, some with commas requiring quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row represents one festival year",
+      "Opening Film should be unique per year",
+      "Award-Winning Film should be unique per year"
+    ],
+    "derived_filters": [
+      "Year = 2008 (based on data sample showing 'Encounters at the End of the World' in 2008)"
+    ],
+    "statistical_tests": [
+      "Check if exactly one row matches the filter condition"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of award-winning films where the opening film is 'Encounters at the End of the World'\",\n        \"filters\": [\"Opening Film = 'Encounters at the End of the World'\", \"Award-Winning Film is not null\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which year had 'Encounters at the End of the World' as opening film?\", \"What is the award-winning film for that year?\", \"Is there exactly one matching record?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"International Documentary Film Festival Amsterdam (IDFA)\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Number of Screening\": \"films and televised counts\", \"Year\": \"year\"},\n        \"scale_issues\": [\"'Number of Screening' column contains combined film and televised counts as text\", \"Date columns are stored as text objects\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column appears to be index column\", \"Date columns contain month and day information\", \"Opening Film column contains film titles, some with commas requiring quotes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each row represents one festival year\", \"Opening Film should be unique per year\", \"Award-Winning Film should be unique per year\"],\n        \"derived_filters\": [\"Year = 2008 (based on data sample showing 'Encounters at the End of the World' in 2008)\"],\n        \"statistical_tests\": [\"Check if exactly one row matches the filter condition\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.51161003112793,
+  "token_usage": {
+    "input_tokens": 1140,
+    "output_tokens": 465
+  }
+}

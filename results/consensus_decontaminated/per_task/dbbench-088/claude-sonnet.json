@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Latest season where podiums equals 1",
+    "filters": [
+      "Podiums == 1"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have exactly 1 podium?",
+      "What is the maximum/latest season value among those rows?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Race Statistics"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Season": "year",
+      "Races": "count",
+      "Wins": "count",
+      "Poles": "count",
+      "F/Laps": "count",
+      "Podiums": "count",
+      "Points": "score",
+      "Position": "rank"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Season column contains year values as strings",
+      "Podiums column contains numeric values as strings",
+      "Position column contains ordinal values with 'st', 'nd', 'rd', 'th' suffixes",
+      "All numeric columns are stored as object dtype and need conversion"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Podiums must be converted to integer for exact comparison",
+      "Season must be converted to integer or comparable format for finding latest",
+      "Filter for Podiums == 1"
+    ],
+    "derived_filters": [
+      "Cast Podiums column to integer",
+      "Cast Season column to integer for comparison"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single season value (year)",
+      "Should be the maximum season among rows where Podiums == 1"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Latest season where podiums equals 1\",\n    \"filters\": [\"Podiums == 1\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have exactly 1 podium?\",\n      \"What is the maximum/latest season value among those rows?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Race Statistics\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Season\": \"year\",\n      \"Races\": \"count\",\n      \"Wins\": \"count\",\n      \"Poles\": \"count\",\n      \"F/Laps\": \"count\",\n      \"Podiums\": \"count\",\n      \"Points\": \"score\",\n      \"Position\": \"rank\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Season column contains year values as strings\",\n      \"Podiums column contains numeric values as strings\",\n      \"Position column contains ordinal values with 'st', 'nd', 'rd', 'th' suffixes\",\n      \"All numeric columns are stored as object dtype and need conversion\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Podiums must be converted to integer for exact comparison\",\n      \"Season must be converted to integer or comparable format for finding latest\",\n      \"Filter for Podiums == 1\"\n    ],\n    \"derived_filters\": [\n      \"Cast Podiums column to integer\",\n      \"Cast Season column to integer for comparison\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single season value (year)\",\n      \"Should be the maximum season among rows where Podiums == 1\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.891781091690063,
+  "token_usage": {
+    "input_tokens": 1267,
+    "output_tokens": 569
+  }
+}

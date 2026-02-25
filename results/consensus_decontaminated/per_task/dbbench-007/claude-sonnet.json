@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "lasting whiteness duration in months",
+    "filters": [
+      "Model = 'Crest 3D Intensive Professional Effects'",
+      "Model = 'Crest Whitestrips 3D Professional Effects'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the 'Last of whiteness' value for 'Crest 3D Intensive Professional Effects'?",
+      "What is the 'Last of whiteness' value for 'Crest Whitestrips 3D Professional Effects'?",
+      "Are both values equal?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Crest Whitestrips Products"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Last of whiteness": "lasting_whiteness"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Last of whiteness": "months",
+      "Length of use": "days or hours"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Model column contains newline characters within values (e.g., 'Crest Whitestrips Classic\\npreviously Crest Whitestrips')",
+      "Need to handle multiline Model names when filtering"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Both product models must exist in the dataset",
+      "Last of whiteness values must be parseable as numeric months"
+    ],
+    "derived_filters": [
+      "Extract rows where Model contains 'Crest 3D Intensive Professional Effects' or 'Crest Whitestrips 3D Professional Effects'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single numeric value representing months",
+      "If values differ, report conflict",
+      "If both have same value, return that value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"lasting whiteness duration in months\",\n    \"filters\": [\n      \"Model = 'Crest 3D Intensive Professional Effects'\",\n      \"Model = 'Crest Whitestrips 3D Professional Effects'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the 'Last of whiteness' value for 'Crest 3D Intensive Professional Effects'?\",\n      \"What is the 'Last of whiteness' value for 'Crest Whitestrips 3D Professional Effects'?\",\n      \"Are both values equal?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Crest Whitestrips Products\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Last of whiteness\": \"lasting_whiteness\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Last of whiteness\": \"months\",\n      \"Length of use\": \"days or hours\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Model column contains newline characters within values (e.g., 'Crest Whitestrips Classic\\\\npreviously Crest Whitestrips')\",\n      \"Need to handle multiline Model names when filtering\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Both product models must exist in the dataset\",\n      \"Last of whiteness values must be parseable as numeric months\"\n    ],\n    \"derived_filters\": [\n      \"Extract rows where Model contains 'Crest 3D Intensive Professional Effects' or 'Crest Whitestrips 3D Professional Effects'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single numeric value representing months\",\n      \"If values differ, report conflict\",\n      \"If both have same value, return that value\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.263972043991089,
+  "token_usage": {
+    "input_tokens": 1297,
+    "output_tokens": 611
+  }
+}

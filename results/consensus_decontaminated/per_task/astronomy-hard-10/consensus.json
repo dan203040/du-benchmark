@@ -1,0 +1,604 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Pearson correlation coefficient between Swarm-A satellite's hourly altitude change (change_altitude per hour) and all available variables from OMNI2 and Sat_Density datasets",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Pearson correlation coefficient between Swarm-A satellite's hourly altitude change (change_altitude per hour) and all available variables from OMNI2 and Sat_Density datasets",
+        "Variable with strongest Pearson correlation (positive or negative) with hourly altitude change of Swarm-A satellite",
+        "Pearson correlation between OMNI2 and Sat_Density variables and Swarm-A's hourly altitude change for the period 2018-10-01 to 2018-10-10, identifying the variable with the strongest correlation and reporting its name and correlation value."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Timestamp between 2018-10-01 and 2018-10-10 inclusive",
+        "Earth radius = 6371.0 km",
+        "Satellite_id = 'L47' (Swarm-A)",
+        "Date range: 2018-10-01 to 2018-10-10 (inclusive)",
+        "Satellite: Swarm-A (L47)",
+        "Variables from: OMNI2 (solar wind, IMF, geomagnetic indices, proton flux) and Sat_Density",
+        "Date range: 2018-10-01 to 2018-10-10"
+      ],
+      "confidence": 0.380952380952381,
+      "votes": [
+        [
+          "Timestamp between 2018-10-01 and 2018-10-10 inclusive",
+          "Earth radius = 6371.0 km",
+          "Satellite_id = 'L47' (Swarm-A)"
+        ],
+        [
+          "Date range: 2018-10-01 to 2018-10-10 (inclusive)",
+          "Satellite: Swarm-A (L47)",
+          "Variables from: OMNI2 (solar wind, IMF, geomagnetic indices, proton flux) and Sat_Density"
+        ],
+        [
+          "Date range: 2018-10-01 to 2018-10-10",
+          "Satellite: Swarm-A (L47)"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Timestamp (hourly resolution)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Timestamp (hourly resolution)"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Compute altitude from SP3 position data (x_km, y_km, z_km) using formula: altitude = sqrt(x^2 + y^2 + z^2) - 6371.0",
+        "Calculate hourly altitude change as difference between consecutive hourly altitude values",
+        "Extract OMNI2 variables for solar wind parameters, IMF measurements, geomagnetic indices, and proton flux metrics",
+        "Extract Sat_Density mean atmospheric density values",
+        "Compute Pearson correlations between hourly altitude change and each variable",
+        "Identify variable with strongest absolute correlation magnitude",
+        "Format output as [variable_name, correlation_value] with correlation rounded to 3 decimal places",
+        "How to compute altitude from SP3 x_km, y_km, z_km coordinates using Earth radius 6371.0 km?",
+        "How to compute hourly altitude change from POD SP3 data?",
+        "How to align hourly altitude changes with OMNI2 hourly data?",
+        "How to align hourly altitude changes with Sat_Density data (10-minute resolution)?",
+        "Which OMNI2 columns are valid variables (excluding metadata, IDs, counts)?",
+        "How to handle missing/sentinel values in correlation computation?",
+        "How to compute Pearson correlation for each variable against altitude change?",
+        "How to identify the variable with maximum absolute correlation value?",
+        "Calculate the hourly altitude change of Swarm-A from SP3 files.",
+        "Merge OMNI2 and Sat_Density data with the calculated altitude changes based on timestamp.",
+        "Calculate the Pearson correlation between each OMNI2 and Sat_Density variable and the hourly altitude change.",
+        "Identify the variable with the strongest Pearson correlation (positive or negative).",
+        "Report the variable name and its correlation value (rounded to 3 decimal places)."
+      ],
+      "confidence": 0.3333333333333332,
+      "votes": [
+        [
+          "Compute altitude from SP3 position data (x_km, y_km, z_km) using formula: altitude = sqrt(x^2 + y^2 + z^2) - 6371.0",
+          "Calculate hourly altitude change as difference between consecutive hourly altitude values",
+          "Extract OMNI2 variables for solar wind parameters, IMF measurements, geomagnetic indices, and proton flux metrics",
+          "Extract Sat_Density mean atmospheric density values",
+          "Compute Pearson correlations between hourly altitude change and each variable",
+          "Identify variable with strongest absolute correlation magnitude",
+          "Format output as [variable_name, correlation_value] with correlation rounded to 3 decimal places"
+        ],
+        [
+          "How to compute altitude from SP3 x_km, y_km, z_km coordinates using Earth radius 6371.0 km?",
+          "How to compute hourly altitude change from POD SP3 data?",
+          "How to align hourly altitude changes with OMNI2 hourly data?",
+          "How to align hourly altitude changes with Sat_Density data (10-minute resolution)?",
+          "Which OMNI2 columns are valid variables (excluding metadata, IDs, counts)?",
+          "How to handle missing/sentinel values in correlation computation?",
+          "How to compute Pearson correlation for each variable against altitude change?",
+          "How to identify the variable with maximum absolute correlation value?"
+        ],
+        [
+          "Calculate the hourly altitude change of Swarm-A from SP3 files.",
+          "Merge OMNI2 and Sat_Density data with the calculated altitude changes based on timestamp.",
+          "Calculate the Pearson correlation between each OMNI2 and Sat_Density variable and the hourly altitude change.",
+          "Identify the variable with the strongest Pearson correlation (positive or negative).",
+          "Report the variable name and its correlation value (rounded to 3 decimal places)."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "omni2-wu590-20181001_to_20181130.csv",
+        "swarma-wu574-20181013_to_20181016.csv",
+        "SW_OPER_SP3ACOM_2__20181001T235942_20181002T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181002T235942_20181003T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181003T235942_20181004T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181004T235942_20181005T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181005T235942_20181006T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181006T235942_20181007T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181007T235942_20181008T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181008T235942_20181009T235942_0201.sp3",
+        "SW_OPER_SP3ACOM_2__20181009T235942_20181010T235942_0201.sp3"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "omni2-wu590-20181001_to_20181130.csv",
+          "swarma-wu574-20181013_to_20181016.csv",
+          "SW_OPER_SP3ACOM_2__20181001T235942_20181002T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181002T235942_20181003T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181003T235942_20181004T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181004T235942_20181005T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181005T235942_20181006T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181006T235942_20181007T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181007T235942_20181008T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181008T235942_20181009T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181009T235942_20181010T235942_0201.sp3"
+        ],
+        [
+          "omni2-wu590-20181001_to_20181130.csv",
+          "swarma-wu574-20181013_to_20181016.csv",
+          "SW_OPER_SP3ACOM_2__20181001T235942_20181002T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181002T235942_20181003T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181003T235942_20181004T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181004T235942_20181005T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181005T235942_20181006T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181006T235942_20181007T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181007T235942_20181008T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181008T235942_20181009T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181009T235942_20181010T235942_0201.sp3"
+        ],
+        [
+          "omni2-wu590-20181001_to_20181130.csv",
+          "swarma-wu574-20181013_to_20181016.csv",
+          "SW_OPER_SP3ACOM_2__20181001T235942_20181002T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181002T235942_20181003T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181003T235942_20181004T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181004T235942_20181005T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181005T235942_20181006T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181006T235942_20181007T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181007T235942_20181008T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181008T235942_20181009T235942_0201.sp3",
+          "SW_OPER_SP3ACOM_2__20181009T235942_20181010T235942_0201.sp3"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "SP3 files have 10-second resolution while OMNI2 has hourly resolution",
+        "Sat_Density data starts from 2018-10-13, missing first 12 days of analysis period",
+        "SP3 files need aggregation to hourly resolution",
+        "OMNI2 has 57 columns with various measurement types",
+        "OMNI2 has hourly resolution, Sat_Density has 10-minute resolution",
+        "SP3 files have 10-second resolution requiring aggregation to hourly",
+        "Sat_Density only covers 2018-10-13 to 2018-10-16, partial overlap with analysis period"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "SP3 files have 10-second resolution while OMNI2 has hourly resolution",
+          "Sat_Density data starts from 2018-10-13, missing first 12 days of analysis period",
+          "SP3 files need aggregation to hourly resolution",
+          "OMNI2 has 57 columns with various measurement types"
+        ],
+        [
+          "OMNI2 has hourly resolution, Sat_Density has 10-minute resolution",
+          "SP3 files have 10-second resolution requiring aggregation to hourly",
+          "Sat_Density only covers 2018-10-13 to 2018-10-16, partial overlap with analysis period"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "scalar_b_nt": "nT",
+        "vector_b_magnitude_nt": "nT",
+        "sw_plasma_temperature_k": "K",
+        "sw_proton_density_n_cm3": "N/cm\u00b3",
+        "sw_plasma_speed_km_s": "km/s",
+        "flow_pressure": "nPa",
+        "dst_index_nt": "nT",
+        "ap_index_nt": "nT",
+        "ae_index_nt": "nT",
+        "proton_flux_>1_mev": "pfu",
+        "x_km": "km",
+        "y_km": "km",
+        "z_km": "km",
+        "orbit mean density (kg/m^3)": "kg/m\u00b3",
+        "change_altitude": "km/hour",
+        "altitude": "kilometers",
+        "al_index_nt": "nanoTesla",
+        "au_index_nt": "nanoTesla",
+        "earth_radius": "6371.0 kilometers",
+        "bx_nt_gse_gsm": "nT",
+        "by_nt_gse": "nT",
+        "bz_nt_gse": "nT",
+        "by_nt_gsm": "nT",
+        "bz_nt_gsm": "nT",
+        "rms_magnitude_nt": "nT",
+        "rms_field_vector_nt": "nT",
+        "rms_bx_gse_nt": "nT",
+        "rms_by_gse_nt": "nT",
+        "rms_bz_gse_nt": "nT",
+        "e_electric_field": "unitless",
+        "pc_index": "unitless",
+        "proton_flux_>2_mev": "unitless",
+        "proton_flux_>4_mev": "unitless",
+        "proton_flux_>10_mev": "unitless",
+        "proton_flux_>30_mev": "unitless",
+        "proton_flux_>60_mev": "unitless",
+        "clock_microsec": "microseconds",
+        "sat_density": "kg/m^3"
+      },
+      "confidence": 0.5877192982456134,
+      "votes": [
+        {
+          "Scalar_B_nT": "nT",
+          "Vector_B_Magnitude_nT": "nT",
+          "SW_Plasma_Temperature_K": "K",
+          "SW_Proton_Density_N_cm3": "N/cm\u00b3",
+          "SW_Plasma_Speed_km_s": "km/s",
+          "Flow_pressure": "nPa",
+          "Dst_index_nT": "nT",
+          "ap_index_nT": "nT",
+          "AE_index_nT": "nT",
+          "Proton_flux_>1_Mev": "pfu",
+          "x_km": "km",
+          "y_km": "km",
+          "z_km": "km",
+          "Orbit Mean Density (kg/m^3)": "kg/m\u00b3",
+          "change_altitude": "km/hour"
+        },
+        {
+          "x_km": "kilometers",
+          "y_km": "kilometers",
+          "z_km": "kilometers",
+          "altitude": "kilometers",
+          "change_altitude": "kilometers per hour",
+          "Scalar_B_nT": "nanoTesla",
+          "Vector_B_Magnitude_nT": "nanoTesla",
+          "SW_Plasma_Temperature_K": "Kelvin",
+          "SW_Proton_Density_N_cm3": "number per cubic centimeter",
+          "SW_Plasma_Speed_km_s": "kilometers per second",
+          "Dst_index_nT": "nanoTesla",
+          "ap_index_nT": "nanoTesla",
+          "AE_index_nT": "nanoTesla",
+          "AL_index_nT": "nanoTesla",
+          "AU_index_nT": "nanoTesla",
+          "Proton_flux_>1_Mev": "particles/(cm^2 s sr)",
+          "Orbit Mean Density (kg/m^3)": "kilograms per cubic meter",
+          "earth_radius": "6371.0 kilometers"
+        },
+        {
+          "Scalar_B_nT": "nT",
+          "Vector_B_Magnitude_nT": "nT",
+          "BX_nT_GSE_GSM": "nT",
+          "BY_nT_GSE": "nT",
+          "BZ_nT_GSE": "nT",
+          "BY_nT_GSM": "nT",
+          "BZ_nT_GSM": "nT",
+          "RMS_magnitude_nT": "nT",
+          "RMS_field_vector_nT": "nT",
+          "RMS_BX_GSE_nT": "nT",
+          "RMS_BY_GSE_nT": "nT",
+          "RMS_BZ_GSE_nT": "nT",
+          "SW_Plasma_Temperature_K": "K",
+          "SW_Proton_Density_N_cm3": "N/cm3",
+          "SW_Plasma_Speed_km_s": "km/s",
+          "Flow_pressure": "unitless",
+          "E_electric_field": "unitless",
+          "Dst_index_nT": "nT",
+          "ap_index_nT": "nT",
+          "AE_index_nT": "nT",
+          "AL_index_nT": "nT",
+          "AU_index_nT": "nT",
+          "pc_index": "unitless",
+          "Proton_flux_>1_Mev": "unitless",
+          "Proton_flux_>2_Mev": "unitless",
+          "Proton_flux_>4_Mev": "unitless",
+          "Proton_flux_>10_Mev": "unitless",
+          "Proton_flux_>30_Mev": "unitless",
+          "Proton_flux_>60_Mev": "unitless",
+          "x_km": "km",
+          "y_km": "km",
+          "z_km": "km",
+          "clock_microsec": "microseconds",
+          "Sat_Density": "kg/m^3"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Proton flux columns contain sentinel values 999999.99 and 99999.99",
+        "Clock_microsec column contains 999999.999999 sentinel values",
+        "Sat_Density values are extremely small (e-13 scale)",
+        "Altitude changes expected to be small (meters/hour)",
+        "SP3 coordinates in km need conversion to altitude above Earth surface",
+        "Time resolution mismatch: 10-second SP3 data vs hourly OMNI2 vs 10-minute Sat_Density"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proton flux columns contain sentinel values 999999.99 and 99999.99",
+          "Clock_microsec column contains 999999.999999 sentinel values",
+          "Sat_Density values are extremely small (e-13 scale)",
+          "Altitude changes expected to be small (meters/hour)"
+        ],
+        [
+          "SP3 coordinates in km need conversion to altitude above Earth surface",
+          "Time resolution mismatch: 10-second SP3 data vs hourly OMNI2 vs 10-minute Sat_Density"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Time alignment: SP3 at 10-second intervals vs OMNI2 at hourly intervals",
+        "Sat_Density has irregular sampling (not every 10 minutes has data)",
+        "SP3 files cover different 24-hour periods with overlaps at boundaries",
+        "Sat_Density timestamp range does not cover full analysis period (only 2018-10-13 to 2018-10-16)",
+        "SP3 files span date boundaries differently than calendar dates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time alignment: SP3 at 10-second intervals vs OMNI2 at hourly intervals",
+          "Sat_Density has irregular sampling (not every 10 minutes has data)",
+          "SP3 files cover different 24-hour periods with overlaps at boundaries"
+        ],
+        [
+          "Sat_Density timestamp range does not cover full analysis period (only 2018-10-13 to 2018-10-16)",
+          "SP3 files span date boundaries differently than calendar dates"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "999999.99",
+        "99999.99",
+        "999999.999999",
+        "",
+        "-1",
+        "NA",
+        "9999.99",
+        "999.99",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666665,
+      "votes": [
+        [
+          "999999.99",
+          "99999.99",
+          "999999.999999",
+          "",
+          "-1",
+          "NA"
+        ],
+        [
+          "999999.99",
+          "99999.99",
+          "9999.99",
+          "999.99",
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "999999.99",
+          "999999.999999",
+          "99999.99"
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 57.0,
+      "confidence": 0.33,
+      "votes": [
+        0.0,
+        0.0,
+        57.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Analysis period: 2018-10-01 to 2018-10-10 (10 days)",
+        "Earth radius fixed at 6371.0 km",
+        "Only Swarm-A satellite (L47)",
+        "Hourly altitude change computation requires consecutive hourly altitude values",
+        "Correlation requires complete data pairs (no missing values)",
+        "Date range must be 2018-10-01 00:00:00 to 2018-10-10 23:59:59",
+        "Use Earth radius = 6371.0 km for altitude calculation",
+        "Altitude = sqrt(x_km^2 + y_km^2 + z_km^2) - 6371.0",
+        "Hourly altitude change = altitude(hour_t) - altitude(hour_t-1)",
+        "Only include OMNI2 variables: solar wind parameters, IMF measurements, geomagnetic indices, proton flux",
+        "Exclude OMNI2 metadata columns: YEAR, DOY, Bartels_rotation_number, ID columns, num_points columns, Flux_FLAG",
+        "Handle missing values by excluding pairs with sentinel values from correlation",
+        "Sat_Density only available 2018-10-13 to 2018-10-16, limited correlation window",
+        "Earth radius is 6371.0 km.",
+        "Altitude change should be calculated in km/hour.",
+        "Correlation should be Pearson correlation.",
+        "The satellite ID for Swarm-A is L47."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Analysis period: 2018-10-01 to 2018-10-10 (10 days)",
+          "Earth radius fixed at 6371.0 km",
+          "Only Swarm-A satellite (L47)",
+          "Hourly altitude change computation requires consecutive hourly altitude values",
+          "Correlation requires complete data pairs (no missing values)"
+        ],
+        [
+          "Date range must be 2018-10-01 00:00:00 to 2018-10-10 23:59:59",
+          "Use Earth radius = 6371.0 km for altitude calculation",
+          "Altitude = sqrt(x_km^2 + y_km^2 + z_km^2) - 6371.0",
+          "Hourly altitude change = altitude(hour_t) - altitude(hour_t-1)",
+          "Only include OMNI2 variables: solar wind parameters, IMF measurements, geomagnetic indices, proton flux",
+          "Exclude OMNI2 metadata columns: YEAR, DOY, Bartels_rotation_number, ID columns, num_points columns, Flux_FLAG",
+          "Handle missing values by excluding pairs with sentinel values from correlation",
+          "Sat_Density only available 2018-10-13 to 2018-10-16, limited correlation window"
+        ],
+        [
+          "Earth radius is 6371.0 km.",
+          "Altitude change should be calculated in km/hour.",
+          "Correlation should be Pearson correlation.",
+          "The satellite ID for Swarm-A is L47."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter OMNI2 data to 2018-10-01 to 2018-10-10",
+        "Filter SP3 data to satellite_id = 'L47'",
+        "Remove sentinel values from proton flux columns",
+        "Handle missing Sat_Density values for 2018-10-01 to 2018-10-12",
+        "Aggregate SP3 10-second data to hourly altitude values",
+        "Filter SP3 data to satellite_id = 'L47' (Swarm-A)",
+        "Filter OMNI2 data to dates 2018-10-01 to 2018-10-10",
+        "Aggregate SP3 10-second data to hourly averages for altitude",
+        "Remove hourly periods with insufficient SP3 data points",
+        "Exclude variable-hour pairs where either value is a sentinel",
+        "Filter OMNI2 data for the period 2018-10-01 to 2018-10-10.",
+        "Filter SP3 data for satellite L47 and the period 2018-10-01 to 2018-10-10."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter OMNI2 data to 2018-10-01 to 2018-10-10",
+          "Filter SP3 data to satellite_id = 'L47'",
+          "Remove sentinel values from proton flux columns",
+          "Handle missing Sat_Density values for 2018-10-01 to 2018-10-12",
+          "Aggregate SP3 10-second data to hourly altitude values"
+        ],
+        [
+          "Filter SP3 data to satellite_id = 'L47' (Swarm-A)",
+          "Filter OMNI2 data to dates 2018-10-01 to 2018-10-10",
+          "Aggregate SP3 10-second data to hourly averages for altitude",
+          "Remove hourly periods with insufficient SP3 data points",
+          "Exclude variable-hour pairs where either value is a sentinel"
+        ],
+        [
+          "Filter OMNI2 data for the period 2018-10-01 to 2018-10-10.",
+          "Filter SP3 data for satellite L47 and the period 2018-10-01 to 2018-10-10."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation for each variable vs hourly altitude change",
+        "Check for normality of variables before correlation",
+        "Handle potential outliers in proton flux data",
+        "Pearson correlation coefficient between each OMNI2/Sat_Density variable and hourly altitude change",
+        "Select variable with maximum absolute correlation value",
+        "Pearson correlation test"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation for each variable vs hourly altitude change",
+          "Check for normality of variables before correlation",
+          "Handle potential outliers in proton flux data"
+        ],
+        [
+          "Pearson correlation coefficient between each OMNI2/Sat_Density variable and hourly altitude change",
+          "Select variable with maximum absolute correlation value"
+        ],
+        [
+          "Pearson correlation test"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List format: [variable_name, correlation_value]",
+        "Correlation rounded to 3 decimal places",
+        "Report strongest correlation by absolute magnitude",
+        "Include both positive and negative correlations",
+        "Report variable name with strongest correlation",
+        "Report correlation value rounded to 3 decimal places",
+        "Output as list format",
+        "Include both positive and negative correlations in comparison",
+        "Use absolute value to determine 'strongest' correlation",
+        "Output a list containing the variable name and its Pearson correlation value (to 3 decimal places) with the hourly altitude change."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "List format: [variable_name, correlation_value]",
+          "Correlation rounded to 3 decimal places",
+          "Report strongest correlation by absolute magnitude",
+          "Include both positive and negative correlations"
+        ],
+        [
+          "Report variable name with strongest correlation",
+          "Report correlation value rounded to 3 decimal places",
+          "Output as list format",
+          "Include both positive and negative correlations in comparison",
+          "Use absolute value to determine 'strongest' correlation"
+        ],
+        [
+          "Output a list containing the variable name and its Pearson correlation value (to 3 decimal places) with the hourly altitude change."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5649335839598998
+}

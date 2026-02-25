@@ -1,0 +1,89 @@
+{
+  "m_q": {
+    "target_metric": "latest season where the driver had exactly 1 podium",
+    "filters": [
+      "Podiums == '1'",
+      "Series contains 'Formula'"
+    ],
+    "grouping_variables": [
+      "Season"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum season value where Podiums equals 1?",
+      "Are there multiple seasons with exactly 1 podium?",
+      "Should we consider all series or only specific ones?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Race Statistics"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All columns stored as object dtype despite numeric content (Season, Races, Wins, Poles, F/Laps, Podiums, Points)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Season": "year",
+      "Races": "count",
+      "Wins": "count",
+      "Poles": "count",
+      "F/Laps": "count",
+      "Podiums": "count",
+      "Points": "points"
+    },
+    "scale_issues": [
+      "Position column contains ordinal strings (e.g., '20th', '3rd') instead of numeric ranks",
+      "Podiums column needs conversion from string to integer for comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column appears to be Season (year)",
+      "Position column uses ordinal suffixes (th, rd, nd, st)",
+      "Multiple rows per season for different series"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Season values should be convertible to integers",
+      "Podiums values should be non-negative integers",
+      "Races >= Wins + Podiums (logical constraint)"
+    ],
+    "derived_filters": [
+      "Convert Podiums to integer type",
+      "Filter to rows where integer(Podiums) == 1",
+      "Sort Season descending"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Season values with different podium counts",
+      "Validate Season chronological order"
+    ],
+    "output_format_requirements": [
+      "Return single season year as string or integer",
+      "If multiple seasons with 1 podium, return most recent"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"latest season where the driver had exactly 1 podium\",\n        \"filters\": [\"Podiums == '1'\", \"Series contains 'Formula'\"],\n        \"grouping_variables\": [\"Season\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the maximum season value where Podiums equals 1?\", \"Are there multiple seasons with exactly 1 podium?\", \"Should we consider all series or only specific ones?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Race Statistics\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All columns stored as object dtype despite numeric content (Season, Races, Wins, Poles, F/Laps, Podiums, Points)\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Season\": \"year\", \"Races\": \"count\", \"Wins\": \"count\", \"Poles\": \"count\", \"F/Laps\": \"count\", \"Podiums\": \"count\", \"Points\": \"points\"},\n        \"scale_issues\": [\"Position column contains ordinal strings (e.g., '20th', '3rd') instead of numeric ranks\", \"Podiums column needs conversion from string to integer for comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column appears to be Season (year)\", \"Position column uses ordinal suffixes (th, rd, nd, st)\", \"Multiple rows per season for different series\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Season values should be convertible to integers\", \"Podiums values should be non-negative integers\", \"Races >= Wins + Podiums (logical constraint)\"],\n        \"derived_filters\": [\"Convert Podiums to integer type\", \"Filter to rows where integer(Podiums) == 1\", \"Sort Season descending\"],\n        \"statistical_tests\": [\"Check for duplicate Season values with different podium counts\", \"Validate Season chronological order\"],\n        \"output_format_requirements\": [\"Return single season year as string or integer\", \"If multiple seasons with 1 podium, return most recent\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.971933364868164,
+  "token_usage": {
+    "input_tokens": 1152,
+    "output_tokens": 541
+  }
+}

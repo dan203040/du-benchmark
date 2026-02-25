@@ -1,0 +1,59 @@
+{
+  "m_q": {
+    "target_metric": "The NIFC geographic area (GACCAbbreviation) that intersects with the most US states",
+    "filters": [],
+    "grouping_variables": [
+      "GACCAbbreviation"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Determine the intersection between each NIFC geographic area and each US state.",
+      "Count the number of US states each NIFC geographic area intersects with.",
+      "Find the maximum number of intersecting US states.",
+      "Identify the NIFC geographic area(s) with the maximum number of intersecting US states."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "usa.gpkg",
+      "nifc_geographic_areas.gpkg"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 26,
+    "expected_rows": 0,
+    "file_format": "gpkg",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'geometry' columns in both files must be valid geometries.",
+      "The spatial reference systems of the 'geometry' columns must be compatible for intersection calculations."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be the GACCAbbreviation of the NIFC geographic area that intersects with the most US states."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The NIFC geographic area (GACCAbbreviation) that intersects with the most US states\",\n    \"filters\": [],\n    \"grouping_variables\": [\"GACCAbbreviation\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Determine the intersection between each NIFC geographic area and each US state.\",\n      \"Count the number of US states each NIFC geographic area intersects with.\",\n      \"Find the maximum number of intersecting US states.\",\n      \"Identify the NIFC geographic area(s) with the maximum number of intersecting US states.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"usa.gpkg\", \"nifc_geographic_areas.gpkg\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 26,\n    \"file_format\": \"gpkg\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'geometry' columns in both files must be valid geometries.\",\n      \"The spatial reference systems of the 'geometry' columns must be compatible for intersection calculations.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The output should be the GACCAbbreviation of the NIFC geographic area that intersects with the most US states.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 13.807437658309937,
+  "token_usage": {}
+}

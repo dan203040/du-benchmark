@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "The highest band value among records with System='gsm-450'",
+    "filters": [
+      "System equals 'gsm-450' (case-insensitive)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What records have System='gsm-450'?",
+      "What Band values exist for gsm-450 system?",
+      "Which band value is numerically highest?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "cellular_frequency_bands_table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Band": "MHz (implied frequency band designation)",
+      "Uplink (MHz)": "MHz",
+      "Downlink (MHz)": "MHz"
+    },
+    "scale_issues": [
+      "Band column contains numeric values that may be stored as strings",
+      "Band values appear to be central frequencies or band designations (e.g., 450, 480)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "dynamic",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "System column contains values like 'GSM-450', 'T-GSM-380' with various prefixes",
+      "Band column contains numeric values as strings",
+      "Channel number column contains mixed formats (ranges, 'dynamic', comma-separated values)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "System value must match 'gsm-450' case-insensitively",
+      "Band column must be interpretable as numeric for comparison"
+    ],
+    "derived_filters": [
+      "Filter rows where System column equals 'GSM-450' (case-insensitive match)",
+      "Convert Band column to numeric type for comparison"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single band value that is highest",
+      "Output should be the Band value (e.g., '450') not the entire row"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The highest band value among records with System='gsm-450'\",\n    \"filters\": [\"System equals 'gsm-450' (case-insensitive)\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What records have System='gsm-450'?\",\n      \"What Band values exist for gsm-450 system?\",\n      \"Which band value is numerically highest?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"cellular_frequency_bands_table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Band\": \"MHz (implied frequency band designation)\",\n      \"Uplink (MHz)\": \"MHz\",\n      \"Downlink (MHz)\": \"MHz\"\n    },\n    \"scale_issues\": [\n      \"Band column contains numeric values that may be stored as strings\",\n      \"Band values appear to be central frequencies or band designations (e.g., 450, 480)\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"dynamic\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"System column contains values like 'GSM-450', 'T-GSM-380' with various prefixes\",\n      \"Band column contains numeric values as strings\",\n      \"Channel number column contains mixed formats (ranges, 'dynamic', comma-separated values)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"System value must match 'gsm-450' case-insensitively\",\n      \"Band column must be interpretable as numeric for comparison\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where System column equals 'GSM-450' (case-insensitive match)\",\n      \"Convert Band column to numeric type for comparison\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single band value that is highest\",\n      \"Output should be the Band value (e.g., '450') not the entire row\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.769081115722656,
+  "token_usage": {
+    "input_tokens": 1289,
+    "output_tokens": 611
+  }
+}

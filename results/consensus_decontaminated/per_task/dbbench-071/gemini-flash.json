@@ -1,0 +1,60 @@
+{
+  "m_q": {
+    "target_metric": "Total population of foreign nationals in city districts where the percentage of foreign nationals is 23.3%",
+    "filters": [
+      "Filter city districts where 'Foreign nationals in %' is equal to 23.3%"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "city_district_statistics"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Area in km\u00b2": "km\u00b2",
+      "Population": "people",
+      "Foreign nationals": "people",
+      "Foreign nationals in %": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'Area in km\u00b2' column contains 'km\u00b2' suffix and uses comma as decimal separator.",
+      "The 'Foreign nationals in %' column contains '%' suffix."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Area in km\u00b2', 'Population', 'Foreign nationals', and 'Foreign nationals in %' columns need to be converted to numeric types.",
+      "The 'Area in km\u00b2' column needs to have the 'km\u00b2' suffix removed and the comma replaced with a period for proper numeric conversion.",
+      "The 'Foreign nationals in %' column needs to have the '%' suffix removed for proper numeric conversion."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total population of foreign nationals in city districts where the percentage of foreign nationals is 23.3%\",\n    \"filters\": [\n      \"Filter city districts where 'Foreign nationals in %' is equal to 23.3%\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"city_district_statistics\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Area in km\u00b2\": \"km\u00b2\",\n      \"Population\": \"people\",\n      \"Foreign nationals\": \"people\",\n      \"Foreign nationals in %\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'Area in km\u00b2' column contains 'km\u00b2' suffix and uses comma as decimal separator.\",\n      \"The 'Foreign nationals in %' column contains '%' suffix.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Area in km\u00b2', 'Population', 'Foreign nationals', and 'Foreign nationals in %' columns need to be converted to numeric types.\",\n      \"The 'Area in km\u00b2' column needs to have the 'km\u00b2' suffix removed and the comma replaced with a period for proper numeric conversion.\",\n      \"The 'Foreign nationals in %' column needs to have the '%' suffix removed for proper numeric conversion.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.754284143447876,
+  "token_usage": {}
+}

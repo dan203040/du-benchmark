@@ -1,0 +1,410 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Customer segmentation clusters based on purchasing behavior features",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Customer segmentation clusters based on purchasing behavior features",
+        "Customer segmentation using clustering algorithm with feature vectors and cluster labels",
+        "Customer segments based on purchasing behavior"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Remove rows with missing Customer ID",
+        "Remove negative or zero Quantity values",
+        "Remove zero or negative Price values",
+        "Remove records with missing Customer ID",
+        "Remove records with invalid Quantity or Price values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows with missing Customer ID",
+          "Remove negative or zero Quantity values",
+          "Remove zero or negative Price values"
+        ],
+        [
+          "Remove records with missing Customer ID",
+          "Remove records with invalid Quantity or Price values"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Customer ID"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Customer ID"
+        ],
+        [
+          "Customer ID"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features should be engineered for customer segmentation?",
+        "What is the appropriate number of clusters?",
+        "How to handle customers with only one transaction?",
+        "Should we include country as a feature?",
+        "How to normalize features for clustering?",
+        "What features should be engineered from transactional data to represent customer behavior?",
+        "How many customers have sufficient transaction history for clustering?",
+        "What is the optimal number of clusters for customer segmentation?",
+        "What clustering algorithm should be used (K-means, hierarchical, DBSCAN)?",
+        "How should the feature vector be normalized/standardized?",
+        "What are the characteristics of each customer cluster?",
+        "What are the appropriate features to use for clustering?",
+        "How many clusters are optimal for this dataset?",
+        "What are the characteristics of each cluster?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What features should be engineered for customer segmentation?",
+          "What is the appropriate number of clusters?",
+          "How to handle customers with only one transaction?",
+          "Should we include country as a feature?",
+          "How to normalize features for clustering?"
+        ],
+        [
+          "What features should be engineered from transactional data to represent customer behavior?",
+          "How many customers have sufficient transaction history for clustering?",
+          "What is the optimal number of clusters for customer segmentation?",
+          "What clustering algorithm should be used (K-means, hierarchical, DBSCAN)?",
+          "How should the feature vector be normalized/standardized?",
+          "What are the characteristics of each customer cluster?"
+        ],
+        [
+          "What are the appropriate features to use for clustering?",
+          "How many clusters are optimal for this dataset?",
+          "What are the characteristics of each cluster?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "online_retail_II.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "online_retail_II.csv"
+        ],
+        [
+          "online_retail_II.csv"
+        ],
+        [
+          "online_retail_II.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "InvoiceDate stored as object instead of datetime",
+        "Customer ID stored as float64 but represents integer IDs"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "InvoiceDate stored as object instead of datetime",
+          "Customer ID stored as float64 but represents integer IDs"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "quantity": "number of items",
+        "price": "currency (likely GBP)",
+        "invoicedate": "datetime",
+        "customer id": "identifier"
+      },
+      "confidence": 0.75,
+      "votes": [
+        {
+          "Quantity": "count",
+          "Price": "currency (likely GBP)",
+          "InvoiceDate": "datetime"
+        },
+        {
+          "Quantity": "number of items",
+          "Price": "currency (likely GBP)",
+          "InvoiceDate": "timestamp",
+          "Customer ID": "identifier"
+        },
+        {
+          "Quantity": "number of items",
+          "Price": "currency unit"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Quantity values may have large variance",
+        "Price values may have different scales",
+        "Need to normalize features before clustering",
+        "Price values may vary significantly across products",
+        "Quantity can include negative values (returns)",
+        "Customer ID stored as float64 instead of integer"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Quantity values may have large variance",
+          "Price values may have different scales",
+          "Need to normalize features before clustering"
+        ],
+        [
+          "Price values may vary significantly across products",
+          "Quantity can include negative values (returns)",
+          "Customer ID stored as float64 instead of integer"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          null
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 1.0,
+      "votes": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each row represents one transaction item",
+        "Multiple items per invoice",
+        "Customer ID is required for clustering",
+        "Quantity must be positive for valid transactions",
+        "Price must be positive",
+        "Customer ID must not be null for clustering analysis",
+        "Must aggregate transactional data to customer level before clustering",
+        "Feature vectors must have consistent dimensionality across all customers",
+        "Cluster labels must be integer values starting from 0 or 1",
+        "Customer ID should be unique for each customer.",
+        "Quantity and Price should be non-negative."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Each row represents one transaction item",
+          "Multiple items per invoice",
+          "Customer ID is required for clustering",
+          "Quantity must be positive for valid transactions",
+          "Price must be positive"
+        ],
+        [
+          "Customer ID must not be null for clustering analysis",
+          "Must aggregate transactional data to customer level before clustering",
+          "Feature vectors must have consistent dimensionality across all customers",
+          "Cluster labels must be integer values starting from 0 or 1"
+        ],
+        [
+          "Customer ID should be unique for each customer.",
+          "Quantity and Price should be non-negative."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out cancelled transactions (negative Quantity)",
+        "Filter out transactions with missing Customer ID",
+        "Consider time period constraints if needed",
+        "Exclude transactions with missing Customer ID",
+        "Consider filtering out cancelled orders (Invoice starting with 'C')",
+        "Remove customers with insufficient transaction history",
+        "Filter outliers in monetary values and quantities",
+        "Remove rows with missing Customer ID.",
+        "Handle or remove cancelled orders (negative quantities)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out cancelled transactions (negative Quantity)",
+          "Filter out transactions with missing Customer ID",
+          "Consider time period constraints if needed"
+        ],
+        [
+          "Exclude transactions with missing Customer ID",
+          "Consider filtering out cancelled orders (Invoice starting with 'C')",
+          "Remove customers with insufficient transaction history",
+          "Filter outliers in monetary values and quantities"
+        ],
+        [
+          "Remove rows with missing Customer ID.",
+          "Handle or remove cancelled orders (negative quantities)."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Quantity and Price",
+        "Test correlation between engineered features",
+        "Determine optimal number of clusters using elbow method or silhouette score",
+        "Elbow method or silhouette score to determine optimal number of clusters",
+        "Check for feature multicollinearity before clustering",
+        "Validate cluster separation using silhouette analysis",
+        "Test cluster stability using multiple random initializations",
+        "Determine the optimal number of clusters using the Elbow method or Silhouette analysis."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Quantity and Price",
+          "Test correlation between engineered features",
+          "Determine optimal number of clusters using elbow method or silhouette score"
+        ],
+        [
+          "Elbow method or silhouette score to determine optimal number of clusters",
+          "Check for feature multicollinearity before clustering",
+          "Validate cluster separation using silhouette analysis",
+          "Test cluster stability using multiple random initializations"
+        ],
+        [
+          "Determine the optimal number of clusters using the Elbow method or Silhouette analysis."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "File named cluster.csv",
+        "Columns named Feature_i for feature values",
+        "Column named Cluster for cluster labels",
+        "One row per customer",
+        "Output file must be named 'cluster.csv'",
+        "Must contain columns: Feature_1, Feature_2, ..., Feature_n, Cluster",
+        "Column names for features must follow pattern 'Feature_i' where i is 1-indexed",
+        "Cluster column contains integer cluster labels",
+        "One row per customer in the output",
+        "CSV format with header row",
+        "Output file must be named 'cluster.csv'.",
+        "Output file must contain columns 'Feature_i' for each feature used in clustering and a 'Cluster' column representing the cluster assignment.",
+        "The 'Cluster' column should contain integer values representing the cluster labels."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "File named cluster.csv",
+          "Columns named Feature_i for feature values",
+          "Column named Cluster for cluster labels",
+          "One row per customer"
+        ],
+        [
+          "Output file must be named 'cluster.csv'",
+          "Must contain columns: Feature_1, Feature_2, ..., Feature_n, Cluster",
+          "Column names for features must follow pattern 'Feature_i' where i is 1-indexed",
+          "Cluster column contains integer cluster labels",
+          "One row per customer in the output",
+          "CSV format with header row"
+        ],
+        [
+          "Output file must be named 'cluster.csv'.",
+          "Output file must contain columns 'Feature_i' for each feature used in clustering and a 'Cluster' column representing the cluster assignment.",
+          "The 'Cluster' column should contain integer values representing the cluster labels."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6208333333333333
+}

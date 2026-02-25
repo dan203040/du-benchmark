@@ -1,0 +1,84 @@
+{
+  "m_q": {
+    "target_metric": "US Cash Box value",
+    "filters": [
+      "Year < 1978",
+      "US Billboard = 35"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find all records with US Billboard value of 35",
+      "Filter to only records before 1978",
+      "Extract the US Cash Box value from the matching record"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "US Music Charts"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "US Billboard": "chart position",
+      "US Cash Box": "chart position",
+      "US AC": "chart position",
+      "CAN AC": "chart position"
+    },
+    "scale_issues": [
+      "Year stored as object/string instead of integer",
+      "Chart positions stored as objects/strings instead of integers",
+      "Missing values represented by '\u2013' (en dash) instead of standard null indicators"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Title column contains quoted values with double quotes escaped",
+      "Some chart position values contain leading/trailing spaces",
+      "Missing values use en dash character '\u2013'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be between 1972-1988 based on sample",
+      "Chart positions should be integers between 1-100 (or null)",
+      "Each row represents a unique song in a specific year"
+    ],
+    "derived_filters": [
+      "Convert Year to numeric for comparison",
+      "Convert US Billboard to numeric for comparison",
+      "Handle '\u2013' as null/missing values"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Year-Title combinations",
+      "Validate Year range consistency"
+    ],
+    "output_format_requirements": [
+      "Single numeric value or null if no match found"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"US Cash Box value\",\n        \"filters\": [\"Year < 1978\", \"US Billboard = 35\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Find all records with US Billboard value of 35\", \"Filter to only records before 1978\", \"Extract the US Cash Box value from the matching record\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"US Music Charts\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"year\", \"US Billboard\": \"chart position\", \"US Cash Box\": \"chart position\", \"US AC\": \"chart position\", \"CAN AC\": \"chart position\"},\n        \"scale_issues\": [\"Year stored as object/string instead of integer\", \"Chart positions stored as objects/strings instead of integers\", \"Missing values represented by '\u2013' (en dash) instead of standard null indicators\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\u2013\", \"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Title column contains quoted values with double quotes escaped\", \"Some chart position values contain leading/trailing spaces\", \"Missing values use en dash character '\u2013'\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be between 1972-1988 based on sample\", \"Chart positions should be integers between 1-100 (or null)\", \"Each row represents a unique song in a specific year\"],\n        \"derived_filters\": [\"Convert Year to numeric for comparison\", \"Convert US Billboard to numeric for comparison\", \"Handle '\u2013' as null/missing values\"],\n        \"statistical_tests\": [\"Check for duplicate Year-Title combinations\", \"Validate Year range consistency\"],\n        \"output_format_requirements\": [\"Single numeric value or null if no match found\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.64004397392273,
+  "token_usage": {
+    "input_tokens": 965,
+    "output_tokens": 489
+  }
+}

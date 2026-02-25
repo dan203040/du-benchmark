@@ -1,0 +1,89 @@
+{
+  "m_q": {
+    "target_metric": "Count of games per genre across four major genres in Mobile Strategy Game dataset",
+    "filters": [
+      "Mobile Strategy Game dataset",
+      "Four major genres only"
+    ],
+    "grouping_variables": [
+      "Primary Genre"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What are the four major genres in the dataset?",
+      "How many games belong to each of the four major genres?",
+      "What are the proportions of each genre relative to the total?",
+      "How to create a pie chart with specified dimensions (12, 8)?",
+      "How to apply colors Green, Orange, Blue, Red to pie slices?",
+      "How to include genre names in legend and save as result.png?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "appstore_games.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Size": "bytes",
+      "Price": "USD",
+      "User Rating Count": "count",
+      "Average User Rating": "rating_scale_0_5"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "NaN"
+    ],
+    "expected_columns": 18,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Primary Genre column contains the main genre classification",
+      "Genres column may contain multiple comma-separated genres",
+      "Some text fields contain commas within quoted strings",
+      "Date fields are in MM/DD/YYYY format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must identify exactly four major genres from the dataset",
+      "Must count games for each of the four genres",
+      "Pie chart must have size (12, 8)",
+      "Colors must be Green, Orange, Blue, Red in that order",
+      "Genre names must appear in legend",
+      "Output must be saved as result.png"
+    ],
+    "derived_filters": [
+      "Filter to include only the four major genres (most frequent in Primary Genre column)",
+      "Exclude games that do not belong to the four major genres"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Generate pie chart visualization",
+      "Chart size: (12, 8)",
+      "Color scheme: ['Green', 'Orange', 'Blue', 'Red']",
+      "Include legend with genre names",
+      "Save output as 'result.png'",
+      "Show proportions/percentages in pie chart"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of games per genre across four major genres in Mobile Strategy Game dataset\",\n    \"filters\": [\"Mobile Strategy Game dataset\", \"Four major genres only\"],\n    \"grouping_variables\": [\"Primary Genre\"],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"What are the four major genres in the dataset?\",\n      \"How many games belong to each of the four major genres?\",\n      \"What are the proportions of each genre relative to the total?\",\n      \"How to create a pie chart with specified dimensions (12, 8)?\",\n      \"How to apply colors Green, Orange, Blue, Red to pie slices?\",\n      \"How to include genre names in legend and save as result.png?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"appstore_games.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Size\": \"bytes\",\n      \"Price\": \"USD\",\n      \"User Rating Count\": \"count\",\n      \"Average User Rating\": \"rating_scale_0_5\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"NaN\"],\n    \"expected_columns\": 18,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Primary Genre column contains the main genre classification\",\n      \"Genres column may contain multiple comma-separated genres\",\n      \"Some text fields contain commas within quoted strings\",\n      \"Date fields are in MM/DD/YYYY format\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must identify exactly four major genres from the dataset\",\n      \"Must count games for each of the four genres\",\n      \"Pie chart must have size (12, 8)\",\n      \"Colors must be Green, Orange, Blue, Red in that order\",\n      \"Genre names must appear in legend\",\n      \"Output must be saved as result.png\"\n    ],\n    \"derived_filters\": [\n      \"Filter to include only the four major genres (most frequent in Primary Genre column)\",\n      \"Exclude games that do not belong to the four major genres\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Generate pie chart visualization\",\n      \"Chart size: (12, 8)\",\n      \"Color scheme: ['Green', 'Orange', 'Blue', 'Red']\",\n      \"Include legend with genre names\",\n      \"Save output as 'result.png'\",\n      \"Show proportions/percentages in pie chart\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.67180585861206,
+  "token_usage": {
+    "input_tokens": 2511,
+    "output_tokens": 717
+  }
+}

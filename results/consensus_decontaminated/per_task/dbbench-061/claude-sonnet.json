@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "The association that entered last (most recent joining year)",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum (most recent) Joining year?",
+      "Which Association has that maximum Joining year?",
+      "How to handle NULL/missing Joining year values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Teams"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Joining year": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Joining year column has Int64 dtype which allows for NA values",
+      "Northern Mariana Islands has missing Joining year value in the sample",
+      "All other visible records have valid year values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Joining year must be a valid year value",
+      "Only consider records with non-null Joining year values"
+    ],
+    "derived_filters": [
+      "Filter out rows where Joining year is NULL/NA"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Association name as a string",
+      "If multiple associations have the same maximum year, clarify how to handle (return all or one)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The association that entered last (most recent joining year)\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the maximum (most recent) Joining year?\",\n      \"Which Association has that maximum Joining year?\",\n      \"How to handle NULL/missing Joining year values?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Football Teams\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Joining year\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Joining year column has Int64 dtype which allows for NA values\",\n      \"Northern Mariana Islands has missing Joining year value in the sample\",\n      \"All other visible records have valid year values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Joining year must be a valid year value\",\n      \"Only consider records with non-null Joining year values\"\n    ],\n    \"derived_filters\": [\n      \"Filter out rows where Joining year is NULL/NA\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Association name as a string\",\n      \"If multiple associations have the same maximum year, clarify how to handle (return all or one)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.051985025405884,
+  "token_usage": {
+    "input_tokens": 999,
+    "output_tokens": 479
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "average of '1-Day Rain' for samples where at least one of 'Enterococcus', 'Enterococcus.1', or 'Enterococcus.2' is greater than 104",
+    "filters": [
+      "at least one of 'Enterococcus', 'Enterococcus.1', or 'Enterococcus.2' > 104"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "pleasure_bay_and_castle_island_beach_datasheet.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "1-Day Rain": "inches",
+      "Enterococcus": "counts per 100 milliliters",
+      "Enterococcus.1": "counts per 100 milliliters",
+      "Enterococcus.2": "counts per 100 milliliters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date column needs to be parsed to datetime format."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Handle missing values in 'Enterococcus', 'Enterococcus.1', and 'Enterococcus.2' appropriately (e.g., exclude rows with missing values or impute).",
+      "The 'Tag' columns are not used in the analysis."
+    ],
+    "derived_filters": [
+      "A derived filter to identify rows where the Enterococcus count exceeds the swimming standard (<= 104) for at least one of the three Enterococcus measurements."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final average rainfall should be rounded to two decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average of '1-Day Rain' for samples where at least one of 'Enterococcus', 'Enterococcus.1', or 'Enterococcus.2' is greater than 104\",\n    \"filters\": [\n      \"at least one of 'Enterococcus', 'Enterococcus.1', or 'Enterococcus.2' > 104\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"pleasure_bay_and_castle_island_beach_datasheet.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"1-Day Rain\": \"inches\",\n      \"Enterococcus\": \"counts per 100 milliliters\",\n      \"Enterococcus.1\": \"counts per 100 milliliters\",\n      \"Enterococcus.2\": \"counts per 100 milliliters\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date column needs to be parsed to datetime format.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Handle missing values in 'Enterococcus', 'Enterococcus.1', and 'Enterococcus.2' appropriately (e.g., exclude rows with missing values or impute).\",\n      \"The 'Tag' columns are not used in the analysis.\"\n    ],\n    \"derived_filters\": [\n      \"A derived filter to identify rows where the Enterococcus count exceeds the swimming standard (<= 104) for at least one of the three Enterococcus measurements.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final average rainfall should be rounded to two decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 47.93934488296509,
+  "token_usage": {}
+}

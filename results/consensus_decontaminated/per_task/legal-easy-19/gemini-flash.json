@@ -1,0 +1,65 @@
+{
+  "m_q": {
+    "target_metric": "Proportion of fraud reporters who lost between $1-$500 in 2024",
+    "filters": [
+      "Year = 2024",
+      "Amount Lost between $1 and $500"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of fraud reports in 2024?",
+      "What is the number of fraud reports where the amount lost is between $1 and $500 in 2024?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Fraud_Reports_by_Amount_Lost.csv",
+      "2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Amount Lost": "USD",
+      "# of Reports": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'Amount Lost' column in '2024_CSN_Fraud_Reports_by_Amount_Lost.csv' is a range. Need to filter for '$1 - $1,000' and then use the other file to get the $1-$500 range.",
+      "The 'Amount Lost' column in '2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv' is a range within $1-$1000."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The sum of '# of Reports' for all 'Amount Lost' ranges in '2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv' should be less than or equal to the '# of Reports' for '$1 - $1,000' in '2024_CSN_Fraud_Reports_by_Amount_Lost.csv'."
+    ],
+    "derived_filters": [
+      "Amount Lost between $1 and $500"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Round the proportion to 3 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Proportion of fraud reporters who lost between $1-$500 in 2024\",\n    \"filters\": [\"Year = 2024\", \"Amount Lost between $1 and $500\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of fraud reports in 2024?\",\n      \"What is the number of fraud reports where the amount lost is between $1 and $500 in 2024?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Fraud_Reports_by_Amount_Lost.csv\",\n      \"2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Amount Lost\": \"USD\",\n      \"# of Reports\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'Amount Lost' column in '2024_CSN_Fraud_Reports_by_Amount_Lost.csv' is a range. Need to filter for '$1 - $1,000' and then use the other file to get the $1-$500 range.\",\n      \"The 'Amount Lost' column in '2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv' is a range within $1-$1000.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The sum of '# of Reports' for all 'Amount Lost' ranges in '2024_CSN_Fraud_Reports_by_Amount_Lost__Reported Fraud Losses in $1 - $1,000 Range.csv' should be less than or equal to the '# of Reports' for '$1 - $1,000' in '2024_CSN_Fraud_Reports_by_Amount_Lost.csv'.\"\n    ],\n    \"derived_filters\": [\n      \"Amount Lost between $1 and $500\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Round the proportion to 3 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.376634120941162,
+  "token_usage": {}
+}

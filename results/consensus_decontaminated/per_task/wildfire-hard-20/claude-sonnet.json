@@ -1,0 +1,103 @@
+{
+  "m_q": {
+    "target_metric": "Percentage (to 2 decimal places) of wildfires that account for at least 90% of residential houses damaged in 2008",
+    "filters": [
+      "start_year == 2008"
+    ],
+    "grouping_variables": [
+      "incident_number"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What column represents residential houses damaged?",
+      "How many wildfires occurred in 2008?",
+      "What is the total number of residential houses damaged in 2008?",
+      "How to determine which wildfires account for 90% of houses damaged?",
+      "Should wildfires be ranked by houses damaged in descending order?",
+      "What is the cumulative sum of houses damaged when wildfires are sorted by damage?",
+      "How many wildfires are needed until cumulative damage reaches 90% of total?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "noaa_wildfires_variabledescrip.csv",
+        "left_column": "column_names",
+        "right_column": "Variable Name",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "prim_threatened_aggregate": "houses_at_risk"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "prim_threatened_aggregate": "count",
+      "start_year": "year",
+      "percentage": "percent"
+    },
+    "scale_issues": [
+      "Need to clarify if 'prim_threatened_aggregate' represents houses damaged or houses at risk/threatened",
+      "Variable description says 'Houses at risk' not 'houses damaged' - potential semantic mismatch with question"
+    ],
+    "cross_source_conflicts": [
+      "Question asks for 'houses damaged' but available column is 'prim_threatened_aggregate' which is described as 'houses at risk, contributed to'"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "nan"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns stored as strings in MM/DD/YYYY format",
+      "Multiple columns contain numeric data that may need type conversion",
+      "Some float columns may have missing values represented as NaN"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "start_year must equal 2008",
+      "prim_threatened_aggregate >= 0",
+      "Each incident_number should be unique per wildfire event in 2008"
+    ],
+    "derived_filters": [
+      "Filter to start_year == 2008",
+      "Sort wildfires by prim_threatened_aggregate descending",
+      "Calculate cumulative sum of prim_threatened_aggregate",
+      "Calculate cumulative percentage of total houses threatened",
+      "Find count of wildfires where cumulative percentage <= 90%"
+    ],
+    "statistical_tests": [
+      "Pareto analysis to find top wildfires contributing to 90% of damage",
+      "Cumulative distribution calculation"
+    ],
+    "output_format_requirements": [
+      "Result must be a percentage",
+      "Result must be rounded to 2 decimal places",
+      "Result represents percentage of total wildfires in 2008"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage (to 2 decimal places) of wildfires that account for at least 90% of residential houses damaged in 2008\",\n    \"filters\": [\"start_year == 2008\"],\n    \"grouping_variables\": [\"incident_number\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What column represents residential houses damaged?\",\n      \"How many wildfires occurred in 2008?\",\n      \"What is the total number of residential houses damaged in 2008?\",\n      \"How to determine which wildfires account for 90% of houses damaged?\",\n      \"Should wildfires be ranked by houses damaged in descending order?\",\n      \"What is the cumulative sum of houses damaged when wildfires are sorted by damage?\",\n      \"How many wildfires are needed until cumulative damage reaches 90% of total?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"noaa_wildfires.csv\",\n        \"right_source\": \"noaa_wildfires_variabledescrip.csv\",\n        \"left_column\": \"column_names\",\n        \"right_column\": \"Variable Name\",\n        \"join_type\": \"left\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"prim_threatened_aggregate\": \"houses_at_risk\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"prim_threatened_aggregate\": \"count\",\n      \"start_year\": \"year\",\n      \"percentage\": \"percent\"\n    },\n    \"scale_issues\": [\n      \"Need to clarify if 'prim_threatened_aggregate' represents houses damaged or houses at risk/threatened\",\n      \"Variable description says 'Houses at risk' not 'houses damaged' - potential semantic mismatch with question\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Question asks for 'houses damaged' but available column is 'prim_threatened_aggregate' which is described as 'houses at risk, contributed to'\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"nan\"],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date columns stored as strings in MM/DD/YYYY format\",\n      \"Multiple columns contain numeric data that may need type conversion\",\n      \"Some float columns may have missing values represented as NaN\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"start_year must equal 2008\",\n      \"prim_threatened_aggregate >= 0\",\n      \"Each incident_number should be unique per wildfire event in 2008\"\n    ],\n    \"derived_filters\": [\n      \"Filter to start_year == 2008\",\n      \"Sort wildfires by prim_threatened_aggregate descending\",\n      \"Calculate cumulative sum of prim_threatened_aggregate\",\n      \"Calculate cumulative percentage of total houses threatened\",\n      \"Find count of wildfires where cumulative percentage <= 90%\"\n    ],\n    \"statistical_tests\": [\n      \"Pareto analysis to find top wildfires contributing to 90% of damage\",\n      \"Cumulative distribution calculation\"\n    ],\n    \"output_format_requirements\": [\n      \"Result must be a percentage\",\n      \"Result must be rounded to 2 decimal places\",\n      \"Result represents percentage of total wildfires in 2008\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.288919925689697,
+  "token_usage": {
+    "input_tokens": 4301,
+    "output_tokens": 949
+  }
+}

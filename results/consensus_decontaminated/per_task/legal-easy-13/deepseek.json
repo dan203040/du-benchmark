@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "ratio of reports between the most frequent and least frequent category, rounded to two decimal places",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Category"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify the category with maximum # of Reports",
+      "Identify the category with minimum # of Reports",
+      "Calculate ratio = max_reports / min_reports",
+      "Round result to two decimal places"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [
+      "Percentage column contains '%' symbol and needs cleaning for numerical operations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "File contains 29 rows (28 data rows + header)",
+      "Percentage values include '%' symbol",
+      "Category names may contain commas within quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Rank values should be unique and sequential",
+      "Sum of # of Reports should be consistent",
+      "Percentage values should sum to approximately 100%"
+    ],
+    "derived_filters": [
+      "Exclude header row",
+      "Use all 28 category rows for analysis"
+    ],
+    "statistical_tests": [
+      "Check for missing values in # of Reports column",
+      "Verify Rank ordering matches # of Reports ordering"
+    ],
+    "output_format_requirements": [
+      "Ratio must be rounded to two decimal places",
+      "Result should be a single numerical value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"ratio of reports between the most frequent and least frequent category, rounded to two decimal places\",\n        \"filters\": [\"Year = 2024\"],\n        \"grouping_variables\": [\"Category\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify the category with maximum # of Reports\", \"Identify the category with minimum # of Reports\", \"Calculate ratio = max_reports / min_reports\", \"Round result to two decimal places\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Report_Categories.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count\", \"Percentage\": \"percentage\"},\n        \"scale_issues\": [\"Percentage column contains '%' symbol and needs cleaning for numerical operations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"File contains 29 rows (28 data rows + header)\", \"Percentage values include '%' symbol\", \"Category names may contain commas within quotes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Rank values should be unique and sequential\", \"Sum of # of Reports should be consistent\", \"Percentage values should sum to approximately 100%\"],\n        \"derived_filters\": [\"Exclude header row\", \"Use all 28 category rows for analysis\"],\n        \"statistical_tests\": [\"Check for missing values in # of Reports column\", \"Verify Rank ordering matches # of Reports ordering\"],\n        \"output_format_requirements\": [\"Ratio must be rounded to two decimal places\", \"Result should be a single numerical value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.167782306671143,
+  "token_usage": {
+    "input_tokens": 897,
+    "output_tokens": 440
+  }
+}

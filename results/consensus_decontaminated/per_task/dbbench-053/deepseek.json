@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Area (km\u00b2) or Area (sq mi) value for each island",
+    "filters": [
+      "Island = 'tiree'",
+      "Island = 'kasos'"
+    ],
+    "grouping_variables": [
+      "Island"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the area of Tiree in km\u00b2?",
+      "What is the area of Kasos in km\u00b2?",
+      "Which island has the larger area value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Island Area by Country/Region"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Area (km\u00b2)": "square kilometers",
+      "Area (sq mi)": "square miles"
+    },
+    "scale_issues": [
+      "Two different area units provided - need to ensure consistent comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 5 columns as described in shape",
+      "First column appears to be Rank (Int64)",
+      "Island names may have special characters or commas in quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Island names must match exactly (case-sensitive)",
+      "Area values should be positive numbers",
+      "Only two specific islands need to be compared"
+    ],
+    "derived_filters": [
+      "Filter dataset to only rows where Island contains 'tiree' or 'kasos' (case-insensitive)"
+    ],
+    "statistical_tests": [
+      "Direct numerical comparison of Area (km\u00b2) values"
+    ],
+    "output_format_requirements": [
+      "Clear statement of which island has larger area",
+      "Include both area values for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Area (km\u00b2) or Area (sq mi) value for each island\",\n        \"filters\": [\"Island = 'tiree'\", \"Island = 'kasos'\"],\n        \"grouping_variables\": [\"Island\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the area of Tiree in km\u00b2?\", \"What is the area of Kasos in km\u00b2?\", \"Which island has the larger area value?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Island Area by Country/Region\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Area (km\u00b2)\": \"square kilometers\",\n            \"Area (sq mi)\": \"square miles\"\n        },\n        \"scale_issues\": [\"Two different area units provided - need to ensure consistent comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 5 columns as described in shape\", \"First column appears to be Rank (Int64)\", \"Island names may have special characters or commas in quotes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Island names must match exactly (case-sensitive)\", \"Area values should be positive numbers\", \"Only two specific islands need to be compared\"],\n        \"derived_filters\": [\"Filter dataset to only rows where Island contains 'tiree' or 'kasos' (case-insensitive)\"],\n        \"statistical_tests\": [\"Direct numerical comparison of Area (km\u00b2) values\"],\n        \"output_format_requirements\": [\"Clear statement of which island has larger area\", \"Include both area values for verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.151505947113037,
+  "token_usage": {
+    "input_tokens": 956,
+    "output_tokens": 457
+  }
+}

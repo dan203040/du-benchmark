@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Count of undefeated fighters per weight class and identification of top fighters in each weight class",
+    "filters": [
+      "losses == 0",
+      "draws == 0"
+    ],
+    "grouping_variables": [
+      "weight_in_kg"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "How many fighters remain undefeated in each weight class?",
+      "Which fighters have the best records in each weight class?",
+      "What is the distribution of undefeated fighters across weight classes?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "ufc-fighters-statistics.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "height_cm": "centimeters",
+      "weight_in_kg": "kilograms",
+      "reach_in_cm": "centimeters",
+      "significant_strikes_landed_per_minute": "strikes per minute",
+      "significant_striking_accuracy": "percentage",
+      "significant_strikes_absorbed_per_minute": "strikes per minute",
+      "significant_strike_defence": "percentage",
+      "average_takedowns_landed_per_15_minutes": "takedowns per 15 minutes",
+      "takedown_accuracy": "percentage",
+      "takedown_defense": "percentage",
+      "average_submissions_attempted_per_15_minutes": "submissions per 15 minutes"
+    },
+    "scale_issues": [
+      "Some percentage columns may exceed 100% (e.g., takedown_accuracy shows 100.0 for multiple fighters)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 18,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Empty strings represent missing values",
+      "Some fighters have missing reach_in_cm, stance, and date_of_birth values",
+      "Weight classes need to be derived from weight_in_kg column"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "wins >= 0",
+      "losses >= 0",
+      "draws >= 0",
+      "weight_in_kg > 0 for active fighters",
+      "height_cm > 0 for valid measurements"
+    ],
+    "derived_filters": [
+      "Undefeated fighters: losses == 0 AND draws == 0",
+      "Active fighters: wins + losses + draws > 0"
+    ],
+    "statistical_tests": [
+      "Check for outliers in weight_in_kg",
+      "Verify percentage columns are within 0-100 range",
+      "Validate date_of_birth format"
+    ],
+    "output_format_requirements": [
+      "Output must be written to undefeated.csv with columns: level, fighter_num",
+      "Weight classes need to be standardized (e.g., Lightweight, Welterweight, etc.) from weight_in_kg values",
+      "fighter_num likely represents count of undefeated fighters per weight class"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of undefeated fighters per weight class and identification of top fighters in each weight class\",\n        \"filters\": [\"losses == 0\", \"draws == 0\"],\n        \"grouping_variables\": [\"weight_in_kg\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"How many fighters remain undefeated in each weight class?\", \"Which fighters have the best records in each weight class?\", \"What is the distribution of undefeated fighters across weight classes?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"ufc-fighters-statistics.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"height_cm\": \"centimeters\",\n            \"weight_in_kg\": \"kilograms\",\n            \"reach_in_cm\": \"centimeters\",\n            \"significant_strikes_landed_per_minute\": \"strikes per minute\",\n            \"significant_striking_accuracy\": \"percentage\",\n            \"significant_strikes_absorbed_per_minute\": \"strikes per minute\",\n            \"significant_strike_defence\": \"percentage\",\n            \"average_takedowns_landed_per_15_minutes\": \"takedowns per 15 minutes\",\n            \"takedown_accuracy\": \"percentage\",\n            \"takedown_defense\": \"percentage\",\n            \"average_submissions_attempted_per_15_minutes\": \"submissions per 15 minutes\"\n        },\n        \"scale_issues\": [\"Some percentage columns may exceed 100% (e.g., takedown_accuracy shows 100.0 for multiple fighters)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 18,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Empty strings represent missing values\", \"Some fighters have missing reach_in_cm, stance, and date_of_birth values\", \"Weight classes need to be derived from weight_in_kg column\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"wins >= 0\", \"losses >= 0\", \"draws >= 0\", \"weight_in_kg > 0 for active fighters\", \"height_cm > 0 for valid measurements\"],\n        \"derived_filters\": [\"Undefeated fighters: losses == 0 AND draws == 0\", \"Active fighters: wins + losses + draws > 0\"],\n        \"statistical_tests\": [\"Check for outliers in weight_in_kg\", \"Verify percentage columns are within 0-100 range\", \"Validate date_of_birth format\"],\n        \"output_format_requirements\": [\"Output must be written to undefeated.csv with columns: level, fighter_num\", \"Weight classes need to be standardized (e.g., Lightweight, Welterweight, etc.) from weight_in_kg values\", \"fighter_num likely represents count of undefeated fighters per weight class\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.637696027755737,
+  "token_usage": {
+    "input_tokens": 2209,
+    "output_tokens": 700
+  }
+}

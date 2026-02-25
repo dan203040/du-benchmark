@@ -1,0 +1,86 @@
+{
+  "m_q": {
+    "target_metric": "Count of home losses",
+    "filters": [
+      "PF = 13"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What does PF represent in this dataset?",
+      "Are there any rows where PF equals 13?",
+      "How should missing values in Home losses be handled?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NFL Team Records Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'Num' appears to have duplicate values (e.g., 4 appears for multiple teams)",
+      "Some teams appear multiple times with different Num values (e.g., Kansas City Chiefs appears with Num=1 and Num=16)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "PF": "Points For (total points scored by team)",
+      "PA": "Points Against (total points allowed by team)",
+      "PCT": "Win percentage",
+      "Home Win Pct.": "Percentage",
+      "Road Win Pct.": "Percentage"
+    },
+    "scale_issues": [
+      "PCT, Home Win Pct., and Road Win Pct. columns contain string values with decimal points (e.g., '.533', '1.000')",
+      "Some percentage columns contain '\u2014\u2013' as missing values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "\u2014\u2013",
+      "none"
+    ],
+    "expected_columns": 17,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some team names contain special characters (e.g., 'Seattle Seahawks c[\u203a ]')",
+      "Some championship years have asterisks (e.g., '1964 *', '1969 ***')",
+      "Sample shows 20 rows but shape indicates 26 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Home losses should be non-negative integers",
+      "Home losses \u2264 HOME games",
+      "PF should be numeric (though stored as object)"
+    ],
+    "derived_filters": [
+      "Filter rows where PF column equals '13'",
+      "Exclude rows where Home losses is missing or non-numeric"
+    ],
+    "statistical_tests": [
+      "Check if PF=13 exists in the dataset",
+      "Verify Home losses column can be converted to numeric"
+    ],
+    "output_format_requirements": [
+      "Single integer count",
+      "Handle cases where no rows match PF=13 (return 0)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of home losses\",\n        \"filters\": [\"PF = 13\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What does PF represent in this dataset?\", \"Are there any rows where PF equals 13?\", \"How should missing values in Home losses be handled?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"NFL Team Records Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Column 'Num' appears to have duplicate values (e.g., 4 appears for multiple teams)\", \"Some teams appear multiple times with different Num values (e.g., Kansas City Chiefs appears with Num=1 and Num=16)\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"PF\": \"Points For (total points scored by team)\", \"PA\": \"Points Against (total points allowed by team)\", \"PCT\": \"Win percentage\", \"Home Win Pct.\": \"Percentage\", \"Road Win Pct.\": \"Percentage\"},\n        \"scale_issues\": [\"PCT, Home Win Pct., and Road Win Pct. columns contain string values with decimal points (e.g., '.533', '1.000')\", \"Some percentage columns contain '\u2014\u2013' as missing values\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"\u2014\u2013\", \"none\"],\n        \"expected_columns\": 17,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Some team names contain special characters (e.g., 'Seattle Seahawks c[\u203a ]')\", \"Some championship years have asterisks (e.g., '1964 *', '1969 ***')\", \"Sample shows 20 rows but shape indicates 26 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Home losses should be non-negative integers\", \"Home losses \u2264 HOME games\", \"PF should be numeric (though stored as object)\"],\n        \"derived_filters\": [\"Filter rows where PF column equals '13'\", \"Exclude rows where Home losses is missing or non-numeric\"],\n        \"statistical_tests\": [\"Check if PF=13 exists in the dataset\", \"Verify Home losses column can be converted to numeric\"],\n        \"output_format_requirements\": [\"Single integer count\", \"Handle cases where no rows match PF=13 (return 0)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.914192199707031,
+  "token_usage": {
+    "input_tokens": 1540,
+    "output_tokens": 578
+  }
+}

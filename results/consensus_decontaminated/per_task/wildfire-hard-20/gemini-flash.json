@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of wildfires in 2008 that account for at least 90% of residential houses damaged in 2008, rounded to 2 decimal places.",
+    "filters": [
+      "start_year = 2008"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of residential houses damaged in 2008?",
+      "Which wildfires in 2008 account for at least 90% of the total residential houses damaged?",
+      "How many wildfires account for at least 90% of the total residential houses damaged?",
+      "What is the percentage of wildfires that account for at least 90% of the total residential houses damaged?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs / square foot",
+      "rain_sum": "unspecified",
+      "duration": "days",
+      "prim_threatened_aggregate": "houses"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "prim_threatened_aggregate >= 0",
+      "start_year is valid year"
+    ],
+    "derived_filters": [
+      "fires_in_2008 = start_year == 2008",
+      "houses_damaged_by_fire = prim_threatened_aggregate",
+      "ninety_percent_houses = 0.9 * sum(houses_damaged_by_fire where fires_in_2008)",
+      "fires_accounting_for_90_percent = fires_in_2008 where sum(houses_damaged_by_fire) >= ninety_percent_houses"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Percentage value rounded to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of wildfires in 2008 that account for at least 90% of residential houses damaged in 2008, rounded to 2 decimal places.\",\n    \"filters\": [\n      \"start_year = 2008\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of residential houses damaged in 2008?\",\n      \"Which wildfires in 2008 account for at least 90% of the total residential houses damaged?\",\n      \"How many wildfires account for at least 90% of the total residential houses damaged?\",\n      \"What is the percentage of wildfires that account for at least 90% of the total residential houses damaged?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"noaa_wildfires_variabledescrip.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"avrh_mean\": \"percentage\",\n      \"wind_med\": \"miles per hour\",\n      \"erc_med\": \"BTUs / square foot\",\n      \"rain_sum\": \"unspecified\",\n      \"duration\": \"days\",\n      \"prim_threatened_aggregate\": \"houses\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"prim_threatened_aggregate >= 0\",\n      \"start_year is valid year\"\n    ],\n    \"derived_filters\": [\n      \"fires_in_2008 = start_year == 2008\",\n      \"houses_damaged_by_fire = prim_threatened_aggregate\",\n      \"ninety_percent_houses = 0.9 * sum(houses_damaged_by_fire where fires_in_2008)\",\n      \"fires_accounting_for_90_percent = fires_in_2008 where sum(houses_damaged_by_fire) >= ninety_percent_houses\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Percentage value rounded to 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.913161993026733,
+  "token_usage": {}
+}

@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of time (days) between 2019 and 2023 (inclusive) that water quality at Quincy's Wollaston Beach met swimming standards.",
+    "filters": [
+      "Year between 2019 and 2023 (inclusive)",
+      "Beach Name is 'Wollaston Beach'",
+      "Community is 'Quincy'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "For each year, how many days were samples taken at Wollaston Beach in Quincy?",
+      "For each year, how many days had a 'Violation' value of 'NO' at Wollaston Beach in Quincy?",
+      "What is the total number of days samples were taken at Wollaston Beach in Quincy between 2019 and 2023?",
+      "What is the total number of days between 2019 and 2023 that Wollaston Beach in Quincy met swimming standards (Violation = 'NO')?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "In water-body-testing-2020.csv, the 'Violation' column has values 'No' instead of 'NO'."
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "level of organism",
+      "Year": "year",
+      "Community Code": "integer code",
+      "County Code": "integer code"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date is given as datetime, but only the date portion is relevant."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Year' column should contain only valid years.",
+      "The 'Beach Name' column should contain only valid beach names.",
+      "The 'Violation' column should contain only 'YES' or 'NO' (case-insensitive)."
+    ],
+    "derived_filters": [
+      "A day meets swimming standards if 'Violation' is 'NO' (case-insensitive)."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single integer representing the percentage.",
+      "Percentage should be rounded to the nearest integer."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of time (days) between 2019 and 2023 (inclusive) that water quality at Quincy's Wollaston Beach met swimming standards.\",\n    \"filters\": [\n      \"Year between 2019 and 2023 (inclusive)\",\n      \"Beach Name is 'Wollaston Beach'\",\n      \"Community is 'Quincy'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"For each year, how many days were samples taken at Wollaston Beach in Quincy?\",\n      \"For each year, how many days had a 'Violation' value of 'NO' at Wollaston Beach in Quincy?\",\n      \"What is the total number of days samples were taken at Wollaston Beach in Quincy between 2019 and 2023?\",\n      \"What is the total number of days between 2019 and 2023 that Wollaston Beach in Quincy met swimming standards (Violation = 'NO')?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"In water-body-testing-2020.csv, the 'Violation' column has values 'No' instead of 'NO'.\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"level of organism\",\n      \"Year\": \"year\",\n      \"Community Code\": \"integer code\",\n      \"County Code\": \"integer code\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date is given as datetime, but only the date portion is relevant.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Year' column should contain only valid years.\",\n      \"The 'Beach Name' column should contain only valid beach names.\",\n      \"The 'Violation' column should contain only 'YES' or 'NO' (case-insensitive).\"\n    ],\n    \"derived_filters\": [\n      \"A day meets swimming standards if 'Violation' is 'NO' (case-insensitive).\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single integer representing the percentage.\",\n      \"Percentage should be rounded to the nearest integer.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.846788167953491,
+  "token_usage": {}
+}

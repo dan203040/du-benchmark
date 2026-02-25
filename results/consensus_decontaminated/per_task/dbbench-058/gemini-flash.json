@@ -1,0 +1,56 @@
+{
+  "m_q": {
+    "target_metric": "Determine who finished earlier between Tony Maggs and Jo Siffert in a Grand Prix.",
+    "filters": [
+      "Driver is either 'Tony Maggs' or 'Jo Siffert'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Grand Prix Result"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Need to handle 'Time/Retired' column which contains both finishing times and reasons for retirement.",
+      "Need to parse 'Time/Retired' to determine finishing order. If 'Time/Retired' contains 'laps', the lower the number of laps, the earlier the driver came in. If it contains a time, the lower the time, the earlier the driver came in."
+    ],
+    "derived_filters": [
+      "Driver = 'Tony Maggs'",
+      "Driver = 'Jo Siffert'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output the name of the driver who came in earlier."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine who finished earlier between Tony Maggs and Jo Siffert in a Grand Prix.\",\n    \"filters\": [\n      \"Driver is either 'Tony Maggs' or 'Jo Siffert'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Grand Prix Result\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to handle 'Time/Retired' column which contains both finishing times and reasons for retirement.\",\n      \"Need to parse 'Time/Retired' to determine finishing order. If 'Time/Retired' contains 'laps', the lower the number of laps, the earlier the driver came in. If it contains a time, the lower the time, the earlier the driver came in.\"\n    ],\n    \"derived_filters\": [\n      \"Driver = 'Tony Maggs'\",\n      \"Driver = 'Jo Siffert'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output the name of the driver who came in earlier.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.351818084716797,
+  "token_usage": {}
+}

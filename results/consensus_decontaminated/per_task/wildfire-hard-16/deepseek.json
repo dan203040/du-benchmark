@@ -1,0 +1,95 @@
+{
+  "m_q": {
+    "target_metric": "Chi-square statistic and p-value for independence test between geographical region and fire causes for January-March fires with known causes",
+    "filters": [
+      "cause != 'U' (exclude unknown causes)",
+      "start_date month in [1,2,3] (January, February, March)",
+      "cause is not null",
+      "region is not null"
+    ],
+    "grouping_variables": [
+      "region",
+      "cause"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Breakdown of fire causes by geographical region for January-March fires",
+      "Chi-square test of independence between region and cause",
+      "Report chi-square statistic and p-value as list of two numbers"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Variable description file has different structure than main data file",
+      "Description file provides metadata but no direct join keys"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs/square foot",
+      "rain_sum": "total precipitation units",
+      "duration": "days",
+      "latitude": "degrees",
+      "longitude": "degrees"
+    },
+    "scale_issues": [
+      "start_day_of_year ranges 1-366",
+      "control_day_of_year ranges 1-366",
+      "cause_ind appears to be numeric encoding of cause"
+    ],
+    "cross_source_conflicts": [
+      "Variable descriptions may not match actual data usage in analysis"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "start_date format: MM/DD/YYYY",
+      "controlled_date format: MM/DD/YYYY",
+      "cause codes: U=unknown, N=natural, H=human, L=lightning, O=other"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only fires with known causes (cause != 'U')",
+      "Only fires starting in January, February, or March",
+      "Region must be non-null",
+      "Cause must be non-null"
+    ],
+    "derived_filters": [
+      "Extract month from start_date column",
+      "Filter cause column for non-'U' values"
+    ],
+    "statistical_tests": [
+      "Chi-square test of independence between region and cause categories"
+    ],
+    "output_format_requirements": [
+      "List of two numbers: [chi-square statistic, p-value]"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Chi-square statistic and p-value for independence test between geographical region and fire causes for January-March fires with known causes\",\n        \"filters\": [\"cause != 'U' (exclude unknown causes)\", \"start_date month in [1,2,3] (January, February, March)\", \"cause is not null\", \"region is not null\"],\n        \"grouping_variables\": [\"region\", \"cause\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Breakdown of fire causes by geographical region for January-March fires\", \"Chi-square test of independence between region and cause\", \"Report chi-square statistic and p-value as list of two numbers\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Variable description file has different structure than main data file\", \"Description file provides metadata but no direct join keys\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"avrh_mean\": \"percentage\",\n            \"wind_med\": \"miles per hour\",\n            \"erc_med\": \"BTUs/square foot\",\n            \"rain_sum\": \"total precipitation units\",\n            \"duration\": \"days\",\n            \"latitude\": \"degrees\",\n            \"longitude\": \"degrees\"\n        },\n        \"scale_issues\": [\"start_day_of_year ranges 1-366\", \"control_day_of_year ranges 1-366\", \"cause_ind appears to be numeric encoding of cause\"],\n        \"cross_source_conflicts\": [\"Variable descriptions may not match actual data usage in analysis\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"start_date format: MM/DD/YYYY\", \"controlled_date format: MM/DD/YYYY\", \"cause codes: U=unknown, N=natural, H=human, L=lightning, O=other\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Only fires with known causes (cause != 'U')\", \"Only fires starting in January, February, or March\", \"Region must be non-null\", \"Cause must be non-null\"],\n        \"derived_filters\": [\"Extract month from start_date column\", \"Filter cause column for non-'U' values\"],\n        \"statistical_tests\": [\"Chi-square test of independence between region and cause categories\"],\n        \"output_format_requirements\": [\"List of two numbers: [chi-square statistic, p-value]\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.784508228302002,
+  "token_usage": {
+    "input_tokens": 3983,
+    "output_tokens": 618
+  }
+}

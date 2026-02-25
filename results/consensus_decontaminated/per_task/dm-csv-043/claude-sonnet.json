@@ -1,0 +1,102 @@
+{
+  "m_q": {
+    "target_metric": "Retention rate for each cohort by month, calculated as the ratio of unique customers who made purchases in subsequent months to the initial cohort size",
+    "filters": [],
+    "grouping_variables": [
+      "CohortMonth",
+      "MonthNumber"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the initial cohort size for each CohortMonth?",
+      "How many unique customers returned in each subsequent month (1-13) for each cohort?",
+      "What is the retention rate formula: (customers in month N / initial cohort size) * 100?",
+      "How should the retention data be formatted to match the template structure?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "cohort_counts.csv",
+      "online.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "cohort_counts.csv already contains aggregated cohort data with months as columns ('1'-'13'), while online.csv contains raw transaction data",
+      "CohortMonth in cohort_counts.csv is a date string, while online.csv would require deriving cohort membership from InvoiceDate and CustomerID"
+    ],
+    "column_mappings": {
+      "1": "Month1",
+      "2": "Month2",
+      "3": "Month3",
+      "4": "Month4",
+      "5": "Month5",
+      "6": "Month6",
+      "7": "Month7",
+      "8": "Month8",
+      "9": "Month9",
+      "10": "Month10",
+      "11": "Month11",
+      "12": "Month12",
+      "13": "Month13"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "CohortMonth": "date (YYYY-MM-DD format)",
+      "cohort_counts columns 1-13": "count of unique customers",
+      "retention_rate": "percentage (0-100)"
+    },
+    "scale_issues": [
+      "Retention rates should be expressed as percentages, not decimals"
+    ],
+    "cross_source_conflicts": [
+      "cohort_counts.csv contains pre-aggregated customer counts that should be used for retention calculation rather than re-aggregating from online.csv"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NaN"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "cohort_counts.csv has NaN values for future months that don't exist for newer cohorts",
+      "Column '1' represents the first month (cohort formation month) with initial customer counts",
+      "Columns '2'-'13' represent retention counts in subsequent months",
+      "Output file 'retension.csv' should match template format with CohortMonth and retention percentages for months 1-13"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Initial cohort size (month 1) should always have 100% retention",
+      "Retention rates for subsequent months should be <= 100%",
+      "Retention rates should be non-negative",
+      "CohortMonth should be in YYYY-MM-DD format",
+      "Missing values (NaN) should be preserved for months beyond data availability"
+    ],
+    "derived_filters": [
+      "Only calculate retention for months where cohort_counts data exists (not NaN)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named 'retension.csv' (note: spelling as specified in question)",
+      "First column must be 'CohortMonth'",
+      "Subsequent columns should be '1', '2', '3', ... '13' representing retention percentages",
+      "Retention rates should be calculated as (customers_in_month_N / customers_in_month_1) * 100",
+      "Format should exactly match the template structure with 14 columns total",
+      "Preserve NaN values where data is not available for newer cohorts"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Retention rate for each cohort by month, calculated as the ratio of unique customers who made purchases in subsequent months to the initial cohort size\",\n    \"filters\": [],\n    \"grouping_variables\": [\"CohortMonth\", \"MonthNumber\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the initial cohort size for each CohortMonth?\",\n      \"How many unique customers returned in each subsequent month (1-13) for each cohort?\",\n      \"What is the retention rate formula: (customers in month N / initial cohort size) * 100?\",\n      \"How should the retention data be formatted to match the template structure?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"cohort_counts.csv\", \"online.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"cohort_counts.csv already contains aggregated cohort data with months as columns ('1'-'13'), while online.csv contains raw transaction data\",\n      \"CohortMonth in cohort_counts.csv is a date string, while online.csv would require deriving cohort membership from InvoiceDate and CustomerID\"\n    ],\n    \"column_mappings\": {\n      \"1\": \"Month1\",\n      \"2\": \"Month2\",\n      \"3\": \"Month3\",\n      \"4\": \"Month4\",\n      \"5\": \"Month5\",\n      \"6\": \"Month6\",\n      \"7\": \"Month7\",\n      \"8\": \"Month8\",\n      \"9\": \"Month9\",\n      \"10\": \"Month10\",\n      \"11\": \"Month11\",\n      \"12\": \"Month12\",\n      \"13\": \"Month13\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"CohortMonth\": \"date (YYYY-MM-DD format)\",\n      \"cohort_counts columns 1-13\": \"count of unique customers\",\n      \"retention_rate\": \"percentage (0-100)\"\n    },\n    \"scale_issues\": [\n      \"Retention rates should be expressed as percentages, not decimals\"\n    ],\n    \"cross_source_conflicts\": [\n      \"cohort_counts.csv contains pre-aggregated customer counts that should be used for retention calculation rather than re-aggregating from online.csv\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NaN\"],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"cohort_counts.csv has NaN values for future months that don't exist for newer cohorts\",\n      \"Column '1' represents the first month (cohort formation month) with initial customer counts\",\n      \"Columns '2'-'13' represent retention counts in subsequent months\",\n      \"Output file 'retension.csv' should match template format with CohortMonth and retention percentages for months 1-13\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Initial cohort size (month 1) should always have 100% retention\",\n      \"Retention rates for subsequent months should be <= 100%\",\n      \"Retention rates should be non-negative\",\n      \"CohortMonth should be in YYYY-MM-DD format\",\n      \"Missing values (NaN) should be preserved for months beyond data availability\"\n    ],\n    \"derived_filters\": [\n      \"Only calculate retention for months where cohort_counts data exists (not NaN)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named 'retension.csv' (note: spelling as specified in question)\",\n      \"First column must be 'CohortMonth'\",\n      \"Subsequent columns should be '1', '2', '3', ... '13' representing retention percentages\",\n      \"Retention rates should be calculated as (customers_in_month_N / customers_in_month_1) * 100\",\n      \"Format should exactly match the template structure with 14 columns total\",\n      \"Preserve NaN values where data is not available for newer cohorts\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 17.44581627845764,
+  "token_usage": {
+    "input_tokens": 3475,
+    "output_tokens": 1056
+  }
+}

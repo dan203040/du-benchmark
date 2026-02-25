@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "total count of distinct website entries",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Are there duplicate website names?",
+      "Should we count all rows regardless of data quality?",
+      "Does 'Name' column uniquely identify websites?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Educational Websites Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Cost": "currency/year or 'Free'",
+      "Target age": "age range or grade level"
+    },
+    "scale_issues": [
+      "Cost column mixes 'Free' with specific currency amounts",
+      "Target age uses inconsistent formats (5+, 4-17, K-8, etc.)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "?",
+      "None",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Contains quoted fields with commas",
+      "Sample shows 20 rows but shape indicates 27 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Name column should be non-null",
+      "Each row represents one website"
+    ],
+    "derived_filters": [
+      "Exclude rows where Name is missing or empty"
+    ],
+    "statistical_tests": [
+      "Count distinct values in Name column",
+      "Check for duplicate website names"
+    ],
+    "output_format_requirements": [
+      "Single integer representing total count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total count of distinct website entries\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Are there duplicate website names?\", \"Should we count all rows regardless of data quality?\", \"Does 'Name' column uniquely identify websites?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Educational Websites Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Cost\": \"currency/year or 'Free'\", \"Target age\": \"age range or grade level\"},\n        \"scale_issues\": [\"Cost column mixes 'Free' with specific currency amounts\", \"Target age uses inconsistent formats (5+, 4-17, K-8, etc.)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"?\", \"None\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Contains quoted fields with commas\", \"Sample shows 20 rows but shape indicates 27 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Name column should be non-null\", \"Each row represents one website\"],\n        \"derived_filters\": [\"Exclude rows where Name is missing or empty\"],\n        \"statistical_tests\": [\"Count distinct values in Name column\", \"Check for duplicate website names\"],\n        \"output_format_requirements\": [\"Single integer representing total count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.610213041305542,
+  "token_usage": {
+    "input_tokens": 987,
+    "output_tokens": 382
+  }
+}

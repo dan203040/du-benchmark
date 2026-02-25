@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "median of Log2_variant_per_Mbp for serous tumor samples",
+    "filters": [
+      "Histologic_type == 'Serous'",
+      "Proteomics_Tumor_Normal == 'Tumor'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify serous tumor samples in 1-s2.0-S0092867420301070-mmc1.xlsx",
+      "Extract Log2_variant_per_Mbp values for those samples",
+      "Calculate median of those values",
+      "Round result to 4 decimal places"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Log2_variant_per_Mbp": "log2(variants per megabase pair)"
+    },
+    "scale_issues": [
+      "Log2_variant_per_Mbp is log2-transformed, need to convert back to linear scale for interpretation"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "excel",
+    "format_notes": [
+      "Excel file with multiple sheets",
+      "Provided as CSV-like sample in prompt",
+      "Contains clinical and genomic data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Histologic_type column must contain 'Serous' values",
+      "Log2_variant_per_Mbp must be numeric",
+      "Proteomics_Tumor_Normal must distinguish tumor vs normal"
+    ],
+    "derived_filters": [
+      "Exclude Case_excluded == 'Yes' if present",
+      "Filter for tumor samples only"
+    ],
+    "statistical_tests": [
+      "Median calculation",
+      "Rounding to 4 decimal places"
+    ],
+    "output_format_requirements": [
+      "Numeric value with 4 decimal places",
+      "No additional formatting"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"median of Log2_variant_per_Mbp for serous tumor samples\",\n        \"filters\": [\"Histologic_type == 'Serous'\", \"Proteomics_Tumor_Normal == 'Tumor'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify serous tumor samples in 1-s2.0-S0092867420301070-mmc1.xlsx\", \"Extract Log2_variant_per_Mbp values for those samples\", \"Calculate median of those values\", \"Round result to 4 decimal places\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Log2_variant_per_Mbp\": \"log2(variants per megabase pair)\"},\n        \"scale_issues\": [\"Log2_variant_per_Mbp is log2-transformed, need to convert back to linear scale for interpretation\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Cannot be determined\"],\n        \"expected_columns\": 179,\n        \"file_format\": \"excel\",\n        \"format_notes\": [\"Excel file with multiple sheets\", \"Provided as CSV-like sample in prompt\", \"Contains clinical and genomic data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Histologic_type column must contain 'Serous' values\", \"Log2_variant_per_Mbp must be numeric\", \"Proteomics_Tumor_Normal must distinguish tumor vs normal\"],\n        \"derived_filters\": [\"Exclude Case_excluded == 'Yes' if present\", \"Filter for tumor samples only\"],\n        \"statistical_tests\": [\"Median calculation\", \"Rounding to 4 decimal places\"],\n        \"output_format_requirements\": [\"Numeric value with 4 decimal places\", \"No additional formatting\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.588084936141968,
+  "token_usage": {
+    "input_tokens": 11700,
+    "output_tokens": 491
+  }
+}

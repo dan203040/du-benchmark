@@ -1,0 +1,392 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "p-value for testing null hypothesis that mean number of goals in women's and men's international soccer matches is equal",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "p-value for testing null hypothesis that mean number of goals in women's and men's international soccer matches is equal",
+        "p-value from hypothesis test comparing mean number of goals in women's vs men's international soccer matches, and decision to reject or fail to reject null hypothesis at 10% significance level",
+        "p-value for the null hypothesis that the mean number of goals in women's and men's international soccer matches is the same, and a decision to reject or fail to reject the null hypothesis at the 10% significance level."
+      ]
+    },
+    "filters": {
+      "value": [
+        "All matches from both datasets should be included",
+        "No filtering by tournament or date range specified"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All matches from both datasets should be included",
+          "No filtering by tournament or date range specified"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "gender (men vs women)",
+        "gender (men's vs women's matches)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "gender (men vs women)"
+        ],
+        [
+          "gender (men's vs women's matches)"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "scalar",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate total goals per match for each dataset",
+        "Compute mean goals per match for men's matches",
+        "Compute mean goals per match for women's matches",
+        "Perform two-sample t-test comparing means",
+        "Determine if p-value < 0.10 significance level",
+        "Format output with columns 'p_val' and 'result'",
+        "Calculate total goals per match for men's soccer (home_score + away_score)",
+        "Calculate total goals per match for women's soccer (home_score + away_score)",
+        "Compute mean goals per match for men's soccer",
+        "Compute mean goals per match for women's soccer",
+        "Perform two-sample hypothesis test (likely t-test) to compare means",
+        "Extract p-value from test",
+        "Compare p-value to 0.10 significance level",
+        "Determine whether to reject or fail to reject null hypothesis",
+        "Calculate the total goals for each match in the men's dataset.",
+        "Calculate the total goals for each match in the women's dataset.",
+        "Calculate the mean number of goals in men's international soccer matches.",
+        "Calculate the mean number of goals in women's international soccer matches.",
+        "Perform an independent samples t-test to compare the means of the two groups.",
+        "Determine the p-value from the t-test.",
+        "Compare the p-value to the significance level (0.10) to decide whether to reject or fail to reject the null hypothesis."
+      ],
+      "confidence": 0.3333333333333332,
+      "votes": [
+        [
+          "Calculate total goals per match for each dataset",
+          "Compute mean goals per match for men's matches",
+          "Compute mean goals per match for women's matches",
+          "Perform two-sample t-test comparing means",
+          "Determine if p-value < 0.10 significance level",
+          "Format output with columns 'p_val' and 'result'"
+        ],
+        [
+          "Calculate total goals per match for men's soccer (home_score + away_score)",
+          "Calculate total goals per match for women's soccer (home_score + away_score)",
+          "Compute mean goals per match for men's soccer",
+          "Compute mean goals per match for women's soccer",
+          "Perform two-sample hypothesis test (likely t-test) to compare means",
+          "Extract p-value from test",
+          "Compare p-value to 0.10 significance level",
+          "Determine whether to reject or fail to reject null hypothesis"
+        ],
+        [
+          "Calculate the total goals for each match in the men's dataset.",
+          "Calculate the total goals for each match in the women's dataset.",
+          "Calculate the mean number of goals in men's international soccer matches.",
+          "Calculate the mean number of goals in women's international soccer matches.",
+          "Perform an independent samples t-test to compare the means of the two groups.",
+          "Determine the p-value from the t-test.",
+          "Compare the p-value to the significance level (0.10) to decide whether to reject or fail to reject the null hypothesis."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "men_results.csv",
+        "women_results.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "men_results.csv",
+          "women_results.csv"
+        ],
+        [
+          "men_results.csv",
+          "women_results.csv"
+        ],
+        [
+          "men_results.csv",
+          "women_results.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Both files have identical column structures: ['Unnamed: 0', 'date', 'home_team', 'away_team', 'home_score', 'away_score', 'tournament']"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Both files have identical column structures: ['Unnamed: 0', 'date', 'home_team', 'away_team', 'home_score', 'away_score', 'tournament']"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "home_score": "goals",
+        "away_score": "goals",
+        "date": "YYYY-MM-DD",
+        "total_goals": "goals per match"
+      },
+      "confidence": 0.6666666666666667,
+      "votes": [
+        {
+          "home_score": "goals",
+          "away_score": "goals",
+          "date": "YYYY-MM-DD"
+        },
+        {
+          "home_score": "goals",
+          "away_score": "goals",
+          "total_goals": "goals per match"
+        },
+        {
+          "home_score": "goals",
+          "away_score": "goals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Men's dataset has 44,353 rows vs women's 4,884 rows - significant size difference",
+        "Men's data spans 1872-present, women's 1969-present - different time periods"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Men's dataset has 44,353 rows vs women's 4,884 rows - significant size difference",
+          "Men's data spans 1872-present, women's 1969-present - different time periods"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Different historical coverage periods",
+        "Potential differences in tournament structures over time",
+        "Different sample sizes: men_results.csv has 44353 matches vs women_results.csv has 4884 matches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different historical coverage periods",
+          "Potential differences in tournament structures over time"
+        ],
+        [
+          "Different sample sizes: men_results.csv has 44353 matches vs women_results.csv has 4884 matches"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "p_val must be float64",
+        "result must be exactly 'reject' or 'fail to reject'",
+        "Output file must be named 'result.csv'",
+        "Significance level is 10% (alpha=0.10)",
+        "Null hypothesis: mean goals in women's matches = mean goals in men's matches",
+        "Alternative hypothesis: mean goals in women's matches \u2260 mean goals in men's matches",
+        "Significance level: 0.10 (10%)",
+        "Reject null if p-value < 0.10, otherwise fail to reject",
+        "The 'home_score' and 'away_score' columns must contain non-negative integers.",
+        "The 'date' column should be parsed as a date object."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "p_val must be float64",
+          "result must be exactly 'reject' or 'fail to reject'",
+          "Output file must be named 'result.csv'",
+          "Significance level is 10% (alpha=0.10)"
+        ],
+        [
+          "Null hypothesis: mean goals in women's matches = mean goals in men's matches",
+          "Alternative hypothesis: mean goals in women's matches \u2260 mean goals in men's matches",
+          "Significance level: 0.10 (10%)",
+          "Reject null if p-value < 0.10, otherwise fail to reject"
+        ],
+        [
+          "The 'home_score' and 'away_score' columns must contain non-negative integers.",
+          "The 'date' column should be parsed as a date object."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Calculate total_goals = home_score + away_score for each match",
+        "Separate calculations by data source (men vs women)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate total_goals = home_score + away_score for each match",
+          "Separate calculations by data source (men vs women)"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Two-sample t-test for equality of means",
+        "Assumption: independent samples from men's and women's matches",
+        "Need to check variance equality for appropriate t-test variant",
+        "Two-sample hypothesis test (likely independent samples t-test or Welch's t-test)",
+        "Test compares mean total goals per match between men's and women's datasets",
+        "Independent samples t-test"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Two-sample t-test for equality of means",
+          "Assumption: independent samples from men's and women's matches",
+          "Need to check variance equality for appropriate t-test variant"
+        ],
+        [
+          "Two-sample hypothesis test (likely independent samples t-test or Welch's t-test)",
+          "Test compares mean total goals per match between men's and women's datasets"
+        ],
+        [
+          "Independent samples t-test"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file with columns exactly 'p_val' and 'result'",
+        "Single row of output",
+        "p_val formatted as float",
+        "result as string literal",
+        "Output file must be named 'result.csv'",
+        "Must have exactly two columns: 'p_val' and 'result'",
+        "p_val column contains the numeric p-value",
+        "result column contains exactly one of: 'reject' or 'fail to reject'",
+        "Single row of data (plus header)",
+        "The output file should be named 'result.csv'.",
+        "The output file should have two columns named 'p_val' and 'result'.",
+        "The 'p_val' column should contain the p-value as a float.",
+        "The 'result' column should contain either 'reject' or 'fail to reject'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CSV file with columns exactly 'p_val' and 'result'",
+          "Single row of output",
+          "p_val formatted as float",
+          "result as string literal"
+        ],
+        [
+          "Output file must be named 'result.csv'",
+          "Must have exactly two columns: 'p_val' and 'result'",
+          "p_val column contains the numeric p-value",
+          "result column contains exactly one of: 'reject' or 'fail to reject'",
+          "Single row of data (plus header)"
+        ],
+        [
+          "The output file should be named 'result.csv'.",
+          "The output file should have two columns named 'p_val' and 'result'.",
+          "The 'p_val' column should contain the p-value as a float.",
+          "The 'result' column should contain either 'reject' or 'fail to reject'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5833333333333334
+}

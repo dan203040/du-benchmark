@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "Mean geopotential energy per unit mass (J/kg) experienced by Swarm-A from September 2 to 29, 2019",
+    "filters": [
+      "Date range: September 2 to 29, 2019",
+      "Satellite: Swarm-A"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Determine the geodetic position (latitude, longitude, altitude) of Swarm-A at each timepoint using SP3 files (not provided, assuming this is a pre-processing step).",
+      "Interpolate the geopotential field at each timepoint based on the satellite's geodetic position using the mock_tiegcm_grid_sept2019.npz data.",
+      "Calculate the geopotential energy per unit mass at each timepoint.",
+      "Average the geopotential energy per unit mass over the specified time period."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "mock_tiegcm_grid_sept2019.npz"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat_grid": "degrees",
+      "lon_grid": "degrees",
+      "alt_grid": "km"
+    },
+    "scale_issues": [
+      "Altitude is in kilometers, but the geopotential energy calculation might require meters. Need to convert alt_grid to meters if necessary."
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The provided sample is a CSV representation of the data within the .npz file. The actual file is a NumPy archive.",
+      "Missing values are present in the sample data."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Earth radius = 6371.0 km",
+      "g = 9.80665 m/s^2",
+      "Output should be rounded to 2 decimal places"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer must be a single numerical value representing the mean geopotential energy per unit mass in J/kg."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mean geopotential energy per unit mass (J/kg) experienced by Swarm-A from September 2 to 29, 2019\",\n    \"filters\": [\n      \"Date range: September 2 to 29, 2019\",\n      \"Satellite: Swarm-A\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Determine the geodetic position (latitude, longitude, altitude) of Swarm-A at each timepoint using SP3 files (not provided, assuming this is a pre-processing step).\",\n      \"Interpolate the geopotential field at each timepoint based on the satellite's geodetic position using the mock_tiegcm_grid_sept2019.npz data.\",\n      \"Calculate the geopotential energy per unit mass at each timepoint.\",\n      \"Average the geopotential energy per unit mass over the specified time period.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"mock_tiegcm_grid_sept2019.npz\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"lat_grid\": \"degrees\",\n      \"lon_grid\": \"degrees\",\n      \"alt_grid\": \"km\"\n    },\n    \"scale_issues\": [\n      \"Altitude is in kilometers, but the geopotential energy calculation might require meters. Need to convert alt_grid to meters if necessary.\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The provided sample is a CSV representation of the data within the .npz file. The actual file is a NumPy archive.\",\n      \"Missing values are present in the sample data.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Earth radius = 6371.0 km\",\n      \"g = 9.80665 m/s^2\",\n      \"Output should be rounded to 2 decimal places\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final answer must be a single numerical value representing the mean geopotential energy per unit mass in J/kg.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.155019044876099,
+  "token_usage": {}
+}

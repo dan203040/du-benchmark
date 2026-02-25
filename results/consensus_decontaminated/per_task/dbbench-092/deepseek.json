@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "average number of laps",
+    "filters": [
+      "Time/Retired contains 'Accident'",
+      "Manufacturer = 'Aprilia'",
+      "Grid = '27'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many records match all three filter conditions?",
+      "What are the Laps values for matching records?",
+      "Are Laps values numeric or need conversion?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Motorcycle Race Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Laps": "count",
+      "Time/Retired": "time or status string",
+      "Grid": "starting position"
+    },
+    "scale_issues": [
+      "Laps column is object dtype but appears to contain numeric values",
+      "Grid column is object dtype but appears to contain numeric positions",
+      "Time/Retired mixes time values (e.g., '+46:22.971') with status strings (e.g., 'Accident')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 20 rows but shape indicates 47 total rows",
+      "Time/Retired column contains mixed formats: time offsets and status indicators"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Laps should be convertible to numeric values",
+      "Grid values should be convertible to numeric positions",
+      "Time/Retired values starting with '+' indicate finishing times, others indicate DNF reasons"
+    ],
+    "derived_filters": [
+      "Filter for Time/Retired values containing 'Accident' (case-insensitive)",
+      "Filter for Manufacturer exactly 'Aprilia'",
+      "Filter for Grid exactly '27'"
+    ],
+    "statistical_tests": [
+      "Check if any matching records exist before computing average",
+      "Verify Laps distribution for matching records"
+    ],
+    "output_format_requirements": [
+      "Average should be a single numeric value",
+      "Handle case where no records match filters"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average number of laps\",\n        \"filters\": [\"Time/Retired contains 'Accident'\", \"Manufacturer = 'Aprilia'\", \"Grid = '27'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How many records match all three filter conditions?\", \"What are the Laps values for matching records?\", \"Are Laps values numeric or need conversion?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Motorcycle Race Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Laps\": \"count\", \"Time/Retired\": \"time or status string\", \"Grid\": \"starting position\"},\n        \"scale_issues\": [\"Laps column is object dtype but appears to contain numeric values\", \"Grid column is object dtype but appears to contain numeric positions\", \"Time/Retired mixes time values (e.g., '+46:22.971') with status strings (e.g., 'Accident')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 20 rows but shape indicates 47 total rows\", \"Time/Retired column contains mixed formats: time offsets and status indicators\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Laps should be convertible to numeric values\", \"Grid values should be convertible to numeric positions\", \"Time/Retired values starting with '+' indicate finishing times, others indicate DNF reasons\"],\n        \"derived_filters\": [\"Filter for Time/Retired values containing 'Accident' (case-insensitive)\", \"Filter for Manufacturer exactly 'Aprilia'\", \"Filter for Grid exactly '27'\"],\n        \"statistical_tests\": [\"Check if any matching records exist before computing average\", \"Verify Laps distribution for matching records\"],\n        \"output_format_requirements\": [\"Average should be a single numeric value\", \"Handle case where no records match filters\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.888530969619751,
+  "token_usage": {
+    "input_tokens": 952,
+    "output_tokens": 515
+  }
+}

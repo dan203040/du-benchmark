@@ -1,0 +1,137 @@
+{
+  "m_q": {
+    "target_metric": "Total number of Identity Theft reports from cross-state Metropolitan Statistical Areas in 2024",
+    "filters": [
+      "Metropolitan Area contains hyphenated state abbreviations (e.g., 'TN-MS-AR')",
+      "Exclude single-state Metropolitan Areas",
+      "Exclude footnote rows containing 'Metropolitan Areas are defined'"
+    ],
+    "grouping_variables": [
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which Metropolitan Areas span multiple states?",
+      "How to avoid double-counting reports from cross-state areas?",
+      "How to identify and exclude footnote rows?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All files have identical schema: ['Metropolitan Area', '# of Reports']",
+      "All files have same dtypes: {'Metropolitan Area': 'object', '# of Reports': 'float64'}"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of identity theft reports"
+    },
+    "scale_issues": [
+      "Reports are aggregated at Metropolitan Statistical Area level",
+      "Cross-state areas appear in multiple state files (potential double-counting)"
+    ],
+    "cross_source_conflicts": [
+      "Same cross-state Metropolitan Area appears in multiple state files with identical report counts (e.g., 'Columbus, GA-AL' appears in both Alabama.csv and Georgia.csv)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Each file ends with a footnote row containing 'Metropolitan Areas are defined...'",
+      "Metropolitan Area names contain state abbreviations in parentheses",
+      "Cross-state areas have multiple state abbreviations separated by hyphens (e.g., 'TN-MS-AR')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Report counts must be non-negative",
+      "Each cross-state Metropolitan Area should be counted only once",
+      "Footnote rows must be excluded from calculations"
+    ],
+    "derived_filters": [
+      "Metropolitan Area NOT LIKE '%Metropolitan Areas are defined%'",
+      "Metropolitan Area CONTAINS '-' between state abbreviations"
+    ],
+    "statistical_tests": [
+      "Check for duplicate cross-state areas across files",
+      "Verify sum consistency for cross-state areas appearing in multiple files"
+    ],
+    "output_format_requirements": [
+      "Single numeric total",
+      "Should specify that cross-state areas were deduplicated"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Total number of Identity Theft reports from cross-state Metropolitan Statistical Areas in 2024\",\n        \"filters\": [\"Metropolitan Area contains hyphenated state abbreviations (e.g., 'TN-MS-AR')\", \"Exclude single-state Metropolitan Areas\", \"Exclude footnote rows containing 'Metropolitan Areas are defined'\"],\n        \"grouping_variables\": [\"Metropolitan Area\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which Metropolitan Areas span multiple states?\", \"How to avoid double-counting reports from cross-state areas?\", \"How to identify and exclude footnote rows?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Alabama.csv\", \"Alaska.csv\", \"Arizona.csv\", \"Arkansas.csv\", \"California.csv\", \"Colorado.csv\", \"Connecticut.csv\", \"Delaware.csv\", \"DistrictofColumbia.csv\", \"Florida.csv\", \"Georgia.csv\", \"Hawaii.csv\", \"Idaho.csv\", \"Illinois.csv\", \"Indiana.csv\", \"Iowa.csv\", \"Kansas.csv\", \"Kentucky.csv\", \"Louisiana.csv\", \"Maine.csv\", \"Maryland.csv\", \"Massachusetts.csv\", \"Michigan.csv\", \"Minnesota.csv\", \"Mississippi.csv\", \"Missouri.csv\", \"Montana.csv\", \"Nebraska.csv\", \"Nevada.csv\", \"NewHampshire.csv\", \"NewJersey.csv\", \"NewMexico.csv\", \"NewYork.csv\", \"NorthCarolina.csv\", \"NorthDakota.csv\", \"Ohio.csv\", \"Oklahoma.csv\", \"Oregon.csv\", \"Pennsylvania.csv\", \"PuertoRico.csv\", \"RhodeIsland.csv\", \"SouthCarolina.csv\", \"SouthDakota.csv\", \"Tennessee.csv\", \"Texas.csv\", \"Utah.csv\", \"Vermont.csv\", \"Virginia.csv\", \"Washington.csv\", \"WestVirginia.csv\", \"Wisconsin.csv\", \"Wyoming.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All files have identical schema: ['Metropolitan Area', '# of Reports']\", \"All files have same dtypes: {'Metropolitan Area': 'object', '# of Reports': 'float64'}\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of identity theft reports\"},\n        \"scale_issues\": [\"Reports are aggregated at Metropolitan Statistical Area level\", \"Cross-state areas appear in multiple state files (potential double-counting)\"],\n        \"cross_source_conflicts\": [\"Same cross-state Metropolitan Area appears in multiple state files with identical report counts (e.g., 'Columbus, GA-AL' appears in both Alabama.csv and Georgia.csv)\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Each file ends with a footnote row containing 'Metropolitan Areas are defined...'\", \"Metropolitan Area names contain state abbreviations in parentheses\", \"Cross-state areas have multiple state abbreviations separated by hyphens (e.g., 'TN-MS-AR')\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Report counts must be non-negative\", \"Each cross-state Metropolitan Area should be counted only once\", \"Footnote rows must be excluded from calculations\"],\n        \"derived_filters\": [\"Metropolitan Area NOT LIKE '%Metropolitan Areas are defined%'\", \"Metropolitan Area CONTAINS '-' between state abbreviations\"],\n        \"statistical_tests\": [\"Check for duplicate cross-state areas across files\", \"Verify sum consistency for cross-state areas appearing in multiple files\"],\n        \"output_format_requirements\": [\"Single numeric total\", \"Should specify that cross-state areas were deduplicated\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.068397283554077,
+  "token_usage": {
+    "input_tokens": 12805,
+    "output_tokens": 848
+  }
+}

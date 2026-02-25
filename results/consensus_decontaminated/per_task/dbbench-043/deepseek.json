@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "List of major competitions where Yoichiro Kakitani had at least 3 starts",
+    "filters": [
+      "Team = 'Japan'",
+      "Appearances Start >= 3"
+    ],
+    "grouping_variables": [
+      "Competition"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which competitions are considered 'major'?",
+      "Does the data include all competitions for Yoichiro Kakitani?",
+      "Are there any competitions with partial data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "team_competition_stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "The sample shows a row with 'Team,Competition,Category,,,,Team Record' which appears to be a malformed header or data row"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Appearances Start": "count",
+      "Appearances Sub": "count",
+      "Goals": "count"
+    },
+    "scale_issues": [
+      "Data appears to mix different national teams and competitions - unclear if this is comprehensive for Yoichiro Kakitani"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 7 columns as specified in shape",
+      "One row appears malformed with missing values",
+      "Data includes multiple countries, not just Japan"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Appearances Start must be non-negative integer",
+      "Goals must be non-negative integer",
+      "Team must be a valid country name"
+    ],
+    "derived_filters": [
+      "Filter to rows where Team = 'Japan' to find Yoichiro Kakitani's competitions",
+      "Filter to rows where Appearances Start >= 3"
+    ],
+    "statistical_tests": [
+      "Check distribution of Appearances Start values",
+      "Verify no duplicate competition entries for Japan"
+    ],
+    "output_format_requirements": [
+      "List of competition names",
+      "Include number of starts for each qualifying competition"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"List of major competitions where Yoichiro Kakitani had at least 3 starts\",\n        \"filters\": [\"Team = 'Japan'\", \"Appearances Start >= 3\"],\n        \"grouping_variables\": [\"Competition\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which competitions are considered 'major'?\", \"Does the data include all competitions for Yoichiro Kakitani?\", \"Are there any competitions with partial data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"team_competition_stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"The sample shows a row with 'Team,Competition,Category,,,,Team Record' which appears to be a malformed header or data row\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Appearances Start\": \"count\", \"Appearances Sub\": \"count\", \"Goals\": \"count\"},\n        \"scale_issues\": [\"Data appears to mix different national teams and competitions - unclear if this is comprehensive for Yoichiro Kakitani\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 7 columns as specified in shape\", \"One row appears malformed with missing values\", \"Data includes multiple countries, not just Japan\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Appearances Start must be non-negative integer\", \"Goals must be non-negative integer\", \"Team must be a valid country name\"],\n        \"derived_filters\": [\"Filter to rows where Team = 'Japan' to find Yoichiro Kakitani's competitions\", \"Filter to rows where Appearances Start >= 3\"],\n        \"statistical_tests\": [\"Check distribution of Appearances Start values\", \"Verify no duplicate competition entries for Japan\"],\n        \"output_format_requirements\": [\"List of competition names\", \"Include number of starts for each qualifying competition\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.246068000793457,
+  "token_usage": {
+    "input_tokens": 980,
+    "output_tokens": 499
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "Clusters of customers based on personal and purchase data",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "marketing_campaign.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year_Birth": "year",
+      "Income": "currency",
+      "Recency": "days",
+      "MntWines": "currency",
+      "MntFruits": "currency",
+      "MntMeatProducts": "currency",
+      "MntFishProducts": "currency",
+      "MntSweetProducts": "currency",
+      "MntGoldProds": "currency",
+      "NumDealsPurchases": "count",
+      "NumWebPurchases": "count",
+      "NumCatalogPurchases": "count",
+      "NumStorePurchases": "count",
+      "NumWebVisitsMonth": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": "\t",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 29,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The file uses tab as a delimiter.",
+      "Need to handle missing values in 'Income' column.",
+      "The 'Dt_Customer' column needs to be parsed as a date."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Year_Birth' column should be within a reasonable range (e.g., 1900 to current year).",
+      "Income should be a non-negative value."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for outliers in numerical features like 'Income', 'MntWines', etc.",
+      "Determine the optimal number of clusters using methods like the elbow method or silhouette analysis."
+    ],
+    "output_format_requirements": [
+      "The output file 'cluster.csv' should contain all features used for clustering.",
+      "The 'Cluster' column should contain the cluster labels assigned to each customer."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Clusters of customers based on personal and purchase data\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"marketing_campaign.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year_Birth\": \"year\",\n      \"Income\": \"currency\",\n      \"Recency\": \"days\",\n      \"MntWines\": \"currency\",\n      \"MntFruits\": \"currency\",\n      \"MntMeatProducts\": \"currency\",\n      \"MntFishProducts\": \"currency\",\n      \"MntSweetProducts\": \"currency\",\n      \"MntGoldProds\": \"currency\",\n      \"NumDealsPurchases\": \"count\",\n      \"NumWebPurchases\": \"count\",\n      \"NumCatalogPurchases\": \"count\",\n      \"NumStorePurchases\": \"count\",\n      \"NumWebVisitsMonth\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \"\\t\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 29,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The file uses tab as a delimiter.\",\n      \"Need to handle missing values in 'Income' column.\",\n      \"The 'Dt_Customer' column needs to be parsed as a date.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Year_Birth' column should be within a reasonable range (e.g., 1900 to current year).\",\n      \"Income should be a non-negative value.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Check for outliers in numerical features like 'Income', 'MntWines', etc.\",\n      \"Determine the optimal number of clusters using methods like the elbow method or silhouette analysis.\"\n    ],\n    \"output_format_requirements\": [\n      \"The output file 'cluster.csv' should contain all features used for clustering.\",\n      \"The 'Cluster' column should contain the cluster labels assigned to each customer.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.784650087356567,
+  "token_usage": {}
+}

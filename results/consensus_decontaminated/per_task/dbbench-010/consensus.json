@@ -1,0 +1,275 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Team name that appears immediately after Manchester City in the dataset",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Team name that appears immediately after Manchester City in the dataset",
+        "The team name that appears immediately after Manchester City in the list",
+        "The team listed immediately after 'Manchester City' in the 'Team' column."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Manchester City must be present in the Team column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Manchester City must be present in the Team column"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the ordering of teams in the dataset?",
+        "Which team follows Manchester City in the sequence?",
+        "What is the position/row number of Manchester City in the dataset?",
+        "What team appears in the next row after Manchester City?",
+        "Are there multiple occurrences of Manchester City in the dataset?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the ordering of teams in the dataset?",
+          "Which team follows Manchester City in the sequence?"
+        ],
+        [
+          "What is the position/row number of Manchester City in the dataset?",
+          "What team appears in the next row after Manchester City?",
+          "Are there multiple occurrences of Manchester City in the dataset?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Manager Changes"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Manager Changes"
+        ],
+        [
+          "Manager Changes"
+        ],
+        [
+          "Manager Changes"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "date of vacancy": "date",
+        "date of appointment": "date",
+        "position in table": "ordinal_rank"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {},
+        {
+          "Date of vacancy": "date",
+          "Date of appointment": "date",
+          "Position in table": "ordinal_rank"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Team column must contain 'Manchester City'",
+        "Data must maintain original row ordering",
+        "There must be at least one row after the Manchester City row(s)",
+        "The order of rows in the data file is preserved",
+        "The 'Team' column must be ordered as presented in the file."
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Team column must contain 'Manchester City'",
+          "Data must maintain original row ordering"
+        ],
+        [
+          "Team column must contain 'Manchester City'",
+          "There must be at least one row after the Manchester City row(s)",
+          "The order of rows in the data file is preserved"
+        ],
+        [
+          "The 'Team' column must be ordered as presented in the file."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Identify all rows where Team = 'Manchester City'",
+        "Determine which Manchester City occurrence is being referenced (first or second)",
+        "Select the row immediately following the relevant Manchester City row"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Identify all rows where Team = 'Manchester City'",
+          "Determine which Manchester City occurrence is being referenced (first or second)",
+          "Select the row immediately following the relevant Manchester City row"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Team name should be returned as a string",
+        "Return only the team name as a string",
+        "If multiple Manchester City entries exist, clarify which 'after' is meant (likely the first occurrence)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Team name should be returned as a string"
+        ],
+        [
+          "Return only the team name as a string",
+          "If multiple Manchester City entries exist, clarify which 'after' is meant (likely the first occurrence)"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5033333333333334
+}

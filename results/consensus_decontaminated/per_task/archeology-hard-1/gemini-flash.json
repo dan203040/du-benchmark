@@ -1,0 +1,66 @@
+{
+  "m_q": {
+    "target_metric": "Average Potassium (ppm) from the first and last time the study recorded people in the Maltese area, linearly interpolated between samples.",
+    "filters": [
+      "Data from the 'climateMeasurements.xlsx' file",
+      "Data is limited to the Maltese area (Site starts with 'ODP 967')",
+      "First and last recorded time in 'Age_ky' column"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify the first and last 'Age_ky' values where 'Site' starts with 'ODP 967'.",
+      "For the first and last 'Age_ky' values, find the corresponding 'K' values.",
+      "If the first and last 'Age_ky' values are not directly available in the dataset, perform linear interpolation to estimate the 'K' values at those specific 'Age_ky' values.",
+      "Calculate the average of the interpolated 'K' values."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "climateMeasurements.xlsx",
+      "radiocarbon_database_regional.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "K": "ppm",
+      "Age_ky": "ky"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 30,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Potassium values should be non-negative.",
+      "Age values should be non-negative."
+    ],
+    "derived_filters": [
+      "Site starts with 'ODP 967'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer should be rounded to 4 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average Potassium (ppm) from the first and last time the study recorded people in the Maltese area, linearly interpolated between samples.\",\n    \"filters\": [\n      \"Data from the 'climateMeasurements.xlsx' file\",\n      \"Data is limited to the Maltese area (Site starts with 'ODP 967')\",\n      \"First and last recorded time in 'Age_ky' column\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify the first and last 'Age_ky' values where 'Site' starts with 'ODP 967'.\",\n      \"For the first and last 'Age_ky' values, find the corresponding 'K' values.\",\n      \"If the first and last 'Age_ky' values are not directly available in the dataset, perform linear interpolation to estimate the 'K' values at those specific 'Age_ky' values.\",\n      \"Calculate the average of the interpolated 'K' values.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"climateMeasurements.xlsx\",\n      \"radiocarbon_database_regional.xlsx\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"K\": \"ppm\",\n      \"Age_ky\": \"ky\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 30,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Potassium values should be non-negative.\",\n      \"Age values should be non-negative.\"\n    ],\n    \"derived_filters\": [\n      \"Site starts with 'ODP 967'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final answer should be rounded to 4 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.2567360401153564,
+  "token_usage": {}
+}

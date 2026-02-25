@@ -1,0 +1,293 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "maximum value of the 'Number One(s)' column",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "maximum value of the 'Number One(s)' column",
+        "Maximum value of the 'Number One(s)' column",
+        "maximum value of 'Number One(s)'"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the maximum numeric value in the 'Number One(s)' column?",
+        "Are there multiple rows with this maximum value?",
+        "Which artists/songs have this maximum number of number ones?",
+        "What is the maximum value in the 'Number One(s)' column?",
+        "Which artist(s) have this highest number of overall number ones?",
+        "What is the data type of 'Number One(s)' - is it numeric or needs conversion?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the maximum numeric value in the 'Number One(s)' column?",
+          "Are there multiple rows with this maximum value?",
+          "Which artists/songs have this maximum number of number ones?"
+        ],
+        [
+          "What is the maximum value in the 'Number One(s)' column?",
+          "Which artist(s) have this highest number of overall number ones?",
+          "What is the data type of 'Number One(s)' - is it numeric or needs conversion?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Music Chart History"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Music Chart History"
+        ],
+        [
+          "Music Chart History"
+        ],
+        [
+          "Music Chart History"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "number one(s)": "count of number one hits",
+        "whole weeks": "total weeks on chart",
+        "song(s) \u2014 weeks": "weeks per song"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "Number One(s)": "count of number one hits",
+          "Whole Weeks": "total weeks on chart"
+        },
+        {
+          "Number One(s)": "count of number one songs",
+          "Whole Weeks": "count of weeks",
+          "Song(s) \u2014 Weeks": "weeks per song"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "'Number One(s)' column appears to contain numeric values but is stored as object dtype",
+        "'Whole Weeks' column appears to contain numeric values but is stored as object dtype"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Number One(s)' column appears to contain numeric values but is stored as object dtype",
+          "'Whole Weeks' column appears to contain numeric values but is stored as object dtype"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "'Number One(s)' values should be positive integers",
+        "'Whole Weeks' values should be positive integers",
+        "Each row represents a specific song by an artist",
+        "'Number One(s)' column must be converted to numeric type for comparison",
+        "Each row represents a single song achievement, not aggregated artist totals",
+        "'Number One(s)' must be converted to numeric type before finding the maximum"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Number One(s)' values should be positive integers",
+          "'Whole Weeks' values should be positive integers",
+          "Each row represents a specific song by an artist"
+        ],
+        [
+          "'Number One(s)' column must be converted to numeric type for comparison",
+          "Each row represents a single song achievement, not aggregated artist totals"
+        ],
+        [
+          "'Number One(s)' must be converted to numeric type before finding the maximum"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert 'Number One(s)' column to numeric type",
+        "Check for non-numeric values in 'Number One(s)' column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert 'Number One(s)' column to numeric type",
+          "Check for non-numeric values in 'Number One(s)' column"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check distribution of 'Number One(s)' values",
+        "Identify maximum value and frequency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check distribution of 'Number One(s)' values",
+          "Identify maximum value and frequency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return the maximum numeric value",
+        "Consider returning associated artist/song information if needed",
+        "Return the maximum numeric value from 'Number One(s)' column",
+        "Optionally identify which artist(s) have this maximum value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return the maximum numeric value",
+          "Consider returning associated artist/song information if needed"
+        ],
+        [
+          "Return the maximum numeric value from 'Number One(s)' column",
+          "Optionally identify which artist(s) have this maximum value"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5611111111111112
+}

@@ -1,0 +1,125 @@
+{
+  "m_q": {
+    "target_metric": "Average monthly sales volume (units sold) for each bike category",
+    "filters": [
+      "Only orders with order_status=4 (completed orders) should be considered",
+      "Only include months where sales occurred for each category"
+    ],
+    "grouping_variables": [
+      "category_name",
+      "year-month (extracted from order_date)"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the monthly total quantity sold per category?",
+      "What is the mean of monthly totals across all months for each category?",
+      "How should months with zero sales be handled in the average calculation?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "order_items.csv",
+      "orders.csv",
+      "products.csv",
+      "categories.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "order_items.csv",
+        "right_source": "orders.csv",
+        "left_column": "order_id",
+        "right_column": "order_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "order_items.csv",
+        "right_source": "products.csv",
+        "left_column": "product_id",
+        "right_column": "product_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "products.csv",
+        "right_source": "categories.csv",
+        "left_column": "category_id",
+        "right_column": "category_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "order_date in orders.csv is object type but should be datetime for month extraction",
+      "sample_result.csv has empty values in Average Units Sold column"
+    ],
+    "column_mappings": {
+      "category_name": "Category",
+      "avg_monthly_units": "Average Units Sold"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "quantity": "units",
+      "list_price": "currency",
+      "discount": "percentage (0-1)",
+      "order_date": "date",
+      "model_year": "year"
+    },
+    "scale_issues": [
+      "discount values range 0-1 (e.g., 0.2 = 20%)",
+      "list_price has varying scales from 269.99 to 3999.99"
+    ],
+    "cross_source_conflicts": [
+      "product_id exists in order_items, products, and stocks - need to ensure consistent product definitions"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "order_date needs parsing from string to datetime",
+      "sample_result.csv shows expected output format with 7 rows (one per category)",
+      "All files use consistent CSV format with headers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "quantity in order_items must be positive integer",
+      "order_status=4 indicates completed orders",
+      "discount must be between 0 and 1 inclusive",
+      "list_price must be positive"
+    ],
+    "derived_filters": [
+      "Filter orders where order_status = 4",
+      "Extract year-month from order_date for grouping",
+      "Sum quantity per category per month"
+    ],
+    "statistical_tests": [
+      "Check for missing order dates",
+      "Verify no negative quantities",
+      "Validate category_id references exist in categories.csv"
+    ],
+    "output_format_requirements": [
+      "CSV file named avg_units_sold.csv",
+      "Two columns: Category and Average Units Sold",
+      "7 rows (one per bike category)",
+      "Average Units Sold as float with appropriate precision",
+      "Match ordering/layout of sample_result.csv"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Average monthly sales volume (units sold) for each bike category\",\n        \"filters\": [\"Only orders with order_status=4 (completed orders) should be considered\", \"Only include months where sales occurred for each category\"],\n        \"grouping_variables\": [\"category_name\", \"year-month (extracted from order_date)\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What is the monthly total quantity sold per category?\", \"What is the mean of monthly totals across all months for each category?\", \"How should months with zero sales be handled in the average calculation?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"order_items.csv\", \"orders.csv\", \"products.csv\", \"categories.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"order_items.csv\", \"right_source\": \"orders.csv\", \"left_column\": \"order_id\", \"right_column\": \"order_id\", \"join_type\": \"inner\"},\n            {\"left_source\": \"order_items.csv\", \"right_source\": \"products.csv\", \"left_column\": \"product_id\", \"right_column\": \"product_id\", \"join_type\": \"inner\"},\n            {\"left_source\": \"products.csv\", \"right_source\": \"categories.csv\", \"left_column\": \"category_id\", \"right_column\": \"category_id\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"order_date in orders.csv is object type but should be datetime for month extraction\", \"sample_result.csv has empty values in Average Units Sold column\"],\n        \"column_mappings\": {\"category_name\": \"Category\", \"avg_monthly_units\": \"Average Units Sold\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"quantity\": \"units\", \"list_price\": \"currency\", \"discount\": \"percentage (0-1)\", \"order_date\": \"date\", \"model_year\": \"year\"},\n        \"scale_issues\": [\"discount values range 0-1 (e.g., 0.2 = 20%)\", \"list_price has varying scales from 269.99 to 3999.99\"],\n        \"cross_source_conflicts\": [\"product_id exists in order_items, products, and stocks - need to ensure consistent product definitions\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"null\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"order_date needs parsing from string to datetime\", \"sample_result.csv shows expected output format with 7 rows (one per category)\", \"All files use consistent CSV format with headers\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"quantity in order_items must be positive integer\", \"order_status=4 indicates completed orders\", \"discount must be between 0 and 1 inclusive\", \"list_price must be positive\"],\n        \"derived_filters\": [\"Filter orders where order_status = 4\", \"Extract year-month from order_date for grouping\", \"Sum quantity per category per month\"],\n        \"statistical_tests\": [\"Check for missing order dates\", \"Verify no negative quantities\", \"Validate category_id references exist in categories.csv\"],\n        \"output_format_requirements\": [\"CSV file named avg_units_sold.csv\", \"Two columns: Category and Average Units Sold\", \"7 rows (one per bike category)\", \"Average Units Sold as float with appropriate precision\", \"Match ordering/layout of sample_result.csv\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 15.89831018447876,
+  "token_usage": {
+    "input_tokens": 4385,
+    "output_tokens": 778
+  }
+}

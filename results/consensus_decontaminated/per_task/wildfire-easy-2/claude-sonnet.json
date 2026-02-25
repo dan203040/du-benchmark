@@ -1,0 +1,97 @@
+{
+  "m_q": {
+    "target_metric": "The NIFC geographic area abbreviation that intersects with the most US states",
+    "filters": [],
+    "grouping_variables": [
+      "GACCAbbreviation"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the NIFC geographic areas from nifc_geographic_areas.gpkg?",
+      "What are the US states from usa.gpkg?",
+      "Which NIFC geographic areas spatially intersect with which US states?",
+      "Count the number of unique states each NIFC geographic area intersects with",
+      "Which NIFC geographic area has the maximum count of state intersections?",
+      "What is the abbreviation (GACCAbbreviation) of that geographic area?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "usa.gpkg",
+      "nifc_geographic_areas.gpkg"
+    ],
+    "join_keys": [
+      {
+        "left_source": "nifc_geographic_areas.gpkg",
+        "right_source": "usa.gpkg",
+        "left_column": "geometry",
+        "right_column": "geometry",
+        "join_type": "spatial_intersection"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "adm1_name": "state_name",
+      "GACCAbbreviation": "geographic_area_abbreviation"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "geometry": "geographic coordinates (likely WGS84 or similar CRS)",
+      "adm1_name": "US state name",
+      "GACCAbbreviation": "NIFC Geographic Area Coordination Center abbreviation"
+    },
+    "scale_issues": [
+      "Geometry columns may be in different coordinate reference systems requiring projection alignment"
+    ],
+    "cross_source_conflicts": [
+      "Potential CRS mismatch between usa.gpkg and nifc_geographic_areas.gpkg geometry columns"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": null,
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      null
+    ],
+    "expected_columns": 26,
+    "expected_rows": 0,
+    "file_format": "geopackage",
+    "format_notes": [
+      "Both files are GeoPackage format (.gpkg) containing spatial geometry data",
+      "usa.gpkg contains administrative boundaries at multiple levels (adm0=country, adm1=state, adm2=county)",
+      "nifc_geographic_areas.gpkg contains NIFC Geographic Area Coordination Center boundaries",
+      "Geometry column type is 'geometry' requiring spatial operations for intersection analysis",
+      "State-level data can be identified using adm1_name in usa.gpkg",
+      "Need to deduplicate states (use adm1_id or adm1_name) when counting intersections"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Focus on state-level (adm1) boundaries from usa.gpkg, not county-level (adm2)",
+      "Each state should be counted only once per NIFC geographic area intersection",
+      "Spatial intersection must be meaningful (not just touching boundaries)",
+      "Result must be a single abbreviation value from GACCAbbreviation column"
+    ],
+    "derived_filters": [
+      "Filter usa.gpkg to distinct state geometries using adm1_id or adm1_name",
+      "Ensure adm0_name = 'United States' to exclude territories if needed"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return only the GACCAbbreviation value as the answer",
+      "The answer should be a string abbreviation (e.g., 'AICC', 'NWCC', etc.)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The NIFC geographic area abbreviation that intersects with the most US states\",\n    \"filters\": [],\n    \"grouping_variables\": [\"GACCAbbreviation\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are the NIFC geographic areas from nifc_geographic_areas.gpkg?\",\n      \"What are the US states from usa.gpkg?\",\n      \"Which NIFC geographic areas spatially intersect with which US states?\",\n      \"Count the number of unique states each NIFC geographic area intersects with\",\n      \"Which NIFC geographic area has the maximum count of state intersections?\",\n      \"What is the abbreviation (GACCAbbreviation) of that geographic area?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"usa.gpkg\", \"nifc_geographic_areas.gpkg\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"nifc_geographic_areas.gpkg\",\n        \"right_source\": \"usa.gpkg\",\n        \"left_column\": \"geometry\",\n        \"right_column\": \"geometry\",\n        \"join_type\": \"spatial_intersection\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"adm1_name\": \"state_name\",\n      \"GACCAbbreviation\": \"geographic_area_abbreviation\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"geometry\": \"geographic coordinates (likely WGS84 or similar CRS)\",\n      \"adm1_name\": \"US state name\",\n      \"GACCAbbreviation\": \"NIFC Geographic Area Coordination Center abbreviation\"\n    },\n    \"scale_issues\": [\n      \"Geometry columns may be in different coordinate reference systems requiring projection alignment\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Potential CRS mismatch between usa.gpkg and nifc_geographic_areas.gpkg geometry columns\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": null,\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\", null],\n    \"expected_columns\": 26,\n    \"file_format\": \"geopackage\",\n    \"format_notes\": [\n      \"Both files are GeoPackage format (.gpkg) containing spatial geometry data\",\n      \"usa.gpkg contains administrative boundaries at multiple levels (adm0=country, adm1=state, adm2=county)\",\n      \"nifc_geographic_areas.gpkg contains NIFC Geographic Area Coordination Center boundaries\",\n      \"Geometry column type is 'geometry' requiring spatial operations for intersection analysis\",\n      \"State-level data can be identified using adm1_name in usa.gpkg\",\n      \"Need to deduplicate states (use adm1_id or adm1_name) when counting intersections\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Focus on state-level (adm1) boundaries from usa.gpkg, not county-level (adm2)\",\n      \"Each state should be counted only once per NIFC geographic area intersection\",\n      \"Spatial intersection must be meaningful (not just touching boundaries)\",\n      \"Result must be a single abbreviation value from GACCAbbreviation column\"\n    ],\n    \"derived_filters\": [\n      \"Filter usa.gpkg to distinct state geometries using adm1_id or adm1_name\",\n      \"Ensure adm0_name = 'United States' to exclude territories if needed\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return only the GACCAbbreviation value as the answer\",\n      \"The answer should be a string abbreviation (e.g., 'AICC', 'NWCC', etc.)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.388312816619873,
+  "token_usage": {
+    "input_tokens": 5738,
+    "output_tokens": 985
+  }
+}

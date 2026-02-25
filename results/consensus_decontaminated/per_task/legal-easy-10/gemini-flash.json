@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Years where the number of Fraud reports is at least 50% of the total number of reports (Fraud + Identity Theft + Other)",
+    "filters": [],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Calculate the total number of reports for each year (Fraud + Identity Theft + Other).",
+      "Calculate the percentage of Fraud reports for each year (Fraud / Total Reports).",
+      "Filter the years where the percentage of Fraud reports is greater than or equal to 50%."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Fraud": "number of reports",
+      "Identity Theft": "number of reports",
+      "Other": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be a valid year.",
+      "Fraud, Identity Theft, and Other must be non-negative integers."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a list of years."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Years where the number of Fraud reports is at least 50% of the total number of reports (Fraud + Identity Theft + Other)\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Calculate the total number of reports for each year (Fraud + Identity Theft + Other).\",\n      \"Calculate the percentage of Fraud reports for each year (Fraud / Total Reports).\",\n      \"Filter the years where the percentage of Fraud reports is greater than or equal to 50%.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Fraud\": \"number of reports\",\n      \"Identity Theft\": \"number of reports\",\n      \"Other\": \"number of reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be a valid year.\",\n      \"Fraud, Identity Theft, and Other must be non-negative integers.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a list of years.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.8338632583618164,
+  "token_usage": {}
+}

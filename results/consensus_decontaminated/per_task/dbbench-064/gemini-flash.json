@@ -1,0 +1,53 @@
+{
+  "m_q": {
+    "target_metric": "Determine which of the two individuals, John F. Williams or William A. Mann, held their military leadership position first based on the 'From' date.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Extract the 'From' date for John F. Williams.",
+      "Extract the 'From' date for William A. Mann.",
+      "Compare the two 'From' dates to determine which is earlier."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Military Leaders Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'From' column must be parsed as a date.",
+      "Multiple entries for the same person may exist; the earliest 'From' date should be used."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine which of the two individuals, John F. Williams or William A. Mann, held their military leadership position first based on the 'From' date.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Extract the 'From' date for John F. Williams.\",\n      \"Extract the 'From' date for William A. Mann.\",\n      \"Compare the two 'From' dates to determine which is earlier.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Military Leaders Table\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'From' column must be parsed as a date.\",\n      \"Multiple entries for the same person may exist; the earliest 'From' date should be used.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.6984877586364746,
+  "token_usage": {}
+}

@@ -1,0 +1,58 @@
+{
+  "m_q": {
+    "target_metric": "Probability of turbine failure for each turbine in Test.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Test.csv",
+      "Train.csv",
+      "sample_target.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 40,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Target values must be 0 or 1 in target.csv",
+      "The target.csv file must contain a column named 'Target'"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for class imbalance in the 'Target' column of Train.csv",
+      "Assess feature importance using a suitable method (e.g., permutation importance)"
+    ],
+    "output_format_requirements": [
+      "The output file must be named 'target.csv'",
+      "The output file must contain a single column named 'Target'",
+      "The 'Target' column must contain predicted probabilities or binary predictions (0 or 1) for each turbine in Test.csv"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Probability of turbine failure for each turbine in Test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Test.csv\",\n      \"Train.csv\",\n      \"sample_target.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 40,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Target values must be 0 or 1 in target.csv\",\n      \"The target.csv file must contain a column named 'Target'\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Check for class imbalance in the 'Target' column of Train.csv\",\n      \"Assess feature importance using a suitable method (e.g., permutation importance)\"\n    ],\n    \"output_format_requirements\": [\n      \"The output file must be named 'target.csv'\",\n      \"The output file must contain a single column named 'Target'\",\n      \"The 'Target' column must contain predicted probabilities or binary predictions (0 or 1) for each turbine in Test.csv\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.805627822875977,
+  "token_usage": {}
+}

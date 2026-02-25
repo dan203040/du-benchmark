@@ -1,0 +1,448 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average unit price paid for items by customer cohorts defined by month of first purchase, tracked over 13 months",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "average unit price paid for items by customer cohorts defined by month of first purchase, tracked over 13 months",
+        "Average unit price paid for items by customer cohorts over time",
+        "Average unit price paid for items by customer groups (cohorts) defined by the month of their first purchase, tracked over time."
+      ]
+    },
+    "filters": {
+      "value": [
+        "CustomerID must not be null",
+        "UnitPrice > 0",
+        "Quantity > 0",
+        "Exclude transactions with missing CustomerID",
+        "Exclude transactions with negative or zero UnitPrice",
+        "Exclude transactions with negative Quantity"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CustomerID must not be null",
+          "UnitPrice > 0",
+          "Quantity > 0"
+        ],
+        [
+          "Exclude transactions with missing CustomerID",
+          "Exclude transactions with negative or zero UnitPrice",
+          "Exclude transactions with negative Quantity"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "CohortMonth (month of first purchase)",
+        "MonthSinceFirstPurchase (1-13)",
+        "CohortMonth (month of customer's first purchase)",
+        "Purchase month relative to cohort month (1-13)",
+        "CohortMonth"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CohortMonth (month of first purchase)",
+          "MonthSinceFirstPurchase (1-13)"
+        ],
+        [
+          "CohortMonth (month of customer's first purchase)",
+          "Purchase month relative to cohort month (1-13)"
+        ],
+        [
+          "CohortMonth"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is each customer's first purchase month?",
+        "For each cohort, what is the average unit price in each subsequent month?",
+        "How does pricing behavior evolve over time for different cohorts?",
+        "What is the first purchase date for each CustomerID?",
+        "What is the cohort month (YYYY-MM-01) for each customer?",
+        "For each transaction, what is the month offset from the customer's cohort month?",
+        "What is the average UnitPrice for each cohort-month offset combination?",
+        "How should the results be formatted to match the template structure?",
+        "Determine the first purchase month for each customer (CohortMonth).",
+        "Calculate the unit price for each transaction.",
+        "Group transactions by CohortMonth and the month of the transaction.",
+        "Calculate the average unit price for each cohort in each subsequent month.",
+        "Format the output to match the provided average_price.csv template."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is each customer's first purchase month?",
+          "For each cohort, what is the average unit price in each subsequent month?",
+          "How does pricing behavior evolve over time for different cohorts?"
+        ],
+        [
+          "What is the first purchase date for each CustomerID?",
+          "What is the cohort month (YYYY-MM-01) for each customer?",
+          "For each transaction, what is the month offset from the customer's cohort month?",
+          "What is the average UnitPrice for each cohort-month offset combination?",
+          "How should the results be formatted to match the template structure?"
+        ],
+        [
+          "Determine the first purchase month for each customer (CohortMonth).",
+          "Calculate the unit price for each transaction.",
+          "Group transactions by CohortMonth and the month of the transaction.",
+          "Calculate the average unit price for each cohort in each subsequent month.",
+          "Format the output to match the provided average_price.csv template."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "online.csv",
+        "average_price.csv",
+        "average_quantity.csv",
+        "cohort_counts.csv"
+      ],
+      "confidence": 0.5833333333333333,
+      "votes": [
+        [
+          "online.csv",
+          "average_price.csv",
+          "average_quantity.csv",
+          "cohort_counts.csv"
+        ],
+        [
+          "online.csv",
+          "average_price.csv"
+        ],
+        [
+          "online.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "CohortMonth column appears in three files but average_price.csv has empty values while others have data",
+        "online.csv has InvoiceDate as object/string while cohort files use date format",
+        "average_price.csv contains only template structure with null values that need to be populated",
+        "online.csv contains raw transactional data that needs aggregation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CohortMonth column appears in three files but average_price.csv has empty values while others have data",
+          "online.csv has InvoiceDate as object/string while cohort files use date format"
+        ],
+        [
+          "average_price.csv contains only template structure with null values that need to be populated",
+          "online.csv contains raw transactional data that needs aggregation"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "unitprice": "currency (likely GBP)",
+        "quantity": "count of items",
+        "cohortmonth": "YYYY-MM-01 format",
+        "invoicedate": "YYYY-MM-DD HH:MM:SS"
+      },
+      "confidence": 0.8333333333333333,
+      "votes": [
+        {
+          "UnitPrice": "currency (likely GBP)",
+          "Quantity": "count of items",
+          "CohortMonth": "YYYY-MM-01 format",
+          "InvoiceDate": "YYYY-MM-DD HH:MM:SS"
+        },
+        {
+          "UnitPrice": "currency (presumably GBP based on Country column)",
+          "Quantity": "units",
+          "InvoiceDate": "datetime string",
+          "CohortMonth": "date string YYYY-MM-DD"
+        },
+        {
+          "UnitPrice": "currency unit",
+          "Quantity": "number of items"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "UnitPrice values range from 0.42 to 7.9 in sample, need to check full range",
+        "Quantity has large values (24 in sample), may need outlier handling",
+        "InvoiceDate is stored as string and needs conversion to datetime",
+        "CohortMonth needs to be extracted as first day of month from customer's first purchase"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "UnitPrice values range from 0.42 to 7.9 in sample, need to check full range",
+          "Quantity has large values (24 in sample), may need outlier handling"
+        ],
+        [
+          "InvoiceDate is stored as string and needs conversion to datetime",
+          "CohortMonth needs to be extracted as first day of month from customer's first purchase"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "average_price.csv template is empty while analytical question requires filling it",
+        "cohort_counts.csv shows decreasing customer counts over months (attrition)",
+        "average_price.csv uses numeric column headers (1-13) representing month offsets",
+        "online.csv contains raw dates that need to be converted to relative month offsets"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "average_price.csv template is empty while analytical question requires filling it",
+          "cohort_counts.csv shows decreasing customer counts over months (attrition)"
+        ],
+        [
+          "average_price.csv uses numeric column headers (1-13) representing month offsets",
+          "online.csv contains raw dates that need to be converted to relative month offsets"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 9.0,
+      "confidence": 1.0,
+      "votes": [
+        9.0,
+        9.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each customer belongs to exactly one cohort (first purchase month)",
+        "Month columns 1-13 represent sequential months after cohort month",
+        "CohortMonth values must be first day of month (YYYY-MM-01)",
+        "Only include customers with valid CustomerID (not null)",
+        "Only include transactions with positive UnitPrice",
+        "Only include transactions with positive Quantity",
+        "CohortMonth must be the first day of the month of customer's first purchase",
+        "Month offset columns (1-13) represent months since cohort month",
+        "Average price calculation should use UnitPrice from transactions",
+        "CustomerID must be present for each transaction to determine the cohort.",
+        "InvoiceDate must be a valid date to determine the cohort month and transaction month.",
+        "UnitPrice must be greater than zero.",
+        "Quantity must be greater than zero."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Each customer belongs to exactly one cohort (first purchase month)",
+          "Month columns 1-13 represent sequential months after cohort month",
+          "CohortMonth values must be first day of month (YYYY-MM-01)"
+        ],
+        [
+          "Only include customers with valid CustomerID (not null)",
+          "Only include transactions with positive UnitPrice",
+          "Only include transactions with positive Quantity",
+          "CohortMonth must be the first day of the month of customer's first purchase",
+          "Month offset columns (1-13) represent months since cohort month",
+          "Average price calculation should use UnitPrice from transactions"
+        ],
+        [
+          "CustomerID must be present for each transaction to determine the cohort.",
+          "InvoiceDate must be a valid date to determine the cohort month and transaction month.",
+          "UnitPrice must be greater than zero.",
+          "Quantity must be greater than zero."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude returns (negative Quantity)",
+        "Exclude zero or negative UnitPrice",
+        "Exclude customers with missing CustomerID",
+        "Customers must have at least one purchase to be assigned to a cohort",
+        "Only transactions occurring within 13 months of cohort month should be included",
+        "Each customer should be assigned to exactly one cohort based on first purchase month",
+        "Filter out transactions with missing CustomerID.",
+        "Filter out transactions with invalid InvoiceDate.",
+        "Filter out transactions with UnitPrice <= 0.",
+        "Filter out transactions with Quantity <= 0."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Exclude returns (negative Quantity)",
+          "Exclude zero or negative UnitPrice",
+          "Exclude customers with missing CustomerID"
+        ],
+        [
+          "Customers must have at least one purchase to be assigned to a cohort",
+          "Only transactions occurring within 13 months of cohort month should be included",
+          "Each customer should be assigned to exactly one cohort based on first purchase month"
+        ],
+        [
+          "Filter out transactions with missing CustomerID.",
+          "Filter out transactions with invalid InvoiceDate.",
+          "Filter out transactions with UnitPrice <= 0.",
+          "Filter out transactions with Quantity <= 0."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in UnitPrice",
+        "Verify cohort size consistency across files",
+        "Test correlation between average_price and average_quantity",
+        "Verify that cohort month assignments are consistent",
+        "Validate that average prices are within reasonable ranges"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in UnitPrice",
+          "Verify cohort size consistency across files",
+          "Test correlation between average_price and average_quantity"
+        ],
+        [
+          "Verify that cohort month assignments are consistent",
+          "Validate that average prices are within reasonable ranges"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Must match average_price.csv template format",
+        "13 rows (cohorts from 2010-12 to 2011-12)",
+        "14 columns (CohortMonth + months 1-13)",
+        "Float values for average unit prices",
+        "Empty cells for months beyond data availability",
+        "Output file must be named average_price.csv",
+        "First column must be CohortMonth in YYYY-MM-DD format",
+        "Subsequent columns must be labeled 1 through 13",
+        "CohortMonth values should match those in template: 2010-12-01 through 2011-12-01",
+        "Numeric values should be float64 type",
+        "Empty cells should remain as NaN for cohort-month combinations with no data",
+        "File structure must have 13 rows (one per cohort) and 14 columns total",
+        "Output must be a CSV file named average_price.csv.",
+        "The CSV file must have columns: CohortMonth, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13.",
+        "CohortMonth column must be in 'YYYY-MM-01' format.",
+        "The values in columns 1-13 represent the average unit price for each cohort in the subsequent months after their first purchase.",
+        "Missing values should be represented as empty strings or NaN."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Must match average_price.csv template format",
+          "13 rows (cohorts from 2010-12 to 2011-12)",
+          "14 columns (CohortMonth + months 1-13)",
+          "Float values for average unit prices",
+          "Empty cells for months beyond data availability"
+        ],
+        [
+          "Output file must be named average_price.csv",
+          "First column must be CohortMonth in YYYY-MM-DD format",
+          "Subsequent columns must be labeled 1 through 13",
+          "CohortMonth values should match those in template: 2010-12-01 through 2011-12-01",
+          "Numeric values should be float64 type",
+          "Empty cells should remain as NaN for cohort-month combinations with no data",
+          "File structure must have 13 rows (one per cohort) and 14 columns total"
+        ],
+        [
+          "Output must be a CSV file named average_price.csv.",
+          "The CSV file must have columns: CohortMonth, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13.",
+          "CohortMonth column must be in 'YYYY-MM-01' format.",
+          "The values in columns 1-13 represent the average unit price for each cohort in the subsequent months after their first purchase.",
+          "Missing values should be represented as empty strings or NaN."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5908333333333335
+}

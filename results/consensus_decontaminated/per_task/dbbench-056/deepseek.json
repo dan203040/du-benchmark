@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Identify two hospitals with consecutive rankings of 8 and 9 that both have exactly 1200 beds",
+    "filters": [
+      "Rank IN (8, 9)",
+      "# Beds = 1200"
+    ],
+    "grouping_variables": [
+      "Rank",
+      "Hospital"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which hospitals have rank 8?",
+      "Which hospitals have rank 9?",
+      "Do both hospitals have exactly 1200 beds?",
+      "Are ranks 8 and 9 consecutive in the dataset?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Hospital Information"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# Beds": "count of hospital beds"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names match sample data",
+      "Data appears clean with consistent formatting"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Rank values should be unique and sequential",
+      "# Beds should be positive integers",
+      "Hospital names should be unique"
+    ],
+    "derived_filters": [
+      "Filter rows where Rank = 8 AND # Beds = 1200",
+      "Filter rows where Rank = 9 AND # Beds = 1200"
+    ],
+    "statistical_tests": [
+      "Check if ranks 8 and 9 exist in the dataset",
+      "Verify bed count consistency for ranks 8 and 9"
+    ],
+    "output_format_requirements": [
+      "List hospital names for ranks 8 and 9",
+      "Confirm both have 1200 beds",
+      "Verify ranks are consecutive in the dataset"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Identify two hospitals with consecutive rankings of 8 and 9 that both have exactly 1200 beds\",\n        \"filters\": [\"Rank IN (8, 9)\", \"# Beds = 1200\"],\n        \"grouping_variables\": [\"Rank\", \"Hospital\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which hospitals have rank 8?\", \"Which hospitals have rank 9?\", \"Do both hospitals have exactly 1200 beds?\", \"Are ranks 8 and 9 consecutive in the dataset?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Hospital Information\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# Beds\": \"count of hospital beds\"},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names match sample data\", \"Data appears clean with consistent formatting\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Rank values should be unique and sequential\", \"# Beds should be positive integers\", \"Hospital names should be unique\"],\n        \"derived_filters\": [\"Filter rows where Rank = 8 AND # Beds = 1200\", \"Filter rows where Rank = 9 AND # Beds = 1200\"],\n        \"statistical_tests\": [\"Check if ranks 8 and 9 exist in the dataset\", \"Verify bed count consistency for ranks 8 and 9\"],\n        \"output_format_requirements\": [\"List hospital names for ranks 8 and 9\", \"Confirm both have 1200 beds\", \"Verify ranks are consecutive in the dataset\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.299062013626099,
+  "token_usage": {
+    "input_tokens": 1008,
+    "output_tokens": 446
+  }
+}

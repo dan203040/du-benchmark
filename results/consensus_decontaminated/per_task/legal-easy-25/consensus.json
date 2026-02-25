@@ -1,0 +1,340 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Median Fraud Loss",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Median Fraud Loss",
+        "Maximum Median Fraud Loss among U.S. Military branches",
+        "Maximum 'Median Fraud Loss'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2024",
+        "Data from military consumers who provided branch information"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year = 2024",
+          "Data from military consumers who provided branch information"
+        ],
+        [
+          "Year = 2024"
+        ],
+        [
+          "Year = 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Military Branch"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Military Branch"
+        ],
+        [
+          "Military Branch"
+        ],
+        [
+          "Military Branch"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which military branch has the maximum Median Fraud Loss value?",
+        "Are there any data quality issues with the Median Fraud Loss column?",
+        "Does the sample include all U.S. Military branches?",
+        "What are all the U.S. Military branches in the dataset?",
+        "What is the Median Fraud Loss for each Military Branch?",
+        "Which Military Branch has the highest Median Fraud Loss value?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which military branch has the maximum Median Fraud Loss value?",
+          "Are there any data quality issues with the Median Fraud Loss column?",
+          "Does the sample include all U.S. Military branches?"
+        ],
+        [
+          "What are all the U.S. Military branches in the dataset?",
+          "What is the Median Fraud Loss for each Military Branch?",
+          "Which Military Branch has the highest Median Fraud Loss value?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv",
+        "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers__Fraud, Identity Theft, and Other Reports by Military Consumers",
+        "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers__Of the 212,158 total reports from military consumers in 2024, 92% provided military branch information."
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv",
+          "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers__Fraud, Identity Theft, and Other Reports by Military Consumers",
+          "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers__Of the 212,158 total reports from military consumers in 2024, 92% provided military branch information."
+        ],
+        [
+          "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv"
+        ],
+        [
+          "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different primary grouping columns: 'Military Branch' vs 'Military Status' vs 'Military Rank'",
+        "Same metric columns but different grouping contexts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different primary grouping columns: 'Military Branch' vs 'Military Status' vs 'Military Rank'",
+          "Same metric columns but different grouping contexts"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "median fraud loss": "dollars",
+        "total fraud loss": "millions of dollars with 'M' suffix",
+        "% reporting fraud loss": "percentage with '%' symbol"
+      },
+      "confidence": 0.7777777777777777,
+      "votes": [
+        {
+          "Median Fraud Loss": "dollars",
+          "Total Fraud Loss": "millions of dollars with 'M' suffix",
+          "% Reporting Fraud Loss": "percentage with '%' symbol"
+        },
+        {
+          "Median Fraud Loss": "USD (dollars)",
+          "Total Fraud Loss": "USD (abbreviated with M for millions)",
+          "% Reporting Fraud Loss": "percentage"
+        },
+        {
+          "Median Fraud Loss": "USD"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Total Fraud Loss column contains string values with 'M' suffix (e.g., '$96M') that need conversion for numerical operations",
+        "% Reporting Fraud Loss contains '%' symbol that needs removal for numerical operations",
+        "Total Fraud Loss is abbreviated with 'M' suffix representing millions (e.g., '$96M' = $96,000,000)",
+        "% Reporting Fraud Loss includes '%' symbol in string format",
+        "Median Fraud Loss is in raw dollar amounts as integer"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total Fraud Loss column contains string values with 'M' suffix (e.g., '$96M') that need conversion for numerical operations",
+          "% Reporting Fraud Loss contains '%' symbol that needs removal for numerical operations"
+        ],
+        [
+          "Total Fraud Loss is abbreviated with 'M' suffix representing millions (e.g., '$96M' = $96,000,000)",
+          "% Reporting Fraud Loss includes '%' symbol in string format",
+          "Median Fraud Loss is in raw dollar amounts as integer"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "First file groups by Military Branch, second by Military Status, third by Military Rank - cannot be directly joined"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First file groups by Military Branch, second by Military Status, third by Military Rank - cannot be directly joined"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Military Branch column contains exactly 6 unique values: U.S. Air Force, U.S. Army, U.S. Coast Guard, U.S. Marines, U.S. Navy, U.S. Space Force",
+        "Median Fraud Loss values are integers",
+        "Total rows in first file = 6 (matches number of military branches)",
+        "Military Branch must be one of: U.S. Air Force, U.S. Army, U.S. Coast Guard, U.S. Marines, U.S. Navy, U.S. Space Force",
+        "Median Fraud Loss must be non-negative integer",
+        "Only data from 2024 should be considered",
+        "'Military Branch' must be one of the valid U.S. Military Branches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Military Branch column contains exactly 6 unique values: U.S. Air Force, U.S. Army, U.S. Coast Guard, U.S. Marines, U.S. Navy, U.S. Space Force",
+          "Median Fraud Loss values are integers",
+          "Total rows in first file = 6 (matches number of military branches)"
+        ],
+        [
+          "Military Branch must be one of: U.S. Air Force, U.S. Army, U.S. Coast Guard, U.S. Marines, U.S. Navy, U.S. Space Force",
+          "Median Fraud Loss must be non-negative integer",
+          "Only data from 2024 should be considered"
+        ],
+        [
+          "'Military Branch' must be one of the valid U.S. Military Branches"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Use only first file (2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv) as it contains Military Branch grouping",
+        "Filter to year 2024 (implied by filename)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Use only first file (2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv) as it contains Military Branch grouping",
+          "Filter to year 2024 (implied by filename)"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Find maximum value in Median Fraud Loss column",
+        "Verify data completeness for all military branches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Find maximum value in Median Fraud Loss column",
+          "Verify data completeness for all military branches"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single military branch name with highest Median Fraud Loss",
+        "Include the actual Median Fraud Loss value for verification",
+        "Output should identify the single Military Branch with the largest Median Fraud Loss",
+        "The answer should include the branch name and the corresponding Median Fraud Loss value",
+        "Report the 'Military Branch' with the highest 'Median Fraud Loss'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single military branch name with highest Median Fraud Loss",
+          "Include the actual Median Fraud Loss value for verification"
+        ],
+        [
+          "Output should identify the single Military Branch with the largest Median Fraud Loss",
+          "The answer should include the branch name and the corresponding Median Fraud Loss value"
+        ],
+        [
+          "Report the 'Military Branch' with the highest 'Median Fraud Loss'"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6500000000000001
+}

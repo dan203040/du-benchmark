@@ -1,0 +1,89 @@
+{
+  "m_q": {
+    "target_metric": "Identify tournament(s) where the 2007 result is 'sf' (semifinals), the 2008 result is 'sf' (semifinals), and the 2010 result is 'f' (final)",
+    "filters": [
+      "2007 == 'SF'",
+      "2008 == 'SF'",
+      "2010 == 'F'"
+    ],
+    "grouping_variables": [
+      "Tournament"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which tournaments have SF in 2007?",
+      "Which of those also have SF in 2008?",
+      "Which of those also have F in 2010?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Tournament Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "2005": "tournament round result",
+      "2006": "tournament round result",
+      "2007": "tournament round result",
+      "2008": "tournament round result",
+      "2009": "tournament round result",
+      "2010": "tournament round result",
+      "2011": "tournament round result",
+      "2012": "tournament round result",
+      "2013": "tournament round result",
+      "Win %": "percentage"
+    },
+    "scale_issues": [
+      "Win % column contains percentages but stored as strings with '%' symbol"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      "",
+      "NA"
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row appears to be a header row with column names",
+      "Second row appears to be a descriptive row that should be filtered out",
+      "Data contains tournament round abbreviations (1R, 2R, 3R, 4R, QF, SF, F, W, RR, BR)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Tournament names must be unique",
+      "Year columns should contain valid tournament round codes",
+      "Win % should be between 0 and 100"
+    ],
+    "derived_filters": [
+      "Tournament != 'Grand Slam tournaments'",
+      "Tournament != 'Win\u2013Loss'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate tournament names",
+      "Validate tournament round codes in year columns"
+    ],
+    "output_format_requirements": [
+      "List of tournament names matching the criteria",
+      "Case-sensitive matching for 'SF' and 'F' values"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Identify tournament(s) where the 2007 result is 'sf' (semifinals), the 2008 result is 'sf' (semifinals), and the 2010 result is 'f' (final)\",\n        \"filters\": [\"2007 == 'SF'\", \"2008 == 'SF'\", \"2010 == 'F'\"],\n        \"grouping_variables\": [\"Tournament\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which tournaments have SF in 2007?\", \"Which of those also have SF in 2008?\", \"Which of those also have F in 2010?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Tournament Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"2005\": \"tournament round result\",\n            \"2006\": \"tournament round result\",\n            \"2007\": \"tournament round result\",\n            \"2008\": \"tournament round result\",\n            \"2009\": \"tournament round result\",\n            \"2010\": \"tournament round result\",\n            \"2011\": \"tournament round result\",\n            \"2012\": \"tournament round result\",\n            \"2013\": \"tournament round result\",\n            \"Win %\": \"percentage\"\n        },\n        \"scale_issues\": [\"Win % column contains percentages but stored as strings with '%' symbol\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\u2013\", \"\", \"NA\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row appears to be a header row with column names\", \"Second row appears to be a descriptive row that should be filtered out\", \"Data contains tournament round abbreviations (1R, 2R, 3R, 4R, QF, SF, F, W, RR, BR)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Tournament names must be unique\", \"Year columns should contain valid tournament round codes\", \"Win % should be between 0 and 100\"],\n        \"derived_filters\": [\"Tournament != 'Grand Slam tournaments'\", \"Tournament != 'Win\u2013Loss'\"],\n        \"statistical_tests\": [\"Check for duplicate tournament names\", \"Validate tournament round codes in year columns\"],\n        \"output_format_requirements\": [\"List of tournament names matching the criteria\", \"Case-sensitive matching for 'SF' and 'F' values\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.26102089881897,
+  "token_usage": {
+    "input_tokens": 1107,
+    "output_tokens": 605
+  }
+}

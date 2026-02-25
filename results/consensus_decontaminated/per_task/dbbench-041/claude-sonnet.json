@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "US Cash Box value",
+    "filters": [
+      "Year < 1978",
+      "US Billboard = 35"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which records have US Billboard value equal to 35?",
+      "Among those records, which have Year before 1978?",
+      "What is the US Cash Box value for the matching record?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "US Music Charts"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "US Billboard": "chart_position",
+      "US Cash Box": "chart_position",
+      "US AC": "chart_position",
+      "CAN AC": "chart_position"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      "NA",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Title column contains values wrapped in triple quotes",
+      "Dash character (\u2013) represents missing chart positions",
+      "All chart position columns stored as text/object type requiring conversion to numeric",
+      "Year stored as object type requiring conversion to numeric for comparison"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be convertible to integer for comparison",
+      "US Billboard must be convertible to integer for exact match",
+      "US Cash Box may contain sentinel values (\u2013) indicating no chart position",
+      "Year < 1978 means Year <= 1977"
+    ],
+    "derived_filters": [
+      "Convert Year from object to integer where Year < 1978",
+      "Convert US Billboard from object to integer where US Billboard = 35",
+      "Handle sentinel values in US Cash Box before returning result"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single US Cash Box value matching the criteria",
+      "If no match found, indicate no result",
+      "If multiple matches found, return all matching values or clarify ambiguity"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"US Cash Box value\",\n    \"filters\": [\n      \"Year < 1978\",\n      \"US Billboard = 35\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which records have US Billboard value equal to 35?\",\n      \"Among those records, which have Year before 1978?\",\n      \"What is the US Cash Box value for the matching record?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"US Music Charts\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"US Billboard\": \"chart_position\",\n      \"US Cash Box\": \"chart_position\",\n      \"US AC\": \"chart_position\",\n      \"CAN AC\": \"chart_position\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\u2013\",\n      \"NA\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Title column contains values wrapped in triple quotes\",\n      \"Dash character (\u2013) represents missing chart positions\",\n      \"All chart position columns stored as text/object type requiring conversion to numeric\",\n      \"Year stored as object type requiring conversion to numeric for comparison\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be convertible to integer for comparison\",\n      \"US Billboard must be convertible to integer for exact match\",\n      \"US Cash Box may contain sentinel values (\u2013) indicating no chart position\",\n      \"Year < 1978 means Year <= 1977\"\n    ],\n    \"derived_filters\": [\n      \"Convert Year from object to integer where Year < 1978\",\n      \"Convert US Billboard from object to integer where US Billboard = 35\",\n      \"Handle sentinel values in US Cash Box before returning result\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single US Cash Box value matching the criteria\",\n      \"If no match found, indicate no result\",\n      \"If multiple matches found, return all matching values or clarify ambiguity\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.755635976791382,
+  "token_usage": {
+    "input_tokens": 1071,
+    "output_tokens": 642
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Total amount of money defrauded across all payment methods in millions of dollars",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the Total $ Loss for each payment method?",
+      "How to parse the dollar amounts from string format with 'M' suffix and commas?",
+      "What is the sum of all parsed dollar amounts?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Fraud_Reports_by_Payment_Method.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Total $ Loss": "total_loss_amount"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total $ Loss": "millions of US dollars",
+      "# of Reports": "count"
+    },
+    "scale_issues": [
+      "Total $ Loss column contains string values with dollar signs, 'M' suffix indicating millions, and comma separators",
+      "Values need to be parsed to extract numeric amounts (e.g., '$275M' -> 275, '$2,089M' -> 2089)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Total $ Loss column contains formatted strings with '$' prefix, comma separators, and 'M' suffix",
+      "Example formats: '$275M', '$2,089M'",
+      "Need to strip '$', remove commas, remove 'M', and convert to numeric"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "All Total $ Loss values should be positive numbers",
+      "All Payment Method entries should be non-null",
+      "Sum should include all 10 payment methods listed"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be an integer number",
+      "Output must be in millions of dollars",
+      "No decimal places required"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total amount of money defrauded across all payment methods in millions of dollars\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the Total $ Loss for each payment method?\",\n      \"How to parse the dollar amounts from string format with 'M' suffix and commas?\",\n      \"What is the sum of all parsed dollar amounts?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Fraud_Reports_by_Payment_Method.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Total $ Loss\": \"total_loss_amount\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total $ Loss\": \"millions of US dollars\",\n      \"# of Reports\": \"count\"\n    },\n    \"scale_issues\": [\n      \"Total $ Loss column contains string values with dollar signs, 'M' suffix indicating millions, and comma separators\",\n      \"Values need to be parsed to extract numeric amounts (e.g., '$275M' -> 275, '$2,089M' -> 2089)\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Total $ Loss column contains formatted strings with '$' prefix, comma separators, and 'M' suffix\",\n      \"Example formats: '$275M', '$2,089M'\",\n      \"Need to strip '$', remove commas, remove 'M', and convert to numeric\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"All Total $ Loss values should be positive numbers\",\n      \"All Payment Method entries should be non-null\",\n      \"Sum should include all 10 payment methods listed\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be an integer number\",\n      \"Output must be in millions of dollars\",\n      \"No decimal places required\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.294903993606567,
+  "token_usage": {
+    "input_tokens": 912,
+    "output_tokens": 611
+  }
+}

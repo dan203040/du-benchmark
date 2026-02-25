@@ -1,0 +1,86 @@
+{
+  "m_q": {
+    "target_metric": "Geographic area and year with the most anomalous total acres burned (human and lightning caused) based on Z-score compared to its historical average.",
+    "filters": [],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate total acres burned per geographic area per year by summing human and lightning caused acres.",
+      "Calculate the historical average acres burned for each geographic area.",
+      "Calculate the Z-score for each year and geographic area based on total acres burned.",
+      "Identify the geographic area and year with the highest absolute Z-score."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "nifc_human_caused_acres.csv",
+      "nifc_lightning_caused_acres.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "nifc_human_caused_acres.csv",
+        "right_source": "nifc_lightning_caused_acres.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column 'Western Great Basin' in nifc_human_caused_acres.csv and 'Western Great Basin*' in nifc_lightning_caused_acres.csv have slightly different names but represent the same geographic area. The asterisk should be removed or the column renamed for consistency."
+    ],
+    "column_mappings": {
+      "Western Great Basin*": "Western Great Basin"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Alaska": "acres",
+      "Northwest": "acres",
+      "Northern California": "acres",
+      "Southern California": "acres",
+      "Northern Rockies": "acres",
+      "Great Basin": "acres",
+      "Western Great Basin": "acres",
+      "Southwest": "acres",
+      "Rocky Mountains": "acres",
+      "Eastern Area": "acres",
+      "Southern Area": "acres",
+      "Total": "acres"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 13,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Years should be consistent across both datasets.",
+      "Acres burned should be non-negative."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Z-score calculation requires a mean and standard deviation for each geographic area."
+    ],
+    "output_format_requirements": [
+      "Output should be a string: 'geographic area, year'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Geographic area and year with the most anomalous total acres burned (human and lightning caused) based on Z-score compared to its historical average.\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"Year\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate total acres burned per geographic area per year by summing human and lightning caused acres.\",\n      \"Calculate the historical average acres burned for each geographic area.\",\n      \"Calculate the Z-score for each year and geographic area based on total acres burned.\",\n      \"Identify the geographic area and year with the highest absolute Z-score.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"nifc_human_caused_acres.csv\",\n      \"nifc_lightning_caused_acres.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"nifc_human_caused_acres.csv\",\n        \"right_source\": \"nifc_lightning_caused_acres.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Column 'Western Great Basin' in nifc_human_caused_acres.csv and 'Western Great Basin*' in nifc_lightning_caused_acres.csv have slightly different names but represent the same geographic area. The asterisk should be removed or the column renamed for consistency.\"\n    ],\n    \"column_mappings\": {\n      \"Western Great Basin*\": \"Western Great Basin\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Alaska\": \"acres\",\n      \"Northwest\": \"acres\",\n      \"Northern California\": \"acres\",\n      \"Southern California\": \"acres\",\n      \"Northern Rockies\": \"acres\",\n      \"Great Basin\": \"acres\",\n      \"Western Great Basin\": \"acres\",\n      \"Southwest\": \"acres\",\n      \"Rocky Mountains\": \"acres\",\n      \"Eastern Area\": \"acres\",\n      \"Southern Area\": \"acres\",\n      \"Total\": \"acres\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 13,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Years should be consistent across both datasets.\",\n      \"Acres burned should be non-negative.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Z-score calculation requires a mean and standard deviation for each geographic area.\"\n    ],\n    \"output_format_requirements\": [\n      \"Output should be a string: 'geographic area, year'\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.468926906585693,
+  "token_usage": {}
+}

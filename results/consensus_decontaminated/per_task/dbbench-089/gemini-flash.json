@@ -1,0 +1,60 @@
+{
+  "m_q": {
+    "target_metric": "last train to arrive each day",
+    "filters": [],
+    "grouping_variables": [
+      "Day"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "For each day, what is the latest arrival time?",
+      "Which train corresponds to the latest arrival time for each day?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Arrival times must be in a valid time format (HH:MM).",
+      "Day values must be valid days of the week or 'Daily'."
+    ],
+    "derived_filters": [
+      "Filter out rows where 'Arrival' is null or invalid.",
+      "Create a derived column representing the arrival time as a datetime object for comparison."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should include the day and the name of the train that arrived last.",
+      "Output should be sorted by day."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"last train to arrive each day\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Day\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"For each day, what is the latest arrival time?\",\n      \"Which train corresponds to the latest arrival time for each day?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Train Schedule\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Arrival times must be in a valid time format (HH:MM).\",\n      \"Day values must be valid days of the week or 'Daily'.\"\n    ],\n    \"derived_filters\": [\n      \"Filter out rows where 'Arrival' is null or invalid.\",\n      \"Create a derived column representing the arrival time as a datetime object for comparison.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should include the day and the name of the train that arrived last.\",\n      \"Output should be sorted by day.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.8917810916900635,
+  "token_usage": {}
+}

@@ -1,0 +1,94 @@
+{
+  "m_q": {
+    "target_metric": "Count of beaches where the bacterial exceedance rate (percentage of samples with Violation='yes') in 2013 is greater than in 2012",
+    "filters": [
+      "Year = 2012 or 2013",
+      "Exclude beaches with no samples in 2012",
+      "Consider only samples where Violation is recorded as 'yes' or 'no'"
+    ],
+    "grouping_variables": [
+      "Beach Name",
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the bacterial exceedance rate per beach per year?",
+      "Which beaches have samples in both 2012 and 2013?",
+      "For each beach with data in both years, compare 2013 exceedance rate to 2012 exceedance rate"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "water-body-testing-2012.csv",
+        "right_source": "water-body-testing-2013.csv",
+        "left_column": "Beach Name",
+        "right_column": "Beach Name",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "No apparent schema conflicts - both files have identical column names and data types"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "bacterial concentration units (not specified in data)"
+    },
+    "scale_issues": [
+      "Indicator Level values vary widely (e.g., 2.0 to 564.0 in sample data)"
+    ],
+    "cross_source_conflicts": [
+      "Need to verify Beach Name consistency across years - same beach might have different naming conventions"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date appears to be in YYYY-MM-DD HH:MM:SS format",
+      "Violation column contains 'yes'/'no' values",
+      "Both files have same structure and column order"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Violation must be either 'yes' or 'no'",
+      "Year must be 2012 or 2013",
+      "Beach Name must not be null",
+      "Each beach must have at least one sample in 2012"
+    ],
+    "derived_filters": [
+      "Filter to beaches present in both 2012 and 2013 data",
+      "Calculate exceedance rate = (count of Violation='yes') / (total samples) per beach per year"
+    ],
+    "statistical_tests": [
+      "Compare proportions (exceedance rates) between 2012 and 2013 for each beach"
+    ],
+    "output_format_requirements": [
+      "Single integer count of beaches",
+      "Must exclude beaches with zero samples in 2012"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of beaches where the bacterial exceedance rate (percentage of samples with Violation='yes') in 2013 is greater than in 2012\",\n        \"filters\": [\"Year = 2012 or 2013\", \"Exclude beaches with no samples in 2012\", \"Consider only samples where Violation is recorded as 'yes' or 'no'\"],\n        \"grouping_variables\": [\"Beach Name\", \"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the bacterial exceedance rate per beach per year?\", \"Which beaches have samples in both 2012 and 2013?\", \"For each beach with data in both years, compare 2013 exceedance rate to 2012 exceedance rate\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"water-body-testing-2012.csv\", \"water-body-testing-2013.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"water-body-testing-2012.csv\", \"right_source\": \"water-body-testing-2013.csv\", \"left_column\": \"Beach Name\", \"right_column\": \"Beach Name\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"No apparent schema conflicts - both files have identical column names and data types\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Indicator Level\": \"bacterial concentration units (not specified in data)\"},\n        \"scale_issues\": [\"Indicator Level values vary widely (e.g., 2.0 to 564.0 in sample data)\"],\n        \"cross_source_conflicts\": [\"Need to verify Beach Name consistency across years - same beach might have different naming conventions\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample Date appears to be in YYYY-MM-DD HH:MM:SS format\", \"Violation column contains 'yes'/'no' values\", \"Both files have same structure and column order\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Violation must be either 'yes' or 'no'\", \"Year must be 2012 or 2013\", \"Beach Name must not be null\", \"Each beach must have at least one sample in 2012\"],\n        \"derived_filters\": [\"Filter to beaches present in both 2012 and 2013 data\", \"Calculate exceedance rate = (count of Violation='yes') / (total samples) per beach per year\"],\n        \"statistical_tests\": [\"Compare proportions (exceedance rates) between 2012 and 2013 for each beach\"],\n        \"output_format_requirements\": [\"Single integer count of beaches\", \"Must exclude beaches with zero samples in 2012\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.7706298828125,
+  "token_usage": {
+    "input_tokens": 2665,
+    "output_tokens": 669
+  }
+}

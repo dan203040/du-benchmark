@@ -1,0 +1,116 @@
+{
+  "m_q": {
+    "target_metric": "average unit price paid for items by customer cohorts defined by month of first purchase, tracked over 13 months",
+    "filters": [
+      "CustomerID must not be null",
+      "UnitPrice > 0",
+      "Quantity > 0"
+    ],
+    "grouping_variables": [
+      "CohortMonth (month of first purchase)",
+      "MonthSinceFirstPurchase (1-13)"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is each customer's first purchase month?",
+      "For each cohort, what is the average unit price in each subsequent month?",
+      "How does pricing behavior evolve over time for different cohorts?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online.csv",
+      "average_price.csv",
+      "average_quantity.csv",
+      "cohort_counts.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "CohortMonth column appears in three files but average_price.csv has empty values while others have data",
+      "online.csv has InvoiceDate as object/string while cohort files use date format"
+    ],
+    "column_mappings": {
+      "Unnamed: 0": "RowID",
+      "InvoiceDate": "PurchaseDate",
+      "1": "Month1",
+      "2": "Month2",
+      "3": "Month3",
+      "4": "Month4",
+      "5": "Month5",
+      "6": "Month6",
+      "7": "Month7",
+      "8": "Month8",
+      "9": "Month9",
+      "10": "Month10",
+      "11": "Month11",
+      "12": "Month12",
+      "13": "Month13"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "UnitPrice": "currency (likely GBP)",
+      "Quantity": "count of items",
+      "CohortMonth": "YYYY-MM-01 format",
+      "InvoiceDate": "YYYY-MM-DD HH:MM:SS"
+    },
+    "scale_issues": [
+      "UnitPrice values range from 0.42 to 7.9 in sample, need to check full range",
+      "Quantity has large values (24 in sample), may need outlier handling"
+    ],
+    "cross_source_conflicts": [
+      "average_price.csv template is empty while analytical question requires filling it",
+      "cohort_counts.csv shows decreasing customer counts over months (attrition)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "average_price.csv has empty template with 13 rows x 14 columns",
+      "cohort files use numeric column names (1-13) for months since first purchase",
+      "online.csv has 70,864 rows with purchase-level data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each customer belongs to exactly one cohort (first purchase month)",
+      "Month columns 1-13 represent sequential months after cohort month",
+      "CohortMonth values must be first day of month (YYYY-MM-01)"
+    ],
+    "derived_filters": [
+      "Exclude returns (negative Quantity)",
+      "Exclude zero or negative UnitPrice",
+      "Exclude customers with missing CustomerID"
+    ],
+    "statistical_tests": [
+      "Check for outliers in UnitPrice",
+      "Verify cohort size consistency across files",
+      "Test correlation between average_price and average_quantity"
+    ],
+    "output_format_requirements": [
+      "Must match average_price.csv template format",
+      "13 rows (cohorts from 2010-12 to 2011-12)",
+      "14 columns (CohortMonth + months 1-13)",
+      "Float values for average unit prices",
+      "Empty cells for months beyond data availability"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average unit price paid for items by customer cohorts defined by month of first purchase, tracked over 13 months\",\n        \"filters\": [\"CustomerID must not be null\", \"UnitPrice > 0\", \"Quantity > 0\"],\n        \"grouping_variables\": [\"CohortMonth (month of first purchase)\", \"MonthSinceFirstPurchase (1-13)\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What is each customer's first purchase month?\", \"For each cohort, what is the average unit price in each subsequent month?\", \"How does pricing behavior evolve over time for different cohorts?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"online.csv\", \"average_price.csv\", \"average_quantity.csv\", \"cohort_counts.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"CohortMonth column appears in three files but average_price.csv has empty values while others have data\", \"online.csv has InvoiceDate as object/string while cohort files use date format\"],\n        \"column_mappings\": {\"Unnamed: 0\": \"RowID\", \"InvoiceDate\": \"PurchaseDate\", \"1\": \"Month1\", \"2\": \"Month2\", \"3\": \"Month3\", \"4\": \"Month4\", \"5\": \"Month5\", \"6\": \"Month6\", \"7\": \"Month7\", \"8\": \"Month8\", \"9\": \"Month9\", \"10\": \"Month10\", \"11\": \"Month11\", \"12\": \"Month12\", \"13\": \"Month13\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"UnitPrice\": \"currency (likely GBP)\", \"Quantity\": \"count of items\", \"CohortMonth\": \"YYYY-MM-01 format\", \"InvoiceDate\": \"YYYY-MM-DD HH:MM:SS\"},\n        \"scale_issues\": [\"UnitPrice values range from 0.42 to 7.9 in sample, need to check full range\", \"Quantity has large values (24 in sample), may need outlier handling\"],\n        \"cross_source_conflicts\": [\"average_price.csv template is empty while analytical question requires filling it\", \"cohort_counts.csv shows decreasing customer counts over months (attrition)\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"null\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"average_price.csv has empty template with 13 rows x 14 columns\", \"cohort files use numeric column names (1-13) for months since first purchase\", \"online.csv has 70,864 rows with purchase-level data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each customer belongs to exactly one cohort (first purchase month)\", \"Month columns 1-13 represent sequential months after cohort month\", \"CohortMonth values must be first day of month (YYYY-MM-01)\"],\n        \"derived_filters\": [\"Exclude returns (negative Quantity)\", \"Exclude zero or negative UnitPrice\", \"Exclude customers with missing CustomerID\"],\n        \"statistical_tests\": [\"Check for outliers in UnitPrice\", \"Verify cohort size consistency across files\", \"Test correlation between average_price and average_quantity\"],\n        \"output_format_requirements\": [\"Must match average_price.csv template format\", \"13 rows (cohorts from 2010-12 to 2011-12)\", \"14 columns (CohortMonth + months 1-13)\", \"Float values for average unit prices\", \"Empty cells for months beyond data availability\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 16.855598211288452,
+  "token_usage": {
+    "input_tokens": 3662,
+    "output_tokens": 813
+  }
+}

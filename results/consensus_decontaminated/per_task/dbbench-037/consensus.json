@@ -1,0 +1,324 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Title of the episode",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Title of the episode",
+        "Episode title (name)",
+        "episode title"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Directed by = 'Michael Pressman'",
+        "No. in season < 10.0",
+        "director is Michael Pressman",
+        "episode number in season is less than 10.0"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "Directed by = 'Michael Pressman'",
+          "No. in season < 10.0"
+        ],
+        [
+          "Directed by = 'Michael Pressman'",
+          "No. in season < 10.0"
+        ],
+        [
+          "director is Michael Pressman",
+          "episode number in season is less than 10.0"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which episodes were directed by Michael Pressman?",
+        "Among those, which have season number less than 10.0?",
+        "What is the title of the matching episode?",
+        "Which of those episodes have No. in season less than 10.0?",
+        "What are the titles of those episodes?"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Which episodes were directed by Michael Pressman?",
+          "Among those, which have season number less than 10.0?",
+          "What is the title of the matching episode?"
+        ],
+        [
+          "Which episodes were directed by Michael Pressman?",
+          "Which of those episodes have No. in season less than 10.0?",
+          "What are the titles of those episodes?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "episode_table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "episode_table"
+        ],
+        [
+          "episode_table"
+        ],
+        [
+          "episode_table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "u.s. viewers (millions)": "millions",
+        "no. in series": "episode number (series-wide)",
+        "no. in season": "episode number (within season)"
+      },
+      "confidence": 0.4444444444444444,
+      "votes": [
+        {
+          "U.S. viewers (millions)": "millions"
+        },
+        {
+          "No. in series": "episode number (series-wide)",
+          "No. in season": "episode number (within season)",
+          "U.S. viewers (millions)": "millions of viewers"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "No. in series and No. in season are stored as objects but contain numeric data",
+        "U.S. viewers (millions) is stored as object but contains numeric data",
+        "No. in season is stored as object/string type but needs numeric comparison",
+        "Question specifies comparison with 10.0 (float) but column may contain string values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No. in series and No. in season are stored as objects but contain numeric data",
+          "U.S. viewers (millions) is stored as object but contains numeric data"
+        ],
+        [
+          "No. in season is stored as object/string type but needs numeric comparison",
+          "Question specifies comparison with 10.0 (float) but column may contain string values"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 1.0,
+      "votes": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "No. in season should be numeric for comparison with 10.0",
+        "Directed by column should contain director names",
+        "Title should be unique for each episode",
+        "No. in season must be convertible to numeric for comparison",
+        "Directed by must match exactly 'Michael Pressman'",
+        "No. in season < 10.0 (strict inequality)",
+        "\"No. in season\" should be converted to numeric type for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No. in season should be numeric for comparison with 10.0",
+          "Directed by column should contain director names",
+          "Title should be unique for each episode"
+        ],
+        [
+          "No. in season must be convertible to numeric for comparison",
+          "Directed by must match exactly 'Michael Pressman'",
+          "No. in season < 10.0 (strict inequality)"
+        ],
+        [
+          "\"No. in season\" should be converted to numeric type for comparison"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert No. in season to numeric type before filtering",
+        "Trim whitespace from Title and Directed by columns",
+        "CAST(No. in season AS FLOAT) < 10.0",
+        "Directed by = 'Michael Pressman'",
+        "episode_table[\"Directed by\"] == \"Michael Pressman\"",
+        "episode_table[\"No. in season\"].astype(float) < 10.0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert No. in season to numeric type before filtering",
+          "Trim whitespace from Title and Directed by columns"
+        ],
+        [
+          "CAST(No. in season AS FLOAT) < 10.0",
+          "Directed by = 'Michael Pressman'"
+        ],
+        [
+          "episode_table[\"Directed by\"] == \"Michael Pressman\"",
+          "episode_table[\"No. in season\"].astype(float) < 10.0"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in Directed by and No. in season columns",
+        "Verify numeric conversion of No. in season column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in Directed by and No. in season columns",
+          "Verify numeric conversion of No. in season column"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single episode title as string",
+        "Handle case where multiple episodes might match criteria",
+        "Return episode title(s) as list of strings",
+        "If multiple episodes match, return all matching titles",
+        "If no episodes match, return empty result"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single episode title as string",
+          "Handle case where multiple episodes might match criteria"
+        ],
+        [
+          "Return episode title(s) as list of strings",
+          "If multiple episodes match, return all matching titles",
+          "If no episodes match, return empty result"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5505555555555557
+}

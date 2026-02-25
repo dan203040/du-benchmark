@@ -1,0 +1,326 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Builder names with GT numbers above 7",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Builder names with GT numbers above 7",
+        "Name of builder(s) that had more than 7 GT numbers",
+        "Builders with more than 7 GT numbers"
+      ]
+    },
+    "filters": {
+      "value": [
+        "GT numbers > 7",
+        "GT numbers count > 7"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "GT numbers > 7"
+        ],
+        [
+          "GT numbers count > 7"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Builder"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Builder"
+        ],
+        [
+          "Builder"
+        ],
+        [
+          "Builder"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the threshold for 'above 7'? (e.g., >7, >=8)",
+        "Should we consider maximum GT number per builder or average?",
+        "How to handle GT numbers that are ranges or lists?",
+        "How many GT numbers does each builder have?",
+        "Which builders have a count of GT numbers greater than 7?",
+        "How to parse the 'GT numbers' column to count individual numbers?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the threshold for 'above 7'? (e.g., >7, >=8)",
+          "Should we consider maximum GT number per builder or average?",
+          "How to handle GT numbers that are ranges or lists?"
+        ],
+        [
+          "How many GT numbers does each builder have?",
+          "Which builders have a count of GT numbers greater than 7?",
+          "How to parse the 'GT numbers' column to count individual numbers?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Train Builders and their Works Numbers"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Train Builders and their Works Numbers"
+        ],
+        [
+          "Train Builders and their Works Numbers"
+        ],
+        [
+          "Train Builders and their Works Numbers"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "GT numbers column has object dtype but contains numeric ranges and lists"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "GT numbers column has object dtype but contains numeric ranges and lists"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "gt numbers": "locomotive identification numbers (likely sequential)",
+        "works numbers": "range notation with possible newline separators",
+        "cn numbers": "range notation with possible newline separators",
+        "dates": "year"
+      },
+      "confidence": 0.41666666666666663,
+      "votes": [
+        {
+          "GT numbers": "locomotive identification numbers (likely sequential)"
+        },
+        {
+          "GT numbers": "range notation (e.g., '651-705' represents multiple sequential numbers)",
+          "Works numbers": "range notation with possible newline separators",
+          "CN numbers": "range notation with possible newline separators",
+          "Dates": "year"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "GT numbers stored as strings with newline-separated ranges (e.g., '651-705')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "GT numbers stored as strings with newline-separated ranges (e.g., '651-705')"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          ""
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "GT numbers must be parsed from string ranges to numeric values",
+        "Need to handle multiple GT number ranges per builder",
+        "Dates are integers representing years",
+        "GT numbers must be parsed from range notation to count individual values",
+        "Ranges like '651-705' represent consecutive numbers from 651 to 705 inclusive",
+        "Multiple ranges in a cell (separated by \\n) should all be counted",
+        "Count threshold is greater than 7 (not greater than or equal to 7)",
+        "GT numbers column contains ranges of numbers, which need to be expanded into individual numbers before counting."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "GT numbers must be parsed from string ranges to numeric values",
+          "Need to handle multiple GT number ranges per builder",
+          "Dates are integers representing years"
+        ],
+        [
+          "GT numbers must be parsed from range notation to count individual values",
+          "Ranges like '651-705' represent consecutive numbers from 651 to 705 inclusive",
+          "Multiple ranges in a cell (separated by \\n) should all be counted",
+          "Count threshold is greater than 7 (not greater than or equal to 7)"
+        ],
+        [
+          "GT numbers column contains ranges of numbers, which need to be expanded into individual numbers before counting."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract all GT numbers from ranges like '651-705'",
+        "Convert GT numbers to integers for comparison",
+        "Filter builders where any GT number > 7",
+        "Parse GT numbers ranges to expand into individual counts",
+        "Calculate total count per builder by summing all ranges",
+        "Filter builders where total GT numbers count > 7",
+        "Count the number of GT numbers for each builder.",
+        "Filter builders with a count greater than 7."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract all GT numbers from ranges like '651-705'",
+          "Convert GT numbers to integers for comparison",
+          "Filter builders where any GT number > 7"
+        ],
+        [
+          "Parse GT numbers ranges to expand into individual counts",
+          "Calculate total count per builder by summing all ranges",
+          "Filter builders where total GT numbers count > 7"
+        ],
+        [
+          "Count the number of GT numbers for each builder.",
+          "Filter builders with a count greater than 7."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if GT numbers are sequential within ranges",
+        "Verify no overlapping GT number ranges between builders"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if GT numbers are sequential within ranges",
+          "Verify no overlapping GT number ranges between builders"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of builder names meeting criteria",
+        "Should include supporting GT numbers as evidence",
+        "Return builder name(s) as text",
+        "If multiple builders qualify, return all qualifying names"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of builder names meeting criteria",
+          "Should include supporting GT numbers as evidence"
+        ],
+        [
+          "Return builder name(s) as text",
+          "If multiple builders qualify, return all qualifying names"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6041666666666667
+}

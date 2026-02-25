@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Difference between average fatalities on days with humidity <30% and overall average fatalities, rounded to four decimal places",
+    "filters": [
+      "avrh_mean < 30",
+      "fatalities_last is not null"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the average fatalities across all days?",
+      "What is the average fatalities on days with humidity <30%?",
+      "What is the difference between these two averages?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage humidity",
+      "fatalities_last": "count of fatalities"
+    },
+    "scale_issues": [
+      "avrh_mean appears to be integer percentage values (e.g., 39, 46, 19)",
+      "fatalities_last appears to be integer counts"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns (start_date, controlled_date) are in MM/DD/YYYY format",
+      "Some columns have mixed data types indicated in sample (e.g., incident_number contains alphanumeric values)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "fatalities_last >= 0",
+      "avrh_mean between 0 and 100",
+      "start_year between 2002 and 2016"
+    ],
+    "derived_filters": [
+      "Exclude rows where avrh_mean is missing",
+      "Exclude rows where fatalities_last is missing"
+    ],
+    "statistical_tests": [
+      "Check distribution of fatalities_last for skewness",
+      "Compare variance of fatalities between humidity groups"
+    ],
+    "output_format_requirements": [
+      "Round final result to four decimal places",
+      "Positive number indicates more fatalities on low humidity days",
+      "Negative number indicates fewer fatalities on low humidity days"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Difference between average fatalities on days with humidity <30% and overall average fatalities, rounded to four decimal places\",\n        \"filters\": [\"avrh_mean < 30\", \"fatalities_last is not null\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the average fatalities across all days?\", \"What is the average fatalities on days with humidity <30%?\", \"What is the difference between these two averages?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Fire_Weather_Data_2002-2014_2016.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"avrh_mean\": \"percentage humidity\", \"fatalities_last\": \"count of fatalities\"},\n        \"scale_issues\": [\"avrh_mean appears to be integer percentage values (e.g., 39, 46, 19)\", \"fatalities_last appears to be integer counts\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date columns (start_date, controlled_date) are in MM/DD/YYYY format\", \"Some columns have mixed data types indicated in sample (e.g., incident_number contains alphanumeric values)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"fatalities_last >= 0\", \"avrh_mean between 0 and 100\", \"start_year between 2002 and 2016\"],\n        \"derived_filters\": [\"Exclude rows where avrh_mean is missing\", \"Exclude rows where fatalities_last is missing\"],\n        \"statistical_tests\": [\"Check distribution of fatalities_last for skewness\", \"Compare variance of fatalities between humidity groups\"],\n        \"output_format_requirements\": [\"Round final result to four decimal places\", \"Positive number indicates more fatalities on low humidity days\", \"Negative number indicates fewer fatalities on low humidity days\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.053399801254272,
+  "token_usage": {
+    "input_tokens": 3294,
+    "output_tokens": 507
+  }
+}

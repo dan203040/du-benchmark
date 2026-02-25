@@ -1,0 +1,333 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "sum of total goals scored by Chipperfield and Viduka",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "sum of goals scored by players named 'Chipperfield' and 'Viduka'",
+        "sum of total goals scored by Chipperfield and Viduka",
+        "sum of total goals scored by Chipperfield and Viduka"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Player in ['Chipperfield', 'Viduka']",
+        "Player = 'Chipperfield'",
+        "Player = 'Viduka'",
+        "Player is Chipperfield",
+        "Player is Viduka"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Player in ['Chipperfield', 'Viduka']"
+        ],
+        [
+          "Player = 'Chipperfield'",
+          "Player = 'Viduka'"
+        ],
+        [
+          "Player is Chipperfield",
+          "Player is Viduka"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Player"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Player"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the individual goal counts for Chipperfield?",
+        "What are the individual goal counts for Viduka?",
+        "How should missing values in goal columns be handled?",
+        "What is the total number of goals scored by Chipperfield?",
+        "What is the total number of goals scored by Viduka?",
+        "What is the sum of goals for both players?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What are the individual goal counts for Chipperfield?",
+          "What are the individual goal counts for Viduka?",
+          "How should missing values in goal columns be handled?"
+        ],
+        [
+          "What is the total number of goals scored by Chipperfield?",
+          "What is the total number of goals scored by Viduka?",
+          "What is the sum of goals for both players?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Player Goals in International Tournaments"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Player Goals in International Tournaments"
+        ],
+        [
+          "Player Goals in International Tournaments"
+        ],
+        [
+          "Player Goals in International Tournaments"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column 'FIFA World Cup Qual.' has dtype 'object' while other goal columns are 'Int64' - contains non-numeric values like '-'",
+        "Player names appear multiple times in the dataset, suggesting multiple records per player"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column 'FIFA World Cup Qual.' has dtype 'object' while other goal columns are 'Int64' - contains non-numeric values like '-'"
+        ],
+        [
+          "Player names appear multiple times in the dataset, suggesting multiple records per player"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "friendlies": "goals",
+        "fifa confederations cup": "goals",
+        "fifa world cup qual.": "goals",
+        "total goals": "goals"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Friendlies": "goals",
+          "FIFA Confederations Cup": "goals",
+          "FIFA World Cup Qual.": "goals",
+          "Total Goals": "goals"
+        },
+        {
+          "Friendlies": "count of goals",
+          "FIFA Confederations Cup": "count of goals",
+          "FIFA World Cup Qual.": "count of goals",
+          "Total Goals": "count of goals"
+        },
+        {
+          "Friendlies": "goals",
+          "FIFA Confederations Cup": "goals",
+          "FIFA World Cup Qual.": "goals",
+          "Total Goals": "goals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Missing values represented differently: empty strings in some columns, '-' in FIFA World Cup Qual."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Missing values represented differently: empty strings in some columns, '-' in FIFA World Cup Qual."
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "-",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "",
+          "-"
+        ],
+        [
+          "-",
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total Goals should equal sum of Friendlies + FIFA Confederations Cup + FIFA World Cup Qual. for each player",
+        "Goal counts must be non-negative integers",
+        "Player names must match exactly: 'Chipperfield' and 'Viduka'",
+        "Multiple rows exist for same player names - need to sum across all rows per player",
+        "Total Goals must be an integer",
+        "Friendlies must be an integer",
+        "FIFA Confederations Cup must be an integer"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total Goals should equal sum of Friendlies + FIFA Confederations Cup + FIFA World Cup Qual. for each player",
+          "Goal counts must be non-negative integers"
+        ],
+        [
+          "Player names must match exactly: 'Chipperfield' and 'Viduka'",
+          "Multiple rows exist for same player names - need to sum across all rows per player"
+        ],
+        [
+          "Total Goals must be an integer",
+          "Friendlies must be an integer",
+          "FIFA Confederations Cup must be an integer"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Player matches 'Chipperfield' or 'Viduka' (case-sensitive)",
+        "Filter rows where Player IN ('Chipperfield', 'Viduka')",
+        "Group by Player and sum Total Goals column",
+        "Sum the resulting totals for both players",
+        "Player is Chipperfield OR Player is Viduka"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Player matches 'Chipperfield' or 'Viduka' (case-sensitive)"
+        ],
+        [
+          "Filter rows where Player IN ('Chipperfield', 'Viduka')",
+          "Group by Player and sum Total Goals column",
+          "Sum the resulting totals for both players"
+        ],
+        [
+          "Player is Chipperfield OR Player is Viduka"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if Total Goals column matches sum of component columns for each player"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if Total Goals column matches sum of component columns for each player"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric result representing total sum",
+        "Handle missing values appropriately (treat as 0)",
+        "Single numeric value representing the sum of total goals",
+        "Must account for all rows matching Chipperfield or Viduka"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric result representing total sum",
+          "Handle missing values appropriately (treat as 0)"
+        ],
+        [
+          "Single numeric value representing the sum of total goals",
+          "Must account for all rows matching Chipperfield or Viduka"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6166666666666667
+}

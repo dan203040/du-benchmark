@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Difference in bacterial exceedance rates (to 2 decimal places) for marine beach samples collected in 2023 between communities with >50% EJ populations and those with <25% EJ populations.",
+    "filters": [
+      "Year = 2023",
+      "Beach Type Description = 'Marine'",
+      "Percent of population in EJ BGs > 50%",
+      "Percent of population in EJ BGs < 25%"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the exceedance rate for communities with >50% EJ populations.",
+      "Calculate the exceedance rate for communities with <25% EJ populations.",
+      "Subtract the two exceedance rates and round to 2 decimal places."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "environmental-justice-populations.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "environmental-justice-populations.csv",
+        "right_source": "water-body-testing-2023.csv",
+        "left_column": "Municipality",
+        "right_column": "Community",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Percent of population in EJ BGs": "%",
+      "Indicator Level": "CFU/100mL"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Ensure that the 'Violation' column in water-body-testing-2023.csv is a binary indicator (Yes/No).",
+      "Ensure that 'Beach Type Description' only includes 'Marine' values.",
+      "Ensure that 'Year' column in water-body-testing-2023.csv only includes 2023 values."
+    ],
+    "derived_filters": [
+      "Exceedance: Violation = 'Yes'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output the difference in exceedance rates rounded to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Difference in bacterial exceedance rates (to 2 decimal places) for marine beach samples collected in 2023 between communities with >50% EJ populations and those with <25% EJ populations.\",\n    \"filters\": [\n      \"Year = 2023\",\n      \"Beach Type Description = 'Marine'\",\n      \"Percent of population in EJ BGs > 50%\",\n      \"Percent of population in EJ BGs < 25%\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the exceedance rate for communities with >50% EJ populations.\",\n      \"Calculate the exceedance rate for communities with <25% EJ populations.\",\n      \"Subtract the two exceedance rates and round to 2 decimal places.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"environmental-justice-populations.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"environmental-justice-populations.csv\",\n        \"right_source\": \"water-body-testing-2023.csv\",\n        \"left_column\": \"Municipality\",\n        \"right_column\": \"Community\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Percent of population in EJ BGs\": \"%\",\n      \"Indicator Level\": \"CFU/100mL\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Ensure that the 'Violation' column in water-body-testing-2023.csv is a binary indicator (Yes/No).\",\n      \"Ensure that 'Beach Type Description' only includes 'Marine' values.\",\n      \"Ensure that 'Year' column in water-body-testing-2023.csv only includes 2023 values.\"\n    ],\n    \"derived_filters\": [\n      \"Exceedance: Violation = 'Yes'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output the difference in exceedance rates rounded to 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.3210508823394775,
+  "token_usage": {}
+}

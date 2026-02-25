@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "count of nations with zero silver medals",
+    "filters": [
+      "Silver = 0"
+    ],
+    "grouping_variables": [
+      "Nation"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which nations have Silver = 0?",
+      "How many nations meet this condition?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medal Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Gold": "medal count",
+      "Silver": "medal count",
+      "Bronze": "medal count",
+      "Total": "medal count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Nation column contains both country name and country code in parentheses"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Silver >= 0",
+      "Total = Gold + Silver + Bronze",
+      "Rank values should be unique"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Verify Silver column contains only non-negative integers"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of nations with zero silver medals\",\n        \"filters\": [\"Silver = 0\"],\n        \"grouping_variables\": [\"Nation\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which nations have Silver = 0?\", \"How many nations meet this condition?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Olympic Medal Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Gold\": \"medal count\", \"Silver\": \"medal count\", \"Bronze\": \"medal count\", \"Total\": \"medal count\"},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Nation column contains both country name and country code in parentheses\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Silver >= 0\", \"Total = Gold + Silver + Bronze\", \"Rank values should be unique\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [\"Verify Silver column contains only non-negative integers\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.229712963104248,
+  "token_usage": {
+    "input_tokens": 922,
+    "output_tokens": 336
+  }
+}

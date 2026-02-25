@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "minimum crowd number",
+    "filters": [
+      "Away team score = '15.11 (101)'"
+    ],
+    "grouping_variables": [
+      "Away team"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which teams have an Away team score of 15.11 (101)?",
+      "What are the crowd numbers for those matches?",
+      "What is the smallest crowd number among those matches?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Crowd": "people (formatted with commas)",
+      "Home team score": "goals.behinds (total points)",
+      "Away team score": "goals.behinds (total points)"
+    },
+    "scale_issues": [
+      "Crowd column is stored as object/string with comma formatting (e.g., '4,000') - needs conversion to numeric for comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Score columns contain both formatted notation (e.g., '15.11') and total points in parentheses (e.g., '(101)')",
+      "Crowd values contain comma thousands separators",
+      "Date format appears as 'DD Month YYYY' (e.g., '29 August 1931')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Away team score must exactly match '15.11 (101)' including formatting",
+      "Crowd values must be converted from string to integer for numerical comparison",
+      "Only consider matches where Away team score is exactly '15.11 (101)'"
+    ],
+    "derived_filters": [
+      "Convert Crowd from string to integer by removing commas",
+      "Filter rows where Away team score = '15.11 (101)'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate matches with same Away team score",
+      "Verify crowd number distribution for filtered matches"
+    ],
+    "output_format_requirements": [
+      "Return single integer value representing smallest crowd",
+      "If multiple teams have same minimum crowd, return that value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum crowd number\",\n        \"filters\": [\"Away team score = '15.11 (101)'\"],\n        \"grouping_variables\": [\"Away team\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which teams have an Away team score of 15.11 (101)?\", \"What are the crowd numbers for those matches?\", \"What is the smallest crowd number among those matches?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"football_matches\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Crowd\": \"people (formatted with commas)\", \"Home team score\": \"goals.behinds (total points)\", \"Away team score\": \"goals.behinds (total points)\"},\n        \"scale_issues\": [\"Crowd column is stored as object/string with comma formatting (e.g., '4,000') - needs conversion to numeric for comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Score columns contain both formatted notation (e.g., '15.11') and total points in parentheses (e.g., '(101)')\", \"Crowd values contain comma thousands separators\", \"Date format appears as 'DD Month YYYY' (e.g., '29 August 1931')\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Away team score must exactly match '15.11 (101)' including formatting\", \"Crowd values must be converted from string to integer for numerical comparison\", \"Only consider matches where Away team score is exactly '15.11 (101)'\"],\n        \"derived_filters\": [\"Convert Crowd from string to integer by removing commas\", \"Filter rows where Away team score = '15.11 (101)'\"],\n        \"statistical_tests\": [\"Check for duplicate matches with same Away team score\", \"Verify crowd number distribution for filtered matches\"],\n        \"output_format_requirements\": [\"Return single integer value representing smallest crowd\", \"If multiple teams have same minimum crowd, return that value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.097031116485596,
+  "token_usage": {
+    "input_tokens": 1161,
+    "output_tokens": 547
+  }
+}

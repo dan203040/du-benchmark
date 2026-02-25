@@ -1,0 +1,328 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of wins for Dunfermline Athletic where total final appearances is less than 2",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of wins for Dunfermline Athletic where total final appearances is less than 2",
+        "Number of wins for Dunfermline Athletic",
+        "Number of wins for Dunfermline Athletic when their total final appearances is less than 2"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Club = 'Dunfermline Athletic'",
+        "Total final appearances < 2",
+        "Club equals 'Dunfermline Athletic'",
+        "Total final appearances less than 2",
+        "Club is Dunfermline Athletic",
+        "Total final appearances is less than 2"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Club = 'Dunfermline Athletic'",
+          "Total final appearances < 2"
+        ],
+        [
+          "Club equals 'Dunfermline Athletic'",
+          "Total final appearances less than 2"
+        ],
+        [
+          "Club is Dunfermline Athletic",
+          "Total final appearances is less than 2"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the value in the 'Wins' column for Dunfermline Athletic?",
+        "What is the value in the 'Total final appearances' column for Dunfermline Athletic?",
+        "Does the 'Total final appearances' value satisfy the condition (<2)?",
+        "Does Dunfermline Athletic have Total final appearances less than 2?"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "What is the value in the 'Wins' column for Dunfermline Athletic?",
+          "What is the value in the 'Total final appearances' column for Dunfermline Athletic?",
+          "Does the 'Total final appearances' value satisfy the condition (<2)?"
+        ],
+        [
+          "What is the value in the 'Wins' column for Dunfermline Athletic?",
+          "What is the value in the 'Total final appearances' column for Dunfermline Athletic?",
+          "Does Dunfermline Athletic have Total final appearances less than 2?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Scottish Challenge Cup Finalists"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Scottish Challenge Cup Finalists"
+        ],
+        [
+          "Scottish Challenge Cup Finalists"
+        ],
+        [
+          "Scottish Challenge Cup Finalists"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "wins": "count",
+        "runners-up": "count",
+        "total final appearances": "count",
+        "last final won": "year",
+        "last final lost": "year"
+      },
+      "confidence": 0.6666666666666667,
+      "votes": [
+        {
+          "Wins": "count",
+          "Runners-up": "count",
+          "Total final appearances": "count"
+        },
+        {
+          "Wins": "count",
+          "Runners-up": "count",
+          "Total final appearances": "count",
+          "Last final won": "year",
+          "Last final lost": "year"
+        },
+        {
+          "Wins": "number of wins",
+          "Total final appearances": "number of appearances"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "All numeric columns (Wins, Runners-up, Total final appearances) are stored as object dtype, requiring type conversion for numerical comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All numeric columns (Wins, Runners-up, Total final appearances) are stored as object dtype, requiring type conversion for numerical comparison"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "\u2014",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.7499999999999999,
+      "votes": [
+        [
+          "\u2014",
+          ""
+        ],
+        [
+          "\u2014",
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total final appearances = Wins + Runners-up (should hold for each row)",
+        "Wins and Runners-up should be non-negative integers",
+        "Total final appearances should be positive integer",
+        "Total final appearances must be numeric and convertible from object type",
+        "Wins must be numeric and convertible from object type",
+        "Total final appearances should equal Wins plus Runners-up",
+        "Club name must match exactly 'Dunfermline Athletic'",
+        "Club names should be unique",
+        "Wins, Runners-up, and Total final appearances should be non-negative integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total final appearances = Wins + Runners-up (should hold for each row)",
+          "Wins and Runners-up should be non-negative integers",
+          "Total final appearances should be positive integer"
+        ],
+        [
+          "Total final appearances must be numeric and convertible from object type",
+          "Wins must be numeric and convertible from object type",
+          "Total final appearances should equal Wins plus Runners-up",
+          "Club name must match exactly 'Dunfermline Athletic'"
+        ],
+        [
+          "Club names should be unique",
+          "Wins, Runners-up, and Total final appearances should be non-negative integers"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert 'Wins' column from string to integer",
+        "Convert 'Total final appearances' column from string to integer",
+        "Filter to Club == 'Dunfermline Athletic'",
+        "Convert 'Total final appearances' to numeric type",
+        "Filter to Total final appearances < 2",
+        "Total final appearances < 2"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert 'Wins' column from string to integer",
+          "Convert 'Total final appearances' column from string to integer"
+        ],
+        [
+          "Filter to Club == 'Dunfermline Athletic'",
+          "Convert 'Total final appearances' to numeric type",
+          "Filter to Total final appearances < 2"
+        ],
+        [
+          "Total final appearances < 2"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify data type conversion for numerical columns",
+        "Check that Dunfermline Athletic exists in the dataset"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify data type conversion for numerical columns",
+          "Check that Dunfermline Athletic exists in the dataset"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return a single integer value representing the answer",
+        "Return a single numeric value representing the number of wins",
+        "If no records match the filters, return 0 or indicate no match"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return a single integer value representing the answer"
+        ],
+        [
+          "Return a single numeric value representing the number of wins",
+          "If no records match the filters, return 0 or indicate no match"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5625000000000001
+}

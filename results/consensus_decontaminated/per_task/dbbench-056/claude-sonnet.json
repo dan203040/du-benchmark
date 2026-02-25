@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Two hospitals with consecutive rankings of 8 and 9 that both have 1200 beds",
+    "filters": [
+      "Rank equals 8 or 9",
+      "# Beds equals 1200"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which hospital has Rank = 8?",
+      "Which hospital has Rank = 9?",
+      "Does the hospital at Rank 8 have exactly 1200 beds?",
+      "Does the hospital at Rank 9 have exactly 1200 beds?",
+      "What are the names of these two hospitals?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Hospital Information"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# Beds": "count",
+      "Rank": "ordinal position"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rank column uses Int64 dtype",
+      "# Beds column uses Int64 dtype",
+      "Column name '# Beds' contains special character '#'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Rank must equal 8 or 9",
+      "# Beds must equal exactly 1200",
+      "Rankings must be consecutive (8 and 9)",
+      "Must return exactly two hospitals"
+    ],
+    "derived_filters": [
+      "Filter where Rank IN (8, 9) AND # Beds = 1200"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the names of both hospitals",
+      "Verify both hospitals meet the bed count requirement",
+      "Confirm rankings are consecutive"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Two hospitals with consecutive rankings of 8 and 9 that both have 1200 beds\",\n    \"filters\": [\n      \"Rank equals 8 or 9\",\n      \"# Beds equals 1200\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which hospital has Rank = 8?\",\n      \"Which hospital has Rank = 9?\",\n      \"Does the hospital at Rank 8 have exactly 1200 beds?\",\n      \"Does the hospital at Rank 9 have exactly 1200 beds?\",\n      \"What are the names of these two hospitals?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Hospital Information\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# Beds\": \"count\",\n      \"Rank\": \"ordinal position\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Rank column uses Int64 dtype\",\n      \"# Beds column uses Int64 dtype\",\n      \"Column name '# Beds' contains special character '#'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Rank must equal 8 or 9\",\n      \"# Beds must equal exactly 1200\",\n      \"Rankings must be consecutive (8 and 9)\",\n      \"Must return exactly two hospitals\"\n    ],\n    \"derived_filters\": [\n      \"Filter where Rank IN (8, 9) AND # Beds = 1200\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the names of both hospitals\",\n      \"Verify both hospitals meet the bed count requirement\",\n      \"Confirm rankings are consecutive\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.399590969085693,
+  "token_usage": {
+    "input_tokens": 1139,
+    "output_tokens": 585
+  }
+}

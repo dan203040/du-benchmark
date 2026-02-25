@@ -1,0 +1,91 @@
+{
+  "m_q": {
+    "target_metric": "temporal shift in fire start day of year distribution over years",
+    "filters": [
+      "start_year not null",
+      "start_day_of_year not null",
+      "start_day_of_year between 1 and 366"
+    ],
+    "grouping_variables": [
+      "start_year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the average start_day_of_year per year?",
+      "Is there a statistically significant trend in start_day_of_year over time?",
+      "Does the distribution of start_day_of_year change across years?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "start_day_of_year": "day number (1-366)",
+      "start_year": "calendar year",
+      "latitude": "degrees",
+      "longitude": "degrees",
+      "duration": "days",
+      "avrh_mean": "relative humidity percentage",
+      "wind_med": "wind speed units",
+      "erc_med": "energy release component index",
+      "rain_sum": "precipitation units"
+    },
+    "scale_issues": [
+      "latitude and longitude stored as integers (likely scaled)",
+      "some numeric columns may have missing values encoded as 0"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "date columns (start_date, controlled_date) stored as strings in MM/DD/YYYY format",
+      "incident_number appears to be a unique identifier",
+      "sample shows California data but other states may be present"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "start_day_of_year must be between 1 and 366",
+      "start_year between 2002 and 2016",
+      "duration >= 0",
+      "control_day_of_year >= start_day_of_year when same year"
+    ],
+    "derived_filters": [
+      "exclude rows where start_day_of_year is 0 or null",
+      "consider only years with sufficient sample size"
+    ],
+    "statistical_tests": [
+      "linear regression of start_day_of_year against start_year",
+      "Mann-Kendall trend test",
+      "comparison of median start_day_of_year between early and late periods"
+    ],
+    "output_format_requirements": [
+      "binary Yes/No answer only",
+      "no explanation text"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"temporal shift in fire start day of year distribution over years\",\n        \"filters\": [\"start_year not null\", \"start_day_of_year not null\", \"start_day_of_year between 1 and 366\"],\n        \"grouping_variables\": [\"start_year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the average start_day_of_year per year?\", \"Is there a statistically significant trend in start_day_of_year over time?\", \"Does the distribution of start_day_of_year change across years?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Fire_Weather_Data_2002-2014_2016.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"start_day_of_year\": \"day number (1-366)\", \"start_year\": \"calendar year\", \"latitude\": \"degrees\", \"longitude\": \"degrees\", \"duration\": \"days\", \"avrh_mean\": \"relative humidity percentage\", \"wind_med\": \"wind speed units\", \"erc_med\": \"energy release component index\", \"rain_sum\": \"precipitation units\"},\n        \"scale_issues\": [\"latitude and longitude stored as integers (likely scaled)\", \"some numeric columns may have missing values encoded as 0\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"date columns (start_date, controlled_date) stored as strings in MM/DD/YYYY format\", \"incident_number appears to be a unique identifier\", \"sample shows California data but other states may be present\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"start_day_of_year must be between 1 and 366\", \"start_year between 2002 and 2016\", \"duration >= 0\", \"control_day_of_year >= start_day_of_year when same year\"],\n        \"derived_filters\": [\"exclude rows where start_day_of_year is 0 or null\", \"consider only years with sufficient sample size\"],\n        \"statistical_tests\": [\"linear regression of start_day_of_year against start_year\", \"Mann-Kendall trend test\", \"comparison of median start_day_of_year between early and late periods\"],\n        \"output_format_requirements\": [\"binary Yes/No answer only\", \"no explanation text\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.82099199295044,
+  "token_usage": {
+    "input_tokens": 3282,
+    "output_tokens": 585
+  }
+}

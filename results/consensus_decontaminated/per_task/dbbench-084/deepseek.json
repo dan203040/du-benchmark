@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "maximum value of the 'Number One(s)' column",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum numeric value in the 'Number One(s)' column?",
+      "Are there multiple rows with this maximum value?",
+      "Which artists/songs have this maximum number of number ones?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Music Chart History"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Number One(s)": "count of number one hits",
+      "Whole Weeks": "total weeks on chart"
+    },
+    "scale_issues": [
+      "'Number One(s)' column appears to contain numeric values but is stored as object dtype",
+      "'Whole Weeks' column appears to contain numeric values but is stored as object dtype"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column 'Song(s) \u2014 Weeks' contains complex data with song titles in quotes and week counts separated by '\u2014'",
+      "Column 'Issue Years' may contain single years or year ranges separated by '\u2014'",
+      "Sample shows quoted song titles with extra spaces inside quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "'Number One(s)' values should be positive integers",
+      "'Whole Weeks' values should be positive integers",
+      "Each row represents a specific song by an artist"
+    ],
+    "derived_filters": [
+      "Convert 'Number One(s)' column to numeric type",
+      "Check for non-numeric values in 'Number One(s)' column"
+    ],
+    "statistical_tests": [
+      "Check distribution of 'Number One(s)' values",
+      "Identify maximum value and frequency"
+    ],
+    "output_format_requirements": [
+      "Return the maximum numeric value",
+      "Consider returning associated artist/song information if needed"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"maximum value of the 'Number One(s)' column\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the maximum numeric value in the 'Number One(s)' column?\", \"Are there multiple rows with this maximum value?\", \"Which artists/songs have this maximum number of number ones?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Music Chart History\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Number One(s)\": \"count of number one hits\", \"Whole Weeks\": \"total weeks on chart\"},\n        \"scale_issues\": [\"'Number One(s)' column appears to contain numeric values but is stored as object dtype\", \"'Whole Weeks' column appears to contain numeric values but is stored as object dtype\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column 'Song(s) \u2014 Weeks' contains complex data with song titles in quotes and week counts separated by '\u2014'\", \"Column 'Issue Years' may contain single years or year ranges separated by '\u2014'\", \"Sample shows quoted song titles with extra spaces inside quotes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"'Number One(s)' values should be positive integers\", \"'Whole Weeks' values should be positive integers\", \"Each row represents a specific song by an artist\"],\n        \"derived_filters\": [\"Convert 'Number One(s)' column to numeric type\", \"Check for non-numeric values in 'Number One(s)' column\"],\n        \"statistical_tests\": [\"Check distribution of 'Number One(s)' values\", \"Identify maximum value and frequency\"],\n        \"output_format_requirements\": [\"Return the maximum numeric value\", \"Consider returning associated artist/song information if needed\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.905799865722656,
+  "token_usage": {
+    "input_tokens": 1016,
+    "output_tokens": 486
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "m_q": {
+    "target_metric": "sum of Total medals",
+    "filters": [
+      "Nation in ['South Korea', 'North Korea', 'Sweden', 'Brazil']"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify rows for each specified nation",
+      "Extract Total column values",
+      "Sum the extracted values"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Medal Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Gold": "medals",
+      "Silver": "medals",
+      "Bronze": "medals",
+      "Total": "medals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column is Rank",
+      "Nation names are spelled exactly as shown in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total = Gold + Silver + Bronze for each row",
+      "Rank values are unique",
+      "Nation values are unique"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Single numeric total"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"sum of Total medals\",\n        \"filters\": [\"Nation in ['South Korea', 'North Korea', 'Sweden', 'Brazil']\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify rows for each specified nation\", \"Extract Total column values\", \"Sum the extracted values\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Medal Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Gold\": \"medals\", \"Silver\": \"medals\", \"Bronze\": \"medals\", \"Total\": \"medals\"},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column is Rank\", \"Nation names are spelled exactly as shown in sample\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total = Gold + Silver + Bronze for each row\", \"Rank values are unique\", \"Nation values are unique\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [],\n        \"output_format_requirements\": [\"Single numeric total\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.232226848602295,
+  "token_usage": {
+    "input_tokens": 862,
+    "output_tokens": 340
+  }
+}

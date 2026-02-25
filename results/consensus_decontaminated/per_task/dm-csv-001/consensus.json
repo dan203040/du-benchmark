@@ -1,0 +1,408 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of undefeated fighters per weight class and identification of top fighters in each weight class",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of undefeated fighters per weight class and identification of top fighters in each weight class",
+        "Count of undefeated fighters (losses = 0) in each weight class",
+        "Identify the top fighters in each weight class and count how many remain undefeated, writing the results to undefeated.csv"
+      ]
+    },
+    "filters": {
+      "value": [
+        "losses == 0",
+        "draws == 0",
+        "losses = 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "losses == 0",
+          "draws == 0"
+        ],
+        [
+          "losses = 0"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "weight_in_kg",
+        "weight_class"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "weight_in_kg"
+        ],
+        [
+          "weight_class"
+        ],
+        [
+          "weight_in_kg"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many fighters remain undefeated in each weight class?",
+        "Which fighters have the best records in each weight class?",
+        "What is the distribution of undefeated fighters across weight classes?",
+        "How to determine weight class from weight_in_kg column?",
+        "What defines a 'top fighter' in each weight class?",
+        "How many fighters have losses = 0?",
+        "What is the mapping of weight_in_kg to UFC weight classes?",
+        "What format is required for the undefeated.csv output file?",
+        "Determine weight classes based on weight_in_kg.",
+        "Identify top fighters within each weight class based on wins.",
+        "Filter for fighters with losses = 0 and draws = 0 to identify undefeated fighters.",
+        "Count the number of undefeated fighters in each weight class.",
+        "Format the output according to the undefeated.csv schema."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How many fighters remain undefeated in each weight class?",
+          "Which fighters have the best records in each weight class?",
+          "What is the distribution of undefeated fighters across weight classes?"
+        ],
+        [
+          "How to determine weight class from weight_in_kg column?",
+          "What defines a 'top fighter' in each weight class?",
+          "How many fighters have losses = 0?",
+          "What is the mapping of weight_in_kg to UFC weight classes?",
+          "What format is required for the undefeated.csv output file?"
+        ],
+        [
+          "Determine weight classes based on weight_in_kg.",
+          "Identify top fighters within each weight class based on wins.",
+          "Filter for fighters with losses = 0 and draws = 0 to identify undefeated fighters.",
+          "Count the number of undefeated fighters in each weight class.",
+          "Format the output according to the undefeated.csv schema."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "ufc-fighters-statistics.csv",
+        "undefeated.csv"
+      ],
+      "confidence": 0.8333333333333333,
+      "votes": [
+        [
+          "ufc-fighters-statistics.csv"
+        ],
+        [
+          "ufc-fighters-statistics.csv",
+          "undefeated.csv"
+        ],
+        [
+          "ufc-fighters-statistics.csv",
+          "undefeated.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Weight class not explicitly provided in ufc-fighters-statistics.csv, must be derived from weight_in_kg",
+        "Unclear what 'level' represents in undefeated.csv (likely weight class)",
+        "Unclear what 'fighter_num' represents in undefeated.csv (likely count of undefeated fighters)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Weight class not explicitly provided in ufc-fighters-statistics.csv, must be derived from weight_in_kg",
+          "Unclear what 'level' represents in undefeated.csv (likely weight class)",
+          "Unclear what 'fighter_num' represents in undefeated.csv (likely count of undefeated fighters)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "height_cm": "centimeters",
+        "weight_in_kg": "kilograms",
+        "reach_in_cm": "centimeters",
+        "significant_strikes_landed_per_minute": "strikes per minute",
+        "significant_striking_accuracy": "percentage",
+        "significant_strikes_absorbed_per_minute": "strikes per minute",
+        "significant_strike_defence": "percentage",
+        "average_takedowns_landed_per_15_minutes": "takedowns per 15 minutes",
+        "takedown_accuracy": "percentage",
+        "takedown_defense": "percentage",
+        "average_submissions_attempted_per_15_minutes": "submissions per 15 minutes"
+      },
+      "confidence": 0.7575757575757577,
+      "votes": [
+        {
+          "height_cm": "centimeters",
+          "weight_in_kg": "kilograms",
+          "reach_in_cm": "centimeters",
+          "significant_strikes_landed_per_minute": "strikes per minute",
+          "significant_striking_accuracy": "percentage",
+          "significant_strikes_absorbed_per_minute": "strikes per minute",
+          "significant_strike_defence": "percentage",
+          "average_takedowns_landed_per_15_minutes": "takedowns per 15 minutes",
+          "takedown_accuracy": "percentage",
+          "takedown_defense": "percentage",
+          "average_submissions_attempted_per_15_minutes": "submissions per 15 minutes"
+        },
+        {
+          "height_cm": "centimeters",
+          "weight_in_kg": "kilograms",
+          "reach_in_cm": "centimeters",
+          "significant_strikes_landed_per_minute": "strikes/minute",
+          "significant_striking_accuracy": "percentage",
+          "significant_strikes_absorbed_per_minute": "strikes/minute",
+          "significant_strike_defence": "percentage",
+          "average_takedowns_landed_per_15_minutes": "takedowns/15min",
+          "takedown_accuracy": "percentage",
+          "takedown_defense": "percentage",
+          "average_submissions_attempted_per_15_minutes": "submissions/15min"
+        },
+        {
+          "height_cm": "centimeters",
+          "weight_in_kg": "kilograms",
+          "reach_in_cm": "centimeters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Some percentage columns may exceed 100% (e.g., takedown_accuracy shows 100.0 for multiple fighters)",
+        "Weight classes in UFC are typically defined in pounds but data provides weight_in_kg",
+        "Need to map weight_in_kg to standard UFC weight divisions (Flyweight, Bantamweight, Featherweight, Lightweight, Welterweight, Middleweight, Light Heavyweight, Heavyweight)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Some percentage columns may exceed 100% (e.g., takedown_accuracy shows 100.0 for multiple fighters)"
+        ],
+        [
+          "Weight classes in UFC are typically defined in pounds but data provides weight_in_kg",
+          "Need to map weight_in_kg to standard UFC weight divisions (Flyweight, Bantamweight, Featherweight, Lightweight, Welterweight, Middleweight, Light Heavyweight, Heavyweight)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 18.0,
+      "confidence": 1.0,
+      "votes": [
+        18.0,
+        18.0,
+        18.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "wins >= 0",
+        "losses >= 0",
+        "draws >= 0",
+        "weight_in_kg > 0 for active fighters",
+        "height_cm > 0 for valid measurements",
+        "losses = 0 to identify undefeated fighters",
+        "Must derive weight class from weight_in_kg column using UFC weight class boundaries",
+        "Output must be written to undefeated.csv with columns 'level' and 'fighter_num'",
+        "Need to handle fighters with missing weight_in_kg values",
+        "Weight classes are not explicitly defined and need to be inferred.",
+        "Top fighter definition is based on wins; other metrics could be considered.",
+        "The undefeated.csv file must be written to with 'level' representing the weight class and 'fighter_num' representing the number of undefeated fighters in that weight class."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "wins >= 0",
+          "losses >= 0",
+          "draws >= 0",
+          "weight_in_kg > 0 for active fighters",
+          "height_cm > 0 for valid measurements"
+        ],
+        [
+          "losses = 0 to identify undefeated fighters",
+          "Must derive weight class from weight_in_kg column using UFC weight class boundaries",
+          "Output must be written to undefeated.csv with columns 'level' and 'fighter_num'",
+          "Need to handle fighters with missing weight_in_kg values"
+        ],
+        [
+          "Weight classes are not explicitly defined and need to be inferred.",
+          "Top fighter definition is based on wins; other metrics could be considered.",
+          "The undefeated.csv file must be written to with 'level' representing the weight class and 'fighter_num' representing the number of undefeated fighters in that weight class."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Undefeated fighters: losses == 0 AND draws == 0",
+        "Active fighters: wins + losses + draws > 0",
+        "Filter for losses == 0 to identify undefeated fighters",
+        "Exclude fighters with null/missing weight_in_kg values",
+        "Group by derived weight_class column",
+        "losses = 0",
+        "draws = 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Undefeated fighters: losses == 0 AND draws == 0",
+          "Active fighters: wins + losses + draws > 0"
+        ],
+        [
+          "Filter for losses == 0 to identify undefeated fighters",
+          "Exclude fighters with null/missing weight_in_kg values",
+          "Group by derived weight_class column"
+        ],
+        [
+          "losses = 0",
+          "draws = 0"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in weight_in_kg",
+        "Verify percentage columns are within 0-100 range",
+        "Validate date_of_birth format"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in weight_in_kg",
+          "Verify percentage columns are within 0-100 range",
+          "Validate date_of_birth format"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output must be written to undefeated.csv with columns: level, fighter_num",
+        "Weight classes need to be standardized (e.g., Lightweight, Welterweight, etc.) from weight_in_kg values",
+        "fighter_num likely represents count of undefeated fighters per weight class",
+        "Output file must be named undefeated.csv",
+        "Must have exactly 2 columns: level, fighter_num",
+        "level should contain weight class names",
+        "fighter_num should contain count of undefeated fighters in that weight class",
+        "CSV format with header row",
+        "One row per weight class",
+        "The output must be written to undefeated.csv with columns 'level' and 'fighter_num'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Output must be written to undefeated.csv with columns: level, fighter_num",
+          "Weight classes need to be standardized (e.g., Lightweight, Welterweight, etc.) from weight_in_kg values",
+          "fighter_num likely represents count of undefeated fighters per weight class"
+        ],
+        [
+          "Output file must be named undefeated.csv",
+          "Must have exactly 2 columns: level, fighter_num",
+          "level should contain weight class names",
+          "fighter_num should contain count of undefeated fighters in that weight class",
+          "CSV format with header row",
+          "One row per weight class"
+        ],
+        [
+          "The output must be written to undefeated.csv with columns 'level' and 'fighter_num'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6045454545454547
+}

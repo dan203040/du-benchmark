@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Player with highest number of titles",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum value in 'No. of Titles' column?",
+      "Which player(s) have this maximum number of titles?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Squash Players Ranking"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "No. of Titles": "count",
+      "Runner-up": "count",
+      "Final Appearances": "count",
+      "Rank": "ordinal"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All numeric columns are Int64 type",
+      "No missing values observed in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "No. of Titles must be non-negative integer",
+      "Rank should be unique or tied",
+      "Final Appearances should be >= No. of Titles + Runner-up"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return player name(s) with highest No. of Titles",
+      "Include the number of titles in output"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Player with highest number of titles\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the maximum value in 'No. of Titles' column?\",\n      \"Which player(s) have this maximum number of titles?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Squash Players Ranking\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"No. of Titles\": \"count\",\n      \"Runner-up\": \"count\",\n      \"Final Appearances\": \"count\",\n      \"Rank\": \"ordinal\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All numeric columns are Int64 type\",\n      \"No missing values observed in sample\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"No. of Titles must be non-negative integer\",\n      \"Rank should be unique or tied\",\n      \"Final Appearances should be >= No. of Titles + Runner-up\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return player name(s) with highest No. of Titles\",\n      \"Include the number of titles in output\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 6.9497599601745605,
+  "token_usage": {
+    "input_tokens": 956,
+    "output_tokens": 461
+  }
+}

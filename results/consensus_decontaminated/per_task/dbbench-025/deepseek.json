@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "count of distinct films",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Are there duplicate film titles?",
+      "Should films with missing ratings be included?",
+      "Should multi-part films (like Nymphomaniac: Volume I and II) count as one or two films?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Film Ratings"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rotten Tomatoes": "percentage",
+      "Metacritic": "score out of 100",
+      "IMDb": "score out of 10"
+    },
+    "scale_issues": [
+      "Rotten Tomatoes and Metacritic columns contain 'N/A' values",
+      "IMDb column contains scores with '/10' suffix"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column contains future years (2025, 2026)",
+      "Some films have missing rating values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Film column should not contain null values",
+      "Year should be between reasonable film production years"
+    ],
+    "derived_filters": [
+      "Exclude rows where Film is null or empty",
+      "Consider filtering by Year range if needed"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Film entries",
+      "Verify Year distribution"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of distinct films\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Are there duplicate film titles?\", \"Should films with missing ratings be included?\", \"Should multi-part films (like Nymphomaniac: Volume I and II) count as one or two films?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Film Ratings\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Rotten Tomatoes\": \"percentage\", \"Metacritic\": \"score out of 100\", \"IMDb\": \"score out of 10\"},\n        \"scale_issues\": [\"Rotten Tomatoes and Metacritic columns contain 'N/A' values\", \"IMDb column contains scores with '/10' suffix\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year column contains future years (2025, 2026)\", \"Some films have missing rating values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Film column should not contain null values\", \"Year should be between reasonable film production years\"],\n        \"derived_filters\": [\"Exclude rows where Film is null or empty\", \"Consider filtering by Year range if needed\"],\n        \"statistical_tests\": [\"Check for duplicate Film entries\", \"Verify Year distribution\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.267044067382812,
+  "token_usage": {
+    "input_tokens": 935,
+    "output_tokens": 402
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Total acres burned in the 3-month period with the highest total acres burned since January 2000",
+    "filters": [
+      "Date >= 200001"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the total acres burned for each 3-month period since January 2000",
+      "Identify the 3-month period with the maximum total acres burned",
+      "What is the total acres burned in that period?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv",
+      "noaa_wildfires_monthly_stats__section_1"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Acres Burned": "acres",
+      "Number of Fires": "count",
+      "Acres Burned per Fire": "acres/fire"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Date column represents year and month (YYYYMM)",
+      "Need to convert 'Date' column to a datetime object for time-based calculations"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single number representing the total acres burned in the 3-month period with the highest total acres burned."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total acres burned in the 3-month period with the highest total acres burned since January 2000\",\n    \"filters\": [\n      \"Date >= 200001\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the total acres burned for each 3-month period since January 2000\",\n      \"Identify the 3-month period with the maximum total acres burned\",\n      \"What is the total acres burned in that period?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires_monthly_stats.csv\",\n      \"noaa_wildfires_monthly_stats__section_1\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Acres Burned\": \"acres\",\n      \"Number of Fires\": \"count\",\n      \"Acres Burned per Fire\": \"acres/fire\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Date column represents year and month (YYYYMM)\",\n      \"Need to convert 'Date' column to a datetime object for time-based calculations\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a single number representing the total acres burned in the 3-month period with the highest total acres burned.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.411532163619995,
+  "token_usage": {}
+}

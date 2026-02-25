@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "Top 5 countries with highest birth rates and top 5 countries with lowest birth rates",
+    "filters": [],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the mean birth rate across all countries?",
+      "Which countries have missing birth rate values?",
+      "Fill missing birth rate values with the calculated mean",
+      "Sort countries by birth rate in descending order",
+      "Identify top 5 countries with highest birth rates",
+      "Identify top 5 countries with lowest birth rates"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Birth Rate": "births per 1000 population (assumed)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "NaN"
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Birth Rate column is float64 type and may contain missing values",
+      "Country column contains country names as strings",
+      "Column 'Density\\n(P/Km2)' contains newline character in header"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Birth Rate must be numeric (float64)",
+      "Country names must be non-empty strings",
+      "Must handle missing Birth Rate values before ranking"
+    ],
+    "derived_filters": [
+      "Exclude or impute missing Birth Rate values before computing rankings"
+    ],
+    "statistical_tests": [
+      "Calculate mean of Birth Rate column excluding missing values",
+      "Impute missing Birth Rate values with computed mean"
+    ],
+    "output_format_requirements": [
+      "Output must be valid JSON format",
+      "Must contain exactly two keys: 'Top 5 countries with High Birth Rate' and 'Top 5 countries with Lowest Birth Rate'",
+      "Each key maps to a list of 5 country names",
+      "Top 5 high birth rate countries must be sorted from highest to lowest",
+      "Top 5 low birth rate countries must be sorted from highest to lowest (meaning the lowest overall appears last)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 5 countries with highest birth rates and top 5 countries with lowest birth rates\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Country\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the mean birth rate across all countries?\",\n      \"Which countries have missing birth rate values?\",\n      \"Fill missing birth rate values with the calculated mean\",\n      \"Sort countries by birth rate in descending order\",\n      \"Identify top 5 countries with highest birth rates\",\n      \"Identify top 5 countries with lowest birth rates\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"world-data-2023.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Birth Rate\": \"births per 1000 population (assumed)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"NaN\"],\n    \"expected_columns\": 35,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Birth Rate column is float64 type and may contain missing values\",\n      \"Country column contains country names as strings\",\n      \"Column 'Density\\\\n(P/Km2)' contains newline character in header\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Birth Rate must be numeric (float64)\",\n      \"Country names must be non-empty strings\",\n      \"Must handle missing Birth Rate values before ranking\"\n    ],\n    \"derived_filters\": [\n      \"Exclude or impute missing Birth Rate values before computing rankings\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate mean of Birth Rate column excluding missing values\",\n      \"Impute missing Birth Rate values with computed mean\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be valid JSON format\",\n      \"Must contain exactly two keys: 'Top 5 countries with High Birth Rate' and 'Top 5 countries with Lowest Birth Rate'\",\n      \"Each key maps to a list of 5 country names\",\n      \"Top 5 high birth rate countries must be sorted from highest to lowest\",\n      \"Top 5 low birth rate countries must be sorted from highest to lowest (meaning the lowest overall appears last)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.972223043441772,
+  "token_usage": {
+    "input_tokens": 4016,
+    "output_tokens": 663
+  }
+}

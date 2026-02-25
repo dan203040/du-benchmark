@@ -1,0 +1,60 @@
+{
+  "m_q": {
+    "target_metric": "most frequent FIGO_stage among patients older than 70",
+    "filters": [
+      "Age > 70"
+    ],
+    "grouping_variables": [
+      "FIGO_stage"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "Tumor_Size_cm": "cm"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Age must be a numerical value",
+      "FIGO_stage must be a categorical value"
+    ],
+    "derived_filters": [
+      "Patients older than 70: Age > 70"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Report the most frequent FIGO_stage"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"most frequent FIGO_stage among patients older than 70\",\n    \"filters\": [\n      \"Age > 70\"\n    ],\n    \"grouping_variables\": [\n      \"FIGO_stage\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"Tumor_Size_cm\": \"cm\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Age must be a numerical value\",\n      \"FIGO_stage must be a categorical value\"\n    ],\n    \"derived_filters\": [\n      \"Patients older than 70: Age > 70\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Report the most frequent FIGO_stage\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.61796498298645,
+  "token_usage": {}
+}

@@ -1,0 +1,314 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Attendance",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Attendance value",
+        "Attendance",
+        "Attendance"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Round = '52'",
+        "Home = 'S\u00f6dert\u00e4lje SK'",
+        "Round equals 52",
+        "Home equals 's\u00f6dert\u00e4lje sk' (case-insensitive match to 'S\u00f6dert\u00e4lje SK')"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "Round = '52'",
+          "Home = 'S\u00f6dert\u00e4lje SK'"
+        ],
+        [
+          "Round equals 52",
+          "Home equals 's\u00f6dert\u00e4lje sk' (case-insensitive match to 'S\u00f6dert\u00e4lje SK')"
+        ],
+        [
+          "Round = '52'",
+          "Home = 's\u00f6dert\u00e4lje sk'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Find the specific attendance number for the game with Round 52 where S\u00f6dert\u00e4lje SK is the home team",
+        "What is the exact match for home team name given case differences?",
+        "Are there multiple games matching Round 52 and Home S\u00f6dert\u00e4lje SK?",
+        "What is the attendance value for the matching game?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Find the specific attendance number for the game with Round 52 where S\u00f6dert\u00e4lje SK is the home team"
+        ],
+        [
+          "What is the exact match for home team name given case differences?",
+          "Are there multiple games matching Round 52 and Home S\u00f6dert\u00e4lje SK?",
+          "What is the attendance value for the matching game?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Hockey Games"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Hockey Games"
+        ],
+        [
+          "Hockey Games"
+        ],
+        [
+          "Hockey Games"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "attendance": "number of people",
+        "round": "game round number"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Attendance": "number of spectators"
+        },
+        {
+          "Attendance": "number of people",
+          "Round": "game round number"
+        },
+        {
+          "Attendance": "number of people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Attendance values contain commas as thousand separators (e.g., '11,497') which need to be parsed as numeric",
+        "Attendance values appear to contain commas as thousands separators (e.g., '2,859')",
+        "Attendance is stored as string type instead of numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Attendance values contain commas as thousand separators (e.g., '11,497') which need to be parsed as numeric"
+        ],
+        [
+          "Attendance values appear to contain commas as thousands separators (e.g., '2,859')",
+          "Attendance is stored as string type instead of numeric"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Round values appear to be strings but represent numeric rounds",
+        "Home team names must match exactly (case-sensitive)",
+        "There should be exactly one game with Round 52 and Home = 'S\u00f6dert\u00e4lje SK' based on sample data",
+        "Round must equal 52",
+        "Home must match 'S\u00f6dert\u00e4lje SK' (case-insensitive)",
+        "Attendance must be present and non-null",
+        "Round values must be strings",
+        "Home values must be strings",
+        "Attendance values must be strings representing numbers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Round values appear to be strings but represent numeric rounds",
+          "Home team names must match exactly (case-sensitive)",
+          "There should be exactly one game with Round 52 and Home = 'S\u00f6dert\u00e4lje SK' based on sample data"
+        ],
+        [
+          "Round must equal 52",
+          "Home must match 'S\u00f6dert\u00e4lje SK' (case-insensitive)",
+          "Attendance must be present and non-null"
+        ],
+        [
+          "Round values must be strings",
+          "Home values must be strings",
+          "Attendance values must be strings representing numbers"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Round column filtering for value '52'",
+        "Home column filtering for value 'S\u00f6dert\u00e4lje SK'",
+        "Convert Round from string to numeric for comparison if needed",
+        "Normalize Home team name to handle case-insensitive matching"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Round column filtering for value '52'",
+          "Home column filtering for value 'S\u00f6dert\u00e4lje SK'"
+        ],
+        [
+          "Convert Round from string to numeric for comparison if needed",
+          "Normalize Home team name to handle case-insensitive matching"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Round+Home combinations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Round+Home combinations"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Attendance should be returned as a cleaned numeric value (remove commas and quotes)",
+        "Return single attendance value",
+        "Remove comma separators from attendance if present",
+        "Return numeric attendance value or formatted string as '2,859'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Attendance should be returned as a cleaned numeric value (remove commas and quotes)"
+        ],
+        [
+          "Return single attendance value",
+          "Remove comma separators from attendance if present",
+          "Return numeric attendance value or formatted string as '2,859'"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5750000000000001
+}

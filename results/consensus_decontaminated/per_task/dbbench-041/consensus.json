@@ -1,0 +1,341 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "US Cash Box value",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "US Cash Box value",
+        "US Cash Box value",
+        "Count of songs that meet the specified criteria"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year < 1978",
+        "US Billboard = 35",
+        "Year is before 1978",
+        "US Billboard is 35",
+        "US Cash Box is not null"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [
+          "Year < 1978",
+          "US Billboard = 35"
+        ],
+        [
+          "Year < 1978",
+          "US Billboard = 35"
+        ],
+        [
+          "Year is before 1978",
+          "US Billboard is 35",
+          "US Cash Box is not null"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Find all records with US Billboard value of 35",
+        "Filter to only records before 1978",
+        "Extract the US Cash Box value from the matching record",
+        "Which records have US Billboard value equal to 35?",
+        "Among those records, which have Year before 1978?",
+        "What is the US Cash Box value for the matching record?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Find all records with US Billboard value of 35",
+          "Filter to only records before 1978",
+          "Extract the US Cash Box value from the matching record"
+        ],
+        [
+          "Which records have US Billboard value equal to 35?",
+          "Among those records, which have Year before 1978?",
+          "What is the US Cash Box value for the matching record?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "US Music Charts"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "US Music Charts"
+        ],
+        [
+          "US Music Charts"
+        ],
+        [
+          "US Music Charts"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "year",
+        "us billboard": "chart position",
+        "us cash box": "chart position",
+        "us ac": "chart position",
+        "can ac": "chart position"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Year": "year",
+          "US Billboard": "chart position",
+          "US Cash Box": "chart position",
+          "US AC": "chart position",
+          "CAN AC": "chart position"
+        },
+        {
+          "Year": "year",
+          "US Billboard": "chart_position",
+          "US Cash Box": "chart_position",
+          "US AC": "chart_position",
+          "CAN AC": "chart_position"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year stored as object/string instead of integer",
+        "Chart positions stored as objects/strings instead of integers",
+        "Missing values represented by '\u2013' (en dash) instead of standard null indicators"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year stored as object/string instead of integer",
+          "Chart positions stored as objects/strings instead of integers",
+          "Missing values represented by '\u2013' (en dash) instead of standard null indicators"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "\u2013",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.9166666666666666,
+      "votes": [
+        [
+          "\u2013",
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "\u2013",
+          "NA",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "\u2013"
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be between 1972-1988 based on sample",
+        "Chart positions should be integers between 1-100 (or null)",
+        "Each row represents a unique song in a specific year",
+        "Year must be convertible to integer for comparison",
+        "US Billboard must be convertible to integer for exact match",
+        "US Cash Box may contain sentinel values (\u2013) indicating no chart position",
+        "Year < 1978 means Year <= 1977",
+        "Year must be parsed as an integer",
+        "US Billboard must be parsed as an integer",
+        "US Cash Box must be parsed as an integer"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Year values should be between 1972-1988 based on sample",
+          "Chart positions should be integers between 1-100 (or null)",
+          "Each row represents a unique song in a specific year"
+        ],
+        [
+          "Year must be convertible to integer for comparison",
+          "US Billboard must be convertible to integer for exact match",
+          "US Cash Box may contain sentinel values (\u2013) indicating no chart position",
+          "Year < 1978 means Year <= 1977"
+        ],
+        [
+          "Year must be parsed as an integer",
+          "US Billboard must be parsed as an integer",
+          "US Cash Box must be parsed as an integer"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert Year to numeric for comparison",
+        "Convert US Billboard to numeric for comparison",
+        "Handle '\u2013' as null/missing values",
+        "Convert Year from object to integer where Year < 1978",
+        "Convert US Billboard from object to integer where US Billboard = 35",
+        "Handle sentinel values in US Cash Box before returning result",
+        "Year < 1978"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert Year to numeric for comparison",
+          "Convert US Billboard to numeric for comparison",
+          "Handle '\u2013' as null/missing values"
+        ],
+        [
+          "Convert Year from object to integer where Year < 1978",
+          "Convert US Billboard from object to integer where US Billboard = 35",
+          "Handle sentinel values in US Cash Box before returning result"
+        ],
+        [
+          "Year < 1978"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Year-Title combinations",
+        "Validate Year range consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Year-Title combinations",
+          "Validate Year range consistency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric value or null if no match found",
+        "Return single US Cash Box value matching the criteria",
+        "If no match found, indicate no result",
+        "If multiple matches found, return all matching values or clarify ambiguity"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric value or null if no match found"
+        ],
+        [
+          "Return single US Cash Box value matching the criteria",
+          "If no match found, indicate no result",
+          "If multiple matches found, return all matching values or clarify ambiguity"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5858333333333334
+}

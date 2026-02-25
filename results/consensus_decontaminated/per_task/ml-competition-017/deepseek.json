@@ -1,0 +1,105 @@
+{
+  "m_q": {
+    "target_metric": "score (integer essay score)",
+    "filters": [
+      "test.csv data only"
+    ],
+    "grouping_variables": [
+      "essay_id"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Predict scores for 2597 test essays",
+      "Match submission format to sample_submission.csv",
+      "Ensure essay_id-score mapping is preserved"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv",
+      "test.csv",
+      "sample_submission.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "train.csv",
+        "right_source": "test.csv",
+        "left_column": "essay_id",
+        "right_column": "essay_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "test.csv",
+        "right_source": "sample_submission.csv",
+        "left_column": "essay_id",
+        "right_column": "essay_id",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "train.csv has 'score' column, test.csv lacks 'score' column",
+      "sample_submission.csv has only 2 columns while train.csv has 3 columns"
+    ],
+    "column_mappings": {
+      "full_text": "essay_text"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "score": "integer rating scale (likely 1-6 or similar)"
+    },
+    "scale_issues": [
+      "Score scale range needs verification from train.csv distribution"
+    ],
+    "cross_source_conflicts": [
+      "test.csv lacks target variable 'score' for prediction"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Text data contains quotes and newlines",
+      "full_text column contains essay content with punctuation and formatting",
+      "essay_id appears to be alphanumeric identifier"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "essay_id must be unique across all files",
+      "score must be integer",
+      "submission must match sample_submission.csv format exactly"
+    ],
+    "derived_filters": [
+      "Remove essays with empty full_text",
+      "Ensure predicted scores are within training score range"
+    ],
+    "statistical_tests": [
+      "Check score distribution in train.csv",
+      "Validate essay length distribution across train/test"
+    ],
+    "output_format_requirements": [
+      "CSV file named submission.csv",
+      "Columns: essay_id,score",
+      "2597 rows matching test.csv",
+      "No header quotes, comma delimiter"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"score (integer essay score)\",\n        \"filters\": [\"test.csv data only\"],\n        \"grouping_variables\": [\"essay_id\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Predict scores for 2597 test essays\", \"Match submission format to sample_submission.csv\", \"Ensure essay_id-score mapping is preserved\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"train.csv\", \"test.csv\", \"sample_submission.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"train.csv\", \"right_source\": \"test.csv\", \"left_column\": \"essay_id\", \"right_column\": \"essay_id\", \"join_type\": \"inner\"},\n            {\"left_source\": \"test.csv\", \"right_source\": \"sample_submission.csv\", \"left_column\": \"essay_id\", \"right_column\": \"essay_id\", \"join_type\": \"left\"}\n        ],\n        \"schema_conflicts\": [\"train.csv has 'score' column, test.csv lacks 'score' column\", \"sample_submission.csv has only 2 columns while train.csv has 3 columns\"],\n        \"column_mappings\": {\"full_text\": \"essay_text\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"score\": \"integer rating scale (likely 1-6 or similar)\"},\n        \"scale_issues\": [\"Score scale range needs verification from train.csv distribution\"],\n        \"cross_source_conflicts\": [\"test.csv lacks target variable 'score' for prediction\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 3,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Text data contains quotes and newlines\", \"full_text column contains essay content with punctuation and formatting\", \"essay_id appears to be alphanumeric identifier\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"essay_id must be unique across all files\", \"score must be integer\", \"submission must match sample_submission.csv format exactly\"],\n        \"derived_filters\": [\"Remove essays with empty full_text\", \"Ensure predicted scores are within training score range\"],\n        \"statistical_tests\": [\"Check score distribution in train.csv\", \"Validate essay length distribution across train/test\"],\n        \"output_format_requirements\": [\"CSV file named submission.csv\", \"Columns: essay_id,score\", \"2597 rows matching test.csv\", \"No header quotes, comma delimiter\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.803006887435913,
+  "token_usage": {
+    "input_tokens": 2921,
+    "output_tokens": 575
+  }
+}

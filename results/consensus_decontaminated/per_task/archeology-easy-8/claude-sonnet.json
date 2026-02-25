@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "count of unique sources",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What column contains source information?",
+      "How are multiple sources delimited within the source column?",
+      "What constitutes a unique source (e.g., acronym vs full citation)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "roman_cities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Select Bibliography column contains semicolon-separated list of source abbreviations",
+      "Sources appear as acronyms (BNP, PECS, DGRG) and citations (Hansen 2006, Sear 2006)",
+      "Some rows have empty or missing bibliography values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Select Bibliography column must be parsed to extract individual sources",
+      "Sources are delimited by semicolons and periods",
+      "Uniqueness should count each distinct source identifier once across entire dataset"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer representing count of unique sources"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"count of unique sources\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What column contains source information?\",\n      \"How are multiple sources delimited within the source column?\",\n      \"What constitutes a unique source (e.g., acronym vs full citation)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"roman_cities.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Select Bibliography column contains semicolon-separated list of source abbreviations\",\n      \"Sources appear as acronyms (BNP, PECS, DGRG) and citations (Hansen 2006, Sear 2006)\",\n      \"Some rows have empty or missing bibliography values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Select Bibliography column must be parsed to extract individual sources\",\n      \"Sources are delimited by semicolons and periods\",\n      \"Uniqueness should count each distinct source identifier once across entire dataset\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single integer representing count of unique sources\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.807001113891602,
+  "token_usage": {
+    "input_tokens": 2274,
+    "output_tokens": 463
+  }
+}

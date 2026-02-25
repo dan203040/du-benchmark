@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "correlation between fire size and median wind speed in July",
+    "filters": [
+      "start_date month = July",
+      "valid wind_med values",
+      "valid fire size values"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What column represents fire size?",
+      "How to extract July data from start_date?",
+      "What correlation measure to use (Pearson/Spearman)?",
+      "What threshold defines 'strong correlation'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Fire size column not clearly identified in sample data - need to check variable descriptions for size metric"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "wind_med": "miles per hour",
+      "avrh_mean": "percentage",
+      "rain_sum": "precipitation units",
+      "duration": "days",
+      "latitude": "degrees",
+      "longitude": "degrees"
+    },
+    "scale_issues": [
+      "wind_med appears as integer but may need decimal precision",
+      "erc_med has decimal values while other weather metrics are integers"
+    ],
+    "cross_source_conflicts": [
+      "Variable descriptions file may clarify which column represents fire size - possibly prim_threatened_aggregate or other threatened columns"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "start_date format: MM/DD/YYYY",
+      "controlled_date format: MM/DD/YYYY",
+      "Some numeric columns stored as int64 but may represent continuous measurements"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "wind_med >= 0",
+      "duration >= 1",
+      "start_year consistent with start_date year",
+      "July defined as month 7 in start_date"
+    ],
+    "derived_filters": [
+      "Filter rows where start_date month = 7",
+      "Exclude rows with missing wind_med or fire size values",
+      "Consider only rows with valid numeric values for both variables"
+    ],
+    "statistical_tests": [
+      "Pearson correlation coefficient",
+      "Significance test for correlation",
+      "Check for normality assumptions"
+    ],
+    "output_format_requirements": [
+      "Binary Yes/No answer based on correlation strength threshold",
+      "May need to define 'strong correlation' threshold (e.g., |r| > 0.7)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"correlation between fire size and median wind speed in July\",\n        \"filters\": [\"start_date month = July\", \"valid wind_med values\", \"valid fire size values\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What column represents fire size?\", \"How to extract July data from start_date?\", \"What correlation measure to use (Pearson/Spearman)?\", \"What threshold defines 'strong correlation'?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Fire size column not clearly identified in sample data - need to check variable descriptions for size metric\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"wind_med\": \"miles per hour\", \"avrh_mean\": \"percentage\", \"rain_sum\": \"precipitation units\", \"duration\": \"days\", \"latitude\": \"degrees\", \"longitude\": \"degrees\"},\n        \"scale_issues\": [\"wind_med appears as integer but may need decimal precision\", \"erc_med has decimal values while other weather metrics are integers\"],\n        \"cross_source_conflicts\": [\"Variable descriptions file may clarify which column represents fire size - possibly prim_threatened_aggregate or other threatened columns\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"start_date format: MM/DD/YYYY\", \"controlled_date format: MM/DD/YYYY\", \"Some numeric columns stored as int64 but may represent continuous measurements\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"wind_med >= 0\", \"duration >= 1\", \"start_year consistent with start_date year\", \"July defined as month 7 in start_date\"],\n        \"derived_filters\": [\"Filter rows where start_date month = 7\", \"Exclude rows with missing wind_med or fire size values\", \"Consider only rows with valid numeric values for both variables\"],\n        \"statistical_tests\": [\"Pearson correlation coefficient\", \"Significance test for correlation\", \"Check for normality assumptions\"],\n        \"output_format_requirements\": [\"Binary Yes/No answer based on correlation strength threshold\", \"May need to define 'strong correlation' threshold (e.g., |r| > 0.7)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.91206407546997,
+  "token_usage": {
+    "input_tokens": 3958,
+    "output_tokens": 590
+  }
+}

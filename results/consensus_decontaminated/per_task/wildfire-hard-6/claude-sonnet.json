@@ -1,0 +1,114 @@
+{
+  "m_q": {
+    "target_metric": "Pearson correlation coefficient between annual difference in number of fires (NOAA - NIFC) and annual difference in acres burned (NOAA - NIFC)",
+    "filters": [
+      "Years where both NOAA and NIFC data exist"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the annual totals of Number of Fires from NOAA data?",
+      "What are the annual totals of Acres Burned from NOAA data?",
+      "What are the annual Number of Fires from NIFC data?",
+      "What are the annual Acres Burned from NIFC data?",
+      "What is the difference between NOAA and NIFC Number of Fires per year?",
+      "What is the difference between NOAA and NIFC Acres Burned per year?",
+      "What is the correlation between these two difference series?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv",
+      "nifc_wildfires.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires_monthly_stats.csv",
+        "right_source": "nifc_wildfires.csv",
+        "left_column": "Date_year_extracted",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "NOAA data is monthly with Date as YYYYMM format, NIFC data is annual",
+      "NIFC column names appear malformed with tab characters in header",
+      "NIFC first column appears to contain Year and Fire count combined"
+    ],
+    "column_mappings": {
+      "Date": "Date_YYYYMM",
+      "2024\\t64": "Year_Fires_Combined",
+      "897\\t8": "Acres_Part1",
+      "924": "Acres_Part2",
+      "884": "Acres_Part3"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Acres Burned": "acres",
+      "Number of Fires": "count",
+      "Acres Burned per Fire": "acres per fire",
+      "Date": "YYYYMM integer format"
+    },
+    "scale_issues": [
+      "NOAA data is monthly and needs aggregation to annual",
+      "NIFC acres values appear split across multiple columns with comma separators"
+    ],
+    "cross_source_conflicts": [
+      "Different temporal granularity: NOAA is monthly, NIFC is annual",
+      "NIFC data format suggests tab-delimited parsing issue resulting in split numeric values"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "-999",
+      "*"
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "NOAA Date column uses YYYYMM integer format (e.g., 200001 for January 2000)",
+      "NIFC file appears to have tab characters in data causing parsing issues",
+      "NIFC first column contains tab-separated year and fire count",
+      "NIFC acres burned appears split across columns 2-4, likely representing comma-separated thousands",
+      "NIFC data contains asterisk (*) as sentinel value (e.g., *8,97,880 in 2004)",
+      "NIFC data contains malformed values (e.g., 10,26,86 in 2017 should be 10,026,086)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Output correlation coefficient to exactly three decimal places",
+      "Only include years where both NOAA and NIFC data are available",
+      "NOAA monthly data must be aggregated to annual totals before comparison",
+      "Calculate differences as NOAA minus NIFC for both fires and acres"
+    ],
+    "derived_filters": [
+      "Extract year from NOAA Date column (first 4 digits of YYYYMM)",
+      "Filter to complete years only (all 12 months present for NOAA data)",
+      "Remove or correct malformed NIFC records with asterisks or incorrect comma placement"
+    ],
+    "statistical_tests": [
+      "Pearson correlation between fire count differences and acres burned differences"
+    ],
+    "output_format_requirements": [
+      "Single numeric value rounded to 3 decimal places",
+      "Format: X.XXX"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Pearson correlation coefficient between annual difference in number of fires (NOAA - NIFC) and annual difference in acres burned (NOAA - NIFC)\",\n    \"filters\": [\"Years where both NOAA and NIFC data exist\"],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are the annual totals of Number of Fires from NOAA data?\",\n      \"What are the annual totals of Acres Burned from NOAA data?\",\n      \"What are the annual Number of Fires from NIFC data?\",\n      \"What are the annual Acres Burned from NIFC data?\",\n      \"What is the difference between NOAA and NIFC Number of Fires per year?\",\n      \"What is the difference between NOAA and NIFC Acres Burned per year?\",\n      \"What is the correlation between these two difference series?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"noaa_wildfires_monthly_stats.csv\", \"nifc_wildfires.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"noaa_wildfires_monthly_stats.csv\",\n        \"right_source\": \"nifc_wildfires.csv\",\n        \"left_column\": \"Date_year_extracted\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"NOAA data is monthly with Date as YYYYMM format, NIFC data is annual\",\n      \"NIFC column names appear malformed with tab characters in header\",\n      \"NIFC first column appears to contain Year and Fire count combined\"\n    ],\n    \"column_mappings\": {\n      \"Date\": \"Date_YYYYMM\",\n      \"2024\\\\t64\": \"Year_Fires_Combined\",\n      \"897\\\\t8\": \"Acres_Part1\",\n      \"924\": \"Acres_Part2\",\n      \"884\": \"Acres_Part3\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Acres Burned\": \"acres\",\n      \"Number of Fires\": \"count\",\n      \"Acres Burned per Fire\": \"acres per fire\",\n      \"Date\": \"YYYYMM integer format\"\n    },\n    \"scale_issues\": [\n      \"NOAA data is monthly and needs aggregation to annual\",\n      \"NIFC acres values appear split across multiple columns with comma separators\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Different temporal granularity: NOAA is monthly, NIFC is annual\",\n      \"NIFC data format suggests tab-delimited parsing issue resulting in split numeric values\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"-999\", \"*\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"NOAA Date column uses YYYYMM integer format (e.g., 200001 for January 2000)\",\n      \"NIFC file appears to have tab characters in data causing parsing issues\",\n      \"NIFC first column contains tab-separated year and fire count\",\n      \"NIFC acres burned appears split across columns 2-4, likely representing comma-separated thousands\",\n      \"NIFC data contains asterisk (*) as sentinel value (e.g., *8,97,880 in 2004)\",\n      \"NIFC data contains malformed values (e.g., 10,26,86 in 2017 should be 10,026,086)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Output correlation coefficient to exactly three decimal places\",\n      \"Only include years where both NOAA and NIFC data are available\",\n      \"NOAA monthly data must be aggregated to annual totals before comparison\",\n      \"Calculate differences as NOAA minus NIFC for both fires and acres\"\n    ],\n    \"derived_filters\": [\n      \"Extract year from NOAA Date column (first 4 digits of YYYYMM)\",\n      \"Filter to complete years only (all 12 months present for NOAA data)\",\n      \"Remove or correct malformed NIFC records with asterisks or incorrect comma placement\"\n    ],\n    \"statistical_tests\": [\n      \"Pearson correlation between fire count differences and acres burned differences\"\n    ],\n    \"output_format_requirements\": [\n      \"Single numeric value rounded to 3 decimal places\",\n      \"Format: X.XXX\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 20.60452699661255,
+  "token_usage": {
+    "input_tokens": 1443,
+    "output_tokens": 1189
+  }
+}

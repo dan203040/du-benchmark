@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "Sum of squared residuals (SSR) from regression predicting quarterly minimum portfolio returns using mortgage delinquencies",
+    "filters": [
+      "Data from 2005 to 2010"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify column containing quarterly minimum portfolio returns (dependent variable)",
+      "Identify column containing mortgage delinquencies (independent variable)",
+      "Filter data to include only records from 2005 to 2010",
+      "Perform linear regression with mortgage delinquencies as predictor",
+      "Calculate residuals (actual - predicted values)",
+      "Square each residual and sum them to get SSR"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "sample_result.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Sum-of-squared residuals": "Sum-of-squared residuals"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Sum-of-squared residuals": "squared units of portfolio returns"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 1,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Output file contains single column with SSR value",
+      "sample_result.csv shows expected output format with one row"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Time period must be from 2005 to 2010 inclusive",
+      "Regression must use mortgage delinquencies as independent variable",
+      "Dependent variable must be quarterly minimum portfolio returns",
+      "Output must be saved to result.csv"
+    ],
+    "derived_filters": [
+      "Extract year from date column and filter for year >= 2005 and year <= 2010"
+    ],
+    "statistical_tests": [
+      "Linear regression analysis",
+      "Calculate SSR = sum((y_actual - y_predicted)^2)"
+    ],
+    "output_format_requirements": [
+      "Save result to result.csv",
+      "Single column named 'Sum-of-squared residuals'",
+      "Single row containing the SSR value",
+      "Float64 data type"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Sum of squared residuals (SSR) from regression predicting quarterly minimum portfolio returns using mortgage delinquencies\",\n    \"filters\": [\"Data from 2005 to 2010\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify column containing quarterly minimum portfolio returns (dependent variable)\",\n      \"Identify column containing mortgage delinquencies (independent variable)\",\n      \"Filter data to include only records from 2005 to 2010\",\n      \"Perform linear regression with mortgage delinquencies as predictor\",\n      \"Calculate residuals (actual - predicted values)\",\n      \"Square each residual and sum them to get SSR\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"sample_result.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Sum-of-squared residuals\": \"Sum-of-squared residuals\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Sum-of-squared residuals\": \"squared units of portfolio returns\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 1,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Output file contains single column with SSR value\",\n      \"sample_result.csv shows expected output format with one row\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Time period must be from 2005 to 2010 inclusive\",\n      \"Regression must use mortgage delinquencies as independent variable\",\n      \"Dependent variable must be quarterly minimum portfolio returns\",\n      \"Output must be saved to result.csv\"\n    ],\n    \"derived_filters\": [\n      \"Extract year from date column and filter for year >= 2005 and year <= 2010\"\n    ],\n    \"statistical_tests\": [\n      \"Linear regression analysis\",\n      \"Calculate SSR = sum((y_actual - y_predicted)^2)\"\n    ],\n    \"output_format_requirements\": [\n      \"Save result to result.csv\",\n      \"Single column named 'Sum-of-squared residuals'\",\n      \"Single row containing the SSR value\",\n      \"Float64 data type\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.033346891403198,
+  "token_usage": {
+    "input_tokens": 655,
+    "output_tokens": 653
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "total number of medals won by United States",
+    "filters": [
+      "Nation equals 'United States (USA)'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify the row corresponding to United States",
+      "Extract the Total column value for United States"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medals"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Gold": "count of medals",
+      "Silver": "count of medals",
+      "Bronze": "count of medals",
+      "Total": "count of medals",
+      "Rank": "ordinal position"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Nation column contains country name with ISO code in parentheses",
+      "All numeric columns are Int64 type",
+      "No missing values detected in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total column should equal sum of Gold, Silver, and Bronze columns",
+      "Nation values should be unique",
+      "All medal counts should be non-negative integers"
+    ],
+    "derived_filters": [
+      "Filter Nation column where it contains 'United States' or 'USA'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer value representing total medals",
+      "Value should be extracted from the Total column for United States row"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total number of medals won by United States\",\n    \"filters\": [\"Nation equals 'United States (USA)'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify the row corresponding to United States\",\n      \"Extract the Total column value for United States\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Olympic Medals\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Gold\": \"count of medals\",\n      \"Silver\": \"count of medals\",\n      \"Bronze\": \"count of medals\",\n      \"Total\": \"count of medals\",\n      \"Rank\": \"ordinal position\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Nation column contains country name with ISO code in parentheses\",\n      \"All numeric columns are Int64 type\",\n      \"No missing values detected in sample\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Total column should equal sum of Gold, Silver, and Bronze columns\",\n      \"Nation values should be unique\",\n      \"All medal counts should be non-negative integers\"\n    ],\n    \"derived_filters\": [\n      \"Filter Nation column where it contains 'United States' or 'USA'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer value representing total medals\",\n      \"Value should be extracted from the Total column for United States row\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.4215669631958,
+  "token_usage": {
+    "input_tokens": 970,
+    "output_tokens": 500
+  }
+}

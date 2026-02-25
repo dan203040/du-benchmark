@@ -1,0 +1,57 @@
+{
+  "m_q": {
+    "target_metric": "Count of distinct college teams that have at least one player with a nationality of Russia",
+    "filters": [
+      "Nationality is Russia",
+      "College/junior/club team is a college team"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify players with nationality Russia.",
+      "Determine the college teams associated with those players.",
+      "Count the distinct college teams."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NHL_draft_picks"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'College/junior/club team' column may contain values that are not college teams. Need to filter to only include college teams."
+    ],
+    "derived_filters": [
+      "College/junior/club team is a college team"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of distinct college teams that have at least one player with a nationality of Russia\",\n    \"filters\": [\"Nationality is Russia\", \"College/junior/club team is a college team\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify players with nationality Russia.\",\n      \"Determine the college teams associated with those players.\",\n      \"Count the distinct college teams.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"NHL_draft_picks\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"The 'College/junior/club team' column may contain values that are not college teams. Need to filter to only include college teams.\"],\n    \"derived_filters\": [\"College/junior/club team is a college team\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.6687870025634766,
+  "token_usage": {}
+}

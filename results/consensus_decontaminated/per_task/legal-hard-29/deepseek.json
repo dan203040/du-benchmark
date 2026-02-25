@@ -1,0 +1,135 @@
+{
+  "m_q": {
+    "target_metric": "percentage of fraud reports in its own state",
+    "filters": [
+      "states with 5 or more metro areas",
+      "exclude footnote rows containing 'Metropolitan Areas are defined'"
+    ],
+    "grouping_variables": [
+      "state",
+      "metropolitan area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which states have 5 or more metro areas?",
+      "For each qualifying state, what is the total number of reports?",
+      "For each metro area in qualifying states, what percentage of state reports does it represent?",
+      "Which metro area has the highest percentage among all qualifying states?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All files have identical schema: ['Metropolitan Area', '# of Reports']"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of fraud reports"
+    },
+    "scale_issues": [
+      "Reports are counts, not rates per population (despite footnote mentioning 'reports per 100,000 population')"
+    ],
+    "cross_source_conflicts": [
+      "Cross-state metro areas (e.g., 'Columbus, GA-AL') appear in multiple state files, causing double-counting if aggregating across states"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Each file ends with a footnote row containing 'Metropolitan Areas are defined...' that must be filtered out",
+      "Metro area names contain commas and are quoted",
+      "State is encoded in filename, not in data columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "# of Reports must be \u2265 0",
+      "Percentage calculations must sum to 100% within each state (excluding cross-state metros)"
+    ],
+    "derived_filters": [
+      "Exclude rows where Metropolitan Area contains 'Metropolitan Areas are defined'",
+      "Include only states where count of unique metro areas (excluding footnote) \u2265 5"
+    ],
+    "statistical_tests": [
+      "Verify no negative report counts",
+      "Check that within-state percentages sum to approximately 100% for non-cross-state metros"
+    ],
+    "output_format_requirements": [
+      "Metro area name with state abbreviation",
+      "Percentage value with appropriate precision"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"percentage of fraud reports in its own state\",\n        \"filters\": [\"states with 5 or more metro areas\", \"exclude footnote rows containing 'Metropolitan Areas are defined'\"],\n        \"grouping_variables\": [\"state\", \"metropolitan area\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which states have 5 or more metro areas?\", \"For each qualifying state, what is the total number of reports?\", \"For each metro area in qualifying states, what percentage of state reports does it represent?\", \"Which metro area has the highest percentage among all qualifying states?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Alabama.csv\", \"Alaska.csv\", \"Arizona.csv\", \"Arkansas.csv\", \"California.csv\", \"Colorado.csv\", \"Connecticut.csv\", \"Delaware.csv\", \"DistrictofColumbia.csv\", \"Florida.csv\", \"Georgia.csv\", \"Hawaii.csv\", \"Idaho.csv\", \"Illinois.csv\", \"Indiana.csv\", \"Iowa.csv\", \"Kansas.csv\", \"Kentucky.csv\", \"Louisiana.csv\", \"Maine.csv\", \"Maryland.csv\", \"Massachusetts.csv\", \"Michigan.csv\", \"Minnesota.csv\", \"Mississippi.csv\", \"Missouri.csv\", \"Montana.csv\", \"Nebraska.csv\", \"Nevada.csv\", \"NewHampshire.csv\", \"NewJersey.csv\", \"NewMexico.csv\", \"NewYork.csv\", \"NorthCarolina.csv\", \"NorthDakota.csv\", \"Ohio.csv\", \"Oklahoma.csv\", \"Oregon.csv\", \"Pennsylvania.csv\", \"PuertoRico.csv\", \"RhodeIsland.csv\", \"SouthCarolina.csv\", \"SouthDakota.csv\", \"Tennessee.csv\", \"Texas.csv\", \"Utah.csv\", \"Vermont.csv\", \"Virginia.csv\", \"Washington.csv\", \"WestVirginia.csv\", \"Wisconsin.csv\", \"Wyoming.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All files have identical schema: ['Metropolitan Area', '# of Reports']\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of fraud reports\"},\n        \"scale_issues\": [\"Reports are counts, not rates per population (despite footnote mentioning 'reports per 100,000 population')\"],\n        \"cross_source_conflicts\": [\"Cross-state metro areas (e.g., 'Columbus, GA-AL') appear in multiple state files, causing double-counting if aggregating across states\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Each file ends with a footnote row containing 'Metropolitan Areas are defined...' that must be filtered out\", \"Metro area names contain commas and are quoted\", \"State is encoded in filename, not in data columns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"# of Reports must be \u2265 0\", \"Percentage calculations must sum to 100% within each state (excluding cross-state metros)\"],\n        \"derived_filters\": [\"Exclude rows where Metropolitan Area contains 'Metropolitan Areas are defined'\", \"Include only states where count of unique metro areas (excluding footnote) \u2265 5\"],\n        \"statistical_tests\": [\"Verify no negative report counts\", \"Check that within-state percentages sum to approximately 100% for non-cross-state metros\"],\n        \"output_format_requirements\": [\"Metro area name with state abbreviation\", \"Percentage value with appropriate precision\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 16.6004159450531,
+  "token_usage": {
+    "input_tokens": 13471,
+    "output_tokens": 820
+  }
+}

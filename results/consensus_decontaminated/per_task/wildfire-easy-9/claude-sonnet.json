@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Difference between fatalities on days with humidity <30% and average fatalities across all days",
+    "filters": [
+      "avrh_mean < 30 for low humidity subset"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of fatalities on days where avrh_mean < 30?",
+      "How many wildfire incidents occurred on days where avrh_mean < 30?",
+      "What is the average fatalities per incident on days where avrh_mean < 30?",
+      "What is the overall average fatalities per incident across all days?",
+      "What is the difference between these two averages?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage (humidity)",
+      "fatalities_last": "count of fatalities",
+      "wind_med": "wind speed unit unspecified",
+      "erc_med": "energy release component index",
+      "rain_sum": "precipitation unit unspecified"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "avrh_mean appears to be average relative humidity as integer percentage",
+      "fatalities_last is integer count of fatalities for each incident",
+      "Some columns have float64 dtype (erc_med) while most are int64"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "avrh_mean represents humidity and should be between 0 and 100",
+      "fatalities_last should be non-negative integer",
+      "Result should be rounded to 4 decimal places"
+    ],
+    "derived_filters": [
+      "low_humidity_subset = avrh_mean < 30",
+      "all_incidents_subset = no filter"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Single scalar value rounded to 4 decimal places",
+      "Positive value indicates more fatalities in low humidity conditions",
+      "Negative value indicates fewer fatalities in low humidity conditions"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Difference between fatalities on days with humidity <30% and average fatalities across all days\",\n    \"filters\": [\n      \"avrh_mean < 30 for low humidity subset\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of fatalities on days where avrh_mean < 30?\",\n      \"How many wildfire incidents occurred on days where avrh_mean < 30?\",\n      \"What is the average fatalities per incident on days where avrh_mean < 30?\",\n      \"What is the overall average fatalities per incident across all days?\",\n      \"What is the difference between these two averages?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Fire_Weather_Data_2002-2014_2016.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"avrh_mean\": \"percentage (humidity)\",\n      \"fatalities_last\": \"count of fatalities\",\n      \"wind_med\": \"wind speed unit unspecified\",\n      \"erc_med\": \"energy release component index\",\n      \"rain_sum\": \"precipitation unit unspecified\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"avrh_mean appears to be average relative humidity as integer percentage\",\n      \"fatalities_last is integer count of fatalities for each incident\",\n      \"Some columns have float64 dtype (erc_med) while most are int64\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"avrh_mean represents humidity and should be between 0 and 100\",\n      \"fatalities_last should be non-negative integer\",\n      \"Result should be rounded to 4 decimal places\"\n    ],\n    \"derived_filters\": [\n      \"low_humidity_subset = avrh_mean < 30\",\n      \"all_incidents_subset = no filter\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Single scalar value rounded to 4 decimal places\",\n      \"Positive value indicates more fatalities in low humidity conditions\",\n      \"Negative value indicates fewer fatalities in low humidity conditions\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.860238790512085,
+  "token_usage": {
+    "input_tokens": 3557,
+    "output_tokens": 710
+  }
+}

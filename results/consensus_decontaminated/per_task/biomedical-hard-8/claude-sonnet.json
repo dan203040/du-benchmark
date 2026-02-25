@@ -1,0 +1,140 @@
+{
+  "m_q": {
+    "target_metric": "Protein sites that are hyperactivated in CNV-high endometrioid samples and targeted by FDA-approved drugs",
+    "filters": [
+      "Histologic_type == 'Endometrioid'",
+      "CNV_class == 'CNV_HIGH'",
+      "Hyperactivated proteins from hyperactivated.csv",
+      "FDA-approved drug targets from 1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs"
+    ],
+    "grouping_variables": [
+      "sample_id",
+      "CNV_class",
+      "Histologic_type"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which samples are CNV-high endometrioid samples?",
+      "Which proteins are hyperactivated in these samples?",
+      "Which of these hyperactivated proteins are targeted by FDA-approved drugs?",
+      "What are the specific phosphorylation or acetylation sites for these proteins?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx",
+      "hyperactivated.csv",
+      "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+      "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+      "1-s2.0-S0092867420301070-mmc6__E-SE phospho site between MSI-H"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "right_source": "hyperactivated.csv",
+        "left_column": "idx",
+        "right_column": "sample_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "hyperactivated.csv",
+        "right_source": "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+        "left_column": "protein",
+        "right_column": "gene_name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "hyperactivated.csv",
+        "right_source": "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+        "left_column": "protein",
+        "right_column": "Gene",
+        "join_type": "left"
+      },
+      {
+        "left_source": "hyperactivated.csv",
+        "right_source": "1-s2.0-S0092867420301070-mmc6__E-SE phospho site between MSI-H",
+        "left_column": "protein",
+        "right_column": "Gene",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "Gene name column varies: 'protein' in hyperactivated.csv, 'gene_name' in FDA drugs, 'Gene' in phospho site sheets",
+      "Sample ID column varies: 'idx' in mmc1, 'sample_id' in hyperactivated.csv"
+    ],
+    "column_mappings": {
+      "idx": "sample_id",
+      "protein": "gene_name",
+      "Gene": "gene_name"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "FoldChange.phos": "log2 fold change",
+      "pval.phos": "p-value",
+      "FDR.phos": "false discovery rate",
+      "CNV_DEL": "copy number variation deletion score",
+      "CNV_AMP": "copy number variation amplification score"
+    },
+    "scale_issues": [
+      "CNV_class is categorical (CNV_HIGH, CNV_LOW) but derived from numeric CNV_DEL and CNV_AMP scores",
+      "Fold change values may be in log2 scale requiring interpretation"
+    ],
+    "cross_source_conflicts": [
+      "Protein/gene naming conventions may differ between hyperactivated list and drug target databases",
+      "Site nomenclature (e.g., S495, T389) needs to be parsed from ID column in phospho site sheets"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "xlsx/csv",
+    "format_notes": [
+      "mmc1.xlsx contains clinical metadata with 179 columns",
+      "hyperactivated.csv contains 2 columns: sample_id and protein",
+      "FDA drugs sheet contains 10 columns with drug-gene interactions",
+      "Phospho site sheets contain ID column with format 'GENE-SITE' (e.g., AAK1-S14)",
+      "Multiple sheets in mmc6.xlsx file requiring sheet-specific parsing"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Histologic_type must equal 'Endometrioid'",
+      "CNV_class must equal 'CNV_HIGH'",
+      "Protein must appear in hyperactivated.csv for corresponding sample",
+      "Protein must have matching gene_name in FDA approved drugs list",
+      "Case_excluded should be 'No' to include valid samples"
+    ],
+    "derived_filters": [
+      "Filter samples where Histologic_type contains 'Endometrioid'",
+      "Identify CNV-high samples using CNV_class column",
+      "Cross-reference hyperactivated proteins with FDA drug targets",
+      "Extract protein sites from ID column in phospho site data"
+    ],
+    "statistical_tests": [
+      "No statistical tests required - this is a lookup/intersection analysis"
+    ],
+    "output_format_requirements": [
+      "List of protein sites (gene + site notation)",
+      "Associated FDA-approved drugs for each site/protein",
+      "Sample IDs where hyperactivation occurs",
+      "Include drug names and interaction types"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Protein sites that are hyperactivated in CNV-high endometrioid samples and targeted by FDA-approved drugs\",\n    \"filters\": [\n      \"Histologic_type == 'Endometrioid'\",\n      \"CNV_class == 'CNV_HIGH'\",\n      \"Hyperactivated proteins from hyperactivated.csv\",\n      \"FDA-approved drug targets from 1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\"\n    ],\n    \"grouping_variables\": [\n      \"sample_id\",\n      \"CNV_class\",\n      \"Histologic_type\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which samples are CNV-high endometrioid samples?\",\n      \"Which proteins are hyperactivated in these samples?\",\n      \"Which of these hyperactivated proteins are targeted by FDA-approved drugs?\",\n      \"What are the specific phosphorylation or acetylation sites for these proteins?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n      \"hyperactivated.csv\",\n      \"1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\",\n      \"1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou\",\n      \"1-s2.0-S0092867420301070-mmc6__E-SE phospho site between MSI-H\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n        \"right_source\": \"hyperactivated.csv\",\n        \"left_column\": \"idx\",\n        \"right_column\": \"sample_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"hyperactivated.csv\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\",\n        \"left_column\": \"protein\",\n        \"right_column\": \"gene_name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"hyperactivated.csv\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou\",\n        \"left_column\": \"protein\",\n        \"right_column\": \"Gene\",\n        \"join_type\": \"left\"\n      },\n      {\n        \"left_source\": \"hyperactivated.csv\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc6__E-SE phospho site between MSI-H\",\n        \"left_column\": \"protein\",\n        \"right_column\": \"Gene\",\n        \"join_type\": \"left\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Gene name column varies: 'protein' in hyperactivated.csv, 'gene_name' in FDA drugs, 'Gene' in phospho site sheets\",\n      \"Sample ID column varies: 'idx' in mmc1, 'sample_id' in hyperactivated.csv\"\n    ],\n    \"column_mappings\": {\n      \"idx\": \"sample_id\",\n      \"protein\": \"gene_name\",\n      \"Gene\": \"gene_name\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"FoldChange.phos\": \"log2 fold change\",\n      \"pval.phos\": \"p-value\",\n      \"FDR.phos\": \"false discovery rate\",\n      \"CNV_DEL\": \"copy number variation deletion score\",\n      \"CNV_AMP\": \"copy number variation amplification score\"\n    },\n    \"scale_issues\": [\n      \"CNV_class is categorical (CNV_HIGH, CNV_LOW) but derived from numeric CNV_DEL and CNV_AMP scores\",\n      \"Fold change values may be in log2 scale requiring interpretation\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Protein/gene naming conventions may differ between hyperactivated list and drug target databases\",\n      \"Site nomenclature (e.g., S495, T389) needs to be parsed from ID column in phospho site sheets\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\",\n      \"Cannot be determined\"\n    ],\n    \"expected_columns\": 179,\n    \"file_format\": \"xlsx/csv\",\n    \"format_notes\": [\n      \"mmc1.xlsx contains clinical metadata with 179 columns\",\n      \"hyperactivated.csv contains 2 columns: sample_id and protein\",\n      \"FDA drugs sheet contains 10 columns with drug-gene interactions\",\n      \"Phospho site sheets contain ID column with format 'GENE-SITE' (e.g., AAK1-S14)\",\n      \"Multiple sheets in mmc6.xlsx file requiring sheet-specific parsing\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Histologic_type must equal 'Endometrioid'\",\n      \"CNV_class must equal 'CNV_HIGH'\",\n      \"Protein must appear in hyperactivated.csv for corresponding sample\",\n      \"Protein must have matching gene_name in FDA approved drugs list\",\n      \"Case_excluded should be 'No' to include valid samples\"\n    ],\n    \"derived_filters\": [\n      \"Filter samples where Histologic_type contains 'Endometrioid'\",\n      \"Identify CNV-high samples using CNV_class column\",\n      \"Cross-reference hyperactivated proteins with FDA drug targets\",\n      \"Extract protein sites from ID column in phospho site data\"\n    ],\n    \"statistical_tests\": [\n      \"No statistical tests required - this is a lookup/intersection analysis\"\n    ],\n    \"output_format_requirements\": [\n      \"List of protein sites (gene + site notation)\",\n      \"Associated FDA-approved drugs for each site/protein\",\n      \"Sample IDs where hyperactivation occurs\",\n      \"Include drug names and interaction types\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 25.501730918884277,
+  "token_usage": {
+    "input_tokens": 22331,
+    "output_tokens": 1616
+  }
+}

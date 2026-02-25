@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "Probability of default for each client in test.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "UCI_Credit_Card.csv",
+      "test.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "default.payment.next.month": "IsDefaulter"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "LIMIT_BAL": "NT$",
+      "AGE": "years",
+      "BILL_AMT1": "NT$",
+      "BILL_AMT2": "NT$",
+      "BILL_AMT3": "NT$",
+      "BILL_AMT4": "NT$",
+      "BILL_AMT5": "NT$",
+      "BILL_AMT6": "NT$",
+      "PAY_AMT1": "NT$",
+      "PAY_AMT2": "NT$",
+      "PAY_AMT3": "NT$",
+      "PAY_AMT4": "NT$",
+      "PAY_AMT5": "NT$",
+      "PAY_AMT6": "NT$"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 25,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Values in 'SEX', 'EDUCATION', 'MARRIAGE', 'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', and 'PAY_6' should be checked against their documented ranges.",
+      "The 'ID' column in test.csv should be present in the output 'defaulter.csv'."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named 'defaulter.csv'.",
+      "Output file must contain 'ID' and 'IsDefaulter' columns.",
+      "Output file must be in CSV format."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Probability of default for each client in test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"UCI_Credit_Card.csv\",\n      \"test.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"default.payment.next.month\": \"IsDefaulter\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"LIMIT_BAL\": \"NT$\",\n      \"AGE\": \"years\",\n      \"BILL_AMT1\": \"NT$\",\n      \"BILL_AMT2\": \"NT$\",\n      \"BILL_AMT3\": \"NT$\",\n      \"BILL_AMT4\": \"NT$\",\n      \"BILL_AMT5\": \"NT$\",\n      \"BILL_AMT6\": \"NT$\",\n      \"PAY_AMT1\": \"NT$\",\n      \"PAY_AMT2\": \"NT$\",\n      \"PAY_AMT3\": \"NT$\",\n      \"PAY_AMT4\": \"NT$\",\n      \"PAY_AMT5\": \"NT$\",\n      \"PAY_AMT6\": \"NT$\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 25,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Values in 'SEX', 'EDUCATION', 'MARRIAGE', 'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', and 'PAY_6' should be checked against their documented ranges.\",\n      \"The 'ID' column in test.csv should be present in the output 'defaulter.csv'.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named 'defaulter.csv'.\",\n      \"Output file must contain 'ID' and 'IsDefaulter' columns.\",\n      \"Output file must be in CSV format.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 77.55371189117432,
+  "token_usage": {}
+}

@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Name of coach who won promotion to first tier",
+    "filters": [
+      "Honours contains 'Won promotion to first tier'"
+    ],
+    "grouping_variables": [
+      "Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which coaches have honours mentioning promotion?",
+      "What tier level is mentioned in each honour?",
+      "Is there exactly one coach with first tier promotion?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Coaches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "From": "date",
+      "To": "date"
+    },
+    "scale_issues": [
+      "Date format varies (e.g., '1 July 2012', '1996')",
+      "Some dates are year-only while others are full dates"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Comments column contains additional context about coaching tenure",
+      "Honours column contains achievement descriptions"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Honours column must be searched for promotion mentions",
+      "Coach name must be unique for identification",
+      "Only coaches with explicit 'first tier' promotion should be considered"
+    ],
+    "derived_filters": [
+      "Honours IS NOT NULL",
+      "Honours LIKE '%promotion%'",
+      "Honours LIKE '%first tier%'"
+    ],
+    "statistical_tests": [
+      "Count of coaches with first tier promotion should be exactly 1"
+    ],
+    "output_format_requirements": [
+      "Single coach name as string"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Name of coach who won promotion to first tier\",\n        \"filters\": [\"Honours contains 'Won promotion to first tier'\"],\n        \"grouping_variables\": [\"Name\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which coaches have honours mentioning promotion?\", \"What tier level is mentioned in each honour?\", \"Is there exactly one coach with first tier promotion?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Coaches\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"From\": \"date\", \"To\": \"date\"},\n        \"scale_issues\": [\"Date format varies (e.g., '1 July 2012', '1996')\", \"Some dates are year-only while others are full dates\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Comments column contains additional context about coaching tenure\", \"Honours column contains achievement descriptions\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Honours column must be searched for promotion mentions\", \"Coach name must be unique for identification\", \"Only coaches with explicit 'first tier' promotion should be considered\"],\n        \"derived_filters\": [\"Honours IS NOT NULL\", \"Honours LIKE '%promotion%'\", \"Honours LIKE '%first tier%'\"],\n        \"statistical_tests\": [\"Count of coaches with first tier promotion should be exactly 1\"],\n        \"output_format_requirements\": [\"Single coach name as string\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.125066041946411,
+  "token_usage": {
+    "input_tokens": 1147,
+    "output_tokens": 420
+  }
+}

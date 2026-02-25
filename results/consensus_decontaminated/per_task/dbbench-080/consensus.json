@@ -1,0 +1,325 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "smallest crowd number",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "minimum crowd number",
+        "smallest crowd number",
+        "smallest Crowd number"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Away team score = '15.11 (101)'",
+        "Away team score = 15.11 (101)",
+        "Away team score is 15.11 (101)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Away team score = '15.11 (101)'"
+        ],
+        [
+          "Away team score = 15.11 (101)"
+        ],
+        [
+          "Away team score is 15.11 (101)"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Away team"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Away team"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which teams have an Away team score of 15.11 (101)?",
+        "What are the crowd numbers for those matches?",
+        "What is the smallest crowd number among those matches?",
+        "Filter rows where Away team score equals 15.11 (101)",
+        "Extract Crowd values for filtered rows",
+        "Convert Crowd from string with commas to numeric",
+        "Find minimum Crowd value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which teams have an Away team score of 15.11 (101)?",
+          "What are the crowd numbers for those matches?",
+          "What is the smallest crowd number among those matches?"
+        ],
+        [
+          "Filter rows where Away team score equals 15.11 (101)",
+          "Extract Crowd values for filtered rows",
+          "Convert Crowd from string with commas to numeric",
+          "Find minimum Crowd value"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "football_matches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "football_matches"
+        ],
+        [
+          "football_matches"
+        ],
+        [
+          "football_matches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "crowd": "people (formatted with commas)",
+        "home team score": "goals.behinds (total points)",
+        "away team score": "goals.behinds (total points)",
+        "date": "date"
+      },
+      "confidence": 0.5833333333333334,
+      "votes": [
+        {
+          "Crowd": "people (formatted with commas)",
+          "Home team score": "goals.behinds (total points)",
+          "Away team score": "goals.behinds (total points)"
+        },
+        {
+          "Home team score": "goals.behinds (total_points)",
+          "Away team score": "goals.behinds (total_points)",
+          "Crowd": "number of people",
+          "Date": "date"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Crowd column is stored as object/string with comma formatting (e.g., '4,000') - needs conversion to numeric for comparison",
+        "Crowd values contain comma separators (e.g., '16,000')",
+        "Crowd dtype is object/string, needs conversion to numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Crowd column is stored as object/string with comma formatting (e.g., '4,000') - needs conversion to numeric for comparison"
+        ],
+        [
+          "Crowd values contain comma separators (e.g., '16,000')",
+          "Crowd dtype is object/string, needs conversion to numeric"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Away team score must exactly match '15.11 (101)' including formatting",
+        "Crowd values must be converted from string to integer for numerical comparison",
+        "Only consider matches where Away team score is exactly '15.11 (101)'",
+        "Away team score must exactly match '15.11 (101)'",
+        "Crowd values must be convertible to numeric after removing commas",
+        "Result should be a single numeric value representing minimum crowd",
+        "Crowd must be a number",
+        "Away team score must be parsed to extract the numerical score"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Away team score must exactly match '15.11 (101)' including formatting",
+          "Crowd values must be converted from string to integer for numerical comparison",
+          "Only consider matches where Away team score is exactly '15.11 (101)'"
+        ],
+        [
+          "Away team score must exactly match '15.11 (101)'",
+          "Crowd values must be convertible to numeric after removing commas",
+          "Result should be a single numeric value representing minimum crowd"
+        ],
+        [
+          "Crowd must be a number",
+          "Away team score must be parsed to extract the numerical score"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert Crowd from string to integer by removing commas",
+        "Filter rows where Away team score = '15.11 (101)'",
+        "Filter: Away team score == '15.11 (101)'",
+        "Away team score == 101"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert Crowd from string to integer by removing commas",
+          "Filter rows where Away team score = '15.11 (101)'"
+        ],
+        [
+          "Filter: Away team score == '15.11 (101)'"
+        ],
+        [
+          "Away team score == 101"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate matches with same Away team score",
+        "Verify crowd number distribution for filtered matches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate matches with same Away team score",
+          "Verify crowd number distribution for filtered matches"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single integer value representing smallest crowd",
+        "If multiple teams have same minimum crowd, return that value",
+        "Return single numeric value",
+        "Value should represent the minimum crowd attendance"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single integer value representing smallest crowd",
+          "If multiple teams have same minimum crowd, return that value"
+        ],
+        [
+          "Return single numeric value",
+          "Value should represent the minimum crowd attendance"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5958333333333334
+}

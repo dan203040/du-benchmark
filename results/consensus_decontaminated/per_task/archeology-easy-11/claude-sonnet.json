@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "Average latitude of capital cities, counting only the highest population capital per country",
+    "filters": [
+      "capital column is not null or empty",
+      "capital column indicates a capital city (values like 'primary', 'admin', or other capital indicators)",
+      "For countries with multiple capitals, select only the one with the largest population"
+    ],
+    "grouping_variables": [
+      "country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What values in the 'capital' column indicate a city is a capital?",
+      "How to filter for capital cities only?",
+      "How to identify countries with multiple capital cities?",
+      "For each country, which capital has the largest population?",
+      "What is the average of the latitude values for the selected capitals?",
+      "How to round the result to 4 decimal places?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "worldcities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat": "degrees (decimal degrees format)",
+      "lng": "degrees (decimal degrees format)",
+      "population": "number of people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "capital column contains values like 'primary', 'admin', 'minor', or empty string",
+      "population column is float64 and may contain null values",
+      "lat and lng are in decimal degrees format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include rows where capital column is not empty (indicates the city is a capital)",
+      "If a country has multiple capitals, select only the capital with the maximum population value",
+      "Handle null or missing population values appropriately when determining the largest population",
+      "Exclude cities where capital column is empty or does not indicate capital status"
+    ],
+    "derived_filters": [
+      "Filter: capital != '' AND capital IS NOT NULL",
+      "Group by country and select row with max(population) per group"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Result must be rounded to 4 decimal places",
+      "Output should be a single numeric value (scalar)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average latitude of capital cities, counting only the highest population capital per country\",\n    \"filters\": [\n      \"capital column is not null or empty\",\n      \"capital column indicates a capital city (values like 'primary', 'admin', or other capital indicators)\",\n      \"For countries with multiple capitals, select only the one with the largest population\"\n    ],\n    \"grouping_variables\": [\"country\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What values in the 'capital' column indicate a city is a capital?\",\n      \"How to filter for capital cities only?\",\n      \"How to identify countries with multiple capital cities?\",\n      \"For each country, which capital has the largest population?\",\n      \"What is the average of the latitude values for the selected capitals?\",\n      \"How to round the result to 4 decimal places?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"worldcities.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"lat\": \"degrees (decimal degrees format)\",\n      \"lng\": \"degrees (decimal degrees format)\",\n      \"population\": \"number of people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"capital column contains values like 'primary', 'admin', 'minor', or empty string\",\n      \"population column is float64 and may contain null values\",\n      \"lat and lng are in decimal degrees format\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include rows where capital column is not empty (indicates the city is a capital)\",\n      \"If a country has multiple capitals, select only the capital with the maximum population value\",\n      \"Handle null or missing population values appropriately when determining the largest population\",\n      \"Exclude cities where capital column is empty or does not indicate capital status\"\n    ],\n    \"derived_filters\": [\n      \"Filter: capital != '' AND capital IS NOT NULL\",\n      \"Group by country and select row with max(population) per group\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Result must be rounded to 4 decimal places\",\n      \"Output should be a single numeric value (scalar)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.766334056854248,
+  "token_usage": {
+    "input_tokens": 1564,
+    "output_tokens": 677
+  }
+}

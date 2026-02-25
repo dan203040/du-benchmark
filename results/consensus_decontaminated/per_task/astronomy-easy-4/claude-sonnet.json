@@ -1,0 +1,98 @@
+{
+  "m_q": {
+    "target_metric": "Solar activity cycle period (in years), top 5 years of maximum sunspot activity, and top 5 years of minimum sunspot activity between 1960 and 2020",
+    "filters": [
+      "Year >= 1960",
+      "Year <= 2020"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the average period between consecutive solar activity cycles?",
+      "Which 5 years had the highest sunspot numbers (peaks) with prominence >= 20 and distance >= 5?",
+      "Which 5 years had the lowest sunspot numbers (troughs) with prominence >= 20 and distance >= 5?",
+      "How are peaks and troughs identified using prominence and distance parameters?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "SN_y_tot_V2.0.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Single column contains multiple fields separated by semicolons instead of proper CSV structure"
+    ],
+    "column_mappings": {
+      "1700.5;   8.3; -1.0;    -1;1": "raw_data",
+      "field_0": "year",
+      "field_1": "mean_sunspot_number",
+      "field_2": "std_deviation",
+      "field_3": "num_observations",
+      "field_4": "definitive_provisional"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "year": "decimal year (mid-year)",
+      "mean_sunspot_number": "yearly mean sunspot number (dimensionless count)",
+      "std_deviation": "standard deviation",
+      "num_observations": "number of observations",
+      "definitive_provisional": "flag (1=definitive, 0=provisional)"
+    },
+    "scale_issues": [
+      "Year is given as decimal (e.g., 1700.5) representing mid-year"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ";",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-1",
+      "-1.0"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "File uses semicolon delimiter instead of comma",
+      "First column header appears to contain a data row (1700.5;   8.3; -1.0;    -1;1)",
+      "No true header row exists - column names need to be inferred from documentation",
+      "Values are space-padded",
+      "Sentinel value -1 or -1.0 likely indicates missing or unavailable data",
+      "Year values are decimal (mid-year representation)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year >= 1960 AND Year <= 2020",
+      "Peaks must have prominence >= 20",
+      "Peaks must have distance >= 5 years from neighboring peaks",
+      "Troughs (minima) must have prominence >= 20",
+      "Troughs must have distance >= 5 years from neighboring troughs"
+    ],
+    "derived_filters": [
+      "Convert decimal year (e.g., 1960.5) to integer year (1960) for filtering",
+      "Filter out rows with sentinel values (-1, -1.0) if they affect analysis"
+    ],
+    "statistical_tests": [
+      "Peak detection algorithm with prominence=20 and distance=5 on sunspot numbers",
+      "Trough detection algorithm with prominence=20 and distance=5 on inverted sunspot numbers",
+      "Calculate mean period between consecutive peaks or troughs to determine solar cycle length"
+    ],
+    "output_format_requirements": [
+      "Report approximate solar cycle period in years",
+      "List top 5 years of maximum activity with their sunspot numbers",
+      "List top 5 years of minimum activity with their sunspot numbers",
+      "Results should be ranked by sunspot number magnitude"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Solar activity cycle period (in years), top 5 years of maximum sunspot activity, and top 5 years of minimum sunspot activity between 1960 and 2020\",\n    \"filters\": [\"Year >= 1960\", \"Year <= 2020\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the average period between consecutive solar activity cycles?\",\n      \"Which 5 years had the highest sunspot numbers (peaks) with prominence >= 20 and distance >= 5?\",\n      \"Which 5 years had the lowest sunspot numbers (troughs) with prominence >= 20 and distance >= 5?\",\n      \"How are peaks and troughs identified using prominence and distance parameters?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"SN_y_tot_V2.0.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\"Single column contains multiple fields separated by semicolons instead of proper CSV structure\"],\n    \"column_mappings\": {\n      \"1700.5;   8.3; -1.0;    -1;1\": \"raw_data\",\n      \"field_0\": \"year\",\n      \"field_1\": \"mean_sunspot_number\",\n      \"field_2\": \"std_deviation\",\n      \"field_3\": \"num_observations\",\n      \"field_4\": \"definitive_provisional\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"year\": \"decimal year (mid-year)\",\n      \"mean_sunspot_number\": \"yearly mean sunspot number (dimensionless count)\",\n      \"std_deviation\": \"standard deviation\",\n      \"num_observations\": \"number of observations\",\n      \"definitive_provisional\": \"flag (1=definitive, 0=provisional)\"\n    },\n    \"scale_issues\": [\"Year is given as decimal (e.g., 1700.5) representing mid-year\"],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": false,\n    \"delimiter\": \";\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"-1\", \"-1.0\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"File uses semicolon delimiter instead of comma\",\n      \"First column header appears to contain a data row (1700.5;   8.3; -1.0;    -1;1)\",\n      \"No true header row exists - column names need to be inferred from documentation\",\n      \"Values are space-padded\",\n      \"Sentinel value -1 or -1.0 likely indicates missing or unavailable data\",\n      \"Year values are decimal (mid-year representation)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year >= 1960 AND Year <= 2020\",\n      \"Peaks must have prominence >= 20\",\n      \"Peaks must have distance >= 5 years from neighboring peaks\",\n      \"Troughs (minima) must have prominence >= 20\",\n      \"Troughs must have distance >= 5 years from neighboring troughs\"\n    ],\n    \"derived_filters\": [\n      \"Convert decimal year (e.g., 1960.5) to integer year (1960) for filtering\",\n      \"Filter out rows with sentinel values (-1, -1.0) if they affect analysis\"\n    ],\n    \"statistical_tests\": [\n      \"Peak detection algorithm with prominence=20 and distance=5 on sunspot numbers\",\n      \"Trough detection algorithm with prominence=20 and distance=5 on inverted sunspot numbers\",\n      \"Calculate mean period between consecutive peaks or troughs to determine solar cycle length\"\n    ],\n    \"output_format_requirements\": [\n      \"Report approximate solar cycle period in years\",\n      \"List top 5 years of maximum activity with their sunspot numbers\",\n      \"List top 5 years of minimum activity with their sunspot numbers\",\n      \"Results should be ranked by sunspot number magnitude\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 17.517027854919434,
+  "token_usage": {
+    "input_tokens": 1139,
+    "output_tokens": 1024
+  }
+}

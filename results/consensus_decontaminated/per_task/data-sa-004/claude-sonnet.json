@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Hypothesis test comparing bike rentals (count) across different weather conditions",
+    "filters": [],
+    "grouping_variables": [
+      "weather"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the distinct weather conditions in the dataset?",
+      "What is the distribution of bike rentals (count) for each weather condition?",
+      "Is there a statistically significant difference in bike rentals across weather conditions?",
+      "What is the appropriate statistical test for comparing multiple groups?",
+      "What are the null and alternative hypotheses?",
+      "What is the p-value and test statistic from the hypothesis test?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "yulu_bike_sharing_dataset.csv",
+      "weather.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "count": "bike_rentals",
+      "weather": "weather_condition"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "temp": "Celsius",
+      "atemp": "Celsius (feels like temperature)",
+      "humidity": "percentage",
+      "windspeed": "km/h or normalized",
+      "count": "number of bikes rented",
+      "casual": "number of casual users",
+      "registered": "number of registered users"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "datetime column contains timestamp strings",
+      "weather column contains integer codes representing weather conditions",
+      "weather.csv is currently empty with headers only",
+      "Output must be written as exactly one row to weather.csv"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "weather column contains categorical codes for weather conditions",
+      "count column represents total bike rentals (dependent variable)",
+      "Multiple weather groups exist requiring non-parametric or ANOVA-type test",
+      "Output must be a single row in weather.csv with all required fields"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Kruskal-Wallis H-test for comparing bike rentals across multiple weather conditions (non-parametric alternative to one-way ANOVA)",
+      "Null hypothesis: The distribution of bike rentals is the same across all weather conditions",
+      "Alternative hypothesis: At least one weather condition has a different distribution of bike rentals"
+    ],
+    "output_format_requirements": [
+      "Output must be saved to weather.csv",
+      "Must contain exactly one row (not multiple rows or list of dictionaries)",
+      "Required columns: Test Type, Kruskal Statistic, P-Value, Hypothesis, Comment",
+      "Test Type should specify the statistical test used",
+      "Hypothesis should state the decision (reject/fail to reject null hypothesis)",
+      "P-Value should be the calculated p-value from the test",
+      "Comment should provide interpretation of results",
+      "Follow the format specified in tips.md"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Hypothesis test comparing bike rentals (count) across different weather conditions\",\n    \"filters\": [],\n    \"grouping_variables\": [\"weather\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are the distinct weather conditions in the dataset?\",\n      \"What is the distribution of bike rentals (count) for each weather condition?\",\n      \"Is there a statistically significant difference in bike rentals across weather conditions?\",\n      \"What is the appropriate statistical test for comparing multiple groups?\",\n      \"What are the null and alternative hypotheses?\",\n      \"What is the p-value and test statistic from the hypothesis test?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"yulu_bike_sharing_dataset.csv\", \"weather.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"count\": \"bike_rentals\",\n      \"weather\": \"weather_condition\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"temp\": \"Celsius\",\n      \"atemp\": \"Celsius (feels like temperature)\",\n      \"humidity\": \"percentage\",\n      \"windspeed\": \"km/h or normalized\",\n      \"count\": \"number of bikes rented\",\n      \"casual\": \"number of casual users\",\n      \"registered\": \"number of registered users\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"datetime column contains timestamp strings\",\n      \"weather column contains integer codes representing weather conditions\",\n      \"weather.csv is currently empty with headers only\",\n      \"Output must be written as exactly one row to weather.csv\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"weather column contains categorical codes for weather conditions\",\n      \"count column represents total bike rentals (dependent variable)\",\n      \"Multiple weather groups exist requiring non-parametric or ANOVA-type test\",\n      \"Output must be a single row in weather.csv with all required fields\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Kruskal-Wallis H-test for comparing bike rentals across multiple weather conditions (non-parametric alternative to one-way ANOVA)\",\n      \"Null hypothesis: The distribution of bike rentals is the same across all weather conditions\",\n      \"Alternative hypothesis: At least one weather condition has a different distribution of bike rentals\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be saved to weather.csv\",\n      \"Must contain exactly one row (not multiple rows or list of dictionaries)\",\n      \"Required columns: Test Type, Kruskal Statistic, P-Value, Hypothesis, Comment\",\n      \"Test Type should specify the statistical test used\",\n      \"Hypothesis should state the decision (reject/fail to reject null hypothesis)\",\n      \"P-Value should be the calculated p-value from the test\",\n      \"Comment should provide interpretation of results\",\n      \"Follow the format specified in tips.md\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.724258661270142,
+  "token_usage": {
+    "input_tokens": 1783,
+    "output_tokens": 840
+  }
+}

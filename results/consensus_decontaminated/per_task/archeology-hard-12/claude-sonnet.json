@@ -1,0 +1,125 @@
+{
+  "m_q": {
+    "target_metric": "Count of human conflicts between 800 and 1400 AD that lasted at least one year, attributed to modern countries",
+    "filters": [
+      "StartYear >= 800 AND StartYear <= 1400",
+      "Conflict duration (EndYear - StartYear) >= 1"
+    ],
+    "grouping_variables": [
+      "modern_country"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "How many conflicts occurred between 800 and 1400 AD?",
+      "Which conflicts lasted at least one year (EndYear - StartYear >= 1)?",
+      "How to extract actor/location information from Conflict column?",
+      "How to map historical entities (kingdoms, empires, regions) to modern countries?",
+      "How to use worldcities.csv to map location names to modern countries?",
+      "Should conflicts involving multiple countries be counted once or multiple times (per country)?",
+      "How to handle conflicts where locations cannot be mapped to modern countries?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "conflict_brecke.csv",
+      "worldcities.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "conflict_brecke.csv",
+        "right_source": "worldcities.csv",
+        "left_column": "extracted_location",
+        "right_column": "city_ascii or country or admin_name",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "conflict_brecke.csv contains historical entity names in Conflict column, not standardized location fields",
+      "worldcities.csv contains modern country names, requires mapping from historical to modern entities",
+      "No direct join key exists between files - requires text parsing and fuzzy matching"
+    ],
+    "column_mappings": {
+      "Conflict": "conflict_description",
+      "country": "modern_country",
+      "iso3": "country_code"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "StartYear": "year (integer, AD)",
+      "EndYear": "year (integer, AD)",
+      "Fatalities": "count (float, with nulls)",
+      "Century": "year (integer, century marker)",
+      "Decade": "year (integer, decade marker)",
+      "lat": "degrees (decimal latitude)",
+      "lng": "degrees (decimal longitude)",
+      "population": "count (persons)"
+    },
+    "scale_issues": [
+      "Fatalities column has many missing values (nulls)",
+      "Century and Decade columns appear to be year values, not century/decade numbers",
+      "Historical year ranges may need validation (EndYear >= StartYear)"
+    ],
+    "cross_source_conflicts": [
+      "Historical place names in conflict_brecke.csv may not match modern names in worldcities.csv",
+      "Historical political entities (kingdoms, empires) need mapping to modern nation-states",
+      "Multiple modern countries may correspond to one historical entity"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Conflict column contains free-text descriptions with parenthetical location/context information",
+      "Conflict column uses various formats: 'Actor1-Actor2', 'Location (Description)', 'Actor-Actor (Location)'",
+      "Some conflicts reference multiple locations separated by commas or 'and'",
+      "Historical entity names include: kingdoms, empires, cities, regions, ethnic groups",
+      "worldcities.csv population field contains nulls for many entries",
+      "worldcities.csv capital field indicates if city is primary or admin capital"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "StartYear >= 800 AND StartYear <= 1400",
+      "EndYear - StartYear >= 1",
+      "Conflict must involve human actors (exclude natural disasters)",
+      "Each conflict should be counted once per analysis"
+    ],
+    "derived_filters": [
+      "Calculate conflict_duration = EndYear - StartYear",
+      "Filter conflicts where conflict_duration >= 1",
+      "Extract location and actor names from Conflict column using text parsing",
+      "Map extracted entities to modern countries using worldcities.csv and historical mapping logic"
+    ],
+    "statistical_tests": [
+      "Validate all StartYear and EndYear values are within 800-1400 range",
+      "Check for duplicate conflicts",
+      "Verify EndYear >= StartYear for all records",
+      "Count unmapped conflicts (those that cannot be attributed to modern countries)"
+    ],
+    "output_format_requirements": [
+      "Output should be a table with modern_country and conflict_count columns",
+      "Include count of total conflicts analyzed",
+      "Document attribution methodology and confidence level",
+      "Note conflicts that could not be mapped to modern countries",
+      "Handle conflicts involving multiple countries appropriately (specify counting method)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of human conflicts between 800 and 1400 AD that lasted at least one year, attributed to modern countries\",\n    \"filters\": [\n      \"StartYear >= 800 AND StartYear <= 1400\",\n      \"Conflict duration (EndYear - StartYear) >= 1\"\n    ],\n    \"grouping_variables\": [\n      \"modern_country\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"How many conflicts occurred between 800 and 1400 AD?\",\n      \"Which conflicts lasted at least one year (EndYear - StartYear >= 1)?\",\n      \"How to extract actor/location information from Conflict column?\",\n      \"How to map historical entities (kingdoms, empires, regions) to modern countries?\",\n      \"How to use worldcities.csv to map location names to modern countries?\",\n      \"Should conflicts involving multiple countries be counted once or multiple times (per country)?\",\n      \"How to handle conflicts where locations cannot be mapped to modern countries?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"conflict_brecke.csv\",\n      \"worldcities.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"conflict_brecke.csv\",\n        \"right_source\": \"worldcities.csv\",\n        \"left_column\": \"extracted_location\",\n        \"right_column\": \"city_ascii or country or admin_name\",\n        \"join_type\": \"left\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"conflict_brecke.csv contains historical entity names in Conflict column, not standardized location fields\",\n      \"worldcities.csv contains modern country names, requires mapping from historical to modern entities\",\n      \"No direct join key exists between files - requires text parsing and fuzzy matching\"\n    ],\n    \"column_mappings\": {\n      \"Conflict\": \"conflict_description\",\n      \"country\": \"modern_country\",\n      \"iso3\": \"country_code\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"StartYear\": \"year (integer, AD)\",\n      \"EndYear\": \"year (integer, AD)\",\n      \"Fatalities\": \"count (float, with nulls)\",\n      \"Century\": \"year (integer, century marker)\",\n      \"Decade\": \"year (integer, decade marker)\",\n      \"lat\": \"degrees (decimal latitude)\",\n      \"lng\": \"degrees (decimal longitude)\",\n      \"population\": \"count (persons)\"\n    },\n    \"scale_issues\": [\n      \"Fatalities column has many missing values (nulls)\",\n      \"Century and Decade columns appear to be year values, not century/decade numbers\",\n      \"Historical year ranges may need validation (EndYear >= StartYear)\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Historical place names in conflict_brecke.csv may not match modern names in worldcities.csv\",\n      \"Historical political entities (kingdoms, empires) need mapping to modern nation-states\",\n      \"Multiple modern countries may correspond to one historical entity\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\",\n      \"null\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Conflict column contains free-text descriptions with parenthetical location/context information\",\n      \"Conflict column uses various formats: 'Actor1-Actor2', 'Location (Description)', 'Actor-Actor (Location)'\",\n      \"Some conflicts reference multiple locations separated by commas or 'and'\",\n      \"Historical entity names include: kingdoms, empires, cities, regions, ethnic groups\",\n      \"worldcities.csv population field contains nulls for many entries\",\n      \"worldcities.csv capital field indicates if city is primary or admin capital\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"StartYear >= 800 AND StartYear <= 1400\",\n      \"EndYear - StartYear >= 1\",\n      \"Conflict must involve human actors (exclude natural disasters)\",\n      \"Each conflict should be counted once per analysis\"\n    ],\n    \"derived_filters\": [\n      \"Calculate conflict_duration = EndYear - StartYear\",\n      \"Filter conflicts where conflict_duration >= 1\",\n      \"Extract location and actor names from Conflict column using text parsing\",\n      \"Map extracted entities to modern countries using worldcities.csv and historical mapping logic\"\n    ],\n    \"statistical_tests\": [\n      \"Validate all StartYear and EndYear values are within 800-1400 range\",\n      \"Check for duplicate conflicts\",\n      \"Verify EndYear >= StartYear for all records\",\n      \"Count unmapped conflicts (those that cannot be attributed to modern countries)\"\n    ],\n    \"output_format_requirements\": [\n      \"Output should be a table with modern_country and conflict_count columns\",\n      \"Include count of total conflicts analyzed\",\n      \"Document attribution methodology and confidence level\",\n      \"Note conflicts that could not be mapped to modern countries\",\n      \"Handle conflicts involving multiple countries appropriately (specify counting method)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 22.38479733467102,
+  "token_usage": {
+    "input_tokens": 2057,
+    "output_tokens": 1304
+  }
+}

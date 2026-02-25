@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "Maximum value of the 'Number One(s)' column",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum value in the 'Number One(s)' column?",
+      "Which artist(s) have this highest number of overall number ones?",
+      "What is the data type of 'Number One(s)' - is it numeric or needs conversion?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Music Chart History"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Number One(s)": "count of number one songs",
+      "Whole Weeks": "count of weeks",
+      "Song(s) \u2014 Weeks": "weeks per song"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column 'Number One(s)' appears to be stored as object/string dtype but contains numeric values",
+      "Song column contains quoted text with em-dashes and special characters",
+      "Multiple rows per artist showing individual songs contributing to their total"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "'Number One(s)' column must be converted to numeric type for comparison",
+      "Each row represents a single song achievement, not aggregated artist totals"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the maximum numeric value from 'Number One(s)' column",
+      "Optionally identify which artist(s) have this maximum value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum value of the 'Number One(s)' column\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the maximum value in the 'Number One(s)' column?\",\n      \"Which artist(s) have this highest number of overall number ones?\",\n      \"What is the data type of 'Number One(s)' - is it numeric or needs conversion?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Music Chart History\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Number One(s)\": \"count of number one songs\",\n      \"Whole Weeks\": \"count of weeks\",\n      \"Song(s) \u2014 Weeks\": \"weeks per song\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Column 'Number One(s)' appears to be stored as object/string dtype but contains numeric values\",\n      \"Song column contains quoted text with em-dashes and special characters\",\n      \"Multiple rows per artist showing individual songs contributing to their total\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"'Number One(s)' column must be converted to numeric type for comparison\",\n      \"Each row represents a single song achievement, not aggregated artist totals\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the maximum numeric value from 'Number One(s)' column\",\n      \"Optionally identify which artist(s) have this maximum value\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.806621074676514,
+  "token_usage": {
+    "input_tokens": 1156,
+    "output_tokens": 542
+  }
+}

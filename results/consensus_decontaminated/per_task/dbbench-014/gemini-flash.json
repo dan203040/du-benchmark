@@ -1,0 +1,59 @@
+{
+  "m_q": {
+    "target_metric": "The winning team of the hockey game played on December 9, 1993 between Dallas and Ottawa.",
+    "filters": [
+      "Date is December 9, 1993",
+      "Either Dallas or Ottawa is the Winning Team or the Losing Team"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Hockey_Game_Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Winning Team Score": "goals",
+      "Losing Team Score": "goals",
+      "Attendance": "people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Attendance column contains commas and asterisks that need to be cleaned.",
+      "Date column is of type object and needs to be converted to datetime."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The date must be a valid date.",
+      "Winning Team and Losing Team must be different."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The winning team of the hockey game played on December 9, 1993 between Dallas and Ottawa.\",\n    \"filters\": [\n      \"Date is December 9, 1993\",\n      \"Either Dallas or Ottawa is the Winning Team or the Losing Team\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Hockey_Game_Results\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Winning Team Score\": \"goals\",\n      \"Losing Team Score\": \"goals\",\n      \"Attendance\": \"people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Attendance column contains commas and asterisks that need to be cleaned.\",\n      \"Date column is of type object and needs to be converted to datetime.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The date must be a valid date.\",\n      \"Winning Team and Losing Team must be different.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.696349859237671,
+  "token_usage": {}
+}

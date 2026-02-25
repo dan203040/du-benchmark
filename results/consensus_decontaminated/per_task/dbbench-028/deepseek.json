@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "total number of participants",
+    "filters": [
+      "Nationality in ['Norway', 'France']"
+    ],
+    "grouping_variables": [
+      "Nationality"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many participants from Norway?",
+      "How many participants from France?",
+      "Are there any missing Nationality values that need to be handled?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Biathlon Results Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Start": "time offset (minutes:seconds)",
+      "Time": "race time (minutes:seconds.milliseconds)",
+      "Deficit": "time deficit (minutes:seconds.milliseconds or seconds)"
+    },
+    "scale_issues": [
+      "Time and Deficit columns use mixed time formats (seconds vs minutes:seconds)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row has empty Rank value",
+      "Some rows have empty Deficit values",
+      "Special characters in names (B\u0153uf, L'Abee-Lund)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row represents one participant",
+      "Nationality column should contain country names",
+      "Bib numbers should be unique per participant"
+    ],
+    "derived_filters": [
+      "Exclude rows with missing Nationality",
+      "Count distinct participants by Nationality"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Bib numbers",
+      "Verify Nationality values are consistent"
+    ],
+    "output_format_requirements": [
+      "Single integer total",
+      "Should include participants from both Norway and France"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total number of participants\",\n        \"filters\": [\"Nationality in ['Norway', 'France']\"],\n        \"grouping_variables\": [\"Nationality\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How many participants from Norway?\", \"How many participants from France?\", \"Are there any missing Nationality values that need to be handled?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Biathlon Results Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Start\": \"time offset (minutes:seconds)\",\n            \"Time\": \"race time (minutes:seconds.milliseconds)\",\n            \"Deficit\": \"time deficit (minutes:seconds.milliseconds or seconds)\"\n        },\n        \"scale_issues\": [\"Time and Deficit columns use mixed time formats (seconds vs minutes:seconds)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 8,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row has empty Rank value\", \"Some rows have empty Deficit values\", \"Special characters in names (B\u0153uf, L'Abee-Lund)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each row represents one participant\", \"Nationality column should contain country names\", \"Bib numbers should be unique per participant\"],\n        \"derived_filters\": [\"Exclude rows with missing Nationality\", \"Count distinct participants by Nationality\"],\n        \"statistical_tests\": [\"Check for duplicate Bib numbers\", \"Verify Nationality values are consistent\"],\n        \"output_format_requirements\": [\"Single integer total\", \"Should include participants from both Norway and France\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.729751110076904,
+  "token_usage": {
+    "input_tokens": 1382,
+    "output_tokens": 446
+  }
+}

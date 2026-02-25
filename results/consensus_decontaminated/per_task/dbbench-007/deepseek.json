@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Last of whiteness (in months) for two specific products",
+    "filters": [
+      "Model contains 'Crest 3D Intensive Professional Effects'",
+      "Model contains 'Crest Whitestrips 3D Professional Effects'"
+    ],
+    "grouping_variables": [
+      "Model"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the 'Last of whiteness' value for Crest 3D Intensive Professional Effects?",
+      "What is the 'Last of whiteness' value for Crest Whitestrips 3D Professional Effects?",
+      "Are the values expressed consistently in months?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Crest Whitestrips Products"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Last of whiteness": "months (based on sample data)"
+    },
+    "scale_issues": [
+      "Some 'Last of whiteness' values contain text descriptions instead of numeric months (e.g., 'White after using system')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain spaces and special characters",
+      "Model column contains newline characters (\\n) within values",
+      "Some rows have missing values in sample (e.g., 'Introduced' for some rows)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Data contains 23 rows and 5 columns",
+      "Target products must exist in the dataset",
+      "'Last of whiteness' values must be extractable for both products"
+    ],
+    "derived_filters": [
+      "Filter rows where Model contains 'Professional Effects'",
+      "Exclude rows where 'Last of whiteness' is not numeric"
+    ],
+    "statistical_tests": [
+      "Check consistency of 'Last of whiteness' format across target products"
+    ],
+    "output_format_requirements": [
+      "Report both product names and their corresponding 'Last of whiteness' values",
+      "Values should be expressed in months"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Last of whiteness (in months) for two specific products\",\n        \"filters\": [\"Model contains 'Crest 3D Intensive Professional Effects'\", \"Model contains 'Crest Whitestrips 3D Professional Effects'\"],\n        \"grouping_variables\": [\"Model\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the 'Last of whiteness' value for Crest 3D Intensive Professional Effects?\", \"What is the 'Last of whiteness' value for Crest Whitestrips 3D Professional Effects?\", \"Are the values expressed consistently in months?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Crest Whitestrips Products\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Last of whiteness\": \"months (based on sample data)\"},\n        \"scale_issues\": [\"Some 'Last of whiteness' values contain text descriptions instead of numeric months (e.g., 'White after using system')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names contain spaces and special characters\", \"Model column contains newline characters (\\\\n) within values\", \"Some rows have missing values in sample (e.g., 'Introduced' for some rows)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Data contains 23 rows and 5 columns\", \"Target products must exist in the dataset\", \"'Last of whiteness' values must be extractable for both products\"],\n        \"derived_filters\": [\"Filter rows where Model contains 'Professional Effects'\", \"Exclude rows where 'Last of whiteness' is not numeric\"],\n        \"statistical_tests\": [\"Check consistency of 'Last of whiteness' format across target products\"],\n        \"output_format_requirements\": [\"Report both product names and their corresponding 'Last of whiteness' values\", \"Values should be expressed in months\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.387131929397583,
+  "token_usage": {
+    "input_tokens": 1099,
+    "output_tokens": 507
+  }
+}

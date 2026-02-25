@@ -1,0 +1,326 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "List of leagues (excluding NPSL) that the NY men's soccer team has played in",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "List of leagues (excluding NPSL) that the NY men's soccer team has played in",
+        "League names other than NPSL that NY men's soccer team has played in",
+        "List of leagues, excluding 'NPSL', in which the NY mens soccer team has played."
+      ]
+    },
+    "filters": {
+      "value": [
+        "League != 'NPSL'",
+        "Remove duplicate league entries"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "League != 'NPSL'",
+          "Remove duplicate league entries"
+        ],
+        [
+          "League != 'NPSL'"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "League"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "League"
+        ],
+        [
+          "League"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What distinct leagues appear in the data?",
+        "Which of those leagues are not NPSL?",
+        "Are there any leagues with incomplete or placeholder entries that should be excluded?",
+        "What are all unique values in the League column?",
+        "Which league values are not equal to 'NPSL'?",
+        "How many distinct leagues other than NPSL appear in the dataset?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What distinct leagues appear in the data?",
+          "Which of those leagues are not NPSL?",
+          "Are there any leagues with incomplete or placeholder entries that should be excluded?"
+        ],
+        [
+          "What are all unique values in the League column?",
+          "Which league values are not equal to 'NPSL'?",
+          "How many distinct leagues other than NPSL appear in the dataset?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Soccer Team Performance Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Soccer Team Performance Table"
+        ],
+        [
+          "Soccer Team Performance Table"
+        ],
+        [
+          "Soccer Team Performance Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "season/year",
+        "division": "soccer division level"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Year": "season/year",
+          "Division": "soccer division level"
+        },
+        {
+          "Year": "year or season range",
+          "Division": "league division level (numeric)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column contains mixed formats: single years (2008) and year ranges (2010-11, 2016-17)",
+        "Some Regular Season values contain both ranking and conference information"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column contains mixed formats: single years (2008) and year ranges (2010-11, 2016-17)",
+          "Some Regular Season values contain both ranking and conference information"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "N/A",
+        "Did not qualify",
+        "Did not enter",
+        "Season cancelled",
+        "In progress",
+        "Upcoming",
+        "NA",
+        ""
+      ],
+      "confidence": 0.6249999999999999,
+      "votes": [
+        [
+          "N/A",
+          "Did not qualify",
+          "Did not enter",
+          "Season cancelled",
+          "In progress",
+          "Upcoming"
+        ],
+        [
+          "N/A",
+          "Did not qualify",
+          "Did not enter",
+          "In progress",
+          "Upcoming",
+          "Season cancelled"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each row represents one season/team performance",
+        "League column should contain valid league names",
+        "Division values should be integers 4 or 5 based on sample",
+        "League column must not be null or empty",
+        "Filter out rows where League = 'NPSL'",
+        "The 'League' column contains the names of the leagues.",
+        "Need to filter out 'NPSL' from the list of leagues."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Each row represents one season/team performance",
+          "League column should contain valid league names",
+          "Division values should be integers 4 or 5 based on sample"
+        ],
+        [
+          "League column must not be null or empty",
+          "Filter out rows where League = 'NPSL'"
+        ],
+        [
+          "The 'League' column contains the names of the leagues.",
+          "Need to filter out 'NPSL' from the list of leagues."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where League = 'NPSL'",
+        "Exclude rows with placeholder league names if any",
+        "Exclude NPSL from League values",
+        "League != 'NPSL'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where League = 'NPSL'",
+          "Exclude rows with placeholder league names if any"
+        ],
+        [
+          "Exclude NPSL from League values"
+        ],
+        [
+          "League != 'NPSL'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct leagues",
+        "Verify no null values in League column for filtered rows"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct leagues",
+          "Verify no null values in League column for filtered rows"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Alphabetical list of league names",
+        "Each league should appear only once",
+        "Return distinct league names only",
+        "Exclude 'NPSL' from results",
+        "Output should be a list of league names"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Alphabetical list of league names",
+          "Each league should appear only once"
+        ],
+        [
+          "Return distinct league names only",
+          "Exclude 'NPSL' from results",
+          "Output should be a list of league names"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5895833333333333
+}

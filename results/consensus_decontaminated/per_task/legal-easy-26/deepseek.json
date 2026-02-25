@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "States where 'Identity Theft' is the top report category",
+    "filters": [
+      "Category = 'Identity Theft'",
+      "Top rank per state"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the ranking of categories within each state?",
+      "How many states have Identity Theft as their top category?",
+      "What are the report counts and percentages for Identity Theft in those states?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Top_Ten_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [
+      "Percentage column is stored as string with '%' symbol, needs conversion to numeric for ranking"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage values include '%' symbol in data",
+      "Category names may contain commas within quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each state should have exactly one top category (highest # of Reports or Percentage)",
+      "Categories are ranked within each state",
+      "Total percentage per state should sum to 100%"
+    ],
+    "derived_filters": [
+      "Filter to rows where Category = 'Identity Theft'",
+      "Then filter to rows where Identity Theft has the highest # of Reports within its state"
+    ],
+    "statistical_tests": [
+      "Verify ranking consistency between # of Reports and Percentage columns"
+    ],
+    "output_format_requirements": [
+      "List of state names",
+      "Include supporting metrics (# of Reports, Percentage) for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"States where 'Identity Theft' is the top report category\",\n        \"filters\": [\"Category = 'Identity Theft'\", \"Top rank per state\"],\n        \"grouping_variables\": [\"State\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the ranking of categories within each state?\", \"How many states have Identity Theft as their top category?\", \"What are the report counts and percentages for Identity Theft in those states?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_State_Top_Ten_Report_Categories.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count\", \"Percentage\": \"percentage\"},\n        \"scale_issues\": [\"Percentage column is stored as string with '%' symbol, needs conversion to numeric for ranking\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Percentage values include '%' symbol in data\", \"Category names may contain commas within quotes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each state should have exactly one top category (highest # of Reports or Percentage)\", \"Categories are ranked within each state\", \"Total percentage per state should sum to 100%\"],\n        \"derived_filters\": [\"Filter to rows where Category = 'Identity Theft'\", \"Then filter to rows where Identity Theft has the highest # of Reports within its state\"],\n        \"statistical_tests\": [\"Verify ranking consistency between # of Reports and Percentage columns\"],\n        \"output_format_requirements\": [\"List of state names\", \"Include supporting metrics (# of Reports, Percentage) for verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.498430013656616,
+  "token_usage": {
+    "input_tokens": 854,
+    "output_tokens": 458
+  }
+}

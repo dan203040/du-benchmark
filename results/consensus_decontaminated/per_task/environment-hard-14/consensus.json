@@ -1,0 +1,501 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Compare correlation coefficients between monthly rainfall and exceedance rate for freshwater vs marine beaches during summer months (Jun, Jul, Aug) from 2007-2009",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Compare correlation coefficients between monthly rainfall and exceedance rate for freshwater vs marine beaches during summer months (Jun, Jul, Aug) from 2007-2009",
+        "Compare correlation between monthly rainfall and exceedance rate for freshwater vs marine beaches during summer months (Jun, Jul, Aug) from 2007-2009",
+        "Comparison of correlation between monthly rainfall and exceedance rate for freshwater vs. marine beaches from 2007-2009 during summer months (Jun, Jul, Aug)"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year between 2007 and 2009 inclusive",
+        "Month in (6, 7, 8) for summer months",
+        "Beach Type Description in ('Freshwater', 'Marine')",
+        "Regions: Boston, Chatham, Amherst, Ashburnham for freshwater; Boston and Chatham for marine",
+        "Year >= 2007 AND Year <= 2009",
+        "Sample Date month in [6, 7, 8] (June, July, August)",
+        "Beach Type Description in ['Fresh water', 'Marine']",
+        "Rainfall regions: Boston, Chatham for Marine; Boston, Chatham, Amherst, Ashburnham for Freshwater",
+        "Year between 2007 and 2009 (inclusive)",
+        "Months: June, July, August",
+        "Beach Type: Fresh water or Marine",
+        "Regions for Fresh water beaches: Boston, Chatham, Amherst, Ashburnham",
+        "Regions for Marine beaches: Boston, Chatham"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year between 2007 and 2009 inclusive",
+          "Month in (6, 7, 8) for summer months",
+          "Beach Type Description in ('Freshwater', 'Marine')",
+          "Regions: Boston, Chatham, Amherst, Ashburnham for freshwater; Boston and Chatham for marine"
+        ],
+        [
+          "Year >= 2007 AND Year <= 2009",
+          "Sample Date month in [6, 7, 8] (June, July, August)",
+          "Beach Type Description in ['Fresh water', 'Marine']",
+          "Rainfall regions: Boston, Chatham for Marine; Boston, Chatham, Amherst, Ashburnham for Freshwater"
+        ],
+        [
+          "Year between 2007 and 2009 (inclusive)",
+          "Months: June, July, August",
+          "Beach Type: Fresh water or Marine",
+          "Regions for Fresh water beaches: Boston, Chatham, Amherst, Ashburnham",
+          "Regions for Marine beaches: Boston, Chatham"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Beach Type Description",
+        "Year",
+        "Month",
+        "Region",
+        "Month (from Sample Date)",
+        "Beach Type (Freshwater, Marine)"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Beach Type Description",
+          "Year",
+          "Month",
+          "Region"
+        ],
+        [
+          "Beach Type Description",
+          "Month (from Sample Date)",
+          "Year"
+        ],
+        [
+          "Beach Type (Freshwater, Marine)"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate monthly exceedance rate per beach type and region",
+        "Calculate monthly rainfall per region",
+        "Impute missing rainfall values with median of month across non-missing years",
+        "Compute correlation between rainfall and exceedance rate for each beach type",
+        "Compare which beach type has higher correlation",
+        "What is the exceedance rate (violations/total samples) for each beach type by month-year?",
+        "What is the average monthly rainfall for regions affecting freshwater beaches (Boston, Chatham, Amherst, Ashburnham)?",
+        "What is the average monthly rainfall for regions affecting marine beaches (Boston, Chatham)?",
+        "How to impute missing rainfall values with median of the month across non-missing years?",
+        "What is the correlation coefficient between monthly rainfall and exceedance rate for freshwater beaches?",
+        "What is the correlation coefficient between monthly rainfall and exceedance rate for marine beaches?",
+        "Which beach type has higher correlation: Freshwater or Marine?",
+        "Calculate monthly exceedance rate for each beach type.",
+        "Impute missing rainfall data with median of the month in non-missing years.",
+        "Calculate the correlation between monthly rainfall and exceedance rate for each beach type.",
+        "Compare the correlations and determine which beach type has a higher correlation."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Calculate monthly exceedance rate per beach type and region",
+          "Calculate monthly rainfall per region",
+          "Impute missing rainfall values with median of month across non-missing years",
+          "Compute correlation between rainfall and exceedance rate for each beach type",
+          "Compare which beach type has higher correlation"
+        ],
+        [
+          "What is the exceedance rate (violations/total samples) for each beach type by month-year?",
+          "What is the average monthly rainfall for regions affecting freshwater beaches (Boston, Chatham, Amherst, Ashburnham)?",
+          "What is the average monthly rainfall for regions affecting marine beaches (Boston, Chatham)?",
+          "How to impute missing rainfall values with median of the month across non-missing years?",
+          "What is the correlation coefficient between monthly rainfall and exceedance rate for freshwater beaches?",
+          "What is the correlation coefficient between monthly rainfall and exceedance rate for marine beaches?",
+          "Which beach type has higher correlation: Freshwater or Marine?"
+        ],
+        [
+          "Calculate monthly exceedance rate for each beach type.",
+          "Impute missing rainfall data with median of the month in non-missing years.",
+          "Calculate the correlation between monthly rainfall and exceedance rate for each beach type.",
+          "Compare the correlations and determine which beach type has a higher correlation."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "water-body-testing-2007.csv",
+        "water-body-testing-2008.csv",
+        "water-body-testing-2009.csv",
+        "monthly_precipitations_boston.csv",
+        "monthly_precipitations_chatham.csv",
+        "monthly_precipitations_amherst.csv",
+        "monthly_precipitations_ashburnham.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "water-body-testing-2007.csv",
+          "water-body-testing-2008.csv",
+          "water-body-testing-2009.csv",
+          "monthly_precipitations_boston.csv",
+          "monthly_precipitations_chatham.csv",
+          "monthly_precipitations_amherst.csv",
+          "monthly_precipitations_ashburnham.csv"
+        ],
+        [
+          "water-body-testing-2007.csv",
+          "water-body-testing-2008.csv",
+          "water-body-testing-2009.csv",
+          "monthly_precipitations_boston.csv",
+          "monthly_precipitations_chatham.csv",
+          "monthly_precipitations_amherst.csv",
+          "monthly_precipitations_ashburnham.csv"
+        ],
+        [
+          "water-body-testing-2007.csv",
+          "water-body-testing-2008.csv",
+          "water-body-testing-2009.csv",
+          "monthly_precipitations_boston.csv",
+          "monthly_precipitations_chatham.csv",
+          "monthly_precipitations_amherst.csv",
+          "monthly_precipitations_ashburnham.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Year column type mismatch: float64 in precipitation files vs int64 in testing files",
+        "Community names in testing files need mapping to precipitation file regions",
+        "Precipitation files have separate files per region while testing files have all regions combined",
+        "Rainfall data is in wide format (months as columns) vs beach data in long format",
+        "Beach data has individual samples while rainfall is monthly aggregate"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column type mismatch: float64 in precipitation files vs int64 in testing files",
+          "Community names in testing files need mapping to precipitation file regions",
+          "Precipitation files have separate files per region while testing files have all regions combined"
+        ],
+        [
+          "Rainfall data is in wide format (months as columns) vs beach data in long format",
+          "Beach data has individual samples while rainfall is monthly aggregate"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "indicator level": "MPN/100ml or CFU/100ml (bacterial count)",
+        "jan-dec columns in precipitation files": "inches",
+        "annual": "inches",
+        "jan through dec columns": "inches of precipitation",
+        "year": "year",
+        "sample date": "datetime",
+        "jan": "inches",
+        "feb": "inches",
+        "mar": "inches",
+        "apr": "inches",
+        "may": "inches",
+        "jun": "inches",
+        "jul": "inches",
+        "aug": "inches",
+        "sep": "inches",
+        "oct": "inches",
+        "nov": "inches",
+        "dec": "inches"
+      },
+      "confidence": 0.4074074074074072,
+      "votes": [
+        {
+          "Indicator Level": "MPN/100ml or CFU/100ml (bacterial count)",
+          "Jan-Dec columns in precipitation files": "inches",
+          "Annual": "inches"
+        },
+        {
+          "Jan through Dec columns": "inches of precipitation",
+          "Annual": "inches of precipitation",
+          "Indicator Level": "colony forming units per 100mL",
+          "Year": "year",
+          "Sample Date": "datetime"
+        },
+        {
+          "Indicator Level": "cfu/100mL",
+          "Jan": "inches",
+          "Feb": "inches",
+          "Mar": "inches",
+          "Apr": "inches",
+          "May": "inches",
+          "Jun": "inches",
+          "Jul": "inches",
+          "Aug": "inches",
+          "Sep": "inches",
+          "Oct": "inches",
+          "Nov": "inches",
+          "Dec": "inches",
+          "Annual": "inches"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Indicator Level values vary widely (1-480)",
+        "Rainfall values in inches with decimal precision",
+        "Missing values in precipitation data (blanks in sample)",
+        "Rainfall is monthly aggregate, beach violations are daily samples requiring aggregation to monthly",
+        "Multiple beaches per type require aggregation to type level"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Indicator Level values vary widely (1-480)",
+          "Rainfall values in inches with decimal precision",
+          "Missing values in precipitation data (blanks in sample)"
+        ],
+        [
+          "Rainfall is monthly aggregate, beach violations are daily samples requiring aggregation to monthly",
+          "Multiple beaches per type require aggregation to type level"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Testing data organized by Community, precipitation data by Region - need mapping: Boston->Boston, Chatham->Chatham, Amherst->Amherst, Ashburnham->Ashburnham",
+        "Testing data has daily samples, precipitation data is monthly aggregates",
+        "Missing rainfall values exist in precipitation data (NaN/empty) requiring imputation",
+        "Beach types may be spelled differently across years (e.g., 'Fresh water' vs 'Freshwater')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Testing data organized by Community, precipitation data by Region - need mapping: Boston->Boston, Chatham->Chatham, Amherst->Amherst, Ashburnham->Ashburnham",
+          "Testing data has daily samples, precipitation data is monthly aggregates"
+        ],
+        [
+          "Missing rainfall values exist in precipitation data (NaN/empty) requiring imputation",
+          "Beach types may be spelled differently across years (e.g., 'Fresh water' vs 'Freshwater')"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year range: 2007-2009 inclusive",
+        "Summer months: June(6), July(7), August(8)",
+        "Freshwater regions: Boston, Chatham, Amherst, Ashburnham",
+        "Marine regions: Boston, Chatham",
+        "Exceedance defined by Violation column = 'yes'",
+        "Years must be exactly 2007, 2008, 2009",
+        "Months must be exactly 6 (Jun), 7 (Jul), 8 (Aug)",
+        "Beach Type Description must be either 'Fresh water' or 'Marine' (case-sensitive check needed)",
+        "Exceedance rate = count(Violation='yes') / count(all samples) per month-year-beach_type",
+        "Freshwater rainfall = mean of [Boston, Chatham, Amherst, Ashburnham] for each month-year",
+        "Marine rainfall = mean of [Boston, Chatham] for each month-year",
+        "Years should be between 2007 and 2009.",
+        "Months should be June, July, or August.",
+        "Beach Type Description should be either 'Fresh' or 'Marine'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year range: 2007-2009 inclusive",
+          "Summer months: June(6), July(7), August(8)",
+          "Freshwater regions: Boston, Chatham, Amherst, Ashburnham",
+          "Marine regions: Boston, Chatham",
+          "Exceedance defined by Violation column = 'yes'"
+        ],
+        [
+          "Years must be exactly 2007, 2008, 2009",
+          "Months must be exactly 6 (Jun), 7 (Jul), 8 (Aug)",
+          "Beach Type Description must be either 'Fresh water' or 'Marine' (case-sensitive check needed)",
+          "Exceedance rate = count(Violation='yes') / count(all samples) per month-year-beach_type",
+          "Freshwater rainfall = mean of [Boston, Chatham, Amherst, Ashburnham] for each month-year",
+          "Marine rainfall = mean of [Boston, Chatham] for each month-year"
+        ],
+        [
+          "Years should be between 2007 and 2009.",
+          "Months should be June, July, or August.",
+          "Beach Type Description should be either 'Fresh' or 'Marine'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract month from Sample Date column",
+        "Filter to summer months (6,7,8)",
+        "Group by month and beach type to calculate exceedance rate",
+        "Join precipitation data by region and month",
+        "Extract month from Sample Date for filtering",
+        "Match Beach Type Description to appropriate rainfall regions",
+        "Create month-year keys for aggregation",
+        "Exceedance Rate = Number of Violations / Total Number of Samples for each month and beach type."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract month from Sample Date column",
+          "Filter to summer months (6,7,8)",
+          "Group by month and beach type to calculate exceedance rate",
+          "Join precipitation data by region and month"
+        ],
+        [
+          "Extract month from Sample Date for filtering",
+          "Match Beach Type Description to appropriate rainfall regions",
+          "Create month-year keys for aggregation"
+        ],
+        [
+          "Exceedance Rate = Number of Violations / Total Number of Samples for each month and beach type."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation between monthly rainfall and monthly exceedance rate",
+        "Median imputation for missing rainfall values",
+        "Comparison of correlation coefficients between beach types",
+        "Pearson correlation coefficient between monthly rainfall and exceedance rate for freshwater beaches",
+        "Pearson correlation coefficient between monthly rainfall and exceedance rate for marine beaches",
+        "Missing value imputation: median of specific month across years 2007-2009 where data exists",
+        "Pearson correlation coefficient between monthly rainfall and exceedance rate."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation between monthly rainfall and monthly exceedance rate",
+          "Median imputation for missing rainfall values",
+          "Comparison of correlation coefficients between beach types"
+        ],
+        [
+          "Pearson correlation coefficient between monthly rainfall and exceedance rate for freshwater beaches",
+          "Pearson correlation coefficient between monthly rainfall and exceedance rate for marine beaches",
+          "Missing value imputation: median of specific month across years 2007-2009 where data exists"
+        ],
+        [
+          "Pearson correlation coefficient between monthly rainfall and exceedance rate."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Final answer must be either 'Freshwater' or 'Marine'",
+        "Correlation coefficients should be calculated separately for each beach type",
+        "Use median of month across non-missing years for imputation",
+        "Final answer must be exactly 'Freshwater' or 'Marine'",
+        "Answer based on which beach type has higher absolute correlation coefficient",
+        "Output should be either 'Freshwater' or 'Marine'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Final answer must be either 'Freshwater' or 'Marine'",
+          "Correlation coefficients should be calculated separately for each beach type",
+          "Use median of month across non-missing years for imputation"
+        ],
+        [
+          "Final answer must be exactly 'Freshwater' or 'Marine'",
+          "Answer based on which beach type has higher absolute correlation coefficient"
+        ],
+        [
+          "Output should be either 'Freshwater' or 'Marine'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5959259259259261
+}

@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Identify the first player selected in the draft who attended a school located in California",
+    "filters": [
+      "School/Club Team contains 'California'",
+      "Pick is the minimum value among filtered records"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What constitutes a 'school in California'? (e.g., contains 'California', 'CA', specific California school names)",
+      "Does 'first player picked' mean earliest pick number overall or first in chronological order?",
+      "Should we consider only US colleges or include international schools/clubs?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NBA Draft History"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Round": "draft round number",
+      "Pick": "overall selection number"
+    },
+    "scale_issues": [
+      "Pick numbers may not be sequential across all rows (e.g., jumps from 221 to 47)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some Position values are empty strings",
+      "School/Club Team contains both US colleges and international clubs",
+      "Data appears to be from multiple draft years based on pick number patterns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Pick values should be positive integers",
+      "Round should be between 1-10 typically",
+      "Player names should be non-empty"
+    ],
+    "derived_filters": [
+      "Filter rows where School/Club Team contains 'California' (case-insensitive)",
+      "Among filtered rows, find row with minimum Pick value"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Pick values",
+      "Verify chronological ordering of picks"
+    ],
+    "output_format_requirements": [
+      "Return single player name with supporting details (Pick, School)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Identify the first player selected in the draft who attended a school located in California\",\n        \"filters\": [\"School/Club Team contains 'California'\", \"Pick is the minimum value among filtered records\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What constitutes a 'school in California'? (e.g., contains 'California', 'CA', specific California school names)\", \"Does 'first player picked' mean earliest pick number overall or first in chronological order?\", \"Should we consider only US colleges or include international schools/clubs?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"NBA Draft History\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Round\": \"draft round number\", \"Pick\": \"overall selection number\"},\n        \"scale_issues\": [\"Pick numbers may not be sequential across all rows (e.g., jumps from 221 to 47)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Some Position values are empty strings\", \"School/Club Team contains both US colleges and international clubs\", \"Data appears to be from multiple draft years based on pick number patterns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Pick values should be positive integers\", \"Round should be between 1-10 typically\", \"Player names should be non-empty\"],\n        \"derived_filters\": [\"Filter rows where School/Club Team contains 'California' (case-insensitive)\", \"Among filtered rows, find row with minimum Pick value\"],\n        \"statistical_tests\": [\"Check for duplicate Pick values\", \"Verify chronological ordering of picks\"],\n        \"output_format_requirements\": [\"Return single player name with supporting details (Pick, School)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.890150308609009,
+  "token_usage": {
+    "input_tokens": 906,
+    "output_tokens": 478
+  }
+}

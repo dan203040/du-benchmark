@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Name of the player with the most goals during the period 1972-1975, 1976-1982",
+    "filters": [
+      "Period contains '1972 \u2013 1975, 1976 \u2013 1982'"
+    ],
+    "grouping_variables": [
+      "Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which players have a Period that exactly matches '1972 \u2013 1975, 1976 \u2013 1982'?",
+      "What is the Goals\u00b9 value for each player matching this period?",
+      "Which player has the maximum Goals\u00b9 value among the filtered results?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_player_statistics"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Goals\u00b9": "Goals",
+      "Appearances\u00b9": "Appearances",
+      "Nationality\u00b2": "Nationality"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Goals\u00b9": "count",
+      "Appearances\u00b9": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain special characters (\u00b9, \u00b2)",
+      "Period column contains compound date ranges with specific formatting",
+      "Goals\u00b9 and Appearances\u00b9 columns are stored as object dtype but represent numeric values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Period must exactly match '1972 \u2013 1975, 1976 \u2013 1982' format",
+      "Goals\u00b9 must be converted to numeric type for comparison"
+    ],
+    "derived_filters": [
+      "Period == '1972 \u2013 1975, 1976 \u2013 1982'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Name of the player with maximum Goals\u00b9",
+      "Handle case where multiple players may have the same maximum goals"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Name of the player with the most goals during the period 1972-1975, 1976-1982\",\n    \"filters\": [\"Period contains '1972 \u2013 1975, 1976 \u2013 1982'\"],\n    \"grouping_variables\": [\"Name\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which players have a Period that exactly matches '1972 \u2013 1975, 1976 \u2013 1982'?\",\n      \"What is the Goals\u00b9 value for each player matching this period?\",\n      \"Which player has the maximum Goals\u00b9 value among the filtered results?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"football_player_statistics\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Goals\u00b9\": \"Goals\",\n      \"Appearances\u00b9\": \"Appearances\",\n      \"Nationality\u00b2\": \"Nationality\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Goals\u00b9\": \"count\",\n      \"Appearances\u00b9\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Column names contain special characters (\u00b9, \u00b2)\",\n      \"Period column contains compound date ranges with specific formatting\",\n      \"Goals\u00b9 and Appearances\u00b9 columns are stored as object dtype but represent numeric values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Period must exactly match '1972 \u2013 1975, 1976 \u2013 1982' format\",\n      \"Goals\u00b9 must be converted to numeric type for comparison\"\n    ],\n    \"derived_filters\": [\n      \"Period == '1972 \u2013 1975, 1976 \u2013 1982'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Name of the player with maximum Goals\u00b9\",\n      \"Handle case where multiple players may have the same maximum goals\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.43644118309021,
+  "token_usage": {
+    "input_tokens": 1165,
+    "output_tokens": 614
+  }
+}

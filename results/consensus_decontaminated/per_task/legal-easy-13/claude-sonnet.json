@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "Ratio of the number of reports from the most frequent category to the least frequent category in 2024, rounded to two decimal places",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Category"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum value in the '# of Reports' column?",
+      "What is the minimum value in the '# of Reports' column?",
+      "What is the ratio of maximum to minimum number of reports?",
+      "How should the ratio be rounded to two decimal places?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage",
+      "Rank": "ordinal ranking"
+    },
+    "scale_issues": [
+      "Percentage column is stored as text with '%' symbol, not as numeric value"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage column contains '%' symbol as part of string value",
+      "Column name '# of Reports' contains special characters",
+      "All 29 rows need to be examined to find true minimum and maximum"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The dataset contains exactly 29 categories",
+      "Sample shows only first 20 rows, need all 29 rows to determine true minimum",
+      "Ratio must be calculated as max / min",
+      "Result must be rounded to exactly two decimal places"
+    ],
+    "derived_filters": [
+      "Identify category with maximum '# of Reports'",
+      "Identify category with minimum '# of Reports'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single numeric value",
+      "Value must be rounded to 2 decimal places",
+      "Format: X.XX"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Ratio of the number of reports from the most frequent category to the least frequent category in 2024, rounded to two decimal places\",\n    \"filters\": [\"Year = 2024\"],\n    \"grouping_variables\": [\"Category\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the maximum value in the '# of Reports' column?\",\n      \"What is the minimum value in the '# of Reports' column?\",\n      \"What is the ratio of maximum to minimum number of reports?\",\n      \"How should the ratio be rounded to two decimal places?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Report_Categories.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Percentage\": \"percentage\",\n      \"Rank\": \"ordinal ranking\"\n    },\n    \"scale_issues\": [\n      \"Percentage column is stored as text with '%' symbol, not as numeric value\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Percentage column contains '%' symbol as part of string value\",\n      \"Column name '# of Reports' contains special characters\",\n      \"All 29 rows need to be examined to find true minimum and maximum\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The dataset contains exactly 29 categories\",\n      \"Sample shows only first 20 rows, need all 29 rows to determine true minimum\",\n      \"Ratio must be calculated as max / min\",\n      \"Result must be rounded to exactly two decimal places\"\n    ],\n    \"derived_filters\": [\n      \"Identify category with maximum '# of Reports'\",\n      \"Identify category with minimum '# of Reports'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single numeric value\",\n      \"Value must be rounded to 2 decimal places\",\n      \"Format: X.XX\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.908964157104492,
+  "token_usage": {
+    "input_tokens": 1007,
+    "output_tokens": 625
+  }
+}

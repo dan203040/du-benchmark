@@ -1,0 +1,65 @@
+{
+  "m_q": {
+    "target_metric": "Difference between the average FDR.phos for CBX3 genes and the average FDR.phos for all other genes.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the average FDR.phos for CBX3 genes?",
+      "What is the average FDR.phos for all genes?",
+      "What genes are CBX3 genes?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc3__F-SS-phospho",
+      "1-s2.0-S0092867420301070-mmc3__C-SE-phospho"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "FDR.phos": "False Discovery Rate"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 17,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "CBX3 genes must be identified from the 'C-SE-phospho' sheet.",
+      "FDR.phos values must be numeric."
+    ],
+    "derived_filters": [
+      "Identify rows in 'F-SS-phospho' where Gene is 'CBX3'.",
+      "Identify rows in 'F-SS-phospho' where Gene is not 'CBX3'."
+    ],
+    "statistical_tests": [
+      "Calculate the average FDR.phos for CBX3 genes.",
+      "Calculate the average FDR.phos for all other genes.",
+      "Subtract the average FDR.phos of all other genes from the average FDR.phos of CBX3 genes."
+    ],
+    "output_format_requirements": [
+      "Output the difference between the two averages as a single numerical value."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Difference between the average FDR.phos for CBX3 genes and the average FDR.phos for all other genes.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the average FDR.phos for CBX3 genes?\",\n      \"What is the average FDR.phos for all genes?\",\n      \"What genes are CBX3 genes?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc3__F-SS-phospho\",\n      \"1-s2.0-S0092867420301070-mmc3__C-SE-phospho\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"FDR.phos\": \"False Discovery Rate\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 17,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"CBX3 genes must be identified from the 'C-SE-phospho' sheet.\",\n      \"FDR.phos values must be numeric.\"\n    ],\n    \"derived_filters\": [\n      \"Identify rows in 'F-SS-phospho' where Gene is 'CBX3'.\",\n      \"Identify rows in 'F-SS-phospho' where Gene is not 'CBX3'.\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate the average FDR.phos for CBX3 genes.\",\n      \"Calculate the average FDR.phos for all other genes.\",\n      \"Subtract the average FDR.phos of all other genes from the average FDR.phos of CBX3 genes.\"\n    ],\n    \"output_format_requirements\": [\n      \"Output the difference between the two averages as a single numerical value.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.0161049365997314,
+  "token_usage": {}
+}

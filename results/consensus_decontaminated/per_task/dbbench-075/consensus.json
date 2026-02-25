@@ -1,0 +1,298 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "sum of Playoffs appearances across all teams",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "sum of Playoffs appearances across all teams",
+        "sum of playoffs appearances from all teams",
+        "Total number of playoffs appearances across all teams"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Are there any teams with 'Never Played' status that should be excluded?",
+        "Should we include teams with 0 seasons played?",
+        "Do we need to handle missing or invalid Playoffs appearances values?",
+        "What is the 'Playoffs appearances' value for each team?",
+        "How should teams with 0 playoff appearances be handled?",
+        "Should all teams (active and inactive) be included in the total?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Are there any teams with 'Never Played' status that should be excluded?",
+          "Should we include teams with 0 seasons played?",
+          "Do we need to handle missing or invalid Playoffs appearances values?"
+        ],
+        [
+          "What is the 'Playoffs appearances' value for each team?",
+          "How should teams with 0 playoff appearances be handled?",
+          "Should all teams (active and inactive) be included in the total?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Basketball Teams History"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Basketball Teams History"
+        ],
+        [
+          "Basketball Teams History"
+        ],
+        [
+          "Basketball Teams History"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "playoffs appearances": "count",
+        "seasons played": "count",
+        "win%": "percentage"
+      },
+      "confidence": 0.7777777777777777,
+      "votes": [
+        {
+          "Playoffs appearances": "count",
+          "Seasons played": "count",
+          "Win%": "percentage"
+        },
+        {
+          "Playoffs appearances": "count",
+          "Seasons played": "count",
+          "Win%": "percentage"
+        },
+        {
+          "Playoffs appearances": "number of appearances"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Win\u2013loss record contains commas in some values (e.g., '3,445\u20132,318')",
+        "Win% column contains string values like '.578' and 'N/A'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Win\u2013loss record contains commas in some values (e.g., '3,445\u20132,318')",
+          "Win% column contains string values like '.578' and 'N/A'"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "N/A",
+          "NA",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Playoffs appearances should be non-negative integers",
+        "Seasons played should be >= 0",
+        "Playoffs appearances should be <= Seasons played for active teams",
+        "Playoffs appearances must be non-negative integers",
+        "Playoffs appearances cannot exceed Seasons played for any team",
+        "Sum should include all 27 teams in the dataset",
+        "'Playoffs appearances' column must contain non-negative integers."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Playoffs appearances should be non-negative integers",
+          "Seasons played should be >= 0",
+          "Playoffs appearances should be <= Seasons played for active teams"
+        ],
+        [
+          "Playoffs appearances must be non-negative integers",
+          "Playoffs appearances cannot exceed Seasons played for any team",
+          "Sum should include all 27 teams in the dataset"
+        ],
+        [
+          "'Playoffs appearances' column must contain non-negative integers."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where 'Years active' = 'Never Played'",
+        "Consider filtering out teams with 0 seasons played"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where 'Years active' = 'Never Played'",
+          "Consider filtering out teams with 0 seasons played"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for consistency between Seasons played and Years active ranges",
+        "Validate that Playoffs appearances sum is reasonable given total seasons"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for consistency between Seasons played and Years active ranges",
+          "Validate that Playoffs appearances sum is reasonable given total seasons"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Integer total",
+        "Consider providing context about number of teams included",
+        "Output should be a single integer value representing the total count",
+        "Result should be the sum of all values in the 'Playoffs appearances' column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Integer total",
+          "Consider providing context about number of teams included"
+        ],
+        [
+          "Output should be a single integer value representing the total count",
+          "Result should be the sum of all values in the 'Playoffs appearances' column"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5555555555555557
+}

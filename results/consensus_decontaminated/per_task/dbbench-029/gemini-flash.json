@@ -1,0 +1,57 @@
+{
+  "m_q": {
+    "target_metric": "Total number of trains that run daily",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to handle trains that run on multiple days?",
+      "How to interpret the 'Day' column to identify daily trains?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'Day' column contains comma-separated values indicating the days on which the train runs.",
+      "Need to parse the 'Day' column to determine if a train runs daily."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Day' column must be parsed to determine if a train runs daily. 'Daily' indicates the train runs every day.",
+      "If 'Day' contains 'M,Tu,W,T,F,St,S' or similar combinations covering all days, it should be considered a daily train."
+    ],
+    "derived_filters": [
+      "Train runs daily: 'Day' column contains 'Daily' or 'M,Tu,W,T,F,St,S' or equivalent combinations."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total number of trains that run daily\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How to handle trains that run on multiple days?\",\n      \"How to interpret the 'Day' column to identify daily trains?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Train Schedule\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'Day' column contains comma-separated values indicating the days on which the train runs.\",\n      \"Need to parse the 'Day' column to determine if a train runs daily.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Day' column must be parsed to determine if a train runs daily. 'Daily' indicates the train runs every day.\",\n      \"If 'Day' contains 'M,Tu,W,T,F,St,S' or similar combinations covering all days, it should be considered a daily train.\"\n    ],\n    \"derived_filters\": [\n      \"Train runs daily: 'Day' column contains 'Daily' or 'M,Tu,W,T,F,St,S' or equivalent combinations.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.6702189445495605,
+  "token_usage": {}
+}

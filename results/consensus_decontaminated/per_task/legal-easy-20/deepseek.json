@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "percentage of fraud reporters in 2024",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of fraud reports in 2024?",
+      "What is the total number of all reports (Fraud + Identity Theft + Other) in 2024?",
+      "How to calculate percentage from these two numbers?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Fraud": "count of reports",
+      "Identity Theft": "count of reports",
+      "Other": "count of reports"
+    },
+    "scale_issues": [
+      "Data shows increasing trend over years, need to verify if 2024 data is available in the file"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows data from 2001-2020 only, but file name suggests 2024 data",
+      "Need to check if 2024 row exists in full file",
+      "Shape indicates 24 rows, sample shows 20 rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be integers between 2001-2024",
+      "Fraud, Identity Theft, Other counts should be non-negative integers",
+      "Total reports = Fraud + Identity Theft + Other"
+    ],
+    "derived_filters": [
+      "Filter to Year = 2024"
+    ],
+    "statistical_tests": [
+      "Check if 2024 data exists in the file",
+      "Verify data completeness for 2024"
+    ],
+    "output_format_requirements": [
+      "Percentage must be expressed as integer",
+      "Calculation: (Fraud_2024 / (Fraud_2024 + Identity_Theft_2024 + Other_2024)) * 100, rounded to nearest integer"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"percentage of fraud reporters in 2024\",\n        \"filters\": [\"Year = 2024\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total number of fraud reports in 2024?\", \"What is the total number of all reports (Fraud + Identity Theft + Other) in 2024?\", \"How to calculate percentage from these two numbers?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"year\", \"Fraud\": \"count of reports\", \"Identity Theft\": \"count of reports\", \"Other\": \"count of reports\"},\n        \"scale_issues\": [\"Data shows increasing trend over years, need to verify if 2024 data is available in the file\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows data from 2001-2020 only, but file name suggests 2024 data\", \"Need to check if 2024 row exists in full file\", \"Shape indicates 24 rows, sample shows 20 rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be integers between 2001-2024\", \"Fraud, Identity Theft, Other counts should be non-negative integers\", \"Total reports = Fraud + Identity Theft + Other\"],\n        \"derived_filters\": [\"Filter to Year = 2024\"],\n        \"statistical_tests\": [\"Check if 2024 data exists in the file\", \"Verify data completeness for 2024\"],\n        \"output_format_requirements\": [\"Percentage must be expressed as integer\", \"Calculation: (Fraud_2024 / (Fraud_2024 + Identity_Theft_2024 + Other_2024)) * 100, rounded to nearest integer\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.517127990722656,
+  "token_usage": {
+    "input_tokens": 853,
+    "output_tokens": 520
+  }
+}

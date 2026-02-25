@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "proportion of all reports who reported identity theft with Bank Account (Theft Type) and New Accounts (Theft Subtype)",
+    "filters": [
+      "Theft Type = 'Bank Account'",
+      "Theft Subtype = 'New Accounts'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports for Bank Account/New Accounts?",
+      "What is the total number of all reports across all categories?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Type__Report Type",
+      "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "2024_CSN_Report_Type__Report Type has an 'Unnamed: 2' column with percentage text",
+      "2024_CSN_Identity_Theft_Reports_by_Type.csv has '% Difference From Previous Year' column with percentage text"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "% Reporting $ Loss": "percentage",
+      "Total $ Loss": "dollars",
+      "Median $ Loss": "dollars",
+      "% Difference From Previous Year": "percentage"
+    },
+    "scale_issues": [
+      "Total $ Loss column contains 'M' suffix for millions (e.g., '$2,952M')",
+      "Percentage columns contain '%' symbol and need conversion to numeric"
+    ],
+    "cross_source_conflicts": [
+      "2024_CSN_Report_Type__Report Type shows total reports = 2600678 + 1135291 + 2759963 = 6,495,932",
+      "2024_CSN_Report_Type.csv shows top 10 categories sum to much smaller numbers"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "2024_CSN_Report_Type__Report Type has 3 columns but shape shows [3, 3]",
+      "2024_CSN_Identity_Theft_Reports_by_Type.csv has 30 rows covering all theft type/subtype combinations"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Proportion must be rounded to 4 decimal places",
+      "Bank Account theft type has 3 subtypes in 2024_CSN_Identity_Theft_Reports_by_Type.csv",
+      "Total reports count must come from 2024_CSN_Report_Type__Report Type"
+    ],
+    "derived_filters": [
+      "Report Type = 'Identity Theft'",
+      "Theft Type = 'Bank Account'",
+      "Theft Subtype = 'New Accounts'"
+    ],
+    "statistical_tests": [
+      "Verify that sum of all # of Reports in 2024_CSN_Report_Type__Report Type equals sum of all reports across all files"
+    ],
+    "output_format_requirements": [
+      "Proportion as decimal rounded to 4 places",
+      "Calculation: (# Bank Account/New Accounts reports) / (Total all reports)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"proportion of all reports who reported identity theft with Bank Account (Theft Type) and New Accounts (Theft Subtype)\",\n        \"filters\": [\"Theft Type = 'Bank Account'\", \"Theft Subtype = 'New Accounts'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total number of reports for Bank Account/New Accounts?\", \"What is the total number of all reports across all categories?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Report_Type__Report Type\", \"2024_CSN_Identity_Theft_Reports_by_Type.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"2024_CSN_Report_Type__Report Type has an 'Unnamed: 2' column with percentage text\", \"2024_CSN_Identity_Theft_Reports_by_Type.csv has '% Difference From Previous Year' column with percentage text\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count\", \"% Reporting $ Loss\": \"percentage\", \"Total $ Loss\": \"dollars\", \"Median $ Loss\": \"dollars\", \"% Difference From Previous Year\": \"percentage\"},\n        \"scale_issues\": [\"Total $ Loss column contains 'M' suffix for millions (e.g., '$2,952M')\", \"Percentage columns contain '%' symbol and need conversion to numeric\"],\n        \"cross_source_conflicts\": [\"2024_CSN_Report_Type__Report Type shows total reports = 2600678 + 1135291 + 2759963 = 6,495,932\", \"2024_CSN_Report_Type.csv shows top 10 categories sum to much smaller numbers\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"2024_CSN_Report_Type__Report Type has 3 columns but shape shows [3, 3]\", \"2024_CSN_Identity_Theft_Reports_by_Type.csv has 30 rows covering all theft type/subtype combinations\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Proportion must be rounded to 4 decimal places\", \"Bank Account theft type has 3 subtypes in 2024_CSN_Identity_Theft_Reports_by_Type.csv\", \"Total reports count must come from 2024_CSN_Report_Type__Report Type\"],\n        \"derived_filters\": [\"Report Type = 'Identity Theft'\", \"Theft Type = 'Bank Account'\", \"Theft Subtype = 'New Accounts'\"],\n        \"statistical_tests\": [\"Verify that sum of all # of Reports in 2024_CSN_Report_Type__Report Type equals sum of all reports across all files\"],\n        \"output_format_requirements\": [\"Proportion as decimal rounded to 4 places\", \"Calculation: (# Bank Account/New Accounts reports) / (Total all reports)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 14.216514110565186,
+  "token_usage": {
+    "input_tokens": 1717,
+    "output_tokens": 725
+  }
+}

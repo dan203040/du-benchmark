@@ -1,0 +1,110 @@
+{
+  "m_q": {
+    "target_metric": "Predict customer churn probability (Exited) for test data and output to submission.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features predict customer churn based on training data?",
+      "What is the expected output format for submission.csv?",
+      "Should predictions be binary (0/1) or probability scores?",
+      "How to handle missing values in features?",
+      "What is the relationship between train.csv and Churn_Modelling.csv?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv",
+      "test.csv",
+      "sample_submission.csv",
+      "Churn_Modelling.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "train.csv",
+        "right_source": "test.csv",
+        "left_column": "CustomerId",
+        "right_column": "CustomerId",
+        "join_type": "none (separate train/test split)"
+      }
+    ],
+    "schema_conflicts": [
+      "train.csv has 'id' and 'Exited' columns not present in test.csv",
+      "test.csv missing 'id' and 'Exited' columns present in train.csv",
+      "Churn_Modelling.csv has 'RowNumber' column not in train.csv or test.csv",
+      "Churn_Modelling.csv missing 'id' column present in train.csv"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "CreditScore": "credit_score_points",
+      "Age": "years",
+      "Tenure": "years",
+      "Balance": "currency_units",
+      "NumOfProducts": "count",
+      "HasCrCard": "binary_flag",
+      "IsActiveMember": "binary_flag",
+      "EstimatedSalary": "currency_units",
+      "Exited": "binary_flag_or_probability"
+    },
+    "scale_issues": [
+      "Balance and EstimatedSalary are on much larger scales than other numeric features",
+      "CreditScore ranges differently from Age and Tenure"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NaN"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Missing values observed in Age, Geography, HasCrCard, and IsActiveMember columns in Churn_Modelling.csv",
+      "sample_submission.csv contains placeholder value 0.5 for all Exited predictions",
+      "Exited column in sample_submission.csv is float64, suggesting probability predictions",
+      "CustomerId appears to be unique identifier across datasets",
+      "train.csv has id column ranging from low values to 163900+",
+      "sample_submission.csv has id column starting from 165034"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "test.csv has 24756 rows requiring predictions",
+      "sample_submission.csv has 110023 rows, suggesting multiple submissions or extended test set",
+      "Exited values in sample_submission.csv are float (0.5), indicating probability predictions expected",
+      "train.csv Exited column is binary (0 or 1) for training labels",
+      "submission.csv must have 'id' and 'Exited' columns matching sample_submission.csv format",
+      "Predictions must be made for ids 165034 to 275056 based on sample_submission.csv"
+    ],
+    "derived_filters": [
+      "Use only rows from train.csv for model training",
+      "Generate predictions only for test.csv data"
+    ],
+    "statistical_tests": [
+      "Check class balance in training data (Exited distribution)",
+      "Evaluate missing data patterns across train and test sets",
+      "Verify feature distributions match between train and test"
+    ],
+    "output_format_requirements": [
+      "submission.csv must have exactly 2 columns: id, Exited",
+      "id column must contain integer identifiers matching sample_submission.csv",
+      "Exited column must contain probability scores (float) between 0 and 1",
+      "Number of rows in submission.csv must match sample_submission.csv (110023 rows)",
+      "CSV format with comma delimiter and header row"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Predict customer churn probability (Exited) for test data and output to submission.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What features predict customer churn based on training data?\",\n      \"What is the expected output format for submission.csv?\",\n      \"Should predictions be binary (0/1) or probability scores?\",\n      \"How to handle missing values in features?\",\n      \"What is the relationship between train.csv and Churn_Modelling.csv?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"train.csv\", \"test.csv\", \"sample_submission.csv\", \"Churn_Modelling.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"train.csv\",\n        \"right_source\": \"test.csv\",\n        \"left_column\": \"CustomerId\",\n        \"right_column\": \"CustomerId\",\n        \"join_type\": \"none (separate train/test split)\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"train.csv has 'id' and 'Exited' columns not present in test.csv\",\n      \"test.csv missing 'id' and 'Exited' columns present in train.csv\",\n      \"Churn_Modelling.csv has 'RowNumber' column not in train.csv or test.csv\",\n      \"Churn_Modelling.csv missing 'id' column present in train.csv\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"CreditScore\": \"credit_score_points\",\n      \"Age\": \"years\",\n      \"Tenure\": \"years\",\n      \"Balance\": \"currency_units\",\n      \"NumOfProducts\": \"count\",\n      \"HasCrCard\": \"binary_flag\",\n      \"IsActiveMember\": \"binary_flag\",\n      \"EstimatedSalary\": \"currency_units\",\n      \"Exited\": \"binary_flag_or_probability\"\n    },\n    \"scale_issues\": [\n      \"Balance and EstimatedSalary are on much larger scales than other numeric features\",\n      \"CreditScore ranges differently from Age and Tenure\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NaN\"],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Missing values observed in Age, Geography, HasCrCard, and IsActiveMember columns in Churn_Modelling.csv\",\n      \"sample_submission.csv contains placeholder value 0.5 for all Exited predictions\",\n      \"Exited column in sample_submission.csv is float64, suggesting probability predictions\",\n      \"CustomerId appears to be unique identifier across datasets\",\n      \"train.csv has id column ranging from low values to 163900+\",\n      \"sample_submission.csv has id column starting from 165034\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"test.csv has 24756 rows requiring predictions\",\n      \"sample_submission.csv has 110023 rows, suggesting multiple submissions or extended test set\",\n      \"Exited values in sample_submission.csv are float (0.5), indicating probability predictions expected\",\n      \"train.csv Exited column is binary (0 or 1) for training labels\",\n      \"submission.csv must have 'id' and 'Exited' columns matching sample_submission.csv format\",\n      \"Predictions must be made for ids 165034 to 275056 based on sample_submission.csv\"\n    ],\n    \"derived_filters\": [\n      \"Use only rows from train.csv for model training\",\n      \"Generate predictions only for test.csv data\"\n    ],\n    \"statistical_tests\": [\n      \"Check class balance in training data (Exited distribution)\",\n      \"Evaluate missing data patterns across train and test sets\",\n      \"Verify feature distributions match between train and test\"\n    ],\n    \"output_format_requirements\": [\n      \"submission.csv must have exactly 2 columns: id, Exited\",\n      \"id column must contain integer identifiers matching sample_submission.csv\",\n      \"Exited column must contain probability scores (float) between 0 and 1\",\n      \"Number of rows in submission.csv must match sample_submission.csv (110023 rows)\",\n      \"CSV format with comma delimiter and header row\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 19.623939990997314,
+  "token_usage": {
+    "input_tokens": 4149,
+    "output_tokens": 1169
+  }
+}

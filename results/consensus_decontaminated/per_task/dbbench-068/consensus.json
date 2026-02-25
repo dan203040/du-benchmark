@@ -1,0 +1,312 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total pick # for D position from Chilliwack Bruins",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total pick # for D position from Chilliwack Bruins",
+        "total (sum) of Pick # values",
+        "Sum of 'Pick #' for players with 'Position' as 'D' from 'Team from' 'Chilliwack Bruins'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Position = 'D'",
+        "Team from = 'Chilliwack Bruins'"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Position = 'D'",
+          "Team from = 'Chilliwack Bruins'"
+        ],
+        [
+          "Position = 'D'",
+          "Team from = 'Chilliwack Bruins'"
+        ],
+        [
+          "Position = 'D'",
+          "Team from = 'Chilliwack Bruins'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the sum of Pick # values for all players with Position D and Team from Chilliwack Bruins?",
+        "How many D players came from Chilliwack Bruins?",
+        "What are the individual Pick # values for D players from Chilliwack Bruins?",
+        "Which players have Position = 'D'?",
+        "Which players have Team from = 'Chilliwack Bruins'?",
+        "What are the Pick # values for players matching both conditions?",
+        "What is the sum of those Pick # values?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the sum of Pick # values for all players with Position D and Team from Chilliwack Bruins?",
+          "How many D players came from Chilliwack Bruins?",
+          "What are the individual Pick # values for D players from Chilliwack Bruins?"
+        ],
+        [
+          "Which players have Position = 'D'?",
+          "Which players have Team from = 'Chilliwack Bruins'?",
+          "What are the Pick # values for players matching both conditions?",
+          "What is the sum of those Pick # values?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "hockey_players"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "hockey_players"
+        ],
+        [
+          "hockey_players"
+        ],
+        [
+          "hockey_players"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "pick #": "ordinal selection number",
+        "position": "player position code (categorical)",
+        "team from": "team name (categorical)"
+      },
+      "confidence": 0.4444444444444444,
+      "votes": [
+        {
+          "Pick #": "ordinal selection number"
+        },
+        {
+          "Pick #": "draft pick number (integer)",
+          "Position": "player position code (categorical)",
+          "Team from": "team name (categorical)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Pick # column is stored as object/string type but contains numeric values that should be summed",
+        "Pick # is stored as object dtype but should be numeric for summation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick # column is stored as object/string type but contains numeric values that should be summed"
+        ],
+        [
+          "Pick # is stored as object dtype but should be numeric for summation"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Pick # values should be convertible to numeric for summation",
+        "Position values should be exact matches (case-sensitive)",
+        "Team from values should be exact matches (case-sensitive)",
+        "Pick # must be convertible to numeric type for summation",
+        "Position must exactly match 'D' (case-sensitive)",
+        "Team from must exactly match 'Chilliwack Bruins' (case-sensitive)",
+        "Pick # should be numeric for summation, handle non-numeric values appropriately (e.g., convert to numeric, remove, or replace with a default value)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick # values should be convertible to numeric for summation",
+          "Position values should be exact matches (case-sensitive)",
+          "Team from values should be exact matches (case-sensitive)"
+        ],
+        [
+          "Pick # must be convertible to numeric type for summation",
+          "Position must exactly match 'D' (case-sensitive)",
+          "Team from must exactly match 'Chilliwack Bruins' (case-sensitive)"
+        ],
+        [
+          "Pick # should be numeric for summation, handle non-numeric values appropriately (e.g., convert to numeric, remove, or replace with a default value)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Position contains 'D'",
+        "Filter rows where Team from contains 'Chilliwack Bruins'",
+        "Filter rows where Position == 'D' AND Team from == 'Chilliwack Bruins'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Position contains 'D'",
+          "Filter rows where Team from contains 'Chilliwack Bruins'"
+        ],
+        [
+          "Filter rows where Position == 'D' AND Team from == 'Chilliwack Bruins'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing Pick # values in filtered subset",
+        "Verify all Pick # values are numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing Pick # values in filtered subset",
+          "Verify all Pick # values are numeric"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric total",
+        "Should handle potential multiple D players from Chilliwack Bruins",
+        "Return a single numeric value representing the sum",
+        "If no rows match filters, return 0 or null"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric total",
+          "Should handle potential multiple D players from Chilliwack Bruins"
+        ],
+        [
+          "Return a single numeric value representing the sum",
+          "If no rows match filters, return 0 or null"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5888888888888889
+}

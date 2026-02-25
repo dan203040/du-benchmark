@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Round number(s)",
+    "filters": [
+      "School/Club Team = 'Indiana'",
+      "Pick < 198"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What records have School/Club Team equal to 'Indiana'?",
+      "Among those Indiana records, which have Pick values less than 198?",
+      "What are the Round values for the filtered records?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NFL Draft Picks"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Round": "draft round number",
+      "Pick": "overall pick number in draft"
+    },
+    "scale_issues": [
+      "Round and Pick columns are stored as 'object' dtype but represent numeric values",
+      "Need to convert Round and Pick to numeric types for comparison operations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Round and Pick columns stored as strings/objects despite containing numeric values",
+      "School/Club Team values may have varying capitalization (need case-insensitive matching for 'Indiana')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "School/Club Team must equal 'Indiana' (case-insensitive)",
+      "Pick must be numeric and less than 198",
+      "Round must exist and be valid for filtered records"
+    ],
+    "derived_filters": [
+      "Convert Pick column to numeric type before applying < 198 filter",
+      "Apply case-insensitive string matching for 'Indiana' in School/Club Team"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return distinct Round values that satisfy both conditions",
+      "If no records match, return empty result",
+      "If multiple records match, return all unique Round values"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Round number(s)\",\n    \"filters\": [\"School/Club Team = 'Indiana'\", \"Pick < 198\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What records have School/Club Team equal to 'Indiana'?\",\n      \"Among those Indiana records, which have Pick values less than 198?\",\n      \"What are the Round values for the filtered records?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"NFL Draft Picks\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Round\": \"draft round number\",\n      \"Pick\": \"overall pick number in draft\"\n    },\n    \"scale_issues\": [\n      \"Round and Pick columns are stored as 'object' dtype but represent numeric values\",\n      \"Need to convert Round and Pick to numeric types for comparison operations\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Round and Pick columns stored as strings/objects despite containing numeric values\",\n      \"School/Club Team values may have varying capitalization (need case-insensitive matching for 'Indiana')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"School/Club Team must equal 'Indiana' (case-insensitive)\",\n      \"Pick must be numeric and less than 198\",\n      \"Round must exist and be valid for filtered records\"\n    ],\n    \"derived_filters\": [\n      \"Convert Pick column to numeric type before applying < 198 filter\",\n      \"Apply case-insensitive string matching for 'Indiana' in School/Club Team\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return distinct Round values that satisfy both conditions\",\n      \"If no records match, return empty result\",\n      \"If multiple records match, return all unique Round values\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.880348205566406,
+  "token_usage": {
+    "input_tokens": 884,
+    "output_tokens": 590
+  }
+}

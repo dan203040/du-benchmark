@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Difference between average FDR in CBX3 genes and average FDR for the rest of the genes",
+    "filters": [
+      "Gene == 'CBX3'",
+      "Gene != 'CBX3'"
+    ],
+    "grouping_variables": [
+      "Gene"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the average FDR for CBX3 genes?",
+      "What is the average FDR for all non-CBX3 genes?",
+      "What is the difference between these two averages?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc3__F-SS-phospho"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "FDR.phos": "false discovery rate (probability)",
+      "pval.phos": "p-value (probability)",
+      "FoldChange.phos": "fold change (ratio)",
+      "logp.phos": "log-transformed p-value",
+      "logfdr.phos": "log-transformed FDR"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 17,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "File contains phosphoproteomics data with FDR values",
+      "Gene column contains gene identifiers including 'CBX3'",
+      "FDR.phos column contains the false discovery rate values needed for analysis"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "FDR.phos values must be numeric and non-null",
+      "Gene column must be non-null",
+      "CBX3 must exist as a gene value in the dataset"
+    ],
+    "derived_filters": [
+      "Partition dataset into CBX3 genes (Gene == 'CBX3') and non-CBX3 genes (Gene != 'CBX3')"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single scalar value representing the difference",
+      "Calculate: mean(FDR.phos where Gene=='CBX3') - mean(FDR.phos where Gene!='CBX3')"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Difference between average FDR in CBX3 genes and average FDR for the rest of the genes\",\n    \"filters\": [\"Gene == 'CBX3'\", \"Gene != 'CBX3'\"],\n    \"grouping_variables\": [\"Gene\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the average FDR for CBX3 genes?\",\n      \"What is the average FDR for all non-CBX3 genes?\",\n      \"What is the difference between these two averages?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"1-s2.0-S0092867420301070-mmc3__F-SS-phospho\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"FDR.phos\": \"false discovery rate (probability)\",\n      \"pval.phos\": \"p-value (probability)\",\n      \"FoldChange.phos\": \"fold change (ratio)\",\n      \"logp.phos\": \"log-transformed p-value\",\n      \"logfdr.phos\": \"log-transformed FDR\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 17,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"File contains phosphoproteomics data with FDR values\",\n      \"Gene column contains gene identifiers including 'CBX3'\",\n      \"FDR.phos column contains the false discovery rate values needed for analysis\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"FDR.phos values must be numeric and non-null\",\n      \"Gene column must be non-null\",\n      \"CBX3 must exist as a gene value in the dataset\"\n    ],\n    \"derived_filters\": [\n      \"Partition dataset into CBX3 genes (Gene == 'CBX3') and non-CBX3 genes (Gene != 'CBX3')\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single scalar value representing the difference\",\n      \"Calculate: mean(FDR.phos where Gene=='CBX3') - mean(FDR.phos where Gene!='CBX3')\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.511259078979492,
+  "token_usage": {
+    "input_tokens": 7907,
+    "output_tokens": 683
+  }
+}

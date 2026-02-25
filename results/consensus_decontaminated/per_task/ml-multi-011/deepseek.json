@@ -1,0 +1,91 @@
+{
+  "m_q": {
+    "target_metric": "Sentiment classification for each tweet in Corona_NLP_test.csv",
+    "filters": [
+      "Only text data from OriginalTweet column needs sentiment prediction"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What are the sentiment categories in training data?",
+      "How is sentiment distributed in training data?",
+      "What text features correlate with different sentiments?",
+      "What preprocessing is needed for tweet text?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Corona_NLP_train.csv",
+      "Corona_NLP_test.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Corona_NLP_train.csv has Sentiment column (6 columns) while Corona_NLP_test.csv lacks it (5 columns)",
+      "Both files have same column structure except for Sentiment column"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "TweetAt": "date in DD-MM-YYYY format"
+    },
+    "scale_issues": [
+      "UserName and ScreenName appear to be sequential IDs rather than actual usernames",
+      "Location data has inconsistent formatting with some entries containing coordinates"
+    ],
+    "cross_source_conflicts": [
+      "Training data has 41,157 rows while test data has 3,798 rows - significant size difference",
+      "Training data includes sentiment labels (Positive, Negative, Neutral, Extremely Positive, Extremely Negative) while test data lacks labels"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "OriginalTweet column contains URLs, hashtags, mentions, and special characters",
+      "Some tweets contain line breaks and carriage returns within cells",
+      "Location column has mixed formats (city names, coordinates, empty values)",
+      "TweetAt uses European date format DD-MM-YYYY"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Predictions must be written to sentiment.csv with column name 'Sentiment'",
+      "Sentiment predictions must align with training data categories: Positive, Negative, Neutral, Extremely Positive, Extremely Negative",
+      "Each test tweet must receive exactly one sentiment prediction"
+    ],
+    "derived_filters": [
+      "Remove or handle URLs from OriginalTweet",
+      "Extract hashtags as potential features",
+      "Handle missing Location data",
+      "Standardize date format for TweetAt"
+    ],
+    "statistical_tests": [
+      "Check class distribution in training data",
+      "Validate sentiment label consistency",
+      "Test for text length correlation with sentiment",
+      "Check for duplicate tweets"
+    ],
+    "output_format_requirements": [
+      "CSV file with single 'Sentiment' column",
+      "Same row order as Corona_NLP_test.csv",
+      "No additional columns or metadata"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Sentiment classification for each tweet in Corona_NLP_test.csv\",\n        \"filters\": [\"Only text data from OriginalTweet column needs sentiment prediction\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What are the sentiment categories in training data?\", \"How is sentiment distributed in training data?\", \"What text features correlate with different sentiments?\", \"What preprocessing is needed for tweet text?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Corona_NLP_train.csv\", \"Corona_NLP_test.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Corona_NLP_train.csv has Sentiment column (6 columns) while Corona_NLP_test.csv lacks it (5 columns)\", \"Both files have same column structure except for Sentiment column\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"TweetAt\": \"date in DD-MM-YYYY format\"},\n        \"scale_issues\": [\"UserName and ScreenName appear to be sequential IDs rather than actual usernames\", \"Location data has inconsistent formatting with some entries containing coordinates\"],\n        \"cross_source_conflicts\": [\"Training data has 41,157 rows while test data has 3,798 rows - significant size difference\", \"Training data includes sentiment labels (Positive, Negative, Neutral, Extremely Positive, Extremely Negative) while test data lacks labels\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"OriginalTweet column contains URLs, hashtags, mentions, and special characters\", \"Some tweets contain line breaks and carriage returns within cells\", \"Location column has mixed formats (city names, coordinates, empty values)\", \"TweetAt uses European date format DD-MM-YYYY\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Predictions must be written to sentiment.csv with column name 'Sentiment'\", \"Sentiment predictions must align with training data categories: Positive, Negative, Neutral, Extremely Positive, Extremely Negative\", \"Each test tweet must receive exactly one sentiment prediction\"],\n        \"derived_filters\": [\"Remove or handle URLs from OriginalTweet\", \"Extract hashtags as potential features\", \"Handle missing Location data\", \"Standardize date format for TweetAt\"],\n        \"statistical_tests\": [\"Check class distribution in training data\", \"Validate sentiment label consistency\", \"Test for text length correlation with sentiment\", \"Check for duplicate tweets\"],\n        \"output_format_requirements\": [\"CSV file with single 'Sentiment' column\", \"Same row order as Corona_NLP_test.csv\", \"No additional columns or metadata\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.529834032058716,
+  "token_usage": {
+    "input_tokens": 3876,
+    "output_tokens": 625
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "m_q": {
+    "target_metric": "Sum of squared residuals (SSR) from regression analysis predicting quarterly minimum portfolio returns based on mortgage delinquencies",
+    "filters": [
+      "Time period: 2005 to 2010",
+      "Quarterly frequency"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the quarterly minimum portfolio returns?",
+      "What are the mortgage delinquency rates?",
+      "What regression model should be used?",
+      "How to calculate residuals from the regression?",
+      "How to compute sum of squared residuals?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "portfolio_returns.csv",
+      "mortgage_delinquencies.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "portfolio_returns.csv",
+        "right_source": "mortgage_delinquencies.csv",
+        "left_column": "quarter",
+        "right_column": "quarter",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Missing actual data files - only sample_result.csv provided",
+      "Column names and structure unknown for source files"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Sum-of-squared residuals": "unitless (squared return units)",
+      "quarterly minimum portfolio returns": "percentage or decimal",
+      "mortgage delinquencies": "percentage or count"
+    },
+    "scale_issues": [
+      "Time scale: quarterly vs annual vs monthly",
+      "Return scale: percentage vs decimal",
+      "Delinquency scale: rate vs count"
+    ],
+    "cross_source_conflicts": [
+      "Time alignment: quarters must match between portfolio returns and delinquency data",
+      "Missing values handling for incomplete quarters"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "NaN",
+      "null"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "sample_result.csv shows single column with header",
+      "Source files not provided - format unknown",
+      "Output file should be result.csv with same format as sample_result.csv"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Time range constraint: 2005-01-01 to 2010-12-31",
+      "Quarterly aggregation required",
+      "Regression residuals must be calculated before SSR",
+      "SSR must be non-negative"
+    ],
+    "derived_filters": [
+      "Filter to quarterly frequency",
+      "Exclude quarters outside 2005-2010 range",
+      "Handle missing values in either returns or delinquency data"
+    ],
+    "statistical_tests": [
+      "Regression significance test",
+      "Residual normality test",
+      "Homoscedasticity test",
+      "Autocorrelation test for time series"
+    ],
+    "output_format_requirements": [
+      "Single CSV file named result.csv",
+      "Single column: 'Sum-of-squared residuals'",
+      "Single row with SSR value",
+      "Float64 data type"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Sum of squared residuals (SSR) from regression analysis predicting quarterly minimum portfolio returns based on mortgage delinquencies\",\n        \"filters\": [\"Time period: 2005 to 2010\", \"Quarterly frequency\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What are the quarterly minimum portfolio returns?\", \"What are the mortgage delinquency rates?\", \"What regression model should be used?\", \"How to calculate residuals from the regression?\", \"How to compute sum of squared residuals?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"portfolio_returns.csv\", \"mortgage_delinquencies.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"portfolio_returns.csv\", \"right_source\": \"mortgage_delinquencies.csv\", \"left_column\": \"quarter\", \"right_column\": \"quarter\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"Missing actual data files - only sample_result.csv provided\", \"Column names and structure unknown for source files\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Sum-of-squared residuals\": \"unitless (squared return units)\", \"quarterly minimum portfolio returns\": \"percentage or decimal\", \"mortgage delinquencies\": \"percentage or count\"},\n        \"scale_issues\": [\"Time scale: quarterly vs annual vs monthly\", \"Return scale: percentage vs decimal\", \"Delinquency scale: rate vs count\"],\n        \"cross_source_conflicts\": [\"Time alignment: quarters must match between portfolio returns and delinquency data\", \"Missing values handling for incomplete quarters\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"NaN\", \"null\"],\n        \"expected_columns\": 3,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"sample_result.csv shows single column with header\", \"Source files not provided - format unknown\", \"Output file should be result.csv with same format as sample_result.csv\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Time range constraint: 2005-01-01 to 2010-12-31\", \"Quarterly aggregation required\", \"Regression residuals must be calculated before SSR\", \"SSR must be non-negative\"],\n        \"derived_filters\": [\"Filter to quarterly frequency\", \"Exclude quarters outside 2005-2010 range\", \"Handle missing values in either returns or delinquency data\"],\n        \"statistical_tests\": [\"Regression significance test\", \"Residual normality test\", \"Homoscedasticity test\", \"Autocorrelation test for time series\"],\n        \"output_format_requirements\": [\"Single CSV file named result.csv\", \"Single column: 'Sum-of-squared residuals'\", \"Single row with SSR value\", \"Float64 data type\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.426079988479614,
+  "token_usage": {
+    "input_tokens": 577,
+    "output_tokens": 643
+  }
+}

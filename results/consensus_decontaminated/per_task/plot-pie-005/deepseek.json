@@ -1,0 +1,95 @@
+{
+  "m_q": {
+    "target_metric": "Count of games across four major genres in Mobile Strategy Game dataset",
+    "filters": [
+      "Primary Genre must be 'Games'",
+      "Genres must contain 'Strategy'",
+      "Focus on four major genres within Strategy games"
+    ],
+    "grouping_variables": [
+      "Primary Genre",
+      "Genres"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What are the four major genres within Mobile Strategy Games?",
+      "How many games belong to each of these four genres?",
+      "What proportion does each genre represent in the dataset?",
+      "How to visualize these proportions as a pie chart with specific colors and dimensions?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "appstore_games.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Average User Rating": "stars (0-5)",
+      "User Rating Count": "number of ratings",
+      "Price": "USD",
+      "Size": "bytes",
+      "Original Release Date": "DD/MM/YYYY",
+      "Current Version Release Date": "DD/MM/YYYY"
+    },
+    "scale_issues": [
+      "Date columns use DD/MM/YYYY format which may need conversion for analysis",
+      "Size in bytes may need conversion to MB/GB for readability"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 18,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column contains URLs",
+      "Genres column contains comma-separated lists of genres",
+      "Date columns use DD/MM/YYYY format",
+      "Some descriptions contain newline characters"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Dataset contains 17007 rows and 18 columns",
+      "Primary Genre column exists with 'Games' as a value",
+      "Genres column contains comma-separated genre lists",
+      "Must identify four major genres from Strategy games subset"
+    ],
+    "derived_filters": [
+      "Filter rows where Primary Genre = 'Games'",
+      "Filter rows where Genres contains 'Strategy'",
+      "Extract four major genres from the filtered Strategy games"
+    ],
+    "statistical_tests": [
+      "Count distribution of games across four major genres",
+      "Proportion calculation for pie chart",
+      "Check for missing values in genre columns"
+    ],
+    "output_format_requirements": [
+      "Pie chart with dimensions (12, 8)",
+      "Colors: Green, Orange, Blue, Red",
+      "Include legend with genre names",
+      "Save as result.png"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of games across four major genres in Mobile Strategy Game dataset\",\n        \"filters\": [\"Primary Genre must be 'Games'\", \"Genres must contain 'Strategy'\", \"Focus on four major genres within Strategy games\"],\n        \"grouping_variables\": [\"Primary Genre\", \"Genres\"],\n        \"output_cardinality\": \"plot\",\n        \"sub_questions\": [\"What are the four major genres within Mobile Strategy Games?\", \"How many games belong to each of these four genres?\", \"What proportion does each genre represent in the dataset?\", \"How to visualize these proportions as a pie chart with specific colors and dimensions?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"appstore_games.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Average User Rating\": \"stars (0-5)\",\n            \"User Rating Count\": \"number of ratings\",\n            \"Price\": \"USD\",\n            \"Size\": \"bytes\",\n            \"Original Release Date\": \"DD/MM/YYYY\",\n            \"Current Version Release Date\": \"DD/MM/YYYY\"\n        },\n        \"scale_issues\": [\"Date columns use DD/MM/YYYY format which may need conversion for analysis\", \"Size in bytes may need conversion to MB/GB for readability\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 18,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column contains URLs\", \"Genres column contains comma-separated lists of genres\", \"Date columns use DD/MM/YYYY format\", \"Some descriptions contain newline characters\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Dataset contains 17007 rows and 18 columns\", \"Primary Genre column exists with 'Games' as a value\", \"Genres column contains comma-separated genre lists\", \"Must identify four major genres from Strategy games subset\"],\n        \"derived_filters\": [\"Filter rows where Primary Genre = 'Games'\", \"Filter rows where Genres contains 'Strategy'\", \"Extract four major genres from the filtered Strategy games\"],\n        \"statistical_tests\": [\"Count distribution of games across four major genres\", \"Proportion calculation for pie chart\", \"Check for missing values in genre columns\"],\n        \"output_format_requirements\": [\"Pie chart with dimensions (12, 8)\", \"Colors: Green, Orange, Blue, Red\", \"Include legend with genre names\", \"Save as result.png\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.030590057373047,
+  "token_usage": {
+    "input_tokens": 2240,
+    "output_tokens": 607
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "m_q": {
+    "target_metric": "Average monthly sales volume (number of units sold) for each bike category",
+    "filters": [],
+    "grouping_variables": [
+      "category_name"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Calculate the total sales volume (number of units sold) for each bike category per month.",
+      "Calculate the average of the monthly sales volumes for each bike category across all months."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "orders.csv",
+      "order_items.csv",
+      "products.csv",
+      "categories.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "orders.csv",
+        "right_source": "order_items.csv",
+        "left_column": "order_id",
+        "right_column": "order_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "order_items.csv",
+        "right_source": "products.csv",
+        "left_column": "product_id",
+        "right_column": "product_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "products.csv",
+        "right_source": "categories.csv",
+        "left_column": "category_id",
+        "right_column": "category_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "quantity": "units",
+      "list_price": "USD"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "order_status in orders.csv should be a valid status (e.g., 4 for completed)",
+      "quantity in order_items.csv should be a positive integer"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a CSV file named avg_units_sold.csv",
+      "Output CSV should have columns 'Category' and 'Average Units Sold'",
+      "The 'Average Units Sold' column should contain the mean of monthly sales volume for each category"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average monthly sales volume (number of units sold) for each bike category\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"category_name\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Calculate the total sales volume (number of units sold) for each bike category per month.\",\n      \"Calculate the average of the monthly sales volumes for each bike category across all months.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"orders.csv\",\n      \"order_items.csv\",\n      \"products.csv\",\n      \"categories.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"orders.csv\",\n        \"right_source\": \"order_items.csv\",\n        \"left_column\": \"order_id\",\n        \"right_column\": \"order_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"order_items.csv\",\n        \"right_source\": \"products.csv\",\n        \"left_column\": \"product_id\",\n        \"right_column\": \"product_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"products.csv\",\n        \"right_source\": \"categories.csv\",\n        \"left_column\": \"category_id\",\n        \"right_column\": \"category_id\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"quantity\": \"units\",\n      \"list_price\": \"USD\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"order_status in orders.csv should be a valid status (e.g., 4 for completed)\",\n      \"quantity in order_items.csv should be a positive integer\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a CSV file named avg_units_sold.csv\",\n      \"Output CSV should have columns 'Category' and 'Average Units Sold'\",\n      \"The 'Average Units Sold' column should contain the mean of monthly sales volume for each category\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.460723400115967,
+  "token_usage": {}
+}

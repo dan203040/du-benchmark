@@ -1,0 +1,150 @@
+{
+  "m_q": {
+    "target_metric": "State with highest concentration (proportion) of identity theft reports in a single metropolitan area",
+    "filters": [
+      "States with at least 2 metropolitan areas",
+      "Exclude footer rows with metadata text",
+      "Multi-state metropolitan areas counted separately per state"
+    ],
+    "grouping_variables": [
+      "State",
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many valid metropolitan areas does each state have?",
+      "What is the total number of reports per state?",
+      "What is the maximum number of reports in a single metro area per state?",
+      "What is the concentration ratio (max metro reports / total state reports) for each state?",
+      "Which states have at least 2 metropolitan areas?",
+      "Among qualifying states, which has the highest concentration ratio?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multi-state metropolitan areas appear in multiple state files with same name but potentially different report counts"
+    ],
+    "column_mappings": {
+      "Metropolitan Area": "metro_area",
+      "# of Reports": "num_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count (integer)",
+      "concentration": "ratio (0-1)"
+    },
+    "scale_issues": [
+      "Report counts are absolute numbers, not rates per capita"
+    ],
+    "cross_source_conflicts": [
+      "Multi-state metropolitan areas like 'Washington-Arlington-Alexandria, DC-VA-MD-WV' appear in multiple files",
+      "Multi-state metro areas like 'Memphis, TN-MS-AR' should be counted separately for each state it appears in",
+      "Same metropolitan area name may have different report values when split across states"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row in each file is a metadata footer describing the data source and methodology",
+      "Footer row contains text in 'Metropolitan Area' column and NaN in '# of Reports' column",
+      "Metropolitan area names include state abbreviations (e.g., 'Birmingham, AL Metropolitan Statistical Area')",
+      "Some entries are 'Metropolitan Statistical Area' and others are 'Micropolitan Statistical Area'",
+      "Multi-state metro areas indicated by multiple state abbreviations (e.g., 'GA-AL', 'TN-MS-AR')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include states with at least 2 metropolitan areas",
+      "Exclude rows where 'Metropolitan Area' contains 'Metropolitan Areas are defined by'",
+      "Multi-state metropolitan areas must be treated as separate entries for each state",
+      "Only count valid metropolitan/micropolitan statistical areas"
+    ],
+    "derived_filters": [
+      "num_reports IS NOT NULL",
+      "metro_area NOT LIKE '%Metropolitan Areas are defined%'",
+      "COUNT(metro_area) >= 2 per state"
+    ],
+    "statistical_tests": [
+      "Calculate concentration = MAX(num_reports) / SUM(num_reports) per state",
+      "Verify all states in analysis have at least 2 metro areas"
+    ],
+    "output_format_requirements": [
+      "Return single state name with highest concentration",
+      "Show the metropolitan area name with highest concentration",
+      "Show the concentration value (ratio)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"State with highest concentration (proportion) of identity theft reports in a single metropolitan area\",\n    \"filters\": [\n      \"States with at least 2 metropolitan areas\",\n      \"Exclude footer rows with metadata text\",\n      \"Multi-state metropolitan areas counted separately per state\"\n    ],\n    \"grouping_variables\": [\n      \"State\",\n      \"Metropolitan Area\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many valid metropolitan areas does each state have?\",\n      \"What is the total number of reports per state?\",\n      \"What is the maximum number of reports in a single metro area per state?\",\n      \"What is the concentration ratio (max metro reports / total state reports) for each state?\",\n      \"Which states have at least 2 metropolitan areas?\",\n      \"Among qualifying states, which has the highest concentration ratio?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Multi-state metropolitan areas appear in multiple state files with same name but potentially different report counts\"\n    ],\n    \"column_mappings\": {\n      \"Metropolitan Area\": \"metro_area\",\n      \"# of Reports\": \"num_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count (integer)\",\n      \"concentration\": \"ratio (0-1)\"\n    },\n    \"scale_issues\": [\n      \"Report counts are absolute numbers, not rates per capita\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Multi-state metropolitan areas like 'Washington-Arlington-Alexandria, DC-VA-MD-WV' appear in multiple files\",\n      \"Multi-state metro areas like 'Memphis, TN-MS-AR' should be counted separately for each state it appears in\",\n      \"Same metropolitan area name may have different report values when split across states\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Last row in each file is a metadata footer describing the data source and methodology\",\n      \"Footer row contains text in 'Metropolitan Area' column and NaN in '# of Reports' column\",\n      \"Metropolitan area names include state abbreviations (e.g., 'Birmingham, AL Metropolitan Statistical Area')\",\n      \"Some entries are 'Metropolitan Statistical Area' and others are 'Micropolitan Statistical Area'\",\n      \"Multi-state metro areas indicated by multiple state abbreviations (e.g., 'GA-AL', 'TN-MS-AR')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include states with at least 2 metropolitan areas\",\n      \"Exclude rows where 'Metropolitan Area' contains 'Metropolitan Areas are defined by'\",\n      \"Multi-state metropolitan areas must be treated as separate entries for each state\",\n      \"Only count valid metropolitan/micropolitan statistical areas\"\n    ],\n    \"derived_filters\": [\n      \"num_reports IS NOT NULL\",\n      \"metro_area NOT LIKE '%Metropolitan Areas are defined%'\",\n      \"COUNT(metro_area) >= 2 per state\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate concentration = MAX(num_reports) / SUM(num_reports) per state\",\n      \"Verify all states in analysis have at least 2 metro areas\"\n    ],\n    \"output_format_requirements\": [\n      \"Return single state name with highest concentration\",\n      \"Show the metropolitan area name with highest concentration\",\n      \"Show the concentration value (ratio)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 20.192500114440918,
+  "token_usage": {
+    "input_tokens": 14063,
+    "output_tokens": 1366
+  }
+}

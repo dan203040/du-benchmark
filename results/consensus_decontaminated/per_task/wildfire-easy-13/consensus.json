@@ -1,0 +1,321 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Maximum value of Total Helicopter Requests among NICC-defined geographic areas",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Maximum value of Total Helicopter Requests among NICC-defined geographic areas",
+        "Geographic area with maximum helicopter requests among the 10 NICC-defined areas",
+        "Total helicopter requests"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Exclude 'National Interagency Coordination Center' (administrative entity)",
+        "Exclude 'Other' (non-geographic category)",
+        "Exclude 'Canada' (non-US area)",
+        "Exclude non-NICC areas: 'National Interagency Coordination Center', 'Other', 'Canada'",
+        "Region is one of the 10 NICC-defined geographic areas"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude 'National Interagency Coordination Center' (administrative entity)",
+          "Exclude 'Other' (non-geographic category)",
+          "Exclude 'Canada' (non-US area)"
+        ],
+        [
+          "Exclude non-NICC areas: 'National Interagency Coordination Center', 'Other', 'Canada'"
+        ],
+        [
+          "Region is one of the 10 NICC-defined geographic areas"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Region"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Region"
+        ],
+        [
+          "Region"
+        ],
+        [
+          "Region"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which specific region had the highest request count?",
+        "What was the numerical value of the maximum requests?",
+        "How many regions are considered in the analysis after filtering?",
+        "What are the 10 NICC-defined geographic areas?",
+        "Which region has the maximum value in 'Total Helicopter Requests'?",
+        "Should 'National Interagency Coordination Center', 'Other', and 'Canada' be excluded from the comparison?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which specific region had the highest request count?",
+          "What was the numerical value of the maximum requests?",
+          "How many regions are considered in the analysis after filtering?"
+        ],
+        [
+          "What are the 10 NICC-defined geographic areas?",
+          "Which region has the maximum value in 'Total Helicopter Requests'?",
+          "Should 'National Interagency Coordination Center', 'Other', and 'Canada' be excluded from the comparison?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "cleaned_helicopter_requests_by_region.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "cleaned_helicopter_requests_by_region.csv"
+        ],
+        [
+          "cleaned_helicopter_requests_by_region.csv"
+        ],
+        [
+          "cleaned_helicopter_requests_by_region.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "total helicopter requests": "count of helicopter requests"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Total Helicopter Requests": "count of helicopter requests"
+        },
+        {
+          "Total Helicopter Requests": "count"
+        },
+        {
+          "Total Helicopter Requests": "number of helicopters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Data appears aggregated at regional level, no temporal granularity"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data appears aggregated at regional level, no temporal granularity"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total Helicopter Requests must be non-negative integers",
+        "Region names should be unique",
+        "After filtering non-geographic areas, exactly 10 regions should remain",
+        "Only consider the 10 NICC-defined geographic areas",
+        "Exclude 'National Interagency Coordination Center', 'Other', and 'Canada' from analysis",
+        "Region must be one of the 10 NICC-defined geographic areas"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Total Helicopter Requests must be non-negative integers",
+          "Region names should be unique",
+          "After filtering non-geographic areas, exactly 10 regions should remain"
+        ],
+        [
+          "Only consider the 10 NICC-defined geographic areas",
+          "Exclude 'National Interagency Coordination Center', 'Other', and 'Canada' from analysis",
+          "Total Helicopter Requests must be non-negative integers"
+        ],
+        [
+          "Region must be one of the 10 NICC-defined geographic areas"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Region != 'National Interagency Coordination Center'",
+        "Region != 'Other'",
+        "Region != 'Canada'",
+        "Region NOT IN ('National Interagency Coordination Center', 'Other', 'Canada')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Region != 'National Interagency Coordination Center'",
+          "Region != 'Other'",
+          "Region != 'Canada'"
+        ],
+        [
+          "Region NOT IN ('National Interagency Coordination Center', 'Other', 'Canada')"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify exactly 10 regions remain after filtering",
+        "Check for duplicate region names",
+        "Validate integer data type for Total Helicopter Requests"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify exactly 10 regions remain after filtering",
+          "Check for duplicate region names",
+          "Validate integer data type for Total Helicopter Requests"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output should specify region name and request count",
+        "Clarify that analysis excludes non-geographic entries",
+        "Return the single region name with the highest helicopter request count",
+        "Include the corresponding request count value",
+        "Sort the output table by 'Total Helicopter Requests' in descending order",
+        "Display only the region with the highest 'Total Helicopter Requests'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Output should specify region name and request count",
+          "Clarify that analysis excludes non-geographic entries"
+        ],
+        [
+          "Return the single region name with the highest helicopter request count",
+          "Include the corresponding request count value"
+        ],
+        [
+          "Sort the output table by 'Total Helicopter Requests' in descending order",
+          "Display only the region with the highest 'Total Helicopter Requests'"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6083333333333334
+}

@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "total count of trains that operate every day",
+    "filters": [
+      "Day column must contain 'Daily' or equivalent daily operation indicator"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many trains have 'Daily' in their Day column?",
+      "Are there any trains with multiple day patterns that include all days of the week?",
+      "Do trains with 'N/a' in Departure time still count as running?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Arrival": "time (HH:MM)",
+      "Departure": "time (HH:MM)"
+    },
+    "scale_issues": [
+      "Day column contains inconsistent formats: single days (M), multiple days (M,Tu,W,T,F,St), 'Daily', and 'N/a' in Departure"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "N/a"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Day column contains quoted values with comma-separated day lists",
+      "Sample shows 'N/a' in Departure column for row 8",
+      "Some day values have trailing commas (row 19: 'S,Tu,')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Train No. should be unique",
+      "Sr. No. should be sequential",
+      "Arrival and Departure times should be valid time formats"
+    ],
+    "derived_filters": [
+      "Exclude trains with 'N/a' in Departure if they don't actually run",
+      "Consider trains with day patterns covering all 7 days as equivalent to 'Daily'"
+    ],
+    "statistical_tests": [
+      "Count of trains with 'Daily' vs other day patterns",
+      "Check for duplicate Train No. values"
+    ],
+    "output_format_requirements": [
+      "Single integer count",
+      "Should clarify whether partial day trains are included"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total count of trains that operate every day\",\n        \"filters\": [\"Day column must contain 'Daily' or equivalent daily operation indicator\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How many trains have 'Daily' in their Day column?\", \"Are there any trains with multiple day patterns that include all days of the week?\", \"Do trains with 'N/a' in Departure time still count as running?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Train Schedule\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Arrival\": \"time (HH:MM)\", \"Departure\": \"time (HH:MM)\"},\n        \"scale_issues\": [\"Day column contains inconsistent formats: single days (M), multiple days (M,Tu,W,T,F,St), 'Daily', and 'N/a' in Departure\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"N/a\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Day column contains quoted values with comma-separated day lists\", \"Sample shows 'N/a' in Departure column for row 8\", \"Some day values have trailing commas (row 19: 'S,Tu,')\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Train No. should be unique\", \"Sr. No. should be sequential\", \"Arrival and Departure times should be valid time formats\"],\n        \"derived_filters\": [\"Exclude trains with 'N/a' in Departure if they don't actually run\", \"Consider trains with day patterns covering all 7 days as equivalent to 'Daily'\"],\n        \"statistical_tests\": [\"Count of trains with 'Daily' vs other day patterns\", \"Check for duplicate Train No. values\"],\n        \"output_format_requirements\": [\"Single integer count\", \"Should clarify whether partial day trains are included\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.850023031234741,
+  "token_usage": {
+    "input_tokens": 1089,
+    "output_tokens": 507
+  }
+}

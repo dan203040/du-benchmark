@@ -1,0 +1,298 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Apps",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Apps",
+        "number of apps (appearances)",
+        "number of apps"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Team = 'Spartak Nizhny Novgorod'",
+        "Team is Spartak Nizhny Novgorod"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Team = 'Spartak Nizhny Novgorod'"
+        ],
+        [
+          "Team = 'Spartak Nizhny Novgorod'"
+        ],
+        [
+          "Team is Spartak Nizhny Novgorod"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What season(s) does Spartak Nizhny Novgorod appear in?",
+        "Is there only one row for this team or multiple seasons?",
+        "Find the row where Team is 'Spartak Nizhny Novgorod'",
+        "Extract the Apps value for that row"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What season(s) does Spartak Nizhny Novgorod appear in?",
+          "Is there only one row for this team or multiple seasons?"
+        ],
+        [
+          "Find the row where Team is 'Spartak Nizhny Novgorod'",
+          "Extract the Apps value for that row"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Football_Stats"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Football_Stats"
+        ],
+        [
+          "Football_Stats"
+        ],
+        [
+          "Football_Stats"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "apps": "count",
+        "goals": "count",
+        "division": "level (1=top division)"
+      },
+      "confidence": 0.8888888888888888,
+      "votes": [
+        {
+          "Apps": "count",
+          "Goals": "count",
+          "Division": "level (1=top division)"
+        },
+        {
+          "Apps": "count of appearances",
+          "Goals": "count of goals scored",
+          "Division": "league tier number"
+        },
+        {
+          "Apps": "number of appearances",
+          "Goals": "number of goals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Season column has inconsistent formats: some years (2004, 2005, 2006), some season ranges (2006/07, 2007/08)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Season column has inconsistent formats: some years (2004, 2005, 2006), some season ranges (2006/07, 2007/08)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Apps >= 0",
+        "Goals >= 0",
+        "Division should be positive integer",
+        "Team name must match exactly 'Spartak Nizhny Novgorod'",
+        "Apps column should contain non-negative integer values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Apps >= 0",
+          "Goals >= 0",
+          "Division should be positive integer"
+        ],
+        [
+          "Team name must match exactly 'Spartak Nizhny Novgorod'",
+          "Apps column should contain non-negative integer values"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Country = 'Russia'",
+        "Division = 2 (based on sample row)",
+        "Team = 'Spartak Nizhny Novgorod'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Country = 'Russia'",
+          "Division = 2 (based on sample row)"
+        ],
+        [],
+        [
+          "Team = 'Spartak Nizhny Novgorod'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Team-Season combinations",
+        "Verify Apps values are reasonable for football statistics"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Team-Season combinations",
+          "Verify Apps values are reasonable for football statistics"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric value representing total Apps",
+        "Should clarify if asking for sum across seasons or specific season",
+        "Return single integer value representing the number of apps"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric value representing total Apps",
+          "Should clarify if asking for sum across seasons or specific season"
+        ],
+        [
+          "Return single integer value representing the number of apps"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5861111111111112
+}

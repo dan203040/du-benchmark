@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Number of identity theft reports in 2007 concerning people ages 40 or older, rounded to the nearest thousand, assuming the age distribution of identity theft reports in 2007 was the same as in 2024.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What was the total number of identity theft reports in 2007?",
+      "What is the proportion of identity theft reports in 2024 that concern people ages 40 or older?",
+      "Apply the 2024 age distribution to the 2007 total identity theft reports.",
+      "Round the result to the nearest thousand."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv",
+      "2024_CSN_Identity_Theft_Reports_by_Age.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "number of reports",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": null,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The age distribution in 2024 is assumed to be representative of the age distribution in 2007 for identity theft reports.",
+      "The percentage column in '2024_CSN_Report_Categories.csv' is not used."
+    ],
+    "derived_filters": [
+      "Age 40 or older includes the age ranges '40 - 49', '50 - 59', '60 - 69', '70 - 79', and '80 and Over' from the '2024_CSN_Identity_Theft_Reports_by_Age.csv' file."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer must be rounded to the nearest thousand."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of identity theft reports in 2007 concerning people ages 40 or older, rounded to the nearest thousand, assuming the age distribution of identity theft reports in 2007 was the same as in 2024.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What was the total number of identity theft reports in 2007?\",\n      \"What is the proportion of identity theft reports in 2024 that concern people ages 40 or older?\",\n      \"Apply the 2024 age distribution to the 2007 total identity theft reports.\",\n      \"Round the result to the nearest thousand.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Report_Count.csv\",\n      \"2024_CSN_Identity_Theft_Reports_by_Age.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"number of reports\",\n      \"Percentage\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": null,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The age distribution in 2024 is assumed to be representative of the age distribution in 2007 for identity theft reports.\",\n      \"The percentage column in '2024_CSN_Report_Categories.csv' is not used.\"\n    ],\n    \"derived_filters\": [\n      \"Age 40 or older includes the age ranges '40 - 49', '50 - 59', '60 - 69', '70 - 79', and '80 and Over' from the '2024_CSN_Identity_Theft_Reports_by_Age.csv' file.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final answer must be rounded to the nearest thousand.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.157711029052734,
+  "token_usage": {}
+}

@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Name of builder(s) that had more than 7 GT numbers",
+    "filters": [
+      "GT numbers count > 7"
+    ],
+    "grouping_variables": [
+      "Builder"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "How many GT numbers does each builder have?",
+      "Which builders have a count of GT numbers greater than 7?",
+      "How to parse the 'GT numbers' column to count individual numbers?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Builders and their Works Numbers"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "GT numbers": "range notation (e.g., '651-705' represents multiple sequential numbers)",
+      "Works numbers": "range notation with possible newline separators",
+      "CN numbers": "range notation with possible newline separators",
+      "Dates": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "GT numbers column contains ranges (e.g., '651-705') and may contain newline characters separating multiple ranges",
+      "Ranges need to be parsed to count individual numbers",
+      "Multiple ranges within a cell are separated by newline characters (\\n)",
+      "Some cells contain single numbers or discontinuous ranges"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "GT numbers must be parsed from range notation to count individual values",
+      "Ranges like '651-705' represent consecutive numbers from 651 to 705 inclusive",
+      "Multiple ranges in a cell (separated by \\n) should all be counted",
+      "Count threshold is greater than 7 (not greater than or equal to 7)"
+    ],
+    "derived_filters": [
+      "Parse GT numbers ranges to expand into individual counts",
+      "Calculate total count per builder by summing all ranges",
+      "Filter builders where total GT numbers count > 7"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return builder name(s) as text",
+      "If multiple builders qualify, return all qualifying names"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Name of builder(s) that had more than 7 GT numbers\",\n    \"filters\": [\"GT numbers count > 7\"],\n    \"grouping_variables\": [\"Builder\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"How many GT numbers does each builder have?\",\n      \"Which builders have a count of GT numbers greater than 7?\",\n      \"How to parse the 'GT numbers' column to count individual numbers?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Train Builders and their Works Numbers\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"GT numbers\": \"range notation (e.g., '651-705' represents multiple sequential numbers)\",\n      \"Works numbers\": \"range notation with possible newline separators\",\n      \"CN numbers\": \"range notation with possible newline separators\",\n      \"Dates\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"GT numbers column contains ranges (e.g., '651-705') and may contain newline characters separating multiple ranges\",\n      \"Ranges need to be parsed to count individual numbers\",\n      \"Multiple ranges within a cell are separated by newline characters (\\\\n)\",\n      \"Some cells contain single numbers or discontinuous ranges\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"GT numbers must be parsed from range notation to count individual values\",\n      \"Ranges like '651-705' represent consecutive numbers from 651 to 705 inclusive\",\n      \"Multiple ranges in a cell (separated by \\\\n) should all be counted\",\n      \"Count threshold is greater than 7 (not greater than or equal to 7)\"\n    ],\n    \"derived_filters\": [\n      \"Parse GT numbers ranges to expand into individual counts\",\n      \"Calculate total count per builder by summing all ranges\",\n      \"Filter builders where total GT numbers count > 7\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return builder name(s) as text\",\n      \"If multiple builders qualify, return all qualifying names\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.88728404045105,
+  "token_usage": {
+    "input_tokens": 1304,
+    "output_tokens": 649
+  }
+}

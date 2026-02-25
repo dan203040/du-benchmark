@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "percentage of wildfires that account for at least 90% of residential houses damaged in 2008",
+    "filters": [
+      "start_year = 2008",
+      "prim_threatened_aggregate > 0"
+    ],
+    "grouping_variables": [
+      "incident_number"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of residential houses damaged in 2008?",
+      "What is the cumulative sum of houses damaged when sorted by descending damage?",
+      "Which wildfires contribute to the top 90% of damage?",
+      "What percentage of total wildfires do these represent?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Variable description file has different structure than data file"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs per square foot",
+      "rain_sum": "precipitation units",
+      "duration": "days",
+      "prim_threatened_aggregate": "number of houses",
+      "comm_threatened_aggregate": "number of commercial buildings",
+      "outb_threatened_aggregate": "number of outbuildings",
+      "latitude": "degrees",
+      "longitude": "degrees"
+    },
+    "scale_issues": [
+      "prim_threatened_aggregate appears to be houses at risk, not necessarily damaged"
+    ],
+    "cross_source_conflicts": [
+      "Data file shows 'prim_threatened_aggregate' but description says 'Houses at risk, contributed to' - unclear if this represents actual damage or potential risk"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns (start_date, controlled_date) in MM/DD/YYYY format",
+      "Some columns have mixed data types in description"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "prim_threatened_aggregate must be non-negative",
+      "start_year must be 2008 for relevant analysis",
+      "Percentage result must be to 2 decimal places"
+    ],
+    "derived_filters": [
+      "Filter to start_year = 2008",
+      "Filter to prim_threatened_aggregate > 0 to exclude wildfires with no houses at risk"
+    ],
+    "statistical_tests": [
+      "Check distribution of prim_threatened_aggregate for 2008 data",
+      "Calculate cumulative percentage of damage"
+    ],
+    "output_format_requirements": [
+      "Percentage to 2 decimal places",
+      "Result should be a single percentage value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"percentage of wildfires that account for at least 90% of residential houses damaged in 2008\",\n        \"filters\": [\"start_year = 2008\", \"prim_threatened_aggregate > 0\"],\n        \"grouping_variables\": [\"incident_number\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total number of residential houses damaged in 2008?\", \"What is the cumulative sum of houses damaged when sorted by descending damage?\", \"Which wildfires contribute to the top 90% of damage?\", \"What percentage of total wildfires do these represent?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Variable description file has different structure than data file\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"avrh_mean\": \"percentage\",\n            \"wind_med\": \"miles per hour\",\n            \"erc_med\": \"BTUs per square foot\",\n            \"rain_sum\": \"precipitation units\",\n            \"duration\": \"days\",\n            \"prim_threatened_aggregate\": \"number of houses\",\n            \"comm_threatened_aggregate\": \"number of commercial buildings\",\n            \"outb_threatened_aggregate\": \"number of outbuildings\",\n            \"latitude\": \"degrees\",\n            \"longitude\": \"degrees\"\n        },\n        \"scale_issues\": [\"prim_threatened_aggregate appears to be houses at risk, not necessarily damaged\"],\n        \"cross_source_conflicts\": [\"Data file shows 'prim_threatened_aggregate' but description says 'Houses at risk, contributed to' - unclear if this represents actual damage or potential risk\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date columns (start_date, controlled_date) in MM/DD/YYYY format\", \"Some columns have mixed data types in description\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"prim_threatened_aggregate must be non-negative\", \"start_year must be 2008 for relevant analysis\", \"Percentage result must be to 2 decimal places\"],\n        \"derived_filters\": [\"Filter to start_year = 2008\", \"Filter to prim_threatened_aggregate > 0 to exclude wildfires with no houses at risk\"],\n        \"statistical_tests\": [\"Check distribution of prim_threatened_aggregate for 2008 data\", \"Calculate cumulative percentage of damage\"],\n        \"output_format_requirements\": [\"Percentage to 2 decimal places\", \"Result should be a single percentage value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.433249711990356,
+  "token_usage": {
+    "input_tokens": 3956,
+    "output_tokens": 655
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "average of First Elected year",
+    "filters": [
+      "District equals 11",
+      "Committee contains 'Environmental Matters'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Filter records where District is 11",
+      "Filter records where Committee is Environmental Matters",
+      "Extract First Elected years from filtered records",
+      "Calculate average of First Elected years"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Maryland State Legislature Representatives"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "First Elected": "year",
+      "District": "district_number"
+    },
+    "scale_issues": [
+      "District column contains mixed formats (decimal notation like '05.2 5B' and integers like '11')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "District column has mixed formats with some entries containing decimal notation and sub-district labels",
+      "Committee column contains full committee names, some with additional roles in parentheses like '(Vice-Chair)'",
+      "First Elected column contains year values as strings"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "District must exactly match '11' (integer format)",
+      "First Elected must be convertible to numeric year",
+      "Committee field must contain the exact phrase 'Environmental Matters'"
+    ],
+    "derived_filters": [
+      "Committee string matching should handle variations like 'Environmental Matters (Vice-Chair)'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Result should be a single numeric value representing the average year",
+      "Average should be calculated only from valid year values"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average of First Elected year\",\n    \"filters\": [\"District equals 11\", \"Committee contains 'Environmental Matters'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\"Filter records where District is 11\", \"Filter records where Committee is Environmental Matters\", \"Extract First Elected years from filtered records\", \"Calculate average of First Elected years\"]\n  },\n  \"M_S\": {\n    \"sources\": [\"Maryland State Legislature Representatives\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"First Elected\": \"year\",\n      \"District\": \"district_number\"\n    },\n    \"scale_issues\": [\"District column contains mixed formats (decimal notation like '05.2 5B' and integers like '11')\"],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"District column has mixed formats with some entries containing decimal notation and sub-district labels\", \"Committee column contains full committee names, some with additional roles in parentheses like '(Vice-Chair)'\", \"First Elected column contains year values as strings\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\"District must exactly match '11' (integer format)\", \"First Elected must be convertible to numeric year\", \"Committee field must contain the exact phrase 'Environmental Matters'\"],\n    \"derived_filters\": [\"Committee string matching should handle variations like 'Environmental Matters (Vice-Chair)'\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Result should be a single numeric value representing the average year\", \"Average should be calculated only from valid year values\"]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.410928010940552,
+  "token_usage": {
+    "input_tokens": 1026,
+    "output_tokens": 511
+  }
+}

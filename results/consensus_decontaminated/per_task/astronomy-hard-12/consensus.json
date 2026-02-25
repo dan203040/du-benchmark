@@ -1,0 +1,407 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2 to 29, 2019",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2 to 29, 2019",
+        "Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2-29, 2019",
+        "Mean geopotential energy per unit mass (J/kg) experienced by Swarm-A from September 2 to 29, 2019"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Time range: 2019-09-02 to 2019-09-29",
+        "Satellite: Swarm-A only",
+        "Date range: September 2, 2019 to September 29, 2019",
+        "Satellite: Swarm-A",
+        "Date range: September 2 to 29, 2019"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Time range: 2019-09-02 to 2019-09-29",
+          "Satellite: Swarm-A only"
+        ],
+        [
+          "Date range: September 2, 2019 to September 29, 2019",
+          "Satellite: Swarm-A"
+        ],
+        [
+          "Date range: September 2 to 29, 2019",
+          "Satellite: Swarm-A"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "timepoint"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "timepoint"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Extract satellite positions from SP3 files",
+        "Interpolate geopotential field from mock_tiegcm_grid_sept2019.npz",
+        "Compute geopotential energy at each timepoint",
+        "Average energy values over time period",
+        "Where are the SP3 files containing Swarm-A orbital data for September 2-29, 2019?",
+        "How to extract geodetic position (latitude, longitude, altitude) from SP3 files?",
+        "How to define the mock geopotential field using lat_grid, lon_grid, alt_grid?",
+        "What is the geopotential function to interpolate from the grid?",
+        "How to convert satellite positions to match grid coordinate system?",
+        "How to compute geopotential energy per unit mass at each timepoint?",
+        "How to average the energy values across all timepoints in the period?",
+        "Determine the geodetic position (latitude, longitude, altitude) of Swarm-A at each timepoint using SP3 files (not provided, assuming this is a pre-processing step).",
+        "Interpolate the geopotential field at each timepoint based on the satellite's geodetic position using the mock_tiegcm_grid_sept2019.npz data.",
+        "Calculate the geopotential energy per unit mass at each timepoint.",
+        "Average the geopotential energy per unit mass over the specified time period."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Extract satellite positions from SP3 files",
+          "Interpolate geopotential field from mock_tiegcm_grid_sept2019.npz",
+          "Compute geopotential energy at each timepoint",
+          "Average energy values over time period"
+        ],
+        [
+          "Where are the SP3 files containing Swarm-A orbital data for September 2-29, 2019?",
+          "How to extract geodetic position (latitude, longitude, altitude) from SP3 files?",
+          "How to define the mock geopotential field using lat_grid, lon_grid, alt_grid?",
+          "What is the geopotential function to interpolate from the grid?",
+          "How to convert satellite positions to match grid coordinate system?",
+          "How to compute geopotential energy per unit mass at each timepoint?",
+          "How to average the energy values across all timepoints in the period?"
+        ],
+        [
+          "Determine the geodetic position (latitude, longitude, altitude) of Swarm-A at each timepoint using SP3 files (not provided, assuming this is a pre-processing step).",
+          "Interpolate the geopotential field at each timepoint based on the satellite's geodetic position using the mock_tiegcm_grid_sept2019.npz data.",
+          "Calculate the geopotential energy per unit mass at each timepoint.",
+          "Average the geopotential energy per unit mass over the specified time period."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "mock_tiegcm_grid_sept2019.npz",
+        "SP3 orbital data files (not provided in sample)",
+        "SP3 files (not provided, required for Swarm-A precise orbital data)"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "mock_tiegcm_grid_sept2019.npz",
+          "SP3 orbital data files (not provided in sample)"
+        ],
+        [
+          "mock_tiegcm_grid_sept2019.npz",
+          "SP3 files (not provided, required for Swarm-A precise orbital data)"
+        ],
+        [
+          "mock_tiegcm_grid_sept2019.npz"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "SP3 file format not specified in data files",
+        "Missing SP3 data source for satellite positions",
+        "SP3 files not present in provided data - only grid definition available",
+        "Missing geopotential values - only grid coordinates provided"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "SP3 file format not specified in data files",
+          "Missing SP3 data source for satellite positions"
+        ],
+        [
+          "SP3 files not present in provided data - only grid definition available",
+          "Missing geopotential values - only grid coordinates provided"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "lat_grid": "degrees",
+        "lon_grid": "degrees",
+        "alt_grid": "km",
+        "geopotential_energy": "J/kg",
+        "earth_radius": "km",
+        "g": "m/s\u00b2",
+        "target_output": "J/kg"
+      },
+      "confidence": 0.7142857142857143,
+      "votes": [
+        {
+          "lat_grid": "degrees",
+          "lon_grid": "degrees",
+          "alt_grid": "km",
+          "geopotential_energy": "J/kg",
+          "earth_radius": "km",
+          "g": "m/s\u00b2"
+        },
+        {
+          "lat_grid": "degrees",
+          "lon_grid": "degrees",
+          "alt_grid": "km (assumed based on earth radius context)",
+          "earth_radius": "6371.0 km",
+          "g": "9.80665 m/s^2",
+          "target_output": "J/kg"
+        },
+        {
+          "lat_grid": "degrees",
+          "lon_grid": "degrees",
+          "alt_grid": "km"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "alt_grid appears to be in km (100-500 range), but earth radius given as 6371.0 km - need consistent units for altitude calculations",
+        "Altitude in grid appears to be in km, needs conversion to meters for energy calculation",
+        "Earth radius given in km (6371.0), gravitational constant in m/s^2",
+        "Need consistent unit system for geopotential energy calculation (SI units: meters, m/s^2)",
+        "Altitude is in kilometers, but the geopotential energy calculation might require meters. Need to convert alt_grid to meters if necessary."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "alt_grid appears to be in km (100-500 range), but earth radius given as 6371.0 km - need consistent units for altitude calculations"
+        ],
+        [
+          "Altitude in grid appears to be in km, needs conversion to meters for energy calculation",
+          "Earth radius given in km (6371.0), gravitational constant in m/s^2",
+          "Need consistent unit system for geopotential energy calculation (SI units: meters, m/s^2)"
+        ],
+        [
+          "Altitude is in kilometers, but the geopotential energy calculation might require meters. Need to convert alt_grid to meters if necessary."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "SP3 files needed for satellite positions but not provided in data files",
+        "SP3 orbital data units (typically in meters or km) must match grid altitude units",
+        "Coordinate systems: geodetic (from SP3) vs grid coordinates (lat/lon/alt)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "SP3 files needed for satellite positions but not provided in data files"
+        ],
+        [
+          "SP3 orbital data units (typically in meters or km) must match grid altitude units",
+          "Coordinate systems: geodetic (from SP3) vs grid coordinates (lat/lon/alt)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 0.6666666666666666,
+      "votes": [
+        true,
+        false,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        ",",
+        "N/A",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "utf-8",
+        "binary",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.6,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 1.0,
+      "votes": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "csv",
+        "npz (NumPy compressed array)",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Earth radius = 6371.0 km",
+        "g = 9.80665 m/s\u00b2",
+        "Time period: September 2-29, 2019",
+        "Output rounded to 2 decimal places",
+        "Date range must be September 2-29, 2019 (28 days)",
+        "Satellite must be Swarm-A",
+        "Gravitational acceleration g = 9.80665 m/s^2",
+        "Output must be rounded to 2 decimal places",
+        "g = 9.80665 m/s^2",
+        "Output should be rounded to 2 decimal places"
+      ],
+      "confidence": 0.4,
+      "votes": [
+        [
+          "Earth radius = 6371.0 km",
+          "g = 9.80665 m/s\u00b2",
+          "Time period: September 2-29, 2019",
+          "Output rounded to 2 decimal places"
+        ],
+        [
+          "Date range must be September 2-29, 2019 (28 days)",
+          "Satellite must be Swarm-A",
+          "Earth radius = 6371.0 km",
+          "Gravitational acceleration g = 9.80665 m/s^2",
+          "Output must be rounded to 2 decimal places"
+        ],
+        [
+          "Earth radius = 6371.0 km",
+          "g = 9.80665 m/s^2",
+          "Output should be rounded to 2 decimal places"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter SP3 data to Swarm-A satellite only",
+        "Filter SP3 data to specified date range",
+        "Extract only Swarm-A records from SP3 files",
+        "Filter timestamps to range [2019-09-02 00:00:00, 2019-09-29 23:59:59]",
+        "Exclude invalid or missing position data points"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter SP3 data to Swarm-A satellite only",
+          "Filter SP3 data to specified date range"
+        ],
+        [
+          "Extract only Swarm-A records from SP3 files",
+          "Filter timestamps to range [2019-09-02 00:00:00, 2019-09-29 23:59:59]",
+          "Exclude invalid or missing position data points"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in alt_grid",
+        "Validate interpolation accuracy for geopotential field",
+        "Verify mean calculation across all valid timepoints",
+        "Check for outliers in computed energy values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in alt_grid",
+          "Validate interpolation accuracy for geopotential field"
+        ],
+        [
+          "Verify mean calculation across all valid timepoints",
+          "Check for outliers in computed energy values"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Numeric scalar with 2 decimal places",
+        "Units: J/kg",
+        "Single scalar value in J/kg",
+        "Rounded to exactly 2 decimal places",
+        "Format: XXX.XX",
+        "The final answer must be a single numerical value representing the mean geopotential energy per unit mass in J/kg."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Numeric scalar with 2 decimal places",
+          "Units: J/kg"
+        ],
+        [
+          "Single scalar value in J/kg",
+          "Rounded to exactly 2 decimal places",
+          "Format: XXX.XX"
+        ],
+        [
+          "The final answer must be a single numerical value representing the mean geopotential energy per unit mass in J/kg."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5168253968253969
+}

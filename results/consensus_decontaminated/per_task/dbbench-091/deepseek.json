@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "maximum engine volume",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum value in the Volume column?",
+      "Are there any missing values in the Volume column that need to be handled?",
+      "Do all Volume values follow the same format (e.g., X.XL)?",
+      "How should volume values with different units be compared?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Car_model_info"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Volume": "liters (L)",
+      "Power/Torque": "kW/PS/hp and N\u00b7m/lb\u00b7ft",
+      "Years produced": "year ranges",
+      "Produced": "count"
+    },
+    "scale_issues": [
+      "Volume column contains values with 'L' suffix that needs to be removed for numerical comparison",
+      "Some Volume values may have different units (e.g., cc vs L) but all appear to be in liters in the sample"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Volume column contains non-breaking space characters (\u00a0) in sample data",
+      "Some rows have empty values in the Produced column",
+      "Volume values include 'L' suffix that needs to be stripped for numerical operations"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Volume should be positive numeric values",
+      "Engine names should be unique identifiers",
+      "Volume values should be comparable after unit normalization"
+    ],
+    "derived_filters": [
+      "Remove 'L' suffix from Volume column",
+      "Convert Volume to numeric type",
+      "Handle any missing or malformed Volume values"
+    ],
+    "statistical_tests": [
+      "Check for outliers in Volume values",
+      "Verify Volume values follow expected distribution for car engines"
+    ],
+    "output_format_requirements": [
+      "Volume should be reported with appropriate units (likely liters)",
+      "Should include the engine name associated with the maximum volume"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"maximum engine volume\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the maximum value in the Volume column?\", \"Are there any missing values in the Volume column that need to be handled?\", \"Do all Volume values follow the same format (e.g., X.XL)?\", \"How should volume values with different units be compared?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Car_model_info\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Volume\": \"liters (L)\", \"Power/Torque\": \"kW/PS/hp and N\u00b7m/lb\u00b7ft\", \"Years produced\": \"year ranges\", \"Produced\": \"count\"},\n        \"scale_issues\": [\"Volume column contains values with 'L' suffix that needs to be removed for numerical comparison\", \"Some Volume values may have different units (e.g., cc vs L) but all appear to be in liters in the sample\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Volume column contains non-breaking space characters (\u00a0) in sample data\", \"Some rows have empty values in the Produced column\", \"Volume values include 'L' suffix that needs to be stripped for numerical operations\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Volume should be positive numeric values\", \"Engine names should be unique identifiers\", \"Volume values should be comparable after unit normalization\"],\n        \"derived_filters\": [\"Remove 'L' suffix from Volume column\", \"Convert Volume to numeric type\", \"Handle any missing or malformed Volume values\"],\n        \"statistical_tests\": [\"Check for outliers in Volume values\", \"Verify Volume values follow expected distribution for car engines\"],\n        \"output_format_requirements\": [\"Volume should be reported with appropriate units (likely liters)\", \"Should include the engine name associated with the maximum volume\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.534409761428833,
+  "token_usage": {
+    "input_tokens": 1675,
+    "output_tokens": 515
+  }
+}

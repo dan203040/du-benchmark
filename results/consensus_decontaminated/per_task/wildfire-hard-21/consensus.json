@@ -1,0 +1,392 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total residential property value lost per state between 2005 and 2010 (inclusive)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total residential property value lost per state between 2005 and 2010 (inclusive)",
+        "Total value of residential property lost by state, ranked to identify top 3 states with highest losses",
+        "Top 3 states with the largest decrease in residential property value between 2005 and 2010"
+      ]
+    },
+    "filters": {
+      "value": [
+        "start_year >= 2005",
+        "start_year <= 2010",
+        "start_year between 2005 and 2010 (inclusive)"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "start_year >= 2005",
+          "start_year <= 2010"
+        ],
+        [
+          "start_year >= 2005",
+          "start_year <= 2010"
+        ],
+        [
+          "start_year between 2005 and 2010 (inclusive)"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "state"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "state"
+        ],
+        [
+          "state"
+        ],
+        [
+          "state"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What column represents residential property value loss?",
+        "How to aggregate property loss across multiple incidents per state?",
+        "How to convert state abbreviations to full names?",
+        "What metric represents residential property loss in the wildfire data?",
+        "How to filter records for years 2005-2010 inclusive?",
+        "How to aggregate property loss values by state?",
+        "How to convert state abbreviations to full state names?",
+        "How to rank states by total property loss and select top 3?",
+        "Calculate the total residential property value for each state in 2005.",
+        "Calculate the total residential property value for each state in 2010.",
+        "Calculate the difference in total residential property value between 2005 and 2010 for each state.",
+        "Identify the top 3 states with the largest negative difference in residential property value."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What column represents residential property value loss?",
+          "How to aggregate property loss across multiple incidents per state?",
+          "How to convert state abbreviations to full names?"
+        ],
+        [
+          "What metric represents residential property loss in the wildfire data?",
+          "How to filter records for years 2005-2010 inclusive?",
+          "How to aggregate property loss values by state?",
+          "How to convert state abbreviations to full state names?",
+          "How to rank states by total property loss and select top 3?"
+        ],
+        [
+          "Calculate the total residential property value for each state in 2005.",
+          "Calculate the total residential property value for each state in 2010.",
+          "Calculate the difference in total residential property value between 2005 and 2010 for each state.",
+          "Identify the top 3 states with the largest negative difference in residential property value."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires.csv",
+        "noaa_wildfires_variabledescrip.csv",
+        "state_abbreviation_to_state.json"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv",
+          "state_abbreviation_to_state.json"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "state_abbreviation_to_state.json",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "state_abbreviation_to_state.json"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "state_abbreviation_to_state.json has non-standard format with abbreviations as column headers",
+        "noaa_wildfires.csv uses 2-letter state codes but state_abbreviation_to_state.json needs transformation",
+        "state_abbreviation_to_state.json has state codes as column names rather than as row values, requiring transpose or special handling"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "state_abbreviation_to_state.json has non-standard format with abbreviations as column headers",
+          "noaa_wildfires.csv uses 2-letter state codes but state_abbreviation_to_state.json needs transformation"
+        ],
+        [
+          "state_abbreviation_to_state.json has state codes as column names rather than as row values, requiring transpose or special handling"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage",
+        "wind_med": "miles per hour",
+        "erc_med": "BTUs/square foot",
+        "rain_sum": "total precipitation units",
+        "prim_threatened_aggregate": "number of houses",
+        "comm_threatened_aggregate": "number of commercial buildings",
+        "start_year": "year (YYYY)",
+        "duration": "days"
+      },
+      "confidence": 0.4166666666666667,
+      "votes": [
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs/square foot",
+          "rain_sum": "total precipitation units",
+          "prim_threatened_aggregate": "number of houses",
+          "comm_threatened_aggregate": "number of commercial buildings"
+        },
+        {
+          "prim_threatened_aggregate": "count of houses",
+          "start_year": "year (YYYY)",
+          "duration": "days"
+        },
+        {
+          "prim_threatened_aggregate": "number of houses"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "prim_threatened_aggregate counts houses at risk, not actual value lost",
+        "Need to estimate or find actual property value loss data",
+        "prim_threatened_aggregate represents houses 'at risk' or 'threatened', not necessarily destroyed or property value lost - interpretation needed",
+        "No direct property value column exists; may need to use threatened count as proxy for loss"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "prim_threatened_aggregate counts houses at risk, not actual value lost",
+          "Need to estimate or find actual property value loss data"
+        ],
+        [
+          "prim_threatened_aggregate represents houses 'at risk' or 'threatened', not necessarily destroyed or property value lost - interpretation needed",
+          "No direct property value column exists; may need to use threatened count as proxy for loss"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Analytical question asks for 'value lost' but data only has 'properties threatened' counts",
+        "The question asks for 'lost property in value' but dataset only contains 'prim_threatened_aggregate' (houses at risk), not actual loss or monetary value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Analytical question asks for 'value lost' but data only has 'properties threatened' counts"
+        ],
+        [
+          "The question asks for 'lost property in value' but dataset only contains 'prim_threatened_aggregate' (houses at risk), not actual loss or monetary value"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Must include years 2005-2010 inclusive",
+        "Cannot discard rows with missing values unnecessarily",
+        "Output must be state full names",
+        "Need top 3 states only",
+        "Include years 2005 through 2010 (inclusive)",
+        "Do not discard rows with missing values unnecessarily",
+        "Return state full names, not abbreviations",
+        "Return exactly top 3 states",
+        "The 'state' column in noaa_wildfires.csv contains state abbreviations. Need to map to full state names using state_abbreviation_to_state.json.",
+        "Residential property value is represented by 'prim_threatened_aggregate' column (number of houses at risk).",
+        "Missing values in 'prim_threatened_aggregate' should not be discarded if possible."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Must include years 2005-2010 inclusive",
+          "Cannot discard rows with missing values unnecessarily",
+          "Output must be state full names",
+          "Need top 3 states only"
+        ],
+        [
+          "Include years 2005 through 2010 (inclusive)",
+          "Do not discard rows with missing values unnecessarily",
+          "Return state full names, not abbreviations",
+          "Return exactly top 3 states"
+        ],
+        [
+          "The 'state' column in noaa_wildfires.csv contains state abbreviations. Need to map to full state names using state_abbreviation_to_state.json.",
+          "Residential property value is represented by 'prim_threatened_aggregate' column (number of houses at risk).",
+          "Missing values in 'prim_threatened_aggregate' should not be discarded if possible."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "prim_threatened_aggregate > 0 to focus on actual property threats",
+        "state not in ['NA', 'GU', 'AS', 'MP', 'PR', 'VI'] to exclude non-states",
+        "Filter on start_year column for range [2005, 2010]",
+        "Handle missing values in prim_threatened_aggregate appropriately (treat as 0 or keep)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "prim_threatened_aggregate > 0 to focus on actual property threats",
+          "state not in ['NA', 'GU', 'AS', 'MP', 'PR', 'VI'] to exclude non-states"
+        ],
+        [
+          "Filter on start_year column for range [2005, 2010]",
+          "Handle missing values in prim_threatened_aggregate appropriately (treat as 0 or keep)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check distribution of prim_threatened_aggregate for outliers",
+        "Verify temporal coverage 2005-2010 has sufficient data",
+        "Aggregate sum of prim_threatened_aggregate by state",
+        "Rank states in descending order by total"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check distribution of prim_threatened_aggregate for outliers",
+          "Verify temporal coverage 2005-2010 has sufficient data"
+        ],
+        [
+          "Aggregate sum of prim_threatened_aggregate by state",
+          "Rank states in descending order by total"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of 3 state full names",
+        "Sorted descending by total residential property threat/loss",
+        "Return full state names (e.g., 'California', not 'CA')",
+        "Return list of 3 state names",
+        "Maintain all records unless they fail the year filter",
+        "Output should be a list of 3 state full names."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of 3 state full names",
+          "Sorted descending by total residential property threat/loss"
+        ],
+        [
+          "Return full state names (e.g., 'California', not 'CA')",
+          "Return list of 3 state names",
+          "Maintain all records unless they fail the year filter"
+        ],
+        [
+          "Output should be a list of 3 state full names."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6347222222222223
+}

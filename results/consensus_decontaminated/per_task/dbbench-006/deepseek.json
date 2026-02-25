@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Attendance count for tie number 19",
+    "filters": [
+      "Tie no = '19'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the attendance value for the row where Tie no equals 19?",
+      "Is the attendance value stored as a string with comma separators?",
+      "Does the data contain exactly one row with Tie no = 19?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Attendance": "people"
+    },
+    "scale_issues": [
+      "Attendance values contain comma separators (e.g., '1,025') that need to be converted to numeric format"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Attendance column contains comma-formatted numbers as strings",
+      "Score column uses en dash (\u2013) and hyphen (-) inconsistently for score separation"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Tie no should be unique for each match",
+      "Attendance should be a positive integer",
+      "There should be exactly one row with Tie no = 19"
+    ],
+    "derived_filters": [
+      "Remove comma separators from Attendance values before numeric conversion"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Tie no values",
+      "Verify Attendance values are numeric after cleaning"
+    ],
+    "output_format_requirements": [
+      "Return attendance as a single integer value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Attendance count for tie number 19\",\n        \"filters\": [\"Tie no = '19'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the attendance value for the row where Tie no equals 19?\", \"Is the attendance value stored as a string with comma separators?\", \"Does the data contain exactly one row with Tie no = 19?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Football Matches\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Attendance\": \"people\"},\n        \"scale_issues\": [\"Attendance values contain comma separators (e.g., '1,025') that need to be converted to numeric format\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Attendance column contains comma-formatted numbers as strings\", \"Score column uses en dash (\u2013) and hyphen (-) inconsistently for score separation\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Tie no should be unique for each match\", \"Attendance should be a positive integer\", \"There should be exactly one row with Tie no = 19\"],\n        \"derived_filters\": [\"Remove comma separators from Attendance values before numeric conversion\"],\n        \"statistical_tests\": [\"Check for duplicate Tie no values\", \"Verify Attendance values are numeric after cleaning\"],\n        \"output_format_requirements\": [\"Return attendance as a single integer value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.684271812438965,
+  "token_usage": {
+    "input_tokens": 888,
+    "output_tokens": 416
+  }
+}

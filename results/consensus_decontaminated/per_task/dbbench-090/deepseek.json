@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Maximum venue capacity (spectator count)",
+    "filters": [
+      "Past Season = '2008-2009' or season context implies 2008-2009"
+    ],
+    "grouping_variables": [
+      "Venue"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which teams used each venue in 2008-2009?",
+      "Are there multiple venues with the same name in different cities?",
+      "Does Capacity column contain numeric values or formatted strings with commas?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_teams"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Capacity column is object type but appears to contain numeric data with comma formatting"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Capacity": "spectators"
+    },
+    "scale_issues": [
+      "Capacity values contain comma separators (e.g., '35,000') that need conversion to numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Capacity values use comma thousands separators",
+      "City column contains special characters and commas in 'Rey, Iran'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Capacity must be positive integer",
+      "Each venue should have unique capacity value",
+      "Venue names should be consistent across teams"
+    ],
+    "derived_filters": [
+      "Remove rows where Capacity is not convertible to numeric",
+      "Consider only venues used in 2008-2009 season"
+    ],
+    "statistical_tests": [
+      "Check for duplicate venue names with different capacities",
+      "Validate capacity values against known stadium sizes"
+    ],
+    "output_format_requirements": [
+      "Return venue name and capacity",
+      "Capacity should be formatted as integer without commas"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Maximum venue capacity (spectator count)\",\n        \"filters\": [\"Past Season = '2008-2009' or season context implies 2008-2009\"],\n        \"grouping_variables\": [\"Venue\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which teams used each venue in 2008-2009?\", \"Are there multiple venues with the same name in different cities?\", \"Does Capacity column contain numeric values or formatted strings with commas?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"football_teams\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Capacity column is object type but appears to contain numeric data with comma formatting\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Capacity\": \"spectators\"},\n        \"scale_issues\": [\"Capacity values contain comma separators (e.g., '35,000') that need conversion to numeric\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Capacity values use comma thousands separators\", \"City column contains special characters and commas in 'Rey, Iran'\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Capacity must be positive integer\", \"Each venue should have unique capacity value\", \"Venue names should be consistent across teams\"],\n        \"derived_filters\": [\"Remove rows where Capacity is not convertible to numeric\", \"Consider only venues used in 2008-2009 season\"],\n        \"statistical_tests\": [\"Check for duplicate venue names with different capacities\", \"Validate capacity values against known stadium sizes\"],\n        \"output_format_requirements\": [\"Return venue name and capacity\", \"Capacity should be formatted as integer without commas\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.442898988723755,
+  "token_usage": {
+    "input_tokens": 1286,
+    "output_tokens": 454
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "Island with the largest area between Tiree and Kasos",
+    "filters": [
+      "Island = 'Tiree' OR Island = 'Kasos'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the area of Tiree?",
+      "What is the area of Kasos?",
+      "Which island has the greater area value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Island Area by Country/Region"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Area (km\u00b2)": "square kilometers",
+      "Area (sq mi)": "square miles"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rank column uses Int64 type which supports null values",
+      "Area columns are float64 allowing for decimal precision",
+      "Sample data shows ranks starting from 209, indicating this is a subset of larger dataset"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Island names must be filtered case-insensitively to match 'Tiree' and 'Kasos'",
+      "Both islands must exist in the dataset to produce valid comparison",
+      "Area comparison should use same unit (either km\u00b2 or sq mi)"
+    ],
+    "derived_filters": [
+      "Filter rows where Island column matches 'Tiree' or 'Kasos' (case-insensitive)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the name of the island with larger area",
+      "Optionally include the area values for both islands for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Island with the largest area between Tiree and Kasos\",\n    \"filters\": [\"Island = 'Tiree' OR Island = 'Kasos'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the area of Tiree?\",\n      \"What is the area of Kasos?\",\n      \"Which island has the greater area value?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Island Area by Country/Region\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Area (km\u00b2)\": \"square kilometers\",\n      \"Area (sq mi)\": \"square miles\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Rank column uses Int64 type which supports null values\",\n      \"Area columns are float64 allowing for decimal precision\",\n      \"Sample data shows ranks starting from 209, indicating this is a subset of larger dataset\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Island names must be filtered case-insensitively to match 'Tiree' and 'Kasos'\",\n      \"Both islands must exist in the dataset to produce valid comparison\",\n      \"Area comparison should use same unit (either km\u00b2 or sq mi)\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Island column matches 'Tiree' or 'Kasos' (case-insensitive)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the name of the island with larger area\",\n      \"Optionally include the area values for both islands for verification\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.404986143112183,
+  "token_usage": {
+    "input_tokens": 1039,
+    "output_tokens": 560
+  }
+}

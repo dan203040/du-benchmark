@@ -1,0 +1,404 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "percentage of wildfires that account for at least 90% of residential houses damaged in 2008",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "percentage of wildfires that account for at least 90% of residential houses damaged in 2008",
+        "Percentage (to 2 decimal places) of wildfires that account for at least 90% of residential houses damaged in 2008",
+        "Percentage of wildfires in 2008 that account for at least 90% of residential houses damaged in 2008, rounded to 2 decimal places."
+      ]
+    },
+    "filters": {
+      "value": [
+        "start_year = 2008",
+        "prim_threatened_aggregate > 0",
+        "start_year == 2008"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "start_year = 2008",
+          "prim_threatened_aggregate > 0"
+        ],
+        [
+          "start_year == 2008"
+        ],
+        [
+          "start_year = 2008"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "incident_number"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "incident_number"
+        ],
+        [
+          "incident_number"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total number of residential houses damaged in 2008?",
+        "What is the cumulative sum of houses damaged when sorted by descending damage?",
+        "Which wildfires contribute to the top 90% of damage?",
+        "What percentage of total wildfires do these represent?",
+        "What column represents residential houses damaged?",
+        "How many wildfires occurred in 2008?",
+        "How to determine which wildfires account for 90% of houses damaged?",
+        "Should wildfires be ranked by houses damaged in descending order?",
+        "What is the cumulative sum of houses damaged when wildfires are sorted by damage?",
+        "How many wildfires are needed until cumulative damage reaches 90% of total?",
+        "Which wildfires in 2008 account for at least 90% of the total residential houses damaged?",
+        "How many wildfires account for at least 90% of the total residential houses damaged?",
+        "What is the percentage of wildfires that account for at least 90% of the total residential houses damaged?"
+      ],
+      "confidence": 0.3846153846153845,
+      "votes": [
+        [
+          "What is the total number of residential houses damaged in 2008?",
+          "What is the cumulative sum of houses damaged when sorted by descending damage?",
+          "Which wildfires contribute to the top 90% of damage?",
+          "What percentage of total wildfires do these represent?"
+        ],
+        [
+          "What column represents residential houses damaged?",
+          "How many wildfires occurred in 2008?",
+          "What is the total number of residential houses damaged in 2008?",
+          "How to determine which wildfires account for 90% of houses damaged?",
+          "Should wildfires be ranked by houses damaged in descending order?",
+          "What is the cumulative sum of houses damaged when wildfires are sorted by damage?",
+          "How many wildfires are needed until cumulative damage reaches 90% of total?"
+        ],
+        [
+          "What is the total number of residential houses damaged in 2008?",
+          "Which wildfires in 2008 account for at least 90% of the total residential houses damaged?",
+          "How many wildfires account for at least 90% of the total residential houses damaged?",
+          "What is the percentage of wildfires that account for at least 90% of the total residential houses damaged?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires.csv",
+        "noaa_wildfires_variabledescrip.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Variable description file has different structure than data file"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Variable description file has different structure than data file"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage",
+        "wind_med": "miles per hour",
+        "erc_med": "BTUs per square foot",
+        "rain_sum": "precipitation units",
+        "duration": "days",
+        "prim_threatened_aggregate": "number of houses",
+        "comm_threatened_aggregate": "number of commercial buildings",
+        "outb_threatened_aggregate": "number of outbuildings",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "start_year": "year",
+        "percentage": "percent"
+      },
+      "confidence": 0.5277777777777776,
+      "votes": [
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs per square foot",
+          "rain_sum": "precipitation units",
+          "duration": "days",
+          "prim_threatened_aggregate": "number of houses",
+          "comm_threatened_aggregate": "number of commercial buildings",
+          "outb_threatened_aggregate": "number of outbuildings",
+          "latitude": "degrees",
+          "longitude": "degrees"
+        },
+        {
+          "prim_threatened_aggregate": "count",
+          "start_year": "year",
+          "percentage": "percent"
+        },
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs / square foot",
+          "rain_sum": "unspecified",
+          "duration": "days",
+          "prim_threatened_aggregate": "houses"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "prim_threatened_aggregate appears to be houses at risk, not necessarily damaged",
+        "Need to clarify if 'prim_threatened_aggregate' represents houses damaged or houses at risk/threatened",
+        "Variable description says 'Houses at risk' not 'houses damaged' - potential semantic mismatch with question"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "prim_threatened_aggregate appears to be houses at risk, not necessarily damaged"
+        ],
+        [
+          "Need to clarify if 'prim_threatened_aggregate' represents houses damaged or houses at risk/threatened",
+          "Variable description says 'Houses at risk' not 'houses damaged' - potential semantic mismatch with question"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Data file shows 'prim_threatened_aggregate' but description says 'Houses at risk, contributed to' - unclear if this represents actual damage or potential risk",
+        "Question asks for 'houses damaged' but available column is 'prim_threatened_aggregate' which is described as 'houses at risk, contributed to'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data file shows 'prim_threatened_aggregate' but description says 'Houses at risk, contributed to' - unclear if this represents actual damage or potential risk"
+        ],
+        [
+          "Question asks for 'houses damaged' but available column is 'prim_threatened_aggregate' which is described as 'houses at risk, contributed to'"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "nan"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "nan"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "prim_threatened_aggregate must be non-negative",
+        "start_year must be 2008 for relevant analysis",
+        "Percentage result must be to 2 decimal places",
+        "start_year must equal 2008",
+        "prim_threatened_aggregate >= 0",
+        "Each incident_number should be unique per wildfire event in 2008",
+        "start_year is valid year"
+      ],
+      "confidence": 0.380952380952381,
+      "votes": [
+        [
+          "prim_threatened_aggregate must be non-negative",
+          "start_year must be 2008 for relevant analysis",
+          "Percentage result must be to 2 decimal places"
+        ],
+        [
+          "start_year must equal 2008",
+          "prim_threatened_aggregate >= 0",
+          "Each incident_number should be unique per wildfire event in 2008"
+        ],
+        [
+          "prim_threatened_aggregate >= 0",
+          "start_year is valid year"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to start_year = 2008",
+        "Filter to prim_threatened_aggregate > 0 to exclude wildfires with no houses at risk",
+        "Filter to start_year == 2008",
+        "Sort wildfires by prim_threatened_aggregate descending",
+        "Calculate cumulative sum of prim_threatened_aggregate",
+        "Calculate cumulative percentage of total houses threatened",
+        "Find count of wildfires where cumulative percentage <= 90%",
+        "fires_in_2008 = start_year == 2008",
+        "houses_damaged_by_fire = prim_threatened_aggregate",
+        "ninety_percent_houses = 0.9 * sum(houses_damaged_by_fire where fires_in_2008)",
+        "fires_accounting_for_90_percent = fires_in_2008 where sum(houses_damaged_by_fire) >= ninety_percent_houses"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Filter to start_year = 2008",
+          "Filter to prim_threatened_aggregate > 0 to exclude wildfires with no houses at risk"
+        ],
+        [
+          "Filter to start_year == 2008",
+          "Sort wildfires by prim_threatened_aggregate descending",
+          "Calculate cumulative sum of prim_threatened_aggregate",
+          "Calculate cumulative percentage of total houses threatened",
+          "Find count of wildfires where cumulative percentage <= 90%"
+        ],
+        [
+          "fires_in_2008 = start_year == 2008",
+          "houses_damaged_by_fire = prim_threatened_aggregate",
+          "ninety_percent_houses = 0.9 * sum(houses_damaged_by_fire where fires_in_2008)",
+          "fires_accounting_for_90_percent = fires_in_2008 where sum(houses_damaged_by_fire) >= ninety_percent_houses"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check distribution of prim_threatened_aggregate for 2008 data",
+        "Calculate cumulative percentage of damage",
+        "Pareto analysis to find top wildfires contributing to 90% of damage",
+        "Cumulative distribution calculation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check distribution of prim_threatened_aggregate for 2008 data",
+          "Calculate cumulative percentage of damage"
+        ],
+        [
+          "Pareto analysis to find top wildfires contributing to 90% of damage",
+          "Cumulative distribution calculation"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Percentage to 2 decimal places",
+        "Result should be a single percentage value",
+        "Result must be a percentage",
+        "Result must be rounded to 2 decimal places",
+        "Result represents percentage of total wildfires in 2008",
+        "Percentage value rounded to 2 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage to 2 decimal places",
+          "Result should be a single percentage value"
+        ],
+        [
+          "Result must be a percentage",
+          "Result must be rounded to 2 decimal places",
+          "Result represents percentage of total wildfires in 2008"
+        ],
+        [
+          "Percentage value rounded to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.628556166056166
+}

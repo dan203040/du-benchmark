@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Number of households",
+    "filters": [
+      "County = 'Carroll'",
+      "Population > 146,445"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the population value for Carroll county?",
+      "Is the population for Carroll county greater than 146,445?",
+      "If the condition is met, what is the number of households for Carroll county?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Income and Population by County in New Hampshire"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Per capita income": "US dollars",
+      "Median household income": "US dollars",
+      "Median family income": "US dollars",
+      "Population": "count of individuals",
+      "Number of households": "count of households"
+    },
+    "scale_issues": [
+      "Numeric columns are stored as strings with formatting characters (e.g., '$' for income, ',' for thousands separator)",
+      "Population and Number of households contain comma separators that need to be removed for numeric comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Monetary values are prefixed with '$' and contain comma separators",
+      "Population and household numbers contain comma separators",
+      "All numeric columns are stored as string/object dtype"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "County must equal 'Carroll'",
+      "Population must be greater than 146,445",
+      "Population and Number of households must be converted from string to numeric for comparison"
+    ],
+    "derived_filters": [
+      "Convert Population column from string to integer by removing commas",
+      "Apply numeric comparison: Population > 146445"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the number of households as a single value if conditions are met",
+      "Return null or empty result if no rows match the conditions"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of households\",\n    \"filters\": [\"County = 'Carroll'\", \"Population > 146,445\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the population value for Carroll county?\",\n      \"Is the population for Carroll county greater than 146,445?\",\n      \"If the condition is met, what is the number of households for Carroll county?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Income and Population by County in New Hampshire\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Per capita income\": \"US dollars\",\n      \"Median household income\": \"US dollars\",\n      \"Median family income\": \"US dollars\",\n      \"Population\": \"count of individuals\",\n      \"Number of households\": \"count of households\"\n    },\n    \"scale_issues\": [\n      \"Numeric columns are stored as strings with formatting characters (e.g., '$' for income, ',' for thousands separator)\",\n      \"Population and Number of households contain comma separators that need to be removed for numeric comparison\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Monetary values are prefixed with '$' and contain comma separators\",\n      \"Population and household numbers contain comma separators\",\n      \"All numeric columns are stored as string/object dtype\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"County must equal 'Carroll'\",\n      \"Population must be greater than 146,445\",\n      \"Population and Number of households must be converted from string to numeric for comparison\"\n    ],\n    \"derived_filters\": [\n      \"Convert Population column from string to integer by removing commas\",\n      \"Apply numeric comparison: Population > 146445\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the number of households as a single value if conditions are met\",\n      \"Return null or empty result if no rows match the conditions\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.726366996765137,
+  "token_usage": {
+    "input_tokens": 1268,
+    "output_tokens": 620
+  }
+}

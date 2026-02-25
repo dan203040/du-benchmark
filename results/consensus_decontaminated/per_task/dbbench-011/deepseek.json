@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Event name where the fighter fought Masato Shiozawa",
+    "filters": [
+      "Opponent = 'Masato Shiozawa'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which fighter's record is this?",
+      "Is this the fighter's first professional fight?",
+      "What was the result of this fight?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "MMA Fight Record"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Round": "fight round number"
+    },
+    "scale_issues": [
+      "Record column uses 'Wins-Losses' format, not actual count"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data appears to be sorted reverse chronologically",
+      "Method column contains parentheses with additional details",
+      "Event names include organization and event details"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Record column should be consistent with Res. column wins/losses",
+      "Round should be a positive integer",
+      "Each row represents one professional fight"
+    ],
+    "derived_filters": [
+      "Res. = 'Win' for the Masato Shiozawa fight"
+    ],
+    "statistical_tests": [
+      "Check if Record progression is consistent with fight results"
+    ],
+    "output_format_requirements": [
+      "Return exact Event string from data"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Event name where the fighter fought Masato Shiozawa\",\n        \"filters\": [\"Opponent = 'Masato Shiozawa'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which fighter's record is this?\", \"Is this the fighter's first professional fight?\", \"What was the result of this fight?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"MMA Fight Record\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Round\": \"fight round number\"},\n        \"scale_issues\": [\"Record column uses 'Wins-Losses' format, not actual count\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data appears to be sorted reverse chronologically\", \"Method column contains parentheses with additional details\", \"Event names include organization and event details\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Record column should be consistent with Res. column wins/losses\", \"Round should be a positive integer\", \"Each row represents one professional fight\"],\n        \"derived_filters\": [\"Res. = 'Win' for the Masato Shiozawa fight\"],\n        \"statistical_tests\": [\"Check if Record progression is consistent with fight results\"],\n        \"output_format_requirements\": [\"Return exact Event string from data\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.359774827957153,
+  "token_usage": {
+    "input_tokens": 826,
+    "output_tokens": 396
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "m_q": {
+    "target_metric": "Comparison of Imposter Scams percentage for military consumers vs general population in 2024",
+    "filters": [
+      "Year = 2024",
+      "Category = 'Imposter Scams'"
+    ],
+    "grouping_variables": [
+      "demographic (military vs general population)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports for military consumers?",
+      "What is the number of Imposter Scams reports for military consumers?",
+      "What is the percentage of Imposter Scams among military consumer reports?",
+      "What is the total number of reports in the general population?",
+      "What is the number of Imposter Scams reports in the general population?",
+      "What is the percentage of Imposter Scams among general population reports?",
+      "Is the military percentage higher than the general population percentage?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Reports_by_Military_Consumers.csv",
+      "2024_CSN_Reports_by_Military_Consumers__Reports by Military Consumers",
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "2024_CSN_Reports_by_Military_Consumers.csv",
+        "right_source": "2024_CSN_Report_Categories.csv",
+        "left_column": "Category",
+        "right_column": "Category",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Different total report counts across files",
+      "Military data has fraud-specific categories while general data includes all report types"
+    ],
+    "column_mappings": {
+      "# of Reports (military)": "military_reports",
+      "# of Reports (general)": "general_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage",
+      "% Reporting $ Loss": "percentage",
+      "Total $ Loss": "US dollars (millions indicated by M suffix)",
+      "Median $ Loss": "US dollars"
+    },
+    "scale_issues": [
+      "Total $ Loss values use 'M' suffix for millions in military consumer file",
+      "Percentages stored as strings with '%' suffix in multiple files"
+    ],
+    "cross_source_conflicts": [
+      "Military consumer data appears to represent fraud reports only, while general population data includes all report types (fraud, identity theft, other)",
+      "Need to determine if military Imposter Scams should be compared against general population fraud reports or all reports"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage columns contain '%' character that needs parsing",
+      "Currency values contain '$' and 'M' suffixes that need parsing",
+      "Some files have multiple logical tables within them (section_2 file)",
+      "Number values may contain comma separators (e.g., '99,443')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Imposter Scams must exist in both military and general population datasets",
+      "Total reports for each demographic must be positive",
+      "Percentages must be calculated from the same denominator type (fraud reports vs all reports)"
+    ],
+    "derived_filters": [
+      "Calculate total fraud reports for military: sum of # of Reports from 2024_CSN_Reports_by_Military_Consumers__Reports by Military Consumers where Report Type = 'Fraud'",
+      "Calculate total reports for general population: sum of all # of Reports from 2024_CSN_Report_Categories.csv",
+      "Extract Imposter Scams count for military from 2024_CSN_Reports_by_Military_Consumers.csv where Category = 'Imposter Scams'",
+      "Extract Imposter Scams count for general population from 2024_CSN_Report_Categories.csv where Category = 'Imposter Scams'"
+    ],
+    "statistical_tests": [
+      "Compare (military_imposter_scams / military_total_reports) vs (general_imposter_scams / general_total_reports)"
+    ],
+    "output_format_requirements": [
+      "Return only 'Yes' or 'No'",
+      "No explanation or additional text required"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Comparison of Imposter Scams percentage for military consumers vs general population in 2024\",\n    \"filters\": [\n      \"Year = 2024\",\n      \"Category = 'Imposter Scams'\"\n    ],\n    \"grouping_variables\": [\n      \"demographic (military vs general population)\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of reports for military consumers?\",\n      \"What is the number of Imposter Scams reports for military consumers?\",\n      \"What is the percentage of Imposter Scams among military consumer reports?\",\n      \"What is the total number of reports in the general population?\",\n      \"What is the number of Imposter Scams reports in the general population?\",\n      \"What is the percentage of Imposter Scams among general population reports?\",\n      \"Is the military percentage higher than the general population percentage?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Reports_by_Military_Consumers.csv\",\n      \"2024_CSN_Reports_by_Military_Consumers__Reports by Military Consumers\",\n      \"2024_CSN_Report_Categories.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"2024_CSN_Reports_by_Military_Consumers.csv\",\n        \"right_source\": \"2024_CSN_Report_Categories.csv\",\n        \"left_column\": \"Category\",\n        \"right_column\": \"Category\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Different total report counts across files\",\n      \"Military data has fraud-specific categories while general data includes all report types\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports (military)\": \"military_reports\",\n      \"# of Reports (general)\": \"general_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Percentage\": \"percentage\",\n      \"% Reporting $ Loss\": \"percentage\",\n      \"Total $ Loss\": \"US dollars (millions indicated by M suffix)\",\n      \"Median $ Loss\": \"US dollars\"\n    },\n    \"scale_issues\": [\n      \"Total $ Loss values use 'M' suffix for millions in military consumer file\",\n      \"Percentages stored as strings with '%' suffix in multiple files\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Military consumer data appears to represent fraud reports only, while general population data includes all report types (fraud, identity theft, other)\",\n      \"Need to determine if military Imposter Scams should be compared against general population fraud reports or all reports\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Percentage columns contain '%' character that needs parsing\",\n      \"Currency values contain '$' and 'M' suffixes that need parsing\",\n      \"Some files have multiple logical tables within them (section_2 file)\",\n      \"Number values may contain comma separators (e.g., '99,443')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Imposter Scams must exist in both military and general population datasets\",\n      \"Total reports for each demographic must be positive\",\n      \"Percentages must be calculated from the same denominator type (fraud reports vs all reports)\"\n    ],\n    \"derived_filters\": [\n      \"Calculate total fraud reports for military: sum of # of Reports from 2024_CSN_Reports_by_Military_Consumers__Reports by Military Consumers where Report Type = 'Fraud'\",\n      \"Calculate total reports for general population: sum of all # of Reports from 2024_CSN_Report_Categories.csv\",\n      \"Extract Imposter Scams count for military from 2024_CSN_Reports_by_Military_Consumers.csv where Category = 'Imposter Scams'\",\n      \"Extract Imposter Scams count for general population from 2024_CSN_Report_Categories.csv where Category = 'Imposter Scams'\"\n    ],\n    \"statistical_tests\": [\n      \"Compare (military_imposter_scams / military_total_reports) vs (general_imposter_scams / general_total_reports)\"\n    ],\n    \"output_format_requirements\": [\n      \"Return only 'Yes' or 'No'\",\n      \"No explanation or additional text required\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 18.130054235458374,
+  "token_usage": {
+    "input_tokens": 2052,
+    "output_tokens": 1198
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "m_q": {
+    "target_metric": "maximum value of 'No. of Titles'",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Squash Players Ranking"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rank": "ranking",
+      "No. of Titles": "number of titles",
+      "Runner-up": "number of times runner-up",
+      "Final Appearances": "number of final appearances"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "'No. of Titles', 'Runner-up', and 'Final Appearances' should be non-negative integers.",
+      "'Final Appearances' should be greater than or equal to 'No. of Titles' and 'Runner-up'"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "player name with the highest number of titles"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"maximum value of 'No. of Titles'\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"Squash Players Ranking\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"Rank\": \"ranking\", \"No. of Titles\": \"number of titles\", \"Runner-up\": \"number of times runner-up\", \"Final Appearances\": \"number of final appearances\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"'No. of Titles', 'Runner-up', and 'Final Appearances' should be non-negative integers.\", \"'Final Appearances' should be greater than or equal to 'No. of Titles' and 'Runner-up'\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"player name with the highest number of titles\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.187091112136841,
+  "token_usage": {}
+}

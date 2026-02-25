@@ -1,0 +1,340 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "ratio = (2024 credit card fraud reports) / (2020 credit card fraud reports), rounded to 4 decimal places",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "ratio = (2024 credit card fraud reports) / (2020 credit card fraud reports), rounded to 4 decimal places",
+        "Ratio of reported credit card frauds between 2024 and 2020, calculated as (2024 reports) / (2020 reports), rounded to 4 decimal places",
+        "Ratio of credit card fraud reports in 2024 to 2020, rounded to 4 decimal places: (2024 reports) / (2020 reports)"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Theft Type = 'Credit Card'",
+        "Year in ['2020', '2024']",
+        "Theft Type == 'Credit Card'",
+        "Year = 2024",
+        "Year = 2020"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [
+          "Theft Type = 'Credit Card'",
+          "Year in ['2020', '2024']"
+        ],
+        [
+          "Theft Type == 'Credit Card'",
+          "Year in ['2020', '2024']"
+        ],
+        [
+          "Year = 2024",
+          "Year = 2020",
+          "Theft Type = 'Credit Card'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the number of credit card fraud reports in 2020?",
+        "What is the number of credit card fraud reports in 2024?",
+        "How to compute the ratio between these two values?",
+        "What is the ratio of 2024 reports to 2020 reports?"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "What is the number of credit card fraud reports in 2020?",
+          "What is the number of credit card fraud reports in 2024?",
+          "How to compute the ratio between these two values?"
+        ],
+        [
+          "What is the number of credit card fraud reports in 2024?",
+          "What is the number of credit card fraud reports in 2020?",
+          "What is the ratio of 2024 reports to 2020 reports?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+        ],
+        [
+          "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+        ],
+        [
+          "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column 'Theft Type' has dtype 'int64' but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in sample data",
+        "Column 'Theft Type' has dtype int64 but contains string values like 'Credit Card' in the data",
+        "Column 'Year' appears in both column name and first data position, suggesting header misalignment"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column 'Theft Type' has dtype 'int64' but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in sample data"
+        ],
+        [
+          "Column 'Theft Type' has dtype int64 but contains string values like 'Credit Card' in the data",
+          "Column 'Year' appears in both column name and first data position, suggesting header misalignment"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count of fraud reports",
+        "year": "year",
+        "theft type": "categorical"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "# of Reports": "count of fraud reports"
+        },
+        {
+          "# of Reports": "count",
+          "Year": "year",
+          "Theft Type": "categorical"
+        },
+        {
+          "# of Reports": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column is stored as object/string instead of integer",
+        "All report counts are in absolute numbers, no scaling needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column is stored as object/string instead of integer"
+        ],
+        [
+          "All report counts are in absolute numbers, no scaling needed"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 1.0,
+      "votes": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be between 2020-2024",
+        "# of Reports should be non-negative integers",
+        "Theft Type should be one of: 'Bank Account', 'Credit Card', 'Loan or Lease'",
+        "Year must be in ['2020', '2024']",
+        "Theft Type must be 'Credit Card'",
+        "# of Reports must be > 0",
+        "Both 2020 and 2024 must have Credit Card data",
+        "The 'Year' column should contain valid year values.",
+        "The '# of Reports' column should contain non-negative integer values."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be between 2020-2024",
+          "# of Reports should be non-negative integers",
+          "Theft Type should be one of: 'Bank Account', 'Credit Card', 'Loan or Lease'"
+        ],
+        [
+          "Year must be in ['2020', '2024']",
+          "Theft Type must be 'Credit Card'",
+          "# of Reports must be > 0",
+          "Both 2020 and 2024 must have Credit Card data"
+        ],
+        [
+          "The 'Year' column should contain valid year values.",
+          "The '# of Reports' column should contain non-negative integer values."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to only rows where Theft Type = 'Credit Card'",
+        "Filter to only rows where Year = '2020' or Year = '2024'",
+        "Filter for rows where actual year column contains '2020' or '2024'",
+        "Filter for rows where actual theft type column contains 'Credit Card'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to only rows where Theft Type = 'Credit Card'",
+          "Filter to only rows where Year = '2020' or Year = '2024'"
+        ],
+        [
+          "Filter for rows where actual year column contains '2020' or '2024'",
+          "Filter for rows where actual theft type column contains 'Credit Card'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in Year and Theft Type columns",
+        "Verify that each (Year, Theft Type) combination appears only once"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in Year and Theft Type columns",
+          "Verify that each (Year, Theft Type) combination appears only once"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Ratio must be rounded to 4 decimal places",
+        "Result should be a single numeric value",
+        "Output must be a single numeric value",
+        "Result must be rounded to exactly 4 decimal places",
+        "Format: decimal number (e.g., 1.1413)",
+        "The final ratio should be rounded to 4 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Ratio must be rounded to 4 decimal places",
+          "Result should be a single numeric value"
+        ],
+        [
+          "Output must be a single numeric value",
+          "Result must be rounded to exactly 4 decimal places",
+          "Format: decimal number (e.g., 1.1413)"
+        ],
+        [
+          "The final ratio should be rounded to 4 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6261111111111112
+}

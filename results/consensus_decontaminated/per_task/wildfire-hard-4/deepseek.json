@@ -1,0 +1,129 @@
+{
+  "m_q": {
+    "target_metric": "year with highest suppression cost per acre of human-caused fire, and the cost per acre rounded to nearest cent",
+    "filters": [
+      "human-caused fires only",
+      "years with both cost and acreage data"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total suppression cost per year?",
+      "What is the total human-caused acreage per year?",
+      "How to calculate cost per acre for each year?",
+      "Which year has the maximum cost per acre?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "nifc_suppression_costs.csv",
+      "nifc_human_caused_acres.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "nifc_suppression_costs.csv",
+        "right_source": "nifc_human_caused_acres.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "nifc_suppression_costs.csv has malformed column names with mixed data types",
+      "nifc_suppression_costs.csv column names appear to contain data values",
+      "nifc_human_caused_acres.csv has missing values in Western Great Basin column"
+    ],
+    "column_mappings": {
+      "1985\t82": "Year",
+      "591\t2": "Fires",
+      "896": "Acres",
+      "147\t$161": "Suppression_Cost",
+      "505": "Other_Cost",
+      "000\t$78": "Total_Cost",
+      "438": "Unnamed_6",
+      "000\t$239": "Unnamed_7",
+      "943": "Unnamed_8",
+      "000": "Unnamed_9"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Suppression_Cost": "dollars",
+      "Total_Cost": "dollars",
+      "Acres": "acres",
+      "Total": "acres",
+      "Alaska": "acres",
+      "Northwest": "acres",
+      "Northern California": "acres",
+      "Southern California": "acres",
+      "Northern Rockies": "acres",
+      "Great Basin": "acres",
+      "Western Great Basin": "acres",
+      "Southwest": "acres",
+      "Rocky Mountains": "acres",
+      "Eastern Area": "acres",
+      "Southern Area": "acres"
+    },
+    "scale_issues": [
+      "Cost columns contain dollar signs and commas that need removal",
+      "Acres columns contain commas that need removal",
+      "nifc_suppression_costs.csv appears to have truncated values (e.g., $202,778,0 instead of $202,778,000)"
+    ],
+    "cross_source_conflicts": [
+      "Year ranges differ between files (1985-2010 vs 2005-2024)",
+      "nifc_suppression_costs.csv has inconsistent formatting with truncated zeros in cost columns"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      " "
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "nifc_suppression_costs.csv appears to be tab-delimited despite .csv extension",
+      "nifc_suppression_costs.csv has malformed headers with data in column names",
+      "nifc_human_caused_acres.csv has empty cells in Western Great Basin column",
+      "nifc_suppression_costs.csv shows truncated values in sample data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Cost values must be positive",
+      "Acreage values must be positive",
+      "Cost per acre must be calculated as Total_Cost / Total_Acres",
+      "Only years present in both datasets can be analyzed"
+    ],
+    "derived_filters": [
+      "Remove dollar signs and commas from cost columns",
+      "Remove commas from acreage columns",
+      "Fix truncated zeros in nifc_suppression_costs.csv cost columns",
+      "Sum regional acreages to get total human-caused acres per year"
+    ],
+    "statistical_tests": [
+      "Check for missing years in overlap period",
+      "Validate cost per acre calculation for all years",
+      "Identify outliers in cost per acre values"
+    ],
+    "output_format_requirements": [
+      "Cost per acre must be rounded to nearest cent",
+      "Output should include year and cost per acre value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"year with highest suppression cost per acre of human-caused fire, and the cost per acre rounded to nearest cent\",\n        \"filters\": [\"human-caused fires only\", \"years with both cost and acreage data\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total suppression cost per year?\", \"What is the total human-caused acreage per year?\", \"How to calculate cost per acre for each year?\", \"Which year has the maximum cost per acre?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"nifc_suppression_costs.csv\", \"nifc_human_caused_acres.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"nifc_suppression_costs.csv\",\n                \"right_source\": \"nifc_human_caused_acres.csv\",\n                \"left_column\": \"Year\",\n                \"right_column\": \"Year\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"nifc_suppression_costs.csv has malformed column names with mixed data types\", \"nifc_suppression_costs.csv column names appear to contain data values\", \"nifc_human_caused_acres.csv has missing values in Western Great Basin column\"],\n        \"column_mappings\": {\n            \"1985\\t82\": \"Year\",\n            \"591\\t2\": \"Fires\",\n            \"896\": \"Acres\",\n            \"147\\t$161\": \"Suppression_Cost\",\n            \"505\": \"Other_Cost\",\n            \"000\\t$78\": \"Total_Cost\",\n            \"438\": \"Unnamed_6\",\n            \"000\\t$239\": \"Unnamed_7\",\n            \"943\": \"Unnamed_8\",\n            \"000\": \"Unnamed_9\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Suppression_Cost\": \"dollars\",\n            \"Total_Cost\": \"dollars\",\n            \"Acres\": \"acres\",\n            \"Total\": \"acres\",\n            \"Alaska\": \"acres\",\n            \"Northwest\": \"acres\",\n            \"Northern California\": \"acres\",\n            \"Southern California\": \"acres\",\n            \"Northern Rockies\": \"acres\",\n            \"Great Basin\": \"acres\",\n            \"Western Great Basin\": \"acres\",\n            \"Southwest\": \"acres\",\n            \"Rocky Mountains\": \"acres\",\n            \"Eastern Area\": \"acres\",\n            \"Southern Area\": \"acres\"\n        },\n        \"scale_issues\": [\"Cost columns contain dollar signs and commas that need removal\", \"Acres columns contain commas that need removal\", \"nifc_suppression_costs.csv appears to have truncated values (e.g., $202,778,0 instead of $202,778,000)\"],\n        \"cross_source_conflicts\": [\"Year ranges differ between files (1985-2010 vs 2005-2024)\", \"nifc_suppression_costs.csv has inconsistent formatting with truncated zeros in cost columns\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \" \"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"nifc_suppression_costs.csv appears to be tab-delimited despite .csv extension\", \"nifc_suppression_costs.csv has malformed headers with data in column names\", \"nifc_human_caused_acres.csv has empty cells in Western Great Basin column\", \"nifc_suppression_costs.csv shows truncated values in sample data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Cost values must be positive\", \"Acreage values must be positive\", \"Cost per acre must be calculated as Total_Cost / Total_Acres\", \"Only years present in both datasets can be analyzed\"],\n        \"derived_filters\": [\"Remove dollar signs and commas from cost columns\", \"Remove commas from acreage columns\", \"Fix truncated zeros in nifc_suppression_costs.csv cost columns\", \"Sum regional acreages to get total human-caused acres per year\"],\n        \"statistical_tests\": [\"Check for missing years in overlap period\", \"Validate cost per acre calculation for all years\", \"Identify outliers in cost per acre values\"],\n        \"output_format_requirements\": [\"Cost per acre must be rounded to nearest cent\", \"Output should include year and cost per acre value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 19.70071506500244,
+  "token_usage": {
+    "input_tokens": 2346,
+    "output_tokens": 1018
+  }
+}

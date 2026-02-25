@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Game number with the lowest value where the Score is 108-85",
+    "filters": [
+      "Score equals '108-85'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have Score = '108-85'?",
+      "What is the Game value for the row with Score = '108-85'?",
+      "If multiple games have Score = '108-85', what is the minimum Game number?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "game score"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Game": "game_number",
+      "Date": "date_string",
+      "Score": "points_home-points_away",
+      "Record": "wins-losses"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Game column contains numeric values but stored as object type",
+      "Score column format is 'XXX-YY' representing points scored by team and opponent",
+      "Some Score entries contain '(OT)' suffix indicating overtime games"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Game column should be convertible to integer for comparison",
+      "Score must match exactly '108-85' format",
+      "At least one record should match the filter condition"
+    ],
+    "derived_filters": [
+      "Filter rows where Score = '108-85'",
+      "Extract Game values from filtered rows",
+      "Find minimum Game number"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Game number as an integer or numeric value",
+      "If no match found, indicate no result",
+      "If multiple matches, return the lowest Game number"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Game number with the lowest value where the Score is 108-85\",\n    \"filters\": [\"Score equals '108-85'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have Score = '108-85'?\",\n      \"What is the Game value for the row with Score = '108-85'?\",\n      \"If multiple games have Score = '108-85', what is the minimum Game number?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"game score\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Game\": \"game_number\",\n      \"Date\": \"date_string\",\n      \"Score\": \"points_home-points_away\",\n      \"Record\": \"wins-losses\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Game column contains numeric values but stored as object type\",\n      \"Score column format is 'XXX-YY' representing points scored by team and opponent\",\n      \"Some Score entries contain '(OT)' suffix indicating overtime games\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Game column should be convertible to integer for comparison\",\n      \"Score must match exactly '108-85' format\",\n      \"At least one record should match the filter condition\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Score = '108-85'\",\n      \"Extract Game values from filtered rows\",\n      \"Find minimum Game number\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Game number as an integer or numeric value\",\n      \"If no match found, indicate no result\",\n      \"If multiple matches, return the lowest Game number\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.945117950439453,
+  "token_usage": {
+    "input_tokens": 1168,
+    "output_tokens": 572
+  }
+}

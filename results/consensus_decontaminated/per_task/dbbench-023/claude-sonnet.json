@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "total count of websites",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many rows are in the Educational Websites Table?",
+      "Does each row represent a unique website?",
+      "Are there any duplicate entries that should be excluded?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Educational Websites Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Name": "website name (text)",
+      "Topic": "subject area (text)",
+      "Cost": "pricing information (text with currency)",
+      "Target age": "age range (text with numeric ranges)",
+      "Advertising": "advertising presence (categorical text)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "?",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Topic column contains comma-separated values within quoted strings",
+      "Cost column has mixed formats: 'Free', currency amounts with symbols (US$), and text descriptions",
+      "Target age column contains ranges with '+' symbol and hyphenated ranges",
+      "Advertising column has categorical values: 'None', 'Yes - limited', 'Yes - large', 'Yes - extensive', 'No', '?'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row should represent a unique website",
+      "Name column should contain non-null values for counting",
+      "Total count should match the shape information (27 rows)"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer representing the total number of websites",
+      "The count should include all rows in the dataset"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total count of websites\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many rows are in the Educational Websites Table?\",\n      \"Does each row represent a unique website?\",\n      \"Are there any duplicate entries that should be excluded?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Educational Websites Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Name\": \"website name (text)\",\n      \"Topic\": \"subject area (text)\",\n      \"Cost\": \"pricing information (text with currency)\",\n      \"Target age\": \"age range (text with numeric ranges)\",\n      \"Advertising\": \"advertising presence (categorical text)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"?\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Topic column contains comma-separated values within quoted strings\",\n      \"Cost column has mixed formats: 'Free', currency amounts with symbols (US$), and text descriptions\",\n      \"Target age column contains ranges with '+' symbol and hyphenated ranges\",\n      \"Advertising column has categorical values: 'None', 'Yes - limited', 'Yes - large', 'Yes - extensive', 'No', '?'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Each row should represent a unique website\",\n      \"Name column should contain non-null values for counting\",\n      \"Total count should match the shape information (27 rows)\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer representing the total number of websites\",\n      \"The count should include all rows in the dataset\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.032623052597046,
+  "token_usage": {
+    "input_tokens": 1119,
+    "output_tokens": 555
+  }
+}

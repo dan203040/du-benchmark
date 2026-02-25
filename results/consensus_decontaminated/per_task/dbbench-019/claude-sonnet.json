@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "Crude Death Rate corresponding to Deaths value of 106 000",
+    "filters": [
+      "Deaths == '106 000'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which period(s) have Deaths equal to 106 000?",
+      "What is the Crude Death Rate for the period where Deaths equals 106 000?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Population Dynamics Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Deaths": "count with thousands separator (space)",
+      "Crude Death Rate": "per 1000 or per 10000 population (needs verification)",
+      "Births": "count with thousands separator (space)",
+      "Difference": "count with thousands separator (space)",
+      "Crude Birth Rate": "rate per population unit",
+      "Natural Increase": "rate per population unit",
+      "Total Fertility Rate": "per 100 women or scaled value",
+      "Infant Mortality Rate": "per 1000 live births or scaled value"
+    },
+    "scale_issues": [
+      "Deaths values use space as thousands separator (e.g., '106 000')",
+      "Crude Death Rate appears to be scaled (e.g., 91 for Deaths 106 000)",
+      "All numeric columns stored as string/object dtype",
+      "Rate values appear to be multiplied by 10 or 100"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All columns stored as object dtype despite containing numeric values",
+      "Numbers use space as thousands separator",
+      "Period column contains date ranges in format 'YYYY - YYYY'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Deaths value must exactly match '106 000' (with space separator)",
+      "Result should be a single Crude Death Rate value"
+    ],
+    "derived_filters": [
+      "Filter rows where Deaths column equals '106 000'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Crude Death Rate value for the matching period",
+      "Handle string-to-numeric conversion if needed",
+      "Verify only one period matches the Deaths criterion"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Crude Death Rate corresponding to Deaths value of 106 000\",\n    \"filters\": [\"Deaths == '106 000'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which period(s) have Deaths equal to 106 000?\",\n      \"What is the Crude Death Rate for the period where Deaths equals 106 000?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Population Dynamics Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Deaths\": \"count with thousands separator (space)\",\n      \"Crude Death Rate\": \"per 1000 or per 10000 population (needs verification)\",\n      \"Births\": \"count with thousands separator (space)\",\n      \"Difference\": \"count with thousands separator (space)\",\n      \"Crude Birth Rate\": \"rate per population unit\",\n      \"Natural Increase\": \"rate per population unit\",\n      \"Total Fertility Rate\": \"per 100 women or scaled value\",\n      \"Infant Mortality Rate\": \"per 1000 live births or scaled value\"\n    },\n    \"scale_issues\": [\n      \"Deaths values use space as thousands separator (e.g., '106 000')\",\n      \"Crude Death Rate appears to be scaled (e.g., 91 for Deaths 106 000)\",\n      \"All numeric columns stored as string/object dtype\",\n      \"Rate values appear to be multiplied by 10 or 100\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All columns stored as object dtype despite containing numeric values\",\n      \"Numbers use space as thousands separator\",\n      \"Period column contains date ranges in format 'YYYY - YYYY'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Deaths value must exactly match '106 000' (with space separator)\",\n      \"Result should be a single Crude Death Rate value\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Deaths column equals '106 000'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Crude Death Rate value for the matching period\",\n      \"Handle string-to-numeric conversion if needed\",\n      \"Verify only one period matches the Deaths criterion\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.33887791633606,
+  "token_usage": {
+    "input_tokens": 1345,
+    "output_tokens": 695
+  }
+}

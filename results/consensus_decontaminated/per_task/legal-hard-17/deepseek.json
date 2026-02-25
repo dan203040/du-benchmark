@@ -1,0 +1,91 @@
+{
+  "m_q": {
+    "target_metric": "Number of Auto Related reports in 2007 if category distribution matched 2024",
+    "filters": [
+      "Year = 2007",
+      "Category = 'Auto Related'"
+    ],
+    "grouping_variables": [
+      "Year",
+      "Category"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports in 2007?",
+      "What percentage of reports in 2024 are Auto Related?",
+      "How to apply 2024 Auto Related percentage to 2007 total reports?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv",
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Year column in 2024_CSN_Report_Count.csv is float64 but represents integer years",
+      "Percentage column in 2024_CSN_Report_Categories.csv is object/string with '%' symbol"
+    ],
+    "column_mappings": {
+      "# of Reports": "num_reports",
+      "Percentage": "percentage"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage",
+      "Year": "year"
+    },
+    "scale_issues": [
+      "2024_CSN_Report_Categories.csv shows 2024 data but filename suggests it might contain historical data",
+      "2024_CSN_Report_Count.csv contains data from 2001-2020 but filename suggests only 2024"
+    ],
+    "cross_source_conflicts": [
+      "2024_CSN_Report_Categories.csv doesn't have Year column, so we assume it represents 2024 distribution only"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "2024_CSN_Report_Categories.csv has Percentage as string with '%' symbol that needs parsing",
+      "Year values in 2024_CSN_Report_Count.csv are floats but represent integer years"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total percentage in 2024_CSN_Report_Categories.csv should sum to 100%",
+      "2007 must exist in 2024_CSN_Report_Count.csv",
+      "'Auto Related' category must exist in 2024_CSN_Report_Categories.csv"
+    ],
+    "derived_filters": [
+      "Extract Auto Related percentage from 2024_CSN_Report_Categories.csv",
+      "Extract 2007 total reports from 2024_CSN_Report_Count.csv"
+    ],
+    "statistical_tests": [
+      "Check if 2024 distribution percentages sum to 100%",
+      "Verify 2007 exists in the time series"
+    ],
+    "output_format_requirements": [
+      "Rounded to nearest integer",
+      "Single numeric value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Number of Auto Related reports in 2007 if category distribution matched 2024\",\n        \"filters\": [\"Year = 2007\", \"Category = 'Auto Related'\"],\n        \"grouping_variables\": [\"Year\", \"Category\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total number of reports in 2007?\", \"What percentage of reports in 2024 are Auto Related?\", \"How to apply 2024 Auto Related percentage to 2007 total reports?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Report_Count.csv\", \"2024_CSN_Report_Categories.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Year column in 2024_CSN_Report_Count.csv is float64 but represents integer years\", \"Percentage column in 2024_CSN_Report_Categories.csv is object/string with '%' symbol\"],\n        \"column_mappings\": {\"# of Reports\": \"num_reports\", \"Percentage\": \"percentage\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count\", \"Percentage\": \"percentage\", \"Year\": \"year\"},\n        \"scale_issues\": [\"2024_CSN_Report_Categories.csv shows 2024 data but filename suggests it might contain historical data\", \"2024_CSN_Report_Count.csv contains data from 2001-2020 but filename suggests only 2024\"],\n        \"cross_source_conflicts\": [\"2024_CSN_Report_Categories.csv doesn't have Year column, so we assume it represents 2024 distribution only\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"2024_CSN_Report_Categories.csv has Percentage as string with '%' symbol that needs parsing\", \"Year values in 2024_CSN_Report_Count.csv are floats but represent integer years\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total percentage in 2024_CSN_Report_Categories.csv should sum to 100%\", \"2007 must exist in 2024_CSN_Report_Count.csv\", \"'Auto Related' category must exist in 2024_CSN_Report_Categories.csv\"],\n        \"derived_filters\": [\"Extract Auto Related percentage from 2024_CSN_Report_Categories.csv\", \"Extract 2007 total reports from 2024_CSN_Report_Count.csv\"],\n        \"statistical_tests\": [\"Check if 2024 distribution percentages sum to 100%\", \"Verify 2007 exists in the time series\"],\n        \"output_format_requirements\": [\"Rounded to nearest integer\", \"Single numeric value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 14.096224069595337,
+  "token_usage": {
+    "input_tokens": 1181,
+    "output_tokens": 665
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum Time value",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum Time value",
+        "fastest time among Chinese athletes",
+        "fastest time"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Nationality == 'China'",
+        "Nationality is China"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Nationality == 'China'"
+        ],
+        [
+          "Nationality == 'China'"
+        ],
+        [
+          "Nationality is China"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Athlete"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Athlete"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the fastest time among Chinese athletes?",
+        "Which Chinese athlete achieved that time?",
+        "Which athletes have Nationality equal to 'China'?",
+        "What are the Time values for Chinese athletes?",
+        "Which Chinese athlete has the minimum Time value?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the fastest time among Chinese athletes?",
+          "Which Chinese athlete achieved that time?"
+        ],
+        [
+          "Which athletes have Nationality equal to 'China'?",
+          "What are the Time values for Chinese athletes?",
+          "Which Chinese athlete has the minimum Time value?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "race_results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "race_results"
+        ],
+        [
+          "race_results"
+        ],
+        [
+          "race_results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "time": "hours:minutes:seconds"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Time": "hours:minutes:seconds"
+        },
+        {
+          "Time": "hours:minutes:seconds (H:MM:SS)"
+        },
+        {
+          "Time": "minutes:seconds"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Time column is string format, needs conversion to time duration for comparison",
+        "Time is stored as string object, needs parsing to compare values properly"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time column is string format, needs conversion to time duration for comparison"
+        ],
+        [
+          "Time is stored as string object, needs parsing to compare values properly"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Time must be convertible to duration",
+        "Nationality must include 'China' values",
+        "Athlete names must be unique per row",
+        "Nationality must equal 'China'",
+        "Time values must be valid and parseable",
+        "At least one Chinese athlete must exist in the dataset",
+        "Time column needs to be converted to seconds for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time must be convertible to duration",
+          "Nationality must include 'China' values",
+          "Athlete names must be unique per row"
+        ],
+        [
+          "Nationality must equal 'China'",
+          "Time values must be valid and parseable",
+          "At least one Chinese athlete must exist in the dataset"
+        ],
+        [
+          "Time column needs to be converted to seconds for comparison"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Nationality contains 'China'",
+        "Exclude rows with missing Time values",
+        "Convert Time from string to comparable datetime/timedelta format",
+        "Filter rows where Nationality == 'China'",
+        "Nationality = 'China'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Nationality contains 'China'",
+          "Exclude rows with missing Time values"
+        ],
+        [
+          "Convert Time from string to comparable datetime/timedelta format",
+          "Filter rows where Nationality == 'China'"
+        ],
+        [
+          "Nationality = 'China'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate athlete entries",
+        "Validate Time format consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate athlete entries",
+          "Validate Time format consistency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return athlete name as string",
+        "Include corresponding Time value",
+        "Return the Athlete name with the fastest (minimum) Time value",
+        "Output should be a single athlete name",
+        "Report the athlete's name and time"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return athlete name as string",
+          "Include corresponding Time value"
+        ],
+        [
+          "Return the Athlete name with the fastest (minimum) Time value",
+          "Output should be a single athlete name"
+        ],
+        [
+          "Report the athlete's name and time"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6027777777777779
+}

@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Count of beaches with a higher bacterial exceedance rate in 2013 compared to 2012, excluding beaches with no samples in 2012.",
+    "filters": [
+      "Exclude beaches with no samples in 2012"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the bacterial exceedance rate for each beach in 2012.",
+      "Calculate the bacterial exceedance rate for each beach in 2013.",
+      "Identify beaches present in both 2012 and 2013.",
+      "Compare the exceedance rates for each beach between 2012 and 2013.",
+      "Count the number of beaches where the 2013 exceedance rate is higher than the 2012 exceedance rate."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "bacterial level",
+      "Year": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Need to define what constitutes an 'exceedance'.  Is it based on the 'Violation' column being 'yes'?",
+      "Need to handle cases where a beach has multiple samples on the same day. How should these be aggregated?"
+    ],
+    "derived_filters": [
+      "Beach present in both 2012 and 2013"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of beaches with a higher bacterial exceedance rate in 2013 compared to 2012, excluding beaches with no samples in 2012.\",\n    \"filters\": [\n      \"Exclude beaches with no samples in 2012\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the bacterial exceedance rate for each beach in 2012.\",\n      \"Calculate the bacterial exceedance rate for each beach in 2013.\",\n      \"Identify beaches present in both 2012 and 2013.\",\n      \"Compare the exceedance rates for each beach between 2012 and 2013.\",\n      \"Count the number of beaches where the 2013 exceedance rate is higher than the 2012 exceedance rate.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"bacterial level\",\n      \"Year\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to define what constitutes an 'exceedance'.  Is it based on the 'Violation' column being 'yes'?\",\n      \"Need to handle cases where a beach has multiple samples on the same day. How should these be aggregated?\"\n    ],\n    \"derived_filters\": [\n      \"Beach present in both 2012 and 2013\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.844851016998291,
+  "token_usage": {}
+}

@@ -1,0 +1,312 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "maximum engine volume",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "maximum engine volume",
+        "maximum engine volume across all engines",
+        "maximum engine volume"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the maximum value in the Volume column?",
+        "Are there any missing values in the Volume column that need to be handled?",
+        "Do all Volume values follow the same format (e.g., X.XL)?",
+        "How should volume values with different units be compared?",
+        "What is the Volume column format and unit?",
+        "How should volume values be parsed from the 'Volume' column?",
+        "Are there any null or missing values in the Volume column?",
+        "What is the maximum numeric value in the Volume column?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the maximum value in the Volume column?",
+          "Are there any missing values in the Volume column that need to be handled?",
+          "Do all Volume values follow the same format (e.g., X.XL)?",
+          "How should volume values with different units be compared?"
+        ],
+        [
+          "What is the Volume column format and unit?",
+          "How should volume values be parsed from the 'Volume' column?",
+          "Are there any null or missing values in the Volume column?",
+          "What is the maximum numeric value in the Volume column?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Car_model_info"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Car_model_info"
+        ],
+        [
+          "Car_model_info"
+        ],
+        [
+          "Car_model_info"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "volume": "liters (L)",
+        "power/torque": "kW/PS/hp and N\u00b7m/lb\u00b7ft",
+        "years produced": "year ranges",
+        "produced": "count"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Volume": "liters (L)",
+          "Power/Torque": "kW/PS/hp and N\u00b7m/lb\u00b7ft",
+          "Years produced": "year ranges",
+          "Produced": "count"
+        },
+        {
+          "Volume": "liters (L)"
+        },
+        {
+          "Volume": "Liters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Volume column contains values with 'L' suffix that needs to be removed for numerical comparison",
+        "Some Volume values may have different units (e.g., cc vs L) but all appear to be in liters in the sample",
+        "Volume column is stored as object/string type (e.g., '2.8L', '5.4L') and needs to be parsed to numeric",
+        "Volume values include unit suffix 'L' that must be stripped for numeric comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Volume column contains values with 'L' suffix that needs to be removed for numerical comparison",
+          "Some Volume values may have different units (e.g., cc vs L) but all appear to be in liters in the sample"
+        ],
+        [
+          "Volume column is stored as object/string type (e.g., '2.8L', '5.4L') and needs to be parsed to numeric",
+          "Volume values include unit suffix 'L' that must be stripped for numeric comparison"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Volume should be positive numeric values",
+        "Engine names should be unique identifiers",
+        "Volume values should be comparable after unit normalization",
+        "Volume values must be positive numbers",
+        "Volume column must be converted from string to numeric type",
+        "Extract numeric value by removing 'L' suffix from Volume column",
+        "Volume column must be numeric to find the maximum."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Volume should be positive numeric values",
+          "Engine names should be unique identifiers",
+          "Volume values should be comparable after unit normalization"
+        ],
+        [
+          "Volume values must be positive numbers",
+          "Volume column must be converted from string to numeric type",
+          "Extract numeric value by removing 'L' suffix from Volume column"
+        ],
+        [
+          "Volume column must be numeric to find the maximum."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove 'L' suffix from Volume column",
+        "Convert Volume to numeric type",
+        "Handle any missing or malformed Volume values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove 'L' suffix from Volume column",
+          "Convert Volume to numeric type",
+          "Handle any missing or malformed Volume values"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Volume values",
+        "Verify Volume values follow expected distribution for car engines"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Volume values",
+          "Verify Volume values follow expected distribution for car engines"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Volume should be reported with appropriate units (likely liters)",
+        "Should include the engine name associated with the maximum volume",
+        "Return single numeric value representing maximum volume in liters",
+        "Include unit (L) in final output for clarity",
+        "The output should be a single numeric value representing the maximum engine volume in Liters."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Volume should be reported with appropriate units (likely liters)",
+          "Should include the engine name associated with the maximum volume"
+        ],
+        [
+          "Return single numeric value representing maximum volume in liters",
+          "Include unit (L) in final output for clarity"
+        ],
+        [
+          "The output should be a single numeric value representing the maximum engine volume in Liters."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5583333333333335
+}

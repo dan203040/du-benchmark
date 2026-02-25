@@ -1,0 +1,355 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "ratio of peak atmospheric mass density (Orbit Mean Density in kg/m^3) between two time periods: March 14-17, 2014 vs July 18-21, 2018",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "ratio of peak atmospheric mass density (Orbit Mean Density in kg/m^3) between two time periods: March 14-17, 2014 vs July 18-21, 2018",
+        "Ratio of peak atmospheric mass density (March 2014 / July 2018)",
+        "Ratio of peak atmospheric mass density experienced by Swarm A satellite during March 14th-17th 2014 vs July 18th-21st 2018"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Timestamp between 2014-03-14 and 2014-03-17",
+        "Timestamp between 2018-07-18 and 2018-07-21",
+        "Timestamp between 2014-03-14 and 2014-03-17 (inclusive)",
+        "Timestamp between 2018-07-18 and 2018-07-21 (inclusive)",
+        "Timestamp between March 14th 2014 and March 17th 2014",
+        "Timestamp between July 18th 2018 and July 21st 2018"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Timestamp between 2014-03-14 and 2014-03-17",
+          "Timestamp between 2018-07-18 and 2018-07-21"
+        ],
+        [
+          "Timestamp between 2014-03-14 and 2014-03-17 (inclusive)",
+          "Timestamp between 2018-07-18 and 2018-07-21 (inclusive)"
+        ],
+        [
+          "Timestamp between March 14th 2014 and March 17th 2014",
+          "Timestamp between July 18th 2018 and July 21st 2018"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "year",
+        "period"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "year",
+          "period"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the maximum Orbit Mean Density during March 14-17, 2014?",
+        "What is the maximum Orbit Mean Density during July 18-21, 2018?",
+        "What is the ratio: (peak 2014)/(peak 2018)?",
+        "What is the maximum value of 'Orbit Mean Density (kg/m^3)' in March 14-17, 2014?",
+        "What is the maximum value of 'Orbit Mean Density (kg/m^3)' in July 18-21, 2018?",
+        "What is the ratio of the 2014 peak to the 2018 peak?",
+        "Find the peak 'Orbit Mean Density (kg/m^3)' during March 14th-17th 2014",
+        "Find the peak 'Orbit Mean Density (kg/m^3)' during July 18th-21st 2018",
+        "Calculate the ratio of the two peak densities"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the maximum Orbit Mean Density during March 14-17, 2014?",
+          "What is the maximum Orbit Mean Density during July 18-21, 2018?",
+          "What is the ratio: (peak 2014)/(peak 2018)?"
+        ],
+        [
+          "What is the maximum value of 'Orbit Mean Density (kg/m^3)' in March 14-17, 2014?",
+          "What is the maximum value of 'Orbit Mean Density (kg/m^3)' in July 18-21, 2018?",
+          "What is the ratio of the 2014 peak to the 2018 peak?"
+        ],
+        [
+          "Find the peak 'Orbit Mean Density (kg/m^3)' during March 14th-17th 2014",
+          "Find the peak 'Orbit Mean Density (kg/m^3)' during July 18th-21st 2018",
+          "Calculate the ratio of the two peak densities"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "swarma-wu016-20140314_to_20140317.csv",
+        "swarma-wu545-20180718_to_20180721.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "swarma-wu016-20140314_to_20140317.csv",
+          "swarma-wu545-20180718_to_20180721.csv"
+        ],
+        [
+          "swarma-wu016-20140314_to_20140317.csv",
+          "swarma-wu545-20180718_to_20180721.csv"
+        ],
+        [
+          "swarma-wu016-20140314_to_20140317.csv",
+          "swarma-wu545-20180718_to_20180721.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Both files have identical column names and dtypes, no schema conflicts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Both files have identical column names and dtypes, no schema conflicts"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "timestamp": "datetime",
+        "orbit mean density (kg/m^3)": "kg/m^3"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Timestamp": "datetime",
+          "Orbit Mean Density (kg/m^3)": "kg/m^3"
+        },
+        {
+          "Orbit Mean Density (kg/m^3)": "kg/m^3",
+          "Timestamp": "ISO 8601 datetime string"
+        },
+        {
+          "Orbit Mean Density (kg/m^3)": "kg/m^3",
+          "Timestamp": "datetime"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Density values are extremely small (e-12 to e-13 scale), ensure numerical precision in calculations",
+        "Density values are in scientific notation with magnitudes around 1e-12 to 1e-13",
+        "2014 density values (~1.17e-12 kg/m^3) are approximately 10x higher than 2018 values (~1.5e-13 kg/m^3)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Density values are extremely small (e-12 to e-13 scale), ensure numerical precision in calculations"
+        ],
+        [
+          "Density values are in scientific notation with magnitudes around 1e-12 to 1e-13",
+          "2014 density values (~1.17e-12 kg/m^3) are approximately 10x higher than 2018 values (~1.5e-13 kg/m^3)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Values in 2014 file are ~10x larger than 2018 file (e-12 vs e-13), this appears to be real physical variation rather than measurement conflict",
+        "Significant magnitude difference between 2014 and 2018 density measurements suggests different atmospheric conditions or orbital parameters"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Values in 2014 file are ~10x larger than 2018 file (e-12 vs e-13), this appears to be real physical variation rather than measurement conflict"
+        ],
+        [
+          "Significant magnitude difference between 2014 and 2018 density measurements suggests different atmospheric conditions or orbital parameters"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Density values must be positive",
+        "Timestamps are at 10-minute intervals",
+        "Both periods have exactly 4 days of data (96 hours = 576 ten-minute intervals, but files show 433 rows)",
+        "Timestamp must be parseable as datetime",
+        "Orbit Mean Density (kg/m^3) must be positive non-zero float",
+        "First dataset must contain data only from 2014-03-14 to 2014-03-17",
+        "Second dataset must contain data only from 2018-07-18 to 2018-07-21",
+        "Timestamp column must be parsed as datetime objects",
+        "Ensure that the date ranges are correctly filtered"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Density values must be positive",
+          "Timestamps are at 10-minute intervals",
+          "Both periods have exactly 4 days of data (96 hours = 576 ten-minute intervals, but files show 433 rows)"
+        ],
+        [
+          "Timestamp must be parseable as datetime",
+          "Orbit Mean Density (kg/m^3) must be positive non-zero float",
+          "First dataset must contain data only from 2014-03-14 to 2014-03-17",
+          "Second dataset must contain data only from 2018-07-18 to 2018-07-21"
+        ],
+        [
+          "Timestamp column must be parsed as datetime objects",
+          "Ensure that the date ranges are correctly filtered"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude any rows with non-positive density values",
+        "Ensure timestamps are within specified date ranges",
+        "Extract maximum density from March 2014 dataset",
+        "Extract maximum density from July 2018 dataset"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude any rows with non-positive density values",
+          "Ensure timestamps are within specified date ranges"
+        ],
+        [
+          "Extract maximum density from March 2014 dataset",
+          "Extract maximum density from July 2018 dataset"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in density measurements",
+        "Verify temporal continuity in timestamps"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in density measurements",
+          "Verify temporal continuity in timestamps"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Ratio should be reported as a single numeric value",
+        "Consider reporting both peak values alongside the ratio",
+        "Specify which period's peak is numerator vs denominator",
+        "Output should be a single scalar ratio value",
+        "Ratio format: peak_density_2014 / peak_density_2018",
+        "Result should be dimensionless (units cancel out)",
+        "The ratio should be a single numerical value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Ratio should be reported as a single numeric value",
+          "Consider reporting both peak values alongside the ratio",
+          "Specify which period's peak is numerator vs denominator"
+        ],
+        [
+          "Output should be a single scalar ratio value",
+          "Ratio format: peak_density_2014 / peak_density_2018",
+          "Result should be dimensionless (units cancel out)"
+        ],
+        [
+          "The ratio should be a single numerical value"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6166666666666667
+}

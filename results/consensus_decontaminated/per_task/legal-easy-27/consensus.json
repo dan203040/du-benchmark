@@ -1,0 +1,316 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of distinct states where 'Prizes, Sweepstakes and Lotteries' appears in the top-10 categories",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of distinct states where 'Prizes, Sweepstakes and Lotteries' appears in the top-10 categories",
+        "Count of distinct states that have 'Prizes, Sweepstakes and Lotteries' in their top-10 report categories",
+        "Count of states where 'Prizes, Sweepstakes and Lotteries' is in the top 10 report categories"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2024",
+        "Category = 'Prizes, Sweepstakes and Lotteries'",
+        "Category equals 'Prizes, Sweepstakes and Lotteries'",
+        "Year is 2024",
+        "Category is in top 10 for each state"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Year = 2024",
+          "Category = 'Prizes, Sweepstakes and Lotteries'"
+        ],
+        [
+          "Category equals 'Prizes, Sweepstakes and Lotteries'",
+          "Year is 2024"
+        ],
+        [
+          "Year = 2024",
+          "Category is in top 10 for each state"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "State"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "State"
+        ],
+        [
+          "State"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which states have 'Prizes, Sweepstakes and Lotteries' in their top-10 categories?",
+        "What is the count of such states?",
+        "Which states have 'Prizes, Sweepstakes and Lotteries' as one of their categories?",
+        "How many unique states are represented in the filtered dataset?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which states have 'Prizes, Sweepstakes and Lotteries' in their top-10 categories?",
+          "What is the count of such states?"
+        ],
+        [
+          "Which states have 'Prizes, Sweepstakes and Lotteries' as one of their categories?",
+          "How many unique states are represented in the filtered dataset?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_State_Top_Ten_Report_Categories.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_State_Top_Ten_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_State_Top_Ten_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_State_Top_Ten_Report_Categories.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count",
+        "percentage": "percentage"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage"
+        },
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage (with % symbol)"
+        },
+        {
+          "# of Reports": "number of reports",
+          "Percentage": "percentage"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations",
+        "Percentage column contains string values with '%' symbol rather than numeric decimals or floats"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations"
+        ],
+        [
+          "Percentage column contains string values with '%' symbol rather than numeric decimals or floats"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each state should have exactly 10 rows (top-10 categories)",
+        "Sum of percentages for each state should be 100%",
+        "Category names are consistent across states",
+        "Each state should have exactly 10 category entries (top-10)",
+        "Category name must match exactly: 'Prizes, Sweepstakes and Lotteries'",
+        "Data is already filtered to 2024 based on filename",
+        "The data represents the top 10 categories for each state, so no explicit filtering for top 10 is needed."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Each state should have exactly 10 rows (top-10 categories)",
+          "Sum of percentages for each state should be 100%",
+          "Category names are consistent across states"
+        ],
+        [
+          "Each state should have exactly 10 category entries (top-10)",
+          "Category name must match exactly: 'Prizes, Sweepstakes and Lotteries'",
+          "Data is already filtered to 2024 based on filename"
+        ],
+        [
+          "The data represents the top 10 categories for each state, so no explicit filtering for top 10 is needed."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Category contains 'Prizes, Sweepstakes and Lotteries'",
+        "Filter rows where Category == 'Prizes, Sweepstakes and Lotteries'",
+        "Count unique values in State column after filtering"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Category contains 'Prizes, Sweepstakes and Lotteries'"
+        ],
+        [
+          "Filter rows where Category == 'Prizes, Sweepstakes and Lotteries'",
+          "Count unique values in State column after filtering"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify each state has exactly 10 rows",
+        "Check for duplicate state-category combinations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify each state has exactly 10 rows",
+          "Check for duplicate state-category combinations"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "No decimal places",
+        "Return a single integer representing the count of states",
+        "The answer should be between 0 and 52 (50 states + DC + territories)",
+        "The output should be a single integer representing the number of states."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count",
+          "No decimal places"
+        ],
+        [
+          "Return a single integer representing the count of states",
+          "The answer should be between 0 and 52 (50 states + DC + territories)"
+        ],
+        [
+          "The output should be a single integer representing the number of states."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6033333333333334
+}

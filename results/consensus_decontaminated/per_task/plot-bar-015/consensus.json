@@ -1,0 +1,272 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Total sales amount for each product size, binned into $10,000 increments, sorted by size ('free size' smallest).",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "",
+        "",
+        "Total sales amount for each product size, binned into $10,000 increments, sorted by size ('free size' smallest)."
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Size"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "Size"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "plot",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "",
+        "",
+        "plot"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total sales amount for each size?",
+        "How to handle missing or invalid size values?",
+        "How to bin the sales amount into $10,000 increments?",
+        "How to sort the sizes with 'free size' as the smallest?",
+        "Which file contains the sales data and size information?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "What is the total sales amount for each size?",
+          "How to handle missing or invalid size values?",
+          "How to bin the sales amount into $10,000 increments?",
+          "How to sort the sizes with 'free size' as the smallest?",
+          "Which file contains the sales data and size information?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Amazon Sale Report.csv",
+        "International sale Report.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "Amazon Sale Report.csv",
+          "International sale Report.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "The 'Size' column has different data types and formats across the files.",
+        "The 'Amount' column in 'Amazon Sale Report.csv' and 'GROSS AMT' in 'International sale Report.csv' represent sales amount but might have different currencies or units."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "The 'Size' column has different data types and formats across the files.",
+          "The 'Amount' column in 'Amazon Sale Report.csv' and 'GROSS AMT' in 'International sale Report.csv' represent sales amount but might have different currencies or units."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "amount": "INR/Other Currencies",
+        "qty": "Units"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {},
+        {},
+        {
+          "Amount": "INR/Other Currencies",
+          "Qty": "Units"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "The 'Amount' column might be in different currencies. Currency conversion might be needed."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "The 'Amount' column might be in different currencies. Currency conversion might be needed."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Different date formats in 'Amazon Sale Report.csv' (Date) and 'International sale Report.csv' (DATE)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "Different date formats in 'Amazon Sale Report.csv' (Date) and 'International sale Report.csv' (DATE)."
+        ]
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 24.0,
+      "confidence": 0.33,
+      "votes": [
+        0.0,
+        0.0,
+        24.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "The 'Size' column should be cleaned and standardized to ensure consistent values.",
+        "The 'Amount' column should be converted to a common currency (e.g., USD or INR) before aggregation.",
+        "Handle potential errors or missing values in the 'Size' and 'Amount' columns.",
+        "Define the binning strategy for sales amounts (e.g., lower bound inclusive, upper bound exclusive)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "The 'Size' column should be cleaned and standardized to ensure consistent values.",
+          "The 'Amount' column should be converted to a common currency (e.g., USD or INR) before aggregation.",
+          "Handle potential errors or missing values in the 'Size' and 'Amount' columns.",
+          "Define the binning strategy for sales amounts (e.g., lower bound inclusive, upper bound exclusive)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out cancelled or returned orders based on the 'Status' column in 'Amazon Sale Report.csv'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "Filter out cancelled or returned orders based on the 'Status' column in 'Amazon Sale Report.csv'."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "The bar chart should have clear labels for the axes and title.",
+        "The x-axis should represent the product sizes in ascending order, with 'free size' as the smallest.",
+        "The y-axis should represent the total sales amount in $10,000 increments.",
+        "The chart should be saved as 'result.png'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "The bar chart should have clear labels for the axes and title.",
+          "The x-axis should represent the product sizes in ascending order, with 'free size' as the smallest.",
+          "The y-axis should represent the total sales amount in $10,000 increments.",
+          "The chart should be saved as 'result.png'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.4331666666666667
+}

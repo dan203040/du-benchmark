@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of fires in 2016 controlled with moderate or heavy rain (>0.05 inches) on the control day or the day before, assuming a 1km fire area diameter.",
+    "filters": [
+      "start_year = 2016",
+      "rain_sum > 0.05 on controlled_date or controlled_date - 1 day",
+      "Fire area diameter is assumed to be at least 1km, allowing weather station data within the fire area to be used."
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify fires that started in 2016.",
+      "Determine the control date for each fire.",
+      "For each fire, check if rain_sum > 0.05 on the control date or the day before.",
+      "Calculate the percentage of fires meeting the rain criteria out of all fires in 2016.",
+      "Round the percentage to 2 decimal places."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "rain_sum": "inches",
+      "latitude": "degrees",
+      "longitude": "degrees"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "start_date and controlled_date are in MM/DD/YYYY format and need to be parsed.",
+      "rain_sum represents total precipitation."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "start_year must be an integer.",
+      "control_year must be an integer.",
+      "start_date and controlled_date must be valid dates."
+    ],
+    "derived_filters": [
+      "control_date - 1 day must be a valid date."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer must be a percentage rounded to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of fires in 2016 controlled with moderate or heavy rain (>0.05 inches) on the control day or the day before, assuming a 1km fire area diameter.\",\n    \"filters\": [\n      \"start_year = 2016\",\n      \"rain_sum > 0.05 on controlled_date or controlled_date - 1 day\",\n      \"Fire area diameter is assumed to be at least 1km, allowing weather station data within the fire area to be used.\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify fires that started in 2016.\",\n      \"Determine the control date for each fire.\",\n      \"For each fire, check if rain_sum > 0.05 on the control date or the day before.\",\n      \"Calculate the percentage of fires meeting the rain criteria out of all fires in 2016.\",\n      \"Round the percentage to 2 decimal places.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"noaa_wildfires_variabledescrip.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"rain_sum\": \"inches\",\n      \"latitude\": \"degrees\",\n      \"longitude\": \"degrees\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"start_date and controlled_date are in MM/DD/YYYY format and need to be parsed.\",\n      \"rain_sum represents total precipitation.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"start_year must be an integer.\",\n      \"control_year must be an integer.\",\n      \"start_date and controlled_date must be valid dates.\"\n    ],\n    \"derived_filters\": [\n      \"control_date - 1 day must be a valid date.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final answer must be a percentage rounded to 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.860766887664795,
+  "token_usage": {}
+}

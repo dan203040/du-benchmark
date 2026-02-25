@@ -1,0 +1,292 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum value of 'Commenced operations' column",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum value of 'Commenced operations' column",
+        "The year when the oldest airline started operations",
+        "Earliest year in which an airline commenced operations"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the earliest year in the 'Commenced operations' column?",
+        "Which airline(s) have this earliest commencement year?",
+        "What is the format of the 'Commenced operations' column?",
+        "Which airline has the earliest 'Commenced operations' value?",
+        "What is the minimum year in 'Commenced operations' column?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the earliest year in the 'Commenced operations' column?",
+          "Which airline(s) have this earliest commencement year?"
+        ],
+        [
+          "What is the format of the 'Commenced operations' column?",
+          "Which airline has the earliest 'Commenced operations' value?",
+          "What is the minimum year in 'Commenced operations' column?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "airlines"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "airlines"
+        ],
+        [
+          "airlines"
+        ],
+        [
+          "airlines"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "commenced operations": "year",
+        "fleet size": "number of aircraft"
+      },
+      "confidence": 0.5,
+      "votes": [
+        {
+          "Commenced operations": "year"
+        },
+        {
+          "Commenced operations": "year",
+          "Fleet size": "number of aircraft"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "'Commenced operations' column is stored as object/string type but contains numeric year values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Commenced operations' column is stored as object/string type but contains numeric year values"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "'Commenced operations' values should be valid years (4-digit numbers)",
+        "Years should be positive integers",
+        "Current year should be upper bound for valid years",
+        "Commenced operations must be a valid year",
+        "Commenced operations should be in the past (not future)",
+        "Commenced operations should be reasonable for airline industry (post-1900s)",
+        "'Commenced operations' must be a valid year or convertible to a year."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Commenced operations' values should be valid years (4-digit numbers)",
+          "Years should be positive integers",
+          "Current year should be upper bound for valid years"
+        ],
+        [
+          "Commenced operations must be a valid year",
+          "Commenced operations should be in the past (not future)",
+          "Commenced operations should be reasonable for airline industry (post-1900s)"
+        ],
+        [
+          "'Commenced operations' must be a valid year or convertible to a year."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows where 'Commenced operations' is not a valid year",
+        "Filter out any rows with missing or invalid 'Commenced operations' values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows where 'Commenced operations' is not a valid year"
+        ],
+        [
+          "Filter out any rows with missing or invalid 'Commenced operations' values"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in 'Commenced operations' column",
+        "Validate year format consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in 'Commenced operations' column",
+          "Validate year format consistency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return year as integer",
+        "Consider returning airline name(s) with the oldest commencement year",
+        "Return the year as a single numeric value or date",
+        "Optionally include the airline name that started in that year",
+        "Output must be a year (integer)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return year as integer",
+          "Consider returning airline name(s) with the oldest commencement year"
+        ],
+        [
+          "Return the year as a single numeric value or date",
+          "Optionally include the airline name that started in that year"
+        ],
+        [
+          "Output must be a year (integer)."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5416666666666667
+}

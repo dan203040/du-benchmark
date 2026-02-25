@@ -1,0 +1,359 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Histologic_Grade_FIGO values for tumors where peptide HPKPEVLGSSADGALLVSLDGLR was detected",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Histologic_Grade_FIGO values for tumors where peptide HPKPEVLGSSADGALLVSLDGLR was detected",
+        "Histological grades (FIGO) of tumors for peptide HPKPEVLGSSADGALLVSLDGLR",
+        "Histological grades of tumors for samples where the peptide HPKPEVLGSSADGALLVSLDGLR was found."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Peptide = 'HPKPEVLGSSADGALLVSLDGLR'",
+        "Proteomics_Tumor_Normal = 'Tumor'",
+        "Peptide == 'HPKPEVLGSSADGALLVSLDGLR'",
+        "The peptide is HPKPEVLGSSADGALLVSLDGLR"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Peptide = 'HPKPEVLGSSADGALLVSLDGLR'",
+          "Proteomics_Tumor_Normal = 'Tumor'"
+        ],
+        [
+          "Peptide == 'HPKPEVLGSSADGALLVSLDGLR'"
+        ],
+        [
+          "The peptide is HPKPEVLGSSADGALLVSLDGLR"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Histologic_Grade_FIGO"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Histologic_Grade_FIGO"
+        ],
+        [
+          "Histologic_Grade_FIGO"
+        ],
+        [
+          "Histologic_Grade_FIGO"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which samples contain the peptide HPKPEVLGSSADGALLVSLDGLR?",
+        "What are the histological grades for those tumor samples?",
+        "How many samples of each histological grade contain this peptide?",
+        "What are the Participant IDs for samples containing this peptide?",
+        "What are the histological grades for those participants?"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Which samples contain the peptide HPKPEVLGSSADGALLVSLDGLR?",
+          "What are the histological grades for those tumor samples?",
+          "How many samples of each histological grade contain this peptide?"
+        ],
+        [
+          "Which samples contain the peptide HPKPEVLGSSADGALLVSLDGLR?",
+          "What are the Participant IDs for samples containing this peptide?",
+          "What are the histological grades for those participants?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions",
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions",
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Samples_With_Peptide contains comma-separated values (e.g., 'S028,S034,S040') while idx contains single sample identifiers",
+        "Need to split Samples_With_Peptide into individual sample IDs before joining",
+        "Samples_With_Peptide column contains comma-separated sample IDs that need to be split",
+        "idx column uses 'S' prefix format matching Samples_With_Peptide values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Samples_With_Peptide contains comma-separated values (e.g., 'S028,S034,S040') while idx contains single sample identifiers",
+          "Need to split Samples_With_Peptide into individual sample IDs before joining"
+        ],
+        [
+          "Samples_With_Peptide column contains comma-separated sample IDs that need to be split",
+          "idx column uses 'S' prefix format matching Samples_With_Peptide values"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "massdiff": "Da",
+        "hyperscore": "unitless",
+        "expectation": "E-score",
+        "bmi": "kg/m\u00b2",
+        "age": "years",
+        "tumor_size_cm": "cm",
+        "histologic_grade_figo": "categorical (FIGO grade 1, 2, 3)",
+        "peptide": "amino acid sequence string",
+        "num_samples_with_peptide": "count"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {
+          "MassDiff": "Da",
+          "Hyperscore": "unitless",
+          "Expectation": "E-score",
+          "BMI": "kg/m\u00b2",
+          "Age": "years",
+          "Tumor_Size_cm": "cm"
+        },
+        {
+          "Histologic_Grade_FIGO": "categorical (FIGO grade 1, 2, 3)",
+          "Peptide": "amino acid sequence string",
+          "Num_Samples_With_Peptide": "count"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Histologic_Grade_FIGO contains categorical values like 'FIGO grade 1' rather than numerical grades",
+        "Some percentage columns (Estrogen_Receptor_%, Progesterone_Receptor_%) have float values but represent percentages"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Histologic_Grade_FIGO contains categorical values like 'FIGO grade 1' rather than numerical grades",
+          "Some percentage columns (Estrogen_Receptor_%, Progesterone_Receptor_%) have float values but represent percentages"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Sample identifiers in mmc4 (S028, S034, S040) need to be mapped to idx values in mmc1 (S001, S002, etc.)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sample identifiers in mmc4 (S028, S034, S040) need to be mapped to idx values in mmc1 (S001, S002, etc.)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "Cannot be determined",
+        "Staging Incomplete",
+        "Normal",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.611111111111111,
+      "votes": [
+        [
+          "",
+          "Cannot be determined",
+          "Staging Incomplete",
+          "Normal"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 13.0,
+      "confidence": 0.33,
+      "votes": [
+        179.0,
+        13.0,
+        13.0
+      ]
+    },
+    "file_format": {
+      "value": "Excel",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Excel",
+        "xlsx",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Peptide sequences must match exactly 'HPKPEVLGSSADGALLVSLDGLR'",
+        "Only tumor samples should be considered (Proteomics_Tumor_Normal = 'Tumor')",
+        "Histologic_Grade_FIGO should not be null for relevant samples",
+        "Peptide must exactly match 'HPKPEVLGSSADGALLVSLDGLR'",
+        "Only tumor samples should be considered (Proteomics_Tumor_Normal == 'Tumor')",
+        "Exclude cases where Case_excluded == 'Yes'",
+        "Samples_With_Peptide in 1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions contains comma separated values, so it needs to be split into individual sample IDs before joining."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Peptide sequences must match exactly 'HPKPEVLGSSADGALLVSLDGLR'",
+          "Only tumor samples should be considered (Proteomics_Tumor_Normal = 'Tumor')",
+          "Histologic_Grade_FIGO should not be null for relevant samples"
+        ],
+        [
+          "Peptide must exactly match 'HPKPEVLGSSADGALLVSLDGLR'",
+          "Only tumor samples should be considered (Proteomics_Tumor_Normal == 'Tumor')",
+          "Exclude cases where Case_excluded == 'Yes'"
+        ],
+        [
+          "Samples_With_Peptide in 1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions contains comma separated values, so it needs to be split into individual sample IDs before joining."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Split Samples_With_Peptide into individual sample IDs",
+        "Filter mmc1 to only include rows where idx matches one of the peptide-containing samples",
+        "Parse Samples_With_Peptide to extract individual sample IDs",
+        "Filter clinical data to samples found in Samples_With_Peptide",
+        "Extract non-null Histologic_Grade_FIGO values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Split Samples_With_Peptide into individual sample IDs",
+          "Filter mmc1 to only include rows where idx matches one of the peptide-containing samples"
+        ],
+        [
+          "Parse Samples_With_Peptide to extract individual sample IDs",
+          "Filter clinical data to samples found in Samples_With_Peptide",
+          "Extract non-null Histologic_Grade_FIGO values"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Frequency distribution of Histologic_Grade_FIGO values among peptide-positive samples",
+        "Comparison of grade distribution between peptide-positive and peptide-negative tumors"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Frequency distribution of Histologic_Grade_FIGO values among peptide-positive samples",
+          "Comparison of grade distribution between peptide-positive and peptide-negative tumors"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of distinct Histologic_Grade_FIGO values",
+        "Count of samples for each grade containing the peptide",
+        "Sample IDs for each grade category",
+        "Return list of unique histological grades",
+        "Include sample count per grade",
+        "Show actual sample IDs for traceability"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of distinct Histologic_Grade_FIGO values",
+          "Count of samples for each grade containing the peptide",
+          "Sample IDs for each grade category"
+        ],
+        [
+          "Return list of unique histological grades",
+          "Include sample count per grade",
+          "Show actual sample IDs for traceability"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5503888888888889
+}

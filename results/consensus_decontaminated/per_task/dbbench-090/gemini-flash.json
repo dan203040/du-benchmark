@@ -1,0 +1,55 @@
+{
+  "m_q": {
+    "target_metric": "maximum capacity of venues used by Iran Pro League teams in the 2008-2009 season",
+    "filters": [
+      "season is 2008-2009",
+      "venue is used by a team in the Iran Pro League"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "football_teams"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Capacity": "number of spectators"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Capacity column needs to be converted to numeric type by removing commas."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be the name of the venue with the largest capacity and its capacity."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"maximum capacity of venues used by Iran Pro League teams in the 2008-2009 season\",\n    \"filters\": [\"season is 2008-2009\", \"venue is used by a team in the Iran Pro League\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"football_teams\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"Capacity\": \"number of spectators\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"Capacity column needs to be converted to numeric type by removing commas.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The output should be the name of the venue with the largest capacity and its capacity.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.4034762382507324,
+  "token_usage": {}
+}

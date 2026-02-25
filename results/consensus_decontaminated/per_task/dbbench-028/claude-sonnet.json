@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "total number of participants",
+    "filters": [
+      "Nationality in ['Norway', 'France']"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many participants are from Norway?",
+      "How many participants are from France?",
+      "What is the sum of participants from Norway and France?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Biathlon Results Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Time": "MM:SS.s",
+      "Deficit": "MM:SS.s or +SS.s",
+      "Start": "MM:SS"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rank column contains empty strings for some rows",
+      "Bib column is Int64 type with nullable integers",
+      "Time and Deficit columns are formatted strings, not numeric",
+      "Penalties column contains formatted string like '1 (0+0+0+1)'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Count only rows where Nationality equals 'Norway' or 'France'",
+      "Each row represents one participant",
+      "Exclude any rows with null or missing Name or Nationality values"
+    ],
+    "derived_filters": [
+      "Nationality == 'Norway'",
+      "Nationality == 'France'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer representing the total count",
+      "Sum the counts from both countries"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total number of participants\",\n    \"filters\": [\"Nationality in ['Norway', 'France']\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many participants are from Norway?\",\n      \"How many participants are from France?\",\n      \"What is the sum of participants from Norway and France?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Biathlon Results Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Time\": \"MM:SS.s\",\n      \"Deficit\": \"MM:SS.s or +SS.s\",\n      \"Start\": \"MM:SS\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Rank column contains empty strings for some rows\",\n      \"Bib column is Int64 type with nullable integers\",\n      \"Time and Deficit columns are formatted strings, not numeric\",\n      \"Penalties column contains formatted string like '1 (0+0+0+1)'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Count only rows where Nationality equals 'Norway' or 'France'\",\n      \"Each row represents one participant\",\n      \"Exclude any rows with null or missing Name or Nationality values\"\n    ],\n    \"derived_filters\": [\n      \"Nationality == 'Norway'\",\n      \"Nationality == 'France'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer representing the total count\",\n      \"Sum the counts from both countries\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.453073024749756,
+  "token_usage": {
+    "input_tokens": 1522,
+    "output_tokens": 536
+  }
+}

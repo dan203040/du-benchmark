@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "Identify the top fighters in each weight class and count how many remain undefeated, writing the results to undefeated.csv",
+    "filters": [],
+    "grouping_variables": [
+      "weight_in_kg"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Determine weight classes based on weight_in_kg.",
+      "Identify top fighters within each weight class based on wins.",
+      "Filter for fighters with losses = 0 and draws = 0 to identify undefeated fighters.",
+      "Count the number of undefeated fighters in each weight class.",
+      "Format the output according to the undefeated.csv schema."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "ufc-fighters-statistics.csv",
+      "undefeated.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "height_cm": "centimeters",
+      "weight_in_kg": "kilograms",
+      "reach_in_cm": "centimeters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 18,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The weight classes need to be derived from the weight_in_kg column.",
+      "The undefeated.csv file is initially empty and needs to be populated."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Weight classes are not explicitly defined and need to be inferred.",
+      "Top fighter definition is based on wins; other metrics could be considered.",
+      "The undefeated.csv file must be written to with 'level' representing the weight class and 'fighter_num' representing the number of undefeated fighters in that weight class."
+    ],
+    "derived_filters": [
+      "losses = 0",
+      "draws = 0"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output must be written to undefeated.csv with columns 'level' and 'fighter_num'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Identify the top fighters in each weight class and count how many remain undefeated, writing the results to undefeated.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [\"weight_in_kg\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Determine weight classes based on weight_in_kg.\",\n      \"Identify top fighters within each weight class based on wins.\",\n      \"Filter for fighters with losses = 0 and draws = 0 to identify undefeated fighters.\",\n      \"Count the number of undefeated fighters in each weight class.\",\n      \"Format the output according to the undefeated.csv schema.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"ufc-fighters-statistics.csv\", \"undefeated.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"height_cm\": \"centimeters\",\n      \"weight_in_kg\": \"kilograms\",\n      \"reach_in_cm\": \"centimeters\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 18,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The weight classes need to be derived from the weight_in_kg column.\",\n      \"The undefeated.csv file is initially empty and needs to be populated.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Weight classes are not explicitly defined and need to be inferred.\",\n      \"Top fighter definition is based on wins; other metrics could be considered.\",\n      \"The undefeated.csv file must be written to with 'level' representing the weight class and 'fighter_num' representing the number of undefeated fighters in that weight class.\"\n    ],\n    \"derived_filters\": [\n      \"losses = 0\",\n      \"draws = 0\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output must be written to undefeated.csv with columns 'level' and 'fighter_num'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 24.397462844848633,
+  "token_usage": {}
+}

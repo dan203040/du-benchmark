@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "Maximum value of Total Helicopter Requests among NICC-defined geographic areas",
+    "filters": [
+      "Exclude 'National Interagency Coordination Center' (administrative entity)",
+      "Exclude 'Other' (non-geographic category)",
+      "Exclude 'Canada' (non-US area)"
+    ],
+    "grouping_variables": [
+      "Region"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which specific region had the highest request count?",
+      "What was the numerical value of the maximum requests?",
+      "How many regions are considered in the analysis after filtering?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "cleaned_helicopter_requests_by_region.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Helicopter Requests": "count of helicopter requests"
+    },
+    "scale_issues": [
+      "Data appears aggregated at regional level, no temporal granularity"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data already cleaned based on filename",
+      "Sample shows 13 rows matching shape [13,2]",
+      "First column is Region name, second is integer count"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total Helicopter Requests must be non-negative integers",
+      "Region names should be unique",
+      "After filtering non-geographic areas, exactly 10 regions should remain"
+    ],
+    "derived_filters": [
+      "Region != 'National Interagency Coordination Center'",
+      "Region != 'Other'",
+      "Region != 'Canada'"
+    ],
+    "statistical_tests": [
+      "Verify exactly 10 regions remain after filtering",
+      "Check for duplicate region names",
+      "Validate integer data type for Total Helicopter Requests"
+    ],
+    "output_format_requirements": [
+      "Output should specify region name and request count",
+      "Clarify that analysis excludes non-geographic entries"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Maximum value of Total Helicopter Requests among NICC-defined geographic areas\",\n        \"filters\": [\"Exclude 'National Interagency Coordination Center' (administrative entity)\", \"Exclude 'Other' (non-geographic category)\", \"Exclude 'Canada' (non-US area)\"],\n        \"grouping_variables\": [\"Region\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which specific region had the highest request count?\", \"What was the numerical value of the maximum requests?\", \"How many regions are considered in the analysis after filtering?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"cleaned_helicopter_requests_by_region.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Total Helicopter Requests\": \"count of helicopter requests\"},\n        \"scale_issues\": [\"Data appears aggregated at regional level, no temporal granularity\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data already cleaned based on filename\", \"Sample shows 13 rows matching shape [13,2]\", \"First column is Region name, second is integer count\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total Helicopter Requests must be non-negative integers\", \"Region names should be unique\", \"After filtering non-geographic areas, exactly 10 regions should remain\"],\n        \"derived_filters\": [\"Region != 'National Interagency Coordination Center'\", \"Region != 'Other'\", \"Region != 'Canada'\"],\n        \"statistical_tests\": [\"Verify exactly 10 regions remain after filtering\", \"Check for duplicate region names\", \"Validate integer data type for Total Helicopter Requests\"],\n        \"output_format_requirements\": [\"Output should specify region name and request count\", \"Clarify that analysis excludes non-geographic entries\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.239637851715088,
+  "token_usage": {
+    "input_tokens": 643,
+    "output_tokens": 486
+  }
+}

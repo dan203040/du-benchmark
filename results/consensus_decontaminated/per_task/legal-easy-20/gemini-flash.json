@@ -1,0 +1,60 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of fraud reports out of total reports in 2024, expressed as an integer",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the number of fraud reports in 2024?",
+      "What is the total number of reports (Fraud + Identity Theft + Other) in 2024?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Fraud": "number of reports",
+      "Identity Theft": "number of reports",
+      "Other": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be an integer",
+      "Fraud, Identity Theft, and Other must be non-negative integers"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer must be an integer representing the percentage."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of fraud reports out of total reports in 2024, expressed as an integer\",\n    \"filters\": [\"Year = 2024\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the number of fraud reports in 2024?\",\n      \"What is the total number of reports (Fraud + Identity Theft + Other) in 2024?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Fraud\": \"number of reports\",\n      \"Identity Theft\": \"number of reports\",\n      \"Other\": \"number of reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"Year must be an integer\", \"Fraud, Identity Theft, and Other must be non-negative integers\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The final answer must be an integer representing the percentage.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 13.670418977737427,
+  "token_usage": {}
+}

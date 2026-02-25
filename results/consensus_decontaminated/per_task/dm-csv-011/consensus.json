@@ -1,0 +1,387 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total quantity sold and total sales revenue for each bike category from 2016 to 2018, accounting for discounts",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total quantity sold and total sales revenue for each bike category from 2016 to 2018, accounting for discounts",
+        "Total quantity sold and total sales revenue (after discounts) for each bike category",
+        "Total quantity sold and total sales revenue"
+      ]
+    },
+    "filters": {
+      "value": [
+        "order_date between 2016-01-01 and 2018-12-31",
+        "order_status = 4 (completed orders based on sample data)",
+        "Years from 2016 to 2018"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "order_date between 2016-01-01 and 2018-12-31",
+          "order_status = 4 (completed orders based on sample data)"
+        ],
+        [
+          "order_date between 2016-01-01 and 2018-12-31"
+        ],
+        [
+          "Years from 2016 to 2018"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "category_name"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "category_name"
+        ],
+        [
+          "category_name"
+        ],
+        [
+          "category_name"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total quantity sold per category?",
+        "What is the total revenue (list_price * quantity * (1 - discount)) per category?",
+        "How should we handle orders with multiple items across different categories?",
+        "Do we need to filter by model_year or order_date for the 2016-2018 timeframe?",
+        "What is the total quantity of items sold for each bike category?",
+        "What is the total sales revenue after applying discounts for each bike category?",
+        "How to calculate revenue with discount: quantity * list_price * (1 - discount)",
+        "Which orders fall within the 2016-2018 date range?",
+        "How to map products to their categories?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the total quantity sold per category?",
+          "What is the total revenue (list_price * quantity * (1 - discount)) per category?",
+          "How should we handle orders with multiple items across different categories?",
+          "Do we need to filter by model_year or order_date for the 2016-2018 timeframe?"
+        ],
+        [
+          "What is the total quantity of items sold for each bike category?",
+          "What is the total sales revenue after applying discounts for each bike category?",
+          "How to calculate revenue with discount: quantity * list_price * (1 - discount)",
+          "Which orders fall within the 2016-2018 date range?",
+          "How to map products to their categories?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "order_items.csv",
+        "orders.csv",
+        "products.csv",
+        "categories.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "order_items.csv",
+          "orders.csv",
+          "products.csv",
+          "categories.csv"
+        ],
+        [
+          "orders.csv",
+          "order_items.csv",
+          "products.csv",
+          "categories.csv"
+        ],
+        [
+          "orders.csv",
+          "order_items.csv",
+          "products.csv",
+          "categories.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "order_date in orders.csv is object type but should be datetime for filtering",
+        "sample_result.csv has empty values but expects float64 for total_quantity and total_price"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "order_date in orders.csv is object type but should be datetime for filtering",
+          "sample_result.csv has empty values but expects float64 for total_quantity and total_price"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "list_price": "USD",
+        "discount": "decimal (0-1)",
+        "quantity": "count",
+        "total_price": "USD",
+        "total_quantity": "count"
+      },
+      "confidence": 0.9333333333333333,
+      "votes": [
+        {
+          "list_price": "USD",
+          "discount": "decimal (0-1)",
+          "quantity": "count",
+          "total_price": "USD",
+          "total_quantity": "count"
+        },
+        {
+          "quantity": "count",
+          "list_price": "USD",
+          "discount": "decimal (0-1 representing percentage)",
+          "total_price": "USD",
+          "total_quantity": "count"
+        },
+        {
+          "quantity": "number of items",
+          "list_price": "USD",
+          "discount": "percentage",
+          "total_price": "USD"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "discount values range from 0.0 to 0.2 in sample data - need to verify full range",
+        "list_price has varying precision (e.g., 599.99 vs 1549.0)",
+        "discount is in decimal format (0.2 = 20% discount), not percentage",
+        "revenue calculation must apply discount: quantity * list_price * (1 - discount)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "discount values range from 0.0 to 0.2 in sample data - need to verify full range",
+          "list_price has varying precision (e.g., 599.99 vs 1549.0)"
+        ],
+        [
+          "discount is in decimal format (0.2 = 20% discount), not percentage",
+          "revenue calculation must apply discount: quantity * list_price * (1 - discount)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "products.csv has model_year column but orders.csv has order_date - which determines timeframe?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "products.csv has model_year column but orders.csv has order_date - which determines timeframe?"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 0.33,
+      "votes": [
+        3.0,
+        3.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "discount >= 0 and discount <= 1",
+        "quantity > 0",
+        "list_price > 0",
+        "order_date must be valid dates between 2016-2018",
+        "category_name must match categories.csv",
+        "Only include orders with order_date >= 2016-01-01 and order_date <= 2018-12-31",
+        "Revenue must account for discounts: quantity * list_price * (1 - discount)",
+        "All 7 bike categories from categories.csv must appear in output"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "discount >= 0 and discount <= 1",
+          "quantity > 0",
+          "list_price > 0",
+          "order_date must be valid dates between 2016-2018",
+          "category_name must match categories.csv"
+        ],
+        [
+          "Only include orders with order_date >= 2016-01-01 and order_date <= 2018-12-31",
+          "Revenue must account for discounts: quantity * list_price * (1 - discount)",
+          "All 7 bike categories from categories.csv must appear in output"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "EXTRACT(YEAR FROM order_date) BETWEEN 2016 AND 2018",
+        "order_status = 4 (assuming 4 means completed)",
+        "Extract year from order_date and filter for years 2016, 2017, 2018",
+        "order_date between 2016-01-01 and 2018-12-31"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "EXTRACT(YEAR FROM order_date) BETWEEN 2016 AND 2018",
+          "order_status = 4 (assuming 4 means completed)"
+        ],
+        [
+          "Extract year from order_date and filter for years 2016, 2017, 2018"
+        ],
+        [
+          "order_date between 2016-01-01 and 2018-12-31"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for negative revenue values",
+        "Verify discount distribution",
+        "Validate date range coverage"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for negative revenue values",
+          "Verify discount distribution",
+          "Validate date range coverage"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Columns: total_quantity, total_price, category_name",
+        "Sorted by category_name matching sample_result.csv order",
+        "Numeric columns as float64",
+        "No index column",
+        "CSV format with header",
+        "Output file must be named result.csv",
+        "Column order: total_quantity, total_price, category_name",
+        "Format must match sample_result.csv structure exactly",
+        "Include all 7 categories even if they have zero sales",
+        "Numeric values should be calculated (not empty as in sample)",
+        "CSV format with header row",
+        "Output to result.csv",
+        "Match sample_result.csv structure and formatting"
+      ],
+      "confidence": 0.3589743589743589,
+      "votes": [
+        [
+          "Columns: total_quantity, total_price, category_name",
+          "Sorted by category_name matching sample_result.csv order",
+          "Numeric columns as float64",
+          "No index column",
+          "CSV format with header"
+        ],
+        [
+          "Output file must be named result.csv",
+          "Column order: total_quantity, total_price, category_name",
+          "Format must match sample_result.csv structure exactly",
+          "Include all 7 categories even if they have zero sales",
+          "Numeric values should be calculated (not empty as in sample)",
+          "CSV format with header row"
+        ],
+        [
+          "Output to result.csv",
+          "Columns: total_quantity, total_price, category_name",
+          "Match sample_result.csv structure and formatting"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6311153846153847
+}

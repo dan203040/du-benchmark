@@ -1,0 +1,119 @@
+{
+  "m_q": {
+    "target_metric": "average elevation (in feet) of weather stations used for fire site monitoring",
+    "filters": [
+      "stations used for fire site monitoring",
+      "stations in NOAA dataset"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which stations are used for fire site monitoring?",
+      "How to identify elevation data in the station dataset?",
+      "How to map weather stations to fire incidents?",
+      "What is the unit of elevation measurement?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv",
+      "PublicView_RAWS_-3515561676727363726.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "PublicView_RAWS_-3515561676727363726.csv",
+        "left_column": "station_verified_in_psa",
+        "right_column": "16968251",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column names in PublicView_RAWS file are ambiguous (e.g., '39.47109', '-120.08698', '12.61 inches')",
+      "No clear elevation column in any dataset",
+      "Station ID column naming mismatch: 'station_verified_in_psa' vs numeric column names like '16968251'"
+    ],
+    "column_mappings": {
+      "39.47109": "latitude",
+      "-120.08698": "longitude",
+      "39.47109.1": "latitude_alt",
+      "-120.08698.1": "longitude_alt",
+      "16968251": "station_id"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs/square foot",
+      "rain_sum": "inches",
+      "latitude": "degrees",
+      "longitude": "degrees",
+      "12.61 inches": "precipitation",
+      "4 mph": "wind speed",
+      "35 degrees": "wind direction",
+      "56 deg. F": "temperature",
+      "73 deg. F": "temperature",
+      "17 %": "relative humidity"
+    },
+    "scale_issues": [
+      "Elevation data not clearly identified in any dataset",
+      "Potential unit mismatch if elevation found (feet vs meters)",
+      "Station IDs appear as numeric column names in PublicView_RAWS file"
+    ],
+    "cross_source_conflicts": [
+      "No direct elevation column in any provided dataset",
+      "Station identification unclear between datasets",
+      "PublicView_RAWS column names are values rather than descriptive names"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NO DATA",
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "PublicView_RAWS file has problematic column names that appear to be coordinate values",
+      "Some columns contain units in their names (e.g., '12.61 inches')",
+      "Quotation issues in column names (e.g., 'SOUTHWEST ASPECT\"')",
+      "Mixed data types in PublicView_RAWS file"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Elevation data must be identified or derived",
+      "Only stations used for fire monitoring should be included",
+      "Average should be computed in feet",
+      "Station-to-fire mapping must be established"
+    ],
+    "derived_filters": [
+      "Filter to stations with valid elevation data",
+      "Filter to stations referenced in wildfire incidents"
+    ],
+    "statistical_tests": [
+      "Check for missing elevation values",
+      "Validate elevation unit consistency",
+      "Test station-fire join completeness"
+    ],
+    "output_format_requirements": [
+      "Numeric average with units specified",
+      "Precision appropriate for elevation measurement"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average elevation (in feet) of weather stations used for fire site monitoring\",\n        \"filters\": [\"stations used for fire site monitoring\", \"stations in NOAA dataset\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which stations are used for fire site monitoring?\", \"How to identify elevation data in the station dataset?\", \"How to map weather stations to fire incidents?\", \"What is the unit of elevation measurement?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\", \"PublicView_RAWS_-3515561676727363726.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"noaa_wildfires.csv\",\n                \"right_source\": \"PublicView_RAWS_-3515561676727363726.csv\",\n                \"left_column\": \"station_verified_in_psa\",\n                \"right_column\": \"16968251\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"Column names in PublicView_RAWS file are ambiguous (e.g., '39.47109', '-120.08698', '12.61 inches')\", \"No clear elevation column in any dataset\", \"Station ID column naming mismatch: 'station_verified_in_psa' vs numeric column names like '16968251'\"],\n        \"column_mappings\": {\n            \"39.47109\": \"latitude\",\n            \"-120.08698\": \"longitude\",\n            \"39.47109.1\": \"latitude_alt\",\n            \"-120.08698.1\": \"longitude_alt\",\n            \"16968251\": \"station_id\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"avrh_mean\": \"percentage\",\n            \"wind_med\": \"miles per hour\",\n            \"erc_med\": \"BTUs/square foot\",\n            \"rain_sum\": \"inches\",\n            \"latitude\": \"degrees\",\n            \"longitude\": \"degrees\",\n            \"12.61 inches\": \"precipitation\",\n            \"4 mph\": \"wind speed\",\n            \"35 degrees\": \"wind direction\",\n            \"56 deg. F\": \"temperature\",\n            \"73 deg. F\": \"temperature\",\n            \"17 %\": \"relative humidity\"\n        },\n        \"scale_issues\": [\"Elevation data not clearly identified in any dataset\", \"Potential unit mismatch if elevation found (feet vs meters)\", \"Station IDs appear as numeric column names in PublicView_RAWS file\"],\n        \"cross_source_conflicts\": [\"No direct elevation column in any provided dataset\", \"Station identification unclear between datasets\", \"PublicView_RAWS column names are values rather than descriptive names\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NO DATA\", \"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"PublicView_RAWS file has problematic column names that appear to be coordinate values\", \"Some columns contain units in their names (e.g., '12.61 inches')\", \"Quotation issues in column names (e.g., 'SOUTHWEST ASPECT\\\"')\", \"Mixed data types in PublicView_RAWS file\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Elevation data must be identified or derived\", \"Only stations used for fire monitoring should be included\", \"Average should be computed in feet\", \"Station-to-fire mapping must be established\"],\n        \"derived_filters\": [\"Filter to stations with valid elevation data\", \"Filter to stations referenced in wildfire incidents\"],\n        \"statistical_tests\": [\"Check for missing elevation values\", \"Validate elevation unit consistency\", \"Test station-fire join completeness\"],\n        \"output_format_requirements\": [\"Numeric average with units specified\", \"Precision appropriate for elevation measurement\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.410154104232788,
+  "token_usage": {
+    "input_tokens": 6575,
+    "output_tokens": 880
+  }
+}

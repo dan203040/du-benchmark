@@ -1,0 +1,92 @@
+{
+  "m_q": {
+    "target_metric": "Compare daily mean temperature for July versus daily mean temperature for the year",
+    "filters": [
+      "Month = 'Daily mean \u00b0C (\u00b0F)'",
+      "Extract July and Year columns"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the daily mean temperature for July?",
+      "What is the daily mean temperature for the year?",
+      "Is July's daily mean higher or lower than the yearly daily mean?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Climate Data"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple temperature metrics (Average high, Daily mean, Average low) in same Month column",
+      "Data appears to contain multiple locations/climates in same table without location identifier"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "\u00b0C (\u00b0F)",
+      "Feb": "\u00b0C (\u00b0F)",
+      "Mar": "\u00b0C (\u00b0F)",
+      "Apr": "\u00b0C (\u00b0F)",
+      "May": "\u00b0C (\u00b0F)",
+      "Jun": "\u00b0C (\u00b0F)",
+      "Jul": "\u00b0C (\u00b0F)",
+      "Aug": "\u00b0C (\u00b0F)",
+      "Sep": "\u00b0C (\u00b0F)",
+      "Oct": "\u00b0C (\u00b0F)",
+      "Nov": "\u00b0C (\u00b0F)",
+      "Dec": "\u00b0C (\u00b0F)",
+      "Year": "Int64 (likely annual average)"
+    },
+    "scale_issues": [
+      "Temperature values contain newline characters and parentheses (e.g., '8\\n(46)')",
+      "Year column appears to be integer type while monthly columns are object/string type"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data contains embedded newlines in temperature values",
+      "Multiple climate datasets appear concatenated without separator",
+      "Year column has missing values in some rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must extract numeric temperature values from strings like '8\\n(46)'",
+      "Must filter to only 'Daily mean \u00b0C (\u00b0F)' rows",
+      "Must handle multiple datasets in same file"
+    ],
+    "derived_filters": [
+      "Filter Month column to exactly 'Daily mean \u00b0C (\u00b0F)'",
+      "Extract numeric portion before newline for July and Year columns"
+    ],
+    "statistical_tests": [
+      "Compare mean of July daily mean temperatures across datasets to mean of Year daily mean temperatures"
+    ],
+    "output_format_requirements": [
+      "Boolean answer: higher or lower",
+      "Supporting numeric values for comparison"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Compare daily mean temperature for July versus daily mean temperature for the year\",\n        \"filters\": [\"Month = 'Daily mean \u00b0C (\u00b0F)'\", \"Extract July and Year columns\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the daily mean temperature for July?\", \"What is the daily mean temperature for the year?\", \"Is July's daily mean higher or lower than the yearly daily mean?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Climate Data\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Multiple temperature metrics (Average high, Daily mean, Average low) in same Month column\", \"Data appears to contain multiple locations/climates in same table without location identifier\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Jan\": \"\u00b0C (\u00b0F)\",\n            \"Feb\": \"\u00b0C (\u00b0F)\",\n            \"Mar\": \"\u00b0C (\u00b0F)\",\n            \"Apr\": \"\u00b0C (\u00b0F)\",\n            \"May\": \"\u00b0C (\u00b0F)\",\n            \"Jun\": \"\u00b0C (\u00b0F)\",\n            \"Jul\": \"\u00b0C (\u00b0F)\",\n            \"Aug\": \"\u00b0C (\u00b0F)\",\n            \"Sep\": \"\u00b0C (\u00b0F)\",\n            \"Oct\": \"\u00b0C (\u00b0F)\",\n            \"Nov\": \"\u00b0C (\u00b0F)\",\n            \"Dec\": \"\u00b0C (\u00b0F)\",\n            \"Year\": \"Int64 (likely annual average)\"\n        },\n        \"scale_issues\": [\"Temperature values contain newline characters and parentheses (e.g., '8\\\\n(46)')\", \"Year column appears to be integer type while monthly columns are object/string type\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 14,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data contains embedded newlines in temperature values\", \"Multiple climate datasets appear concatenated without separator\", \"Year column has missing values in some rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Must extract numeric temperature values from strings like '8\\\\n(46)'\", \"Must filter to only 'Daily mean \u00b0C (\u00b0F)' rows\", \"Must handle multiple datasets in same file\"],\n        \"derived_filters\": [\"Filter Month column to exactly 'Daily mean \u00b0C (\u00b0F)'\", \"Extract numeric portion before newline for July and Year columns\"],\n        \"statistical_tests\": [\"Compare mean of July daily mean temperatures across datasets to mean of Year daily mean temperatures\"],\n        \"output_format_requirements\": [\"Boolean answer: higher or lower\", \"Supporting numeric values for comparison\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.557934761047363,
+  "token_usage": {
+    "input_tokens": 1742,
+    "output_tokens": 635
+  }
+}

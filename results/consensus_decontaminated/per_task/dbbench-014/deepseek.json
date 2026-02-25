@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Determine which team won the hockey game on December 9, 1993 between Dallas and Ottawa",
+    "filters": [
+      "Date = 'December 9, 1993'",
+      "Winning Team IN ('Dallas', 'Ottawa')",
+      "Losing Team IN ('Dallas', 'Ottawa')"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What was the final score of the December 9, 1993 game?",
+      "Which team is listed as the winning team for that date?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Hockey_Game_Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Winning Team Score": "points",
+      "Losing Team Score": "points",
+      "Attendance": "people"
+    },
+    "scale_issues": [
+      "Attendance column contains commas and asterisks in values (e.g., '7,144', '17,008*')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date format: 'Month Day, Year'",
+      "Attendance values contain special characters (commas, asterisks)",
+      "OT column contains empty strings and '(OT)' values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "For each row, Winning Team Score > Losing Team Score",
+      "Winning Team and Losing Team should be different teams",
+      "Date values should be valid dates"
+    ],
+    "derived_filters": [
+      "Filter to rows where Date contains 'December 9, 1993'",
+      "Filter to rows where either Winning Team or Losing Team is 'Dallas' or 'Ottawa'"
+    ],
+    "statistical_tests": [
+      "Check that only one row matches the date filter"
+    ],
+    "output_format_requirements": [
+      "Return team name as string"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Determine which team won the hockey game on December 9, 1993 between Dallas and Ottawa\",\n        \"filters\": [\"Date = 'December 9, 1993'\", \"Winning Team IN ('Dallas', 'Ottawa')\", \"Losing Team IN ('Dallas', 'Ottawa')\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What was the final score of the December 9, 1993 game?\", \"Which team is listed as the winning team for that date?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Hockey_Game_Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Winning Team Score\": \"points\",\n            \"Losing Team Score\": \"points\",\n            \"Attendance\": \"people\"\n        },\n        \"scale_issues\": [\"Attendance column contains commas and asterisks in values (e.g., '7,144', '17,008*')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date format: 'Month Day, Year'\", \"Attendance values contain special characters (commas, asterisks)\", \"OT column contains empty strings and '(OT)' values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"For each row, Winning Team Score > Losing Team Score\", \"Winning Team and Losing Team should be different teams\", \"Date values should be valid dates\"],\n        \"derived_filters\": [\"Filter to rows where Date contains 'December 9, 1993'\", \"Filter to rows where either Winning Team or Losing Team is 'Dallas' or 'Ottawa'\"],\n        \"statistical_tests\": [\"Check that only one row matches the date filter\"],\n        \"output_format_requirements\": [\"Return team name as string\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.02304482460022,
+  "token_usage": {
+    "input_tokens": 1337,
+    "output_tokens": 504
+  }
+}

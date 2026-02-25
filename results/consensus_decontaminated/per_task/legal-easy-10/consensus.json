@@ -1,0 +1,338 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Years where Fraud reports count is at least 50% of total reports (Fraud + Identity Theft + Other)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Years where Fraud reports count is at least 50% of total reports (Fraud + Identity Theft + Other)",
+        "Years where Fraud reports are at least 50% of total reports",
+        "Years where the number of Fraud reports is at least 50% of the total number of reports (Fraud + Identity Theft + Other)"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Fraud >= 0.5 * (Fraud + Identity Theft + Other)",
+        "Fraud / (Fraud + Identity Theft + Other) >= 0.5"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Fraud >= 0.5 * (Fraud + Identity Theft + Other)"
+        ],
+        [
+          "Fraud / (Fraud + Identity Theft + Other) >= 0.5"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate total reports per year",
+        "Calculate Fraud percentage of total reports per year",
+        "Filter years where Fraud percentage >= 50%",
+        "What is the total number of reports for each year?",
+        "What is the proportion of Fraud reports to total reports for each year?",
+        "Which years meet the threshold of Fraud being at least 50% of total?",
+        "Calculate the total number of reports for each year (Fraud + Identity Theft + Other).",
+        "Calculate the percentage of Fraud reports for each year (Fraud / Total Reports).",
+        "Filter the years where the percentage of Fraud reports is greater than or equal to 50%."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate total reports per year",
+          "Calculate Fraud percentage of total reports per year",
+          "Filter years where Fraud percentage >= 50%"
+        ],
+        [
+          "What is the total number of reports for each year?",
+          "What is the proportion of Fraud reports to total reports for each year?",
+          "Which years meet the threshold of Fraud being at least 50% of total?"
+        ],
+        [
+          "Calculate the total number of reports for each year (Fraud + Identity Theft + Other).",
+          "Calculate the percentage of Fraud reports for each year (Fraud / Total Reports).",
+          "Filter the years where the percentage of Fraud reports is greater than or equal to 50%."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Number_of_Reports_by_Type.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "fraud": "count of reports",
+        "identity theft": "count of reports",
+        "other": "count of reports"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Year": "calendar year",
+          "Fraud": "count of reports",
+          "Identity Theft": "count of reports",
+          "Other": "count of reports"
+        },
+        {
+          "Year": "calendar year",
+          "Fraud": "count of reports",
+          "Identity Theft": "count of reports",
+          "Other": "count of reports"
+        },
+        {
+          "Year": "year",
+          "Fraud": "number of reports",
+          "Identity Theft": "number of reports",
+          "Other": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "All count columns appear to be integers, no scaling issues evident"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All count columns appear to be integers, no scaling issues evident"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be sequential from 2001-2024 based on shape [24,4]",
+        "All count columns should be non-negative integers",
+        "Total reports = Fraud + Identity Theft + Other should be positive",
+        "Fraud >= 0",
+        "Identity Theft >= 0",
+        "Other >= 0",
+        "Total reports (Fraud + Identity Theft + Other) > 0 to avoid division by zero",
+        "Year must be a valid year.",
+        "Fraud, Identity Theft, and Other must be non-negative integers."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be sequential from 2001-2024 based on shape [24,4]",
+          "All count columns should be non-negative integers",
+          "Total reports = Fraud + Identity Theft + Other should be positive"
+        ],
+        [
+          "Fraud >= 0",
+          "Identity Theft >= 0",
+          "Other >= 0",
+          "Total reports (Fraud + Identity Theft + Other) > 0 to avoid division by zero"
+        ],
+        [
+          "Year must be a valid year.",
+          "Fraud, Identity Theft, and Other must be non-negative integers."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Fraud_percentage = Fraud / (Fraud + Identity Theft + Other) * 100",
+        "Filter: Fraud_percentage >= 50",
+        "Calculate total_reports = Fraud + Identity Theft + Other",
+        "Calculate fraud_percentage = Fraud / total_reports",
+        "Filter where fraud_percentage >= 0.5"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Fraud_percentage = Fraud / (Fraud + Identity Theft + Other) * 100",
+          "Filter: Fraud_percentage >= 50"
+        ],
+        [
+          "Calculate total_reports = Fraud + Identity Theft + Other",
+          "Calculate fraud_percentage = Fraud / total_reports",
+          "Filter where fraud_percentage >= 0.5"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify that sum of three report types equals total reports for each year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify that sum of three report types equals total reports for each year"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of years where condition is met",
+        "Could optionally include Fraud percentage for each year",
+        "Return list of years as integers",
+        "Years should be in chronological order",
+        "Only include years meeting the 50% threshold",
+        "Output should be a list of years."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of years where condition is met",
+          "Could optionally include Fraud percentage for each year"
+        ],
+        [
+          "Return list of years as integers",
+          "Years should be in chronological order",
+          "Only include years meeting the 50% threshold"
+        ],
+        [
+          "Output should be a list of years."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6333333333333334
+}

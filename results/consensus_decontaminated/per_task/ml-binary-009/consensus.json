@@ -1,0 +1,445 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Passenger satisfaction prediction (binary classification: 'satisfied' vs 'neutral or dissatisfied')",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Passenger satisfaction prediction (binary classification: 'satisfied' vs 'neutral or dissatisfied')",
+        "Predict passenger satisfaction (binary classification) for test.csv and save predictions to result.csv with column name 'satisfaction'",
+        "Passenger satisfaction (satisfied or neutral/dissatisfied)"
+      ]
+    },
+    "filters": {
+      "value": [
+        "No explicit filters mentioned in analytical question"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No explicit filters mentioned in analytical question"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "list",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features are most predictive of satisfaction?",
+        "How should missing values in Arrival Delay in Minutes be handled?",
+        "Should the 'Unnamed: 0' and 'id' columns be used as features or excluded?",
+        "What is the distribution of satisfaction classes in training data?",
+        "What are the unique values of 'satisfaction' in train.csv?",
+        "What features are most predictive of passenger satisfaction?",
+        "Are there missing values in predictive features that need handling?",
+        "What is the distribution of satisfaction in the training data?",
+        "Should categorical variables (Gender, Customer Type, Type of Travel, Class) be encoded?",
+        "What is the appropriate model type for this binary classification task?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What features are most predictive of satisfaction?",
+          "How should missing values in Arrival Delay in Minutes be handled?",
+          "Should the 'Unnamed: 0' and 'id' columns be used as features or excluded?",
+          "What is the distribution of satisfaction classes in training data?"
+        ],
+        [
+          "What are the unique values of 'satisfaction' in train.csv?",
+          "What features are most predictive of passenger satisfaction?",
+          "Are there missing values in predictive features that need handling?",
+          "What is the distribution of satisfaction in the training data?",
+          "Should categorical variables (Gender, Customer Type, Type of Travel, Class) be encoded?",
+          "What is the appropriate model type for this binary classification task?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "train.csv",
+        "test.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "train.csv",
+          "test.csv"
+        ],
+        [
+          "train.csv",
+          "test.csv"
+        ],
+        [
+          "test.csv",
+          "train.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "test.csv lacks 'satisfaction' column (target variable)",
+        "test.csv has 24 columns vs train.csv has 25 columns",
+        "Arrival Delay in Minutes dtype differs: float64 in test.csv vs float64 in train.csv (consistent)",
+        "train.csv has 'satisfaction' column (target variable) which is absent in test.csv",
+        "Both files have 'Unnamed: 0' and 'id' columns which appear to be index columns",
+        "The 'satisfaction' column is only present in train.csv.",
+        "The 'Unnamed: 0' column is present in both datasets and may represent an index.",
+        "The 'id' column is present in both datasets and may represent a unique identifier."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv lacks 'satisfaction' column (target variable)",
+          "test.csv has 24 columns vs train.csv has 25 columns",
+          "Arrival Delay in Minutes dtype differs: float64 in test.csv vs float64 in train.csv (consistent)"
+        ],
+        [
+          "train.csv has 'satisfaction' column (target variable) which is absent in test.csv",
+          "Both files have 'Unnamed: 0' and 'id' columns which appear to be index columns"
+        ],
+        [
+          "The 'satisfaction' column is only present in train.csv.",
+          "The 'Unnamed: 0' column is present in both datasets and may represent an index.",
+          "The 'id' column is present in both datasets and may represent a unique identifier."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "age": "years",
+        "flight distance": "miles or kilometers (unspecified)",
+        "departure delay in minutes": "minutes",
+        "arrival delay in minutes": "minutes",
+        "inflight wifi service": "Likert scale 0-5",
+        "departure/arrival time convenient": "Likert scale 0-5",
+        "ease of online booking": "Likert scale 0-5",
+        "gate location": "Likert scale 0-5",
+        "food and drink": "Likert scale 0-5",
+        "online boarding": "Likert scale 0-5",
+        "seat comfort": "Likert scale 0-5",
+        "inflight entertainment": "Likert scale 0-5",
+        "on-board service": "Likert scale 0-5",
+        "leg room service": "Likert scale 0-5",
+        "baggage handling": "Likert scale 0-5",
+        "checkin service": "Likert scale 0-5",
+        "inflight service": "Likert scale 0-5",
+        "cleanliness": "Likert scale 0-5"
+      },
+      "confidence": 0.7407407407407406,
+      "votes": [
+        {
+          "Age": "years",
+          "Flight Distance": "miles or kilometers (unspecified)",
+          "Departure Delay in Minutes": "minutes",
+          "Arrival Delay in Minutes": "minutes",
+          "Inflight wifi service": "Likert scale 0-5",
+          "Departure/Arrival time convenient": "Likert scale 0-5",
+          "Ease of Online booking": "Likert scale 0-5",
+          "Gate location": "Likert scale 0-5",
+          "Food and drink": "Likert scale 0-5",
+          "Online boarding": "Likert scale 0-5",
+          "Seat comfort": "Likert scale 0-5",
+          "Inflight entertainment": "Likert scale 0-5",
+          "On-board service": "Likert scale 0-5",
+          "Leg room service": "Likert scale 0-5",
+          "Baggage handling": "Likert scale 0-5",
+          "Checkin service": "Likert scale 0-5",
+          "Inflight service": "Likert scale 0-5",
+          "Cleanliness": "Likert scale 0-5"
+        },
+        {
+          "Age": "years",
+          "Flight Distance": "miles or kilometers (unspecified)",
+          "Departure Delay in Minutes": "minutes",
+          "Arrival Delay in Minutes": "minutes",
+          "Inflight wifi service": "rating scale (likely 0-5)",
+          "Departure/Arrival time convenient": "rating scale (likely 0-5)",
+          "Ease of Online booking": "rating scale (likely 0-5)",
+          "Gate location": "rating scale (likely 0-5)",
+          "Food and drink": "rating scale (likely 0-5)",
+          "Online boarding": "rating scale (likely 0-5)",
+          "Seat comfort": "rating scale (likely 0-5)",
+          "Inflight entertainment": "rating scale (likely 0-5)",
+          "On-board service": "rating scale (likely 0-5)",
+          "Leg room service": "rating scale (likely 0-5)",
+          "Baggage handling": "rating scale (likely 0-5)",
+          "Checkin service": "rating scale (likely 0-5)",
+          "Inflight service": "rating scale (likely 0-5)",
+          "Cleanliness": "rating scale (likely 0-5)"
+        },
+        {
+          "Age": "years",
+          "Flight Distance": "miles",
+          "Departure Delay in Minutes": "minutes",
+          "Arrival Delay in Minutes": "minutes"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Service rating columns use 0-5 scale but sample shows values 0-5",
+        "Flight Distance range appears large (83 to 3987 in sample)",
+        "Delay minutes have wide range (0-117 in sample)",
+        "Service rating columns appear to use integer scale, need to verify range (0-5 based on sample data)",
+        "Arrival Delay in Minutes is float64 while Departure Delay in Minutes is int64"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Service rating columns use 0-5 scale but sample shows values 0-5",
+          "Flight Distance range appears large (83 to 3987 in sample)",
+          "Delay minutes have wide range (0-117 in sample)"
+        ],
+        [
+          "Service rating columns appear to use integer scale, need to verify range (0-5 based on sample data)",
+          "Arrival Delay in Minutes is float64 while Departure Delay in Minutes is int64"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "All service rating columns should have same scale (0-5) across both files",
+        "Need to verify that rating scales are consistent between train.csv and test.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All service rating columns should have same scale (0-5) across both files"
+        ],
+        [
+          "Need to verify that rating scales are consistent between train.csv and test.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 25.0,
+      "confidence": 0.9615384615384616,
+      "votes": [
+        25.0,
+        25.0,
+        24.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "satisfaction column must be predicted for all 25976 test rows",
+        "Output file must be named 'result.csv' with single 'satisfaction' column",
+        "satisfaction values must be either 'satisfied' or 'neutral or dissatisfied'",
+        "All service ratings should be between 0-5 inclusive",
+        "Age should be positive integer",
+        "Flight Distance should be non-negative",
+        "Delay minutes should be non-negative",
+        "Predictions must be made for all 25976 rows in test.csv",
+        "Output must be saved to result.csv with column name 'satisfaction'",
+        "Satisfaction values should match training data format: 'satisfied' or 'neutral or dissatisfied'",
+        "Age should be non-negative integer",
+        "Service ratings should be within valid range (0-5 based on sample)",
+        "Delay values should be non-negative",
+        "'Arrival Delay in Minutes' should be greater than or equal to 0.",
+        "'Departure Delay in Minutes' should be greater than or equal to 0.",
+        "Age should be a positive integer."
+      ],
+      "confidence": 0.3541666666666666,
+      "votes": [
+        [
+          "satisfaction column must be predicted for all 25976 test rows",
+          "Output file must be named 'result.csv' with single 'satisfaction' column",
+          "satisfaction values must be either 'satisfied' or 'neutral or dissatisfied'",
+          "All service ratings should be between 0-5 inclusive",
+          "Age should be positive integer",
+          "Flight Distance should be non-negative",
+          "Delay minutes should be non-negative"
+        ],
+        [
+          "Predictions must be made for all 25976 rows in test.csv",
+          "Output must be saved to result.csv with column name 'satisfaction'",
+          "Satisfaction values should match training data format: 'satisfied' or 'neutral or dissatisfied'",
+          "Age should be non-negative integer",
+          "Flight Distance should be non-negative",
+          "Service ratings should be within valid range (0-5 based on sample)",
+          "Delay values should be non-negative"
+        ],
+        [
+          "'Arrival Delay in Minutes' should be greater than or equal to 0.",
+          "'Departure Delay in Minutes' should be greater than or equal to 0.",
+          "Age should be a positive integer."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Check for outliers in Flight Distance",
+        "Validate service ratings are within 0-5 range",
+        "Ensure Age values are realistic (e.g., >0 and <120)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Flight Distance",
+          "Validate service ratings are within 0-5 range",
+          "Ensure Age values are realistic (e.g., >0 and <120)"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Class imbalance check in training data",
+        "Correlation analysis between service ratings and satisfaction",
+        "Check for multicollinearity among service features",
+        "Check for class imbalance in training satisfaction labels",
+        "Validate feature distributions between train and test sets",
+        "Check for multicollinearity among service rating features",
+        "Assess missing value patterns in Arrival Delay in Minutes"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Class imbalance check in training data",
+          "Correlation analysis between service ratings and satisfaction",
+          "Check for multicollinearity among service features"
+        ],
+        [
+          "Check for class imbalance in training satisfaction labels",
+          "Validate feature distributions between train and test sets",
+          "Check for multicollinearity among service rating features",
+          "Assess missing value patterns in Arrival Delay in Minutes"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file with 'satisfaction' column only",
+        "Same row order as test.csv",
+        "No index column in output",
+        "result.csv must contain column named 'satisfaction'",
+        "result.csv should have 25976 rows matching test.csv",
+        "satisfaction values must be either 'satisfied' or 'neutral or dissatisfied'",
+        "Output file format: CSV with header",
+        "The output file should be named 'result.csv'.",
+        "The output file should contain a column named 'satisfaction'.",
+        "The 'satisfaction' column should contain the predicted satisfaction for each passenger in test.csv."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "CSV file with 'satisfaction' column only",
+          "Same row order as test.csv",
+          "No index column in output"
+        ],
+        [
+          "result.csv must contain column named 'satisfaction'",
+          "result.csv should have 25976 rows matching test.csv",
+          "satisfaction values must be either 'satisfied' or 'neutral or dissatisfied'",
+          "Output file format: CSV with header"
+        ],
+        [
+          "The output file should be named 'result.csv'.",
+          "The output file should contain a column named 'satisfaction'.",
+          "The 'satisfaction' column should contain the predicted satisfaction for each passenger in test.csv."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5728222934472934
+}

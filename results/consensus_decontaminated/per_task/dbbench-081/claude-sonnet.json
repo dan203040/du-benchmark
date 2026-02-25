@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "earliest year from Release column",
+    "filters": [
+      "non-null Release values",
+      "valid year format"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the minimum value in the Release column?",
+      "Are all Release values valid years?",
+      "What title(s) correspond to the earliest year?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Music Releases"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Release": "year (YYYY format)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Release column contains year values stored as object dtype",
+      "May need to convert Release column to numeric for minimum calculation"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Release values should be valid years",
+      "Release values should be numeric or convertible to numeric",
+      "Result should be a single year value"
+    ],
+    "derived_filters": [
+      "Exclude rows where Release is null or empty",
+      "Exclude rows where Release cannot be converted to a valid year"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the minimum year as a single integer or year value",
+      "Optionally include the title associated with that year"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"earliest year from Release column\",\n    \"filters\": [\"non-null Release values\", \"valid year format\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the minimum value in the Release column?\",\n      \"Are all Release values valid years?\",\n      \"What title(s) correspond to the earliest year?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Music Releases\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Release\": \"year (YYYY format)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Release column contains year values stored as object dtype\",\n      \"May need to convert Release column to numeric for minimum calculation\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Release values should be valid years\",\n      \"Release values should be numeric or convertible to numeric\",\n      \"Result should be a single year value\"\n    ],\n    \"derived_filters\": [\n      \"Exclude rows where Release is null or empty\",\n      \"Exclude rows where Release cannot be converted to a valid year\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the minimum year as a single integer or year value\",\n      \"Optionally include the title associated with that year\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.066195249557495,
+  "token_usage": {
+    "input_tokens": 1340,
+    "output_tokens": 480
+  }
+}

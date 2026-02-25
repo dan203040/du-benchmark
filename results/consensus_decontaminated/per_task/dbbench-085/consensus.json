@@ -1,0 +1,324 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Year of the most recent pylon construction in Germany",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Year of the most recent pylon construction in Germany",
+        "The most recent year in which a pylon was built in Germany",
+        "the latest year a pylon was built in Germany"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Country = 'Germany'",
+        "Year built is not null",
+        "Country == 'Germany'",
+        "Country is Germany"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Country = 'Germany'",
+          "Year built is not null"
+        ],
+        [
+          "Country == 'Germany'"
+        ],
+        [
+          "Country is Germany"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the maximum Year built value for German entries?",
+        "Are there any incomplete year values that need cleaning?",
+        "Do we need to handle year ranges or ambiguous dates like 'Early 2012'?",
+        "Which rows have 'Germany' in the Country column?",
+        "What are the valid years in the 'Year built' column for German pylons?",
+        "What is the maximum/latest year among German pylon construction years?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the maximum Year built value for German entries?",
+          "Are there any incomplete year values that need cleaning?",
+          "Do we need to handle year ranges or ambiguous dates like 'Early 2012'?"
+        ],
+        [
+          "Which rows have 'Germany' in the Country column?",
+          "What are the valid years in the 'Year built' column for German pylons?",
+          "What is the maximum/latest year among German pylon construction years?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Aerial Tramway Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Aerial Tramway Table"
+        ],
+        [
+          "Aerial Tramway Table"
+        ],
+        [
+          "Aerial Tramway Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "height": "meters",
+        "year built": "year"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Height": "meters"
+        },
+        {
+          "Year built": "year",
+          "Height": "meters (m)"
+        },
+        {
+          "Height": "meters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year built column contains mixed formats (numeric years, 'Early 2012', '194?')",
+        "Height column contains units in string format (e.g., '113.6 m')",
+        "Year built column has dtype 'object' instead of numeric, may contain non-numeric values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year built column contains mixed formats (numeric years, 'Early 2012', '194?')",
+          "Height column contains units in string format (e.g., '113.6 m')"
+        ],
+        [
+          "Year built column has dtype 'object' instead of numeric, may contain non-numeric values"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year built must be interpretable as a year",
+        "Only German entries should be considered",
+        "The most recent year among German entries is needed",
+        "Country must equal 'Germany'",
+        "Year built must be parseable as a valid year",
+        "Year built should not be empty or null for valid records",
+        "Year built must be a valid year.",
+        "Year built may contain ranges or approximate values, which need to be handled."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year built must be interpretable as a year",
+          "Only German entries should be considered",
+          "The most recent year among German entries is needed"
+        ],
+        [
+          "Country must equal 'Germany'",
+          "Year built must be parseable as a valid year",
+          "Year built should not be empty or null for valid records"
+        ],
+        [
+          "Year built must be a valid year.",
+          "Year built may contain ranges or approximate values, which need to be handled."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract numeric year from 'Year built' column",
+        "Filter to Country = 'Germany'",
+        "Remove rows with ambiguous/unparseable year values",
+        "Filter out rows where Year built is empty or cannot be converted to a year",
+        "Extract numeric year from 'Year built' column handling various formats",
+        "Year built is the maximum year for Germany"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract numeric year from 'Year built' column",
+          "Filter to Country = 'Germany'",
+          "Remove rows with ambiguous/unparseable year values"
+        ],
+        [
+          "Filter out rows where Year built is empty or cannot be converted to a year",
+          "Extract numeric year from 'Year built' column handling various formats"
+        ],
+        [
+          "Year built is the maximum year for Germany"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Year built values",
+        "Validate that year values are within reasonable range (e.g., 1800-2024)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Year built values",
+          "Validate that year values are within reasonable range (e.g., 1800-2024)"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single year value as integer",
+        "Should handle ambiguous dates by taking the year part only",
+        "Return a single year value (integer or string format)",
+        "Result should be the maximum year among all German pylon construction years",
+        "Output must be a single year."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single year value as integer",
+          "Should handle ambiguous dates by taking the year part only"
+        ],
+        [
+          "Return a single year value (integer or string format)",
+          "Result should be the maximum year among all German pylon construction years"
+        ],
+        [
+          "Output must be a single year."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5666666666666668
+}

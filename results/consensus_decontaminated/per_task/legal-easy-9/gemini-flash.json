@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Year with the greatest relative increase in total reports compared to the previous year, between 2002 and 2024 inclusive.",
+    "filters": [
+      "Year >= 2002",
+      "Year <= 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the total number of reports for each year.",
+      "Calculate the relative increase in total reports for each year compared to the previous year.",
+      "Identify the year with the maximum relative increase."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "# of Reports": "Number of Reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Number of Reports": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be an integer.",
+      "Number of Reports must be a non-negative number."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output the year with the greatest relative increase."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Year with the greatest relative increase in total reports compared to the previous year, between 2002 and 2024 inclusive.\",\n    \"filters\": [\"Year >= 2002\", \"Year <= 2024\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the total number of reports for each year.\",\n      \"Calculate the relative increase in total reports for each year compared to the previous year.\",\n      \"Identify the year with the maximum relative increase.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Report_Count.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\"# of Reports\": \"Number of Reports\"}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"Year\": \"year\", \"Number of Reports\": \"number of reports\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"Year must be an integer.\", \"Number of Reports must be a non-negative number.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Output the year with the greatest relative increase.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.276970148086548,
+  "token_usage": {}
+}

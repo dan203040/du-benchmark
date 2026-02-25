@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "The train with the latest arrival time each day",
+    "filters": [
+      "Only trains with valid arrival times (not N/a)"
+    ],
+    "grouping_variables": [
+      "Day"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What are the unique day categories in the dataset?",
+      "How should arrival times be parsed and compared?",
+      "Should 'Daily' trains be considered for each specific day?",
+      "How to handle trains that run on multiple specific days?",
+      "Should trains arriving after midnight (e.g., 01:23) be considered as arriving late at night or early next morning?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Arrival": "time in HH:MM format (24-hour)",
+      "Departure": "time in HH:MM format (24-hour)",
+      "Day": "day codes (Daily, M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/a",
+      "NA"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Day column contains comma-separated day abbreviations for trains running on multiple days",
+      "Arrival and Departure times are in HH:MM format",
+      "Day abbreviations: M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday, Daily=all days"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Arrival time must not be 'N/a'",
+      "Arrival time must be in valid HH:MM format",
+      "Day values must be parsed to handle both single days and comma-separated multiple days"
+    ],
+    "derived_filters": [
+      "Expand 'Daily' to all seven days of the week",
+      "Parse comma-separated day values into individual day entries"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should show the last arriving train for each day of the week",
+      "Include Train No., Name of the Train, and Arrival time",
+      "Format as a table with one row per day (Monday through Sunday)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The train with the latest arrival time each day\",\n    \"filters\": [\"Only trains with valid arrival times (not N/a)\"],\n    \"grouping_variables\": [\"Day\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What are the unique day categories in the dataset?\",\n      \"How should arrival times be parsed and compared?\",\n      \"Should 'Daily' trains be considered for each specific day?\",\n      \"How to handle trains that run on multiple specific days?\",\n      \"Should trains arriving after midnight (e.g., 01:23) be considered as arriving late at night or early next morning?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Train Schedule\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Arrival\": \"time in HH:MM format (24-hour)\",\n      \"Departure\": \"time in HH:MM format (24-hour)\",\n      \"Day\": \"day codes (Daily, M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/a\", \"NA\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Day column contains comma-separated day abbreviations for trains running on multiple days\",\n      \"Arrival and Departure times are in HH:MM format\",\n      \"Day abbreviations: M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday, Daily=all days\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Arrival time must not be 'N/a'\",\n      \"Arrival time must be in valid HH:MM format\",\n      \"Day values must be parsed to handle both single days and comma-separated multiple days\"\n    ],\n    \"derived_filters\": [\n      \"Expand 'Daily' to all seven days of the week\",\n      \"Parse comma-separated day values into individual day entries\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should show the last arriving train for each day of the week\",\n      \"Include Train No., Name of the Train, and Arrival time\",\n      \"Format as a table with one row per day (Monday through Sunday)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.395895004272461,
+  "token_usage": {
+    "input_tokens": 1255,
+    "output_tokens": 689
+  }
+}

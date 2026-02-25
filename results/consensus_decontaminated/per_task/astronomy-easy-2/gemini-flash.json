@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Ratio of peak atmospheric mass density experienced by Swarm A satellite during March 14th-17th 2014 vs July 18th-21st 2018",
+    "filters": [
+      "Timestamp between March 14th 2014 and March 17th 2014",
+      "Timestamp between July 18th 2018 and July 21st 2018"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find the peak 'Orbit Mean Density (kg/m^3)' during March 14th-17th 2014",
+      "Find the peak 'Orbit Mean Density (kg/m^3)' during July 18th-21st 2018",
+      "Calculate the ratio of the two peak densities"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "swarma-wu016-20140314_to_20140317.csv",
+      "swarma-wu545-20180718_to_20180721.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Orbit Mean Density (kg/m^3)": "kg/m^3",
+      "Timestamp": "datetime"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Timestamp column must be parsed as datetime objects",
+      "Ensure that the date ranges are correctly filtered"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The ratio should be a single numerical value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Ratio of peak atmospheric mass density experienced by Swarm A satellite during March 14th-17th 2014 vs July 18th-21st 2018\",\n    \"filters\": [\n      \"Timestamp between March 14th 2014 and March 17th 2014\",\n      \"Timestamp between July 18th 2018 and July 21st 2018\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Find the peak 'Orbit Mean Density (kg/m^3)' during March 14th-17th 2014\",\n      \"Find the peak 'Orbit Mean Density (kg/m^3)' during July 18th-21st 2018\",\n      \"Calculate the ratio of the two peak densities\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"swarma-wu016-20140314_to_20140317.csv\",\n      \"swarma-wu545-20180718_to_20180721.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Orbit Mean Density (kg/m^3)\": \"kg/m^3\",\n      \"Timestamp\": \"datetime\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Timestamp column must be parsed as datetime objects\",\n      \"Ensure that the date ranges are correctly filtered\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The ratio should be a single numerical value\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.002165079116821,
+  "token_usage": {}
+}

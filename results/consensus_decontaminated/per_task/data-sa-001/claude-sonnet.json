@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "p-value from hypothesis test comparing mean number of goals in women's vs men's international soccer matches, and decision to reject or fail to reject null hypothesis at 10% significance level",
+    "filters": [],
+    "grouping_variables": [
+      "gender (men's vs women's matches)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate total goals per match for men's soccer (home_score + away_score)",
+      "Calculate total goals per match for women's soccer (home_score + away_score)",
+      "Compute mean goals per match for men's soccer",
+      "Compute mean goals per match for women's soccer",
+      "Perform two-sample hypothesis test (likely t-test) to compare means",
+      "Extract p-value from test",
+      "Compare p-value to 0.10 significance level",
+      "Determine whether to reject or fail to reject null hypothesis"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "men_results.csv",
+      "women_results.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Unnamed: 0": "index"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "home_score": "goals",
+      "away_score": "goals",
+      "total_goals": "goals per match"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "Different sample sizes: men_results.csv has 44353 matches vs women_results.csv has 4884 matches"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Both men_results.csv and women_results.csv have identical schema",
+      "home_score and away_score are integer values representing goals scored",
+      "Sample result file shows expected output format with p_val as float and result as string"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Null hypothesis: mean goals in women's matches = mean goals in men's matches",
+      "Alternative hypothesis: mean goals in women's matches \u2260 mean goals in men's matches",
+      "Significance level: 0.10 (10%)",
+      "Reject null if p-value < 0.10, otherwise fail to reject"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Two-sample hypothesis test (likely independent samples t-test or Welch's t-test)",
+      "Test compares mean total goals per match between men's and women's datasets"
+    ],
+    "output_format_requirements": [
+      "Output file must be named 'result.csv'",
+      "Must have exactly two columns: 'p_val' and 'result'",
+      "p_val column contains the numeric p-value",
+      "result column contains exactly one of: 'reject' or 'fail to reject'",
+      "Single row of data (plus header)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"p-value from hypothesis test comparing mean number of goals in women's vs men's international soccer matches, and decision to reject or fail to reject null hypothesis at 10% significance level\",\n    \"filters\": [],\n    \"grouping_variables\": [\"gender (men's vs women's matches)\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate total goals per match for men's soccer (home_score + away_score)\",\n      \"Calculate total goals per match for women's soccer (home_score + away_score)\",\n      \"Compute mean goals per match for men's soccer\",\n      \"Compute mean goals per match for women's soccer\",\n      \"Perform two-sample hypothesis test (likely t-test) to compare means\",\n      \"Extract p-value from test\",\n      \"Compare p-value to 0.10 significance level\",\n      \"Determine whether to reject or fail to reject null hypothesis\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"men_results.csv\", \"women_results.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Unnamed: 0\": \"index\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"home_score\": \"goals\",\n      \"away_score\": \"goals\",\n      \"total_goals\": \"goals per match\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"Different sample sizes: men_results.csv has 44353 matches vs women_results.csv has 4884 matches\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Both men_results.csv and women_results.csv have identical schema\",\n      \"home_score and away_score are integer values representing goals scored\",\n      \"Sample result file shows expected output format with p_val as float and result as string\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Null hypothesis: mean goals in women's matches = mean goals in men's matches\",\n      \"Alternative hypothesis: mean goals in women's matches \u2260 mean goals in men's matches\",\n      \"Significance level: 0.10 (10%)\",\n      \"Reject null if p-value < 0.10, otherwise fail to reject\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Two-sample hypothesis test (likely independent samples t-test or Welch's t-test)\",\n      \"Test compares mean total goals per match between men's and women's datasets\"\n    ],\n    \"output_format_requirements\": [\n      \"Output file must be named 'result.csv'\",\n      \"Must have exactly two columns: 'p_val' and 'result'\",\n      \"p_val column contains the numeric p-value\",\n      \"result column contains exactly one of: 'reject' or 'fail to reject'\",\n      \"Single row of data (plus header)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.51181411743164,
+  "token_usage": {
+    "input_tokens": 1829,
+    "output_tokens": 815
+  }
+}

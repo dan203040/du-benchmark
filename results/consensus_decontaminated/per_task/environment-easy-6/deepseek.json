@@ -1,0 +1,105 @@
+{
+  "m_q": {
+    "target_metric": "average historical exceedance rate for marine beaches from 2002 to 2023 inclusive, rounded to 2 decimal places",
+    "filters": [
+      "Beach Type Description = 'Marine'",
+      "Year between 2002 and 2023 inclusive"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of samples for marine beaches each year?",
+      "What is the number of violation samples (Violation = 'Yes'/'YES'/'yes') for marine beaches each year?",
+      "What is the exceedance rate (violations/total samples) for marine beaches each year?",
+      "What is the average of these annual exceedance rates across all years 2002-2023?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2022.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2002.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Violation column has inconsistent capitalization: 'No'/'NO'/'no' and 'Yes'/'YES'/'yes'",
+      "Indicator Level column has different dtypes: float64 in most files, int64 in 2002.csv"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "CFU/100mL (colony forming units per 100 milliliters)"
+    },
+    "scale_issues": [
+      "Indicator Level values vary widely from 1.0 to 800.0 across samples"
+    ],
+    "cross_source_conflicts": [
+      "Violation determination threshold may vary by organism and beach type, but not explicitly provided in data"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files have same column structure",
+      "Sample Date includes timestamp but appears to be all 00:00:00",
+      "Year column exists separately from Sample Date"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values must be between 2002 and 2023 inclusive",
+      "Beach Type Description must be 'Marine'",
+      "Violation values must be standardized to consistent case for analysis"
+    ],
+    "derived_filters": [
+      "Standardize Violation column to consistent case (e.g., lowercase)",
+      "Filter out non-marine beach types",
+      "Filter to years 2002-2023"
+    ],
+    "statistical_tests": [
+      "Calculate annual exceedance rates: count(Violation='yes')/count(all samples) per year",
+      "Calculate average of annual rates across 22 years"
+    ],
+    "output_format_requirements": [
+      "Final result must be a percentage or decimal rounded to 2 decimal places"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average historical exceedance rate for marine beaches from 2002 to 2023 inclusive, rounded to 2 decimal places\",\n        \"filters\": [\"Beach Type Description = 'Marine'\", \"Year between 2002 and 2023 inclusive\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total number of samples for marine beaches each year?\", \"What is the number of violation samples (Violation = 'Yes'/'YES'/'yes') for marine beaches each year?\", \"What is the exceedance rate (violations/total samples) for marine beaches each year?\", \"What is the average of these annual exceedance rates across all years 2002-2023?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"water-body-testing-2022.csv\", \"water-body-testing-2021.csv\", \"water-body-testing-2020.csv\", \"water-body-testing-2019.csv\", \"water-body-testing-2018.csv\", \"water-body-testing-2017.csv\", \"water-body-testing-2016.csv\", \"water-body-testing-2015.csv\", \"water-body-testing-2014.csv\", \"water-body-testing-2013.csv\", \"water-body-testing-2012.csv\", \"water-body-testing-2011.csv\", \"water-body-testing-2010.csv\", \"water-body-testing-2009.csv\", \"water-body-testing-2008.csv\", \"water-body-testing-2007.csv\", \"water-body-testing-2006.csv\", \"water-body-testing-2005.csv\", \"water-body-testing-2004.csv\", \"water-body-testing-2003.csv\", \"water-body-testing-2002.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Violation column has inconsistent capitalization: 'No'/'NO'/'no' and 'Yes'/'YES'/'yes'\", \"Indicator Level column has different dtypes: float64 in most files, int64 in 2002.csv\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Indicator Level\": \"CFU/100mL (colony forming units per 100 milliliters)\"},\n        \"scale_issues\": [\"Indicator Level values vary widely from 1.0 to 800.0 across samples\"],\n        \"cross_source_conflicts\": [\"Violation determination threshold may vary by organism and beach type, but not explicitly provided in data\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"All files have same column structure\", \"Sample Date includes timestamp but appears to be all 00:00:00\", \"Year column exists separately from Sample Date\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values must be between 2002 and 2023 inclusive\", \"Beach Type Description must be 'Marine'\", \"Violation values must be standardized to consistent case for analysis\"],\n        \"derived_filters\": [\"Standardize Violation column to consistent case (e.g., lowercase)\", \"Filter out non-marine beach types\", \"Filter to years 2002-2023\"],\n        \"statistical_tests\": [\"Calculate annual exceedance rates: count(Violation='yes')/count(all samples) per year\", \"Calculate average of annual rates across 22 years\"],\n        \"output_format_requirements\": [\"Final result must be a percentage or decimal rounded to 2 decimal places\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 16.76927614212036,
+  "token_usage": {
+    "input_tokens": 23028,
+    "output_tokens": 827
+  }
+}

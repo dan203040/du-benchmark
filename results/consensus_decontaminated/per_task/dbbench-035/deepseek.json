@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Builder names with GT numbers above 7",
+    "filters": [
+      "GT numbers > 7"
+    ],
+    "grouping_variables": [
+      "Builder"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the threshold for 'above 7'? (e.g., >7, >=8)",
+      "Should we consider maximum GT number per builder or average?",
+      "How to handle GT numbers that are ranges or lists?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Builders and their Works Numbers"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "GT numbers column has object dtype but contains numeric ranges and lists"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "GT numbers": "locomotive identification numbers (likely sequential)"
+    },
+    "scale_issues": [
+      "GT numbers stored as strings with newline-separated ranges (e.g., '651-705')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Contains newline characters within cells",
+      "GT numbers column contains ranges separated by newlines",
+      "Some rows have missing Notes values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "GT numbers must be parsed from string ranges to numeric values",
+      "Need to handle multiple GT number ranges per builder",
+      "Dates are integers representing years"
+    ],
+    "derived_filters": [
+      "Extract all GT numbers from ranges like '651-705'",
+      "Convert GT numbers to integers for comparison",
+      "Filter builders where any GT number > 7"
+    ],
+    "statistical_tests": [
+      "Check if GT numbers are sequential within ranges",
+      "Verify no overlapping GT number ranges between builders"
+    ],
+    "output_format_requirements": [
+      "List of builder names meeting criteria",
+      "Should include supporting GT numbers as evidence"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Builder names with GT numbers above 7\",\n        \"filters\": [\"GT numbers > 7\"],\n        \"grouping_variables\": [\"Builder\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the threshold for 'above 7'? (e.g., >7, >=8)\", \"Should we consider maximum GT number per builder or average?\", \"How to handle GT numbers that are ranges or lists?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Train Builders and their Works Numbers\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"GT numbers column has object dtype but contains numeric ranges and lists\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"GT numbers\": \"locomotive identification numbers (likely sequential)\"},\n        \"scale_issues\": [\"GT numbers stored as strings with newline-separated ranges (e.g., '651-705')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Contains newline characters within cells\", \"GT numbers column contains ranges separated by newlines\", \"Some rows have missing Notes values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"GT numbers must be parsed from string ranges to numeric values\", \"Need to handle multiple GT number ranges per builder\", \"Dates are integers representing years\"],\n        \"derived_filters\": [\"Extract all GT numbers from ranges like '651-705'\", \"Convert GT numbers to integers for comparison\", \"Filter builders where any GT number > 7\"],\n        \"statistical_tests\": [\"Check if GT numbers are sequential within ranges\", \"Verify no overlapping GT number ranges between builders\"],\n        \"output_format_requirements\": [\"List of builder names meeting criteria\", \"Should include supporting GT numbers as evidence\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.001984119415283,
+  "token_usage": {
+    "input_tokens": 1170,
+    "output_tokens": 465
+  }
+}

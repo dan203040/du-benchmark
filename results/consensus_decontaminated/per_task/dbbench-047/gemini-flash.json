@@ -1,0 +1,54 @@
+{
+  "m_q": {
+    "target_metric": "The 'Result' of basketball matches",
+    "filters": [
+      "Arena is 'A Arena'",
+      "League is 'SL'",
+      "Match number is greater than 16"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Match' column needs to be converted to a numerical type to filter for values greater than 16."
+    ],
+    "derived_filters": [
+      "Convert 'Match' column to integer type."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The 'Result' of basketball matches\",\n    \"filters\": [\n      \"Arena is 'A Arena'\",\n      \"League is 'SL'\",\n      \"Match number is greater than 16\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Basketball Matches\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Match' column needs to be converted to a numerical type to filter for values greater than 16.\"\n    ],\n    \"derived_filters\": [\n      \"Convert 'Match' column to integer type.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 2.9130301475524902,
+  "token_usage": {}
+}

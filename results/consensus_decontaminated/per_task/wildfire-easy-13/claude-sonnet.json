@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "Geographic area with maximum helicopter requests among the 10 NICC-defined areas",
+    "filters": [
+      "Exclude non-NICC areas: 'National Interagency Coordination Center', 'Other', 'Canada'"
+    ],
+    "grouping_variables": [
+      "Region"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the 10 NICC-defined geographic areas?",
+      "Which region has the maximum value in 'Total Helicopter Requests'?",
+      "Should 'National Interagency Coordination Center', 'Other', and 'Canada' be excluded from the comparison?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "cleaned_helicopter_requests_by_region.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Helicopter Requests": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data contains 13 rows including header",
+      "Some regions have 0 requests (National Interagency Coordination Center, Other, Canada)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only consider the 10 NICC-defined geographic areas",
+      "Exclude 'National Interagency Coordination Center', 'Other', and 'Canada' from analysis",
+      "Total Helicopter Requests must be non-negative integers"
+    ],
+    "derived_filters": [
+      "Region NOT IN ('National Interagency Coordination Center', 'Other', 'Canada')"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the single region name with the highest helicopter request count",
+      "Include the corresponding request count value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Geographic area with maximum helicopter requests among the 10 NICC-defined areas\",\n    \"filters\": [\"Exclude non-NICC areas: 'National Interagency Coordination Center', 'Other', 'Canada'\"],\n    \"grouping_variables\": [\"Region\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are the 10 NICC-defined geographic areas?\",\n      \"Which region has the maximum value in 'Total Helicopter Requests'?\",\n      \"Should 'National Interagency Coordination Center', 'Other', and 'Canada' be excluded from the comparison?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"cleaned_helicopter_requests_by_region.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total Helicopter Requests\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data contains 13 rows including header\",\n      \"Some regions have 0 requests (National Interagency Coordination Center, Other, Canada)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only consider the 10 NICC-defined geographic areas\",\n      \"Exclude 'National Interagency Coordination Center', 'Other', and 'Canada' from analysis\",\n      \"Total Helicopter Requests must be non-negative integers\"\n    ],\n    \"derived_filters\": [\n      \"Region NOT IN ('National Interagency Coordination Center', 'Other', 'Canada')\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the single region name with the highest helicopter request count\",\n      \"Include the corresponding request count value\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.112740993499756,
+  "token_usage": {
+    "input_tokens": 714,
+    "output_tokens": 566
+  }
+}

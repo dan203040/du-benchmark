@@ -1,0 +1,95 @@
+{
+  "m_q": {
+    "target_metric": "Count of human conflicts between 800 and 1400 AD, attributed to modern countries",
+    "filters": [
+      "StartYear >= 800",
+      "EndYear <= 1400",
+      "(EndYear - StartYear) >= 1"
+    ],
+    "grouping_variables": [
+      "country"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "How to extract location information from conflict names?",
+      "How to map historical locations to modern countries?",
+      "How to handle conflicts spanning multiple years?",
+      "How to attribute multi-location conflicts to countries?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "conflict_brecke.csv",
+      "worldcities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Conflict column contains location information but no standardized location columns",
+      "No direct join key between conflict data and modern cities data"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "StartYear": "AD year",
+      "EndYear": "AD year",
+      "Fatalities": "number of deaths",
+      "Century": "century number",
+      "Decade": "decade number"
+    },
+    "scale_issues": [
+      "Conflict names contain location information but need parsing",
+      "Historical locations need mapping to modern countries",
+      "Some conflicts may span multiple modern countries"
+    ],
+    "cross_source_conflicts": [
+      "conflict_brecke.csv uses historical names, worldcities.csv uses modern country names"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Fatalities column has missing values",
+      "Conflict column contains location information in parentheses",
+      "Century and Decade columns appear to be derived from year columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Conflict must have StartYear and EndYear",
+      "Conflict must last at least 1 year (EndYear - StartYear >= 1)",
+      "Time period limited to 800-1400 AD"
+    ],
+    "derived_filters": [
+      "Extract location names from Conflict column",
+      "Map historical locations to modern countries using worldcities.csv or external knowledge"
+    ],
+    "statistical_tests": [
+      "Check for duplicate conflicts",
+      "Validate year ranges (StartYear <= EndYear)",
+      "Verify century/decade calculations match year values"
+    ],
+    "output_format_requirements": [
+      "Count per modern country",
+      "Total count across all countries",
+      "List of conflicts with attributed countries"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of human conflicts between 800 and 1400 AD, attributed to modern countries\",\n        \"filters\": [\"StartYear >= 800\", \"EndYear <= 1400\", \"(EndYear - StartYear) >= 1\"],\n        \"grouping_variables\": [\"country\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"How to extract location information from conflict names?\", \"How to map historical locations to modern countries?\", \"How to handle conflicts spanning multiple years?\", \"How to attribute multi-location conflicts to countries?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"conflict_brecke.csv\", \"worldcities.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Conflict column contains location information but no standardized location columns\", \"No direct join key between conflict data and modern cities data\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"StartYear\": \"AD year\", \"EndYear\": \"AD year\", \"Fatalities\": \"number of deaths\", \"Century\": \"century number\", \"Decade\": \"decade number\"},\n        \"scale_issues\": [\"Conflict names contain location information but need parsing\", \"Historical locations need mapping to modern countries\", \"Some conflicts may span multiple modern countries\"],\n        \"cross_source_conflicts\": [\"conflict_brecke.csv uses historical names, worldcities.csv uses modern country names\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Fatalities column has missing values\", \"Conflict column contains location information in parentheses\", \"Century and Decade columns appear to be derived from year columns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Conflict must have StartYear and EndYear\", \"Conflict must last at least 1 year (EndYear - StartYear >= 1)\", \"Time period limited to 800-1400 AD\"],\n        \"derived_filters\": [\"Extract location names from Conflict column\", \"Map historical locations to modern countries using worldcities.csv or external knowledge\"],\n        \"statistical_tests\": [\"Check for duplicate conflicts\", \"Validate year ranges (StartYear <= EndYear)\", \"Verify century/decade calculations match year values\"],\n        \"output_format_requirements\": [\"Count per modern country\", \"Total count across all countries\", \"List of conflicts with attributed countries\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.763607025146484,
+  "token_usage": {
+    "input_tokens": 1951,
+    "output_tokens": 580
+  }
+}

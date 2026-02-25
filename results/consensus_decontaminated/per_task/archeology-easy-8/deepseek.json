@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "count of unique sources in the 'Select Bibliography' column",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How are sources separated in the 'Select Bibliography' column?",
+      "Are there any missing values in the 'Select Bibliography' column?",
+      "Do source abbreviations need to be standardized (e.g., 'BNP' vs 'BNP;')?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "roman_cities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Barrington Atlas Rank": "ordinal scale (1.0-3.0)",
+      "Start Date": "year (negative values for BCE)",
+      "End Date": "year (negative values for BCE)",
+      "Longitude (X)": "decimal degrees",
+      "Latitude (Y)": "decimal degrees"
+    },
+    "scale_issues": [
+      "Mixed date systems (BCE/CE) in Start Date and End Date columns"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Semicolon-separated values within 'Select Bibliography' column",
+      "Some numeric columns contain missing values (e.g., Barrington Atlas Rank, End Date)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Primary Key values should be unique",
+      "Start Date should be <= End Date when both present",
+      "Latitude values should be between -90 and 90",
+      "Longitude values should be between -180 and 180"
+    ],
+    "derived_filters": [
+      "Filter out rows with missing 'Select Bibliography' values",
+      "Consider only rows with non-empty 'Select Bibliography' for source counting"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Primary Key values",
+      "Validate coordinate ranges",
+      "Check date consistency"
+    ],
+    "output_format_requirements": [
+      "Integer count of unique sources",
+      "List of unique sources for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of unique sources in the 'Select Bibliography' column\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How are sources separated in the 'Select Bibliography' column?\", \"Are there any missing values in the 'Select Bibliography' column?\", \"Do source abbreviations need to be standardized (e.g., 'BNP' vs 'BNP;')?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"roman_cities.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Barrington Atlas Rank\": \"ordinal scale (1.0-3.0)\",\n            \"Start Date\": \"year (negative values for BCE)\",\n            \"End Date\": \"year (negative values for BCE)\",\n            \"Longitude (X)\": \"decimal degrees\",\n            \"Latitude (Y)\": \"decimal degrees\"\n        },\n        \"scale_issues\": [\"Mixed date systems (BCE/CE) in Start Date and End Date columns\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Semicolon-separated values within 'Select Bibliography' column\", \"Some numeric columns contain missing values (e.g., Barrington Atlas Rank, End Date)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Primary Key values should be unique\", \"Start Date should be <= End Date when both present\", \"Latitude values should be between -90 and 90\", \"Longitude values should be between -180 and 180\"],\n        \"derived_filters\": [\"Filter out rows with missing 'Select Bibliography' values\", \"Consider only rows with non-empty 'Select Bibliography' for source counting\"],\n        \"statistical_tests\": [\"Check for duplicate Primary Key values\", \"Validate coordinate ranges\", \"Check date consistency\"],\n        \"output_format_requirements\": [\"Integer count of unique sources\", \"List of unique sources for verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.681219100952148,
+  "token_usage": {
+    "input_tokens": 1982,
+    "output_tokens": 519
+  }
+}

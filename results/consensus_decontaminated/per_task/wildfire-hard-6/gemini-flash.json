@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "Pearson correlation between the annual difference in number of fires reported by NOAA and NIFC, and the annual difference in acres burned reported by NOAA and NIFC.",
+    "filters": [],
+    "grouping_variables": [
+      "year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the annual number of fires reported by NOAA.",
+      "Calculate the annual acres burned reported by NOAA.",
+      "Calculate the annual number of fires reported by NIFC.",
+      "Calculate the annual acres burned reported by NIFC.",
+      "Calculate the annual difference in number of fires (NOAA - NIFC).",
+      "Calculate the annual difference in acres burned (NOAA - NIFC)."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv",
+      "nifc_wildfires.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column names are inconsistent across datasets (e.g., 'Acres Burned' vs implicit columns in nifc_wildfires.csv).",
+      "nifc_wildfires.csv has combined columns that need to be split."
+    ],
+    "column_mappings": {
+      "Date": "NOAA_Date",
+      "Acres Burned": "NOAA_Acres_Burned",
+      "Number of Fires": "NOAA_Number_of_Fires",
+      "Acres Burned per Fire": "NOAA_Acres_Burned_per_Fire"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "NOAA_Acres_Burned": "acres",
+      "NOAA_Number_of_Fires": "count",
+      "NIFC_Acres_Burned": "acres",
+      "NIFC_Number_of_Fires": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "Potential differences in reporting methodologies between NOAA and NIFC."
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "noaa_wildfires_monthly_stats.csv: Date column is an integer representing year and month (YYYYMM).",
+      "nifc_wildfires.csv: The first column contains the year, the second contains the number of fires, and the third contains the acres burned. These columns are delimited by tabs and some columns also contain commas. The header row is also data."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Ensure that the years are consistent across both datasets.",
+      "Handle missing data appropriately."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Pearson correlation coefficient"
+    ],
+    "output_format_requirements": [
+      "Report the correlation coefficient to three decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Pearson correlation between the annual difference in number of fires reported by NOAA and NIFC, and the annual difference in acres burned reported by NOAA and NIFC.\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"year\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the annual number of fires reported by NOAA.\",\n      \"Calculate the annual acres burned reported by NOAA.\",\n      \"Calculate the annual number of fires reported by NIFC.\",\n      \"Calculate the annual acres burned reported by NIFC.\",\n      \"Calculate the annual difference in number of fires (NOAA - NIFC).\",\n      \"Calculate the annual difference in acres burned (NOAA - NIFC).\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires_monthly_stats.csv\",\n      \"nifc_wildfires.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Column names are inconsistent across datasets (e.g., 'Acres Burned' vs implicit columns in nifc_wildfires.csv).\",\n      \"nifc_wildfires.csv has combined columns that need to be split.\"\n    ],\n    \"column_mappings\": {\n      \"Date\": \"NOAA_Date\",\n      \"Acres Burned\": \"NOAA_Acres_Burned\",\n      \"Number of Fires\": \"NOAA_Number_of_Fires\",\n      \"Acres Burned per Fire\": \"NOAA_Acres_Burned_per_Fire\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"NOAA_Acres_Burned\": \"acres\",\n      \"NOAA_Number_of_Fires\": \"count\",\n      \"NIFC_Acres_Burned\": \"acres\",\n      \"NIFC_Number_of_Fires\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"Potential differences in reporting methodologies between NOAA and NIFC.\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"noaa_wildfires_monthly_stats.csv: Date column is an integer representing year and month (YYYYMM).\",\n      \"nifc_wildfires.csv: The first column contains the year, the second contains the number of fires, and the third contains the acres burned. These columns are delimited by tabs and some columns also contain commas. The header row is also data.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Ensure that the years are consistent across both datasets.\",\n      \"Handle missing data appropriately.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Pearson correlation coefficient\"\n    ],\n    \"output_format_requirements\": [\n      \"Report the correlation coefficient to three decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.524599075317383,
+  "token_usage": {}
+}

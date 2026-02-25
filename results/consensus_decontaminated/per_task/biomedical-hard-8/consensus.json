@@ -1,0 +1,468 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "List of protein sites (phosphorylation or acetylation sites) that are hyperactivated in CNV-high endometrioid samples and are targeted by FDA-approved drugs",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "List of protein sites (phosphorylation or acetylation sites) that are hyperactivated in CNV-high endometrioid samples and are targeted by FDA-approved drugs",
+        "Protein sites that are hyperactivated in CNV-high endometrioid samples and targeted by FDA-approved drugs",
+        "List of protein sites hyperactivated in CNV-high endometroid samples and targeted by FDA-approved drugs"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Histologic_type = 'Endometrioid'",
+        "CNV_class = 'CNV_HIGH' (or similar high CNV classification)",
+        "Hyperactivation defined by significant positive FoldChange in phospho/acetyl sites with appropriate statistical thresholds (e.g., FDR < 0.05, FoldChange > threshold)",
+        "Histologic_type == 'Endometrioid'",
+        "CNV_class == 'CNV_HIGH'",
+        "Hyperactivated proteins from hyperactivated.csv",
+        "FDA-approved drug targets from 1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+        "Samples with CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'",
+        "Protein sites that are hyperactivated",
+        "Proteins targeted by FDA-approved drugs"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Histologic_type = 'Endometrioid'",
+          "CNV_class = 'CNV_HIGH' (or similar high CNV classification)",
+          "Hyperactivation defined by significant positive FoldChange in phospho/acetyl sites with appropriate statistical thresholds (e.g., FDR < 0.05, FoldChange > threshold)"
+        ],
+        [
+          "Histologic_type == 'Endometrioid'",
+          "CNV_class == 'CNV_HIGH'",
+          "Hyperactivated proteins from hyperactivated.csv",
+          "FDA-approved drug targets from 1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs"
+        ],
+        [
+          "Samples with CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'",
+          "Protein sites that are hyperactivated",
+          "Proteins targeted by FDA-approved drugs"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "ID (protein site identifier)",
+        "Gene",
+        "sample_id",
+        "CNV_class",
+        "Histologic_type"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "ID (protein site identifier)",
+          "Gene"
+        ],
+        [
+          "sample_id",
+          "CNV_class",
+          "Histologic_type"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which samples are CNV-high endometrioid?",
+        "Which protein sites are hyperactivated in these samples?",
+        "Which of those sites correspond to genes targeted by FDA-approved drugs?",
+        "What drugs target those genes?",
+        "Which samples are CNV-high endometrioid samples?",
+        "Which proteins are hyperactivated in these samples?",
+        "Which of these hyperactivated proteins are targeted by FDA-approved drugs?",
+        "What are the specific phosphorylation or acetylation sites for these proteins?",
+        "Identify CNV-high endometroid samples from the clinical data.",
+        "Determine which protein sites are hyperactivated in these samples.",
+        "Identify FDA-approved drugs and their target proteins.",
+        "Find the intersection of hyperactivated protein sites and FDA-approved drug targets."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which samples are CNV-high endometrioid?",
+          "Which protein sites are hyperactivated in these samples?",
+          "Which of those sites correspond to genes targeted by FDA-approved drugs?",
+          "What drugs target those genes?"
+        ],
+        [
+          "Which samples are CNV-high endometrioid samples?",
+          "Which proteins are hyperactivated in these samples?",
+          "Which of these hyperactivated proteins are targeted by FDA-approved drugs?",
+          "What are the specific phosphorylation or acetylation sites for these proteins?"
+        ],
+        [
+          "Identify CNV-high endometroid samples from the clinical data.",
+          "Determine which protein sites are hyperactivated in these samples.",
+          "Identify FDA-approved drugs and their target proteins.",
+          "Find the intersection of hyperactivated protein sites and FDA-approved drug targets."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+        "1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous",
+        "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+        "hyperactivated.csv",
+        "1-s2.0-S0092867420301070-mmc6__E-SE phospho site between MSI-H",
+        "1-s2.0-S0092867420301070-mmc6.xlsx"
+      ],
+      "confidence": 0.7619047619047618,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+          "1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous",
+          "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+          "hyperactivated.csv"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "hyperactivated.csv",
+          "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+          "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+          "1-s2.0-S0092867420301070-mmc6__E-SE phospho site between MSI-H"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc6.xlsx",
+          "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+          "1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous",
+          "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+          "hyperactivated.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different naming conventions for CNV classification (CNV_class vs CNV_idx)",
+        "Protein site IDs in phospho/acetyl sheets contain gene and site info (e.g., 'AAAS-S495') while hyperactivated.csv has only protein names",
+        "Multiple drug entries per gene in FDA sheet",
+        "Gene name column varies: 'protein' in hyperactivated.csv, 'gene_name' in FDA drugs, 'Gene' in phospho site sheets",
+        "Sample ID column varies: 'idx' in mmc1, 'sample_id' in hyperactivated.csv",
+        "The 'ID' column in '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou' and '1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' has different meanings. One represents phospho/acetyl site ID, the other represents protein ID.",
+        "The 'gene_name' column in '1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs' and '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou'/'1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' refers to the same concept but might have different naming conventions."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different naming conventions for CNV classification (CNV_class vs CNV_idx)",
+          "Protein site IDs in phospho/acetyl sheets contain gene and site info (e.g., 'AAAS-S495') while hyperactivated.csv has only protein names",
+          "Multiple drug entries per gene in FDA sheet"
+        ],
+        [
+          "Gene name column varies: 'protein' in hyperactivated.csv, 'gene_name' in FDA drugs, 'Gene' in phospho site sheets",
+          "Sample ID column varies: 'idx' in mmc1, 'sample_id' in hyperactivated.csv"
+        ],
+        [
+          "The 'ID' column in '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou' and '1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' has different meanings. One represents phospho/acetyl site ID, the other represents protein ID.",
+          "The 'gene_name' column in '1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs' and '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou'/'1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' refers to the same concept but might have different naming conventions."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "foldchange.protein": "log2 fold change",
+        "foldchange.phos": "log2 fold change",
+        "foldchange.acetyl": "log2 fold change",
+        "foldchange.rna": "log2 fold change",
+        "pval.*": "p-value",
+        "fdr.*": "false discovery rate",
+        "cnv_del": "copy number deletion score",
+        "cnv_amp": "copy number amplification score",
+        "pval.phos": "p-value",
+        "fdr.phos": "false discovery rate",
+        "pval.protein": "p-value",
+        "logp.protein": "-log10(p-value)",
+        "fdr.protein": "False Discovery Rate"
+      },
+      "confidence": 0.4358974358974358,
+      "votes": [
+        {
+          "FoldChange.protein": "log2 fold change",
+          "FoldChange.phos": "log2 fold change",
+          "FoldChange.acetyl": "log2 fold change",
+          "FoldChange.rna": "log2 fold change",
+          "pval.*": "p-value",
+          "FDR.*": "false discovery rate",
+          "CNV_DEL": "copy number deletion score",
+          "CNV_AMP": "copy number amplification score"
+        },
+        {
+          "FoldChange.phos": "log2 fold change",
+          "pval.phos": "p-value",
+          "FDR.phos": "false discovery rate",
+          "CNV_DEL": "copy number variation deletion score",
+          "CNV_AMP": "copy number variation amplification score"
+        },
+        {
+          "FoldChange.protein": "log2 fold change",
+          "pval.protein": "p-value",
+          "logp.protein": "-log10(p-value)",
+          "FDR.protein": "False Discovery Rate"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "FoldChange values appear to be on different scales across datasets",
+        "CNV_class is categorical while CNV_idx is numeric",
+        "Some p-values are extremely small (e.g., 1.9698205776291e-05)",
+        "CNV_class is categorical (CNV_HIGH, CNV_LOW) but derived from numeric CNV_DEL and CNV_AMP scores",
+        "Fold change values may be in log2 scale requiring interpretation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "FoldChange values appear to be on different scales across datasets",
+          "CNV_class is categorical while CNV_idx is numeric",
+          "Some p-values are extremely small (e.g., 1.9698205776291e-05)"
+        ],
+        [
+          "CNV_class is categorical (CNV_HIGH, CNV_LOW) but derived from numeric CNV_DEL and CNV_AMP scores",
+          "Fold change values may be in log2 scale requiring interpretation"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "hyperactivated.csv lists protein names but phospho/acetyl sheets use site-specific IDs",
+        "CNV classification criteria not explicitly defined across sources",
+        "Protein/gene naming conventions may differ between hyperactivated list and drug target databases",
+        "Site nomenclature (e.g., S495, T389) needs to be parsed from ID column in phospho site sheets"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "hyperactivated.csv lists protein names but phospho/acetyl sheets use site-specific IDs",
+          "CNV classification criteria not explicitly defined across sources"
+        ],
+        [
+          "Protein/gene naming conventions may differ between hyperactivated list and drug target databases",
+          "Site nomenclature (e.g., S495, T389) needs to be parsed from ID column in phospho site sheets"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "Cannot be determined"
+      ],
+      "confidence": 0.9166666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.33,
+      "votes": [
+        10.0,
+        179.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "csv",
+        "xlsx/csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only endometrioid histology samples",
+        "Only CNV-high samples (need to define threshold from CNV_class or CNV_idx)",
+        "Statistical significance: FDR < 0.05 for phospho/acetyl sites",
+        "Hyperactivation: positive FoldChange in phospho/acetyl sites",
+        "Must have corresponding FDA-approved drug targeting the gene",
+        "Histologic_type must equal 'Endometrioid'",
+        "CNV_class must equal 'CNV_HIGH'",
+        "Protein must appear in hyperactivated.csv for corresponding sample",
+        "Protein must have matching gene_name in FDA approved drugs list",
+        "Case_excluded should be 'No' to include valid samples",
+        "CNV_class must be 'CNV_HIGH' to be considered CNV-high.",
+        "Histologic_type must be 'Endometrioid' to be considered endometroid.",
+        "FoldChange.phos/FoldChange.acetyl should be positive and statistically significant (e.g., pval < 0.05) to be considered hyperactivated."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only endometrioid histology samples",
+          "Only CNV-high samples (need to define threshold from CNV_class or CNV_idx)",
+          "Statistical significance: FDR < 0.05 for phospho/acetyl sites",
+          "Hyperactivation: positive FoldChange in phospho/acetyl sites",
+          "Must have corresponding FDA-approved drug targeting the gene"
+        ],
+        [
+          "Histologic_type must equal 'Endometrioid'",
+          "CNV_class must equal 'CNV_HIGH'",
+          "Protein must appear in hyperactivated.csv for corresponding sample",
+          "Protein must have matching gene_name in FDA approved drugs list",
+          "Case_excluded should be 'No' to include valid samples"
+        ],
+        [
+          "CNV_class must be 'CNV_HIGH' to be considered CNV-high.",
+          "Histologic_type must be 'Endometrioid' to be considered endometroid.",
+          "FoldChange.phos/FoldChange.acetyl should be positive and statistically significant (e.g., pval < 0.05) to be considered hyperactivated."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter mmc1 for Histologic_type = 'Endometrioid'",
+        "Filter mmc1 for CNV_class indicating high CNV (or CNV_idx > threshold)",
+        "Filter phospho/acetyl sheets for FDR.phos/FDR.acetyl < 0.05 and FoldChange.phos/FoldChange.acetyl > 0",
+        "Filter FDA sheet for unique gene-drug pairs",
+        "Filter samples where Histologic_type contains 'Endometrioid'",
+        "Identify CNV-high samples using CNV_class column",
+        "Cross-reference hyperactivated proteins with FDA drug targets",
+        "Extract protein sites from ID column in phospho site data",
+        "CNV-high endometroid samples: CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'",
+        "Hyperactivated protein sites: FoldChange.phos/FoldChange.acetyl > 0 and pval.phos/pval.acetyl < 0.05"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Filter mmc1 for Histologic_type = 'Endometrioid'",
+          "Filter mmc1 for CNV_class indicating high CNV (or CNV_idx > threshold)",
+          "Filter phospho/acetyl sheets for FDR.phos/FDR.acetyl < 0.05 and FoldChange.phos/FoldChange.acetyl > 0",
+          "Filter FDA sheet for unique gene-drug pairs"
+        ],
+        [
+          "Filter samples where Histologic_type contains 'Endometrioid'",
+          "Identify CNV-high samples using CNV_class column",
+          "Cross-reference hyperactivated proteins with FDA drug targets",
+          "Extract protein sites from ID column in phospho site data"
+        ],
+        [
+          "CNV-high endometroid samples: CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'",
+          "Hyperactivated protein sites: FoldChange.phos/FoldChange.acetyl > 0 and pval.phos/pval.acetyl < 0.05"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Differential expression/phosphorylation/acetylation tests already performed in provided sheets",
+        "Need to apply multiple testing correction (FDR already provided)",
+        "No statistical tests required - this is a lookup/intersection analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Differential expression/phosphorylation/acetylation tests already performed in provided sheets",
+          "Need to apply multiple testing correction (FDR already provided)"
+        ],
+        [
+          "No statistical tests required - this is a lookup/intersection analysis"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of protein sites with: ID, Gene, Modification type, FoldChange, FDR, Associated drug names",
+        "Should include both phospho and acetyl sites meeting criteria",
+        "List of protein sites (gene + site notation)",
+        "Associated FDA-approved drugs for each site/protein",
+        "Sample IDs where hyperactivation occurs",
+        "Include drug names and interaction types",
+        "The output should be a list of unique protein sites.",
+        "The list should be sorted alphabetically."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of protein sites with: ID, Gene, Modification type, FoldChange, FDR, Associated drug names",
+          "Should include both phospho and acetyl sites meeting criteria"
+        ],
+        [
+          "List of protein sites (gene + site notation)",
+          "Associated FDA-approved drugs for each site/protein",
+          "Sample IDs where hyperactivation occurs",
+          "Include drug names and interaction types"
+        ],
+        [
+          "The output should be a list of unique protein sites.",
+          "The list should be sorted alphabetically."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.53889010989011
+}

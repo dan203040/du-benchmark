@@ -1,0 +1,64 @@
+{
+  "m_q": {
+    "target_metric": "average elevation (in feet) of weather stations used for fire site monitoring",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "PublicView_RAWS_-3515561676727363726.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "PublicView_RAWS_-3515561676727363726.csv",
+        "left_column": "latitude",
+        "right_column": "39.47109",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "PublicView_RAWS_-3515561676727363726.csv",
+        "left_column": "longitude",
+        "right_column": "-120.08698",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single numerical value representing the average elevation in feet."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average elevation (in feet) of weather stations used for fire site monitoring\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"PublicView_RAWS_-3515561676727363726.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"noaa_wildfires.csv\",\n        \"right_source\": \"PublicView_RAWS_-3515561676727363726.csv\",\n        \"left_column\": \"latitude\",\n        \"right_column\": \"39.47109\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"noaa_wildfires.csv\",\n        \"right_source\": \"PublicView_RAWS_-3515561676727363726.csv\",\n        \"left_column\": \"longitude\",\n        \"right_column\": \"-120.08698\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a single numerical value representing the average elevation in feet.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.920959949493408,
+  "token_usage": {}
+}

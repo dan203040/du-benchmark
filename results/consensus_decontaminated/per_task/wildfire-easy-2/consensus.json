@@ -1,0 +1,368 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of unique US states intersected by each NIFC geographic area",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of unique US states intersected by each NIFC geographic area",
+        "The NIFC geographic area abbreviation that intersects with the most US states",
+        "The NIFC geographic area (GACCAbbreviation) that intersects with the most US states"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Only consider intersections where NIFC area geometry overlaps with US state geometry",
+        "Exclude any NIFC areas with null GACCAbbreviation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only consider intersections where NIFC area geometry overlaps with US state geometry",
+          "Exclude any NIFC areas with null GACCAbbreviation"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "GACCAbbreviation",
+        "GACCName"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "GACCAbbreviation",
+          "GACCName"
+        ],
+        [
+          "GACCAbbreviation"
+        ],
+        [
+          "GACCAbbreviation"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many states does each NIFC area intersect?",
+        "Which NIFC area has the maximum intersection count?",
+        "What is the abbreviation of that NIFC area?",
+        "What are the NIFC geographic areas from nifc_geographic_areas.gpkg?",
+        "What are the US states from usa.gpkg?",
+        "Which NIFC geographic areas spatially intersect with which US states?",
+        "Count the number of unique states each NIFC geographic area intersects with",
+        "Which NIFC geographic area has the maximum count of state intersections?",
+        "What is the abbreviation (GACCAbbreviation) of that geographic area?",
+        "Determine the intersection between each NIFC geographic area and each US state.",
+        "Count the number of US states each NIFC geographic area intersects with.",
+        "Find the maximum number of intersecting US states.",
+        "Identify the NIFC geographic area(s) with the maximum number of intersecting US states."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How many states does each NIFC area intersect?",
+          "Which NIFC area has the maximum intersection count?",
+          "What is the abbreviation of that NIFC area?"
+        ],
+        [
+          "What are the NIFC geographic areas from nifc_geographic_areas.gpkg?",
+          "What are the US states from usa.gpkg?",
+          "Which NIFC geographic areas spatially intersect with which US states?",
+          "Count the number of unique states each NIFC geographic area intersects with",
+          "Which NIFC geographic area has the maximum count of state intersections?",
+          "What is the abbreviation (GACCAbbreviation) of that geographic area?"
+        ],
+        [
+          "Determine the intersection between each NIFC geographic area and each US state.",
+          "Count the number of US states each NIFC geographic area intersects with.",
+          "Find the maximum number of intersecting US states.",
+          "Identify the NIFC geographic area(s) with the maximum number of intersecting US states."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "usa.gpkg",
+        "nifc_geographic_areas.gpkg"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "usa.gpkg",
+          "nifc_geographic_areas.gpkg"
+        ],
+        [
+          "usa.gpkg",
+          "nifc_geographic_areas.gpkg"
+        ],
+        [
+          "usa.gpkg",
+          "nifc_geographic_areas.gpkg"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different geometry column naming conventions",
+        "Different coordinate reference systems may need alignment",
+        "Date formats differ (datetime64[ms] vs datetime64[ms, UTC])"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different geometry column naming conventions",
+          "Different coordinate reference systems may need alignment",
+          "Date formats differ (datetime64[ms] vs datetime64[ms, UTC])"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "geometry": "geographic coordinates (degrees)",
+        "src_date": "date",
+        "datecurrent": "datetime with UTC timezone",
+        "adm1_name": "US state name",
+        "gaccabbreviation": "NIFC Geographic Area Coordination Center abbreviation"
+      },
+      "confidence": 0.39999999999999997,
+      "votes": [
+        {
+          "geometry": "geographic coordinates (degrees)",
+          "src_date": "date",
+          "DateCurrent": "datetime with UTC timezone"
+        },
+        {
+          "geometry": "geographic coordinates (likely WGS84 or similar CRS)",
+          "adm1_name": "US state name",
+          "GACCAbbreviation": "NIFC Geographic Area Coordination Center abbreviation"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "usa.gpkg contains county-level data (adm2), need to aggregate to state level (adm1) for analysis",
+        "NIFC areas may cover multiple states, requiring spatial intersection analysis",
+        "Geometry columns may be in different coordinate reference systems requiring projection alignment"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "usa.gpkg contains county-level data (adm2), need to aggregate to state level (adm1) for analysis",
+          "NIFC areas may cover multiple states, requiring spatial intersection analysis"
+        ],
+        [
+          "Geometry columns may be in different coordinate reference systems requiring projection alignment"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "usa.gpkg uses administrative boundaries while nifc_geographic_areas.gpkg uses operational boundaries",
+        "Different spatial extents - NIFC areas may include non-US territories",
+        "Potential CRS mismatch between usa.gpkg and nifc_geographic_areas.gpkg geometry columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "usa.gpkg uses administrative boundaries while nifc_geographic_areas.gpkg uses operational boundaries",
+          "Different spatial extents - NIFC areas may include non-US territories"
+        ],
+        [
+          "Potential CRS mismatch between usa.gpkg and nifc_geographic_areas.gpkg geometry columns"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        ",",
+        null,
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          null
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 26.0,
+      "confidence": 1.0,
+      "votes": [
+        26.0,
+        26.0,
+        26.0
+      ]
+    },
+    "file_format": {
+      "value": "GeoPackage",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "GeoPackage",
+        "geopackage",
+        "gpkg"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each US state should be counted only once per NIFC area intersection",
+        "Geometry must be valid for spatial operations",
+        "GACCAbbreviation must not be null for result",
+        "Focus on state-level (adm1) boundaries from usa.gpkg, not county-level (adm2)",
+        "Each state should be counted only once per NIFC geographic area intersection",
+        "Spatial intersection must be meaningful (not just touching boundaries)",
+        "Result must be a single abbreviation value from GACCAbbreviation column",
+        "The 'geometry' columns in both files must be valid geometries.",
+        "The spatial reference systems of the 'geometry' columns must be compatible for intersection calculations."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Each US state should be counted only once per NIFC area intersection",
+          "Geometry must be valid for spatial operations",
+          "GACCAbbreviation must not be null for result"
+        ],
+        [
+          "Focus on state-level (adm1) boundaries from usa.gpkg, not county-level (adm2)",
+          "Each state should be counted only once per NIFC geographic area intersection",
+          "Spatial intersection must be meaningful (not just touching boundaries)",
+          "Result must be a single abbreviation value from GACCAbbreviation column"
+        ],
+        [
+          "The 'geometry' columns in both files must be valid geometries.",
+          "The spatial reference systems of the 'geometry' columns must be compatible for intersection calculations."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter usa.gpkg to unique adm1_name values (states)",
+        "Remove any NIFC areas with null or empty GACCAbbreviation",
+        "Filter usa.gpkg to distinct state geometries using adm1_id or adm1_name",
+        "Ensure adm0_name = 'United States' to exclude territories if needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter usa.gpkg to unique adm1_name values (states)",
+          "Remove any NIFC areas with null or empty GACCAbbreviation"
+        ],
+        [
+          "Filter usa.gpkg to distinct state geometries using adm1_id or adm1_name",
+          "Ensure adm0_name = 'United States' to exclude territories if needed"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct states per NIFC area",
+        "Verify spatial intersection results are non-empty"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct states per NIFC area",
+          "Verify spatial intersection results are non-empty"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single abbreviation string as final answer",
+        "Should validate that the maximum count is unique",
+        "Return only the GACCAbbreviation value as the answer",
+        "The answer should be a string abbreviation (e.g., 'AICC', 'NWCC', etc.)",
+        "The output should be the GACCAbbreviation of the NIFC geographic area that intersects with the most US states."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single abbreviation string as final answer",
+          "Should validate that the maximum count is unique"
+        ],
+        [
+          "Return only the GACCAbbreviation value as the answer",
+          "The answer should be a string abbreviation (e.g., 'AICC', 'NWCC', etc.)"
+        ],
+        [
+          "The output should be the GACCAbbreviation of the NIFC geographic area that intersects with the most US states."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5783333333333334
+}

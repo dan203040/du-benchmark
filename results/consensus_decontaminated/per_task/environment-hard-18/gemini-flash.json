@@ -1,0 +1,92 @@
+{
+  "m_q": {
+    "target_metric": "Determine if the trend of fresh water beach exceedance rate from 2020 to 2023 follows the same trend as rainfall during the same period. Exceedance rate is the number of violations divided by the total number of samples.",
+    "filters": [
+      "Years between 2020 and 2023 (inclusive)",
+      "Beach Type Description is 'Fresh Water'"
+    ],
+    "grouping_variables": [
+      "Year",
+      "Month"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate monthly rainfall from 2020 to 2023, imputing missing values with the median of the month in non-missing years.",
+      "Calculate the monthly exceedance rate for fresh water beaches from 2020 to 2023.",
+      "Compare the trends of monthly rainfall and monthly exceedance rate from 2020 to 2023."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv",
+      "monthly_precipitations_amherst.csv",
+      "monthly_precipitations_ashburnham.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches",
+      "Indicator Level": "cfu/100ml"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "monthly_precipitations files have missing values.",
+      "water-body-testing files have a 'Sample Date' column that needs to be parsed to extract the month and year."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Impute missing rainfall values using the median of the month across all available years.",
+      "Calculate exceedance rate as the number of 'Violation' equal to 'Yes' divided by the total number of samples for each month and year for fresh water beaches.",
+      "The 'Violation' column in water-body-testing files can have values 'Yes', 'No', 'YES', 'NO'. Need to standardize to 'Yes' and 'No'."
+    ],
+    "derived_filters": [
+      "Beach Type Description = 'Fresh Water'",
+      "Year >= 2020 and Year <= 2023"
+    ],
+    "statistical_tests": [
+      "Compare the trends of rainfall and exceedance rate using correlation or visual inspection."
+    ],
+    "output_format_requirements": [
+      "Output a boolean value (True or False) indicating whether the trends are the same."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine if the trend of fresh water beach exceedance rate from 2020 to 2023 follows the same trend as rainfall during the same period. Exceedance rate is the number of violations divided by the total number of samples.\",\n    \"filters\": [\"Years between 2020 and 2023 (inclusive)\", \"Beach Type Description is 'Fresh Water'\"],\n    \"grouping_variables\": [\"Year\", \"Month\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate monthly rainfall from 2020 to 2023, imputing missing values with the median of the month in non-missing years.\",\n      \"Calculate the monthly exceedance rate for fresh water beaches from 2020 to 2023.\",\n      \"Compare the trends of monthly rainfall and monthly exceedance rate from 2020 to 2023.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"monthly_precipitations_boston.csv\",\n      \"monthly_precipitations_chatham.csv\",\n      \"monthly_precipitations_amherst.csv\",\n      \"monthly_precipitations_ashburnham.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Jan\": \"inches\",\n      \"Feb\": \"inches\",\n      \"Mar\": \"inches\",\n      \"Apr\": \"inches\",\n      \"May\": \"inches\",\n      \"Jun\": \"inches\",\n      \"Jul\": \"inches\",\n      \"Aug\": \"inches\",\n      \"Sep\": \"inches\",\n      \"Oct\": \"inches\",\n      \"Nov\": \"inches\",\n      \"Dec\": \"inches\",\n      \"Annual\": \"inches\",\n      \"Indicator Level\": \"cfu/100ml\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"monthly_precipitations files have missing values.\",\n      \"water-body-testing files have a 'Sample Date' column that needs to be parsed to extract the month and year.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Impute missing rainfall values using the median of the month across all available years.\",\n      \"Calculate exceedance rate as the number of 'Violation' equal to 'Yes' divided by the total number of samples for each month and year for fresh water beaches.\",\n      \"The 'Violation' column in water-body-testing files can have values 'Yes', 'No', 'YES', 'NO'. Need to standardize to 'Yes' and 'No'.\"\n    ],\n    \"derived_filters\": [\n      \"Beach Type Description = 'Fresh Water'\",\n      \"Year >= 2020 and Year <= 2023\"\n    ],\n    \"statistical_tests\": [\n      \"Compare the trends of rainfall and exceedance rate using correlation or visual inspection.\"\n    ],\n    \"output_format_requirements\": [\n      \"Output a boolean value (True or False) indicating whether the trends are the same.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.376342058181763,
+  "token_usage": {}
+}

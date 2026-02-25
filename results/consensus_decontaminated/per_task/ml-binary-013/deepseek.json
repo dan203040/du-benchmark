@@ -1,0 +1,94 @@
+{
+  "m_q": {
+    "target_metric": "Binary classification prediction (0 or 1) for turbine failure",
+    "filters": [
+      "No explicit filters mentioned in question"
+    ],
+    "grouping_variables": [
+      "None - predictions are per turbine/row"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What patterns in V1-V40 predict turbine failure?",
+      "How to handle missing values in test data?",
+      "What model should be trained on Train.csv?",
+      "How to format predictions to match sample_target.csv?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Test.csv",
+      "Train.csv",
+      "sample_target.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Test.csv has 40 columns, Train.csv has 41 columns (includes Target)",
+      "sample_target.csv has Target as object dtype while Train.csv has Target as int64"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "V1-V40": "Unknown - likely sensor measurements or engineered features",
+      "Target": "Binary indicator (0=no failure, 1=failure)"
+    },
+    "scale_issues": [
+      "Features appear to have different scales/ranges based on sample values",
+      "Some values have extreme ranges (e.g., -10.5113424 to 9.445586089)"
+    ],
+    "cross_source_conflicts": [
+      "Test.csv lacks Target column for prediction",
+      "sample_target.csv shows Target as object but likely expects 0/1 integers"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 40,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Test.csv: 5000 rows \u00d7 40 columns, all float64",
+      "Train.csv: 20000 rows \u00d7 41 columns, V1-V40: float64, Target: int64",
+      "sample_target.csv: 5 rows \u00d7 1 column, Target: object",
+      "All files appear to use standard CSV format with headers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Predictions must be saved in target.csv with single 'Target' column",
+      "Output format must match sample_target.csv structure",
+      "Predictions must be binary (0 or 1)",
+      "Test.csv has no Target column - must be predicted from V1-V40"
+    ],
+    "derived_filters": [
+      "Need to ensure consistent feature scaling between train and test",
+      "Potential outliers in V1-V40 features should be examined"
+    ],
+    "statistical_tests": [
+      "Check for class imbalance in Train.csv Target column",
+      "Test for multicollinearity among V1-V40 features",
+      "Validate model performance using cross-validation"
+    ],
+    "output_format_requirements": [
+      "CSV file named target.csv",
+      "Single column labeled 'Target'",
+      "5000 rows (one per test observation)",
+      "Binary values (0 or 1) as integers or compatible format"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Binary classification prediction (0 or 1) for turbine failure\",\n        \"filters\": [\"No explicit filters mentioned in question\"],\n        \"grouping_variables\": [\"None - predictions are per turbine/row\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What patterns in V1-V40 predict turbine failure?\", \"How to handle missing values in test data?\", \"What model should be trained on Train.csv?\", \"How to format predictions to match sample_target.csv?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Test.csv\", \"Train.csv\", \"sample_target.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Test.csv has 40 columns, Train.csv has 41 columns (includes Target)\", \"sample_target.csv has Target as object dtype while Train.csv has Target as int64\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"V1-V40\": \"Unknown - likely sensor measurements or engineered features\", \"Target\": \"Binary indicator (0=no failure, 1=failure)\"},\n        \"scale_issues\": [\"Features appear to have different scales/ranges based on sample values\", \"Some values have extreme ranges (e.g., -10.5113424 to 9.445586089)\"],\n        \"cross_source_conflicts\": [\"Test.csv lacks Target column for prediction\", \"sample_target.csv shows Target as object but likely expects 0/1 integers\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 40,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Test.csv: 5000 rows \u00d7 40 columns, all float64\", \"Train.csv: 20000 rows \u00d7 41 columns, V1-V40: float64, Target: int64\", \"sample_target.csv: 5 rows \u00d7 1 column, Target: object\", \"All files appear to use standard CSV format with headers\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Predictions must be saved in target.csv with single 'Target' column\", \"Output format must match sample_target.csv structure\", \"Predictions must be binary (0 or 1)\", \"Test.csv has no Target column - must be predicted from V1-V40\"],\n        \"derived_filters\": [\"Need to ensure consistent feature scaling between train and test\", \"Potential outliers in V1-V40 features should be examined\"],\n        \"statistical_tests\": [\"Check for class imbalance in Train.csv Target column\", \"Test for multicollinearity among V1-V40 features\", \"Validate model performance using cross-validation\"],\n        \"output_format_requirements\": [\"CSV file named target.csv\", \"Single column labeled 'Target'\", \"5000 rows (one per test observation)\", \"Binary values (0 or 1) as integers or compatible format\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.859862565994263,
+  "token_usage": {
+    "input_tokens": 6498,
+    "output_tokens": 662
+  }
+}

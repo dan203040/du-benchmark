@@ -1,0 +1,413 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Retention rate for each cohort, defined as (number of unique customers who made a purchase in subsequent months) / (initial cohort size)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Retention rate for each cohort, defined as (number of unique customers who made a purchase in subsequent months) / (initial cohort size)",
+        "Retention rate for each cohort by month, calculated as the ratio of unique customers who made purchases in subsequent months to the initial cohort size",
+        "Retention rate for each cohort by month"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Valid CustomerID values (non-null)",
+        "Valid InvoiceDate values (non-null)",
+        "Positive Quantity values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Valid CustomerID values (non-null)",
+          "Valid InvoiceDate values (non-null)",
+          "Positive Quantity values"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "CohortMonth",
+        "MonthOffset (1-13)",
+        "MonthNumber"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "CohortMonth",
+          "MonthOffset (1-13)"
+        ],
+        [
+          "CohortMonth",
+          "MonthNumber"
+        ],
+        [
+          "CohortMonth"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the initial cohort size for each CohortMonth?",
+        "How many unique customers from each cohort made purchases in each subsequent month?",
+        "How to handle missing values in cohort_counts.csv (empty cells)?",
+        "Should retention be calculated as percentage or ratio?",
+        "What is the expected format of retension.csv output?",
+        "How many unique customers returned in each subsequent month (1-13) for each cohort?",
+        "What is the retention rate formula: (customers in month N / initial cohort size) * 100?",
+        "How should the retention data be formatted to match the template structure?",
+        "Identify unique customers for each cohort in the first month.",
+        "Determine which of these customers made purchases in subsequent months.",
+        "Calculate the retention rate by dividing the number of retained customers by the initial cohort size for each month."
+      ],
+      "confidence": 0.36363636363636365,
+      "votes": [
+        [
+          "What is the initial cohort size for each CohortMonth?",
+          "How many unique customers from each cohort made purchases in each subsequent month?",
+          "How to handle missing values in cohort_counts.csv (empty cells)?",
+          "Should retention be calculated as percentage or ratio?",
+          "What is the expected format of retension.csv output?"
+        ],
+        [
+          "What is the initial cohort size for each CohortMonth?",
+          "How many unique customers returned in each subsequent month (1-13) for each cohort?",
+          "What is the retention rate formula: (customers in month N / initial cohort size) * 100?",
+          "How should the retention data be formatted to match the template structure?"
+        ],
+        [
+          "Identify unique customers for each cohort in the first month.",
+          "Determine which of these customers made purchases in subsequent months.",
+          "Calculate the retention rate by dividing the number of retained customers by the initial cohort size for each month."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "online.csv",
+        "cohort_counts.csv",
+        "average_quantity.csv"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "online.csv",
+          "cohort_counts.csv",
+          "average_quantity.csv"
+        ],
+        [
+          "cohort_counts.csv",
+          "online.csv"
+        ],
+        [
+          "online.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "cohort_counts.csv and average_quantity.csv have identical column structures but different data types (float64 vs object for CohortMonth)",
+        "online.csv has InvoiceDate as object type that needs parsing",
+        "cohort_counts.csv has empty cells that appear as NaN/None values",
+        "cohort_counts.csv already contains aggregated cohort data with months as columns ('1'-'13'), while online.csv contains raw transaction data",
+        "CohortMonth in cohort_counts.csv is a date string, while online.csv would require deriving cohort membership from InvoiceDate and CustomerID"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "cohort_counts.csv and average_quantity.csv have identical column structures but different data types (float64 vs object for CohortMonth)",
+          "online.csv has InvoiceDate as object type that needs parsing",
+          "cohort_counts.csv has empty cells that appear as NaN/None values"
+        ],
+        [
+          "cohort_counts.csv already contains aggregated cohort data with months as columns ('1'-'13'), while online.csv contains raw transaction data",
+          "CohortMonth in cohort_counts.csv is a date string, while online.csv would require deriving cohort membership from InvoiceDate and CustomerID"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "quantity": "count of items",
+        "unitprice": "currency units",
+        "cohort_counts.csv columns (1-13)": "count of unique customers",
+        "average_quantity.csv columns (1-13)": "average quantity per customer",
+        "cohortmonth": "date (YYYY-MM-DD format)",
+        "cohort_counts columns 1-13": "count of unique customers",
+        "retention_rate": "percentage (0-100)"
+      },
+      "confidence": 0.42857142857142855,
+      "votes": [
+        {
+          "Quantity": "count of items",
+          "UnitPrice": "currency units",
+          "cohort_counts.csv columns (1-13)": "count of unique customers",
+          "average_quantity.csv columns (1-13)": "average quantity per customer"
+        },
+        {
+          "CohortMonth": "date (YYYY-MM-DD format)",
+          "cohort_counts columns 1-13": "count of unique customers",
+          "retention_rate": "percentage (0-100)"
+        },
+        {
+          "Quantity": "number of items",
+          "UnitPrice": "monetary unit"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "cohort_counts.csv values are floats but represent counts (should be integers)",
+        "Missing values in cohort_counts.csv represented as empty strings in sample",
+        "InvoiceDate needs timezone consideration (all UK in sample)",
+        "Retention rates should be expressed as percentages, not decimals"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "cohort_counts.csv values are floats but represent counts (should be integers)",
+          "Missing values in cohort_counts.csv represented as empty strings in sample",
+          "InvoiceDate needs timezone consideration (all UK in sample)"
+        ],
+        [
+          "Retention rates should be expressed as percentages, not decimals"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "cohort_counts.csv provides aggregated data while online.csv provides transactional data - need to verify consistency",
+        "CohortMonth format differs between files (YYYY-MM-DD vs YYYY-MM-01)",
+        "cohort_counts.csv contains pre-aggregated customer counts that should be used for retention calculation rather than re-aggregating from online.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "cohort_counts.csv provides aggregated data while online.csv provides transactional data - need to verify consistency",
+          "CohortMonth format differs between files (YYYY-MM-DD vs YYYY-MM-01)"
+        ],
+        [
+          "cohort_counts.csv contains pre-aggregated customer counts that should be used for retention calculation rather than re-aggregating from online.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.6,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 14.0,
+      "confidence": 0.6666666666666667,
+      "votes": [
+        14.0,
+        14.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "CohortMonth values must be valid dates",
+        "Month offset columns (1-13) must be sequential",
+        "Initial cohort size (Month1 in cohort_counts.csv) must be positive",
+        "Retention rate must be between 0 and 1 (or 0-100%)",
+        "CustomerID must be integer type",
+        "Initial cohort size (month 1) should always have 100% retention",
+        "Retention rates for subsequent months should be <= 100%",
+        "Retention rates should be non-negative",
+        "CohortMonth should be in YYYY-MM-DD format",
+        "Missing values (NaN) should be preserved for months beyond data availability",
+        "CustomerID should be unique for each customer.",
+        "InvoiceDate should be within a reasonable range."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CohortMonth values must be valid dates",
+          "Month offset columns (1-13) must be sequential",
+          "Initial cohort size (Month1 in cohort_counts.csv) must be positive",
+          "Retention rate must be between 0 and 1 (or 0-100%)",
+          "CustomerID must be integer type"
+        ],
+        [
+          "Initial cohort size (month 1) should always have 100% retention",
+          "Retention rates for subsequent months should be <= 100%",
+          "Retention rates should be non-negative",
+          "CohortMonth should be in YYYY-MM-DD format",
+          "Missing values (NaN) should be preserved for months beyond data availability"
+        ],
+        [
+          "CustomerID should be unique for each customer.",
+          "InvoiceDate should be within a reasonable range."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude transactions with Quantity <= 0",
+        "Exclude transactions with UnitPrice <= 0",
+        "Exclude rows with missing CustomerID",
+        "Consider only first purchase month for cohort assignment",
+        "Only calculate retention for months where cohort_counts data exists (not NaN)",
+        "Create a CohortMonth column by extracting the year and month from the InvoiceDate for each customer's first purchase.",
+        "Create a MonthOffset column representing the number of months since the CohortMonth."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude transactions with Quantity <= 0",
+          "Exclude transactions with UnitPrice <= 0",
+          "Exclude rows with missing CustomerID",
+          "Consider only first purchase month for cohort assignment"
+        ],
+        [
+          "Only calculate retention for months where cohort_counts data exists (not NaN)"
+        ],
+        [
+          "Create a CohortMonth column by extracting the year and month from the InvoiceDate for each customer's first purchase.",
+          "Create a MonthOffset column representing the number of months since the CohortMonth."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify cohort_counts.csv Month1 matches unique customers from online.csv for each cohort",
+        "Check for duplicate InvoiceNo-CustomerID combinations",
+        "Validate retention rates are monotonically non-increasing over time"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify cohort_counts.csv Month1 matches unique customers from online.csv for each cohort",
+          "Check for duplicate InvoiceNo-CustomerID combinations",
+          "Validate retention rates are monotonically non-increasing over time"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output file named retension.csv (note spelling)",
+        "Match template format (likely similar to cohort_counts.csv structure)",
+        "Include CohortMonth column",
+        "Include retention rates for months 1-13",
+        "Handle missing values appropriately",
+        "Output file must be named 'retension.csv' (note: spelling as specified in question)",
+        "First column must be 'CohortMonth'",
+        "Subsequent columns should be '1', '2', '3', ... '13' representing retention percentages",
+        "Retention rates should be calculated as (customers_in_month_N / customers_in_month_1) * 100",
+        "Format should exactly match the template structure with 14 columns total",
+        "Preserve NaN values where data is not available for newer cohorts",
+        "The output CSV (retension.csv) should have 'CohortMonth' as the first column, followed by columns representing the retention rate for each subsequent month (1, 2, 3, ...).",
+        "Retention rates should be represented as percentages."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Output file named retension.csv (note spelling)",
+          "Match template format (likely similar to cohort_counts.csv structure)",
+          "Include CohortMonth column",
+          "Include retention rates for months 1-13",
+          "Handle missing values appropriately"
+        ],
+        [
+          "Output file must be named 'retension.csv' (note: spelling as specified in question)",
+          "First column must be 'CohortMonth'",
+          "Subsequent columns should be '1', '2', '3', ... '13' representing retention percentages",
+          "Retention rates should be calculated as (customers_in_month_N / customers_in_month_1) * 100",
+          "Format should exactly match the template structure with 14 columns total",
+          "Preserve NaN values where data is not available for newer cohorts"
+        ],
+        [
+          "The output CSV (retension.csv) should have 'CohortMonth' as the first column, followed by columns representing the retention rate for each subsequent month (1, 2, 3, ...).",
+          "Retention rates should be represented as percentages."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5640548340548341
+}

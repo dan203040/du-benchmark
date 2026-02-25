@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "Association name",
+    "filters": [
+      "Joining year must be valid (not null)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find maximum Joining year",
+      "Retrieve Association with that Joining year"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Teams"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Joining year": "year"
+    },
+    "scale_issues": [
+      "Joining year appears to be categorical (specific years only)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Missing values represented by empty strings in Joining year column (e.g., Northern Mariana Islands)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Joining year should be integer between 1999-2007 based on sample",
+      "Each Association appears once"
+    ],
+    "derived_filters": [
+      "Exclude rows where Joining year is null"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Association entries"
+    ],
+    "output_format_requirements": [
+      "Single association name as string"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Association name\",\n        \"filters\": [\"Joining year must be valid (not null)\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Find maximum Joining year\", \"Retrieve Association with that Joining year\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Football Teams\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Joining year\": \"year\"},\n        \"scale_issues\": [\"Joining year appears to be categorical (specific years only)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Missing values represented by empty strings in Joining year column (e.g., Northern Mariana Islands)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Joining year should be integer between 1999-2007 based on sample\", \"Each Association appears once\"],\n        \"derived_filters\": [\"Exclude rows where Joining year is null\"],\n        \"statistical_tests\": [\"Check for duplicate Association entries\"],\n        \"output_format_requirements\": [\"Single association name as string\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.354521989822388,
+  "token_usage": {
+    "input_tokens": 913,
+    "output_tokens": 346
+  }
+}

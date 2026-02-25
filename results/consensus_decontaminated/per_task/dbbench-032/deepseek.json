@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "count of episodes",
+    "filters": [
+      "US air date = 'Saturday, July 11, 2009'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Is the date format consistent across all rows?",
+      "Are there any missing values in the US air date column?",
+      "Does the dataset contain all episodes that aired on that date?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Episode Ratings"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rating": "percentage points",
+      "Share": "percentage points",
+      "Viewers (millions)": "millions of viewers"
+    },
+    "scale_issues": [
+      "Rating/Share (18\u201349) column contains combined values with '/' separator that need parsing"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "TBA"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date values are in format 'DayOfWeek, Month Day, Year'",
+      "Some Rating and Share values contain 'TBA' sentinel values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Episode # should be unique",
+      "US air date should be valid dates",
+      "Viewers (millions) should be numeric"
+    ],
+    "derived_filters": [
+      "Filter rows where US air date exactly matches 'Saturday, July 11, 2009'"
+    ],
+    "statistical_tests": [
+      "Count distinct Episode # values for the filtered date"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of episodes\",\n        \"filters\": [\"US air date = 'Saturday, July 11, 2009'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Is the date format consistent across all rows?\", \"Are there any missing values in the US air date column?\", \"Does the dataset contain all episodes that aired on that date?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Episode Ratings\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Rating\": \"percentage points\",\n            \"Share\": \"percentage points\",\n            \"Viewers (millions)\": \"millions of viewers\"\n        },\n        \"scale_issues\": [\"Rating/Share (18\u201349) column contains combined values with '/' separator that need parsing\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"TBA\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date values are in format 'DayOfWeek, Month Day, Year'\", \"Some Rating and Share values contain 'TBA' sentinel values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Episode # should be unique\", \"US air date should be valid dates\", \"Viewers (millions) should be numeric\"],\n        \"derived_filters\": [\"Filter rows where US air date exactly matches 'Saturday, July 11, 2009'\"],\n        \"statistical_tests\": [\"Count distinct Episode # values for the filtered date\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.238515377044678,
+  "token_usage": {
+    "input_tokens": 1191,
+    "output_tokens": 424
+  }
+}

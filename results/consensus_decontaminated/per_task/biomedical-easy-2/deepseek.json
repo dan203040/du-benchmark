@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "average (mean) of Age values",
+    "filters": [
+      "Histologic_type contains 'serous' (case-insensitive)",
+      "Proteomics_Tumor_Normal == 'Tumor'",
+      "Case_excluded == 'No'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the distribution of Age for serous tumor patients?",
+      "How many serous tumor samples are in the dataset?",
+      "Are there missing Age values for serous tumor samples?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "BMI": "kg/m\u00b2",
+      "Tumor_Size_cm": "centimeters"
+    },
+    "scale_issues": [
+      "Age is float64 but represents whole years",
+      "Some percentage columns (Estrogen_Receptor_%, Progesterone_Receptor_%) are float64 but represent percentages"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "Cannot be determined",
+      "Staging Incomplete"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data provided as CSV sample but original file is Excel (.xlsx)",
+      "First column 'idx' appears to be row identifier",
+      "Sample shows truncated data with '... (truncated)'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age should be positive (typically 18+)",
+      "Histologic_type should be categorical with valid tumor types",
+      "Proteomics_Tumor_Normal should be either 'Tumor' or 'Normal'"
+    ],
+    "derived_filters": [
+      "Exclude rows where Age is missing or NaN",
+      "Exclude rows where Histologic_type is missing or invalid"
+    ],
+    "statistical_tests": [
+      "Check for normality of Age distribution in serous tumor subset",
+      "Compare Age distribution between serous and other histologic types"
+    ],
+    "output_format_requirements": [
+      "Report average age with appropriate precision (e.g., 64.2 years)",
+      "Include sample size (n) for serous tumor patients",
+      "Consider reporting confidence interval for the mean"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average (mean) of Age values\",\n        \"filters\": [\"Histologic_type contains 'serous' (case-insensitive)\", \"Proteomics_Tumor_Normal == 'Tumor'\", \"Case_excluded == 'No'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the distribution of Age for serous tumor patients?\", \"How many serous tumor samples are in the dataset?\", \"Are there missing Age values for serous tumor samples?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Age\": \"years\", \"BMI\": \"kg/m\u00b2\", \"Tumor_Size_cm\": \"centimeters\"},\n        \"scale_issues\": [\"Age is float64 but represents whole years\", \"Some percentage columns (Estrogen_Receptor_%, Progesterone_Receptor_%) are float64 but represent percentages\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"Cannot be determined\", \"Staging Incomplete\"],\n        \"expected_columns\": 179,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data provided as CSV sample but original file is Excel (.xlsx)\", \"First column 'idx' appears to be row identifier\", \"Sample shows truncated data with '... (truncated)'\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Age should be positive (typically 18+)\", \"Histologic_type should be categorical with valid tumor types\", \"Proteomics_Tumor_Normal should be either 'Tumor' or 'Normal'\"],\n        \"derived_filters\": [\"Exclude rows where Age is missing or NaN\", \"Exclude rows where Histologic_type is missing or invalid\"],\n        \"statistical_tests\": [\"Check for normality of Age distribution in serous tumor subset\", \"Compare Age distribution between serous and other histologic types\"],\n        \"output_format_requirements\": [\"Report average age with appropriate precision (e.g., 64.2 years)\", \"Include sample size (n) for serous tumor patients\", \"Consider reporting confidence interval for the mean\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.583926916122437,
+  "token_usage": {
+    "input_tokens": 6444,
+    "output_tokens": 558
+  }
+}

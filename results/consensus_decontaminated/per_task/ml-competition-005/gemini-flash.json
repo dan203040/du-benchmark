@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "Probability of each 'Status' category (C, CL, D) for each patient in test.csv",
+    "filters": [],
+    "grouping_variables": [
+      "id"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "cirrhosis.csv",
+      "test.csv",
+      "train.csv",
+      "sample_submission.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'id' in test.csv and train.csv represents the same entity but 'ID' in cirrhosis.csv might be different.",
+      "Column 'Status' is present in train.csv but not in test.csv. The target variable is encoded in sample_submission.csv.",
+      "Column 'id' in test.csv and train.csv, 'ID' in cirrhosis.csv are integers, but 'id' in sample_submission.csv is also an integer."
+    ],
+    "column_mappings": {
+      "ID": "id"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "N_Days": "days",
+      "Age": "days",
+      "Bilirubin": "mg/dL",
+      "Cholesterol": "mg/dL",
+      "Albumin": "g/dL",
+      "Copper": "mcg/dL",
+      "Alk_Phos": "U/L",
+      "SGOT": "U/L",
+      "Tryglicerides": "mg/dL",
+      "Platelets": "cells/mcL",
+      "Prothrombin": "seconds"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 20,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Missing values are present in some columns, indicated by empty strings."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The sum of 'Status_C', 'Status_CL', and 'Status_D' for each 'id' in submission.csv must equal 1.",
+      "The 'id' column in submission.csv must match the 'id' column in test.csv."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for multicollinearity among numerical features.",
+      "Assess the distribution of each feature to determine appropriate imputation strategies for missing values.",
+      "Perform statistical tests (e.g., chi-squared test) to assess the relationship between categorical features and the target variable."
+    ],
+    "output_format_requirements": [
+      "The submission file must be named 'submission.csv'.",
+      "The submission file must contain the columns 'id', 'Status_C', 'Status_CL', and 'Status_D'.",
+      "The 'id' column in the submission file must correspond to the 'id' column in test.csv."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Probability of each 'Status' category (C, CL, D) for each patient in test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [\"id\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"cirrhosis.csv\", \"test.csv\", \"train.csv\", \"sample_submission.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\"Column 'id' in test.csv and train.csv represents the same entity but 'ID' in cirrhosis.csv might be different.\", \"Column 'Status' is present in train.csv but not in test.csv. The target variable is encoded in sample_submission.csv.\", \"Column 'id' in test.csv and train.csv, 'ID' in cirrhosis.csv are integers, but 'id' in sample_submission.csv is also an integer.\"],\n    \"column_mappings\": {\"ID\": \"id\"}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"N_Days\": \"days\",\n      \"Age\": \"days\",\n      \"Bilirubin\": \"mg/dL\",\n      \"Cholesterol\": \"mg/dL\",\n      \"Albumin\": \"g/dL\",\n      \"Copper\": \"mcg/dL\",\n      \"Alk_Phos\": \"U/L\",\n      \"SGOT\": \"U/L\",\n      \"Tryglicerides\": \"mg/dL\",\n      \"Platelets\": \"cells/mcL\",\n      \"Prothrombin\": \"seconds\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 20,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"Missing values are present in some columns, indicated by empty strings.\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\"The sum of 'Status_C', 'Status_CL', and 'Status_D' for each 'id' in submission.csv must equal 1.\", \"The 'id' column in submission.csv must match the 'id' column in test.csv.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\"Check for multicollinearity among numerical features.\", \"Assess the distribution of each feature to determine appropriate imputation strategies for missing values.\", \"Perform statistical tests (e.g., chi-squared test) to assess the relationship between categorical features and the target variable.\"],\n    \"output_format_requirements\": [\"The submission file must be named 'submission.csv'.\", \"The submission file must contain the columns 'id', 'Status_C', 'Status_CL', and 'Status_D'.\", \"The 'id' column in the submission file must correspond to the 'id' column in test.csv.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.031403064727783,
+  "token_usage": {}
+}

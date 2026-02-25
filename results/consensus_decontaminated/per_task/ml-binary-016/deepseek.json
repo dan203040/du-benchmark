@@ -1,0 +1,109 @@
+{
+  "m_q": {
+    "target_metric": "Binary prediction (0 or 1) for 'IsDefaulter' column indicating whether each client in test.csv will default next month",
+    "filters": [
+      "Only test.csv rows need predictions",
+      "Training data from UCI_Credit_Card.csv includes all historical records"
+    ],
+    "grouping_variables": [
+      "ID"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What patterns in payment history predict default?",
+      "How do demographic factors (AGE, SEX, EDUCATION, MARRIAGE) relate to default risk?",
+      "What is the relationship between credit limit (LIMIT_BAL) and default probability?",
+      "How do bill amounts and payment amounts interact to predict default?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "UCI_Credit_Card.csv",
+      "test.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "test.csv missing 'default.payment.next.month' column (target variable)",
+      "UCI_Credit_Card.csv has 25 columns vs test.csv has 24 columns"
+    ],
+    "column_mappings": {
+      "default.payment.next.month": "IsDefaulter"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "LIMIT_BAL": "New Taiwan Dollar (NT$)",
+      "BILL_AMT1-6": "New Taiwan Dollar (NT$)",
+      "PAY_AMT1-6": "New Taiwan Dollar (NT$)",
+      "AGE": "years",
+      "SEX": "1=male, 2=female",
+      "EDUCATION": "1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown",
+      "MARRIAGE": "1=married, 2=single, 3=others, 0=unknown",
+      "PAY_0-6": "-2=no consumption, -1=paid duly, 0=revolving credit, 1=payment delay 1 month, 2=payment delay 2 months, ..., 9=payment delay 9+ months"
+    },
+    "scale_issues": [
+      "Negative values in BILL_AMT columns in test.csv (e.g., -2, -3)",
+      "Negative values in PAY_AMT columns in test.csv",
+      "PAY_X columns have both negative and positive values with different meanings"
+    ],
+    "cross_source_conflicts": [
+      "test.csv contains negative bill amounts (BILL_AMT) while UCI_Credit_Card.csv doesn't show this pattern in sample",
+      "test.csv has EDUCATION=6 while UCI_Credit_Card.csv sample shows EDUCATION=6 exists"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 25,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column is ID in both files",
+      "Column names include dots in UCI_Credit_Card.csv",
+      "PAY_0 column in UCI_Credit_Card.csv corresponds to PAY_1 in typical sequence",
+      "test.csv missing target column as expected for prediction task"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "ID should be unique in both datasets",
+      "AGE should be positive integer",
+      "LIMIT_BAL should be positive",
+      "PAY_X values should be between -2 and 9",
+      "default.payment.next.month should be 0 or 1",
+      "SEX should be 1 or 2",
+      "EDUCATION should be 1-6",
+      "MARRIAGE should be 0-3"
+    ],
+    "derived_filters": [
+      "Remove rows with invalid EDUCATION values (0, 5, 6 might need recoding)",
+      "Check for inconsistent PAY_X sequences (should show deteriorating or improving payment behavior)",
+      "Validate that BILL_AMT >= 0 (except test.csv shows negatives)"
+    ],
+    "statistical_tests": [
+      "Check class imbalance in default.payment.next.month",
+      "Test correlation between PAY_0 and default",
+      "Check multicollinearity among PAY_X variables",
+      "Test relationship between LIMIT_BAL and default rate"
+    ],
+    "output_format_requirements": [
+      "defaulter.csv must have exactly 4500 rows matching test.csv",
+      "defaulter.csv must have columns: ID, IsDefaulter",
+      "IsDefaulter must be 0 or 1 for each row",
+      "Predictions must be based on test.csv features"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Binary prediction (0 or 1) for 'IsDefaulter' column indicating whether each client in test.csv will default next month\",\n        \"filters\": [\"Only test.csv rows need predictions\", \"Training data from UCI_Credit_Card.csv includes all historical records\"],\n        \"grouping_variables\": [\"ID\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What patterns in payment history predict default?\", \"How do demographic factors (AGE, SEX, EDUCATION, MARRIAGE) relate to default risk?\", \"What is the relationship between credit limit (LIMIT_BAL) and default probability?\", \"How do bill amounts and payment amounts interact to predict default?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"UCI_Credit_Card.csv\", \"test.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"test.csv missing 'default.payment.next.month' column (target variable)\", \"UCI_Credit_Card.csv has 25 columns vs test.csv has 24 columns\"],\n        \"column_mappings\": {\"default.payment.next.month\": \"IsDefaulter\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"LIMIT_BAL\": \"New Taiwan Dollar (NT$)\", \"BILL_AMT1-6\": \"New Taiwan Dollar (NT$)\", \"PAY_AMT1-6\": \"New Taiwan Dollar (NT$)\", \"AGE\": \"years\", \"SEX\": \"1=male, 2=female\", \"EDUCATION\": \"1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown\", \"MARRIAGE\": \"1=married, 2=single, 3=others, 0=unknown\", \"PAY_0-6\": \"-2=no consumption, -1=paid duly, 0=revolving credit, 1=payment delay 1 month, 2=payment delay 2 months, ..., 9=payment delay 9+ months\"},\n        \"scale_issues\": [\"Negative values in BILL_AMT columns in test.csv (e.g., -2, -3)\", \"Negative values in PAY_AMT columns in test.csv\", \"PAY_X columns have both negative and positive values with different meanings\"],\n        \"cross_source_conflicts\": [\"test.csv contains negative bill amounts (BILL_AMT) while UCI_Credit_Card.csv doesn't show this pattern in sample\", \"test.csv has EDUCATION=6 while UCI_Credit_Card.csv sample shows EDUCATION=6 exists\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 25,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column is ID in both files\", \"Column names include dots in UCI_Credit_Card.csv\", \"PAY_0 column in UCI_Credit_Card.csv corresponds to PAY_1 in typical sequence\", \"test.csv missing target column as expected for prediction task\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"ID should be unique in both datasets\", \"AGE should be positive integer\", \"LIMIT_BAL should be positive\", \"PAY_X values should be between -2 and 9\", \"default.payment.next.month should be 0 or 1\", \"SEX should be 1 or 2\", \"EDUCATION should be 1-6\", \"MARRIAGE should be 0-3\"],\n        \"derived_filters\": [\"Remove rows with invalid EDUCATION values (0, 5, 6 might need recoding)\", \"Check for inconsistent PAY_X sequences (should show deteriorating or improving payment behavior)\", \"Validate that BILL_AMT >= 0 (except test.csv shows negatives)\"],\n        \"statistical_tests\": [\"Check class imbalance in default.payment.next.month\", \"Test correlation between PAY_0 and default\", \"Check multicollinearity among PAY_X variables\", \"Test relationship between LIMIT_BAL and default rate\"],\n        \"output_format_requirements\": [\"defaulter.csv must have exactly 4500 rows matching test.csv\", \"defaulter.csv must have columns: ID, IsDefaulter\", \"IsDefaulter must be 0 or 1 for each row\", \"Predictions must be based on test.csv features\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 19.6473069190979,
+  "token_usage": {
+    "input_tokens": 5118,
+    "output_tokens": 990
+  }
+}

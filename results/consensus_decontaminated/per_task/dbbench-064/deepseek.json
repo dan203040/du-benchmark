@@ -1,0 +1,84 @@
+{
+  "m_q": {
+    "target_metric": "Determine which individual (John F. Williams or William A. Mann) held their position first based on the 'From' date",
+    "filters": [
+      "Name contains 'John F. Williams'",
+      "Name contains 'William A. Mann'"
+    ],
+    "grouping_variables": [
+      "Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the earliest 'From' dates for each individual?",
+      "Are there multiple entries for the same person that need to be considered?",
+      "How should we handle missing 'Number' values when comparing individuals?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Military Leaders Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Missing 'Number' values for some rows (null entries)",
+      "Inconsistent rank prefixes in 'Name' column (COL, BG, MG)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "From": "date",
+      "To": "date"
+    },
+    "scale_issues": [
+      "Date format appears as 'Month DD, YYYY' but stored as object/string type",
+      "Need to parse dates for chronological comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column 'Number' has missing values (empty strings)",
+      "Names contain rank prefixes and suffixes that may need cleaning",
+      "Dates are in quoted strings with comma separators"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row represents a leadership tenure period",
+      "Same person may appear multiple times with different date ranges",
+      "Date ranges may overlap or have gaps"
+    ],
+    "derived_filters": [
+      "Filter to rows where Name contains 'Williams' or 'Mann'",
+      "Extract earliest 'From' date for each unique individual"
+    ],
+    "statistical_tests": [
+      "Check for date format consistency across all rows",
+      "Validate that 'From' date is always earlier than 'To' date"
+    ],
+    "output_format_requirements": [
+      "Return single name of person who came first",
+      "Include supporting date evidence if needed"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Determine which individual (John F. Williams or William A. Mann) held their position first based on the 'From' date\",\n        \"filters\": [\"Name contains 'John F. Williams'\", \"Name contains 'William A. Mann'\"],\n        \"grouping_variables\": [\"Name\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What are the earliest 'From' dates for each individual?\", \"Are there multiple entries for the same person that need to be considered?\", \"How should we handle missing 'Number' values when comparing individuals?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Military Leaders Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Missing 'Number' values for some rows (null entries)\", \"Inconsistent rank prefixes in 'Name' column (COL, BG, MG)\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"From\": \"date\", \"To\": \"date\"},\n        \"scale_issues\": [\"Date format appears as 'Month DD, YYYY' but stored as object/string type\", \"Need to parse dates for chronological comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column 'Number' has missing values (empty strings)\", \"Names contain rank prefixes and suffixes that may need cleaning\", \"Dates are in quoted strings with comma separators\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each row represents a leadership tenure period\", \"Same person may appear multiple times with different date ranges\", \"Date ranges may overlap or have gaps\"],\n        \"derived_filters\": [\"Filter to rows where Name contains 'Williams' or 'Mann'\", \"Extract earliest 'From' date for each unique individual\"],\n        \"statistical_tests\": [\"Check for date format consistency across all rows\", \"Validate that 'From' date is always earlier than 'To' date\"],\n        \"output_format_requirements\": [\"Return single name of person who came first\", \"Include supporting date evidence if needed\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.17352294921875,
+  "token_usage": {
+    "input_tokens": 1115,
+    "output_tokens": 524
+  }
+}

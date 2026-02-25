@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "sum of crowd numbers for matches at Glenferrie Oval",
+    "filters": [
+      "Venue = 'Glenferrie Oval'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total crowd attendance across all matches at Glenferrie Oval?",
+      "How many matches were played at Glenferrie Oval?",
+      "What is the average crowd size at Glenferrie Oval?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Aussie Rules Football Match Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Crowd column is stored as object/string type but contains numeric data with commas",
+      "Score columns (Home team score, Away team score) contain both points format (e.g., '7.9 (51)') and numeric values"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Crowd": "number of people",
+      "Date": "date",
+      "Home team score": "Australian rules football score format",
+      "Away team score": "Australian rules football score format"
+    },
+    "scale_issues": [
+      "Crowd numbers contain commas as thousands separators (e.g., '17,000') which need to be removed for numerical operations",
+      "Date format appears inconsistent (historical dates like '1 July 1939' vs modern dates like '12 May 2021')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Crowd values are quoted strings containing commas",
+      "Data appears to contain both historical and modern match records",
+      "Shape indicates 16 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Crowd values must be non-negative integers",
+      "Venue names should be consistent (exact match required for 'Glenferrie Oval')",
+      "Date values should be valid dates"
+    ],
+    "derived_filters": [
+      "Filter rows where Venue column contains 'Glenferrie Oval' (case-sensitive exact match)",
+      "Remove commas from Crowd column before summation",
+      "Convert Crowd column to numeric type"
+    ],
+    "statistical_tests": [
+      "Check for missing values in Crowd column for Glenferrie Oval matches",
+      "Verify that all filtered rows have valid numeric crowd values"
+    ],
+    "output_format_requirements": [
+      "Total should be presented as a single integer",
+      "Consider formatting the result with thousands separators for readability"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"sum of crowd numbers for matches at Glenferrie Oval\",\n        \"filters\": [\"Venue = 'Glenferrie Oval'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total crowd attendance across all matches at Glenferrie Oval?\", \"How many matches were played at Glenferrie Oval?\", \"What is the average crowd size at Glenferrie Oval?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Aussie Rules Football Match Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Crowd column is stored as object/string type but contains numeric data with commas\", \"Score columns (Home team score, Away team score) contain both points format (e.g., '7.9 (51)') and numeric values\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Crowd\": \"number of people\", \"Date\": \"date\", \"Home team score\": \"Australian rules football score format\", \"Away team score\": \"Australian rules football score format\"},\n        \"scale_issues\": [\"Crowd numbers contain commas as thousands separators (e.g., '17,000') which need to be removed for numerical operations\", \"Date format appears inconsistent (historical dates like '1 July 1939' vs modern dates like '12 May 2021')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Crowd values are quoted strings containing commas\", \"Data appears to contain both historical and modern match records\", \"Shape indicates 16 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Crowd values must be non-negative integers\", \"Venue names should be consistent (exact match required for 'Glenferrie Oval')\", \"Date values should be valid dates\"],\n        \"derived_filters\": [\"Filter rows where Venue column contains 'Glenferrie Oval' (case-sensitive exact match)\", \"Remove commas from Crowd column before summation\", \"Convert Crowd column to numeric type\"],\n        \"statistical_tests\": [\"Check for missing values in Crowd column for Glenferrie Oval matches\", \"Verify that all filtered rows have valid numeric crowd values\"],\n        \"output_format_requirements\": [\"Total should be presented as a single integer\", \"Consider formatting the result with thousands separators for readability\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.135059833526611,
+  "token_usage": {
+    "input_tokens": 1152,
+    "output_tokens": 608
+  }
+}

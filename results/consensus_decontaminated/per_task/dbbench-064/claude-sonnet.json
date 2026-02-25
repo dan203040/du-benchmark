@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "Determine temporal order - which person held their position first",
+    "filters": [
+      "Name contains 'John F. Williams' or 'William A. Mann'"
+    ],
+    "grouping_variables": [
+      "Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the earliest 'From' date for John F. Williams?",
+      "What is the earliest 'From' date for William A. Mann?",
+      "Which date comes first chronologically?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Military Leaders Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "From": "date (format: Month Day, Year)",
+      "To": "date (format: Month Day, Year)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Number column contains empty values for some rows indicating acting or interim positions",
+      "Date format is text: 'Month Day, Year' requiring parsing",
+      "Name includes military rank prefix (e.g., MG, COL, BG)",
+      "Some individuals appear multiple times with different or same numbers",
+      "John F. Williams appears in rows with dates January 17, 1936 and January 31, 1940",
+      "William A. Mann appears in row with date October 26, 1916"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "From dates must be parseable as valid dates",
+      "Comparison requires chronological date ordering"
+    ],
+    "derived_filters": [
+      "Filter rows where Name column contains 'John F. Williams'",
+      "Filter rows where Name column contains 'William A. Mann'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the name of the person who came first",
+      "Answer should be either 'William A. Mann' or 'John F. Williams'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine temporal order - which person held their position first\",\n    \"filters\": [\"Name contains 'John F. Williams' or 'William A. Mann'\"],\n    \"grouping_variables\": [\"Name\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the earliest 'From' date for John F. Williams?\",\n      \"What is the earliest 'From' date for William A. Mann?\",\n      \"Which date comes first chronologically?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Military Leaders Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"From\": \"date (format: Month Day, Year)\",\n      \"To\": \"date (format: Month Day, Year)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Number column contains empty values for some rows indicating acting or interim positions\",\n      \"Date format is text: 'Month Day, Year' requiring parsing\",\n      \"Name includes military rank prefix (e.g., MG, COL, BG)\",\n      \"Some individuals appear multiple times with different or same numbers\",\n      \"John F. Williams appears in rows with dates January 17, 1936 and January 31, 1940\",\n      \"William A. Mann appears in row with date October 26, 1916\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"From dates must be parseable as valid dates\",\n      \"Comparison requires chronological date ordering\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Name column contains 'John F. Williams'\",\n      \"Filter rows where Name column contains 'William A. Mann'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the name of the person who came first\",\n      \"Answer should be either 'William A. Mann' or 'John F. Williams'\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.132353067398071,
+  "token_usage": {
+    "input_tokens": 1233,
+    "output_tokens": 605
+  }
+}

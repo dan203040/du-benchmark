@@ -1,0 +1,102 @@
+{
+  "m_q": {
+    "target_metric": "Comparison of daily mean temperature for July versus daily mean temperature for the entire year",
+    "filters": [
+      "July data from 'Jul' column",
+      "Year data from 'Year' column",
+      "Row containing 'Daily mean' values"
+    ],
+    "grouping_variables": [
+      "Month (specifically July)",
+      "Year aggregate"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the daily mean temperature for July?",
+      "What is the daily mean temperature for the Year?",
+      "Is the July daily mean higher or lower than the yearly daily mean?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Climate Data"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple data sections appear to be stacked vertically in the same file representing different locations or time periods"
+    ],
+    "column_mappings": {
+      "Jul": "July_values",
+      "Year": "Year_values",
+      "Month": "Metric_name"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Feb": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Mar": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Apr": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "May": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Jun": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Jul": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Aug": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Sep": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Oct": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Nov": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Dec": "\u00b0C (\u00b0F) or mm or days or hours depending on row",
+      "Daily mean \u00b0C (\u00b0F)": "Temperature in Celsius with Fahrenheit in parentheses"
+    },
+    "scale_issues": [
+      "Temperature values contain newline characters and multiple units (\u00b0C and \u00b0F)",
+      "Values are formatted as compound strings like '-5\\n(23)' requiring parsing"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Temperature values contain newline characters (\\n) separating Celsius from Fahrenheit",
+      "Values follow pattern: number\\n(number) where first is \u00b0C and second is \u00b0F",
+      "The 'Month' column contains metric names rather than month names",
+      "The file contains multiple climate data sections for different locations stacked vertically",
+      "Some cells may be empty (no Year value for some rows)",
+      "Data appears to be pivoted with months as columns rather than rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must identify rows where Month column contains 'Daily mean'",
+      "Must extract numeric values from compound string format (e.g., '8\\n(46)' -> 8)",
+      "Must handle multiple climate data sections in the file",
+      "Year column may be empty for certain metric rows"
+    ],
+    "derived_filters": [
+      "Filter to rows containing 'Daily mean' in the Month column",
+      "Extract Celsius value from July column for Daily mean row",
+      "Extract Celsius value from Year column for Daily mean row"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return comparison statement indicating whether July daily mean is higher or lower than yearly daily mean",
+      "Include the actual numeric values for context"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Comparison of daily mean temperature for July versus daily mean temperature for the entire year\",\n    \"filters\": [\"July data from 'Jul' column\", \"Year data from 'Year' column\", \"Row containing 'Daily mean' values\"],\n    \"grouping_variables\": [\"Month (specifically July)\", \"Year aggregate\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the daily mean temperature for July?\",\n      \"What is the daily mean temperature for the Year?\",\n      \"Is the July daily mean higher or lower than the yearly daily mean?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Climate Data\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\"Multiple data sections appear to be stacked vertically in the same file representing different locations or time periods\"],\n    \"column_mappings\": {\n      \"Jul\": \"July_values\",\n      \"Year\": \"Year_values\",\n      \"Month\": \"Metric_name\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Jan\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Feb\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Mar\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Apr\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"May\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Jun\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Jul\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Aug\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Sep\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Oct\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Nov\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Dec\": \"\u00b0C (\u00b0F) or mm or days or hours depending on row\",\n      \"Daily mean \u00b0C (\u00b0F)\": \"Temperature in Celsius with Fahrenheit in parentheses\"\n    },\n    \"scale_issues\": [\"Temperature values contain newline characters and multiple units (\u00b0C and \u00b0F)\", \"Values are formatted as compound strings like '-5\\\\n(23)' requiring parsing\"],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Temperature values contain newline characters (\\\\n) separating Celsius from Fahrenheit\",\n      \"Values follow pattern: number\\\\n(number) where first is \u00b0C and second is \u00b0F\",\n      \"The 'Month' column contains metric names rather than month names\",\n      \"The file contains multiple climate data sections for different locations stacked vertically\",\n      \"Some cells may be empty (no Year value for some rows)\",\n      \"Data appears to be pivoted with months as columns rather than rows\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must identify rows where Month column contains 'Daily mean'\",\n      \"Must extract numeric values from compound string format (e.g., '8\\\\n(46)' -> 8)\",\n      \"Must handle multiple climate data sections in the file\",\n      \"Year column may be empty for certain metric rows\"\n    ],\n    \"derived_filters\": [\n      \"Filter to rows containing 'Daily mean' in the Month column\",\n      \"Extract Celsius value from July column for Daily mean row\",\n      \"Extract Celsius value from Year column for Daily mean row\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return comparison statement indicating whether July daily mean is higher or lower than yearly daily mean\",\n      \"Include the actual numeric values for context\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.582850694656372,
+  "token_usage": {
+    "input_tokens": 1991,
+    "output_tokens": 1031
+  }
+}

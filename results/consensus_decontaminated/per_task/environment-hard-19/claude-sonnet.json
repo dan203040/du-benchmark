@@ -1,0 +1,148 @@
+{
+  "m_q": {
+    "target_metric": "Boolean comparison: whether the year with highest average exceedance rate difference (year-over-year) equals the year with highest total rainfall difference (year-over-year) for marine beaches in June-July-August",
+    "filters": [
+      "Beach Type Description = 'Marine'",
+      "Months in {June, July, August}",
+      "Communities in {Boston, Chatham} for rainfall data"
+    ],
+    "grouping_variables": [
+      "Year",
+      "Beach (for exceedance rate calculation)",
+      "Community (for rainfall data)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the exceedance rate per year for marine beaches?",
+      "What is the year-over-year difference in average exceedance rate?",
+      "Which year has the highest exceedance rate difference?",
+      "What is the total rainfall (Jun+Jul+Aug) in Boston and Chatham per year?",
+      "What is the year-over-year difference in total rainfall?",
+      "Which year has the highest rainfall difference?",
+      "Are these two years the same?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2002.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv",
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "water-body-testing-*.csv",
+        "right_source": "monthly_precipitations_boston.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "left"
+      },
+      {
+        "left_source": "water-body-testing-*.csv",
+        "right_source": "monthly_precipitations_chatham.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "Violation column has mixed case: 'yes/no', 'YES/NO', 'Yes/No', 'NO/YES'",
+      "Multiple water-body-testing files need to be unioned vertically"
+    ],
+    "column_mappings": {
+      "Violation": "violation_normalized"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "CFU or MPN per 100mL",
+      "Jun": "inches of precipitation",
+      "Jul": "inches of precipitation",
+      "Aug": "inches of precipitation",
+      "Sample Date": "datetime"
+    },
+    "scale_issues": [
+      "Exceedance rate is a percentage/proportion to be calculated from Violation column",
+      "Rainfall differences are absolute differences in inches"
+    ],
+    "cross_source_conflicts": [
+      "Boston and Chatham are communities in water-body-testing but separate precipitation files",
+      "Missing values in precipitation data need median imputation by month across years"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date format: 'YYYY-MM-DD HH:MM:SS'",
+      "Violation values need case-insensitive normalization",
+      "Missing precipitation values appear as empty cells or potentially NaN",
+      "Water-body-testing files are split by year and need vertical concatenation",
+      "Precipitation files have monthly columns (Jun, Jul, Aug) that need extraction"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only Marine beaches (Beach Type Description = 'Marine')",
+      "Only June, July, August months (extract from Sample Date or use Jun/Jul/Aug columns)",
+      "Only Boston and Chatham communities for rainfall calculation",
+      "Exceedance rate = count(Violation='yes')/count(total samples) per year",
+      "Must impute missing precipitation values with median of that month across non-missing years"
+    ],
+    "derived_filters": [
+      "Extract month from Sample Date to filter June (6), July (7), August (8)",
+      "Calculate year-over-year differences requires sorting by year",
+      "Previous year calculations require lag operations on sorted years"
+    ],
+    "statistical_tests": [
+      "Calculate average exceedance rate per year across all marine beaches",
+      "Calculate year-over-year difference in average exceedance rate",
+      "Identify year with maximum absolute difference in exceedance rate",
+      "Sum rainfall (Jun+Jul+Aug) for Boston and Chatham per year",
+      "Impute missing rainfall values with median by month",
+      "Calculate year-over-year difference in total rainfall",
+      "Identify year with maximum absolute difference in rainfall",
+      "Compare the two years for equality"
+    ],
+    "output_format_requirements": [
+      "Final answer must be 'True' or 'False'",
+      "True if years match, False if years differ"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Boolean comparison: whether the year with highest average exceedance rate difference (year-over-year) equals the year with highest total rainfall difference (year-over-year) for marine beaches in June-July-August\",\n    \"filters\": [\n      \"Beach Type Description = 'Marine'\",\n      \"Months in {June, July, August}\",\n      \"Communities in {Boston, Chatham} for rainfall data\"\n    ],\n    \"grouping_variables\": [\n      \"Year\",\n      \"Beach (for exceedance rate calculation)\",\n      \"Community (for rainfall data)\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the exceedance rate per year for marine beaches?\",\n      \"What is the year-over-year difference in average exceedance rate?\",\n      \"Which year has the highest exceedance rate difference?\",\n      \"What is the total rainfall (Jun+Jul+Aug) in Boston and Chatham per year?\",\n      \"What is the year-over-year difference in total rainfall?\",\n      \"Which year has the highest rainfall difference?\",\n      \"Are these two years the same?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2002.csv\",\n      \"water-body-testing-2003.csv\",\n      \"water-body-testing-2004.csv\",\n      \"water-body-testing-2005.csv\",\n      \"water-body-testing-2006.csv\",\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2009.csv\",\n      \"water-body-testing-2010.csv\",\n      \"water-body-testing-2011.csv\",\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\",\n      \"water-body-testing-2014.csv\",\n      \"water-body-testing-2015.csv\",\n      \"water-body-testing-2016.csv\",\n      \"water-body-testing-2017.csv\",\n      \"water-body-testing-2018.csv\",\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\",\n      \"monthly_precipitations_boston.csv\",\n      \"monthly_precipitations_chatham.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"water-body-testing-*.csv\",\n        \"right_source\": \"monthly_precipitations_boston.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"left\"\n      },\n      {\n        \"left_source\": \"water-body-testing-*.csv\",\n        \"right_source\": \"monthly_precipitations_chatham.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"left\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Violation column has mixed case: 'yes/no', 'YES/NO', 'Yes/No', 'NO/YES'\",\n      \"Multiple water-body-testing files need to be unioned vertically\"\n    ],\n    \"column_mappings\": {\n      \"Violation\": \"violation_normalized\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"CFU or MPN per 100mL\",\n      \"Jun\": \"inches of precipitation\",\n      \"Jul\": \"inches of precipitation\",\n      \"Aug\": \"inches of precipitation\",\n      \"Sample Date\": \"datetime\"\n    },\n    \"scale_issues\": [\n      \"Exceedance rate is a percentage/proportion to be calculated from Violation column\",\n      \"Rainfall differences are absolute differences in inches\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Boston and Chatham are communities in water-body-testing but separate precipitation files\",\n      \"Missing values in precipitation data need median imputation by month across years\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date format: 'YYYY-MM-DD HH:MM:SS'\",\n      \"Violation values need case-insensitive normalization\",\n      \"Missing precipitation values appear as empty cells or potentially NaN\",\n      \"Water-body-testing files are split by year and need vertical concatenation\",\n      \"Precipitation files have monthly columns (Jun, Jul, Aug) that need extraction\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only Marine beaches (Beach Type Description = 'Marine')\",\n      \"Only June, July, August months (extract from Sample Date or use Jun/Jul/Aug columns)\",\n      \"Only Boston and Chatham communities for rainfall calculation\",\n      \"Exceedance rate = count(Violation='yes')/count(total samples) per year\",\n      \"Must impute missing precipitation values with median of that month across non-missing years\"\n    ],\n    \"derived_filters\": [\n      \"Extract month from Sample Date to filter June (6), July (7), August (8)\",\n      \"Calculate year-over-year differences requires sorting by year\",\n      \"Previous year calculations require lag operations on sorted years\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate average exceedance rate per year across all marine beaches\",\n      \"Calculate year-over-year difference in average exceedance rate\",\n      \"Identify year with maximum absolute difference in exceedance rate\",\n      \"Sum rainfall (Jun+Jul+Aug) for Boston and Chatham per year\",\n      \"Impute missing rainfall values with median by month\",\n      \"Calculate year-over-year difference in total rainfall\",\n      \"Identify year with maximum absolute difference in rainfall\",\n      \"Compare the two years for equality\"\n    ],\n    \"output_format_requirements\": [\n      \"Final answer must be 'True' or 'False'\",\n      \"True if years match, False if years differ\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 25.395610332489014,
+  "token_usage": {
+    "input_tokens": 28666,
+    "output_tokens": 1603
+  }
+}

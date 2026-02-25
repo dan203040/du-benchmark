@@ -1,0 +1,101 @@
+{
+  "m_q": {
+    "target_metric": "Age of the patient with the lowest APP_Z_score",
+    "filters": [
+      "Case_excluded == 'No'",
+      "Proteomics_Tumor_Normal == 'Tumor'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the minimum APP_Z_score value?",
+      "Which patient (idx) has the minimum APP_Z_score?",
+      "What is the Age value for that patient?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx",
+      "1-s2.0-S0092867420301070-mmc7__B-APM subtypes"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "right_source": "1-s2.0-S0092867420301070-mmc7__B-APM subtypes",
+        "left_column": "idx",
+        "right_column": "idx",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Both files have 'Log2_variant_per_Mbp' column - need to verify consistency",
+      "mmc1 has 'Age' column while APM subtypes doesn't"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "APP_Z_score": "standard deviations",
+      "Log2_variant_per_Mbp": "log2(variants per megabase)",
+      "BMI": "kg/m\u00b2",
+      "Tumor_Size_cm": "centimeters"
+    },
+    "scale_issues": [
+      "APP_Z_score appears to be standardized (mean=0, SD=1)",
+      "Some immune cell columns have negative values suggesting z-scores"
+    ],
+    "cross_source_conflicts": [
+      "Sample count mismatch: mmc1 has 153 rows, APM subtypes has 95 rows"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "Cannot be determined",
+      "Staging Incomplete",
+      "Normal"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "Excel (converted to CSV for display)",
+    "format_notes": [
+      "Data appears to be clinical/proteomic data with mixed types",
+      "Some columns have spaces in names (e.g., 'CIBERSORT_B _cells _naive')",
+      "Contains both categorical and continuous variables"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age should be positive (0-120)",
+      "APP_Z_score should be continuous numeric",
+      "idx values should match between files",
+      "Proteomics_Participant_ID should be unique per patient"
+    ],
+    "derived_filters": [
+      "Exclude rows where Case_excluded != 'No'",
+      "Consider only Tumor samples (Proteomics_Tumor_Normal == 'Tumor')",
+      "Filter for complete APP_Z_score values"
+    ],
+    "statistical_tests": [
+      "Check for normal distribution of APP_Z_score",
+      "Verify correlation between Age and APP_Z_score",
+      "Test for outliers in APP_Z_score"
+    ],
+    "output_format_requirements": [
+      "Age should be reported as numeric value",
+      "Include patient identifier (idx or Proteomics_Participant_ID)",
+      "Report APP_Z_score value for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Age of the patient with the lowest APP_Z_score\",\n        \"filters\": [\"Case_excluded == 'No'\", \"Proteomics_Tumor_Normal == 'Tumor'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the minimum APP_Z_score value?\", \"Which patient (idx) has the minimum APP_Z_score?\", \"What is the Age value for that patient?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\", \"1-s2.0-S0092867420301070-mmc7__B-APM subtypes\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n                \"right_source\": \"1-s2.0-S0092867420301070-mmc7__B-APM subtypes\",\n                \"left_column\": \"idx\",\n                \"right_column\": \"idx\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"Both files have 'Log2_variant_per_Mbp' column - need to verify consistency\", \"mmc1 has 'Age' column while APM subtypes doesn't\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Age\": \"years\",\n            \"APP_Z_score\": \"standard deviations\",\n            \"Log2_variant_per_Mbp\": \"log2(variants per megabase)\",\n            \"BMI\": \"kg/m\u00b2\",\n            \"Tumor_Size_cm\": \"centimeters\"\n        },\n        \"scale_issues\": [\"APP_Z_score appears to be standardized (mean=0, SD=1)\", \"Some immune cell columns have negative values suggesting z-scores\"],\n        \"cross_source_conflicts\": [\"Sample count mismatch: mmc1 has 153 rows, APM subtypes has 95 rows\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"Cannot be determined\", \"Staging Incomplete\", \"Normal\"],\n        \"expected_columns\": 179,\n        \"file_format\": \"Excel (converted to CSV for display)\",\n        \"format_notes\": [\"Data appears to be clinical/proteomic data with mixed types\", \"Some columns have spaces in names (e.g., 'CIBERSORT_B _cells _naive')\", \"Contains both categorical and continuous variables\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Age should be positive (0-120)\", \"APP_Z_score should be continuous numeric\", \"idx values should match between files\", \"Proteomics_Participant_ID should be unique per patient\"],\n        \"derived_filters\": [\"Exclude rows where Case_excluded != 'No'\", \"Consider only Tumor samples (Proteomics_Tumor_Normal == 'Tumor')\", \"Filter for complete APP_Z_score values\"],\n        \"statistical_tests\": [\"Check for normal distribution of APP_Z_score\", \"Verify correlation between Age and APP_Z_score\", \"Test for outliers in APP_Z_score\"],\n        \"output_format_requirements\": [\"Age should be reported as numeric value\", \"Include patient identifier (idx or Proteomics_Participant_ID)\", \"Report APP_Z_score value for verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 15.544708013534546,
+  "token_usage": {
+    "input_tokens": 11685,
+    "output_tokens": 760
+  }
+}

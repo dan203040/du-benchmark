@@ -1,0 +1,326 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total agricultural value in 2008/09",
+      "confidence": 1.0,
+      "votes": [
+        "total agricultural value in 2008/09",
+        "total agricultural value in 2008/09",
+        "Total agricultural value in 2008/09"
+      ]
+    },
+    "filters": {
+      "value": [
+        "IME Exchange (Including spot, credit and forward transactions) = 'Agricultural - Value (billion rials)'",
+        "column '2008/09'",
+        "Year = 2008/09",
+        "Category contains 'Agricultural' and 'Value'",
+        "Row contains 'Agricultural - Value (billion rials)'"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "IME Exchange (Including spot, credit and forward transactions) = 'Agricultural - Value (billion rials)'",
+          "column '2008/09'"
+        ],
+        [
+          "Year = 2008/09",
+          "Category contains 'Agricultural' and 'Value'"
+        ],
+        [
+          "Row contains 'Agricultural - Value (billion rials)'",
+          "Column '2008/09'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which row contains agricultural value data?",
+        "Is there only one agricultural value entry for 2008/09?",
+        "Are there multiple agricultural value rows that need to be summed?",
+        "Which rows represent agricultural value data?",
+        "Are there multiple agricultural value entries that need to be summed?",
+        "Does the dataset contain separate sections (IME Exchange vs other transaction types) that need to be considered?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which row contains agricultural value data?",
+          "Is there only one agricultural value entry for 2008/09?",
+          "Are there multiple agricultural value rows that need to be summed?"
+        ],
+        [
+          "Which rows represent agricultural value data?",
+          "Are there multiple agricultural value entries that need to be summed?",
+          "Does the dataset contain separate sections (IME Exchange vs other transaction types) that need to be considered?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "IME Exchange (Including spot, credit and forward transactions)"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "IME Exchange (Including spot, credit and forward transactions)"
+        ],
+        [
+          "IME Exchange (Including spot, credit and forward transactions)"
+        ],
+        [
+          "IME Exchange (Including spot, credit and forward transactions)"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "agricultural - value (billion rials)": "billion rials",
+        "2007/08": "year",
+        "2008/09": "year",
+        "2009/10": "year",
+        "2010/11": "year",
+        "2011/12": "year"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Agricultural - Value (billion rials)": "billion rials",
+          "2007/08": "year",
+          "2008/09": "year",
+          "2009/10": "year",
+          "2010/11": "year",
+          "2011/12": "year"
+        },
+        {
+          "2008/09": "billion rials for value rows, thousand tons for volume rows"
+        },
+        {
+          "2007/08": "billion rials",
+          "2008/09": "billion rials",
+          "2009/10": "billion rials",
+          "2010/11": "billion rials",
+          "2011/12": "billion rials"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Some values contain commas as thousand separators (e.g., '3,729.7') that need parsing",
+        "Value is in billion rials",
+        "Volume is in thousand tons",
+        "Numbers contain commas as thousand separators"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Some values contain commas as thousand separators (e.g., '3,729.7') that need parsing"
+        ],
+        [
+          "Value is in billion rials",
+          "Volume is in thousand tons",
+          "Numbers contain commas as thousand separators"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Agricultural value must be numeric after removing thousand separators",
+        "Only rows with 'Agricultural - Value' in first column should be considered",
+        "Must identify all rows where Category contains 'Agricultural - Value'",
+        "Must parse numeric values with comma separators",
+        "Must extract data from column '2008/09'",
+        "Need to extract the row where 'IME Exchange (Including spot, credit and forward transactions)' is 'Agricultural - Value (billion rials)'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Agricultural value must be numeric after removing thousand separators",
+          "Only rows with 'Agricultural - Value' in first column should be considered"
+        ],
+        [
+          "Must identify all rows where Category contains 'Agricultural - Value'",
+          "Must parse numeric values with comma separators",
+          "Must extract data from column '2008/09'"
+        ],
+        [
+          "Need to extract the row where 'IME Exchange (Including spot, credit and forward transactions)' is 'Agricultural - Value (billion rials)'"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where first column contains 'Agricultural - Value'",
+        "Extract value from '2008/09' column",
+        "Filter rows where 'Agricultural - Value' appears in the category column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where first column contains 'Agricultural - Value'",
+          "Extract value from '2008/09' column"
+        ],
+        [
+          "Filter rows where 'Agricultural - Value' appears in the category column"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate agricultural value rows",
+        "Validate numeric conversion of values with commas"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate agricultural value rows",
+          "Validate numeric conversion of values with commas"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Numeric value in billion rials",
+        "Should handle thousand separator parsing",
+        "Return single numeric value in billion rials",
+        "Sum all agricultural value entries for 2008/09 if multiple sections exist",
+        "Output should be a single numerical value representing the total agricultural value in billion rials."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Numeric value in billion rials",
+          "Should handle thousand separator parsing"
+        ],
+        [
+          "Return single numeric value in billion rials",
+          "Sum all agricultural value entries for 2008/09 if multiple sections exist"
+        ],
+        [
+          "Output should be a single numerical value representing the total agricultural value in billion rials."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5866666666666668
+}

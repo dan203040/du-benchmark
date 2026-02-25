@@ -1,0 +1,95 @@
+{
+  "m_q": {
+    "target_metric": "Box office revenue from national films in 2013",
+    "filters": [
+      "Year = 2013",
+      "Country != 'World'",
+      "Box office from national films != '\u2013'"
+    ],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total box office revenue for each country in 2013?",
+      "What percentage of each country's box office comes from national films in 2013?",
+      "Which country has the highest absolute revenue from national films in 2013?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "national films"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple rows with same Rank value (e.g., Rank 1 appears twice)",
+      "Inconsistent Year values within same dataset",
+      "World entry appears in middle of country list"
+    ],
+    "column_mappings": {
+      "Box office from national films": "National_films_percentage"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Box Office": "USD billions",
+      "Box office from national films": "percentage with year reference"
+    },
+    "scale_issues": [
+      "Box Office values contain '$' and 'billion' text",
+      "Box office from national films contains percentage values with year references in parentheses",
+      "Need to convert text values to numeric for calculation"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      "",
+      "NA"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Box Office column contains currency symbols and text",
+      "Box office from national films column contains mixed formats (percentages with year references, dashes)",
+      "Some rows have missing Rank values",
+      "Data appears to contain multiple years mixed together"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be 2013",
+      "Box office from national films must be a valid percentage for 2013",
+      "Country must not be 'World'",
+      "Box Office must be convertible to numeric value"
+    ],
+    "derived_filters": [
+      "Filter rows where Year = 2013",
+      "Filter rows where Box office from national films contains '(2013)'",
+      "Remove rows with '\u2013' in Box office from national films",
+      "Remove 'World' country entry"
+    ],
+    "statistical_tests": [
+      "Check for duplicate countries in 2013 data",
+      "Validate percentage values are between 0-100",
+      "Verify year consistency in percentage references"
+    ],
+    "output_format_requirements": [
+      "Country name",
+      "Calculated national films revenue in USD",
+      "Supporting calculation: Box Office * (National_films_percentage/100)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Box office revenue from national films in 2013\",\n        \"filters\": [\"Year = 2013\", \"Country != 'World'\", \"Box office from national films != '\u2013'\"],\n        \"grouping_variables\": [\"Country\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total box office revenue for each country in 2013?\", \"What percentage of each country's box office comes from national films in 2013?\", \"Which country has the highest absolute revenue from national films in 2013?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"national films\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Multiple rows with same Rank value (e.g., Rank 1 appears twice)\", \"Inconsistent Year values within same dataset\", \"World entry appears in middle of country list\"],\n        \"column_mappings\": {\"Box office from national films\": \"National_films_percentage\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Box Office\": \"USD billions\", \"Box office from national films\": \"percentage with year reference\"},\n        \"scale_issues\": [\"Box Office values contain '$' and 'billion' text\", \"Box office from national films contains percentage values with year references in parentheses\", \"Need to convert text values to numeric for calculation\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\u2013\", \"\", \"NA\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Box Office column contains currency symbols and text\", \"Box office from national films column contains mixed formats (percentages with year references, dashes)\", \"Some rows have missing Rank values\", \"Data appears to contain multiple years mixed together\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year must be 2013\", \"Box office from national films must be a valid percentage for 2013\", \"Country must not be 'World'\", \"Box Office must be convertible to numeric value\"],\n        \"derived_filters\": [\"Filter rows where Year = 2013\", \"Filter rows where Box office from national films contains '(2013)'\", \"Remove rows with '\u2013' in Box office from national films\", \"Remove 'World' country entry\"],\n        \"statistical_tests\": [\"Check for duplicate countries in 2013 data\", \"Validate percentage values are between 0-100\", \"Verify year consistency in percentage references\"],\n        \"output_format_requirements\": [\"Country name\", \"Calculated national films revenue in USD\", \"Supporting calculation: Box Office * (National_films_percentage/100)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.500646114349365,
+  "token_usage": {
+    "input_tokens": 948,
+    "output_tokens": 618
+  }
+}

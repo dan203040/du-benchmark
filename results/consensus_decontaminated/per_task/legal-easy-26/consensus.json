@@ -1,0 +1,322 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "States where 'Identity Theft' is the top report category",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "States where 'Identity Theft' is the top report category",
+        "List of states where 'Identity Theft' is the top report category",
+        "States where 'Identity Theft' is the top report category"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Category = 'Identity Theft'",
+        "Top rank per state",
+        "Category equals 'Identity Theft'",
+        "Category rank is 1 (top category) for each state"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Category = 'Identity Theft'",
+          "Top rank per state"
+        ],
+        [
+          "Category equals 'Identity Theft'",
+          "Category rank is 1 (top category) for each state"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "State"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "State"
+        ],
+        [
+          "State"
+        ],
+        [
+          "State"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the ranking of categories within each state?",
+        "How many states have Identity Theft as their top category?",
+        "What are the report counts and percentages for Identity Theft in those states?",
+        "What is the top category for each state?",
+        "Which states have 'Identity Theft' as that top category?",
+        "How is 'top' determined - by '# of Reports' or by ranking order in the dataset?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the ranking of categories within each state?",
+          "How many states have Identity Theft as their top category?",
+          "What are the report counts and percentages for Identity Theft in those states?"
+        ],
+        [
+          "What is the top category for each state?",
+          "Which states have 'Identity Theft' as that top category?",
+          "How is 'top' determined - by '# of Reports' or by ranking order in the dataset?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_State_Top_Ten_Report_Categories.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_State_Top_Ten_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_State_Top_Ten_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_State_Top_Ten_Report_Categories.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count",
+        "percentage": "percentage"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage"
+        },
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage (as string with % symbol)"
+        },
+        {
+          "# of Reports": "number of reports",
+          "Percentage": "percentage"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Percentage column is stored as string with '%' symbol, needs conversion to numeric for ranking",
+        "Percentage column is stored as string (e.g., '32%') rather than numeric decimal",
+        "Need to determine if top category is first row per state or highest '# of Reports'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage column is stored as string with '%' symbol, needs conversion to numeric for ranking"
+        ],
+        [
+          "Percentage column is stored as string (e.g., '32%') rather than numeric decimal",
+          "Need to determine if top category is first row per state or highest '# of Reports'"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each state should have exactly one top category (highest # of Reports or Percentage)",
+        "Categories are ranked within each state",
+        "Total percentage per state should sum to 100%",
+        "Each state should have multiple category entries (up to 10)",
+        "'Identity Theft' must exist as a category value",
+        "The top category is assumed to be the first occurrence for each state or the one with highest '# of Reports'",
+        "For each state, determine the category with the highest '# of Reports'.",
+        "Identify states where the top category is 'Identity Theft'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Each state should have exactly one top category (highest # of Reports or Percentage)",
+          "Categories are ranked within each state",
+          "Total percentage per state should sum to 100%"
+        ],
+        [
+          "Each state should have multiple category entries (up to 10)",
+          "'Identity Theft' must exist as a category value",
+          "The top category is assumed to be the first occurrence for each state or the one with highest '# of Reports'"
+        ],
+        [
+          "For each state, determine the category with the highest '# of Reports'.",
+          "Identify states where the top category is 'Identity Theft'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to rows where Category = 'Identity Theft'",
+        "Then filter to rows where Identity Theft has the highest # of Reports within its state",
+        "For each state, identify the category with maximum '# of Reports'",
+        "Filter to only states where that maximum category is 'Identity Theft'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to rows where Category = 'Identity Theft'",
+          "Then filter to rows where Identity Theft has the highest # of Reports within its state"
+        ],
+        [
+          "For each state, identify the category with maximum '# of Reports'",
+          "Filter to only states where that maximum category is 'Identity Theft'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify ranking consistency between # of Reports and Percentage columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify ranking consistency between # of Reports and Percentage columns"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of state names",
+        "Include supporting metrics (# of Reports, Percentage) for verification",
+        "Return list of state names",
+        "States should be those where 'Identity Theft' has the highest '# of Reports' compared to other categories in that state",
+        "List of states."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of state names",
+          "Include supporting metrics (# of Reports, Percentage) for verification"
+        ],
+        [
+          "Return list of state names",
+          "States should be those where 'Identity Theft' has the highest '# of Reports' compared to other categories in that state"
+        ],
+        [
+          "List of states."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6333333333333335
+}

@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "average latitude of capital cities, considering only the capital with the largest population per country",
+    "filters": [
+      "capital is not null",
+      "population is not null"
+    ],
+    "grouping_variables": [
+      "country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify capital cities.",
+      "For each country, find the capital city with the largest population.",
+      "Calculate the average latitude of the selected capital cities."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "worldcities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat": "degrees",
+      "lng": "degrees",
+      "population": "people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "If a country has multiple capital cities, only the capital with the largest population should be considered.",
+      "The final result should be rounded to 4 decimal places."
+    ],
+    "derived_filters": [
+      "capital_flag: derived from 'capital' column (primary, admin, minor, or null)",
+      "largest_capital_population_per_country: derived by grouping by country and selecting the capital with the maximum population"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single numerical value representing the average latitude, rounded to 4 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average latitude of capital cities, considering only the capital with the largest population per country\",\n    \"filters\": [\"capital is not null\", \"population is not null\"],\n    \"grouping_variables\": [\"country\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\"Identify capital cities.\", \"For each country, find the capital city with the largest population.\", \"Calculate the average latitude of the selected capital cities.\"]\n  },\n  \"M_S\": {\n    \"sources\": [\"worldcities.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"lat\": \"degrees\", \"lng\": \"degrees\", \"population\": \"people\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"If a country has multiple capital cities, only the capital with the largest population should be considered.\", \"The final result should be rounded to 4 decimal places.\"],\n    \"derived_filters\": [\"capital_flag: derived from 'capital' column (primary, admin, minor, or null)\", \"largest_capital_population_per_country: derived by grouping by country and selecting the capital with the maximum population\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The output should be a single numerical value representing the average latitude, rounded to 4 decimal places.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 43.68693804740906,
+  "token_usage": {}
+}

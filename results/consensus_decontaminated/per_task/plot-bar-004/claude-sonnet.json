@@ -1,0 +1,96 @@
+{
+  "m_q": {
+    "target_metric": "Enhance analysis.py by correcting errors and creating visualizations saved as result.png according to plot.yaml specifications",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What are the current errors or issues in analysis.py?",
+      "What visualization specifications are defined in plot.yaml?",
+      "What data transformations are needed for the visualizations?",
+      "How should multiple plots be arranged in result.png?",
+      "What are the appropriate chart types for Titanic survival analysis?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "Fare": "British pounds",
+      "SibSp": "count",
+      "Parch": "count",
+      "Pclass": "ordinal_class",
+      "Survived": "binary_indicator"
+    },
+    "scale_issues": [
+      "Age has missing values that may need imputation",
+      "Fare ranges from near-zero to over 500",
+      "Cabin has significant missing data"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "nan"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Name column contains quoted strings with commas",
+      "Cabin column has approximately 77% missing values",
+      "Age column has missing values (shown as empty or NaN)",
+      "Embarked has missing values for some passengers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "PassengerId must be unique and range from 1 to 891",
+      "Survived must be binary (0 or 1)",
+      "Pclass must be 1, 2, or 3",
+      "Sex must be 'male' or 'female'",
+      "Age must be non-negative when present",
+      "SibSp and Parch must be non-negative integers",
+      "Fare must be non-negative",
+      "Embarked must be 'C', 'Q', or 'S' when present"
+    ],
+    "derived_filters": [
+      "Filter out rows where critical analysis columns have missing values if required",
+      "Handle missing Age values through imputation or exclusion based on analysis needs"
+    ],
+    "statistical_tests": [
+      "Chi-square test for categorical variables vs Survived",
+      "T-test or Mann-Whitney U test for continuous variables vs Survived",
+      "Correlation analysis between numerical features"
+    ],
+    "output_format_requirements": [
+      "Save visualization as result.png",
+      "Follow layout specifications from plot.yaml",
+      "Ensure plots are properly labeled with titles, axis labels, and legends",
+      "Use appropriate color schemes for categorical data",
+      "Handle missing data appropriately in visualizations",
+      "Ensure image resolution is suitable for analysis",
+      "Use matplotlib or seaborn for visualization generation"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Enhance analysis.py by correcting errors and creating visualizations saved as result.png according to plot.yaml specifications\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"What are the current errors or issues in analysis.py?\",\n      \"What visualization specifications are defined in plot.yaml?\",\n      \"What data transformations are needed for the visualizations?\",\n      \"How should multiple plots be arranged in result.png?\",\n      \"What are the appropriate chart types for Titanic survival analysis?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"train.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"Fare\": \"British pounds\",\n      \"SibSp\": \"count\",\n      \"Parch\": \"count\",\n      \"Pclass\": \"ordinal_class\",\n      \"Survived\": \"binary_indicator\"\n    },\n    \"scale_issues\": [\n      \"Age has missing values that may need imputation\",\n      \"Fare ranges from near-zero to over 500\",\n      \"Cabin has significant missing data\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"nan\"],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Name column contains quoted strings with commas\",\n      \"Cabin column has approximately 77% missing values\",\n      \"Age column has missing values (shown as empty or NaN)\",\n      \"Embarked has missing values for some passengers\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"PassengerId must be unique and range from 1 to 891\",\n      \"Survived must be binary (0 or 1)\",\n      \"Pclass must be 1, 2, or 3\",\n      \"Sex must be 'male' or 'female'\",\n      \"Age must be non-negative when present\",\n      \"SibSp and Parch must be non-negative integers\",\n      \"Fare must be non-negative\",\n      \"Embarked must be 'C', 'Q', or 'S' when present\"\n    ],\n    \"derived_filters\": [\n      \"Filter out rows where critical analysis columns have missing values if required\",\n      \"Handle missing Age values through imputation or exclusion based on analysis needs\"\n    ],\n    \"statistical_tests\": [\n      \"Chi-square test for categorical variables vs Survived\",\n      \"T-test or Mann-Whitney U test for continuous variables vs Survived\",\n      \"Correlation analysis between numerical features\"\n    ],\n    \"output_format_requirements\": [\n      \"Save visualization as result.png\",\n      \"Follow layout specifications from plot.yaml\",\n      \"Ensure plots are properly labeled with titles, axis labels, and legends\",\n      \"Use appropriate color schemes for categorical data\",\n      \"Handle missing data appropriately in visualizations\",\n      \"Ensure image resolution is suitable for analysis\",\n      \"Use matplotlib or seaborn for visualization generation\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 14.405710697174072,
+  "token_usage": {
+    "input_tokens": 1567,
+    "output_tokens": 854
+  }
+}

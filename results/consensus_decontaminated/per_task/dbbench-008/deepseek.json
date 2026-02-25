@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Apps",
+    "filters": [
+      "Team = 'Spartak Nizhny Novgorod'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What season(s) does Spartak Nizhny Novgorod appear in?",
+      "Is there only one row for this team or multiple seasons?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football_Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Apps": "count",
+      "Goals": "count",
+      "Division": "level (1=top division)"
+    },
+    "scale_issues": [
+      "Season column has inconsistent formats: some years (2004, 2005, 2006), some season ranges (2006/07, 2007/08)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 20 rows but shape indicates 22 total rows",
+      "Division column uses Int64 dtype"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Apps >= 0",
+      "Goals >= 0",
+      "Division should be positive integer"
+    ],
+    "derived_filters": [
+      "Country = 'Russia'",
+      "Division = 2 (based on sample row)"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Team-Season combinations",
+      "Verify Apps values are reasonable for football statistics"
+    ],
+    "output_format_requirements": [
+      "Single numeric value representing total Apps",
+      "Should clarify if asking for sum across seasons or specific season"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Apps\",\n        \"filters\": [\"Team = 'Spartak Nizhny Novgorod'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What season(s) does Spartak Nizhny Novgorod appear in?\", \"Is there only one row for this team or multiple seasons?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Football_Stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Apps\": \"count\", \"Goals\": \"count\", \"Division\": \"level (1=top division)\"},\n        \"scale_issues\": [\"Season column has inconsistent formats: some years (2004, 2005, 2006), some season ranges (2006/07, 2007/08)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 20 rows but shape indicates 22 total rows\", \"Division column uses Int64 dtype\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Apps >= 0\", \"Goals >= 0\", \"Division should be positive integer\"],\n        \"derived_filters\": [\"Country = 'Russia'\", \"Division = 2 (based on sample row)\"],\n        \"statistical_tests\": [\"Check for duplicate Team-Season combinations\", \"Verify Apps values are reasonable for football statistics\"],\n        \"output_format_requirements\": [\"Single numeric value representing total Apps\", \"Should clarify if asking for sum across seasons or specific season\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.570250272750854,
+  "token_usage": {
+    "input_tokens": 969,
+    "output_tokens": 433
+  }
+}

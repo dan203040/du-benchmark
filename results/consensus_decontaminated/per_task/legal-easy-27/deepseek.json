@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Count of distinct states where 'Prizes, Sweepstakes and Lotteries' appears in the top-10 categories",
+    "filters": [
+      "Year = 2024",
+      "Category = 'Prizes, Sweepstakes and Lotteries'"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which states have 'Prizes, Sweepstakes and Lotteries' in their top-10 categories?",
+      "What is the count of such states?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Top_Ten_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [
+      "Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Category names contain commas and are quoted in CSV",
+      "Percentage values include '%' symbol"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each state should have exactly 10 rows (top-10 categories)",
+      "Sum of percentages for each state should be 100%",
+      "Category names are consistent across states"
+    ],
+    "derived_filters": [
+      "Filter rows where Category contains 'Prizes, Sweepstakes and Lotteries'"
+    ],
+    "statistical_tests": [
+      "Verify each state has exactly 10 rows",
+      "Check for duplicate state-category combinations"
+    ],
+    "output_format_requirements": [
+      "Single integer count",
+      "No decimal places"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of distinct states where 'Prizes, Sweepstakes and Lotteries' appears in the top-10 categories\",\n        \"filters\": [\"Year = 2024\", \"Category = 'Prizes, Sweepstakes and Lotteries'\"],\n        \"grouping_variables\": [\"State\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which states have 'Prizes, Sweepstakes and Lotteries' in their top-10 categories?\", \"What is the count of such states?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_State_Top_Ten_Report_Categories.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count\", \"Percentage\": \"percentage\"},\n        \"scale_issues\": [\"Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Category names contain commas and are quoted in CSV\", \"Percentage values include '%' symbol\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each state should have exactly 10 rows (top-10 categories)\", \"Sum of percentages for each state should be 100%\", \"Category names are consistent across states\"],\n        \"derived_filters\": [\"Filter rows where Category contains 'Prizes, Sweepstakes and Lotteries'\"],\n        \"statistical_tests\": [\"Verify each state has exactly 10 rows\", \"Check for duplicate state-category combinations\"],\n        \"output_format_requirements\": [\"Single integer count\", \"No decimal places\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.75414514541626,
+  "token_usage": {
+    "input_tokens": 870,
+    "output_tokens": 462
+  }
+}

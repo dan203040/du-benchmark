@@ -1,0 +1,332 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "List of major competitions where Yoichiro Kakitani had at least 3 starts",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "List of major competitions where Yoichiro Kakitani had at least 3 starts",
+        "major competitions where Yoichiro Kakitani had at least 3 starts",
+        "List of major competitions where Yoichiro Kakitani had at least 3 starts."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Team = 'Japan'",
+        "Appearances Start >= 3",
+        "player is Yoichiro Kakitani"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Team = 'Japan'",
+          "Appearances Start >= 3"
+        ],
+        [
+          "player is Yoichiro Kakitani",
+          "Appearances Start >= 3"
+        ],
+        [
+          "Player is Yoichiro Kakitani",
+          "Appearances Start >= 3"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Competition"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Competition"
+        ],
+        [
+          "Competition"
+        ],
+        [
+          "Competition"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which competitions are considered 'major'?",
+        "Does the data include all competitions for Yoichiro Kakitani?",
+        "Are there any competitions with partial data?",
+        "Which rows in the dataset belong to Yoichiro Kakitani?",
+        "Which competitions have Appearances Start >= 3?",
+        "What are the names of those competitions?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which competitions are considered 'major'?",
+          "Does the data include all competitions for Yoichiro Kakitani?",
+          "Are there any competitions with partial data?"
+        ],
+        [
+          "Which rows in the dataset belong to Yoichiro Kakitani?",
+          "Which competitions have Appearances Start >= 3?",
+          "What are the names of those competitions?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "team_competition_stats"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "team_competition_stats"
+        ],
+        [
+          "team_competition_stats"
+        ],
+        [
+          "team_competition_stats"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "The sample shows a row with 'Team,Competition,Category,,,,Team Record' which appears to be a malformed header or data row",
+        "Data contains entries for multiple teams/players mixed together without a player identifier column",
+        "Rows 7 onward appear to be example data for different teams, not related to Kakitani"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "The sample shows a row with 'Team,Competition,Category,,,,Team Record' which appears to be a malformed header or data row"
+        ],
+        [
+          "Data contains entries for multiple teams/players mixed together without a player identifier column",
+          "Rows 7 onward appear to be example data for different teams, not related to Kakitani"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "appearances start": "count",
+        "appearances sub": "count",
+        "goals": "count"
+      },
+      "confidence": 0.8888888888888888,
+      "votes": [
+        {
+          "Appearances Start": "count",
+          "Appearances Sub": "count",
+          "Goals": "count"
+        },
+        {
+          "Appearances Start": "count",
+          "Appearances Sub": "count",
+          "Goals": "count"
+        },
+        {
+          "Appearances Start": "number of appearances",
+          "Goals": "number of goals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Data appears to mix different national teams and competitions - unclear if this is comprehensive for Yoichiro Kakitani"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data appears to mix different national teams and competitions - unclear if this is comprehensive for Yoichiro Kakitani"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Appearances Start must be non-negative integer",
+        "Goals must be non-negative integer",
+        "Team must be a valid country name",
+        "Must identify which rows belong to Yoichiro Kakitani (likely the Japan team entries)",
+        "Appearances Start must be numeric and >= 3",
+        "Competition names must be non-null",
+        "Need to filter the data for Yoichiro Kakitani's appearances.",
+        "Need to handle missing values in 'Appearances Start' column."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Appearances Start must be non-negative integer",
+          "Goals must be non-negative integer",
+          "Team must be a valid country name"
+        ],
+        [
+          "Must identify which rows belong to Yoichiro Kakitani (likely the Japan team entries)",
+          "Appearances Start must be numeric and >= 3",
+          "Competition names must be non-null"
+        ],
+        [
+          "Need to filter the data for Yoichiro Kakitani's appearances.",
+          "Need to handle missing values in 'Appearances Start' column."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to rows where Team = 'Japan' to find Yoichiro Kakitani's competitions",
+        "Filter to rows where Appearances Start >= 3",
+        "Team = 'Japan' to isolate Kakitani's records",
+        "Filter out invalid/header rows (e.g., row 7)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to rows where Team = 'Japan' to find Yoichiro Kakitani's competitions",
+          "Filter to rows where Appearances Start >= 3"
+        ],
+        [
+          "Team = 'Japan' to isolate Kakitani's records",
+          "Filter out invalid/header rows (e.g., row 7)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check distribution of Appearances Start values",
+        "Verify no duplicate competition entries for Japan"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check distribution of Appearances Start values",
+          "Verify no duplicate competition entries for Japan"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of competition names",
+        "Include number of starts for each qualifying competition",
+        "Only include competitions where starts >= 3"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "List of competition names",
+          "Include number of starts for each qualifying competition"
+        ],
+        [
+          "List of competition names",
+          "Only include competitions where starts >= 3"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6611111111111112
+}

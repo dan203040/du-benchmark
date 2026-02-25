@@ -1,0 +1,433 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average rate of semi-major axis decay (km/day) for two periods: quiet period (May 1-4, 2024) and storm period (May 10-13, 2024)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "average rate of semi-major axis decay (km/day) for two periods: quiet period (May 1-4, 2024) and storm period (May 10-13, 2024)",
+        "Average rate of semi-major axis decay (km/day) for two periods: (1) quiet period May 1-4, 2024, (2) Gannon storm May 10-13, 2024",
+        "Average rate of semi-major axis decay (km/day) for Starlink satellite 58214 during the Gannon storm (May 10-13, 2024) and the preceding quiet period (May 1-4, 2024)"
+      ]
+    },
+    "filters": {
+      "value": [
+        "EPOCH between 2024-05-01 and 2024-05-04 for quiet period",
+        "EPOCH between 2024-05-10 and 2024-05-13 for storm period",
+        "NORAD_CAT_ID = 58214",
+        "EPOCH >= 2024-05-01 AND EPOCH <= 2024-05-04 for quiet period",
+        "EPOCH >= 2024-05-10 AND EPOCH <= 2024-05-13 for storm period",
+        "NORAD_CAT_ID == 58214",
+        "Time period: May 1-4, 2024 (quiet) and May 10-13, 2024 (storm)",
+        "Satellite: NORAD_CAT_ID = 58214"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "EPOCH between 2024-05-01 and 2024-05-04 for quiet period",
+          "EPOCH between 2024-05-10 and 2024-05-13 for storm period",
+          "NORAD_CAT_ID = 58214"
+        ],
+        [
+          "EPOCH >= 2024-05-01 AND EPOCH <= 2024-05-04 for quiet period",
+          "EPOCH >= 2024-05-10 AND EPOCH <= 2024-05-13 for storm period",
+          "NORAD_CAT_ID == 58214"
+        ],
+        [
+          "Time period: May 1-4, 2024 (quiet) and May 10-13, 2024 (storm)",
+          "Satellite: NORAD_CAT_ID = 58214"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "period_type (quiet/storm)",
+        "time_period (quiet vs storm)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "period_type (quiet/storm)"
+        ],
+        [
+          "time_period (quiet vs storm)"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "pair of numbers (average_quiet_rate_km_day, average_storm_rate_km_day)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "pair of numbers (average_quiet_rate_km_day, average_storm_rate_km_day)",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate semi-major axis from MEAN_MOTION using Kepler's law",
+        "Compute daily decay rate from semi-major axis changes over time",
+        "Average decay rates separately for quiet and storm periods",
+        "Parse EPOCH column to datetime for filtering by date ranges",
+        "Calculate semi-major axis from MEAN_MOTION using Kepler's law: a = (mu/(2*pi*n)^2)^(1/3) where n is mean motion in rad/s",
+        "Order TLE records by EPOCH timestamp within each period",
+        "Compute semi-major axis changes between consecutive TLE observations",
+        "Calculate time differences in days between consecutive observations",
+        "Compute decay rates as delta_a / delta_t for each consecutive pair",
+        "Average the decay rates over the quiet period (May 1-4)",
+        "Average the decay rates over the storm period (May 10-13)",
+        "Format output as tuple (average_quiet_rate_km_day, average_storm_rate_km_day)",
+        "Calculate the semi-major axis from MEAN_MOTION using Kepler's law for each TLE.",
+        "Calculate the rate of semi-major axis decay (km/day) for each day in the quiet and storm periods.",
+        "Average the daily decay rates for the quiet and storm periods separately."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Calculate semi-major axis from MEAN_MOTION using Kepler's law",
+          "Compute daily decay rate from semi-major axis changes over time",
+          "Average decay rates separately for quiet and storm periods"
+        ],
+        [
+          "Parse EPOCH column to datetime for filtering by date ranges",
+          "Calculate semi-major axis from MEAN_MOTION using Kepler's law: a = (mu/(2*pi*n)^2)^(1/3) where n is mean motion in rad/s",
+          "Order TLE records by EPOCH timestamp within each period",
+          "Compute semi-major axis changes between consecutive TLE observations",
+          "Calculate time differences in days between consecutive observations",
+          "Compute decay rates as delta_a / delta_t for each consecutive pair",
+          "Average the decay rates over the quiet period (May 1-4)",
+          "Average the decay rates over the storm period (May 10-13)",
+          "Format output as tuple (average_quiet_rate_km_day, average_storm_rate_km_day)"
+        ],
+        [
+          "Calculate the semi-major axis from MEAN_MOTION using Kepler's law for each TLE.",
+          "Calculate the rate of semi-major axis decay (km/day) for each day in the quiet and storm periods.",
+          "Average the daily decay rates for the quiet and storm periods separately."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "58214_quiet.csv",
+        "58214_storm.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "58214_quiet.csv",
+          "58214_storm.csv"
+        ],
+        [
+          "58214_quiet.csv",
+          "58214_storm.csv"
+        ],
+        [
+          "58214_storm.csv",
+          "58214_quiet.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Both files have identical column structures and dtypes",
+        "Both files have identical schema, no conflicts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Both files have identical column structures and dtypes"
+        ],
+        [
+          "Both files have identical schema, no conflicts"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "mean_motion": "revolutions per day",
+        "semimajor_axis": "km",
+        "epoch": "UTC datetime",
+        "mean_motion_dot": "revolutions per day squared",
+        "period": "minutes",
+        "apoapsis": "km",
+        "periapsis": "km",
+        "mu": "398600.4418 km^3/s^2 (Earth gravitational parameter)",
+        "earth_radius": "6371.0 km",
+        "target_output": "km/day (decay rate)",
+        "eccentricity": "unitless",
+        "inclination": "degrees",
+        "ra_of_asc_node": "degrees",
+        "arg_of_pericenter": "degrees",
+        "mean_anomaly": "degrees",
+        "bstar": "1/Earth radii",
+        "mean_motion_ddot": "revolutions/day^3"
+      },
+      "confidence": 0.5098039215686273,
+      "votes": [
+        {
+          "MEAN_MOTION": "revolutions per day",
+          "SEMIMAJOR_AXIS": "km",
+          "EPOCH": "UTC datetime",
+          "MEAN_MOTION_DOT": "revolutions per day squared",
+          "PERIOD": "minutes",
+          "APOAPSIS": "km",
+          "PERIAPSIS": "km"
+        },
+        {
+          "EPOCH": "UTC datetime string",
+          "MEAN_MOTION": "revolutions per day",
+          "SEMIMAJOR_AXIS": "km (pre-calculated in data)",
+          "mu": "398600.4418 km^3/s^2 (Earth gravitational parameter)",
+          "earth_radius": "6371.0 km",
+          "target_output": "km/day (decay rate)"
+        },
+        {
+          "MEAN_MOTION": "revolutions/day",
+          "ECCENTRICITY": "unitless",
+          "INCLINATION": "degrees",
+          "RA_OF_ASC_NODE": "degrees",
+          "ARG_OF_PERICENTER": "degrees",
+          "MEAN_ANOMALY": "degrees",
+          "BSTAR": "1/Earth radii",
+          "MEAN_MOTION_DOT": "revolutions/day^2",
+          "MEAN_MOTION_DDOT": "revolutions/day^3",
+          "SEMIMAJOR_AXIS": "km",
+          "PERIOD": "minutes",
+          "APOAPSIS": "km",
+          "PERIAPSIS": "km"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "MEAN_MOTION_DOT values are very small (e-05 to e-03)",
+        "BSTAR values are negative and small (e-03 to e-04)",
+        "ECCENTRICITY values are very small (e-04 to e-03)",
+        "MEAN_MOTION is in revolutions/day, needs conversion to rad/s: n_rad_s = MEAN_MOTION * 2*pi / 86400",
+        "Time differences must be computed in days from EPOCH timestamps",
+        "Semi-major axis calculated from Kepler's law: a = (mu/(n^2))^(1/3) where n is in rad/s"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "MEAN_MOTION_DOT values are very small (e-05 to e-03)",
+          "BSTAR values are negative and small (e-03 to e-04)",
+          "ECCENTRICITY values are very small (e-04 to e-03)"
+        ],
+        [
+          "MEAN_MOTION is in revolutions/day, needs conversion to rad/s: n_rad_s = MEAN_MOTION * 2*pi / 86400",
+          "Time differences must be computed in days from EPOCH timestamps",
+          "Semi-major axis calculated from Kepler's law: a = (mu/(n^2))^(1/3) where n is in rad/s"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Time periods are different but data structure is consistent"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time periods are different but data structure is consistent"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "0.0"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "0.0"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 39.0,
+      "confidence": 1.0,
+      "votes": [
+        39.0,
+        39.0,
+        39.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "mu = 398600.4418 km^3/s^2 must be used for Kepler's law",
+        "earth radius = 6371.0 km",
+        "Semi-major axis must be calculated from MEAN_MOTION: a = (mu/(n*2\u03c0/86400)^2)^(1/3) where n is MEAN_MOTION in rev/day",
+        "Decay rate = \u0394a/\u0394t where \u0394a is change in semi-major axis and \u0394t is time difference in days",
+        "Use only NORAD_CAT_ID 58214 (Starlink-30805)",
+        "Quiet period: May 1-4, 2024 (inclusive)",
+        "Storm period: May 10-13, 2024 (inclusive)",
+        "Must use mu = 398600.4418 km^3/s^2",
+        "Must use earth_radius = 6371.0 km",
+        "Must calculate semi-major axis using Kepler's law from MEAN_MOTION, not use pre-calculated SEMIMAJOR_AXIS column",
+        "mu = 398600.4418 km^3/s^2",
+        "Kepler's Law: T^2 = (4*pi^2/mu) * a^3, where T is period and a is semi-major axis.  Period needs to be converted to seconds from MEAN_MOTION."
+      ],
+      "confidence": 0.3611111111111111,
+      "votes": [
+        [
+          "mu = 398600.4418 km^3/s^2 must be used for Kepler's law",
+          "earth radius = 6371.0 km",
+          "Semi-major axis must be calculated from MEAN_MOTION: a = (mu/(n*2\u03c0/86400)^2)^(1/3) where n is MEAN_MOTION in rev/day",
+          "Decay rate = \u0394a/\u0394t where \u0394a is change in semi-major axis and \u0394t is time difference in days"
+        ],
+        [
+          "Use only NORAD_CAT_ID 58214 (Starlink-30805)",
+          "Quiet period: May 1-4, 2024 (inclusive)",
+          "Storm period: May 10-13, 2024 (inclusive)",
+          "Must use mu = 398600.4418 km^3/s^2",
+          "Must use earth_radius = 6371.0 km",
+          "Must calculate semi-major axis using Kepler's law from MEAN_MOTION, not use pre-calculated SEMIMAJOR_AXIS column"
+        ],
+        [
+          "mu = 398600.4418 km^3/s^2",
+          "Earth radius = 6371.0 km",
+          "Kepler's Law: T^2 = (4*pi^2/mu) * a^3, where T is period and a is semi-major axis.  Period needs to be converted to seconds from MEAN_MOTION."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove duplicate EPOCH timestamps",
+        "Ensure chronological ordering within each period",
+        "Filter to only include valid MEAN_MOTION values > 0",
+        "Extract date from EPOCH string and filter by date range",
+        "Sort records chronologically within each period for sequential decay calculation",
+        "Quiet period: EPOCH between 2024-05-01 and 2024-05-04",
+        "Storm period: EPOCH between 2024-05-10 and 2024-05-13"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove duplicate EPOCH timestamps",
+          "Ensure chronological ordering within each period",
+          "Filter to only include valid MEAN_MOTION values > 0"
+        ],
+        [
+          "Extract date from EPOCH string and filter by date range",
+          "Sort records chronologically within each period for sequential decay calculation"
+        ],
+        [
+          "Quiet period: EPOCH between 2024-05-01 and 2024-05-04",
+          "Storm period: EPOCH between 2024-05-10 and 2024-05-13"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Linear regression of semi-major axis vs time for each period",
+        "Check for outliers in MEAN_MOTION values",
+        "Verify temporal coverage within specified date ranges"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Linear regression of semi-major axis vs time for each period",
+          "Check for outliers in MEAN_MOTION values",
+          "Verify temporal coverage within specified date ranges"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Pair of numbers with units km/day",
+        "Precision appropriate for orbital decay rates (likely 4-6 decimal places)",
+        "Output as tuple of two numbers: (average_quiet_rate_km_day, average_storm_rate_km_day)",
+        "Both values should be in km/day units",
+        "Decay rate is negative (decreasing semi-major axis) so values likely negative",
+        "(average_quiet_rate_km_day, average_storm_rate_km_day)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pair of numbers with units km/day",
+          "Precision appropriate for orbital decay rates (likely 4-6 decimal places)"
+        ],
+        [
+          "Output as tuple of two numbers: (average_quiet_rate_km_day, average_storm_rate_km_day)",
+          "Both values should be in km/day units",
+          "Decay rate is negative (decreasing semi-major axis) so values likely negative"
+        ],
+        [
+          "(average_quiet_rate_km_day, average_storm_rate_km_day)"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.568545751633987
+}

@@ -1,0 +1,335 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average Total score",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "average Total score",
+        "average of the 'Total' column",
+        "average of 'Total' for players named 'Hale Irwin' who have a 'Finish' of 'T52'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Player = 'Hale Irwin'",
+        "Finish contains 'T52'",
+        "Finish = 'T52'",
+        "Player is 'Hale Irwin'",
+        "Finish is 'T52'"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Player = 'Hale Irwin'",
+          "Finish contains 'T52'"
+        ],
+        [
+          "Player = 'Hale Irwin'",
+          "Finish = 'T52'"
+        ],
+        [
+          "Player is 'Hale Irwin'",
+          "Finish is 'T52'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Player"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Player"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the Total scores for Hale Irwin when Finish is T52?",
+        "How many T52 finishes does Hale Irwin have?",
+        "Are there multiple Total values for Hale Irwin's T52 finishes that need averaging?",
+        "Filter rows where Player is 'Hale Irwin'",
+        "Further filter where Finish is 'T52'",
+        "Extract Total values from filtered rows",
+        "Calculate the average of Total values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What are the Total scores for Hale Irwin when Finish is T52?",
+          "How many T52 finishes does Hale Irwin have?",
+          "Are there multiple Total values for Hale Irwin's T52 finishes that need averaging?"
+        ],
+        [
+          "Filter rows where Player is 'Hale Irwin'",
+          "Further filter where Finish is 'T52'",
+          "Extract Total values from filtered rows",
+          "Calculate the average of Total values"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Golf Champions"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Golf Champions"
+        ],
+        [
+          "Golf Champions"
+        ],
+        [
+          "Golf Champions"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "total": "golf strokes",
+        "to par": "strokes relative to par",
+        "year(s) won": "year(s)"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "Total": "golf strokes",
+          "To par": "strokes relative to par"
+        },
+        {
+          "Total": "strokes (golf score)",
+          "To par": "strokes relative to par",
+          "Year(s) won": "year(s)"
+        },
+        {
+          "Total": "strokes",
+          "To par": "strokes"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Total column is stored as object/string instead of numeric",
+        "To par column contains mixed formats (e.g., '+8', '-4', 'E')",
+        "Year(s) won contains multiple years separated by commas",
+        "Total column is stored as 'object' dtype but represents numeric golf scores",
+        "To par column contains +/- symbols and is stored as 'object' dtype"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total column is stored as object/string instead of numeric",
+          "To par column contains mixed formats (e.g., '+8', '-4', 'E')",
+          "Year(s) won contains multiple years separated by commas"
+        ],
+        [
+          "Total column is stored as 'object' dtype but represents numeric golf scores",
+          "To par column contains +/- symbols and is stored as 'object' dtype"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total should be convertible to numeric",
+        "Finish values starting with 'T' indicate tied positions",
+        "Each row represents a player's performance in a specific tournament/year",
+        "Player must exactly match 'Hale Irwin'",
+        "Finish must exactly match 'T52'",
+        "Total column must be converted to numeric type for averaging",
+        "Result should handle case where no matching rows exist",
+        "The 'Total' column should be numeric.",
+        "The 'Finish' column should be a string."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total should be convertible to numeric",
+          "Finish values starting with 'T' indicate tied positions",
+          "Each row represents a player's performance in a specific tournament/year"
+        ],
+        [
+          "Player must exactly match 'Hale Irwin'",
+          "Finish must exactly match 'T52'",
+          "Total column must be converted to numeric type for averaging",
+          "Result should handle case where no matching rows exist"
+        ],
+        [
+          "The 'Total' column should be numeric.",
+          "The 'Finish' column should be a string."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Need to extract numeric part from Total column",
+        "Need to handle Finish values that match 'T52' pattern",
+        "Row must satisfy both Player='Hale Irwin' AND Finish='T52' simultaneously"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Need to extract numeric part from Total column",
+          "Need to handle Finish values that match 'T52' pattern"
+        ],
+        [
+          "Row must satisfy both Player='Hale Irwin' AND Finish='T52' simultaneously"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if Total values for Hale Irwin's T52 finishes are consistent",
+        "Verify there are multiple T52 finishes to calculate average"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if Total values for Hale Irwin's T52 finishes are consistent",
+          "Verify there are multiple T52 finishes to calculate average"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Average should be reported as a numeric value",
+        "Should specify if average is based on multiple observations or single value",
+        "Return a single numeric value representing the average",
+        "If multiple rows match, compute arithmetic mean",
+        "If no rows match, return appropriate null/empty indicator"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Average should be reported as a numeric value",
+          "Should specify if average is based on multiple observations or single value"
+        ],
+        [
+          "Return a single numeric value representing the average",
+          "If multiple rows match, compute arithmetic mean",
+          "If no rows match, return appropriate null/empty indicator"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5922222222222223
+}

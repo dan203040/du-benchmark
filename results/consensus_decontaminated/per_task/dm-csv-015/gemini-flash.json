@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Identify the player with the most games played, runs, hits, and home runs.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "batting.csv",
+      "appearances.csv",
+      "player.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "batting.csv",
+        "right_source": "appearances.csv",
+        "left_column": "player_id",
+        "right_column": "player_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "batting.csv",
+        "right_source": "player.csv",
+        "left_column": "player_id",
+        "right_column": "player_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "g": "games",
+      "r": "runs",
+      "h": "hits",
+      "hr": "home runs"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 22,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Need to aggregate 'g', 'r', 'h', and 'hr' across all years for each player.",
+      "Need to find the maximum value for each of the aggregated metrics.",
+      "Need to retrieve the player_id associated with each maximum value.",
+      "Need to retrieve the player's name (name_first, name_last) from the player.csv file using player_id."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be in CSV format.",
+      "Output CSV must contain columns 'job title', 'Player_Name', and 'Batting_Table_Topper'.",
+      "The 'job title' column should contain the category (e.g., 'Most Games Played').",
+      "The 'Player_Name' column should contain the name of the player with the most in that category.",
+      "The 'Batting_Table_Topper' column should contain the value of the metric for that player."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Identify the player with the most games played, runs, hits, and home runs.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"batting.csv\",\n      \"appearances.csv\",\n      \"player.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"batting.csv\",\n        \"right_source\": \"appearances.csv\",\n        \"left_column\": \"player_id\",\n        \"right_column\": \"player_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"batting.csv\",\n        \"right_source\": \"player.csv\",\n        \"left_column\": \"player_id\",\n        \"right_column\": \"player_id\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"g\": \"games\",\n      \"r\": \"runs\",\n      \"h\": \"hits\",\n      \"hr\": \"home runs\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 22,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to aggregate 'g', 'r', 'h', and 'hr' across all years for each player.\",\n      \"Need to find the maximum value for each of the aggregated metrics.\",\n      \"Need to retrieve the player_id associated with each maximum value.\",\n      \"Need to retrieve the player's name (name_first, name_last) from the player.csv file using player_id.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be in CSV format.\",\n      \"Output CSV must contain columns 'job title', 'Player_Name', and 'Batting_Table_Topper'.\",\n      \"The 'job title' column should contain the category (e.g., 'Most Games Played').\",\n      \"The 'Player_Name' column should contain the name of the player with the most in that category.\",\n      \"The 'Batting_Table_Topper' column should contain the value of the metric for that player.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 43.227471113204956,
+  "token_usage": {}
+}

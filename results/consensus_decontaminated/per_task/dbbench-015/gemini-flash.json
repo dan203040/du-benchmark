@@ -1,0 +1,61 @@
+{
+  "m_q": {
+    "target_metric": "Total agricultural value in 2008/09",
+    "filters": [
+      "Row contains 'Agricultural - Value (billion rials)'",
+      "Column '2008/09'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "IME Exchange (Including spot, credit and forward transactions)"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "2007/08": "billion rials",
+      "2008/09": "billion rials",
+      "2009/10": "billion rials",
+      "2010/11": "billion rials",
+      "2011/12": "billion rials"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Values in columns '2007/08', '2008/09', '2009/10', '2010/11', and '2011/12' may contain commas and need to be parsed as numeric values."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Need to extract the row where 'IME Exchange (Including spot, credit and forward transactions)' is 'Agricultural - Value (billion rials)'"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single numerical value representing the total agricultural value in billion rials."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total agricultural value in 2008/09\",\n    \"filters\": [\n      \"Row contains 'Agricultural - Value (billion rials)'\",\n      \"Column '2008/09'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"IME Exchange (Including spot, credit and forward transactions)\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"2007/08\": \"billion rials\",\n      \"2008/09\": \"billion rials\",\n      \"2009/10\": \"billion rials\",\n      \"2010/11\": \"billion rials\",\n      \"2011/12\": \"billion rials\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Values in columns '2007/08', '2008/09', '2009/10', '2010/11', and '2011/12' may contain commas and need to be parsed as numeric values.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to extract the row where 'IME Exchange (Including spot, credit and forward transactions)' is 'Agricultural - Value (billion rials)'\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single numerical value representing the total agricultural value in billion rials.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.395071983337402,
+  "token_usage": {}
+}

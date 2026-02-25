@@ -1,0 +1,120 @@
+{
+  "m_q": {
+    "target_metric": "wine quality predictions (integer values)",
+    "filters": [
+      "none - use all available training data"
+    ],
+    "grouping_variables": [
+      "none - individual wine predictions"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features are most predictive of wine quality?",
+      "Should quality be treated as regression or classification?",
+      "What evaluation metric should be optimized?",
+      "How to handle potential class imbalance in quality ratings?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "WineQT.csv",
+      "train.csv",
+      "test.csv",
+      "sample_submission.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "train.csv",
+        "right_source": "test.csv",
+        "left_column": "Id",
+        "right_column": "Id",
+        "join_type": "outer"
+      },
+      {
+        "left_source": "test.csv",
+        "right_source": "sample_submission.csv",
+        "left_column": "Id",
+        "right_column": "Id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "WineQT.csv has 'quality' column while test.csv does not",
+      "train.csv has 1747 rows while WineQT.csv has 1143 rows - possible overlap or different datasets",
+      "sample_submission.csv has 1372 rows while test.csv has 309 rows - mismatch in expected submission size"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "fixed acidity": "g/dm\u00b3",
+      "volatile acidity": "g/dm\u00b3",
+      "citric acid": "g/dm\u00b3",
+      "residual sugar": "g/dm\u00b3",
+      "chlorides": "g/dm\u00b3",
+      "free sulfur dioxide": "mg/dm\u00b3",
+      "total sulfur dioxide": "mg/dm\u00b3",
+      "density": "g/cm\u00b3",
+      "alcohol": "% vol"
+    },
+    "scale_issues": [
+      "Features have different measurement scales requiring normalization",
+      "pH is logarithmic scale while others are linear",
+      "sulfur dioxide measurements in mg/dm\u00b3 while acids in g/dm\u00b3"
+    ],
+    "cross_source_conflicts": [
+      "Id ranges differ across files: WineQT.csv (0-1142), train.csv (202-1967), test.csv (8-1917), sample_submission.csv (2056-3427)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 13,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files use comma delimiter",
+      "All files have header row",
+      "Numeric values use period decimal separator",
+      "Some values have many decimal places (e.g., 0.0969999999999999)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "quality values are integers between 0-10 (typically 3-9 in wine datasets)",
+      "Id must be preserved for submission matching",
+      "submission.csv must match sample_submission.csv format exactly",
+      "predictions must be integers"
+    ],
+    "derived_filters": [
+      "Check for duplicate Id values across datasets",
+      "Remove rows with missing target values in training",
+      "Validate feature value ranges (e.g., pH 0-14, alcohol >0)"
+    ],
+    "statistical_tests": [
+      "Check correlation between features and quality",
+      "Test for multicollinearity among features",
+      "Assess distribution of quality scores for class imbalance",
+      "Validate feature importance rankings"
+    ],
+    "output_format_requirements": [
+      "submission.csv must have exactly columns: Id, quality",
+      "Id column must match test.csv Id values",
+      "quality column must contain integer predictions",
+      "File must be comma-delimited with header"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"wine quality predictions (integer values)\",\n        \"filters\": [\"none - use all available training data\"],\n        \"grouping_variables\": [\"none - individual wine predictions\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What features are most predictive of wine quality?\", \"Should quality be treated as regression or classification?\", \"What evaluation metric should be optimized?\", \"How to handle potential class imbalance in quality ratings?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"WineQT.csv\", \"train.csv\", \"test.csv\", \"sample_submission.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"train.csv\", \"right_source\": \"test.csv\", \"left_column\": \"Id\", \"right_column\": \"Id\", \"join_type\": \"outer\"},\n            {\"left_source\": \"test.csv\", \"right_source\": \"sample_submission.csv\", \"left_column\": \"Id\", \"right_column\": \"Id\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"WineQT.csv has 'quality' column while test.csv does not\", \"train.csv has 1747 rows while WineQT.csv has 1143 rows - possible overlap or different datasets\", \"sample_submission.csv has 1372 rows while test.csv has 309 rows - mismatch in expected submission size\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"fixed acidity\": \"g/dm\u00b3\", \"volatile acidity\": \"g/dm\u00b3\", \"citric acid\": \"g/dm\u00b3\", \"residual sugar\": \"g/dm\u00b3\", \"chlorides\": \"g/dm\u00b3\", \"free sulfur dioxide\": \"mg/dm\u00b3\", \"total sulfur dioxide\": \"mg/dm\u00b3\", \"density\": \"g/cm\u00b3\", \"alcohol\": \"% vol\"},\n        \"scale_issues\": [\"Features have different measurement scales requiring normalization\", \"pH is logarithmic scale while others are linear\", \"sulfur dioxide measurements in mg/dm\u00b3 while acids in g/dm\u00b3\"],\n        \"cross_source_conflicts\": [\"Id ranges differ across files: WineQT.csv (0-1142), train.csv (202-1967), test.csv (8-1917), sample_submission.csv (2056-3427)\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 13,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"All files use comma delimiter\", \"All files have header row\", \"Numeric values use period decimal separator\", \"Some values have many decimal places (e.g., 0.0969999999999999)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"quality values are integers between 0-10 (typically 3-9 in wine datasets)\", \"Id must be preserved for submission matching\", \"submission.csv must match sample_submission.csv format exactly\", \"predictions must be integers\"],\n        \"derived_filters\": [\"Check for duplicate Id values across datasets\", \"Remove rows with missing target values in training\", \"Validate feature value ranges (e.g., pH 0-14, alcohol >0)\"],\n        \"statistical_tests\": [\"Check correlation between features and quality\", \"Test for multicollinearity among features\", \"Assess distribution of quality scores for class imbalance\", \"Validate feature importance rankings\"],\n        \"output_format_requirements\": [\"submission.csv must have exactly columns: Id, quality\", \"Id column must match test.csv Id values\", \"quality column must contain integer predictions\", \"File must be comma-delimited with header\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 15.750718116760254,
+  "token_usage": {
+    "input_tokens": 4305,
+    "output_tokens": 813
+  }
+}

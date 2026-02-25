@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "Appliance energy consumption",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "KAG_energydata_complete.csv",
+      "test.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Appliances": "Wh",
+      "lights": "W",
+      "T1": "\u00b0C",
+      "RH_1": "%",
+      "T2": "\u00b0C",
+      "RH_2": "%",
+      "T3": "\u00b0C",
+      "RH_3": "%",
+      "T4": "\u00b0C",
+      "RH_4": "%",
+      "T5": "\u00b0C",
+      "RH_5": "%",
+      "T6": "\u00b0C",
+      "RH_6": "%",
+      "T7": "\u00b0C",
+      "RH_7": "%",
+      "T8": "\u00b0C",
+      "RH_8": "%",
+      "T9": "\u00b0C",
+      "RH_9": "%",
+      "T_out": "\u00b0C",
+      "Press_mm_hg": "mmHg",
+      "RH_out": "%",
+      "Windspeed": "m/s",
+      "Visibility": "km",
+      "Tdewpoint": "\u00b0C"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 29,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'date' column needs to be parsed as datetime objects.",
+      "The 'Appliances' column is only present in KAG_energydata_complete.csv and needs to be predicted for test.csv.",
+      "The 'rv1' and 'rv2' columns are identical in KAG_energydata_complete.csv.",
+      "The test.csv file is missing the target variable 'Appliances'."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output file should be named 'appliance.csv'.",
+      "The output file should contain a single column named 'Appliances'.",
+      "The 'Appliances' column should contain the predicted appliance energy consumption values for each row in test.csv."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Appliance energy consumption\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"KAG_energydata_complete.csv\",\n      \"test.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Appliances\": \"Wh\",\n      \"lights\": \"W\",\n      \"T1\": \"\u00b0C\",\n      \"RH_1\": \"%\",\n      \"T2\": \"\u00b0C\",\n      \"RH_2\": \"%\",\n      \"T3\": \"\u00b0C\",\n      \"RH_3\": \"%\",\n      \"T4\": \"\u00b0C\",\n      \"RH_4\": \"%\",\n      \"T5\": \"\u00b0C\",\n      \"RH_5\": \"%\",\n      \"T6\": \"\u00b0C\",\n      \"RH_6\": \"%\",\n      \"T7\": \"\u00b0C\",\n      \"RH_7\": \"%\",\n      \"T8\": \"\u00b0C\",\n      \"RH_8\": \"%\",\n      \"T9\": \"\u00b0C\",\n      \"RH_9\": \"%\",\n      \"T_out\": \"\u00b0C\",\n      \"Press_mm_hg\": \"mmHg\",\n      \"RH_out\": \"%\",\n      \"Windspeed\": \"m/s\",\n      \"Visibility\": \"km\",\n      \"Tdewpoint\": \"\u00b0C\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 29,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'date' column needs to be parsed as datetime objects.\",\n      \"The 'Appliances' column is only present in KAG_energydata_complete.csv and needs to be predicted for test.csv.\",\n      \"The 'rv1' and 'rv2' columns are identical in KAG_energydata_complete.csv.\",\n      \"The test.csv file is missing the target variable 'Appliances'.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output file should be named 'appliance.csv'.\",\n      \"The output file should contain a single column named 'Appliances'.\",\n      \"The 'Appliances' column should contain the predicted appliance energy consumption values for each row in test.csv.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.741730213165283,
+  "token_usage": {}
+}

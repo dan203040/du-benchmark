@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "total count of films",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many rows are in the Film Ratings dataset?",
+      "Are there any duplicate films in the dataset?",
+      "Should films with N/A ratings still be counted?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Film Ratings"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Film": "film_title",
+      "Rotten Tomatoes": "percentage",
+      "Metacritic": "percentage",
+      "IMDb": "rating_out_of_10"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rotten Tomatoes values include '%' symbol",
+      "IMDb values include '/10' suffix",
+      "Multiple films can have same year (e.g., 2003, 2013)",
+      "Some rating fields contain 'N/A' for missing data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row represents one film",
+      "Film column should contain unique titles",
+      "Year should be a valid year value"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for duplicate film titles",
+      "Verify row count matches unique film count"
+    ],
+    "output_format_requirements": [
+      "Return single integer value representing total number of films"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total count of films\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many rows are in the Film Ratings dataset?\",\n      \"Are there any duplicate films in the dataset?\",\n      \"Should films with N/A ratings still be counted?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Film Ratings\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Film\": \"film_title\",\n      \"Rotten Tomatoes\": \"percentage\",\n      \"Metacritic\": \"percentage\",\n      \"IMDb\": \"rating_out_of_10\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/A\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Rotten Tomatoes values include '%' symbol\",\n      \"IMDb values include '/10' suffix\",\n      \"Multiple films can have same year (e.g., 2003, 2013)\",\n      \"Some rating fields contain 'N/A' for missing data\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Each row represents one film\",\n      \"Film column should contain unique titles\",\n      \"Year should be a valid year value\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Check for duplicate film titles\",\n      \"Verify row count matches unique film count\"\n    ],\n    \"output_format_requirements\": [\n      \"Return single integer value representing total number of films\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.718828201293945,
+  "token_usage": {
+    "input_tokens": 1076,
+    "output_tokens": 520
+  }
+}

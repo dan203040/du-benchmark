@@ -1,0 +1,64 @@
+{
+  "m_q": {
+    "target_metric": "Passenger satisfaction (satisfied or neutral/dissatisfied)",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "test.csv",
+      "train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "The 'satisfaction' column is only present in train.csv.",
+      "The 'Unnamed: 0' column is present in both datasets and may represent an index.",
+      "The 'id' column is present in both datasets and may represent a unique identifier."
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "Flight Distance": "miles",
+      "Departure Delay in Minutes": "minutes",
+      "Arrival Delay in Minutes": "minutes"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 24,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "'Arrival Delay in Minutes' should be greater than or equal to 0.",
+      "'Departure Delay in Minutes' should be greater than or equal to 0.",
+      "Age should be a positive integer."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output file should be named 'result.csv'.",
+      "The output file should contain a column named 'satisfaction'.",
+      "The 'satisfaction' column should contain the predicted satisfaction for each passenger in test.csv."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Passenger satisfaction (satisfied or neutral/dissatisfied)\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"test.csv\", \"train.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\"The 'satisfaction' column is only present in train.csv.\", \"The 'Unnamed: 0' column is present in both datasets and may represent an index.\", \"The 'id' column is present in both datasets and may represent a unique identifier.\"],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"Flight Distance\": \"miles\",\n      \"Departure Delay in Minutes\": \"minutes\",\n      \"Arrival Delay in Minutes\": \"minutes\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 24,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"'Arrival Delay in Minutes' should be greater than or equal to 0.\", \"'Departure Delay in Minutes' should be greater than or equal to 0.\", \"Age should be a positive integer.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The output file should be named 'result.csv'.\", \"The output file should contain a column named 'satisfaction'.\", \"The 'satisfaction' column should contain the predicted satisfaction for each passenger in test.csv.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.340318918228149,
+  "token_usage": {}
+}

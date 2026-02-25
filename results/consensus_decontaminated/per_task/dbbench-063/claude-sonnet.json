@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "minimum value of 'Int yards' (interception yards)",
+    "filters": [
+      "Sacks == 11.5"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which players have exactly 11.5 sacks?",
+      "What are the interception yards for players with 11.5 sacks?",
+      "What is the minimum interception yards among those players?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Player Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Int yards": "yards",
+      "Int avg.": "yards per interception",
+      "Sacks": "count",
+      "G": "games",
+      "Tackles": "count",
+      "Solo": "count",
+      "Assts": "count",
+      "Int": "count",
+      "Int TD": "count",
+      "Fum. rec": "count",
+      "Fum. rec TD": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "0",
+      "0.0"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sacks column contains decimal values (e.g., 11.5, 7.0, 3.5)",
+      "All columns appear to be stored as 'object' dtype and may need type conversion",
+      "Numeric columns like Sacks, Int yards need to be converted to numeric types for filtering and aggregation"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Sacks must equal exactly 11.5",
+      "Int yards must be a valid numeric value",
+      "Result should be the minimum value among all matching records"
+    ],
+    "derived_filters": [
+      "Filter rows where Sacks == 11.5",
+      "Exclude non-numeric or null values in Int yards column"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value representing the minimum Int yards",
+      "If multiple players have 11.5 sacks, return only the minimum Int yards value among them",
+      "If no players have 11.5 sacks, return null or appropriate indication"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"minimum value of 'Int yards' (interception yards)\",\n    \"filters\": [\"Sacks == 11.5\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which players have exactly 11.5 sacks?\",\n      \"What are the interception yards for players with 11.5 sacks?\",\n      \"What is the minimum interception yards among those players?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Player Stats\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Int yards\": \"yards\",\n      \"Int avg.\": \"yards per interception\",\n      \"Sacks\": \"count\",\n      \"G\": \"games\",\n      \"Tackles\": \"count\",\n      \"Solo\": \"count\",\n      \"Assts\": \"count\",\n      \"Int\": \"count\",\n      \"Int TD\": \"count\",\n      \"Fum. rec\": \"count\",\n      \"Fum. rec TD\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"0\", \"0.0\"],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sacks column contains decimal values (e.g., 11.5, 7.0, 3.5)\",\n      \"All columns appear to be stored as 'object' dtype and may need type conversion\",\n      \"Numeric columns like Sacks, Int yards need to be converted to numeric types for filtering and aggregation\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Sacks must equal exactly 11.5\",\n      \"Int yards must be a valid numeric value\",\n      \"Result should be the minimum value among all matching records\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Sacks == 11.5\",\n      \"Exclude non-numeric or null values in Int yards column\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value representing the minimum Int yards\",\n      \"If multiple players have 11.5 sacks, return only the minimum Int yards value among them\",\n      \"If no players have 11.5 sacks, return null or appropriate indication\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.135974884033203,
+  "token_usage": {
+    "input_tokens": 1385,
+    "output_tokens": 678
+  }
+}

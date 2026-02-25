@@ -1,0 +1,303 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum year of birth among all players",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum year of birth among all players",
+        "Minimum value of 'Year born' across all players",
+        "minimum year born"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the minimum value in the 'Year born' column?",
+        "Which player has the earliest birth year?",
+        "Are there any missing or invalid birth years that need to be handled?",
+        "What is the data type of the 'Year born' column?",
+        "Are there any missing or invalid values in 'Year born'?",
+        "What is the range of birth years in the dataset?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the minimum value in the 'Year born' column?",
+          "Which player has the earliest birth year?",
+          "Are there any missing or invalid birth years that need to be handled?"
+        ],
+        [
+          "What is the data type of the 'Year born' column?",
+          "Are there any missing or invalid values in 'Year born'?",
+          "What is the range of birth years in the dataset?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Basketball Players"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Basketball Players"
+        ],
+        [
+          "Basketball Players"
+        ],
+        [
+          "Basketball Players"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "height": "meters",
+        "year born": "year",
+        "no": "jersey number (unitless)"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "Height": "meters",
+          "Year born": "year"
+        },
+        {
+          "Year born": "year (YYYY format)",
+          "Height": "meters",
+          "No": "jersey number (unitless)"
+        },
+        {
+          "Height": "meters",
+          "Year born": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year born is stored as object/string instead of integer",
+        "Height values use decimal notation with '.' as decimal separator",
+        "'Year born' is stored as object dtype but should be numeric for minimum calculation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year born is stored as object/string instead of integer",
+          "Height values use decimal notation with '.' as decimal separator"
+        ],
+        [
+          "'Year born' is stored as object dtype but should be numeric for minimum calculation"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year born values should be valid integers representing years",
+        "Year born should be within reasonable range (e.g., 1900-2024)",
+        "Each player should have exactly one birth year",
+        "'Year born' values should be four-digit years",
+        "'Year born' should be between reasonable bounds (e.g., 1900-2010 for active players)",
+        "No missing values expected in 'Year born' column",
+        "'Year born' column should contain valid year values.",
+        "'Year born' column should be of numeric type."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year born values should be valid integers representing years",
+          "Year born should be within reasonable range (e.g., 1900-2024)",
+          "Each player should have exactly one birth year"
+        ],
+        [
+          "'Year born' values should be four-digit years",
+          "'Year born' should be between reasonable bounds (e.g., 1900-2010 for active players)",
+          "No missing values expected in 'Year born' column"
+        ],
+        [
+          "'Year born' column should contain valid year values.",
+          "'Year born' column should be of numeric type."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where 'Year born' is null or non-numeric",
+        "Consider only valid year values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where 'Year born' is null or non-numeric",
+          "Consider only valid year values"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in 'Year born' column",
+        "Verify distribution of birth years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in 'Year born' column",
+          "Verify distribution of birth years"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output should be a single integer year",
+        "Consider whether to output just the year or include player information",
+        "Return earliest birth year as a single integer value",
+        "Result should be in YYYY format"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Output should be a single integer year",
+          "Consider whether to output just the year or include player information"
+        ],
+        [
+          "Return earliest birth year as a single integer value",
+          "Result should be in YYYY format"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5555555555555557
+}

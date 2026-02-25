@@ -1,0 +1,328 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "minimum number of report categories needed to reach cumulative percentage >= 50%",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "minimum number of report categories needed to reach cumulative percentage >= 50%",
+        "minimum number of report categories that collectively account for at least 50% of total reports",
+        "Minimum number of report categories needed to account for at least 50% of reports in 2024"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2024",
+        "year == 2024"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Year = 2024"
+        ],
+        [
+          "year == 2024"
+        ],
+        [
+          "Year = 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Category"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Category"
+        ],
+        [
+          "Category"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the cumulative percentage of reports by category?",
+        "At which rank does cumulative percentage first reach or exceed 50%?",
+        "What is the total number of reports across all categories in 2024?",
+        "What percentage threshold equals 50% of total reports?",
+        "When categories are sorted by number of reports (descending), what is the cumulative sum at each rank?",
+        "At what rank does the cumulative percentage first reach or exceed 50%?",
+        "Calculate the cumulative percentage of reports for each category, sorted by '# of Reports' in descending order.",
+        "Determine the minimum number of categories required to reach a cumulative percentage of at least 50%."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the cumulative percentage of reports by category?",
+          "At which rank does cumulative percentage first reach or exceed 50%?"
+        ],
+        [
+          "What is the total number of reports across all categories in 2024?",
+          "What percentage threshold equals 50% of total reports?",
+          "When categories are sorted by number of reports (descending), what is the cumulative sum at each rank?",
+          "At what rank does the cumulative percentage first reach or exceed 50%?"
+        ],
+        [
+          "Calculate the cumulative percentage of reports for each category, sorted by '# of Reports' in descending order.",
+          "Determine the minimum number of categories required to reach a cumulative percentage of at least 50%."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Report_Categories.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_Report_Categories.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count",
+        "percentage": "percentage",
+        "rank": "ordinal_position"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage"
+        },
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage_string",
+          "Rank": "ordinal_position"
+        },
+        {
+          "# of Reports": "number of reports",
+          "Percentage": "percentage"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Percentage column contains '%' symbol and needs conversion to numeric",
+        "Percentage column is stored as string with '%' symbol and needs parsing",
+        "Percentage values may need conversion to decimal for calculations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage column contains '%' symbol and needs conversion to numeric"
+        ],
+        [
+          "Percentage column is stored as string with '%' symbol and needs parsing",
+          "Percentage values may need conversion to decimal for calculations"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Rank values should be sequential 1-29",
+        "Sum of percentages should equal 100%",
+        "Categories are mutually exclusive",
+        "Rank must be sequential integers starting from 1",
+        "# of Reports must be non-negative integers",
+        "Percentage values when summed should equal approximately 100%",
+        "Categories must be unique",
+        "The sum of percentages for all categories should be close to 100%."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Rank values should be sequential 1-29",
+          "Sum of percentages should equal 100%",
+          "Categories are mutually exclusive"
+        ],
+        [
+          "Rank must be sequential integers starting from 1",
+          "# of Reports must be non-negative integers",
+          "Percentage values when summed should equal approximately 100%",
+          "Categories must be unique"
+        ],
+        [
+          "The sum of percentages for all categories should be close to 100%."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Sort by Rank ascending for cumulative calculation",
+        "cumulative_percentage >= 50%"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sort by Rank ascending for cumulative calculation"
+        ],
+        [
+          "cumulative_percentage >= 50%"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify percentage column sums to 100% after conversion",
+        "Verify sum of '# of Reports' matches expected total",
+        "Verify percentage calculations are consistent with report counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify percentage column sums to 100% after conversion"
+        ],
+        [
+          "Verify sum of '# of Reports' matches expected total",
+          "Verify percentage calculations are consistent with report counts"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Integer count of categories",
+        "Output must be a single integer representing the minimum number of categories",
+        "The result should be the rank at which cumulative percentage first reaches 50%",
+        "The output should be an integer representing the minimum number of categories."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Integer count of categories"
+        ],
+        [
+          "Output must be a single integer representing the minimum number of categories",
+          "The result should be the rank at which cumulative percentage first reaches 50%"
+        ],
+        [
+          "The output should be an integer representing the minimum number of categories."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.613888888888889
+}

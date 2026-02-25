@@ -1,0 +1,311 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Whether 'Other' reports were more than half of total reports in any year between 2001-2024",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Whether 'Other' reports were more than half of total reports in any year between 2001-2024",
+        "Determine if 'Other' reports exceeded 50% of total reports in any year from 2001-2024",
+        "Determine if there was any year between 2001 and 2024 (inclusive) where the 'Other' reports were more than half of the total reports (Fraud + Identity Theft + Other)."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year >= 2001",
+        "Year <= 2024"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Year >= 2001",
+          "Year <= 2024"
+        ],
+        [
+          "Year >= 2001",
+          "Year <= 2024"
+        ],
+        [
+          "Year >= 2001",
+          "Year <= 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate total reports per year (sum of Fraud, Identity Theft, Other)",
+        "Calculate proportion of Other reports per year",
+        "Check if proportion > 0.5 for any year in range",
+        "Calculate total reports per year (Fraud + Identity Theft + Other)",
+        "Calculate the proportion of Other reports to total reports for each year",
+        "Check if any year has Other proportion > 0.5"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate total reports per year (sum of Fraud, Identity Theft, Other)",
+          "Calculate proportion of Other reports per year",
+          "Check if proportion > 0.5 for any year in range"
+        ],
+        [
+          "Calculate total reports per year (Fraud + Identity Theft + Other)",
+          "Calculate the proportion of Other reports to total reports for each year",
+          "Check if any year has Other proportion > 0.5"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Number_of_Reports_by_Type.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "year",
+        "fraud": "count of reports",
+        "identity theft": "count of reports",
+        "other": "count of reports"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Year": "calendar year",
+          "Fraud": "count of reports",
+          "Identity Theft": "count of reports",
+          "Other": "count of reports"
+        },
+        {
+          "Year": "year",
+          "Fraud": "count",
+          "Identity Theft": "count",
+          "Other": "count"
+        },
+        {
+          "Year": "year",
+          "Fraud": "number of reports",
+          "Identity Theft": "number of reports",
+          "Other": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be integers 2001-2024",
+        "All count columns should be non-negative integers",
+        "Total reports = Fraud + Identity Theft + Other > 0",
+        "Year must be between 2001 and 2024 inclusive",
+        "All report counts (Fraud, Identity Theft, Other) must be non-negative",
+        "Year must be an integer.",
+        "Fraud, Identity Theft, and Other must be non-negative integers."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be integers 2001-2024",
+          "All count columns should be non-negative integers",
+          "Total reports = Fraud + Identity Theft + Other > 0"
+        ],
+        [
+          "Year must be between 2001 and 2024 inclusive",
+          "All report counts (Fraud, Identity Theft, Other) must be non-negative"
+        ],
+        [
+          "Year must be an integer.",
+          "Fraud, Identity Theft, and Other must be non-negative integers."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Calculate Total = Fraud + Identity Theft + Other",
+        "Calculate Other_Proportion = Other / Total",
+        "Filter where Other_Proportion > 0.5"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Calculate Total = Fraud + Identity Theft + Other",
+          "Calculate Other_Proportion = Other / Total",
+          "Filter where Other_Proportion > 0.5"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Binary Yes/No answer only",
+        "No explanation text",
+        "Output must be either 'Yes' or 'No'",
+        "No explanation or additional text required",
+        "Output must be 'Yes' or 'No'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Binary Yes/No answer only",
+          "No explanation text"
+        ],
+        [
+          "Output must be either 'Yes' or 'No'",
+          "No explanation or additional text required"
+        ],
+        [
+          "Output must be 'Yes' or 'No'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6000000000000001
+}

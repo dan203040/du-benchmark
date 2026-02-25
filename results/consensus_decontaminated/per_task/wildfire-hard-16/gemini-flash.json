@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Chi-square statistic and p-value for the association between geographical region and fire cause for fires starting in January, February, and March.",
+    "filters": [
+      "Fires with known causes (cause is not 'U')",
+      "Fires starting in January, February, or March (start_date month is 1, 2, or 3)"
+    ],
+    "grouping_variables": [
+      "region",
+      "cause"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs / square foot",
+      "rain_sum": "unspecified",
+      "duration": "days",
+      "latitude": "degrees",
+      "longitude": "degrees"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "start_date needs to be parsed to extract the month",
+      "cause should not be 'U' (unknown)"
+    ],
+    "derived_filters": [
+      "month = start_date.month",
+      "known_cause = cause != 'U'",
+      "jan_feb_mar = month in [1, 2, 3]"
+    ],
+    "statistical_tests": [
+      "Chi-square test of independence"
+    ],
+    "output_format_requirements": [
+      "A list of two numbers: chi-square statistic and p-value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Chi-square statistic and p-value for the association between geographical region and fire cause for fires starting in January, February, and March.\",\n    \"filters\": [\n      \"Fires with known causes (cause is not 'U')\",\n      \"Fires starting in January, February, or March (start_date month is 1, 2, or 3)\"\n    ],\n    \"grouping_variables\": [\n      \"region\",\n      \"cause\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"noaa_wildfires_variabledescrip.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"avrh_mean\": \"percentage\",\n      \"wind_med\": \"miles per hour\",\n      \"erc_med\": \"BTUs / square foot\",\n      \"rain_sum\": \"unspecified\",\n      \"duration\": \"days\",\n      \"latitude\": \"degrees\",\n      \"longitude\": \"degrees\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"start_date needs to be parsed to extract the month\",\n      \"cause should not be 'U' (unknown)\"\n    ],\n    \"derived_filters\": [\n      \"month = start_date.month\",\n      \"known_cause = cause != 'U'\",\n      \"jan_feb_mar = month in [1, 2, 3]\"\n    ],\n    \"statistical_tests\": [\n      \"Chi-square test of independence\"\n    ],\n    \"output_format_requirements\": [\n      \"A list of two numbers: chi-square statistic and p-value\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.441599130630493,
+  "token_usage": {}
+}

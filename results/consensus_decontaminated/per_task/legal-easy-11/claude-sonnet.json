@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Determine if 'Other' reports exceeded 50% of total reports in any year from 2001-2024",
+    "filters": [
+      "Year >= 2001",
+      "Year <= 2024"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate total reports per year (Fraud + Identity Theft + Other)",
+      "Calculate the proportion of Other reports to total reports for each year",
+      "Check if any year has Other proportion > 0.5"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Fraud": "count",
+      "Identity Theft": "count",
+      "Other": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All numeric columns are integer type",
+      "Data spans years 2001-2020 in the sample shown"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be between 2001 and 2024 inclusive",
+      "All report counts (Fraud, Identity Theft, Other) must be non-negative"
+    ],
+    "derived_filters": [
+      "Calculate Total = Fraud + Identity Theft + Other",
+      "Calculate Other_Proportion = Other / Total",
+      "Filter where Other_Proportion > 0.5"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be either 'Yes' or 'No'",
+      "No explanation or additional text required"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine if 'Other' reports exceeded 50% of total reports in any year from 2001-2024\",\n    \"filters\": [\"Year >= 2001\", \"Year <= 2024\"],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate total reports per year (Fraud + Identity Theft + Other)\",\n      \"Calculate the proportion of Other reports to total reports for each year\",\n      \"Check if any year has Other proportion > 0.5\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Fraud\": \"count\",\n      \"Identity Theft\": \"count\",\n      \"Other\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"All numeric columns are integer type\", \"Data spans years 2001-2020 in the sample shown\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be between 2001 and 2024 inclusive\",\n      \"All report counts (Fraud, Identity Theft, Other) must be non-negative\"\n    ],\n    \"derived_filters\": [\n      \"Calculate Total = Fraud + Identity Theft + Other\",\n      \"Calculate Other_Proportion = Other / Total\",\n      \"Filter where Other_Proportion > 0.5\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be either 'Yes' or 'No'\",\n      \"No explanation or additional text required\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.515557765960693,
+  "token_usage": {
+    "input_tokens": 941,
+    "output_tokens": 552
+  }
+}

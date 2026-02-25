@@ -1,0 +1,342 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Acres burned per capita (Total Acres Burned / Population)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Acres burned per capita (Total Acres Burned / Population)",
+        "Land area in acres impacted by fire per capita (Total Acres Burned / Population)",
+        "State with the maximum fire-impacted land area (in Acres) per capita"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Exclude rows with missing Total Acres Burned values",
+        "Exclude rows with Population = 0",
+        "Exclude states with missing Total Acres Burned or Population data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows with missing Total Acres Burned values",
+          "Exclude rows with Population = 0"
+        ],
+        [
+          "Exclude states with missing Total Acres Burned or Population data"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "State"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "State"
+        ],
+        [
+          "State"
+        ],
+        [
+          "State"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which state has the highest acres burned per capita?",
+        "What is the distribution of acres burned per capita across states?",
+        "Are there states with missing data that need to be handled?",
+        "What is the total acres burned for each state?",
+        "What is the population for each state?",
+        "What is the acres burned per capita for each state?",
+        "Which state has the maximum acres burned per capita?",
+        "Calculate fire-impacted land area per capita for each state.",
+        "Find the maximum fire-impacted land area per capita across all states.",
+        "Identify the state corresponding to the maximum fire-impacted land area per capita."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Which state has the highest acres burned per capita?",
+          "What is the distribution of acres burned per capita across states?",
+          "Are there states with missing data that need to be handled?"
+        ],
+        [
+          "What is the total acres burned for each state?",
+          "What is the population for each state?",
+          "What is the acres burned per capita for each state?",
+          "Which state has the maximum acres burned per capita?"
+        ],
+        [
+          "Calculate fire-impacted land area per capita for each state.",
+          "Find the maximum fire-impacted land area per capita across all states.",
+          "Identify the state corresponding to the maximum fire-impacted land area per capita."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Wildfire_Acres_by_State.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Wildfire_Acres_by_State.csv"
+        ],
+        [
+          "Wildfire_Acres_by_State.csv"
+        ],
+        [
+          "Wildfire_Acres_by_State.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "total acres burned": "Acres",
+        "population": "People",
+        "acres_per_capita": "acres per person"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "Total Acres Burned": "Acres",
+          "Population": "People"
+        },
+        {
+          "Total Acres Burned": "acres",
+          "Population": "persons",
+          "acres_per_capita": "acres per person"
+        },
+        {
+          "Total Acres Burned": "Acres",
+          "Population": "People"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Population values vary by orders of magnitude (e.g., District of Columbia 702,250 vs California 39,431,263)",
+        "Total Acres Burned values vary widely (e.g., Connecticut 339 vs Idaho 996,762)",
+        "Per capita calculation requires division of acres by population count",
+        "Result will be a small decimal representing acres per person"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Population values vary by orders of magnitude (e.g., District of Columbia 702,250 vs California 39,431,263)",
+          "Total Acres Burned values vary widely (e.g., Connecticut 339 vs Idaho 996,762)"
+        ],
+        [
+          "Per capita calculation requires division of acres by population count",
+          "Result will be a small decimal representing acres per person"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 3.0,
+      "confidence": 1.0,
+      "votes": [
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total Acres Burned must be non-negative",
+        "Population must be positive integer",
+        "Per capita calculation requires non-zero population",
+        "Total Acres Burned must be non-null and non-negative",
+        "Population must be non-null and greater than zero to avoid division by zero",
+        "State field should be non-null",
+        "Population must be greater than 0.",
+        "Total Acres Burned must be non-negative."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total Acres Burned must be non-negative",
+          "Population must be positive integer",
+          "Per capita calculation requires non-zero population"
+        ],
+        [
+          "Total Acres Burned must be non-null and non-negative",
+          "Population must be non-null and greater than zero to avoid division by zero",
+          "State field should be non-null"
+        ],
+        [
+          "Population must be greater than 0.",
+          "Total Acres Burned must be non-negative."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows where Total Acres Burned is null",
+        "Filter out rows where Population is 0 or null",
+        "Exclude rows where Total Acres Burned is null",
+        "Exclude rows where Population is null or zero"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows where Total Acres Burned is null",
+          "Filter out rows where Population is 0 or null"
+        ],
+        [
+          "Exclude rows where Total Acres Burned is null",
+          "Exclude rows where Population is null or zero"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Total Acres Burned",
+        "Check for outliers in Population",
+        "Validate per capita calculation doesn't produce extreme values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Total Acres Burned",
+          "Check for outliers in Population",
+          "Validate per capita calculation doesn't produce extreme values"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "State name",
+        "Acres burned per capita (calculated)",
+        "Ranking by per capita value",
+        "Return the state name with the highest acres burned per capita",
+        "Optionally include the calculated per capita value for context"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "State name",
+          "Acres burned per capita (calculated)",
+          "Ranking by per capita value"
+        ],
+        [
+          "Return the state name with the highest acres burned per capita",
+          "Optionally include the calculated per capita value for context"
+        ],
+        [
+          "State name"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.608888888888889
+}

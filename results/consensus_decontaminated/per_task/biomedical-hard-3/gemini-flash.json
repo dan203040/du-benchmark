@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "Age of the patient with the lowest APP_Z_score",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find the minimum APP_Z_score.",
+      "Identify the patient(s) with the minimum APP_Z_score.",
+      "Retrieve the age of the identified patient(s)."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx",
+      "1-s2.0-S0092867420301070-mmc7__B-APM subtypes"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "right_source": "1-s2.0-S0092867420301070-mmc7__B-APM subtypes",
+        "left_column": "idx",
+        "right_column": "idx",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "APP_Z_score": "z-score"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "APP_Z_score must be a numerical value.",
+      "Age must be a numerical value."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single numerical value representing the age."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Age of the patient with the lowest APP_Z_score\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Find the minimum APP_Z_score.\",\n      \"Identify the patient(s) with the minimum APP_Z_score.\",\n      \"Retrieve the age of the identified patient(s).\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n      \"1-s2.0-S0092867420301070-mmc7__B-APM subtypes\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc7__B-APM subtypes\",\n        \"left_column\": \"idx\",\n        \"right_column\": \"idx\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"APP_Z_score\": \"z-score\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"APP_Z_score must be a numerical value.\",\n      \"Age must be a numerical value.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single numerical value representing the age.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 8.553932189941406,
+  "token_usage": {}
+}

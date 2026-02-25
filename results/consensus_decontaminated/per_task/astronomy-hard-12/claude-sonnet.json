@@ -1,0 +1,113 @@
+{
+  "m_q": {
+    "target_metric": "Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2-29, 2019",
+    "filters": [
+      "Date range: September 2, 2019 to September 29, 2019",
+      "Satellite: Swarm-A"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Where are the SP3 files containing Swarm-A orbital data for September 2-29, 2019?",
+      "How to extract geodetic position (latitude, longitude, altitude) from SP3 files?",
+      "How to define the mock geopotential field using lat_grid, lon_grid, alt_grid?",
+      "What is the geopotential function to interpolate from the grid?",
+      "How to convert satellite positions to match grid coordinate system?",
+      "How to compute geopotential energy per unit mass at each timepoint?",
+      "How to average the energy values across all timepoints in the period?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "mock_tiegcm_grid_sept2019.npz",
+      "SP3 files (not provided, required for Swarm-A precise orbital data)"
+    ],
+    "join_keys": [
+      {
+        "left_source": "SP3 files",
+        "right_source": "mock_tiegcm_grid_sept2019.npz",
+        "left_column": "geodetic coordinates (lat, lon, alt)",
+        "right_column": "lat_grid, lon_grid, alt_grid",
+        "join_type": "interpolation-based lookup"
+      }
+    ],
+    "schema_conflicts": [
+      "SP3 files not present in provided data - only grid definition available",
+      "Missing geopotential values - only grid coordinates provided"
+    ],
+    "column_mappings": {
+      "lat_grid": "latitude",
+      "lon_grid": "longitude",
+      "alt_grid": "altitude"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat_grid": "degrees",
+      "lon_grid": "degrees",
+      "alt_grid": "km (assumed based on earth radius context)",
+      "earth_radius": "6371.0 km",
+      "g": "9.80665 m/s^2",
+      "target_output": "J/kg"
+    },
+    "scale_issues": [
+      "Altitude in grid appears to be in km, needs conversion to meters for energy calculation",
+      "Earth radius given in km (6371.0), gravitational constant in m/s^2",
+      "Need consistent unit system for geopotential energy calculation (SI units: meters, m/s^2)"
+    ],
+    "cross_source_conflicts": [
+      "SP3 orbital data units (typically in meters or km) must match grid altitude units",
+      "Coordinate systems: geodetic (from SP3) vs grid coordinates (lat/lon/alt)"
+    ]
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": "N/A",
+    "encoding": "binary",
+    "sentinel_values": [
+      "",
+      "NaN"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "npz (NumPy compressed array)",
+    "format_notes": [
+      "NPZ file contains three arrays: lat_grid, lon_grid, alt_grid",
+      "Grid defines 3D mesh with 72 points",
+      "Missing geopotential values - only coordinate grids provided",
+      "SP3 files are binary format with specific orbital data structure",
+      "Sample data shows some missing values in alt_grid column",
+      "Grid appears to define sampling points, actual geopotential field values not included"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Date range must be September 2-29, 2019 (28 days)",
+      "Satellite must be Swarm-A",
+      "Earth radius = 6371.0 km",
+      "Gravitational acceleration g = 9.80665 m/s^2",
+      "Output must be rounded to 2 decimal places"
+    ],
+    "derived_filters": [
+      "Extract only Swarm-A records from SP3 files",
+      "Filter timestamps to range [2019-09-02 00:00:00, 2019-09-29 23:59:59]",
+      "Exclude invalid or missing position data points"
+    ],
+    "statistical_tests": [
+      "Verify mean calculation across all valid timepoints",
+      "Check for outliers in computed energy values"
+    ],
+    "output_format_requirements": [
+      "Single scalar value in J/kg",
+      "Rounded to exactly 2 decimal places",
+      "Format: XXX.XX"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2-29, 2019\",\n    \"filters\": [\n      \"Date range: September 2, 2019 to September 29, 2019\",\n      \"Satellite: Swarm-A\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Where are the SP3 files containing Swarm-A orbital data for September 2-29, 2019?\",\n      \"How to extract geodetic position (latitude, longitude, altitude) from SP3 files?\",\n      \"How to define the mock geopotential field using lat_grid, lon_grid, alt_grid?\",\n      \"What is the geopotential function to interpolate from the grid?\",\n      \"How to convert satellite positions to match grid coordinate system?\",\n      \"How to compute geopotential energy per unit mass at each timepoint?\",\n      \"How to average the energy values across all timepoints in the period?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"mock_tiegcm_grid_sept2019.npz\",\n      \"SP3 files (not provided, required for Swarm-A precise orbital data)\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"SP3 files\",\n        \"right_source\": \"mock_tiegcm_grid_sept2019.npz\",\n        \"left_column\": \"geodetic coordinates (lat, lon, alt)\",\n        \"right_column\": \"lat_grid, lon_grid, alt_grid\",\n        \"join_type\": \"interpolation-based lookup\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"SP3 files not present in provided data - only grid definition available\",\n      \"Missing geopotential values - only grid coordinates provided\"\n    ],\n    \"column_mappings\": {\n      \"lat_grid\": \"latitude\",\n      \"lon_grid\": \"longitude\",\n      \"alt_grid\": \"altitude\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"lat_grid\": \"degrees\",\n      \"lon_grid\": \"degrees\",\n      \"alt_grid\": \"km (assumed based on earth radius context)\",\n      \"earth_radius\": \"6371.0 km\",\n      \"g\": \"9.80665 m/s^2\",\n      \"target_output\": \"J/kg\"\n    },\n    \"scale_issues\": [\n      \"Altitude in grid appears to be in km, needs conversion to meters for energy calculation\",\n      \"Earth radius given in km (6371.0), gravitational constant in m/s^2\",\n      \"Need consistent unit system for geopotential energy calculation (SI units: meters, m/s^2)\"\n    ],\n    \"cross_source_conflicts\": [\n      \"SP3 orbital data units (typically in meters or km) must match grid altitude units\",\n      \"Coordinate systems: geodetic (from SP3) vs grid coordinates (lat/lon/alt)\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": false,\n    \"delimiter\": \"N/A\",\n    \"encoding\": \"binary\",\n    \"sentinel_values\": [\"\", \"NaN\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"npz (NumPy compressed array)\",\n    \"format_notes\": [\n      \"NPZ file contains three arrays: lat_grid, lon_grid, alt_grid\",\n      \"Grid defines 3D mesh with 72 points\",\n      \"Missing geopotential values - only coordinate grids provided\",\n      \"SP3 files are binary format with specific orbital data structure\",\n      \"Sample data shows some missing values in alt_grid column\",\n      \"Grid appears to define sampling points, actual geopotential field values not included\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Date range must be September 2-29, 2019 (28 days)\",\n      \"Satellite must be Swarm-A\",\n      \"Earth radius = 6371.0 km\",\n      \"Gravitational acceleration g = 9.80665 m/s^2\",\n      \"Output must be rounded to 2 decimal places\"\n    ],\n    \"derived_filters\": [\n      \"Extract only Swarm-A records from SP3 files\",\n      \"Filter timestamps to range [2019-09-02 00:00:00, 2019-09-29 23:59:59]\",\n      \"Exclude invalid or missing position data points\"\n    ],\n    \"statistical_tests\": [\n      \"Verify mean calculation across all valid timepoints\",\n      \"Check for outliers in computed energy values\"\n    ],\n    \"output_format_requirements\": [\n      \"Single scalar value in J/kg\",\n      \"Rounded to exactly 2 decimal places\",\n      \"Format: XXX.XX\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 20.984241008758545,
+  "token_usage": {
+    "input_tokens": 1018,
+    "output_tokens": 1234
+  }
+}

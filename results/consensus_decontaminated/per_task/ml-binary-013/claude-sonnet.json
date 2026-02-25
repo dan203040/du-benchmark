@@ -1,0 +1,125 @@
+{
+  "m_q": {
+    "target_metric": "Binary classification prediction of turbine failure for each test instance",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What are the characteristics of the training data for turbine failure prediction?",
+      "What is the distribution of the Target variable in the training set?",
+      "Which features (V1-V40) are most predictive of turbine failure?",
+      "What is the required format for the prediction output?",
+      "How many predictions need to be generated for the test set?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train.csv",
+      "Test.csv",
+      "sample_target.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Train.csv has 41 columns (V1-V40 plus Target), Test.csv has 40 columns (V1-V40 only)",
+      "sample_target.csv shows Target as object dtype while Train.csv has Target as int64"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "V1": "unknown sensor measurement",
+      "V2": "unknown sensor measurement",
+      "V3": "unknown sensor measurement",
+      "V4": "unknown sensor measurement",
+      "V5": "unknown sensor measurement",
+      "V6": "unknown sensor measurement",
+      "V7": "unknown sensor measurement",
+      "V8": "unknown sensor measurement",
+      "V9": "unknown sensor measurement",
+      "V10": "unknown sensor measurement",
+      "V11": "unknown sensor measurement",
+      "V12": "unknown sensor measurement",
+      "V13": "unknown sensor measurement",
+      "V14": "unknown sensor measurement",
+      "V15": "unknown sensor measurement",
+      "V16": "unknown sensor measurement",
+      "V17": "unknown sensor measurement",
+      "V18": "unknown sensor measurement",
+      "V19": "unknown sensor measurement",
+      "V20": "unknown sensor measurement",
+      "V21": "unknown sensor measurement",
+      "V22": "unknown sensor measurement",
+      "V23": "unknown sensor measurement",
+      "V24": "unknown sensor measurement",
+      "V25": "unknown sensor measurement",
+      "V26": "unknown sensor measurement",
+      "V27": "unknown sensor measurement",
+      "V28": "unknown sensor measurement",
+      "V29": "unknown sensor measurement",
+      "V30": "unknown sensor measurement",
+      "V31": "unknown sensor measurement",
+      "V32": "unknown sensor measurement",
+      "V33": "unknown sensor measurement",
+      "V34": "unknown sensor measurement",
+      "V35": "unknown sensor measurement",
+      "V36": "unknown sensor measurement",
+      "V37": "unknown sensor measurement",
+      "V38": "unknown sensor measurement",
+      "V39": "unknown sensor measurement",
+      "V40": "unknown sensor measurement",
+      "Target": "binary label (0 or 1) indicating turbine failure"
+    },
+    "scale_issues": [
+      "All feature columns (V1-V40) appear to be continuous float64 values with varying ranges",
+      "Features may require normalization or standardization for model training"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 40,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Train.csv contains 20000 rows with 40 features and 1 target column",
+      "Test.csv contains 5000 rows with 40 features and no target column",
+      "sample_target.csv shows the required output format with a single 'Target' column",
+      "All feature columns V1-V40 are float64 type",
+      "Target column in Train.csv is int64, but sample_target.csv shows object dtype",
+      "No missing values appear to be present in the sample data shown"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Predictions must be made for exactly 5000 test instances",
+      "Output must contain exactly one column named 'Target'",
+      "Target values should be binary (0 or 1) based on training data",
+      "Output file must be named 'target.csv'",
+      "All 40 feature columns (V1-V40) must be used from Test.csv"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check class balance in training Target variable",
+      "Verify feature distributions between train and test sets",
+      "Check for multicollinearity among features",
+      "Assess feature importance for turbine failure prediction"
+    ],
+    "output_format_requirements": [
+      "Output file name: target.csv",
+      "Single column with header 'Target'",
+      "5000 rows of predictions corresponding to Test.csv rows",
+      "Binary values (0 or 1) indicating predicted turbine failure",
+      "CSV format matching sample_target.csv structure"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Binary classification prediction of turbine failure for each test instance\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What are the characteristics of the training data for turbine failure prediction?\",\n      \"What is the distribution of the Target variable in the training set?\",\n      \"Which features (V1-V40) are most predictive of turbine failure?\",\n      \"What is the required format for the prediction output?\",\n      \"How many predictions need to be generated for the test set?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Train.csv\", \"Test.csv\", \"sample_target.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Train.csv has 41 columns (V1-V40 plus Target), Test.csv has 40 columns (V1-V40 only)\",\n      \"sample_target.csv shows Target as object dtype while Train.csv has Target as int64\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"V1\": \"unknown sensor measurement\",\n      \"V2\": \"unknown sensor measurement\",\n      \"V3\": \"unknown sensor measurement\",\n      \"V4\": \"unknown sensor measurement\",\n      \"V5\": \"unknown sensor measurement\",\n      \"V6\": \"unknown sensor measurement\",\n      \"V7\": \"unknown sensor measurement\",\n      \"V8\": \"unknown sensor measurement\",\n      \"V9\": \"unknown sensor measurement\",\n      \"V10\": \"unknown sensor measurement\",\n      \"V11\": \"unknown sensor measurement\",\n      \"V12\": \"unknown sensor measurement\",\n      \"V13\": \"unknown sensor measurement\",\n      \"V14\": \"unknown sensor measurement\",\n      \"V15\": \"unknown sensor measurement\",\n      \"V16\": \"unknown sensor measurement\",\n      \"V17\": \"unknown sensor measurement\",\n      \"V18\": \"unknown sensor measurement\",\n      \"V19\": \"unknown sensor measurement\",\n      \"V20\": \"unknown sensor measurement\",\n      \"V21\": \"unknown sensor measurement\",\n      \"V22\": \"unknown sensor measurement\",\n      \"V23\": \"unknown sensor measurement\",\n      \"V24\": \"unknown sensor measurement\",\n      \"V25\": \"unknown sensor measurement\",\n      \"V26\": \"unknown sensor measurement\",\n      \"V27\": \"unknown sensor measurement\",\n      \"V28\": \"unknown sensor measurement\",\n      \"V29\": \"unknown sensor measurement\",\n      \"V30\": \"unknown sensor measurement\",\n      \"V31\": \"unknown sensor measurement\",\n      \"V32\": \"unknown sensor measurement\",\n      \"V33\": \"unknown sensor measurement\",\n      \"V34\": \"unknown sensor measurement\",\n      \"V35\": \"unknown sensor measurement\",\n      \"V36\": \"unknown sensor measurement\",\n      \"V37\": \"unknown sensor measurement\",\n      \"V38\": \"unknown sensor measurement\",\n      \"V39\": \"unknown sensor measurement\",\n      \"V40\": \"unknown sensor measurement\",\n      \"Target\": \"binary label (0 or 1) indicating turbine failure\"\n    },\n    \"scale_issues\": [\n      \"All feature columns (V1-V40) appear to be continuous float64 values with varying ranges\",\n      \"Features may require normalization or standardization for model training\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 40,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Train.csv contains 20000 rows with 40 features and 1 target column\",\n      \"Test.csv contains 5000 rows with 40 features and no target column\",\n      \"sample_target.csv shows the required output format with a single 'Target' column\",\n      \"All feature columns V1-V40 are float64 type\",\n      \"Target column in Train.csv is int64, but sample_target.csv shows object dtype\",\n      \"No missing values appear to be present in the sample data shown\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Predictions must be made for exactly 5000 test instances\",\n      \"Output must contain exactly one column named 'Target'\",\n      \"Target values should be binary (0 or 1) based on training data\",\n      \"Output file must be named 'target.csv'\",\n      \"All 40 feature columns (V1-V40) must be used from Test.csv\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Check class balance in training Target variable\",\n      \"Verify feature distributions between train and test sets\",\n      \"Check for multicollinearity among features\",\n      \"Assess feature importance for turbine failure prediction\"\n    ],\n    \"output_format_requirements\": [\n      \"Output file name: target.csv\",\n      \"Single column with header 'Target'\",\n      \"5000 rows of predictions corresponding to Test.csv rows\",\n      \"Binary values (0 or 1) indicating predicted turbine failure\",\n      \"CSV format matching sample_target.csv structure\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 18.84475088119507,
+  "token_usage": {
+    "input_tokens": 6746,
+    "output_tokens": 1294
+  }
+}

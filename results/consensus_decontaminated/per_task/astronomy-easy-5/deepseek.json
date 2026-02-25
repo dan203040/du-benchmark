@@ -1,0 +1,112 @@
+{
+  "m_q": {
+    "target_metric": "total count of satellite major altitude changes (change > 1000m within 12h) for satellite 48445 during 2024",
+    "filters": [
+      "epoch_year == 24",
+      "norad_id == '48445'",
+      "altitude_change > 1000",
+      "time_difference <= 12 hours"
+    ],
+    "grouping_variables": [
+      "norad_id"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to convert TLE orbital elements to ITRF XYZ coordinates?",
+      "How to calculate altitude from ITRF XYZ coordinates?",
+      "How to identify consecutive TLE epochs within 12 hours?",
+      "How to compute altitude differences between consecutive valid epochs?",
+      "How to count altitude changes exceeding 1000m threshold?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "48445.tle"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple rows with identical epoch_year and epoch_day values but different rev_number (e.g., rows 1-2, 8-9, 16-17)",
+      "Potential duplicate TLE entries for same timestamp"
+    ],
+    "column_mappings": {
+      "epoch_year": "year",
+      "epoch_day": "day_of_year",
+      "raan": "right_ascension",
+      "arg_perigee": "argument_of_perigee",
+      "mean_motion": "mean_motion_rev_per_day"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "epoch_year": "two-digit year (24 = 2024)",
+      "epoch_day": "day of year with fractional day",
+      "inclination": "degrees",
+      "raan": "degrees",
+      "eccentricity": "unitless",
+      "arg_perigee": "degrees",
+      "mean_anomaly": "degrees",
+      "mean_motion": "revolutions per day",
+      "rev_number": "orbit revolution count"
+    },
+    "scale_issues": [
+      "epoch_year uses two-digit format (24 = 2024)",
+      "epoch_day includes fractional days (e.g., 1.44338999 = day 1 + fractional day)",
+      "mean_motion values around 15.06 rev/day correspond to ~96 minute orbits"
+    ],
+    "cross_source_conflicts": [
+      "No external data sources provided - requires skifield's itrf_xyz library for coordinate conversion"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column 'name' appears empty in sample",
+      "Classification column contains 'U' (unclassified)",
+      "rev_number appears as string/object type",
+      "Data appears to be Two-Line Element (TLE) format in CSV representation"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "TLE epochs must be sorted chronologically for time series analysis",
+      "Altitude calculation requires Earth radius assumption (typically 6371km)",
+      "Time differences must account for day-of-year rollover in 2024",
+      "Only consider consecutive epochs within 12 hours for valid altitude change calculation",
+      "Exclude duplicate epoch entries before analysis"
+    ],
+    "derived_filters": [
+      "Remove duplicate rows with identical epoch_year and epoch_day",
+      "Filter to only 2024 data (epoch_year == 24)",
+      "Calculate time differences between consecutive valid epochs",
+      "Filter to epoch pairs with time_difference <= 12 hours"
+    ],
+    "statistical_tests": [
+      "Check for monotonic increasing epoch_day within each year",
+      "Validate altitude calculations against expected LEO range (~400-2000km)",
+      "Test for outliers in orbital elements (eccentricity should be ~0 for near-circular orbits)"
+    ],
+    "output_format_requirements": [
+      "Single integer count of major altitude changes",
+      "Document altitude calculation method using skifield's itrf_xyz",
+      "Specify time window criteria (12 hours)",
+      "State altitude change threshold (1000 meters)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total count of satellite major altitude changes (change > 1000m within 12h) for satellite 48445 during 2024\",\n        \"filters\": [\"epoch_year == 24\", \"norad_id == '48445'\", \"altitude_change > 1000\", \"time_difference <= 12 hours\"],\n        \"grouping_variables\": [\"norad_id\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How to convert TLE orbital elements to ITRF XYZ coordinates?\", \"How to calculate altitude from ITRF XYZ coordinates?\", \"How to identify consecutive TLE epochs within 12 hours?\", \"How to compute altitude differences between consecutive valid epochs?\", \"How to count altitude changes exceeding 1000m threshold?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"48445.tle\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Multiple rows with identical epoch_year and epoch_day values but different rev_number (e.g., rows 1-2, 8-9, 16-17)\", \"Potential duplicate TLE entries for same timestamp\"],\n        \"column_mappings\": {\"epoch_year\": \"year\", \"epoch_day\": \"day_of_year\", \"raan\": \"right_ascension\", \"arg_perigee\": \"argument_of_perigee\", \"mean_motion\": \"mean_motion_rev_per_day\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"epoch_year\": \"two-digit year (24 = 2024)\", \"epoch_day\": \"day of year with fractional day\", \"inclination\": \"degrees\", \"raan\": \"degrees\", \"eccentricity\": \"unitless\", \"arg_perigee\": \"degrees\", \"mean_anomaly\": \"degrees\", \"mean_motion\": \"revolutions per day\", \"rev_number\": \"orbit revolution count\"},\n        \"scale_issues\": [\"epoch_year uses two-digit format (24 = 2024)\", \"epoch_day includes fractional days (e.g., 1.44338999 = day 1 + fractional day)\", \"mean_motion values around 15.06 rev/day correspond to ~96 minute orbits\"],\n        \"cross_source_conflicts\": [\"No external data sources provided - requires skifield's itrf_xyz library for coordinate conversion\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column 'name' appears empty in sample\", \"Classification column contains 'U' (unclassified)\", \"rev_number appears as string/object type\", \"Data appears to be Two-Line Element (TLE) format in CSV representation\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"TLE epochs must be sorted chronologically for time series analysis\", \"Altitude calculation requires Earth radius assumption (typically 6371km)\", \"Time differences must account for day-of-year rollover in 2024\", \"Only consider consecutive epochs within 12 hours for valid altitude change calculation\", \"Exclude duplicate epoch entries before analysis\"],\n        \"derived_filters\": [\"Remove duplicate rows with identical epoch_year and epoch_day\", \"Filter to only 2024 data (epoch_year == 24)\", \"Calculate time differences between consecutive valid epochs\", \"Filter to epoch pairs with time_difference <= 12 hours\"],\n        \"statistical_tests\": [\"Check for monotonic increasing epoch_day within each year\", \"Validate altitude calculations against expected LEO range (~400-2000km)\", \"Test for outliers in orbital elements (eccentricity should be ~0 for near-circular orbits)\"],\n        \"output_format_requirements\": [\"Single integer count of major altitude changes\", \"Document altitude calculation method using skifield's itrf_xyz\", \"Specify time window criteria (12 hours)\", \"State altitude change threshold (1000 meters)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 18.256535053253174,
+  "token_usage": {
+    "input_tokens": 1710,
+    "output_tokens": 882
+  }
+}

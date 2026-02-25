@@ -1,0 +1,406 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Number of identity theft reports in 2007 concerning people ages 40 or older (rounded to nearest thousand)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Number of identity theft reports in 2007 concerning people ages 40 or older (rounded to nearest thousand)",
+        "Number of identity theft reports in 2007 for people ages 40 or older (rounded to nearest thousand), assuming 2007 had the same age distribution as 2024",
+        "Number of identity theft reports in 2007 concerning people ages 40 or older, rounded to the nearest thousand, assuming the age distribution of identity theft reports in 2007 was the same as in 2024."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2007",
+        "Category = Identity Theft",
+        "Age Range in ['40 - 49', '50 - 59', '60 - 69', '70 - 79', '80 and Over']"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year = 2007",
+          "Category = Identity Theft",
+          "Age Range in ['40 - 49', '50 - 59', '60 - 69', '70 - 79', '80 and Over']"
+        ],
+        [
+          "Year = 2007",
+          "Category = Identity Theft",
+          "Age Range in ['40 - 49', '50 - 59', '60 - 69', '70 - 79', '80 and Over']"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year",
+        "Category",
+        "Age Range"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Year",
+          "Category",
+          "Age Range"
+        ],
+        [
+          "Age Range"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total number of reports in 2007?",
+        "What percentage of 2024 reports are identity theft?",
+        "What percentage of 2024 identity theft reports are from ages 40+?",
+        "How to apply 2024 distribution patterns to 2007 data?",
+        "What was the total number of identity theft reports in 2007?",
+        "What is the age distribution of identity theft reports in 2024?",
+        "What proportion of 2024 identity theft reports concern people ages 40 or older?",
+        "Apply the 2024 age distribution proportion to the 2007 total identity theft count",
+        "Round the result to the nearest thousand",
+        "What is the proportion of identity theft reports in 2024 that concern people ages 40 or older?",
+        "Apply the 2024 age distribution to the 2007 total identity theft reports.",
+        "Round the result to the nearest thousand."
+      ],
+      "confidence": 0.36111111111111116,
+      "votes": [
+        [
+          "What is the total number of reports in 2007?",
+          "What percentage of 2024 reports are identity theft?",
+          "What percentage of 2024 identity theft reports are from ages 40+?",
+          "How to apply 2024 distribution patterns to 2007 data?"
+        ],
+        [
+          "What was the total number of identity theft reports in 2007?",
+          "What is the age distribution of identity theft reports in 2024?",
+          "What proportion of 2024 identity theft reports concern people ages 40 or older?",
+          "Apply the 2024 age distribution proportion to the 2007 total identity theft count",
+          "Round the result to the nearest thousand"
+        ],
+        [
+          "What was the total number of identity theft reports in 2007?",
+          "What is the proportion of identity theft reports in 2024 that concern people ages 40 or older?",
+          "Apply the 2024 age distribution to the 2007 total identity theft reports.",
+          "Round the result to the nearest thousand."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Report_Count.csv",
+        "2024_CSN_Report_Categories.csv",
+        "2024_CSN_Identity_Theft_Reports_by_Age.csv"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "2024_CSN_Report_Count.csv",
+          "2024_CSN_Report_Categories.csv",
+          "2024_CSN_Identity_Theft_Reports_by_Age.csv"
+        ],
+        [
+          "2024_CSN_Report_Count.csv",
+          "2024_CSN_Report_Categories.csv",
+          "2024_CSN_Identity_Theft_Reports_by_Age.csv"
+        ],
+        [
+          "2024_CSN_Report_Count.csv",
+          "2024_CSN_Identity_Theft_Reports_by_Age.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Year column in 2024_CSN_Report_Count.csv is float64 but represents integer years",
+        "Percentage column in 2024_CSN_Report_Categories.csv is object/string with % symbol",
+        "Last row in 2024_CSN_Identity_Theft_Reports_by_Age.csv contains metadata text instead of data",
+        "2024_CSN_Identity_Theft_Reports_by_Age.csv contains a footer row with text description instead of data",
+        "# of Reports column name appears in multiple files with different contexts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column in 2024_CSN_Report_Count.csv is float64 but represents integer years",
+          "Percentage column in 2024_CSN_Report_Categories.csv is object/string with % symbol",
+          "Last row in 2024_CSN_Identity_Theft_Reports_by_Age.csv contains metadata text instead of data"
+        ],
+        [
+          "2024_CSN_Identity_Theft_Reports_by_Age.csv contains a footer row with text description instead of data",
+          "# of Reports column name appears in multiple files with different contexts"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count",
+        "percentage": "percentage",
+        "year": "year",
+        "age range": "categorical_age_bracket"
+      },
+      "confidence": 0.75,
+      "votes": [
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage",
+          "Year": "year"
+        },
+        {
+          "# of Reports": "count",
+          "Year": "year",
+          "Percentage": "percentage_string",
+          "Age Range": "categorical_age_bracket"
+        },
+        {
+          "# of Reports": "number of reports",
+          "Percentage": "percentage"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "2024_CSN_Report_Count.csv shows increasing report counts over time (2001-2020)",
+        "Need to normalize 2007 data using 2024 proportions",
+        "Age distribution data only available for 2024",
+        "All report counts are absolute numbers, not rates or percentages",
+        "Age distribution percentages need to be calculated from counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Report_Count.csv shows increasing report counts over time (2001-2020)",
+          "Need to normalize 2007 data using 2024 proportions",
+          "Age distribution data only available for 2024"
+        ],
+        [
+          "All report counts are absolute numbers, not rates or percentages",
+          "Age distribution percentages need to be calculated from counts"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "2024_CSN_Report_Categories.csv shows 1,135,291 identity theft reports in 2024",
+        "2024_CSN_Identity_Theft_Reports_by_Age.csv references same 1,135,291 total",
+        "But age data sum doesn't match total (21420+187195+291807+207658+135758+83485+36790+9605 = 983,718)",
+        "2024_CSN_Report_Categories.csv shows 1,135,291 identity theft reports for 2024",
+        "2024_CSN_Identity_Theft_Reports_by_Age.csv age groups sum to approximately 973,718, with footer note indicating 86% of reports included age information",
+        "Need to use age distribution proportions from available age data, not absolute counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Report_Categories.csv shows 1,135,291 identity theft reports in 2024",
+          "2024_CSN_Identity_Theft_Reports_by_Age.csv references same 1,135,291 total",
+          "But age data sum doesn't match total (21420+187195+291807+207658+135758+83485+36790+9605 = 983,718)"
+        ],
+        [
+          "2024_CSN_Report_Categories.csv shows 1,135,291 identity theft reports for 2024",
+          "2024_CSN_Identity_Theft_Reports_by_Age.csv age groups sum to approximately 973,718, with footer note indicating 86% of reports included age information",
+          "Need to use age distribution proportions from available age data, not absolute counts"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.33,
+      "votes": [
+        10.0,
+        2.0,
+        0.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total 2024 reports = 6,470,000 (sum of # of Reports in 2024_CSN_Report_Categories.csv)",
+        "Identity theft percentage in 2024 = 17.54%",
+        "2007 total reports = 1,070,447 from 2024_CSN_Report_Count.csv",
+        "Age data only available for 2024, must be applied proportionally to 2007",
+        "Only use data from rows with valid Age Range values (exclude footer text row)",
+        "Sum of age groups 40-49, 50-59, 60-69, 70-79, and 80 and Over from 2024 data",
+        "Must identify 2007 total reports but NOT identity theft specific count for 2007",
+        "2007 identity theft count must be inferred by applying 2024 proportions",
+        "The age distribution in 2024 is assumed to be representative of the age distribution in 2007 for identity theft reports.",
+        "The percentage column in '2024_CSN_Report_Categories.csv' is not used."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Total 2024 reports = 6,470,000 (sum of # of Reports in 2024_CSN_Report_Categories.csv)",
+          "Identity theft percentage in 2024 = 17.54%",
+          "2007 total reports = 1,070,447 from 2024_CSN_Report_Count.csv",
+          "Age data only available for 2024, must be applied proportionally to 2007"
+        ],
+        [
+          "Only use data from rows with valid Age Range values (exclude footer text row)",
+          "Sum of age groups 40-49, 50-59, 60-69, 70-79, and 80 and Over from 2024 data",
+          "Must identify 2007 total reports but NOT identity theft specific count for 2007",
+          "2007 identity theft count must be inferred by applying 2024 proportions"
+        ],
+        [
+          "The age distribution in 2024 is assumed to be representative of the age distribution in 2007 for identity theft reports.",
+          "The percentage column in '2024_CSN_Report_Categories.csv' is not used."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter age ranges to >=40: '40 - 49', '50 - 59', '60 - 69', '70 - 79', '80 and Over'",
+        "Calculate proportion of 40+ reports from 2024 age distribution",
+        "Apply same proportion to estimated 2007 identity theft reports",
+        "Calculate proportion of 2024 identity theft reports that are age 40+: (207658 + 135758 + 83485 + 36790 + 9605) / sum of all age groups with valid data",
+        "Identity theft reports in 2007 not directly available - need to estimate or use total 2007 reports as proxy",
+        "Apply age 40+ proportion to 2007 identity theft volume",
+        "Age 40 or older includes the age ranges '40 - 49', '50 - 59', '60 - 69', '70 - 79', and '80 and Over' from the '2024_CSN_Identity_Theft_Reports_by_Age.csv' file."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter age ranges to >=40: '40 - 49', '50 - 59', '60 - 69', '70 - 79', '80 and Over'",
+          "Calculate proportion of 40+ reports from 2024 age distribution",
+          "Apply same proportion to estimated 2007 identity theft reports"
+        ],
+        [
+          "Calculate proportion of 2024 identity theft reports that are age 40+: (207658 + 135758 + 83485 + 36790 + 9605) / sum of all age groups with valid data",
+          "Identity theft reports in 2007 not directly available - need to estimate or use total 2007 reports as proxy",
+          "Apply age 40+ proportion to 2007 identity theft volume"
+        ],
+        [
+          "Age 40 or older includes the age ranges '40 - 49', '50 - 59', '60 - 69', '70 - 79', and '80 and Over' from the '2024_CSN_Identity_Theft_Reports_by_Age.csv' file."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if age distribution is consistent across years (assumption)",
+        "Verify that 2024 proportions can be applied to 2007",
+        "Validate that rounding to nearest thousand is appropriate"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if age distribution is consistent across years (assumption)",
+          "Verify that 2024 proportions can be applied to 2007",
+          "Validate that rounding to nearest thousand is appropriate"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Round final result to nearest thousand",
+        "Return integer value",
+        "Assume 2024 age distribution applies to 2007",
+        "Final answer must be rounded to the nearest thousand",
+        "Output should be a single scalar value representing count of reports",
+        "The final answer must be rounded to the nearest thousand."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Round final result to nearest thousand",
+          "Return integer value",
+          "Assume 2024 age distribution applies to 2007"
+        ],
+        [
+          "Final answer must be rounded to the nearest thousand",
+          "Output should be a single scalar value representing count of reports"
+        ],
+        [
+          "The final answer must be rounded to the nearest thousand."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5970555555555557
+}

@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "95% confidence interval (lower bound and upper bound) for the reduction in deaths due to handwashing using Bootstrap analysis",
+    "filters": [],
+    "grouping_variables": [
+      "period (before/after handwashing)",
+      "treatment group"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the death rate before handwashing was introduced?",
+      "What is the death rate after handwashing was introduced?",
+      "What is the absolute reduction in death rate?",
+      "What is the 95% confidence interval for this reduction using Bootstrap resampling?",
+      "What are the lower and upper bounds of the confidence interval?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "result.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Lower Bound": "proportion or percentage reduction in deaths",
+      "Upper Bound": "proportion or percentage reduction in deaths"
+    },
+    "scale_issues": [
+      "Need to determine if bounds should be expressed as proportions (0-1) or percentages (0-100)",
+      "Need to clarify if reduction is absolute difference or relative reduction"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "result.csv is currently empty (0 rows) and needs to be populated",
+      "Output should contain exactly 1 data row with Lower Bound and Upper Bound values",
+      "Column dtypes are 'object' but should contain numeric values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Bootstrap analysis required (resampling with replacement)",
+      "Confidence level must be 95%",
+      "Lower Bound must be less than Upper Bound",
+      "Both bounds should represent reduction in deaths (positive values if deaths decreased)"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Bootstrap resampling method to estimate sampling distribution",
+      "Percentile method or BCa method for calculating confidence interval bounds"
+    ],
+    "output_format_requirements": [
+      "Output must be saved to result.csv",
+      "Must contain exactly 2 columns: 'Lower Bound' and 'Upper Bound'",
+      "Must contain exactly 1 data row with the confidence interval bounds",
+      "Values should be numeric (not object dtype)",
+      "Follow the exact column naming convention provided"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"95% confidence interval (lower bound and upper bound) for the reduction in deaths due to handwashing using Bootstrap analysis\",\n    \"filters\": [],\n    \"grouping_variables\": [\"period (before/after handwashing)\", \"treatment group\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the death rate before handwashing was introduced?\",\n      \"What is the death rate after handwashing was introduced?\",\n      \"What is the absolute reduction in death rate?\",\n      \"What is the 95% confidence interval for this reduction using Bootstrap resampling?\",\n      \"What are the lower and upper bounds of the confidence interval?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"result.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Lower Bound\": \"proportion or percentage reduction in deaths\",\n      \"Upper Bound\": \"proportion or percentage reduction in deaths\"\n    },\n    \"scale_issues\": [\n      \"Need to determine if bounds should be expressed as proportions (0-1) or percentages (0-100)\",\n      \"Need to clarify if reduction is absolute difference or relative reduction\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"result.csv is currently empty (0 rows) and needs to be populated\",\n      \"Output should contain exactly 1 data row with Lower Bound and Upper Bound values\",\n      \"Column dtypes are 'object' but should contain numeric values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Bootstrap analysis required (resampling with replacement)\",\n      \"Confidence level must be 95%\",\n      \"Lower Bound must be less than Upper Bound\",\n      \"Both bounds should represent reduction in deaths (positive values if deaths decreased)\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Bootstrap resampling method to estimate sampling distribution\",\n      \"Percentile method or BCa method for calculating confidence interval bounds\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be saved to result.csv\",\n      \"Must contain exactly 2 columns: 'Lower Bound' and 'Upper Bound'\",\n      \"Must contain exactly 1 data row with the confidence interval bounds\",\n      \"Values should be numeric (not object dtype)\",\n      \"Follow the exact column naming convention provided\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.387663841247559,
+  "token_usage": {
+    "input_tokens": 645,
+    "output_tokens": 708
+  }
+}

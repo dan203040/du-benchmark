@@ -1,0 +1,113 @@
+{
+  "m_q": {
+    "target_metric": "Count of fires by political affiliation of states (Democratic vs Republican)",
+    "filters": [
+      "Exclude states with missing Total Fires data",
+      "Exclude states with missing political affiliation data"
+    ],
+    "grouping_variables": [
+      "Political affiliation (Democratic/Republican)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to determine if a state is Democratic or Republican?",
+      "Which data source contains fire counts?",
+      "How to handle states with missing data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv",
+      "democratic_vs_republican_votes_by_usa_state_2020.csv",
+      "wildfire_total_fires_p45_54.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "wildfire_total_fires_p45_54.csv",
+        "right_source": "democratic_vs_republican_votes_by_usa_state_2020.csv",
+        "left_column": "State",
+        "right_column": "state",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "wildfire_total_fires_p45_54.csv",
+        "right_source": "Wildfire_Acres_by_State.csv",
+        "left_column": "State",
+        "right_column": "State",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column name mismatch: 'State' vs 'state'",
+      "Different number of states in each file (52, 51, 50)",
+      "Missing District of Columbia in wildfire_total_fires_p45_54.csv"
+    ],
+    "column_mappings": {
+      "state": "State",
+      "usa_state": "State"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "acres",
+      "Population": "people",
+      "Total Fires": "count",
+      "DEM": "votes",
+      "REP": "votes"
+    },
+    "scale_issues": [
+      "Total Acres Burned varies dramatically across states (e.g., 137 vs 1,081,144)",
+      "Population varies dramatically across states",
+      "Total Fires varies dramatically across states"
+    ],
+    "cross_source_conflicts": [
+      "Wildfire_Acres_by_State.csv has 52 states including District of Columbia, but wildfire_total_fires_p45_54.csv has only 50 states",
+      "Need to determine political affiliation threshold (e.g., percent_democrat > 50% = Democratic)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Wildfire_Acres_by_State.csv has empty value for District of Columbia's Total Acres Burned",
+      "All files use consistent comma delimiters",
+      "Column names are properly quoted"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Political affiliation must be determined from 2020 election data",
+      "Only states with complete fire count data can be included",
+      "States must be classified as either Democratic or Republican (no ties)"
+    ],
+    "derived_filters": [
+      "Filter to states where percent_democrat > 50% for Democratic, < 50% for Republican",
+      "Exclude states with missing Total Fires values"
+    ],
+    "statistical_tests": [
+      "Sum of Total Fires for Democratic states",
+      "Sum of Total Fires for Republican states",
+      "Comparison of sums to determine which is larger"
+    ],
+    "output_format_requirements": [
+      "Answer must be exactly 'Democratic' or 'Republican'",
+      "Based on count of fires, not acres burned or population"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of fires by political affiliation of states (Democratic vs Republican)\",\n        \"filters\": [\"Exclude states with missing Total Fires data\", \"Exclude states with missing political affiliation data\"],\n        \"grouping_variables\": [\"Political affiliation (Democratic/Republican)\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How to determine if a state is Democratic or Republican?\", \"Which data source contains fire counts?\", \"How to handle states with missing data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Wildfire_Acres_by_State.csv\", \"democratic_vs_republican_votes_by_usa_state_2020.csv\", \"wildfire_total_fires_p45_54.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"wildfire_total_fires_p45_54.csv\", \"right_source\": \"democratic_vs_republican_votes_by_usa_state_2020.csv\", \"left_column\": \"State\", \"right_column\": \"state\", \"join_type\": \"inner\"},\n            {\"left_source\": \"wildfire_total_fires_p45_54.csv\", \"right_source\": \"Wildfire_Acres_by_State.csv\", \"left_column\": \"State\", \"right_column\": \"State\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"Column name mismatch: 'State' vs 'state'\", \"Different number of states in each file (52, 51, 50)\", \"Missing District of Columbia in wildfire_total_fires_p45_54.csv\"],\n        \"column_mappings\": {\"state\": \"State\", \"usa_state\": \"State\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Total Acres Burned\": \"acres\", \"Population\": \"people\", \"Total Fires\": \"count\", \"DEM\": \"votes\", \"REP\": \"votes\"},\n        \"scale_issues\": [\"Total Acres Burned varies dramatically across states (e.g., 137 vs 1,081,144)\", \"Population varies dramatically across states\", \"Total Fires varies dramatically across states\"],\n        \"cross_source_conflicts\": [\"Wildfire_Acres_by_State.csv has 52 states including District of Columbia, but wildfire_total_fires_p45_54.csv has only 50 states\", \"Need to determine political affiliation threshold (e.g., percent_democrat > 50% = Democratic)\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Wildfire_Acres_by_State.csv has empty value for District of Columbia's Total Acres Burned\", \"All files use consistent comma delimiters\", \"Column names are properly quoted\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Political affiliation must be determined from 2020 election data\", \"Only states with complete fire count data can be included\", \"States must be classified as either Democratic or Republican (no ties)\"],\n        \"derived_filters\": [\"Filter to states where percent_democrat > 50% for Democratic, < 50% for Republican\", \"Exclude states with missing Total Fires values\"],\n        \"statistical_tests\": [\"Sum of Total Fires for Democratic states\", \"Sum of Total Fires for Republican states\", \"Comparison of sums to determine which is larger\"],\n        \"output_format_requirements\": [\"Answer must be exactly 'Democratic' or 'Republican'\", \"Based on count of fires, not acres burned or population\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 15.808314800262451,
+  "token_usage": {
+    "input_tokens": 1557,
+    "output_tokens": 807
+  }
+}

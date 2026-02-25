@@ -1,0 +1,333 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Identify November values where Game < 16 and Points > 22",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Identify November values where Game < 16 and Points > 22",
+        "November dates that meet specified conditions",
+        "November values where Game is smaller than 16 and Points is larger than 22"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Game < 16",
+        "Points > 22"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Game < 16",
+          "Points > 22"
+        ],
+        [
+          "Game < 16",
+          "Points > 22"
+        ],
+        [
+          "Game < 16",
+          "Points > 22"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "November"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "November"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the valid November values in the dataset?",
+        "Are Game and Points columns numeric or need conversion?",
+        "Do we need to handle any missing values in these columns?",
+        "Which rows have Game values less than 16?",
+        "Which rows have Points values greater than 22?",
+        "Which November values satisfy both conditions simultaneously?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What are the valid November values in the dataset?",
+          "Are Game and Points columns numeric or need conversion?",
+          "Do we need to handle any missing values in these columns?"
+        ],
+        [
+          "Which rows have Game values less than 16?",
+          "Which rows have Points values greater than 22?",
+          "Which November values satisfy both conditions simultaneously?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "game_results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "game_results"
+        ],
+        [
+          "game_results"
+        ],
+        [
+          "game_results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "game": "game number",
+        "points": "team points",
+        "november": "day_of_month (November date)",
+        "score": "game_score (goals for\u2013goals against)"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Game": "game number",
+          "Points": "team points"
+        },
+        {
+          "Game": "game_number (sequential identifier)",
+          "November": "day_of_month (November date)",
+          "Points": "team_points (cumulative season points)",
+          "Score": "game_score (goals for\u2013goals against)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Game and Points columns are stored as object dtype but contain numeric values",
+        "Score column contains mixed formats (e.g., '4-3', '5-5 OT')",
+        "Game column appears to contain numeric values but dtype is object",
+        "November column appears to contain numeric values but dtype is object",
+        "Points column appears to contain numeric values but dtype is object"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Game and Points columns are stored as object dtype but contain numeric values",
+          "Score column contains mixed formats (e.g., '4-3', '5-5 OT')"
+        ],
+        [
+          "Game column appears to contain numeric values but dtype is object",
+          "November column appears to contain numeric values but dtype is object",
+          "Points column appears to contain numeric values but dtype is object"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Game values should be sequential integers",
+        "November values should be integers representing days of November",
+        "Points should be non-negative integers",
+        "Game must be convertible to numeric type for comparison",
+        "Points must be convertible to numeric type for comparison",
+        "Game < 16 (strict inequality)",
+        "Points > 22 (strict inequality)",
+        "Game and Points columns should be of numeric type for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Game values should be sequential integers",
+          "November values should be integers representing days of November",
+          "Points should be non-negative integers"
+        ],
+        [
+          "Game must be convertible to numeric type for comparison",
+          "Points must be convertible to numeric type for comparison",
+          "Game < 16 (strict inequality)",
+          "Points > 22 (strict inequality)"
+        ],
+        [
+          "Game and Points columns should be of numeric type for comparison"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert Game column to numeric type",
+        "Convert Points column to numeric type",
+        "Filter rows where Game < 16 AND Points > 22",
+        "Convert Game column from object to numeric type",
+        "Convert Points column from object to numeric type",
+        "Filter where numeric(Game) < 16 AND numeric(Points) > 22"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert Game column to numeric type",
+          "Convert Points column to numeric type",
+          "Filter rows where Game < 16 AND Points > 22"
+        ],
+        [
+          "Convert Game column from object to numeric type",
+          "Convert Points column from object to numeric type",
+          "Filter where numeric(Game) < 16 AND numeric(Points) > 22"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing values in Game and Points columns",
+        "Verify numeric ranges for Game and Points columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing values in Game and Points columns",
+          "Verify numeric ranges for Game and Points columns"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of November values meeting criteria",
+        "Should include Game and Points values for verification",
+        "Return list of November values that satisfy both conditions",
+        "Handle type conversion errors gracefully",
+        "Return empty result if no rows match criteria"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of November values meeting criteria",
+          "Should include Game and Points values for verification"
+        ],
+        [
+          "Return list of November values that satisfy both conditions",
+          "Handle type conversion errors gracefully",
+          "Return empty result if no rows match criteria"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6083333333333334
+}

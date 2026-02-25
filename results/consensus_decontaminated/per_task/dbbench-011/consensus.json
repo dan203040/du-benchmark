@@ -1,0 +1,290 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Event name where the fighter fought Masato Shiozawa",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Event name where the fighter fought Masato Shiozawa",
+        "Event name where the fighter fought Masato Shiozawa",
+        "The 'Event' in which the fighter fought 'Masato Shiozawa'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Opponent = 'Masato Shiozawa'",
+        "Opponent == 'Masato Shiozawa'",
+        "Opponent is 'Masato Shiozawa'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Opponent = 'Masato Shiozawa'"
+        ],
+        [
+          "Opponent == 'Masato Shiozawa'"
+        ],
+        [
+          "Opponent is 'Masato Shiozawa'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which fighter's record is this?",
+        "Is this the fighter's first professional fight?",
+        "What was the result of this fight?",
+        "Find the row where Opponent is 'Masato Shiozawa'",
+        "Extract the Event value from that row"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which fighter's record is this?",
+          "Is this the fighter's first professional fight?",
+          "What was the result of this fight?"
+        ],
+        [
+          "Find the row where Opponent is 'Masato Shiozawa'",
+          "Extract the Event value from that row"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "MMA Fight Record"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "MMA Fight Record"
+        ],
+        [
+          "MMA Fight Record"
+        ],
+        [
+          "MMA Fight Record"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "round": "fight round number",
+        "record": "win-loss_record"
+      },
+      "confidence": 0.5,
+      "votes": [
+        {
+          "Round": "fight round number"
+        },
+        {
+          "Round": "round_number",
+          "Record": "win-loss_record"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Record column uses 'Wins-Losses' format, not actual count"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Record column uses 'Wins-Losses' format, not actual count"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Record column should be consistent with Res. column wins/losses",
+        "Round should be a positive integer",
+        "Each row represents one professional fight",
+        "Opponent column must match 'Masato Shiozawa' exactly",
+        "Should return exactly one event if the match exists"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Record column should be consistent with Res. column wins/losses",
+          "Round should be a positive integer",
+          "Each row represents one professional fight"
+        ],
+        [
+          "Opponent column must match 'Masato Shiozawa' exactly",
+          "Should return exactly one event if the match exists"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Res. = 'Win' for the Masato Shiozawa fight",
+        "Filter rows where Opponent == 'Masato Shiozawa'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Res. = 'Win' for the Masato Shiozawa fight"
+        ],
+        [
+          "Filter rows where Opponent == 'Masato Shiozawa'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if Record progression is consistent with fight results"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if Record progression is consistent with fight results"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return exact Event string from data",
+        "Return the event name as a single string value",
+        "If no match found, return null or appropriate indicator"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return exact Event string from data"
+        ],
+        [
+          "Return the event name as a single string value",
+          "If no match found, return null or appropriate indicator"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5750000000000002
+}

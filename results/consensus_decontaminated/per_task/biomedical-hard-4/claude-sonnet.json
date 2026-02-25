@@ -1,0 +1,94 @@
+{
+  "m_q": {
+    "target_metric": "Histological grades (FIGO) of tumors for peptide HPKPEVLGSSADGALLVSLDGLR",
+    "filters": [
+      "Peptide == 'HPKPEVLGSSADGALLVSLDGLR'"
+    ],
+    "grouping_variables": [
+      "Histologic_Grade_FIGO"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which samples contain the peptide HPKPEVLGSSADGALLVSLDGLR?",
+      "What are the Participant IDs for samples containing this peptide?",
+      "What are the histological grades for those participants?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions",
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions",
+        "right_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "left_column": "Samples_With_Peptide",
+        "right_column": "idx",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Samples_With_Peptide column contains comma-separated sample IDs that need to be split",
+      "idx column uses 'S' prefix format matching Samples_With_Peptide values"
+    ],
+    "column_mappings": {
+      "idx": "Sample_ID",
+      "Samples_With_Peptide": "Sample_IDs_List"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Histologic_Grade_FIGO": "categorical (FIGO grade 1, 2, 3)",
+      "Peptide": "amino acid sequence string",
+      "Num_Samples_With_Peptide": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined"
+    ],
+    "expected_columns": 13,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": [
+      "Samples_With_Peptide is a comma-separated string of sample identifiers",
+      "Sample identifiers follow pattern 'S###' matching idx column in clinical data",
+      "Peptide sequences are uppercase amino acid codes",
+      "Multiple samples per peptide stored as single comma-delimited string"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Peptide must exactly match 'HPKPEVLGSSADGALLVSLDGLR'",
+      "Only tumor samples should be considered (Proteomics_Tumor_Normal == 'Tumor')",
+      "Exclude cases where Case_excluded == 'Yes'"
+    ],
+    "derived_filters": [
+      "Parse Samples_With_Peptide to extract individual sample IDs",
+      "Filter clinical data to samples found in Samples_With_Peptide",
+      "Extract non-null Histologic_Grade_FIGO values"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return list of unique histological grades",
+      "Include sample count per grade",
+      "Show actual sample IDs for traceability"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Histological grades (FIGO) of tumors for peptide HPKPEVLGSSADGALLVSLDGLR\",\n    \"filters\": [\n      \"Peptide == 'HPKPEVLGSSADGALLVSLDGLR'\"\n    ],\n    \"grouping_variables\": [\n      \"Histologic_Grade_FIGO\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which samples contain the peptide HPKPEVLGSSADGALLVSLDGLR?\",\n      \"What are the Participant IDs for samples containing this peptide?\",\n      \"What are the histological grades for those participants?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions\",\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc4__C-Alternate Splice Junctions\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n        \"left_column\": \"Samples_With_Peptide\",\n        \"right_column\": \"idx\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Samples_With_Peptide column contains comma-separated sample IDs that need to be split\",\n      \"idx column uses 'S' prefix format matching Samples_With_Peptide values\"\n    ],\n    \"column_mappings\": {\n      \"idx\": \"Sample_ID\",\n      \"Samples_With_Peptide\": \"Sample_IDs_List\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Histologic_Grade_FIGO\": \"categorical (FIGO grade 1, 2, 3)\",\n      \"Peptide\": \"amino acid sequence string\",\n      \"Num_Samples_With_Peptide\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\",\n      \"Cannot be determined\"\n    ],\n    \"expected_columns\": 13,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": [\n      \"Samples_With_Peptide is a comma-separated string of sample identifiers\",\n      \"Sample identifiers follow pattern 'S###' matching idx column in clinical data\",\n      \"Peptide sequences are uppercase amino acid codes\",\n      \"Multiple samples per peptide stored as single comma-delimited string\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Peptide must exactly match 'HPKPEVLGSSADGALLVSLDGLR'\",\n      \"Only tumor samples should be considered (Proteomics_Tumor_Normal == 'Tumor')\",\n      \"Exclude cases where Case_excluded == 'Yes'\"\n    ],\n    \"derived_filters\": [\n      \"Parse Samples_With_Peptide to extract individual sample IDs\",\n      \"Filter clinical data to samples found in Samples_With_Peptide\",\n      \"Extract non-null Histologic_Grade_FIGO values\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return list of unique histological grades\",\n      \"Include sample count per grade\",\n      \"Show actual sample IDs for traceability\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.15303611755371,
+  "token_usage": {
+    "input_tokens": 13013,
+    "output_tokens": 984
+  }
+}

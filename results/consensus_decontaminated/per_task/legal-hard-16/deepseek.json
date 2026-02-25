@@ -1,0 +1,141 @@
+{
+  "m_q": {
+    "target_metric": "Highest concentration of identity theft reports in a single metropolitan area within states that have at least two metropolitan areas, with multi-state metropolitan areas counted separately for each state they belong to",
+    "filters": [
+      "States with at least two metropolitan areas",
+      "Multi-state metropolitan areas considered separately per state"
+    ],
+    "grouping_variables": [
+      "State",
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which states have at least two metropolitan areas?",
+      "How should multi-state metropolitan areas be handled for each state?",
+      "What is the maximum # of Reports value for each qualifying state?",
+      "Which state has the highest maximum value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All files have identical schema: ['Metropolitan Area', '# of Reports']",
+      "All files have same dtypes: {'Metropolitan Area': 'object', '# of Reports': 'float64'}"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "Number of identity theft reports (absolute count)"
+    },
+    "scale_issues": [
+      "Data appears to be absolute counts, not rates per 100,000 population as mentioned in footnote",
+      "Large variation in report counts across metropolitan areas (from 76 to 71,624)"
+    ],
+    "cross_source_conflicts": [
+      "Consistent column naming and data types across all files",
+      "All files include identical footnote row at the end"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Each file has a footnote row at the end explaining metropolitan area definitions",
+      "Metropolitan Area names contain state abbreviations that need parsing",
+      "Some metropolitan areas span multiple states (e.g., 'Columbus, GA-AL')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "# of Reports must be non-negative",
+      "Each state file contains data for that state's metropolitan areas",
+      "Multi-state metropolitan areas appear in multiple state files"
+    ],
+    "derived_filters": [
+      "Remove footnote rows from each file",
+      "Filter states with shape[0] >= 3 (at least 2 metropolitan areas plus footnote)",
+      "Parse state abbreviations from Metropolitan Area names to identify multi-state areas"
+    ],
+    "statistical_tests": [
+      "Check for outliers in # of Reports",
+      "Verify consistency of multi-state area counts across different state files"
+    ],
+    "output_format_requirements": [
+      "State name",
+      "Metropolitan Area with highest reports",
+      "Number of reports for that area"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Highest concentration of identity theft reports in a single metropolitan area within states that have at least two metropolitan areas, with multi-state metropolitan areas counted separately for each state they belong to\",\n        \"filters\": [\"States with at least two metropolitan areas\", \"Multi-state metropolitan areas considered separately per state\"],\n        \"grouping_variables\": [\"State\", \"Metropolitan Area\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which states have at least two metropolitan areas?\", \"How should multi-state metropolitan areas be handled for each state?\", \"What is the maximum # of Reports value for each qualifying state?\", \"Which state has the highest maximum value?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Alabama.csv\", \"Alaska.csv\", \"Arizona.csv\", \"Arkansas.csv\", \"California.csv\", \"Colorado.csv\", \"Connecticut.csv\", \"Delaware.csv\", \"DistrictofColumbia.csv\", \"Florida.csv\", \"Georgia.csv\", \"Hawaii.csv\", \"Idaho.csv\", \"Illinois.csv\", \"Indiana.csv\", \"Iowa.csv\", \"Kansas.csv\", \"Kentucky.csv\", \"Louisiana.csv\", \"Maine.csv\", \"Maryland.csv\", \"Massachusetts.csv\", \"Michigan.csv\", \"Minnesota.csv\", \"Mississippi.csv\", \"Missouri.csv\", \"Montana.csv\", \"Nebraska.csv\", \"Nevada.csv\", \"NewHampshire.csv\", \"NewJersey.csv\", \"NewMexico.csv\", \"NewYork.csv\", \"NorthCarolina.csv\", \"NorthDakota.csv\", \"Ohio.csv\", \"Oklahoma.csv\", \"Oregon.csv\", \"Pennsylvania.csv\", \"PuertoRico.csv\", \"RhodeIsland.csv\", \"SouthCarolina.csv\", \"SouthDakota.csv\", \"Tennessee.csv\", \"Texas.csv\", \"Utah.csv\", \"Vermont.csv\", \"Virginia.csv\", \"Washington.csv\", \"WestVirginia.csv\", \"Wisconsin.csv\", \"Wyoming.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All files have identical schema: ['Metropolitan Area', '# of Reports']\", \"All files have same dtypes: {'Metropolitan Area': 'object', '# of Reports': 'float64'}\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"Number of identity theft reports (absolute count)\"},\n        \"scale_issues\": [\"Data appears to be absolute counts, not rates per 100,000 population as mentioned in footnote\", \"Large variation in report counts across metropolitan areas (from 76 to 71,624)\"],\n        \"cross_source_conflicts\": [\"Consistent column naming and data types across all files\", \"All files include identical footnote row at the end\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Each file has a footnote row at the end explaining metropolitan area definitions\", \"Metropolitan Area names contain state abbreviations that need parsing\", \"Some metropolitan areas span multiple states (e.g., 'Columbus, GA-AL')\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"# of Reports must be non-negative\", \"Each state file contains data for that state's metropolitan areas\", \"Multi-state metropolitan areas appear in multiple state files\"],\n        \"derived_filters\": [\"Remove footnote rows from each file\", \"Filter states with shape[0] >= 3 (at least 2 metropolitan areas plus footnote)\", \"Parse state abbreviations from Metropolitan Area names to identify multi-state areas\"],\n        \"statistical_tests\": [\"Check for outliers in # of Reports\", \"Verify consistency of multi-state area counts across different state files\"],\n        \"output_format_requirements\": [\"State name\", \"Metropolitan Area with highest reports\", \"Number of reports for that area\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.055487871170044,
+  "token_usage": {
+    "input_tokens": 12824,
+    "output_tokens": 883
+  }
+}

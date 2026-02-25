@@ -1,0 +1,360 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Difference between average false discovery rate (FDR) for CBX3 genes and average FDR for all other genes",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Difference between average false discovery rate (FDR) for CBX3 genes and average FDR for all other genes",
+        "Difference between average FDR in CBX3 genes and average FDR for the rest of the genes",
+        "Difference between the average FDR.phos for CBX3 genes and the average FDR.phos for all other genes."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Gene = 'CBX3'",
+        "Gene != 'CBX3'",
+        "Gene == 'CBX3'"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Gene = 'CBX3'",
+          "Gene != 'CBX3'"
+        ],
+        [
+          "Gene == 'CBX3'",
+          "Gene != 'CBX3'"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Gene"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Gene"
+        ],
+        [
+          "Gene"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the average FDR for CBX3 genes?",
+        "What is the average FDR for all non-CBX3 genes?",
+        "Which data source contains FDR values?",
+        "How are CBX3 genes identified in the data?",
+        "What is the difference between these two averages?",
+        "What is the average FDR.phos for CBX3 genes?",
+        "What is the average FDR.phos for all genes?",
+        "What genes are CBX3 genes?"
+      ],
+      "confidence": 0.4166666666666667,
+      "votes": [
+        [
+          "What is the average FDR for CBX3 genes?",
+          "What is the average FDR for all non-CBX3 genes?",
+          "Which data source contains FDR values?",
+          "How are CBX3 genes identified in the data?"
+        ],
+        [
+          "What is the average FDR for CBX3 genes?",
+          "What is the average FDR for all non-CBX3 genes?",
+          "What is the difference between these two averages?"
+        ],
+        [
+          "What is the average FDR.phos for CBX3 genes?",
+          "What is the average FDR.phos for all genes?",
+          "What genes are CBX3 genes?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc3__F-SS-phospho",
+        "1-s2.0-S0092867420301070-mmc3__C-SE-phospho"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc3__F-SS-phospho"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc3__F-SS-phospho"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc3__F-SS-phospho",
+          "1-s2.0-S0092867420301070-mmc3__C-SE-phospho"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Sheet C-SE-phospho contains CBX3 gene name but lacks FDR values",
+        "Sheet F-SS-phospho contains FDR values but needs to be filtered for CBX3"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sheet C-SE-phospho contains CBX3 gene name but lacks FDR values",
+          "Sheet F-SS-phospho contains FDR values but needs to be filtered for CBX3"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "fdr.phos": "probability (0-1)",
+        "foldchange.phos": "log2 fold change",
+        "pval.phos": "probability (0-1)",
+        "logp.phos": "log-transformed p-value",
+        "logfdr.phos": "log-transformed FDR"
+      },
+      "confidence": 0.6,
+      "votes": [
+        {
+          "FDR.phos": "probability (0-1)",
+          "FoldChange.phos": "log2 fold change",
+          "pval.phos": "probability (0-1)"
+        },
+        {
+          "FDR.phos": "false discovery rate (probability)",
+          "pval.phos": "p-value (probability)",
+          "FoldChange.phos": "fold change (ratio)",
+          "logp.phos": "log-transformed p-value",
+          "logfdr.phos": "log-transformed FDR"
+        },
+        {
+          "FDR.phos": "False Discovery Rate"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "FDR values are probabilities but also have log-transformed versions (logfdr.phos)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "FDR values are probabilities but also have log-transformed versions (logfdr.phos)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Sheet C-SE-phospho lists CBX3 as significant gene but doesn't provide FDR values",
+        "Sheet F-SS-phospho provides FDR values but needs gene-level filtering"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sheet C-SE-phospho lists CBX3 as significant gene but doesn't provide FDR values",
+          "Sheet F-SS-phospho provides FDR values but needs gene-level filtering"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.111111111111111,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          " "
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 17.0,
+      "confidence": 1.0,
+      "votes": [
+        17.0,
+        17.0,
+        17.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "FDR.phos values must be between 0 and 1",
+        "CBX3 must exist in Gene column of F-SS-phospho sheet",
+        "Need to filter by Gene column to separate CBX3 from other genes",
+        "FDR.phos values must be numeric and non-null",
+        "Gene column must be non-null",
+        "CBX3 must exist as a gene value in the dataset",
+        "CBX3 genes must be identified from the 'C-SE-phospho' sheet.",
+        "FDR.phos values must be numeric."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "FDR.phos values must be between 0 and 1",
+          "CBX3 must exist in Gene column of F-SS-phospho sheet",
+          "Need to filter by Gene column to separate CBX3 from other genes"
+        ],
+        [
+          "FDR.phos values must be numeric and non-null",
+          "Gene column must be non-null",
+          "CBX3 must exist as a gene value in the dataset"
+        ],
+        [
+          "CBX3 genes must be identified from the 'C-SE-phospho' sheet.",
+          "FDR.phos values must be numeric."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "WHERE Gene = 'CBX3'",
+        "WHERE Gene != 'CBX3'",
+        "Partition dataset into CBX3 genes (Gene == 'CBX3') and non-CBX3 genes (Gene != 'CBX3')",
+        "Identify rows in 'F-SS-phospho' where Gene is 'CBX3'.",
+        "Identify rows in 'F-SS-phospho' where Gene is not 'CBX3'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "WHERE Gene = 'CBX3'",
+          "WHERE Gene != 'CBX3'"
+        ],
+        [
+          "Partition dataset into CBX3 genes (Gene == 'CBX3') and non-CBX3 genes (Gene != 'CBX3')"
+        ],
+        [
+          "Identify rows in 'F-SS-phospho' where Gene is 'CBX3'.",
+          "Identify rows in 'F-SS-phospho' where Gene is not 'CBX3'."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Two-sample t-test or Mann-Whitney U test for comparing FDR distributions",
+        "Check normality of FDR distributions before choosing test",
+        "Calculate the average FDR.phos for CBX3 genes.",
+        "Calculate the average FDR.phos for all other genes.",
+        "Subtract the average FDR.phos of all other genes from the average FDR.phos of CBX3 genes."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Two-sample t-test or Mann-Whitney U test for comparing FDR distributions",
+          "Check normality of FDR distributions before choosing test"
+        ],
+        [],
+        [
+          "Calculate the average FDR.phos for CBX3 genes.",
+          "Calculate the average FDR.phos for all other genes.",
+          "Subtract the average FDR.phos of all other genes from the average FDR.phos of CBX3 genes."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Report difference as: avg_FDR_CBX3 - avg_FDR_other",
+        "Include confidence intervals if possible",
+        "Report sample sizes for both groups",
+        "Return single scalar value representing the difference",
+        "Calculate: mean(FDR.phos where Gene=='CBX3') - mean(FDR.phos where Gene!='CBX3')",
+        "Output the difference between the two averages as a single numerical value."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Report difference as: avg_FDR_CBX3 - avg_FDR_other",
+          "Include confidence intervals if possible",
+          "Report sample sizes for both groups"
+        ],
+        [
+          "Return single scalar value representing the difference",
+          "Calculate: mean(FDR.phos where Gene=='CBX3') - mean(FDR.phos where Gene!='CBX3')"
+        ],
+        [
+          "Output the difference between the two averages as a single numerical value."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6286111111111111
+}

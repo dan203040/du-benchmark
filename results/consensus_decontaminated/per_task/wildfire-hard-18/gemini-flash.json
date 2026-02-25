@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "The correlation between fire suppression strategy aggressiveness and fire duration/building damage, controlling for weather conditions.",
+    "filters": [],
+    "grouping_variables": [
+      "dominant_strategy_75_s",
+      "avrh_mean",
+      "wind_med",
+      "erc_med",
+      "rain_sum"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "How to quantify fire suppression strategy aggressiveness?",
+      "How to control for weather conditions?",
+      "How to measure fire duration?",
+      "How to measure building damage?",
+      "What statistical test is appropriate to determine the correlation?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs / square foot",
+      "rain_sum": "unspecified",
+      "duration": "days"
+    },
+    "scale_issues": [
+      "The scale of 'prim_threatened_aggregate', 'comm_threatened_aggregate', and 'outb_threatened_aggregate' may need to be considered when comparing across different regions or years."
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'dominant_strategy_25_s', 'dominant_strategy_50_s', and 'dominant_strategy_75_s' columns represent different thresholds for suppression strategy. Need to choose one or combine them into a single 'aggressiveness' score.",
+      "The 'duration' column is calculated as the difference between 'start_date' and 'controlled_date'. Ensure these dates are properly formatted and that the calculation is accurate.",
+      "The 'prim_threatened_aggregate' and 'comm_threatened_aggregate' columns represent the number of buildings threatened. Consider combining these into a single 'buildings_threatened' metric.",
+      "The 'cause' column may need to be simplified into broader categories (e.g., 'human' vs. 'natural').",
+      "Consider the impact of fire size (e.g., 'gt_100') on the relationship between suppression strategy and fire duration/damage."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Multiple linear regression",
+      "ANOVA"
+    ],
+    "output_format_requirements": [
+      "Tables showing correlation coefficients and p-values.",
+      "Scatter plots visualizing the relationship between suppression strategy and fire duration/damage, with weather conditions as covariates."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The correlation between fire suppression strategy aggressiveness and fire duration/building damage, controlling for weather conditions.\",\n    \"filters\": [],\n    \"grouping_variables\": [\"dominant_strategy_75_s\", \"avrh_mean\", \"wind_med\", \"erc_med\", \"rain_sum\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"How to quantify fire suppression strategy aggressiveness?\",\n      \"How to control for weather conditions?\",\n      \"How to measure fire duration?\",\n      \"How to measure building damage?\",\n      \"What statistical test is appropriate to determine the correlation?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"avrh_mean\": \"percentage\",\n      \"wind_med\": \"miles per hour\",\n      \"erc_med\": \"BTUs / square foot\",\n      \"rain_sum\": \"unspecified\",\n      \"duration\": \"days\"\n    },\n    \"scale_issues\": [\"The scale of 'prim_threatened_aggregate', 'comm_threatened_aggregate', and 'outb_threatened_aggregate' may need to be considered when comparing across different regions or years.\"],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'dominant_strategy_25_s', 'dominant_strategy_50_s', and 'dominant_strategy_75_s' columns represent different thresholds for suppression strategy. Need to choose one or combine them into a single 'aggressiveness' score.\",\n      \"The 'duration' column is calculated as the difference between 'start_date' and 'controlled_date'. Ensure these dates are properly formatted and that the calculation is accurate.\",\n      \"The 'prim_threatened_aggregate' and 'comm_threatened_aggregate' columns represent the number of buildings threatened. Consider combining these into a single 'buildings_threatened' metric.\",\n      \"The 'cause' column may need to be simplified into broader categories (e.g., 'human' vs. 'natural').\",\n      \"Consider the impact of fire size (e.g., 'gt_100') on the relationship between suppression strategy and fire duration/damage.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\"Multiple linear regression\", \"ANOVA\"],\n    \"output_format_requirements\": [\"Tables showing correlation coefficients and p-values.\", \"Scatter plots visualizing the relationship between suppression strategy and fire duration/damage, with weather conditions as covariates.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.767751932144165,
+  "token_usage": {}
+}

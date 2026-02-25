@@ -1,0 +1,99 @@
+{
+  "m_q": {
+    "target_metric": "Average rate of semi-major axis decay (km/day) for two periods: (1) quiet period May 1-4, 2024, (2) Gannon storm May 10-13, 2024",
+    "filters": [
+      "EPOCH >= 2024-05-01 AND EPOCH <= 2024-05-04 for quiet period",
+      "EPOCH >= 2024-05-10 AND EPOCH <= 2024-05-13 for storm period",
+      "NORAD_CAT_ID == 58214"
+    ],
+    "grouping_variables": [
+      "time_period (quiet vs storm)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Parse EPOCH column to datetime for filtering by date ranges",
+      "Calculate semi-major axis from MEAN_MOTION using Kepler's law: a = (mu/(2*pi*n)^2)^(1/3) where n is mean motion in rad/s",
+      "Order TLE records by EPOCH timestamp within each period",
+      "Compute semi-major axis changes between consecutive TLE observations",
+      "Calculate time differences in days between consecutive observations",
+      "Compute decay rates as delta_a / delta_t for each consecutive pair",
+      "Average the decay rates over the quiet period (May 1-4)",
+      "Average the decay rates over the storm period (May 10-13)",
+      "Format output as tuple (average_quiet_rate_km_day, average_storm_rate_km_day)"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "58214_quiet.csv",
+      "58214_storm.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Both files have identical schema, no conflicts"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "EPOCH": "UTC datetime string",
+      "MEAN_MOTION": "revolutions per day",
+      "SEMIMAJOR_AXIS": "km (pre-calculated in data)",
+      "mu": "398600.4418 km^3/s^2 (Earth gravitational parameter)",
+      "earth_radius": "6371.0 km",
+      "target_output": "km/day (decay rate)"
+    },
+    "scale_issues": [
+      "MEAN_MOTION is in revolutions/day, needs conversion to rad/s: n_rad_s = MEAN_MOTION * 2*pi / 86400",
+      "Time differences must be computed in days from EPOCH timestamps",
+      "Semi-major axis calculated from Kepler's law: a = (mu/(n^2))^(1/3) where n is in rad/s"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 39,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "EPOCH format appears to be ISO 8601: YYYY-MM-DDTHH:MM:SS.ffffff",
+      "MEAN_MOTION is float64 in revolutions per day",
+      "SEMIMAJOR_AXIS column exists but calculation from MEAN_MOTION required per question instructions",
+      "Multiple TLE records per day (13 records in storm period, 8 in quiet period)",
+      "TLE data contains duplicate or near-duplicate EPOCH values that may need handling"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Use only NORAD_CAT_ID 58214 (Starlink-30805)",
+      "Quiet period: May 1-4, 2024 (inclusive)",
+      "Storm period: May 10-13, 2024 (inclusive)",
+      "Must use mu = 398600.4418 km^3/s^2",
+      "Must use earth_radius = 6371.0 km",
+      "Must calculate semi-major axis using Kepler's law from MEAN_MOTION, not use pre-calculated SEMIMAJOR_AXIS column"
+    ],
+    "derived_filters": [
+      "Extract date from EPOCH string and filter by date range",
+      "Sort records chronologically within each period for sequential decay calculation"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output as tuple of two numbers: (average_quiet_rate_km_day, average_storm_rate_km_day)",
+      "Both values should be in km/day units",
+      "Decay rate is negative (decreasing semi-major axis) so values likely negative"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average rate of semi-major axis decay (km/day) for two periods: (1) quiet period May 1-4, 2024, (2) Gannon storm May 10-13, 2024\",\n    \"filters\": [\n      \"EPOCH >= 2024-05-01 AND EPOCH <= 2024-05-04 for quiet period\",\n      \"EPOCH >= 2024-05-10 AND EPOCH <= 2024-05-13 for storm period\",\n      \"NORAD_CAT_ID == 58214\"\n    ],\n    \"grouping_variables\": [\n      \"time_period (quiet vs storm)\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Parse EPOCH column to datetime for filtering by date ranges\",\n      \"Calculate semi-major axis from MEAN_MOTION using Kepler's law: a = (mu/(2*pi*n)^2)^(1/3) where n is mean motion in rad/s\",\n      \"Order TLE records by EPOCH timestamp within each period\",\n      \"Compute semi-major axis changes between consecutive TLE observations\",\n      \"Calculate time differences in days between consecutive observations\",\n      \"Compute decay rates as delta_a / delta_t for each consecutive pair\",\n      \"Average the decay rates over the quiet period (May 1-4)\",\n      \"Average the decay rates over the storm period (May 10-13)\",\n      \"Format output as tuple (average_quiet_rate_km_day, average_storm_rate_km_day)\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"58214_quiet.csv\",\n      \"58214_storm.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Both files have identical schema, no conflicts\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"EPOCH\": \"UTC datetime string\",\n      \"MEAN_MOTION\": \"revolutions per day\",\n      \"SEMIMAJOR_AXIS\": \"km (pre-calculated in data)\",\n      \"mu\": \"398600.4418 km^3/s^2 (Earth gravitational parameter)\",\n      \"earth_radius\": \"6371.0 km\",\n      \"target_output\": \"km/day (decay rate)\"\n    },\n    \"scale_issues\": [\n      \"MEAN_MOTION is in revolutions/day, needs conversion to rad/s: n_rad_s = MEAN_MOTION * 2*pi / 86400\",\n      \"Time differences must be computed in days from EPOCH timestamps\",\n      \"Semi-major axis calculated from Kepler's law: a = (mu/(n^2))^(1/3) where n is in rad/s\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 39,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"EPOCH format appears to be ISO 8601: YYYY-MM-DDTHH:MM:SS.ffffff\",\n      \"MEAN_MOTION is float64 in revolutions per day\",\n      \"SEMIMAJOR_AXIS column exists but calculation from MEAN_MOTION required per question instructions\",\n      \"Multiple TLE records per day (13 records in storm period, 8 in quiet period)\",\n      \"TLE data contains duplicate or near-duplicate EPOCH values that may need handling\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Use only NORAD_CAT_ID 58214 (Starlink-30805)\",\n      \"Quiet period: May 1-4, 2024 (inclusive)\",\n      \"Storm period: May 10-13, 2024 (inclusive)\",\n      \"Must use mu = 398600.4418 km^3/s^2\",\n      \"Must use earth_radius = 6371.0 km\",\n      \"Must calculate semi-major axis using Kepler's law from MEAN_MOTION, not use pre-calculated SEMIMAJOR_AXIS column\"\n    ],\n    \"derived_filters\": [\n      \"Extract date from EPOCH string and filter by date range\",\n      \"Sort records chronologically within each period for sequential decay calculation\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output as tuple of two numbers: (average_quiet_rate_km_day, average_storm_rate_km_day)\",\n      \"Both values should be in km/day units\",\n      \"Decay rate is negative (decreasing semi-major axis) so values likely negative\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 21.74697184562683,
+  "token_usage": {
+    "input_tokens": 7441,
+    "output_tokens": 1224
+  }
+}

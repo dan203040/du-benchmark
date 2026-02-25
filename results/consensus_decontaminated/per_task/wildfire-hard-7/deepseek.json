@@ -1,0 +1,120 @@
+{
+  "m_q": {
+    "target_metric": "Z-score of total acres burned per geographic area per year compared to historical annual average for that area",
+    "filters": [
+      "Year range: 2005-2024 (based on data availability)",
+      "Geographic areas: All 11 regions (excluding 'Total' column)"
+    ],
+    "grouping_variables": [
+      "Geographic area (region)",
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the historical average acres burned per geographic area?",
+      "What is the standard deviation of acres burned per geographic area?",
+      "How to calculate Z-score for each year per area: (year_value - area_mean) / area_std",
+      "Which area-year combination has the maximum absolute Z-score?",
+      "Should we use combined human-caused and lightning-caused acres or analyze separately?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "nifc_human_caused_acres.csv",
+      "nifc_lightning_caused_acres.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "nifc_human_caused_acres.csv",
+        "right_source": "nifc_lightning_caused_acres.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column name mismatch: 'Western Great Basin' vs 'Western Great Basin*'",
+      "Missing values represented by empty strings in human-caused data",
+      "Year 38 appears in lightning data (likely typo for 2018)"
+    ],
+    "column_mappings": {
+      "Western Great Basin*": "Western Great Basin",
+      "Western Great Basin": "Western Great Basin"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Alaska": "acres burned",
+      "Northwest": "acres burned",
+      "Northern California": "acres burned",
+      "Southern California": "acres burned",
+      "Northern Rockies": "acres burned",
+      "Great Basin": "acres burned",
+      "Western Great Basin": "acres burned",
+      "Southwest": "acres burned",
+      "Rocky Mountains": "acres burned",
+      "Eastern Area": "acres burned",
+      "Southern Area": "acres burned",
+      "Total": "acres burned"
+    },
+    "scale_issues": [
+      "Values range from single digits to millions of acres",
+      "Some years have missing data (empty strings)",
+      "Western Great Basin has float values while others are integers"
+    ],
+    "cross_source_conflicts": [
+      "Year 2020 shows identical values for Alaska in both files (180,885 acres) - may be data entry error or actual coincidence",
+      "Total columns differ between files - should be summed for combined analysis"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 13,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Missing values represented by empty strings",
+      "Year 38 in lightning data appears to be a typo (should likely be 2018)",
+      "Both files have 24 rows covering 2005-2024 with some gaps"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be between 2005-2024",
+      "Acres burned cannot be negative",
+      "Total should equal sum of regional values",
+      "Z-score calculation requires at least 2 years of data per area"
+    ],
+    "derived_filters": [
+      "Exclude 'Total' column from geographic area analysis",
+      "Handle missing values before statistical calculations",
+      "Fix Year 38 to 2018 in lightning data",
+      "Combine human-caused and lightning-caused acres per area per year"
+    ],
+    "statistical_tests": [
+      "Calculate mean and standard deviation per geographic area across years",
+      "Compute Z-scores: (x - \u03bc)/\u03c3 for each area-year",
+      "Find maximum absolute Z-score across all area-year combinations"
+    ],
+    "output_format_requirements": [
+      "Geographic area and year separated by comma",
+      "Single answer format: 'Area Name, YYYY'"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Z-score of total acres burned per geographic area per year compared to historical annual average for that area\",\n        \"filters\": [\"Year range: 2005-2024 (based on data availability)\", \"Geographic areas: All 11 regions (excluding 'Total' column)\"],\n        \"grouping_variables\": [\"Geographic area (region)\", \"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the historical average acres burned per geographic area?\", \"What is the standard deviation of acres burned per geographic area?\", \"How to calculate Z-score for each year per area: (year_value - area_mean) / area_std\", \"Which area-year combination has the maximum absolute Z-score?\", \"Should we use combined human-caused and lightning-caused acres or analyze separately?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"nifc_human_caused_acres.csv\", \"nifc_lightning_caused_acres.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"nifc_human_caused_acres.csv\",\n                \"right_source\": \"nifc_lightning_caused_acres.csv\",\n                \"left_column\": \"Year\",\n                \"right_column\": \"Year\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"Column name mismatch: 'Western Great Basin' vs 'Western Great Basin*'\", \"Missing values represented by empty strings in human-caused data\", \"Year 38 appears in lightning data (likely typo for 2018)\"],\n        \"column_mappings\": {\n            \"Western Great Basin*\": \"Western Great Basin\",\n            \"Western Great Basin\": \"Western Great Basin\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Year\": \"calendar year\",\n            \"Alaska\": \"acres burned\",\n            \"Northwest\": \"acres burned\",\n            \"Northern California\": \"acres burned\",\n            \"Southern California\": \"acres burned\",\n            \"Northern Rockies\": \"acres burned\",\n            \"Great Basin\": \"acres burned\",\n            \"Western Great Basin\": \"acres burned\",\n            \"Southwest\": \"acres burned\",\n            \"Rocky Mountains\": \"acres burned\",\n            \"Eastern Area\": \"acres burned\",\n            \"Southern Area\": \"acres burned\",\n            \"Total\": \"acres burned\"\n        },\n        \"scale_issues\": [\"Values range from single digits to millions of acres\", \"Some years have missing data (empty strings)\", \"Western Great Basin has float values while others are integers\"],\n        \"cross_source_conflicts\": [\"Year 2020 shows identical values for Alaska in both files (180,885 acres) - may be data entry error or actual coincidence\", \"Total columns differ between files - should be summed for combined analysis\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 13,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Missing values represented by empty strings\", \"Year 38 in lightning data appears to be a typo (should likely be 2018)\", \"Both files have 24 rows covering 2005-2024 with some gaps\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year must be between 2005-2024\", \"Acres burned cannot be negative\", \"Total should equal sum of regional values\", \"Z-score calculation requires at least 2 years of data per area\"],\n        \"derived_filters\": [\"Exclude 'Total' column from geographic area analysis\", \"Handle missing values before statistical calculations\", \"Fix Year 38 to 2018 in lightning data\", \"Combine human-caused and lightning-caused acres per area per year\"],\n        \"statistical_tests\": [\"Calculate mean and standard deviation per geographic area across years\", \"Compute Z-scores: (x - \u03bc)/\u03c3 for each area-year\", \"Find maximum absolute Z-score across all area-year combinations\"],\n        \"output_format_requirements\": [\"Geographic area and year separated by comma\", \"Single answer format: 'Area Name, YYYY'\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 18.65145182609558,
+  "token_usage": {
+    "input_tokens": 2594,
+    "output_tokens": 939
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of nations with zero silver medals",
+      "confidence": 1.0,
+      "votes": [
+        "count of nations with zero silver medals",
+        "count of nations with zero silver medals",
+        "count of nations with zero silver medals"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Silver = 0"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Silver = 0"
+        ],
+        [
+          "Silver = 0"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Nation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Nation"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which nations have Silver = 0?",
+        "How many nations meet this condition?",
+        "How many such nations exist?"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Which nations have Silver = 0?",
+          "How many nations meet this condition?"
+        ],
+        [
+          "Which nations have Silver = 0?",
+          "How many such nations exist?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Olympic Medal Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Olympic Medal Table"
+        ],
+        [
+          "Olympic Medal Table"
+        ],
+        [
+          "Olympic Medal Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "gold": "medal count",
+        "silver": "medal count",
+        "bronze": "medal count",
+        "total": "medal count",
+        "rank": "ordinal position"
+      },
+      "confidence": 0.8666666666666666,
+      "votes": [
+        {
+          "Gold": "medal count",
+          "Silver": "medal count",
+          "Bronze": "medal count",
+          "Total": "medal count"
+        },
+        {
+          "Rank": "ordinal position",
+          "Gold": "count of gold medals",
+          "Silver": "count of silver medals",
+          "Bronze": "count of bronze medals",
+          "Total": "count of total medals"
+        },
+        {
+          "Gold": "number of medals",
+          "Silver": "number of medals",
+          "Bronze": "number of medals",
+          "Total": "number of medals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Silver >= 0",
+        "Total = Gold + Silver + Bronze",
+        "Rank values should be unique",
+        "Silver column must be non-negative integer",
+        "Total should equal Gold + Silver + Bronze",
+        "All nations in table should have at least one medal (Total >= 1)",
+        "Silver column must be non-negative"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Silver >= 0",
+          "Total = Gold + Silver + Bronze",
+          "Rank values should be unique"
+        ],
+        [
+          "Silver column must be non-negative integer",
+          "Total should equal Gold + Silver + Bronze",
+          "All nations in table should have at least one medal (Total >= 1)"
+        ],
+        [
+          "Silver column must be non-negative"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Silver = 0",
+        "Nation with Silver == 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Filter rows where Silver = 0"
+        ],
+        [
+          "Nation with Silver == 0"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify Silver column contains only non-negative integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify Silver column contains only non-negative integers"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Return a single integer count"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count"
+        ],
+        [
+          "Return a single integer count"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.598888888888889
+}

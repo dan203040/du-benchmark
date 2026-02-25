@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Average rate of semi-major axis decay (km/day) for Starlink satellite 58214 during the Gannon storm (May 10-13, 2024) and the preceding quiet period (May 1-4, 2024)",
+    "filters": [
+      "Time period: May 1-4, 2024 (quiet) and May 10-13, 2024 (storm)",
+      "Satellite: NORAD_CAT_ID = 58214"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Calculate the semi-major axis from MEAN_MOTION using Kepler's law for each TLE.",
+      "Calculate the rate of semi-major axis decay (km/day) for each day in the quiet and storm periods.",
+      "Average the daily decay rates for the quiet and storm periods separately."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "58214_storm.csv",
+      "58214_quiet.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "MEAN_MOTION": "revolutions/day",
+      "ECCENTRICITY": "unitless",
+      "INCLINATION": "degrees",
+      "RA_OF_ASC_NODE": "degrees",
+      "ARG_OF_PERICENTER": "degrees",
+      "MEAN_ANOMALY": "degrees",
+      "BSTAR": "1/Earth radii",
+      "MEAN_MOTION_DOT": "revolutions/day^2",
+      "MEAN_MOTION_DDOT": "revolutions/day^3",
+      "SEMIMAJOR_AXIS": "km",
+      "PERIOD": "minutes",
+      "APOAPSIS": "km",
+      "PERIAPSIS": "km"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 39,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "mu = 398600.4418 km^3/s^2",
+      "Earth radius = 6371.0 km",
+      "Kepler's Law: T^2 = (4*pi^2/mu) * a^3, where T is period and a is semi-major axis.  Period needs to be converted to seconds from MEAN_MOTION."
+    ],
+    "derived_filters": [
+      "Quiet period: EPOCH between 2024-05-01 and 2024-05-04",
+      "Storm period: EPOCH between 2024-05-10 and 2024-05-13"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "(average_quiet_rate_km_day, average_storm_rate_km_day)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average rate of semi-major axis decay (km/day) for Starlink satellite 58214 during the Gannon storm (May 10-13, 2024) and the preceding quiet period (May 1-4, 2024)\",\n    \"filters\": [\n      \"Time period: May 1-4, 2024 (quiet) and May 10-13, 2024 (storm)\",\n      \"Satellite: NORAD_CAT_ID = 58214\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Calculate the semi-major axis from MEAN_MOTION using Kepler's law for each TLE.\",\n      \"Calculate the rate of semi-major axis decay (km/day) for each day in the quiet and storm periods.\",\n      \"Average the daily decay rates for the quiet and storm periods separately.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"58214_storm.csv\",\n      \"58214_quiet.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"MEAN_MOTION\": \"revolutions/day\",\n      \"ECCENTRICITY\": \"unitless\",\n      \"INCLINATION\": \"degrees\",\n      \"RA_OF_ASC_NODE\": \"degrees\",\n      \"ARG_OF_PERICENTER\": \"degrees\",\n      \"MEAN_ANOMALY\": \"degrees\",\n      \"BSTAR\": \"1/Earth radii\",\n      \"MEAN_MOTION_DOT\": \"revolutions/day^2\",\n      \"MEAN_MOTION_DDOT\": \"revolutions/day^3\",\n      \"SEMIMAJOR_AXIS\": \"km\",\n      \"PERIOD\": \"minutes\",\n      \"APOAPSIS\": \"km\",\n      \"PERIAPSIS\": \"km\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 39,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"mu = 398600.4418 km^3/s^2\",\n      \"Earth radius = 6371.0 km\",\n      \"Kepler's Law: T^2 = (4*pi^2/mu) * a^3, where T is period and a is semi-major axis.  Period needs to be converted to seconds from MEAN_MOTION.\"\n    ],\n    \"derived_filters\": [\n      \"Quiet period: EPOCH between 2024-05-01 and 2024-05-04\",\n      \"Storm period: EPOCH between 2024-05-10 and 2024-05-13\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"(average_quiet_rate_km_day, average_storm_rate_km_day)\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.0100767612457275,
+  "token_usage": {}
+}

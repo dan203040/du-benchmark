@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Platform name",
+    "filters": [
+      "Year > 2006",
+      "Developer = '3G Studios'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which records have Year greater than 2006?",
+      "Which records have Developer equal to '3G Studios'?",
+      "What is the Platform value for records matching both conditions?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "SWAT Games"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Platform": "gaming platform name",
+      "Developer": "company name",
+      "Publisher": "company name",
+      "Title": "game title"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column contains string values that need conversion to numeric for comparison",
+      "Platform column may contain multiple platforms separated by commas for some games"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be convertible to integer for comparison",
+      "Developer string match must be exact or case-insensitive",
+      "Year > 2006 means Year >= 2007"
+    ],
+    "derived_filters": [
+      "Convert Year column from string to integer before applying Year > 2006 filter",
+      "Apply both filters conjunctively (AND logic)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Platform value as a string",
+      "If no records match, return null or empty result",
+      "If multiple records match, return all matching Platform values"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Platform name\",\n    \"filters\": [\n      \"Year > 2006\",\n      \"Developer = '3G Studios'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which records have Year greater than 2006?\",\n      \"Which records have Developer equal to '3G Studios'?\",\n      \"What is the Platform value for records matching both conditions?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"SWAT Games\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar year\",\n      \"Platform\": \"gaming platform name\",\n      \"Developer\": \"company name\",\n      \"Publisher\": \"company name\",\n      \"Title\": \"game title\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Year column contains string values that need conversion to numeric for comparison\",\n      \"Platform column may contain multiple platforms separated by commas for some games\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be convertible to integer for comparison\",\n      \"Developer string match must be exact or case-insensitive\",\n      \"Year > 2006 means Year >= 2007\"\n    ],\n    \"derived_filters\": [\n      \"Convert Year column from string to integer before applying Year > 2006 filter\",\n      \"Apply both filters conjunctively (AND logic)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Platform value as a string\",\n      \"If no records match, return null or empty result\",\n      \"If multiple records match, return all matching Platform values\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.144572257995605,
+  "token_usage": {
+    "input_tokens": 1033,
+    "output_tokens": 557
+  }
+}

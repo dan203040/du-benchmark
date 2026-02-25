@@ -1,0 +1,149 @@
+{
+  "m_q": {
+    "target_metric": "quantity_sold (predicted sales quantity for shoe products)",
+    "filters": [
+      "category = 'men' (from test.csv sample)",
+      "product type is shoes"
+    ],
+    "grouping_variables": [
+      "id",
+      "name",
+      "brand",
+      "category"
+    ],
+    "output_cardinality": "table (1750 rows matching test.csv shape)",
+    "sub_questions": [
+      "What features predict shoe sales?",
+      "How to transfer learning from other product categories?",
+      "What is the relationship between price, reviews, and sales?",
+      "How does brand affect sales prediction?",
+      "Should we use all available training data or only shoe-specific data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "test.csv",
+      "vietnamese_tiki_products_backpacks_suitcases.csv",
+      "vietnamese_tiki_products_fashion_accessories.csv",
+      "vietnamese_tiki_products_men_bags.csv",
+      "vietnamese_tiki_products_men_shoes.csv",
+      "vietnamese_tiki_products_women_bags.csv",
+      "vietnamese_tiki_products_women_shoes.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "test.csv",
+        "right_source": "vietnamese_tiki_products_men_shoes.csv",
+        "left_column": "id",
+        "right_column": "id",
+        "join_type": "left"
+      },
+      {
+        "left_source": "test.csv",
+        "right_source": "vietnamese_tiki_products_women_shoes.csv",
+        "left_column": "id",
+        "right_column": "id",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "test.csv has 18 columns while training files have 19-20 columns",
+      "test.csv missing 'quantity_sold' column",
+      "vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have duplicate 'Unnamed: 0.1' and 'Unnamed: 0' columns",
+      "Column order differs across files",
+      "Some training files have 'category' values that don't match test.csv 'category' values"
+    ],
+    "column_mappings": {
+      "Unnamed: 0": "index",
+      "Unnamed: 0.1": "secondary_index",
+      "vnd_cashback": "cashback_vnd",
+      "date_created": "creation_date",
+      "has_video": "has_product_video"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "original_price": "VND",
+      "price": "VND",
+      "vnd_cashback": "VND",
+      "date_created": "timestamp or days since epoch",
+      "review_count": "count",
+      "rating_average": "scale 0-5",
+      "favourite_count": "count",
+      "number_of_images": "count",
+      "quantity_sold": "units"
+    },
+    "scale_issues": [
+      "price ranges from 1,350 VND to 1,900,000 VND - extreme range",
+      "review_count has many zeros",
+      "rating_average has many zeros",
+      "date_created values like 616, 775 suggest non-standard timestamp format",
+      "favourite_count has extreme values like 2811"
+    ],
+    "cross_source_conflicts": [
+      "test.csv 'category' values ('men') vs training files 'category' values ('Root', 'Balo n\u1eef', 'C\u00e0i \u00c1o', 'T\u00fai \u0111eo ch\u00e9o nam', etc.)",
+      "Different product categories in training data (shoes, bags, accessories) vs test data (shoes only)",
+      "Brand naming inconsistencies: 'OEM' appears frequently but may represent different manufacturers"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "0",
+      "0.0",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 18,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Vietnamese text in name and description columns",
+      "Some descriptions truncated with '...'",
+      "Boolean columns: pay_later, has_video",
+      "Multiple index columns in some files",
+      "Price columns are integers representing VND",
+      "Sample shows only first 20 rows - need to verify full data quality"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "test.csv has no quantity_sold column - target variable missing",
+      "Must predict for all 1750 rows in test.csv",
+      "Output must be saved to quantity.csv with column name 'quantity_sold'",
+      "Training data includes non-shoe products that may not be relevant",
+      "id should be unique across datasets",
+      "price <= original_price (discount constraint)"
+    ],
+    "derived_filters": [
+      "Remove rows where price = 0",
+      "Filter training data to similar product categories",
+      "Consider only products with non-zero review_count for reliability",
+      "Exclude extreme outlier prices"
+    ],
+    "statistical_tests": [
+      "Correlation analysis between price and quantity_sold",
+      "Test significance of review_count on sales",
+      "Check for multicollinearity among features",
+      "Validate model on holdout shoe data if available",
+      "Test distribution differences between training categories"
+    ],
+    "output_format_requirements": [
+      "CSV file named quantity.csv",
+      "Single column 'quantity_sold'",
+      "1750 rows matching test.csv order",
+      "Integer values (sales quantities)",
+      "No header row beyond column name"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"quantity_sold (predicted sales quantity for shoe products)\",\n        \"filters\": [\"category = 'men' (from test.csv sample)\", \"product type is shoes\"],\n        \"grouping_variables\": [\"id\", \"name\", \"brand\", \"category\"],\n        \"output_cardinality\": \"table (1750 rows matching test.csv shape)\",\n        \"sub_questions\": [\"What features predict shoe sales?\", \"How to transfer learning from other product categories?\", \"What is the relationship between price, reviews, and sales?\", \"How does brand affect sales prediction?\", \"Should we use all available training data or only shoe-specific data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"test.csv\", \"vietnamese_tiki_products_backpacks_suitcases.csv\", \"vietnamese_tiki_products_fashion_accessories.csv\", \"vietnamese_tiki_products_men_bags.csv\", \"vietnamese_tiki_products_men_shoes.csv\", \"vietnamese_tiki_products_women_bags.csv\", \"vietnamese_tiki_products_women_shoes.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"test.csv\", \"right_source\": \"vietnamese_tiki_products_men_shoes.csv\", \"left_column\": \"id\", \"right_column\": \"id\", \"join_type\": \"left\"},\n            {\"left_source\": \"test.csv\", \"right_source\": \"vietnamese_tiki_products_women_shoes.csv\", \"left_column\": \"id\", \"right_column\": \"id\", \"join_type\": \"left\"}\n        ],\n        \"schema_conflicts\": [\"test.csv has 18 columns while training files have 19-20 columns\", \"test.csv missing 'quantity_sold' column\", \"vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have duplicate 'Unnamed: 0.1' and 'Unnamed: 0' columns\", \"Column order differs across files\", \"Some training files have 'category' values that don't match test.csv 'category' values\"],\n        \"column_mappings\": {\"Unnamed: 0\": \"index\", \"Unnamed: 0.1\": \"secondary_index\", \"vnd_cashback\": \"cashback_vnd\", \"date_created\": \"creation_date\", \"has_video\": \"has_product_video\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"original_price\": \"VND\", \"price\": \"VND\", \"vnd_cashback\": \"VND\", \"date_created\": \"timestamp or days since epoch\", \"review_count\": \"count\", \"rating_average\": \"scale 0-5\", \"favourite_count\": \"count\", \"number_of_images\": \"count\", \"quantity_sold\": \"units\"},\n        \"scale_issues\": [\"price ranges from 1,350 VND to 1,900,000 VND - extreme range\", \"review_count has many zeros\", \"rating_average has many zeros\", \"date_created values like 616, 775 suggest non-standard timestamp format\", \"favourite_count has extreme values like 2811\"],\n        \"cross_source_conflicts\": [\"test.csv 'category' values ('men') vs training files 'category' values ('Root', 'Balo n\u1eef', 'C\u00e0i \u00c1o', 'T\u00fai \u0111eo ch\u00e9o nam', etc.)\", \"Different product categories in training data (shoes, bags, accessories) vs test data (shoes only)\", \"Brand naming inconsistencies: 'OEM' appears frequently but may represent different manufacturers\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"0\", \"0.0\", \"NA\", \"N/A\"],\n        \"expected_columns\": 18,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Vietnamese text in name and description columns\", \"Some descriptions truncated with '...'\", \"Boolean columns: pay_later, has_video\", \"Multiple index columns in some files\", \"Price columns are integers representing VND\", \"Sample shows only first 20 rows - need to verify full data quality\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"test.csv has no quantity_sold column - target variable missing\", \"Must predict for all 1750 rows in test.csv\", \"Output must be saved to quantity.csv with column name 'quantity_sold'\", \"Training data includes non-shoe products that may not be relevant\", \"id should be unique across datasets\", \"price <= original_price (discount constraint)\"],\n        \"derived_filters\": [\"Remove rows where price = 0\", \"Filter training data to similar product categories\", \"Consider only products with non-zero review_count for reliability\", \"Exclude extreme outlier prices\"],\n        \"statistical_tests\": [\"Correlation analysis between price and quantity_sold\", \"Test significance of review_count on sales\", \"Check for multicollinearity among features\", \"Validate model on holdout shoe data if available\", \"Test distribution differences between training categories\"],\n        \"output_format_requirements\": [\"CSV file named quantity.csv\", \"Single column 'quantity_sold'\", \"1750 rows matching test.csv order\", \"Integer values (sales quantities)\", \"No header row beyond column name\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 24.81298828125,
+  "token_usage": {
+    "input_tokens": 19002,
+    "output_tokens": 1168
+  }
+}

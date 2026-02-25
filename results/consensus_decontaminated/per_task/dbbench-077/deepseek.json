@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "best starting position (lowest Start value) for each car across all years",
+    "filters": [],
+    "grouping_variables": [
+      "Car"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Which car number had the best starting position?",
+      "What was the actual best starting position value?",
+      "In which year did each car achieve its best starting position?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "car_race_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Qual": "mph (qualifying speed)",
+      "Laps": "count",
+      "Led": "laps led"
+    },
+    "scale_issues": [
+      "Year column is object type but contains year values - should be integer",
+      "Retired column contains categorical status values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Shape shows 11 rows, 9 columns",
+      "Sample shows 11 rows matching shape",
+      "Year column stored as object instead of numeric"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Start values should be positive integers (grid positions)",
+      "Start values should be less than or equal to total cars in race",
+      "Best starting position means minimum Start value (position 1 is best)"
+    ],
+    "derived_filters": [
+      "Filter to find minimum Start value per Car",
+      "Consider only races where car actually started (Start not null)"
+    ],
+    "statistical_tests": [
+      "Check for outliers in Start positions",
+      "Verify Start values are within reasonable range (1-33 typical for Indy 500)"
+    ],
+    "output_format_requirements": [
+      "Should show Car number and its best Start position",
+      "Include Year when best Start was achieved",
+      "Sort by best Start position ascending"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"best starting position (lowest Start value) for each car across all years\",\n        \"filters\": [],\n        \"grouping_variables\": [\"Car\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Which car number had the best starting position?\", \"What was the actual best starting position value?\", \"In which year did each car achieve its best starting position?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"car_race_results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Qual\": \"mph (qualifying speed)\", \"Laps\": \"count\", \"Led\": \"laps led\"},\n        \"scale_issues\": [\"Year column is object type but contains year values - should be integer\", \"Retired column contains categorical status values\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Shape shows 11 rows, 9 columns\", \"Sample shows 11 rows matching shape\", \"Year column stored as object instead of numeric\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Start values should be positive integers (grid positions)\", \"Start values should be less than or equal to total cars in race\", \"Best starting position means minimum Start value (position 1 is best)\"],\n        \"derived_filters\": [\"Filter to find minimum Start value per Car\", \"Consider only races where car actually started (Start not null)\"],\n        \"statistical_tests\": [\"Check for outliers in Start positions\", \"Verify Start values are within reasonable range (1-33 typical for Indy 500)\"],\n        \"output_format_requirements\": [\"Should show Car number and its best Start position\", \"Include Year when best Start was achieved\", \"Sort by best Start position ascending\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.244266986846924,
+  "token_usage": {
+    "input_tokens": 866,
+    "output_tokens": 475
+  }
+}

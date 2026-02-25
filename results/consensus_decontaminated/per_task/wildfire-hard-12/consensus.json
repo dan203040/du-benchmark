@@ -1,0 +1,353 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "temporal shift in fire start day of year distribution over years",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "temporal shift in fire start day of year distribution over years",
+        "Temporal shift in fire start distribution within the year (start_day_of_year) over multiple years",
+        "Distribution of fire start dates across years and whether the distribution has shifted earlier or later over time."
+      ]
+    },
+    "filters": {
+      "value": [
+        "start_year not null",
+        "start_day_of_year not null",
+        "start_day_of_year between 1 and 366"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "start_year not null",
+          "start_day_of_year not null",
+          "start_day_of_year between 1 and 366"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "start_year"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "start_year"
+        ],
+        [
+          "start_year"
+        ],
+        [
+          "start_year"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "Yes/No"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the average start_day_of_year per year?",
+        "Is there a statistically significant trend in start_day_of_year over time?",
+        "Does the distribution of start_day_of_year change across years?",
+        "What is the distribution of start_day_of_year for each start_year?",
+        "Has the central tendency (mean/median) of start_day_of_year changed over time?",
+        "Is there a statistically significant trend in start_day_of_year over start_year?",
+        "Are fires starting earlier (lower start_day_of_year) or later (higher start_day_of_year) in recent years compared to earlier years?",
+        "What is the distribution of 'start_day_of_year' for each 'start_year'?",
+        "How does the distribution of 'start_day_of_year' change across different 'start_year' values?",
+        "Is there a statistically significant trend in the average or median 'start_day_of_year' over time (across 'start_year')?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What is the average start_day_of_year per year?",
+          "Is there a statistically significant trend in start_day_of_year over time?",
+          "Does the distribution of start_day_of_year change across years?"
+        ],
+        [
+          "What is the distribution of start_day_of_year for each start_year?",
+          "Has the central tendency (mean/median) of start_day_of_year changed over time?",
+          "Is there a statistically significant trend in start_day_of_year over start_year?",
+          "Are fires starting earlier (lower start_day_of_year) or later (higher start_day_of_year) in recent years compared to earlier years?"
+        ],
+        [
+          "What is the distribution of 'start_day_of_year' for each 'start_year'?",
+          "How does the distribution of 'start_day_of_year' change across different 'start_year' values?",
+          "Is there a statistically significant trend in the average or median 'start_day_of_year' over time (across 'start_year')?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Fire_Weather_Data_2002-2014_2016.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ],
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ],
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "start_day_of_year": "day number (1-366)",
+        "start_year": "year",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "duration": "days",
+        "avrh_mean": "relative humidity percentage",
+        "wind_med": "wind speed units",
+        "erc_med": "energy release component index",
+        "rain_sum": "precipitation units",
+        "start_date": "date (mm/dd/yyyy format)"
+      },
+      "confidence": 0.4666666666666667,
+      "votes": [
+        {
+          "start_day_of_year": "day number (1-366)",
+          "start_year": "calendar year",
+          "latitude": "degrees",
+          "longitude": "degrees",
+          "duration": "days",
+          "avrh_mean": "relative humidity percentage",
+          "wind_med": "wind speed units",
+          "erc_med": "energy release component index",
+          "rain_sum": "precipitation units"
+        },
+        {
+          "start_day_of_year": "day_of_year (1-366)",
+          "start_year": "year",
+          "start_date": "date (mm/dd/yyyy format)"
+        },
+        {
+          "start_day_of_year": "day of year",
+          "start_year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "latitude and longitude stored as integers (likely scaled)",
+        "some numeric columns may have missing values encoded as 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "latitude and longitude stored as integers (likely scaled)",
+          "some numeric columns may have missing values encoded as 0"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "start_day_of_year must be between 1 and 366",
+        "start_year between 2002 and 2016",
+        "duration >= 0",
+        "control_day_of_year >= start_day_of_year when same year",
+        "start_year should be in range 2002-2016",
+        "Records with missing or invalid start_day_of_year should be excluded",
+        "start_year should be within a reasonable range (e.g., 2002-2016).",
+        "start_day_of_year should be between 1 and 366."
+      ],
+      "confidence": 0.375,
+      "votes": [
+        [
+          "start_day_of_year must be between 1 and 366",
+          "start_year between 2002 and 2016",
+          "duration >= 0",
+          "control_day_of_year >= start_day_of_year when same year"
+        ],
+        [
+          "start_day_of_year must be between 1 and 366",
+          "start_year should be in range 2002-2016",
+          "Records with missing or invalid start_day_of_year should be excluded"
+        ],
+        [
+          "start_year should be within a reasonable range (e.g., 2002-2016).",
+          "start_day_of_year should be between 1 and 366."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "exclude rows where start_day_of_year is 0 or null",
+        "consider only years with sufficient sample size"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "exclude rows where start_day_of_year is 0 or null",
+          "consider only years with sufficient sample size"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "linear regression of start_day_of_year against start_year",
+        "Mann-Kendall trend test",
+        "comparison of median start_day_of_year between early and late periods",
+        "Linear regression of start_day_of_year vs start_year",
+        "Mann-Kendall trend test for temporal trend in start_day_of_year",
+        "Comparison of mean/median start_day_of_year between early years (2002-2009) and later years (2010-2016)",
+        "Mann-Kendall test for trend in median start_day_of_year over start_year",
+        "Kolmogorov-Smirnov test to compare distributions of start_day_of_year between different start_years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "linear regression of start_day_of_year against start_year",
+          "Mann-Kendall trend test",
+          "comparison of median start_day_of_year between early and late periods"
+        ],
+        [
+          "Linear regression of start_day_of_year vs start_year",
+          "Mann-Kendall trend test for temporal trend in start_day_of_year",
+          "Comparison of mean/median start_day_of_year between early years (2002-2009) and later years (2010-2016)"
+        ],
+        [
+          "Mann-Kendall test for trend in median start_day_of_year over start_year",
+          "Kolmogorov-Smirnov test to compare distributions of start_day_of_year between different start_years"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "binary Yes/No answer only",
+        "no explanation text",
+        "Answer must be 'Yes' or 'No' only",
+        "No explanation or additional text"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "binary Yes/No answer only",
+          "no explanation text"
+        ],
+        [
+          "Answer must be 'Yes' or 'No' only",
+          "No explanation or additional text"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5865277777777778
+}

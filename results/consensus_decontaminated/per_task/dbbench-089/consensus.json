@@ -1,0 +1,340 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "The train with the latest arrival time each day",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "The train with the latest arrival time each day",
+        "The train with the latest arrival time each day",
+        "last train to arrive each day"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Day contains 'Daily'",
+        "Arrival time is not null or sentinel value",
+        "Only trains with valid arrival times (not N/a)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Day contains 'Daily'",
+          "Arrival time is not null or sentinel value"
+        ],
+        [
+          "Only trains with valid arrival times (not N/a)"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Day"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Day"
+        ],
+        [
+          "Day"
+        ],
+        [
+          "Day"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "list",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the latest arrival time among daily trains?",
+        "Which train(s) have that arrival time?",
+        "Are there multiple trains with the same latest arrival time?",
+        "What are the unique day categories in the dataset?",
+        "How should arrival times be parsed and compared?",
+        "Should 'Daily' trains be considered for each specific day?",
+        "How to handle trains that run on multiple specific days?",
+        "Should trains arriving after midnight (e.g., 01:23) be considered as arriving late at night or early next morning?",
+        "For each day, what is the latest arrival time?",
+        "Which train corresponds to the latest arrival time for each day?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What is the latest arrival time among daily trains?",
+          "Which train(s) have that arrival time?",
+          "Are there multiple trains with the same latest arrival time?"
+        ],
+        [
+          "What are the unique day categories in the dataset?",
+          "How should arrival times be parsed and compared?",
+          "Should 'Daily' trains be considered for each specific day?",
+          "How to handle trains that run on multiple specific days?",
+          "Should trains arriving after midnight (e.g., 01:23) be considered as arriving late at night or early next morning?"
+        ],
+        [
+          "For each day, what is the latest arrival time?",
+          "Which train corresponds to the latest arrival time for each day?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Train Schedule"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Train Schedule"
+        ],
+        [
+          "Train Schedule"
+        ],
+        [
+          "Train Schedule"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "arrival": "HH:MM time format",
+        "departure": "HH:MM time format",
+        "day": "day codes (Daily, M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday)"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "Arrival": "HH:MM time format",
+          "Departure": "HH:MM time format"
+        },
+        {
+          "Arrival": "time in HH:MM format (24-hour)",
+          "Departure": "time in HH:MM format (24-hour)",
+          "Day": "day codes (Daily, M=Monday, Tu=Tuesday, W=Wednesday, T=Thursday, F=Friday, St=Saturday, S=Sunday)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Time values are in 24-hour format but need to be parsed for comparison",
+        "Day column contains complex strings with multiple day abbreviations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time values are in 24-hour format but need to be parsed for comparison",
+          "Day column contains complex strings with multiple day abbreviations"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "N/a",
+        "NA",
+        ""
+      ],
+      "confidence": 0.9999999999999999,
+      "votes": [
+        [
+          "N/a",
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "N/a",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Arrival times must be valid 24-hour format",
+        "Only trains with 'Daily' in Day column should be considered",
+        "N/a in Departure column indicates no departure time",
+        "Arrival time must not be 'N/a'",
+        "Arrival time must be in valid HH:MM format",
+        "Day values must be parsed to handle both single days and comma-separated multiple days",
+        "Arrival times must be in a valid time format (HH:MM).",
+        "Day values must be valid days of the week or 'Daily'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Arrival times must be valid 24-hour format",
+          "Only trains with 'Daily' in Day column should be considered",
+          "N/a in Departure column indicates no departure time"
+        ],
+        [
+          "Arrival time must not be 'N/a'",
+          "Arrival time must be in valid HH:MM format",
+          "Day values must be parsed to handle both single days and comma-separated multiple days"
+        ],
+        [
+          "Arrival times must be in a valid time format (HH:MM).",
+          "Day values must be valid days of the week or 'Daily'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows where Day does not contain 'Daily'",
+        "Filter out rows where Arrival is null or sentinel value",
+        "Expand 'Daily' to all seven days of the week",
+        "Parse comma-separated day values into individual day entries",
+        "Filter out rows where 'Arrival' is null or invalid.",
+        "Create a derived column representing the arrival time as a datetime object for comparison."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows where Day does not contain 'Daily'",
+          "Filter out rows where Arrival is null or sentinel value"
+        ],
+        [
+          "Expand 'Daily' to all seven days of the week",
+          "Parse comma-separated day values into individual day entries"
+        ],
+        [
+          "Filter out rows where 'Arrival' is null or invalid.",
+          "Create a derived column representing the arrival time as a datetime object for comparison."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Train No.",
+        "Validate time format consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Train No.",
+          "Validate time format consistency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Should include Train No., Name of the Train, and Arrival time",
+        "If multiple trains have same latest arrival time, list all",
+        "Output should show the last arriving train for each day of the week",
+        "Include Train No., Name of the Train, and Arrival time",
+        "Format as a table with one row per day (Monday through Sunday)",
+        "Output should include the day and the name of the train that arrived last.",
+        "Output should be sorted by day."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Should include Train No., Name of the Train, and Arrival time",
+          "If multiple trains have same latest arrival time, list all"
+        ],
+        [
+          "Output should show the last arriving train for each day of the week",
+          "Include Train No., Name of the Train, and Arrival time",
+          "Format as a table with one row per day (Monday through Sunday)"
+        ],
+        [
+          "Output should include the day and the name of the train that arrived last.",
+          "Output should be sorted by day."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6111111111111112
+}

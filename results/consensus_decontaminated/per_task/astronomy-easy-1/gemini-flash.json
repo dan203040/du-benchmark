@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast from March 9, 2025, for the period March 10-12, 2025",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Extract the AP forecast values for March 10, 11, and 12, 2025 from the '0309geomag_forecast.txt' file.",
+      "Determine the actual AP values for March 10, 11, and 12, 2025.  Since these are forecasts, we need to assume that the actual values are in the forecasts issued on March 10, 11, and 12 respectively. Extract the AP forecast values for March 10 from '0310geomag_forecast.txt', March 11 from '0311geomag_forecast.txt', and March 12 from '0312geomag_forecast.txt'.",
+      "Calculate the absolute error between the forecasted and actual AP values for each of the three days.",
+      "Calculate the mean of the three absolute errors."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "0309geomag_forecast.txt",
+      "0311geomag_forecast.txt",
+      "0312geomag_forecast.txt"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      ":Product:": "Product",
+      "0309geomag_forecast.txt": "AP_Value_0309",
+      "0311geomag_forecast.txt": "AP_Value_0311",
+      "0312geomag_forecast.txt": "AP_Value_0312"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "AP_Value_0309": "unitless AP index",
+      "AP_Value_0311": "unitless AP index",
+      "AP_Value_0312": "unitless AP index"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The AP values are embedded within a string in the second column. Need to extract them using string parsing."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The AP forecast values for March 10, 11, and 12, 2025 are located in specific rows of the '0309geomag_forecast.txt' file. The exact row numbers need to be determined by inspecting the file structure.",
+      "The AP values for March 10, 11, and 12 are embedded in the 'Mar' row, and need to be extracted by splitting the string."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final output should be a single numerical value representing the MAE."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast from March 9, 2025, for the period March 10-12, 2025\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Extract the AP forecast values for March 10, 11, and 12, 2025 from the '0309geomag_forecast.txt' file.\",\n      \"Determine the actual AP values for March 10, 11, and 12, 2025.  Since these are forecasts, we need to assume that the actual values are in the forecasts issued on March 10, 11, and 12 respectively. Extract the AP forecast values for March 10 from '0310geomag_forecast.txt', March 11 from '0311geomag_forecast.txt', and March 12 from '0312geomag_forecast.txt'.\",\n      \"Calculate the absolute error between the forecasted and actual AP values for each of the three days.\",\n      \"Calculate the mean of the three absolute errors.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"0309geomag_forecast.txt\",\n      \"0311geomag_forecast.txt\",\n      \"0312geomag_forecast.txt\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \":Product:\": \"Product\",\n      \"0309geomag_forecast.txt\": \"AP_Value_0309\",\n      \"0311geomag_forecast.txt\": \"AP_Value_0311\",\n      \"0312geomag_forecast.txt\": \"AP_Value_0312\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"AP_Value_0309\": \"unitless AP index\",\n      \"AP_Value_0311\": \"unitless AP index\",\n      \"AP_Value_0312\": \"unitless AP index\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The AP values are embedded within a string in the second column. Need to extract them using string parsing.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The AP forecast values for March 10, 11, and 12, 2025 are located in specific rows of the '0309geomag_forecast.txt' file. The exact row numbers need to be determined by inspecting the file structure.\",\n      \"The AP values for March 10, 11, and 12 are embedded in the 'Mar' row, and need to be extracted by splitting the string.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final output should be a single numerical value representing the MAE.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.403779029846191,
+  "token_usage": {}
+}

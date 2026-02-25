@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Maximum population",
+    "filters": [
+      "Cities in the Southern Hemisphere (lat < 0)",
+      "Cities in the Western Hemisphere (lng < 0)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "worldcities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat": "degrees",
+      "lng": "degrees",
+      "population": "people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "lat values should be between -90 and 90",
+      "lng values should be between -180 and 180",
+      "population values should be non-negative"
+    ],
+    "derived_filters": [
+      "Southern Hemisphere: lat < 0",
+      "Western Hemisphere: lng < 0"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "City name",
+      "Population"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum population\",\n    \"filters\": [\n      \"Cities in the Southern Hemisphere (lat < 0)\",\n      \"Cities in the Western Hemisphere (lng < 0)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"worldcities.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"lat\": \"degrees\",\n      \"lng\": \"degrees\",\n      \"population\": \"people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"lat values should be between -90 and 90\",\n      \"lng values should be between -180 and 180\",\n      \"population values should be non-negative\"\n    ],\n    \"derived_filters\": [\n      \"Southern Hemisphere: lat < 0\",\n      \"Western Hemisphere: lng < 0\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"City name\",\n      \"Population\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.551579713821411,
+  "token_usage": {}
+}

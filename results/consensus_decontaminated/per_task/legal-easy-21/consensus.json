@@ -1,0 +1,318 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total number of identity theft reporters",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total number of identity theft reporters",
+        "total number of identity theft reporters in Alabama in 2024",
+        "Total number of identity theft reports"
+      ]
+    },
+    "filters": {
+      "value": [
+        "State = 'Alabama'",
+        "Year = 2024",
+        "State == 'Alabama'",
+        "Year == 2024"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "State = 'Alabama'",
+          "Year = 2024"
+        ],
+        [
+          "State == 'Alabama'",
+          "Year == 2024"
+        ],
+        [
+          "State = 'Alabama'",
+          "Year = 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "State"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "State"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the sum of '# of Reports' for Alabama across all theft types?",
+        "Does the data represent 2024 specifically or is that inferred from the filename?",
+        "Are there any duplicate entries for Alabama that need to be checked?",
+        "What are all the theft types reported in Alabama?",
+        "What is the number of reports for each theft type in Alabama?",
+        "What is the sum of all reports across all theft types for Alabama?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the sum of '# of Reports' for Alabama across all theft types?",
+          "Does the data represent 2024 specifically or is that inferred from the filename?",
+          "Are there any duplicate entries for Alabama that need to be checked?"
+        ],
+        [
+          "What are all the theft types reported in Alabama?",
+          "What is the number of reports for each theft type in Alabama?",
+          "What is the sum of all reports across all theft types for Alabama?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_State_Identity_Theft_Reports.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_State_Identity_Theft_Reports.csv"
+        ],
+        [
+          "2024_CSN_State_Identity_Theft_Reports.csv"
+        ],
+        [
+          "2024_CSN_State_Identity_Theft_Reports.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count of reports",
+        "percentage": "percentage of total reports for the state"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "# of Reports": "count of reports",
+          "Percentage": "percentage of total reports for the state"
+        },
+        {
+          "# of Reports": "count of individual reports",
+          "Percentage": "percentage (stored as string with % symbol)"
+        },
+        {
+          "# of Reports": "number of reports",
+          "Percentage": "percentage"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage column is stored as string with '%' symbol, needs conversion to numeric for calculations"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Sum of percentages for each state should equal 100% (or close due to rounding)",
+        "# of Reports should be non-negative integers",
+        "Each state-theft type combination should be unique",
+        "State must equal 'Alabama'",
+        "All Theft Type categories for Alabama must be included in the sum",
+        "# of Reports must be non-negative integers",
+        "The '# of Reports' column must be a non-negative integer."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sum of percentages for each state should equal 100% (or close due to rounding)",
+          "# of Reports should be non-negative integers",
+          "Each state-theft type combination should be unique"
+        ],
+        [
+          "State must equal 'Alabama'",
+          "All Theft Type categories for Alabama must be included in the sum",
+          "# of Reports must be non-negative integers"
+        ],
+        [
+          "The '# of Reports' column must be a non-negative integer."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where State = 'Alabama'",
+        "Group by State and sum '# of Reports'",
+        "Filter rows where State column equals 'Alabama'",
+        "Sum all '# of Reports' values for filtered rows"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where State = 'Alabama'",
+          "Group by State and sum '# of Reports'"
+        ],
+        [
+          "Filter rows where State column equals 'Alabama'",
+          "Sum all '# of Reports' values for filtered rows"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if sum of '# of Reports' for Alabama matches expected total based on percentages"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if sum of '# of Reports' for Alabama matches expected total based on percentages"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric value representing total reporters",
+        "Should be integer format",
+        "Return a single scalar integer value representing the total count",
+        "The result should be the sum of all theft type reports for Alabama",
+        "The output should be a single integer representing the total number of identity theft reports in Alabama in 2024."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric value representing total reporters",
+          "Should be integer format"
+        ],
+        [
+          "Return a single scalar integer value representing the total count",
+          "The result should be the sum of all theft type reports for Alabama"
+        ],
+        [
+          "The output should be a single integer representing the total number of identity theft reports in Alabama in 2024."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6083333333333334
+}

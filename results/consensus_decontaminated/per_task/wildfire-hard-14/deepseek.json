@@ -1,0 +1,111 @@
+{
+  "m_q": {
+    "target_metric": "Correlation coefficient between proportion of generally unsafe air quality days (Unhealthy, Very Unhealthy, Hazardous) and total acres burned by fire, rounded to 2 decimal places",
+    "filters": [
+      "Year = 2024",
+      "State-level aggregation required"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to calculate proportion of unsafe days from county-level AQI data?",
+      "How to aggregate county data to state level?",
+      "How to handle missing or incomplete data in wildfire dataset?",
+      "What correlation method to use (Pearson, Spearman)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv",
+      "annual_aqi_by_county_2024.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "Wildfire_Acres_by_State.csv",
+        "right_source": "annual_aqi_by_county_2024.csv",
+        "left_column": "State",
+        "right_column": "State",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Wildfire data is at state level, AQI data is at county level",
+      "Wildfire data has 52 rows (including DC), AQI data has 986 county rows",
+      "District of Columbia has missing 'Total Acres Burned' value"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "acres",
+      "Population": "people",
+      "Good Days": "days",
+      "Moderate Days": "days",
+      "Unhealthy for Sensitive Groups Days": "days",
+      "Unhealthy Days": "days",
+      "Very Unhealthy Days": "days",
+      "Hazardous Days": "days",
+      "Days with AQI": "days"
+    },
+    "scale_issues": [
+      "Wildfire acres vary dramatically by state (from 137 to 1,081,144 acres)",
+      "Population varies dramatically by state (from 702,250 to 39,431,263)",
+      "Some counties have very few 'Days with AQI' (e.g., Jefferson, AL has only 22 days)"
+    ],
+    "cross_source_conflicts": [
+      "State name formatting may differ between files (e.g., 'District of Columbia' vs potential variations)",
+      "Wildfire data includes DC with missing acreage, AQI data may or may not include DC counties"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Wildfire file has empty value for DC's Total Acres Burned",
+      "AQI file has trailing spaces in some county names (e.g., 'Aleutians East ')",
+      "AQI file has 18 columns as described in dtypes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year is fixed at 2024 in AQI data",
+      "Must aggregate county AQI data to state level before correlation",
+      "Unsafe days defined as sum of Unhealthy, Very Unhealthy, and Hazardous Days",
+      "Proportion calculated as unsafe days / Days with AQI",
+      "Correlation must be rounded to 2 decimal places"
+    ],
+    "derived_filters": [
+      "Filter out states with missing wildfire acreage data",
+      "Consider filtering counties with incomplete AQI data (low 'Days with AQI')",
+      "May need to normalize by population or area for fair comparison"
+    ],
+    "statistical_tests": [
+      "Pearson correlation test between state-level unsafe day proportion and acres burned",
+      "Check for normality of both variables",
+      "Consider Spearman correlation if data is not normally distributed"
+    ],
+    "output_format_requirements": [
+      "Single correlation coefficient rounded to 2 decimal places",
+      "May need to report p-value for significance",
+      "Should document which states were included/excluded"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Correlation coefficient between proportion of generally unsafe air quality days (Unhealthy, Very Unhealthy, Hazardous) and total acres burned by fire, rounded to 2 decimal places\",\n        \"filters\": [\"Year = 2024\", \"State-level aggregation required\"],\n        \"grouping_variables\": [\"State\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How to calculate proportion of unsafe days from county-level AQI data?\", \"How to aggregate county data to state level?\", \"How to handle missing or incomplete data in wildfire dataset?\", \"What correlation method to use (Pearson, Spearman)?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Wildfire_Acres_by_State.csv\", \"annual_aqi_by_county_2024.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"Wildfire_Acres_by_State.csv\",\n                \"right_source\": \"annual_aqi_by_county_2024.csv\",\n                \"left_column\": \"State\",\n                \"right_column\": \"State\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"Wildfire data is at state level, AQI data is at county level\", \"Wildfire data has 52 rows (including DC), AQI data has 986 county rows\", \"District of Columbia has missing 'Total Acres Burned' value\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Total Acres Burned\": \"acres\",\n            \"Population\": \"people\",\n            \"Good Days\": \"days\",\n            \"Moderate Days\": \"days\",\n            \"Unhealthy for Sensitive Groups Days\": \"days\",\n            \"Unhealthy Days\": \"days\",\n            \"Very Unhealthy Days\": \"days\",\n            \"Hazardous Days\": \"days\",\n            \"Days with AQI\": \"days\"\n        },\n        \"scale_issues\": [\"Wildfire acres vary dramatically by state (from 137 to 1,081,144 acres)\", \"Population varies dramatically by state (from 702,250 to 39,431,263)\", \"Some counties have very few 'Days with AQI' (e.g., Jefferson, AL has only 22 days)\"],\n        \"cross_source_conflicts\": [\"State name formatting may differ between files (e.g., 'District of Columbia' vs potential variations)\", \"Wildfire data includes DC with missing acreage, AQI data may or may not include DC counties\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Wildfire file has empty value for DC's Total Acres Burned\", \"AQI file has trailing spaces in some county names (e.g., 'Aleutians East ')\", \"AQI file has 18 columns as described in dtypes\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year is fixed at 2024 in AQI data\", \"Must aggregate county AQI data to state level before correlation\", \"Unsafe days defined as sum of Unhealthy, Very Unhealthy, and Hazardous Days\", \"Proportion calculated as unsafe days / Days with AQI\", \"Correlation must be rounded to 2 decimal places\"],\n        \"derived_filters\": [\"Filter out states with missing wildfire acreage data\", \"Consider filtering counties with incomplete AQI data (low 'Days with AQI')\", \"May need to normalize by population or area for fair comparison\"],\n        \"statistical_tests\": [\"Pearson correlation test between state-level unsafe day proportion and acres burned\", \"Check for normality of both variables\", \"Consider Spearman correlation if data is not normally distributed\"],\n        \"output_format_requirements\": [\"Single correlation coefficient rounded to 2 decimal places\", \"May need to report p-value for significance\", \"Should document which states were included/excluded\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.834638833999634,
+  "token_usage": {
+    "input_tokens": 1974,
+    "output_tokens": 886
+  }
+}

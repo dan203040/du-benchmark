@@ -1,0 +1,95 @@
+{
+  "m_q": {
+    "target_metric": "Count of beaches with higher bacterial exceedance rate in 2013 compared to 2012",
+    "filters": [
+      "Exclude beaches with no samples in 2012",
+      "Year = 2012 OR Year = 2013"
+    ],
+    "grouping_variables": [
+      "Beach Name",
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the bacterial exceedance rate for each beach in 2012?",
+      "What is the bacterial exceedance rate for each beach in 2013?",
+      "Which beaches had samples in 2012?",
+      "For beaches with samples in both years, which had higher exceedance rate in 2013?",
+      "What constitutes a bacterial exceedance (Violation = 'yes')?",
+      "How to calculate exceedance rate (violations / total samples)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "water-body-testing-2012.csv",
+        "right_source": "water-body-testing-2013.csv",
+        "left_column": "Beach Name",
+        "right_column": "Beach Name",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "count per 100mL or MPN per 100mL",
+      "Year": "calendar year",
+      "Sample Date": "datetime",
+      "Violation": "categorical (yes/no)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date format: YYYY-MM-DD HH:MM:SS",
+      "Violation values: 'yes' or 'no'",
+      "Both files have identical schema structure"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include beaches that have at least one sample in 2012",
+      "Beach Name must be present in both years for comparison",
+      "Violation field must be 'yes' or 'no' to calculate exceedance rate"
+    ],
+    "derived_filters": [
+      "Beach must have count(samples where Year=2012) > 0",
+      "Beach must have count(samples where Year=2013) > 0 for comparison"
+    ],
+    "statistical_tests": [
+      "Calculate exceedance_rate_2012 = count(Violation='yes' AND Year=2012) / count(samples in 2012) per beach",
+      "Calculate exceedance_rate_2013 = count(Violation='yes' AND Year=2013) / count(samples in 2013) per beach",
+      "Compare exceedance_rate_2013 > exceedance_rate_2012 for each beach"
+    ],
+    "output_format_requirements": [
+      "Output is a single integer count",
+      "Count beaches where exceedance_rate_2013 > exceedance_rate_2012",
+      "Exclude beaches with zero samples in 2012"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of beaches with higher bacterial exceedance rate in 2013 compared to 2012\",\n    \"filters\": [\n      \"Exclude beaches with no samples in 2012\",\n      \"Year = 2012 OR Year = 2013\"\n    ],\n    \"grouping_variables\": [\n      \"Beach Name\",\n      \"Year\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the bacterial exceedance rate for each beach in 2012?\",\n      \"What is the bacterial exceedance rate for each beach in 2013?\",\n      \"Which beaches had samples in 2012?\",\n      \"For beaches with samples in both years, which had higher exceedance rate in 2013?\",\n      \"What constitutes a bacterial exceedance (Violation = 'yes')?\",\n      \"How to calculate exceedance rate (violations / total samples)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"water-body-testing-2012.csv\",\n        \"right_source\": \"water-body-testing-2013.csv\",\n        \"left_column\": \"Beach Name\",\n        \"right_column\": \"Beach Name\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"count per 100mL or MPN per 100mL\",\n      \"Year\": \"calendar year\",\n      \"Sample Date\": \"datetime\",\n      \"Violation\": \"categorical (yes/no)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date format: YYYY-MM-DD HH:MM:SS\",\n      \"Violation values: 'yes' or 'no'\",\n      \"Both files have identical schema structure\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include beaches that have at least one sample in 2012\",\n      \"Beach Name must be present in both years for comparison\",\n      \"Violation field must be 'yes' or 'no' to calculate exceedance rate\"\n    ],\n    \"derived_filters\": [\n      \"Beach must have count(samples where Year=2012) > 0\",\n      \"Beach must have count(samples where Year=2013) > 0 for comparison\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate exceedance_rate_2012 = count(Violation='yes' AND Year=2012) / count(samples in 2012) per beach\",\n      \"Calculate exceedance_rate_2013 = count(Violation='yes' AND Year=2013) / count(samples in 2013) per beach\",\n      \"Compare exceedance_rate_2013 > exceedance_rate_2012 for each beach\"\n    ],\n    \"output_format_requirements\": [\n      \"Output is a single integer count\",\n      \"Count beaches where exceedance_rate_2013 > exceedance_rate_2012\",\n      \"Exclude beaches with zero samples in 2012\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.43079662322998,
+  "token_usage": {
+    "input_tokens": 2876,
+    "output_tokens": 943
+  }
+}

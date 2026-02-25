@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Nations that won at least one gold medal but won zero silver medals",
+    "filters": [
+      "Gold > 0",
+      "Silver = 0"
+    ],
+    "grouping_variables": [
+      "Nation"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which nations have Gold medal count greater than 0?",
+      "Which nations have Silver medal count equal to 0?",
+      "What is the intersection of nations with gold medals and no silver medals?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medals"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rank": "ordinal ranking",
+      "Gold": "count of medals",
+      "Silver": "count of medals",
+      "Bronze": "count of medals",
+      "Total": "count of medals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data contains multiple ranking systems (appears to have separate rankings for different regions or competitions)",
+      "Rank values repeat (e.g., multiple rank 1, 2, etc.), suggesting different medal tables",
+      "All numeric columns use Int64 dtype"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Gold >= 0",
+      "Silver >= 0",
+      "Bronze >= 0",
+      "Total = Gold + Silver + Bronze",
+      "Rank >= 1"
+    ],
+    "derived_filters": [
+      "Gold > 0 AND Silver = 0"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return list of nation names",
+      "Only include nations meeting both criteria: Gold > 0 AND Silver = 0"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Nations that won at least one gold medal but won zero silver medals\",\n    \"filters\": [\"Gold > 0\", \"Silver = 0\"],\n    \"grouping_variables\": [\"Nation\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which nations have Gold medal count greater than 0?\",\n      \"Which nations have Silver medal count equal to 0?\",\n      \"What is the intersection of nations with gold medals and no silver medals?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Olympic Medals\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Rank\": \"ordinal ranking\",\n      \"Gold\": \"count of medals\",\n      \"Silver\": \"count of medals\",\n      \"Bronze\": \"count of medals\",\n      \"Total\": \"count of medals\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data contains multiple ranking systems (appears to have separate rankings for different regions or competitions)\",\n      \"Rank values repeat (e.g., multiple rank 1, 2, etc.), suggesting different medal tables\",\n      \"All numeric columns use Int64 dtype\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Gold >= 0\",\n      \"Silver >= 0\",\n      \"Bronze >= 0\",\n      \"Total = Gold + Silver + Bronze\",\n      \"Rank >= 1\"\n    ],\n    \"derived_filters\": [\n      \"Gold > 0 AND Silver = 0\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return list of nation names\",\n      \"Only include nations meeting both criteria: Gold > 0 AND Silver = 0\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.824922800064087,
+  "token_usage": {
+    "input_tokens": 892,
+    "output_tokens": 563
+  }
+}

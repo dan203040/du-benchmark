@@ -1,0 +1,290 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Association name",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Association name",
+        "The association that entered last (most recent joining year)",
+        "The association with the latest joining year"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Joining year must be valid (not null)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Joining year must be valid (not null)"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Find maximum Joining year",
+        "Retrieve Association with that Joining year",
+        "What is the maximum (most recent) Joining year?",
+        "Which Association has that maximum Joining year?",
+        "How to handle NULL/missing Joining year values?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Find maximum Joining year",
+          "Retrieve Association with that Joining year"
+        ],
+        [
+          "What is the maximum (most recent) Joining year?",
+          "Which Association has that maximum Joining year?",
+          "How to handle NULL/missing Joining year values?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Football Teams"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Football Teams"
+        ],
+        [
+          "Football Teams"
+        ],
+        [
+          "Football Teams"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "joining year": "year"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Joining year": "year"
+        },
+        {
+          "Joining year": "year"
+        },
+        {
+          "Joining year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Joining year appears to be categorical (specific years only)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Joining year appears to be categorical (specific years only)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Joining year should be integer between 1999-2007 based on sample",
+        "Each Association appears once",
+        "Joining year must be a valid year value",
+        "Only consider records with non-null Joining year values",
+        "'Joining year' must be an integer",
+        "The latest year should be determined by the maximum value in the 'Joining year' column."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Joining year should be integer between 1999-2007 based on sample",
+          "Each Association appears once"
+        ],
+        [
+          "Joining year must be a valid year value",
+          "Only consider records with non-null Joining year values"
+        ],
+        [
+          "'Joining year' must be an integer",
+          "The latest year should be determined by the maximum value in the 'Joining year' column."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Joining year is null",
+        "Filter out rows where Joining year is NULL/NA"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Joining year is null"
+        ],
+        [
+          "Filter out rows where Joining year is NULL/NA"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Association entries"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Association entries"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single association name as string",
+        "Return the Association name as a string",
+        "If multiple associations have the same maximum year, clarify how to handle (return all or one)",
+        "The output should be the 'Association' corresponding to the maximum 'Joining year'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single association name as string"
+        ],
+        [
+          "Return the Association name as a string",
+          "If multiple associations have the same maximum year, clarify how to handle (return all or one)"
+        ],
+        [
+          "The output should be the 'Association' corresponding to the maximum 'Joining year'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5833333333333334
+}

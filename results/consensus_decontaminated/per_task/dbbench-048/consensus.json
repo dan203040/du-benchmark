@@ -1,0 +1,346 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Score against Portland in games where Game number is less than 20",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Score against Portland in games where Game number is less than 20",
+        "Score value for games against Portland with game numbers under 20",
+        "The score of the 'Team' against 'Portland' in games where the 'Game' number is less than 20."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Team = 'Portland'",
+        "Game < 20",
+        "Team equals 'Portland'",
+        "Game number less than 20",
+        "Team played against Portland",
+        "Game number is less than 20"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Team = 'Portland'",
+          "Game < 20"
+        ],
+        [
+          "Team equals 'Portland'",
+          "Game number less than 20"
+        ],
+        [
+          "Team played against Portland",
+          "Game number is less than 20"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Game",
+        "Date"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Game",
+          "Date"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "list",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the Game number for each Portland game?",
+        "What is the Score for each Portland game with Game number under 20?",
+        "Is the Score format consistent for parsing?",
+        "Which rows have 'Portland' in the Team column?",
+        "Which rows have Game values less than 20?",
+        "What is the intersection of these two conditions?",
+        "What is the Score value for the filtered row(s)?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the Game number for each Portland game?",
+          "What is the Score for each Portland game with Game number under 20?",
+          "Is the Score format consistent for parsing?"
+        ],
+        [
+          "Which rows have 'Portland' in the Team column?",
+          "Which rows have Game values less than 20?",
+          "What is the intersection of these two conditions?",
+          "What is the Score value for the filtered row(s)?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "game_results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "game_results"
+        ],
+        [
+          "game_results"
+        ],
+        [
+          "game_results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Score column contains both result indicator (W/L) and score values in format like 'L 93\u2013132 (OT)'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score column contains both result indicator (W/L) and score values in format like 'L 93\u2013132 (OT)'"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "location attendance": "number of people",
+        "score": "points",
+        "game": "game_number",
+        "high points": "points",
+        "high rebounds": "rebounds",
+        "high assists": "assists"
+      },
+      "confidence": 0.5555555555555556,
+      "votes": [
+        {
+          "Location Attendance": "number of people",
+          "Score": "points"
+        },
+        {
+          "Game": "game_number",
+          "Score": "points_outcome",
+          "High points": "points",
+          "High rebounds": "rebounds",
+          "High assists": "assists",
+          "Location Attendance": "venue_and_count"
+        },
+        {
+          "Score": "points",
+          "Game": "game number"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Score column contains combined data: win/loss indicator, score values, and overtime indicator"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score column contains combined data: win/loss indicator, score values, and overtime indicator"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 9.0,
+      "confidence": 1.0,
+      "votes": [
+        9.0,
+        9.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Game column should be numeric for comparison with 20",
+        "Only one row per game per team needs to be considered",
+        "Portland games appear both as home and away teams",
+        "Game number must be numeric and less than 20",
+        "Team value must exactly match 'Portland'",
+        "Score format needs parsing to extract numeric values",
+        "The 'Game' column needs to be converted to numeric type to filter games under 20.",
+        "The 'Team' column needs to be checked for consistent naming of 'Portland'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Game column should be numeric for comparison with 20",
+          "Only one row per game per team needs to be considered",
+          "Portland games appear both as home and away teams"
+        ],
+        [
+          "Game number must be numeric and less than 20",
+          "Team value must exactly match 'Portland'",
+          "Score format needs parsing to extract numeric values"
+        ],
+        [
+          "The 'Game' column needs to be converted to numeric type to filter games under 20.",
+          "The 'Team' column needs to be checked for consistent naming of 'Portland'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract numeric Game value from Game column",
+        "Parse Score to extract actual score values",
+        "Identify Portland games regardless of home/away status",
+        "Convert Game column from string to integer for numeric comparison",
+        "Extract score components from Score column (W/L indicator and point values)",
+        "Game < 20",
+        "Opponent = 'Portland'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract numeric Game value from Game column",
+          "Parse Score to extract actual score values",
+          "Identify Portland games regardless of home/away status"
+        ],
+        [
+          "Convert Game column from string to integer for numeric comparison",
+          "Extract score components from Score column (W/L indicator and point values)"
+        ],
+        [
+          "Game < 20",
+          "Opponent = 'Portland'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if Game values are sequential and complete",
+        "Verify Score format consistency across all rows"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if Game values are sequential and complete",
+          "Verify Score format consistency across all rows"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Should show Game number, Date, and Score for each qualifying game",
+        "Score should be presented in readable format",
+        "Return the complete Score string value (e.g., 'L 97\u201398 (OT)')",
+        "If multiple matches exist, return all matching scores",
+        "If no matches exist, indicate no results found"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Should show Game number, Date, and Score for each qualifying game",
+          "Score should be presented in readable format"
+        ],
+        [
+          "Return the complete Score string value (e.g., 'L 97\u201398 (OT)')",
+          "If multiple matches exist, return all matching scores",
+          "If no matches exist, indicate no results found"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5777777777777778
+}

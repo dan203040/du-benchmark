@@ -1,0 +1,343 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Number of households",
+      "confidence": 1.0,
+      "votes": [
+        "Number of households",
+        "Number of households",
+        "Number of households"
+      ]
+    },
+    "filters": {
+      "value": [
+        "County = 'Carroll'",
+        "Population > 146,445",
+        "County is 'Carroll'"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "County = 'Carroll'",
+          "Population > 146,445"
+        ],
+        [
+          "County = 'Carroll'",
+          "Population > 146,445"
+        ],
+        [
+          "County is 'Carroll'",
+          "Population > 146,445"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the population of Carroll county?",
+        "Does Carroll county have population > 146,445?",
+        "If yes, what is the corresponding number of households?",
+        "What is the population value for Carroll county?",
+        "Is the population for Carroll county greater than 146,445?",
+        "If the condition is met, what is the number of households for Carroll county?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the population of Carroll county?",
+          "Does Carroll county have population > 146,445?",
+          "If yes, what is the corresponding number of households?"
+        ],
+        [
+          "What is the population value for Carroll county?",
+          "Is the population for Carroll county greater than 146,445?",
+          "If the condition is met, what is the number of households for Carroll county?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Income and Population by County in New Hampshire"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Income and Population by County in New Hampshire"
+        ],
+        [
+          "Income and Population by County in New Hampshire"
+        ],
+        [
+          "Income and Population by County in New Hampshire"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Duplicate county names in data (Grafton, Hillsborough, Sullivan, Merrimack, Belknap, Rockingham, Strafford, Coos appear multiple times)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Duplicate county names in data (Grafton, Hillsborough, Sullivan, Merrimack, Belknap, Rockingham, Strafford, Coos appear multiple times)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "per capita income": "dollars",
+        "median household income": "dollars",
+        "median family income": "dollars",
+        "population": "count",
+        "number of households": "count"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Per capita income": "dollars",
+          "Median household income": "dollars",
+          "Median family income": "dollars",
+          "Population": "count",
+          "Number of households": "count"
+        },
+        {
+          "Per capita income": "US dollars",
+          "Median household income": "US dollars",
+          "Median family income": "US dollars",
+          "Population": "count of individuals",
+          "Number of households": "count of households"
+        },
+        {
+          "Per capita income": "USD",
+          "Median household income": "USD",
+          "Median family income": "USD",
+          "Population": "people",
+          "Number of households": "households"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Income values have dollar signs and commas that need to be removed for numerical operations",
+        "Population and household counts have commas that need to be removed",
+        "Numeric columns are stored as strings with formatting characters (e.g., '$' for income, ',' for thousands separator)",
+        "Population and Number of households contain comma separators that need to be removed for numeric comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Income values have dollar signs and commas that need to be removed for numerical operations",
+          "Population and household counts have commas that need to be removed"
+        ],
+        [
+          "Numeric columns are stored as strings with formatting characters (e.g., '$' for income, ',' for thousands separator)",
+          "Population and Number of households contain comma separators that need to be removed for numeric comparison"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Population must be converted to numeric by removing commas and dollar signs",
+        "Need to identify which Carroll county row(s) to use given duplicates",
+        "Filter condition 'Population > 146,445' must be evaluated after data cleaning",
+        "County must equal 'Carroll'",
+        "Population must be greater than 146,445",
+        "Population and Number of households must be converted from string to numeric for comparison",
+        "County column should contain valid county names.",
+        "Population and Number of households should be non-negative integers.",
+        "Per capita income, Median household income, and Median family income should be non-negative numbers."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Population must be converted to numeric by removing commas and dollar signs",
+          "Need to identify which Carroll county row(s) to use given duplicates",
+          "Filter condition 'Population > 146,445' must be evaluated after data cleaning"
+        ],
+        [
+          "County must equal 'Carroll'",
+          "Population must be greater than 146,445",
+          "Population and Number of households must be converted from string to numeric for comparison"
+        ],
+        [
+          "County column should contain valid county names.",
+          "Population and Number of households should be non-negative integers.",
+          "Per capita income, Median household income, and Median family income should be non-negative numbers."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove non-numeric characters from Population column",
+        "Convert Population to integer",
+        "Filter to County = 'Carroll'",
+        "Apply Population > 146445 condition",
+        "Convert Population column from string to integer by removing commas",
+        "Apply numeric comparison: Population > 146445"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove non-numeric characters from Population column",
+          "Convert Population to integer",
+          "Filter to County = 'Carroll'",
+          "Apply Population > 146445 condition"
+        ],
+        [
+          "Convert Population column from string to integer by removing commas",
+          "Apply numeric comparison: Population > 146445"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if any Carroll county rows have Population > 146,445",
+        "If multiple Carroll rows exist, determine which one(s) to use"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if any Carroll county rows have Population > 146,445",
+          "If multiple Carroll rows exist, determine which one(s) to use"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer value representing number of households",
+        "If no Carroll county has population > 146,445, return null or appropriate indicator",
+        "Return the number of households as a single value if conditions are met",
+        "Return null or empty result if no rows match the conditions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer value representing number of households",
+          "If no Carroll county has population > 146,445, return null or appropriate indicator"
+        ],
+        [
+          "Return the number of households as a single value if conditions are met",
+          "Return null or empty result if no rows match the conditions"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6500000000000001
+}

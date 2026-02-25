@@ -1,0 +1,494 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Effect of suppression aggressiveness on fire duration and building impact, controlling for weather conditions",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Effect of suppression aggressiveness on fire duration and building impact, controlling for weather conditions",
+        "Effect of aggressive suppression on fire duration and buildings affected, controlling for weather variables",
+        "The correlation between fire suppression strategy aggressiveness and fire duration/building damage, controlling for weather conditions."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Remove rows with missing suppression strategy data",
+        "Remove rows with missing weather variables (avrh_mean, wind_med, erc_med, rain_sum)",
+        "Remove rows with missing duration or building threat columns",
+        "Remove records with missing or invalid duration values",
+        "Remove records with missing suppression strategy data",
+        "Remove records with missing weather control variables (avrh_mean, wind_med, erc_med, rain_sum)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows with missing suppression strategy data",
+          "Remove rows with missing weather variables (avrh_mean, wind_med, erc_med, rain_sum)",
+          "Remove rows with missing duration or building threat columns"
+        ],
+        [
+          "Remove records with missing or invalid duration values",
+          "Remove records with missing suppression strategy data",
+          "Remove records with missing weather control variables (avrh_mean, wind_med, erc_med, rain_sum)"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "dominant_strategy_25_s",
+        "dominant_strategy_50_s",
+        "dominant_strategy_75_s",
+        "subdom_strategy",
+        "dom_strat_ind_25",
+        "dom_strat_ind_50",
+        "dom_strat_ind_75",
+        "avrh_mean",
+        "wind_med",
+        "erc_med",
+        "rain_sum"
+      ],
+      "confidence": 0.4545454545454545,
+      "votes": [
+        [
+          "dominant_strategy_25_s",
+          "dominant_strategy_50_s",
+          "dominant_strategy_75_s",
+          "subdom_strategy",
+          "dom_strat_ind_25",
+          "dom_strat_ind_50",
+          "dom_strat_ind_75"
+        ],
+        [
+          "dominant_strategy_25_s",
+          "dominant_strategy_50_s",
+          "dominant_strategy_75_s"
+        ],
+        [
+          "dominant_strategy_75_s",
+          "avrh_mean",
+          "wind_med",
+          "erc_med",
+          "rain_sum"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Does higher percentage of full suppression (25% vs 50% vs 75%) correlate with shorter duration?",
+        "Do different suppression strategies (Full Suppression vs Confine vs Monitor) affect building threat levels differently?",
+        "How do weather variables (avrh_mean, wind_med, erc_med, rain_sum) moderate the relationship between suppression and outcomes?",
+        "Are there regional differences in suppression effectiveness?",
+        "What defines 'more aggressive suppression' (Full Suppression vs Other strategies at different thresholds)?",
+        "How is 'fire ending faster' measured (duration variable)?",
+        "How are 'affected buildings' measured (prim_threatened_aggregate, comm_threatened_aggregate, outb_threatened_aggregate)?",
+        "What weather variables need to be controlled for (avrh_mean, wind_med, erc_med, rain_sum)?",
+        "Is there a causal relationship between suppression strategy and outcomes after controlling for confounders?",
+        "What is the appropriate statistical method (regression, matching, propensity score) to control for weather?",
+        "How to quantify fire suppression strategy aggressiveness?",
+        "How to control for weather conditions?",
+        "How to measure fire duration?",
+        "How to measure building damage?",
+        "What statistical test is appropriate to determine the correlation?"
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "Does higher percentage of full suppression (25% vs 50% vs 75%) correlate with shorter duration?",
+          "Do different suppression strategies (Full Suppression vs Confine vs Monitor) affect building threat levels differently?",
+          "How do weather variables (avrh_mean, wind_med, erc_med, rain_sum) moderate the relationship between suppression and outcomes?",
+          "Are there regional differences in suppression effectiveness?"
+        ],
+        [
+          "What defines 'more aggressive suppression' (Full Suppression vs Other strategies at different thresholds)?",
+          "How is 'fire ending faster' measured (duration variable)?",
+          "How are 'affected buildings' measured (prim_threatened_aggregate, comm_threatened_aggregate, outb_threatened_aggregate)?",
+          "What weather variables need to be controlled for (avrh_mean, wind_med, erc_med, rain_sum)?",
+          "Is there a causal relationship between suppression strategy and outcomes after controlling for confounders?",
+          "What is the appropriate statistical method (regression, matching, propensity score) to control for weather?"
+        ],
+        [
+          "How to quantify fire suppression strategy aggressiveness?",
+          "How to control for weather conditions?",
+          "How to measure fire duration?",
+          "How to measure building damage?",
+          "What statistical test is appropriate to determine the correlation?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires.csv",
+        "noaa_wildfires_variabledescrip.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Variable description file has different column names than main dataset",
+        "Main dataset has 37 columns but description file only shows partial list",
+        "No direct conflicts - variabledescrip is metadata, not for analysis join"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Variable description file has different column names than main dataset",
+          "Main dataset has 37 columns but description file only shows partial list"
+        ],
+        [
+          "No direct conflicts - variabledescrip is metadata, not for analysis join"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage",
+        "wind_med": "miles per hour",
+        "erc_med": "BTUs/square foot",
+        "rain_sum": "total precipitation units",
+        "duration": "days",
+        "prim_threatened_aggregate": "count",
+        "comm_threatened_aggregate": "count",
+        "outb_threatened_aggregate": "count",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "start_day_of_year": "day number (1-366)",
+        "control_day_of_year": "day number (1-366)"
+      },
+      "confidence": 0.6944444444444445,
+      "votes": [
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs/square foot",
+          "rain_sum": "total precipitation units",
+          "duration": "days",
+          "prim_threatened_aggregate": "count",
+          "comm_threatened_aggregate": "count",
+          "outb_threatened_aggregate": "count"
+        },
+        {
+          "duration": "days",
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs per square foot",
+          "rain_sum": "precipitation amount (unit not specified in metadata)",
+          "prim_threatened_aggregate": "count of primary residences",
+          "comm_threatened_aggregate": "count of commercial buildings",
+          "outb_threatened_aggregate": "count of outbuildings",
+          "latitude": "degrees",
+          "longitude": "degrees",
+          "start_day_of_year": "day number (1-366)",
+          "control_day_of_year": "day number (1-366)"
+        },
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs / square foot",
+          "rain_sum": "unspecified",
+          "duration": "days"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "erc_med has decimal values while other weather variables are integers",
+        "rain_sum may represent different time periods (individual fire vs fire cluster)",
+        "latitude/longitude are integers but should likely be decimals",
+        "erc_med has float type while other weather variables are integers",
+        "Longitude values appear to be missing negative signs (should be negative for US West)",
+        "Rain_sum aggregation unclear - may be total or average",
+        "The scale of 'prim_threatened_aggregate', 'comm_threatened_aggregate', and 'outb_threatened_aggregate' may need to be considered when comparing across different regions or years."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "erc_med has decimal values while other weather variables are integers",
+          "rain_sum may represent different time periods (individual fire vs fire cluster)",
+          "latitude/longitude are integers but should likely be decimals"
+        ],
+        [
+          "erc_med has float type while other weather variables are integers",
+          "Longitude values appear to be missing negative signs (should be negative for US West)",
+          "Rain_sum aggregation unclear - may be total or average"
+        ],
+        [
+          "The scale of 'prim_threatened_aggregate', 'comm_threatened_aggregate', and 'outb_threatened_aggregate' may need to be considered when comparing across different regions or years."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Description file mentions 'Young et al. 2020, Table 1' but not all variables have descriptions",
+        "Alternative description column has inconsistent formatting"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Description file mentions 'Young et al. 2020, Table 1' but not all variables have descriptions",
+          "Alternative description column has inconsistent formatting"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "duration = control_day_of_year - start_day_of_year (should be verified)",
+        "start_year should match year from start_date",
+        "control_year should match year from controlled_date",
+        "dominant_strategy columns should be consistent with dom_strat_ind columns",
+        "duration >= 0",
+        "prim_threatened_aggregate >= 0",
+        "comm_threatened_aggregate >= 0",
+        "outb_threatened_aggregate >= 0",
+        "avrh_mean must be between 0 and 100 (percentage)",
+        "wind_med >= 0",
+        "erc_med >= 0",
+        "rain_sum >= 0",
+        "controlled_date >= start_date",
+        "control_day_of_year must be consistent with controlled_date",
+        "The 'dominant_strategy_25_s', 'dominant_strategy_50_s', and 'dominant_strategy_75_s' columns represent different thresholds for suppression strategy. Need to choose one or combine them into a single 'aggressiveness' score.",
+        "The 'duration' column is calculated as the difference between 'start_date' and 'controlled_date'. Ensure these dates are properly formatted and that the calculation is accurate.",
+        "The 'prim_threatened_aggregate' and 'comm_threatened_aggregate' columns represent the number of buildings threatened. Consider combining these into a single 'buildings_threatened' metric.",
+        "The 'cause' column may need to be simplified into broader categories (e.g., 'human' vs. 'natural').",
+        "Consider the impact of fire size (e.g., 'gt_100') on the relationship between suppression strategy and fire duration/damage."
+      ],
+      "confidence": 0.3333333333333332,
+      "votes": [
+        [
+          "duration = control_day_of_year - start_day_of_year (should be verified)",
+          "start_year should match year from start_date",
+          "control_year should match year from controlled_date",
+          "dominant_strategy columns should be consistent with dom_strat_ind columns"
+        ],
+        [
+          "duration >= 0",
+          "prim_threatened_aggregate >= 0",
+          "comm_threatened_aggregate >= 0",
+          "outb_threatened_aggregate >= 0",
+          "avrh_mean must be between 0 and 100 (percentage)",
+          "wind_med >= 0",
+          "erc_med >= 0",
+          "rain_sum >= 0",
+          "controlled_date >= start_date",
+          "control_day_of_year must be consistent with controlled_date"
+        ],
+        [
+          "The 'dominant_strategy_25_s', 'dominant_strategy_50_s', and 'dominant_strategy_75_s' columns represent different thresholds for suppression strategy. Need to choose one or combine them into a single 'aggressiveness' score.",
+          "The 'duration' column is calculated as the difference between 'start_date' and 'controlled_date'. Ensure these dates are properly formatted and that the calculation is accurate.",
+          "The 'prim_threatened_aggregate' and 'comm_threatened_aggregate' columns represent the number of buildings threatened. Consider combining these into a single 'buildings_threatened' metric.",
+          "The 'cause' column may need to be simplified into broader categories (e.g., 'human' vs. 'natural').",
+          "Consider the impact of fire size (e.g., 'gt_100') on the relationship between suppression strategy and fire duration/damage."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to fires with complete weather data",
+        "Filter to fires with non-zero duration",
+        "Consider creating composite building threat metric = prim_threatened_aggregate + comm_threatened_aggregate + outb_threatened_aggregate",
+        "Calculate total_threatened_buildings = prim_threatened_aggregate + comm_threatened_aggregate + outb_threatened_aggregate",
+        "Create binary indicator for aggressive_suppression based on dominant_strategy thresholds",
+        "Exclude fires with duration = 0 or missing values",
+        "Flag records where control_year != start_year for cross-year fires"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to fires with complete weather data",
+          "Filter to fires with non-zero duration",
+          "Consider creating composite building threat metric = prim_threatened_aggregate + comm_threatened_aggregate + outb_threatened_aggregate"
+        ],
+        [
+          "Calculate total_threatened_buildings = prim_threatened_aggregate + comm_threatened_aggregate + outb_threatened_aggregate",
+          "Create binary indicator for aggressive_suppression based on dominant_strategy thresholds",
+          "Exclude fires with duration = 0 or missing values",
+          "Flag records where control_year != start_year for cross-year fires"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "ANCOVA with suppression strategy as factor, weather variables as covariates",
+        "Multiple regression with interaction terms between suppression and weather",
+        "Chi-square test for suppression strategy distribution across regions",
+        "Multiple regression with duration as outcome, suppression strategy as predictor, weather variables as controls",
+        "Multiple regression with total_threatened_buildings as outcome, suppression strategy as predictor, weather variables as controls",
+        "Test for multicollinearity among weather control variables",
+        "Propensity score matching or inverse probability weighting to balance weather covariates across suppression strategies",
+        "Robustness checks using different suppression thresholds (25%, 50%, 75%)",
+        "Test for interaction effects between suppression strategy and weather variables",
+        "Multiple linear regression",
+        "ANOVA"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "ANCOVA with suppression strategy as factor, weather variables as covariates",
+          "Multiple regression with interaction terms between suppression and weather",
+          "Chi-square test for suppression strategy distribution across regions"
+        ],
+        [
+          "Multiple regression with duration as outcome, suppression strategy as predictor, weather variables as controls",
+          "Multiple regression with total_threatened_buildings as outcome, suppression strategy as predictor, weather variables as controls",
+          "Test for multicollinearity among weather control variables",
+          "Propensity score matching or inverse probability weighting to balance weather covariates across suppression strategies",
+          "Robustness checks using different suppression thresholds (25%, 50%, 75%)",
+          "Test for interaction effects between suppression strategy and weather variables"
+        ],
+        [
+          "Multiple linear regression",
+          "ANOVA"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Include confidence intervals for effect sizes",
+        "Report R-squared values for models",
+        "Show weather-adjusted means for each suppression strategy",
+        "Include sample sizes for each suppression category",
+        "Report regression coefficients with standard errors and p-values",
+        "Provide effect sizes for suppression strategy on duration and buildings affected",
+        "Show descriptive statistics by suppression strategy group",
+        "Display weather variable distributions across suppression groups to assess balance",
+        "Include model diagnostics (R-squared, residual plots) for regression models",
+        "Tables showing correlation coefficients and p-values.",
+        "Scatter plots visualizing the relationship between suppression strategy and fire duration/damage, with weather conditions as covariates."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Include confidence intervals for effect sizes",
+          "Report R-squared values for models",
+          "Show weather-adjusted means for each suppression strategy",
+          "Include sample sizes for each suppression category"
+        ],
+        [
+          "Report regression coefficients with standard errors and p-values",
+          "Provide effect sizes for suppression strategy on duration and buildings affected",
+          "Show descriptive statistics by suppression strategy group",
+          "Display weather variable distributions across suppression groups to assess balance",
+          "Include model diagnostics (R-squared, residual plots) for regression models"
+        ],
+        [
+          "Tables showing correlation coefficients and p-values.",
+          "Scatter plots visualizing the relationship between suppression strategy and fire duration/damage, with weather conditions as covariates."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6107828282828283
+}

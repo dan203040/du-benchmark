@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "total number of identity theft reporters in Alabama in 2024",
+    "filters": [
+      "State == 'Alabama'",
+      "Year == 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are all the theft types reported in Alabama?",
+      "What is the number of reports for each theft type in Alabama?",
+      "What is the sum of all reports across all theft types for Alabama?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Identity_Theft_Reports.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of individual reports",
+      "Percentage": "percentage (stored as string with % symbol)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage column contains values formatted as strings with '%' symbol",
+      "# of Reports column is integer type",
+      "Data contains multiple rows per state, one for each Theft Type",
+      "Year 2024 is implied by filename but not present as a column"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "State must equal 'Alabama'",
+      "All Theft Type categories for Alabama must be included in the sum",
+      "# of Reports must be non-negative integers"
+    ],
+    "derived_filters": [
+      "Filter rows where State column equals 'Alabama'",
+      "Sum all '# of Reports' values for filtered rows"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single scalar integer value representing the total count",
+      "The result should be the sum of all theft type reports for Alabama"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total number of identity theft reporters in Alabama in 2024\",\n    \"filters\": [\"State == 'Alabama'\", \"Year == 2024\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are all the theft types reported in Alabama?\",\n      \"What is the number of reports for each theft type in Alabama?\",\n      \"What is the sum of all reports across all theft types for Alabama?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_State_Identity_Theft_Reports.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count of individual reports\",\n      \"Percentage\": \"percentage (stored as string with % symbol)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Percentage column contains values formatted as strings with '%' symbol\",\n      \"# of Reports column is integer type\",\n      \"Data contains multiple rows per state, one for each Theft Type\",\n      \"Year 2024 is implied by filename but not present as a column\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"State must equal 'Alabama'\",\n      \"All Theft Type categories for Alabama must be included in the sum\",\n      \"# of Reports must be non-negative integers\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where State column equals 'Alabama'\",\n      \"Sum all '# of Reports' values for filtered rows\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single scalar integer value representing the total count\",\n      \"The result should be the sum of all theft type reports for Alabama\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.849637985229492,
+  "token_usage": {
+    "input_tokens": 909,
+    "output_tokens": 572
+  }
+}

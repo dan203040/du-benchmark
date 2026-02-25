@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Maximum total acres burned in any 3-month consecutive period since January 2000",
+    "filters": [
+      "Date >= 200001 (January 2000)"
+    ],
+    "grouping_variables": [
+      "3-month rolling window periods"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the date range format in the Date column?",
+      "How to parse Date column (format: YYYYMM)?",
+      "How to create rolling 3-month windows from monthly data?",
+      "What is the sum of Acres Burned for each 3-month window?",
+      "Which 3-month period has the maximum total Acres Burned?",
+      "What is the total Acres Burned value for that period?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Acres Burned": "acres",
+      "Number of Fires": "count",
+      "Acres Burned per Fire": "acres per fire",
+      "Date": "YYYYMM integer format"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-999"
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date column is integer format YYYYMM (e.g., 200001 = January 2000)",
+      "noaa_wildfires_monthly_stats__section_1 contains metadata indicating missing values coded as -999",
+      "Primary data file is noaa_wildfires_monthly_stats.csv"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include data from January 2000 onwards (Date >= 200001)",
+      "3-month periods must be consecutive months",
+      "Each 3-month window should roll forward by 1 month",
+      "Date must be properly sorted chronologically"
+    ],
+    "derived_filters": [
+      "Filter out any records with Date < 200001",
+      "Exclude any rows where Acres Burned = -999 (sentinel value for missing data)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Report the starting month-year of the 3-month period with highest acres burned",
+      "Report the total acres burned as an integer or float value",
+      "Clearly identify which 3 consecutive months comprise the period"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum total acres burned in any 3-month consecutive period since January 2000\",\n    \"filters\": [\"Date >= 200001 (January 2000)\"],\n    \"grouping_variables\": [\"3-month rolling window periods\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the date range format in the Date column?\",\n      \"How to parse Date column (format: YYYYMM)?\",\n      \"How to create rolling 3-month windows from monthly data?\",\n      \"What is the sum of Acres Burned for each 3-month window?\",\n      \"Which 3-month period has the maximum total Acres Burned?\",\n      \"What is the total Acres Burned value for that period?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"noaa_wildfires_monthly_stats.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Acres Burned\": \"acres\",\n      \"Number of Fires\": \"count\",\n      \"Acres Burned per Fire\": \"acres per fire\",\n      \"Date\": \"YYYYMM integer format\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"-999\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date column is integer format YYYYMM (e.g., 200001 = January 2000)\",\n      \"noaa_wildfires_monthly_stats__section_1 contains metadata indicating missing values coded as -999\",\n      \"Primary data file is noaa_wildfires_monthly_stats.csv\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include data from January 2000 onwards (Date >= 200001)\",\n      \"3-month periods must be consecutive months\",\n      \"Each 3-month window should roll forward by 1 month\",\n      \"Date must be properly sorted chronologically\"\n    ],\n    \"derived_filters\": [\n      \"Filter out any records with Date < 200001\",\n      \"Exclude any rows where Acres Burned = -999 (sentinel value for missing data)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Report the starting month-year of the 3-month period with highest acres burned\",\n      \"Report the total acres burned as an integer or float value\",\n      \"Clearly identify which 3 consecutive months comprise the period\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.880082130432129,
+  "token_usage": {
+    "input_tokens": 1054,
+    "output_tokens": 715
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Binary churn prediction (Exited) for test.csv customers",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Binary churn prediction (Exited) for test.csv customers",
+        "Predict customer churn probability (Exited) for test data and output to submission.csv",
+        "Probability of customer churn (Exited) for each customer in test.csv"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Predict only for rows in test.csv",
+        "Follow submission format from sample_submission.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Predict only for rows in test.csv",
+          "Follow submission format from sample_submission.csv"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "CustomerId"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CustomerId"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features predict customer churn?",
+        "How to handle missing values in training data?",
+        "Should Surname be used as a feature?",
+        "What model should be trained on train.csv?",
+        "How to map test predictions to submission format?",
+        "What features predict customer churn based on training data?",
+        "What is the expected output format for submission.csv?",
+        "Should predictions be binary (0/1) or probability scores?",
+        "How to handle missing values in features?",
+        "What is the relationship between train.csv and Churn_Modelling.csv?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What features predict customer churn?",
+          "How to handle missing values in training data?",
+          "Should Surname be used as a feature?",
+          "What model should be trained on train.csv?",
+          "How to map test predictions to submission format?"
+        ],
+        [
+          "What features predict customer churn based on training data?",
+          "What is the expected output format for submission.csv?",
+          "Should predictions be binary (0/1) or probability scores?",
+          "How to handle missing values in features?",
+          "What is the relationship between train.csv and Churn_Modelling.csv?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Churn_Modelling.csv",
+        "train.csv",
+        "test.csv",
+        "sample_submission.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Churn_Modelling.csv",
+          "train.csv",
+          "test.csv",
+          "sample_submission.csv"
+        ],
+        [
+          "train.csv",
+          "test.csv",
+          "sample_submission.csv",
+          "Churn_Modelling.csv"
+        ],
+        [
+          "Churn_Modelling.csv",
+          "test.csv",
+          "train.csv",
+          "sample_submission.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Churn_Modelling.csv has RowNumber column not in other files",
+        "train.csv has 'id' column not in test.csv",
+        "sample_submission.csv uses 'id' while test.csv uses 'CustomerId'",
+        "Exited column type differs: int64 in train.csv vs float64 in sample_submission.csv",
+        "train.csv has 'id' and 'Exited' columns not present in test.csv",
+        "test.csv missing 'id' and 'Exited' columns present in train.csv",
+        "Churn_Modelling.csv has 'RowNumber' column not in train.csv or test.csv",
+        "Churn_Modelling.csv missing 'id' column present in train.csv",
+        "Churn_Modelling.csv contains 'RowNumber' and 'Exited' which are not present in test.csv. train.csv contains 'id' and 'Exited' which are not present in test.csv. Churn_Modelling.csv contains all columns from test.csv, plus 'RowNumber' and 'Exited'. train.csv contains all columns from test.csv, plus 'id' and 'Exited'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Churn_Modelling.csv has RowNumber column not in other files",
+          "train.csv has 'id' column not in test.csv",
+          "sample_submission.csv uses 'id' while test.csv uses 'CustomerId'",
+          "Exited column type differs: int64 in train.csv vs float64 in sample_submission.csv"
+        ],
+        [
+          "train.csv has 'id' and 'Exited' columns not present in test.csv",
+          "test.csv missing 'id' and 'Exited' columns present in train.csv",
+          "Churn_Modelling.csv has 'RowNumber' column not in train.csv or test.csv",
+          "Churn_Modelling.csv missing 'id' column present in train.csv"
+        ],
+        [
+          "Churn_Modelling.csv contains 'RowNumber' and 'Exited' which are not present in test.csv. train.csv contains 'id' and 'Exited' which are not present in test.csv. Churn_Modelling.csv contains all columns from test.csv, plus 'RowNumber' and 'Exited'. train.csv contains all columns from test.csv, plus 'id' and 'Exited'."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "creditscore": "score points",
+        "age": "years",
+        "balance": "currency units",
+        "estimatedsalary": "currency units",
+        "tenure": "years",
+        "numofproducts": "count",
+        "hascrcard": "binary_flag",
+        "isactivemember": "binary_flag",
+        "exited": "binary_flag_or_probability"
+      },
+      "confidence": 0.7037037037037036,
+      "votes": [
+        {
+          "CreditScore": "score points",
+          "Age": "years",
+          "Balance": "currency units",
+          "EstimatedSalary": "currency units",
+          "Tenure": "years"
+        },
+        {
+          "CreditScore": "credit_score_points",
+          "Age": "years",
+          "Tenure": "years",
+          "Balance": "currency_units",
+          "NumOfProducts": "count",
+          "HasCrCard": "binary_flag",
+          "IsActiveMember": "binary_flag",
+          "EstimatedSalary": "currency_units",
+          "Exited": "binary_flag_or_probability"
+        },
+        {
+          "CreditScore": "score",
+          "Age": "years",
+          "Tenure": "years",
+          "Balance": "currency",
+          "EstimatedSalary": "currency"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Balance and EstimatedSalary likely in same currency but scale not specified",
+        "CreditScore range unknown (typical 300-850)",
+        "Age has decimal values (e.g., 45.25) suggesting possible measurement error",
+        "Balance and EstimatedSalary are on much larger scales than other numeric features",
+        "CreditScore ranges differently from Age and Tenure"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Balance and EstimatedSalary likely in same currency but scale not specified",
+          "CreditScore range unknown (typical 300-850)",
+          "Age has decimal values (e.g., 45.25) suggesting possible measurement error"
+        ],
+        [
+          "Balance and EstimatedSalary are on much larger scales than other numeric features",
+          "CreditScore ranges differently from Age and Tenure"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Churn_Modelling.csv has 10002 rows while train.csv has 140278 rows - different datasets",
+        "test.csv missing Exited column (target for prediction)",
+        "sample_submission.csv has 110023 rows while test.csv has 24756 rows - mismatch"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Churn_Modelling.csv has 10002 rows while train.csv has 140278 rows - different datasets",
+          "test.csv missing Exited column (target for prediction)",
+          "sample_submission.csv has 110023 rows while test.csv has 24756 rows - mismatch"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "?",
+        "??",
+        "NaN"
+      ],
+      "confidence": 0.6111111111111112,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          " ",
+          "?",
+          "??"
+        ],
+        [
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 14.0,
+      "confidence": 0.8666666666666667,
+      "votes": [
+        14.0,
+        14.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "CustomerId should be unique across datasets",
+        "Exited must be 0 or 1 (or probability between 0-1 for submission)",
+        "HasCrCard and IsActiveMember should be 0.0 or 1.0",
+        "NumOfProducts should be positive integer",
+        "CreditScore should be between 300-850 typically",
+        "test.csv has 24756 rows requiring predictions",
+        "sample_submission.csv has 110023 rows, suggesting multiple submissions or extended test set",
+        "Exited values in sample_submission.csv are float (0.5), indicating probability predictions expected",
+        "train.csv Exited column is binary (0 or 1) for training labels",
+        "submission.csv must have 'id' and 'Exited' columns matching sample_submission.csv format",
+        "Predictions must be made for ids 165034 to 275056 based on sample_submission.csv",
+        "The 'id' column in sample_submission.csv corresponds to the index of the rows to be predicted in test.csv, which is implicitly given by the order of rows in test.csv.",
+        "The 'Exited' column in sample_submission.csv should contain the predicted probability of churn for each customer in test.csv."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CustomerId should be unique across datasets",
+          "Exited must be 0 or 1 (or probability between 0-1 for submission)",
+          "HasCrCard and IsActiveMember should be 0.0 or 1.0",
+          "NumOfProducts should be positive integer",
+          "CreditScore should be between 300-850 typically"
+        ],
+        [
+          "test.csv has 24756 rows requiring predictions",
+          "sample_submission.csv has 110023 rows, suggesting multiple submissions or extended test set",
+          "Exited values in sample_submission.csv are float (0.5), indicating probability predictions expected",
+          "train.csv Exited column is binary (0 or 1) for training labels",
+          "submission.csv must have 'id' and 'Exited' columns matching sample_submission.csv format",
+          "Predictions must be made for ids 165034 to 275056 based on sample_submission.csv"
+        ],
+        [
+          "The 'id' column in sample_submission.csv corresponds to the index of the rows to be predicted in test.csv, which is implicitly given by the order of rows in test.csv.",
+          "The 'Exited' column in sample_submission.csv should contain the predicted probability of churn for each customer in test.csv."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove rows with missing Geography",
+        "Handle missing Age values",
+        "Check for duplicate CustomerId in test.csv",
+        "Validate binary columns have only 0/1 values",
+        "Use only rows from train.csv for model training",
+        "Generate predictions only for test.csv data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows with missing Geography",
+          "Handle missing Age values",
+          "Check for duplicate CustomerId in test.csv",
+          "Validate binary columns have only 0/1 values"
+        ],
+        [
+          "Use only rows from train.csv for model training",
+          "Generate predictions only for test.csv data"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check class imbalance in Exited column",
+        "Test correlation between features and Exited",
+        "Validate train/test distribution similarity",
+        "Check for data leakage between train and test",
+        "Check class balance in training data (Exited distribution)",
+        "Evaluate missing data patterns across train and test sets",
+        "Verify feature distributions match between train and test"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check class imbalance in Exited column",
+          "Test correlation between features and Exited",
+          "Validate train/test distribution similarity",
+          "Check for data leakage between train and test"
+        ],
+        [
+          "Check class balance in training data (Exited distribution)",
+          "Evaluate missing data patterns across train and test sets",
+          "Verify feature distributions match between train and test"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "submission.csv must have exactly columns: id, Exited",
+        "id must match test.csv CustomerId",
+        "Exited must be float64 between 0-1",
+        "Row order must match sample_submission.csv",
+        "submission.csv must have exactly 2 columns: id, Exited",
+        "id column must contain integer identifiers matching sample_submission.csv",
+        "Exited column must contain probability scores (float) between 0 and 1",
+        "Number of rows in submission.csv must match sample_submission.csv (110023 rows)",
+        "CSV format with comma delimiter and header row",
+        "The submission file must be named 'submission.csv'.",
+        "The submission file must contain two columns: 'id' and 'Exited'.",
+        "The 'id' column must contain the CustomerId from test.csv.",
+        "The 'Exited' column must contain the predicted probability of churn (a float between 0 and 1)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "submission.csv must have exactly columns: id, Exited",
+          "id must match test.csv CustomerId",
+          "Exited must be float64 between 0-1",
+          "Row order must match sample_submission.csv"
+        ],
+        [
+          "submission.csv must have exactly 2 columns: id, Exited",
+          "id column must contain integer identifiers matching sample_submission.csv",
+          "Exited column must contain probability scores (float) between 0 and 1",
+          "Number of rows in submission.csv must match sample_submission.csv (110023 rows)",
+          "CSV format with comma delimiter and header row"
+        ],
+        [
+          "The submission file must be named 'submission.csv'.",
+          "The submission file must contain two columns: 'id' and 'Exited'.",
+          "The 'id' column must contain the CustomerId from test.csv.",
+          "The 'Exited' column must contain the predicted probability of churn (a float between 0 and 1)."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5924074074074075
+}

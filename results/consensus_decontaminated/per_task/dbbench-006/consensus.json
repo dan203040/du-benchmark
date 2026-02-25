@@ -1,0 +1,301 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Attendance count for tie number 19",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Attendance count for tie number 19",
+        "attendance count",
+        "Attendance"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Tie no = '19'",
+        "Tie no = 19"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Tie no = '19'"
+        ],
+        [
+          "Tie no = 19"
+        ],
+        [
+          "Tie no = 19"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the attendance value for the row where Tie no equals 19?",
+        "Is the attendance value stored as a string with comma separators?",
+        "Does the data contain exactly one row with Tie no = 19?",
+        "What is the tie number column name?",
+        "What is the attendance value for tie number 19?",
+        "Is the attendance value in a format that needs parsing (e.g., comma-separated)?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the attendance value for the row where Tie no equals 19?",
+          "Is the attendance value stored as a string with comma separators?",
+          "Does the data contain exactly one row with Tie no = 19?"
+        ],
+        [
+          "What is the tie number column name?",
+          "What is the attendance value for tie number 19?",
+          "Is the attendance value in a format that needs parsing (e.g., comma-separated)?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Football Matches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Football Matches"
+        ],
+        [
+          "Football Matches"
+        ],
+        [
+          "Football Matches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "attendance": "people"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Attendance": "people"
+        },
+        {
+          "Attendance": "count of people"
+        },
+        {
+          "Attendance": "number of people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Attendance values contain comma separators (e.g., '1,025') that need to be converted to numeric format",
+        "Attendance values contain commas as thousands separators (e.g., '1,174')",
+        "Attendance is stored as object/string type instead of numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Attendance values contain comma separators (e.g., '1,025') that need to be converted to numeric format"
+        ],
+        [
+          "Attendance values contain commas as thousands separators (e.g., '1,174')",
+          "Attendance is stored as object/string type instead of numeric"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Tie no should be unique for each match",
+        "Attendance should be a positive integer",
+        "There should be exactly one row with Tie no = 19",
+        "Tie no must equal 19",
+        "Attendance must be a valid numeric value after parsing",
+        "Tie no is unique"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Tie no should be unique for each match",
+          "Attendance should be a positive integer",
+          "There should be exactly one row with Tie no = 19"
+        ],
+        [
+          "Tie no must equal 19",
+          "Attendance must be a valid numeric value after parsing"
+        ],
+        [
+          "Tie no is unique"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove comma separators from Attendance values before numeric conversion",
+        "Filter rows where 'Tie no' column equals '19' (as string)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove comma separators from Attendance values before numeric conversion"
+        ],
+        [
+          "Filter rows where 'Tie no' column equals '19' (as string)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Tie no values",
+        "Verify Attendance values are numeric after cleaning"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Tie no values",
+          "Verify Attendance values are numeric after cleaning"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return attendance as a single integer value",
+        "Return single numeric value representing attendance",
+        "Remove comma separators from attendance before returning"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return attendance as a single integer value"
+        ],
+        [
+          "Return single numeric value representing attendance",
+          "Remove comma separators from attendance before returning"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5916666666666668
+}

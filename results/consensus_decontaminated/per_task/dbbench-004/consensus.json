@@ -1,0 +1,272 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "City name corresponding to IATA code 'VIE'",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "City name corresponding to IATA code 'VIE'",
+        "City name corresponding to IATA code 'VIE'",
+        "City corresponding to the IATA code 'VIE'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "IATA = 'VIE'"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "IATA = 'VIE'"
+        ],
+        [
+          "IATA = 'VIE'"
+        ],
+        [
+          "IATA = 'VIE'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the city name in the row where IATA column equals 'VIE'?",
+        "Which row in Airport Information has IATA code 'VIE'?",
+        "What is the City value for that row?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the city name in the row where IATA column equals 'VIE'?"
+        ],
+        [
+          "Which row in Airport Information has IATA code 'VIE'?",
+          "What is the City value for that row?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Airport Information"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Airport Information"
+        ],
+        [
+          "Airport Information"
+        ],
+        [
+          "Airport Information"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "iata": "three-letter airport code",
+        "icao": "four-letter airport code"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {},
+        {
+          "IATA": "three-letter airport code",
+          "ICAO": "four-letter airport code"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "\u2014",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "\u2014",
+          ""
+        ],
+        [
+          "\u2014"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "IATA codes should be unique",
+        "Each row represents one airport",
+        "IATA must be exactly 3 characters",
+        "IATA codes should be unique per airport",
+        "City field should not be null or empty",
+        "IATA codes are unique"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "IATA codes should be unique",
+          "Each row represents one airport"
+        ],
+        [
+          "IATA must be exactly 3 characters",
+          "IATA codes should be unique per airport",
+          "City field should not be null or empty"
+        ],
+        [
+          "IATA codes are unique"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where IATA column equals 'VIE'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Filter rows where IATA column equals 'VIE'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single city name as string",
+        "Return the city name as a simple string value",
+        "Expected answer format: 'Vienna'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single city name as string"
+        ],
+        [
+          "Return the city name as a simple string value",
+          "Expected answer format: 'Vienna'"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5416666666666667
+}

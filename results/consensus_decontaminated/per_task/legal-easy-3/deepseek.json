@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "ratio of identity theft reports in 2024 vs 2001",
+    "filters": [
+      "Year = 2001",
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the count of identity theft reports in 2001?",
+      "What is the count of identity theft reports in 2024?",
+      "What is the ratio of 2024 count to 2001 count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Fraud": "count",
+      "Identity Theft": "count",
+      "Other": "count"
+    },
+    "scale_issues": [
+      "Data shows significant growth in all report types over time, suggesting scale differences between early and late years"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows only 20 rows but shape indicates 24 rows total",
+      "Data appears to be annual aggregated counts"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be between 2001 and 2024",
+      "Count values should be non-negative integers",
+      "2024 data must be present in the full dataset (not shown in sample)"
+    ],
+    "derived_filters": [
+      "Filter to only Identity Theft column",
+      "Filter to only Year 2001 and 2024"
+    ],
+    "statistical_tests": [
+      "Check if 2024 data exists in full dataset",
+      "Verify no missing values for required years"
+    ],
+    "output_format_requirements": [
+      "Ratio must be rounded to 4 decimal places"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"ratio of identity theft reports in 2024 vs 2001\",\n        \"filters\": [\"Year = 2001\", \"Year = 2024\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the count of identity theft reports in 2001?\", \"What is the count of identity theft reports in 2024?\", \"What is the ratio of 2024 count to 2001 count?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"year\", \"Fraud\": \"count\", \"Identity Theft\": \"count\", \"Other\": \"count\"},\n        \"scale_issues\": [\"Data shows significant growth in all report types over time, suggesting scale differences between early and late years\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows only 20 rows but shape indicates 24 rows total\", \"Data appears to be annual aggregated counts\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be between 2001 and 2024\", \"Count values should be non-negative integers\", \"2024 data must be present in the full dataset (not shown in sample)\"],\n        \"derived_filters\": [\"Filter to only Identity Theft column\", \"Filter to only Year 2001 and 2024\"],\n        \"statistical_tests\": [\"Check if 2024 data exists in full dataset\", \"Verify no missing values for required years\"],\n        \"output_format_requirements\": [\"Ratio must be rounded to 4 decimal places\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.615298986434937,
+  "token_usage": {
+    "input_tokens": 857,
+    "output_tokens": 475
+  }
+}

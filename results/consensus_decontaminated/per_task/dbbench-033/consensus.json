@@ -1,0 +1,295 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of surfaces that are grass",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "count of surfaces that are grass",
+        "count of records where Surface is 'Grass'",
+        "Count of tennis match surfaces that are grass"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Surface == 'Grass'",
+        "Surface is 'Grass'"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Surface == 'Grass'"
+        ],
+        [
+          "Surface == 'Grass'"
+        ],
+        [
+          "Surface is 'Grass'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total count of matches?",
+        "What percentage of matches are on grass?",
+        "Are there any missing values in the Surface column?",
+        "What are the unique values in the Surface column?",
+        "How many records have Surface equal to 'Grass'?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the total count of matches?",
+          "What percentage of matches are on grass?",
+          "Are there any missing values in the Surface column?"
+        ],
+        [
+          "What are the unique values in the Surface column?",
+          "How many records have Surface equal to 'Grass'?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Tennis Matches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Tennis Matches"
+        ],
+        [
+          "Tennis Matches"
+        ],
+        [
+          "Tennis Matches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "surface": "categorical (surface type)"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {},
+        {
+          "Surface": "categorical (surface type)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Surface values appear to be categorical (Clay, Hard, Grass) but may have inconsistent capitalization or whitespace"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Surface values appear to be categorical (Clay, Hard, Grass) but may have inconsistent capitalization or whitespace"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "w/o"
+      ],
+      "confidence": 0.7499999999999999,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "w/o"
+        ],
+        [
+          "w/o",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Surface column should contain only valid surface types",
+        "Each row represents one tennis match",
+        "Surface values should be consistent across the dataset",
+        "Surface column should contain only valid surface type values",
+        "Count result should be non-negative integer",
+        "Count should be <= total number of records (21)",
+        "Surface column must contain valid surface types (e.g., Grass, Clay, Hard)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Surface column should contain only valid surface types",
+          "Each row represents one tennis match",
+          "Surface values should be consistent across the dataset"
+        ],
+        [
+          "Surface column should contain only valid surface type values",
+          "Count result should be non-negative integer",
+          "Count should be <= total number of records (21)"
+        ],
+        [
+          "Surface column must contain valid surface types (e.g., Grass, Clay, Hard)"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows with missing Surface values",
+        "Consider case-insensitive matching for 'Grass'",
+        "Filter records where Surface column exactly matches 'Grass' (case-sensitive)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows with missing Surface values",
+          "Consider case-insensitive matching for 'Grass'"
+        ],
+        [
+          "Filter records where Surface column exactly matches 'Grass' (case-sensitive)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct surface types",
+        "Check for null/missing values in Surface column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct surface types",
+          "Check for null/missing values in Surface column"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Integer count of grass surfaces",
+        "Should handle potential variations like 'grass', 'Grass', 'GRASS'",
+        "Return single integer value representing count of grass surface matches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Integer count of grass surfaces",
+          "Should handle potential variations like 'grass', 'Grass', 'GRASS'"
+        ],
+        [
+          "Return single integer value representing count of grass surface matches"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5458333333333335
+}

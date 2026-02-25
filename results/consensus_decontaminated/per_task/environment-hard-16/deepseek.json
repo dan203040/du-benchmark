@@ -1,0 +1,122 @@
+{
+  "m_q": {
+    "target_metric": "Count of marine beaches that had zero violations from 2002 to 2023 inclusive",
+    "filters": [
+      "Beach Type Description = 'Marine'",
+      "Year between 2002 and 2023 inclusive",
+      "Violation = 'no' or 'NO' or 'No' for all records per beach across all years"
+    ],
+    "grouping_variables": [
+      "Beach Name",
+      "Community",
+      "County Description"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which marine beaches have data for all years 2002-2023?",
+      "For beaches with missing years, should they be considered safe for those years?",
+      "How to handle case variations in Violation column (yes/YES/Yes, no/NO/No)?",
+      "Are there duplicate beach names across different communities/counties that need disambiguation?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2002.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Indicator Level column has different dtypes: int64 (2002) vs float64 (2003-2023)",
+      "Violation column has inconsistent casing: lowercase (2002-2018 mostly) vs uppercase (2019-2023 mostly)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "bacterial count per 100ml",
+      "Year": "calendar year",
+      "Sample Date": "YYYY-MM-DD"
+    },
+    "scale_issues": [
+      "Indicator Level values range from 1.0 to 800.0 in samples, but actual range unknown",
+      "Year column consistent across files",
+      "Sample Date format appears consistent"
+    ],
+    "cross_source_conflicts": [
+      "2002 file has only 650 rows vs 12k-16k rows for other years, suggesting incomplete data for 2002",
+      "2002 file has 'Fresh' beach types while other files show only 'Marine' in samples"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files have same column names and order",
+      "Sample Date includes timestamp but appears to always be 00:00:00",
+      "First row is header in all files",
+      "Shape information provided for each file"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row represents one water sample test",
+      "Beach Name should uniquely identify a beach location",
+      "Year values should be between 2002-2023",
+      "Violation should be binary (yes/no variants)",
+      "Indicator Level should be non-negative"
+    ],
+    "derived_filters": [
+      "Filter to Beach Type Description = 'Marine'",
+      "Standardize Violation values to consistent case",
+      "Group by Beach Name and check for any 'yes'/'YES'/'Yes' in Violation column across all years",
+      "Count beaches with zero violations across all years"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Beach Names across different Community/County combinations",
+      "Verify temporal coverage per beach (2002-2023)",
+      "Test assumption: missing year data = safe for that year"
+    ],
+    "output_format_requirements": [
+      "Single integer count",
+      "Should handle case-insensitive violation values",
+      "Must account for beaches with partial data (treat missing years as safe per question)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of marine beaches that had zero violations from 2002 to 2023 inclusive\",\n        \"filters\": [\"Beach Type Description = 'Marine'\", \"Year between 2002 and 2023 inclusive\", \"Violation = 'no' or 'NO' or 'No' for all records per beach across all years\"],\n        \"grouping_variables\": [\"Beach Name\", \"Community\", \"County Description\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which marine beaches have data for all years 2002-2023?\", \"For beaches with missing years, should they be considered safe for those years?\", \"How to handle case variations in Violation column (yes/YES/Yes, no/NO/No)?\", \"Are there duplicate beach names across different communities/counties that need disambiguation?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"water-body-testing-2002.csv\", \"water-body-testing-2003.csv\", \"water-body-testing-2004.csv\", \"water-body-testing-2005.csv\", \"water-body-testing-2006.csv\", \"water-body-testing-2007.csv\", \"water-body-testing-2008.csv\", \"water-body-testing-2009.csv\", \"water-body-testing-2010.csv\", \"water-body-testing-2011.csv\", \"water-body-testing-2012.csv\", \"water-body-testing-2013.csv\", \"water-body-testing-2014.csv\", \"water-body-testing-2015.csv\", \"water-body-testing-2016.csv\", \"water-body-testing-2017.csv\", \"water-body-testing-2018.csv\", \"water-body-testing-2019.csv\", \"water-body-testing-2020.csv\", \"water-body-testing-2021.csv\", \"water-body-testing-2022.csv\", \"water-body-testing-2023.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Indicator Level column has different dtypes: int64 (2002) vs float64 (2003-2023)\", \"Violation column has inconsistent casing: lowercase (2002-2018 mostly) vs uppercase (2019-2023 mostly)\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Indicator Level\": \"bacterial count per 100ml\", \"Year\": \"calendar year\", \"Sample Date\": \"YYYY-MM-DD\"},\n        \"scale_issues\": [\"Indicator Level values range from 1.0 to 800.0 in samples, but actual range unknown\", \"Year column consistent across files\", \"Sample Date format appears consistent\"],\n        \"cross_source_conflicts\": [\"2002 file has only 650 rows vs 12k-16k rows for other years, suggesting incomplete data for 2002\", \"2002 file has 'Fresh' beach types while other files show only 'Marine' in samples\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"All files have same column names and order\", \"Sample Date includes timestamp but appears to always be 00:00:00\", \"First row is header in all files\", \"Shape information provided for each file\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each row represents one water sample test\", \"Beach Name should uniquely identify a beach location\", \"Year values should be between 2002-2023\", \"Violation should be binary (yes/no variants)\", \"Indicator Level should be non-negative\"],\n        \"derived_filters\": [\"Filter to Beach Type Description = 'Marine'\", \"Standardize Violation values to consistent case\", \"Group by Beach Name and check for any 'yes'/'YES'/'Yes' in Violation column across all years\", \"Count beaches with zero violations across all years\"],\n        \"statistical_tests\": [\"Check for duplicate Beach Names across different Community/County combinations\", \"Verify temporal coverage per beach (2002-2023)\", \"Test assumption: missing year data = safe for that year\"],\n        \"output_format_requirements\": [\"Single integer count\", \"Should handle case-insensitive violation values\", \"Must account for beaches with partial data (treat missing years as safe per question)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 19.694011211395264,
+  "token_usage": {
+    "input_tokens": 24121,
+    "output_tokens": 984
+  }
+}

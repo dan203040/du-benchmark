@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "Total sales amount for each product size, binned into $10,000 increments, sorted by size ('free size' smallest).",
+    "filters": [],
+    "grouping_variables": [
+      "Size"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What is the total sales amount for each size?",
+      "How to handle missing or invalid size values?",
+      "How to bin the sales amount into $10,000 increments?",
+      "How to sort the sizes with 'free size' as the smallest?",
+      "Which file contains the sales data and size information?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Amazon Sale Report.csv",
+      "International sale Report.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "The 'Size' column has different data types and formats across the files.",
+      "The 'Amount' column in 'Amazon Sale Report.csv' and 'GROSS AMT' in 'International sale Report.csv' represent sales amount but might have different currencies or units."
+    ],
+    "column_mappings": {
+      "GROSS AMT": "Amount"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Amount": "INR/Other Currencies",
+      "Qty": "Units"
+    },
+    "scale_issues": [
+      "The 'Amount' column might be in different currencies. Currency conversion might be needed."
+    ],
+    "cross_source_conflicts": [
+      "Different date formats in 'Amazon Sale Report.csv' (Date) and 'International sale Report.csv' (DATE)."
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 24,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'Amazon Sale Report.csv' file has an 'Unnamed: 22' column that should be investigated.",
+      "The 'Sales Channel ' column in 'Amazon Sale Report.csv' has a trailing space."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Size' column should be cleaned and standardized to ensure consistent values.",
+      "The 'Amount' column should be converted to a common currency (e.g., USD or INR) before aggregation.",
+      "Handle potential errors or missing values in the 'Size' and 'Amount' columns.",
+      "Define the binning strategy for sales amounts (e.g., lower bound inclusive, upper bound exclusive)."
+    ],
+    "derived_filters": [
+      "Filter out cancelled or returned orders based on the 'Status' column in 'Amazon Sale Report.csv'."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The bar chart should have clear labels for the axes and title.",
+      "The x-axis should represent the product sizes in ascending order, with 'free size' as the smallest.",
+      "The y-axis should represent the total sales amount in $10,000 increments.",
+      "The chart should be saved as 'result.png'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total sales amount for each product size, binned into $10,000 increments, sorted by size ('free size' smallest).\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Size\"],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"What is the total sales amount for each size?\",\n      \"How to handle missing or invalid size values?\",\n      \"How to bin the sales amount into $10,000 increments?\",\n      \"How to sort the sizes with 'free size' as the smallest?\",\n      \"Which file contains the sales data and size information?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Amazon Sale Report.csv\", \"International sale Report.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"The 'Size' column has different data types and formats across the files.\",\n      \"The 'Amount' column in 'Amazon Sale Report.csv' and 'GROSS AMT' in 'International sale Report.csv' represent sales amount but might have different currencies or units.\"\n    ],\n    \"column_mappings\": {\n      \"GROSS AMT\": \"Amount\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Amount\": \"INR/Other Currencies\",\n      \"Qty\": \"Units\"\n    },\n    \"scale_issues\": [\n      \"The 'Amount' column might be in different currencies. Currency conversion might be needed.\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Different date formats in 'Amazon Sale Report.csv' (Date) and 'International sale Report.csv' (DATE).\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 24,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'Amazon Sale Report.csv' file has an 'Unnamed: 22' column that should be investigated.\",\n      \"The 'Sales Channel ' column in 'Amazon Sale Report.csv' has a trailing space.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Size' column should be cleaned and standardized to ensure consistent values.\",\n      \"The 'Amount' column should be converted to a common currency (e.g., USD or INR) before aggregation.\",\n      \"Handle potential errors or missing values in the 'Size' and 'Amount' columns.\",\n      \"Define the binning strategy for sales amounts (e.g., lower bound inclusive, upper bound exclusive).\"\n    ],\n    \"derived_filters\": [\n      \"Filter out cancelled or returned orders based on the 'Status' column in 'Amazon Sale Report.csv'.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The bar chart should have clear labels for the axes and title.\",\n      \"The x-axis should represent the product sizes in ascending order, with 'free size' as the smallest.\",\n      \"The y-axis should represent the total sales amount in $10,000 increments.\",\n      \"The chart should be saved as 'result.png'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.562977075576782,
+  "token_usage": {}
+}

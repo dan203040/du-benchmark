@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Band value (numerical)",
+    "filters": [
+      "System = 'GSM-450'"
+    ],
+    "grouping_variables": [
+      "System",
+      "Band"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the highest band number among all rows where System is GSM-450?",
+      "Are there multiple bands with System GSM-450?",
+      "How should 'highest' be interpreted - numerically or by some other measure?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "cellular_frequency_bands_table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Duplicate rows with same System and Band values (e.g., GSM-850 appears twice with different channel numbers)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Uplink (MHz)": "MHz",
+      "Downlink (MHz)": "MHz"
+    },
+    "scale_issues": [
+      "Band column contains numeric values but is stored as object dtype",
+      "Uplink and Downlink columns contain range strings with commas and dashes that need parsing"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "dynamic",
+      "dynamic^"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Channel number column contains complex strings with commas and ranges",
+      "Some rows have duplicate System-Band combinations with different channel numbers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Band should be convertible to numeric for comparison",
+      "Only rows where System exactly matches 'GSM-450' should be considered",
+      "Highest band means maximum numeric value of Band column"
+    ],
+    "derived_filters": [
+      "System == 'GSM-450'"
+    ],
+    "statistical_tests": [
+      "Check if Band values are unique for GSM-450 system"
+    ],
+    "output_format_requirements": [
+      "Return single band number as integer or float"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Band value (numerical)\",\n        \"filters\": [\"System = 'GSM-450'\"],\n        \"grouping_variables\": [\"System\", \"Band\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the highest band number among all rows where System is GSM-450?\", \"Are there multiple bands with System GSM-450?\", \"How should 'highest' be interpreted - numerically or by some other measure?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"cellular_frequency_bands_table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Duplicate rows with same System and Band values (e.g., GSM-850 appears twice with different channel numbers)\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Uplink (MHz)\": \"MHz\",\n            \"Downlink (MHz)\": \"MHz\"\n        },\n        \"scale_issues\": [\"Band column contains numeric values but is stored as object dtype\", \"Uplink and Downlink columns contain range strings with commas and dashes that need parsing\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"dynamic\", \"dynamic^\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Channel number column contains complex strings with commas and ranges\", \"Some rows have duplicate System-Band combinations with different channel numbers\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Band should be convertible to numeric for comparison\", \"Only rows where System exactly matches 'GSM-450' should be considered\", \"Highest band means maximum numeric value of Band column\"],\n        \"derived_filters\": [\"System == 'GSM-450'\"],\n        \"statistical_tests\": [\"Check if Band values are unique for GSM-450 system\"],\n        \"output_format_requirements\": [\"Return single band number as integer or float\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.54423999786377,
+  "token_usage": {
+    "input_tokens": 1203,
+    "output_tokens": 469
+  }
+}

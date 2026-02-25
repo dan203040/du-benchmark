@@ -1,0 +1,110 @@
+{
+  "m_q": {
+    "target_metric": "List of protein sites hyperactivated in CNV-high endometroid samples and targeted by FDA-approved drugs",
+    "filters": [
+      "Samples with CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'",
+      "Protein sites that are hyperactivated",
+      "Proteins targeted by FDA-approved drugs"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Identify CNV-high endometroid samples from the clinical data.",
+      "Determine which protein sites are hyperactivated in these samples.",
+      "Identify FDA-approved drugs and their target proteins.",
+      "Find the intersection of hyperactivated protein sites and FDA-approved drug targets."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx",
+      "1-s2.0-S0092867420301070-mmc6.xlsx",
+      "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+      "1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous",
+      "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+      "hyperactivated.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "right_source": "hyperactivated.csv",
+        "left_column": "Proteomics_Participant_ID",
+        "right_column": "sample_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "hyperactivated.csv",
+        "right_source": "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+        "left_column": "protein",
+        "right_column": "gene_name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou",
+        "right_source": "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+        "left_column": "Gene",
+        "right_column": "gene_name",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous",
+        "right_source": "1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs",
+        "left_column": "Gene",
+        "right_column": "gene_name",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "The 'ID' column in '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou' and '1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' has different meanings. One represents phospho/acetyl site ID, the other represents protein ID.",
+      "The 'gene_name' column in '1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs' and '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou'/'1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' refers to the same concept but might have different naming conventions."
+    ],
+    "column_mappings": {
+      "Proteomics_Participant_ID": "sample_id",
+      "gene_name": "protein"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "FoldChange.protein": "log2 fold change",
+      "pval.protein": "p-value",
+      "logp.protein": "-log10(p-value)",
+      "FDR.protein": "False Discovery Rate"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "CNV_class must be 'CNV_HIGH' to be considered CNV-high.",
+      "Histologic_type must be 'Endometrioid' to be considered endometroid.",
+      "FoldChange.phos/FoldChange.acetyl should be positive and statistically significant (e.g., pval < 0.05) to be considered hyperactivated."
+    ],
+    "derived_filters": [
+      "CNV-high endometroid samples: CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'",
+      "Hyperactivated protein sites: FoldChange.phos/FoldChange.acetyl > 0 and pval.phos/pval.acetyl < 0.05"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a list of unique protein sites.",
+      "The list should be sorted alphabetically."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"List of protein sites hyperactivated in CNV-high endometroid samples and targeted by FDA-approved drugs\",\n    \"filters\": [\n      \"Samples with CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'\",\n      \"Protein sites that are hyperactivated\",\n      \"Proteins targeted by FDA-approved drugs\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Identify CNV-high endometroid samples from the clinical data.\",\n      \"Determine which protein sites are hyperactivated in these samples.\",\n      \"Identify FDA-approved drugs and their target proteins.\",\n      \"Find the intersection of hyperactivated protein sites and FDA-approved drug targets.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n      \"1-s2.0-S0092867420301070-mmc6.xlsx\",\n      \"1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou\",\n      \"1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous\",\n      \"1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\",\n      \"hyperactivated.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\",\n        \"right_source\": \"hyperactivated.csv\",\n        \"left_column\": \"Proteomics_Participant_ID\",\n        \"right_column\": \"sample_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"hyperactivated.csv\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\",\n        \"left_column\": \"protein\",\n        \"right_column\": \"gene_name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\",\n        \"left_column\": \"Gene\",\n        \"right_column\": \"gene_name\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous\",\n        \"right_source\": \"1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs\",\n        \"left_column\": \"Gene\",\n        \"right_column\": \"gene_name\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"The 'ID' column in '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou' and '1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' has different meanings. One represents phospho/acetyl site ID, the other represents protein ID.\",\n      \"The 'gene_name' column in '1-s2.0-S0092867420301070-mmc6__G-FDA approved drugs' and '1-s2.0-S0092867420301070-mmc6__B-SE phospho site between Serou'/'1-s2.0-S0092867420301070-mmc6__C-SE scetyl site between Serous' refers to the same concept but might have different naming conventions.\"\n    ],\n    \"column_mappings\": {\n      \"Proteomics_Participant_ID\": \"sample_id\",\n      \"gene_name\": \"protein\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"FoldChange.protein\": \"log2 fold change\",\n      \"pval.protein\": \"p-value\",\n      \"logp.protein\": \"-log10(p-value)\",\n      \"FDR.protein\": \"False Discovery Rate\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"CNV_class must be 'CNV_HIGH' to be considered CNV-high.\",\n      \"Histologic_type must be 'Endometrioid' to be considered endometroid.\",\n      \"FoldChange.phos/FoldChange.acetyl should be positive and statistically significant (e.g., pval < 0.05) to be considered hyperactivated.\"\n    ],\n    \"derived_filters\": [\n      \"CNV-high endometroid samples: CNV_class = 'CNV_HIGH' and Histologic_type = 'Endometrioid'\",\n      \"Hyperactivated protein sites: FoldChange.phos/FoldChange.acetyl > 0 and pval.phos/pval.acetyl < 0.05\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a list of unique protein sites.\",\n      \"The list should be sorted alphabetically.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 17.665891885757446,
+  "token_usage": {}
+}

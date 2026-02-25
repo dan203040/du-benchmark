@@ -1,0 +1,341 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "95% confidence interval for the reduction in deaths due to handwashing",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "95% confidence interval for the reduction in deaths due to handwashing",
+        "95% confidence interval (lower bound and upper bound) for the reduction in deaths due to handwashing using Bootstrap analysis",
+        "95% confidence interval for the reduction in deaths due to handwashing using Bootstrap analysis"
+      ]
+    },
+    "filters": {
+      "value": [
+        "handwashing intervention periods",
+        "relevant death records"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "handwashing intervention periods",
+          "relevant death records"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "handwashing status (before/after intervention)",
+        "period (before/after handwashing)",
+        "treatment group"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "handwashing status (before/after intervention)"
+        ],
+        [
+          "period (before/after handwashing)",
+          "treatment group"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "scalar",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the mean reduction in deaths?",
+        "What is the bootstrap distribution of death reduction?",
+        "What are the 2.5th and 97.5th percentiles of the bootstrap distribution?",
+        "What is the death rate before handwashing was introduced?",
+        "What is the death rate after handwashing was introduced?",
+        "What is the absolute reduction in death rate?",
+        "What is the 95% confidence interval for this reduction using Bootstrap resampling?",
+        "What are the lower and upper bounds of the confidence interval?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the mean reduction in deaths?",
+          "What is the bootstrap distribution of death reduction?",
+          "What are the 2.5th and 97.5th percentiles of the bootstrap distribution?"
+        ],
+        [
+          "What is the death rate before handwashing was introduced?",
+          "What is the death rate after handwashing was introduced?",
+          "What is the absolute reduction in death rate?",
+          "What is the 95% confidence interval for this reduction using Bootstrap resampling?",
+          "What are the lower and upper bounds of the confidence interval?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "result.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "result.csv"
+        ],
+        [
+          "result.csv"
+        ],
+        [
+          "result.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Missing actual data files containing death records and handwashing intervention data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Missing actual data files containing death records and handwashing intervention data"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "lower bound": "number of deaths reduced",
+        "upper bound": "number of deaths reduced"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Lower Bound": "number of deaths reduced",
+          "Upper Bound": "number of deaths reduced"
+        },
+        {
+          "Lower Bound": "proportion or percentage reduction in deaths",
+          "Upper Bound": "proportion or percentage reduction in deaths"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Unknown scale of death counts (absolute numbers or rates?)",
+        "Need to determine if bounds should be expressed as proportions (0-1) or percentages (0-100)",
+        "Need to clarify if reduction is absolute difference or relative reduction"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Unknown scale of death counts (absolute numbers or rates?)"
+        ],
+        [
+          "Need to determine if bounds should be expressed as proportions (0-1) or percentages (0-100)",
+          "Need to clarify if reduction is absolute difference or relative reduction"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Only result.csv provided - missing source data for bootstrap analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only result.csv provided - missing source data for bootstrap analysis"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Need death data before and after handwashing intervention",
+        "Need sufficient sample size for bootstrap resampling",
+        "Confidence interval must be 95%",
+        "Bootstrap analysis required (resampling with replacement)",
+        "Confidence level must be 95%",
+        "Lower Bound must be less than Upper Bound",
+        "Both bounds should represent reduction in deaths (positive values if deaths decreased)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Need death data before and after handwashing intervention",
+          "Need sufficient sample size for bootstrap resampling",
+          "Confidence interval must be 95%"
+        ],
+        [
+          "Bootstrap analysis required (resampling with replacement)",
+          "Confidence level must be 95%",
+          "Lower Bound must be less than Upper Bound",
+          "Both bounds should represent reduction in deaths (positive values if deaths decreased)"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude missing death records",
+        "Match time periods for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude missing death records",
+          "Match time periods for comparison"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Bootstrap resampling (typically 1000+ iterations)",
+        "Percentile method for confidence interval",
+        "Bootstrap resampling method to estimate sampling distribution",
+        "Percentile method or BCa method for calculating confidence interval bounds",
+        "Bootstrap analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Bootstrap resampling (typically 1000+ iterations)",
+          "Percentile method for confidence interval"
+        ],
+        [
+          "Bootstrap resampling method to estimate sampling distribution",
+          "Percentile method or BCa method for calculating confidence interval bounds"
+        ],
+        [
+          "Bootstrap analysis"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file named result.csv",
+        "Two columns: Lower Bound, Upper Bound",
+        "Single row with confidence interval bounds",
+        "Output must be saved to result.csv",
+        "Must contain exactly 2 columns: 'Lower Bound' and 'Upper Bound'",
+        "Must contain exactly 1 data row with the confidence interval bounds",
+        "Values should be numeric (not object dtype)",
+        "Follow the exact column naming convention provided",
+        "Output must be a CSV file named `result.csv` with columns 'Lower Bound' and 'Upper Bound'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CSV file named result.csv",
+          "Two columns: Lower Bound, Upper Bound",
+          "Single row with confidence interval bounds"
+        ],
+        [
+          "Output must be saved to result.csv",
+          "Must contain exactly 2 columns: 'Lower Bound' and 'Upper Bound'",
+          "Must contain exactly 1 data row with the confidence interval bounds",
+          "Values should be numeric (not object dtype)",
+          "Follow the exact column naming convention provided"
+        ],
+        [
+          "Output must be a CSV file named `result.csv` with columns 'Lower Bound' and 'Upper Bound'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6000000000000001
+}

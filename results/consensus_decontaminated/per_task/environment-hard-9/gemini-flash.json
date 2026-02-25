@@ -1,0 +1,90 @@
+{
+  "m_q": {
+    "target_metric": "List of Boston Harbor beaches that met swimming standards 100% of the time between 2020 and 2024 (inclusive). A sample meets the standard if it contains fewer than 104 counts of Enterococcus per 100 milliliters of water.",
+    "filters": [
+      "Years between 2020 and 2024 (inclusive)",
+      "Enterococcus count < 104"
+    ],
+    "grouping_variables": [
+      "Beach"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What are all the unique beach names?",
+      "For each beach, what are the Enterococcus counts for each date between 2020 and 2024?",
+      "For each beach, what percentage of samples meet the Enterococcus standard?",
+      "Which beaches have a 100% compliance rate?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "boston-harbor-beaches.txt",
+      "constitution_beach_datasheet.csv",
+      "carson_beach_datasheet.csv",
+      "pleasure_bay_and_castle_island_beach_datasheet.csv",
+      "m_street_beach_datasheet.csv",
+      "city_point_beach_datasheet.csv",
+      "malibu_beach_datasheet.csv",
+      "tenean_beach_datasheet.csv",
+      "wollaston_beach_datasheet.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Different datasheet files have different numbers of Enterococcus columns (e.g., 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2', 'Enterococcus.3').",
+      "Some datasheet files have 'Tag' columns associated with each 'Enterococcus' column, while others do not.",
+      "The 'Enterococcus' column has different dtypes across files (int64, float64)."
+    ],
+    "column_mappings": {
+      "Constitution": "Beach_Name",
+      "Beach": "Beach_Name"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "1-Day Rain": "inches",
+      "2-Day Rain": "inches",
+      "3-Day Rain": "inches",
+      "Enterococcus": "counts per 100 milliliters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "<"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'boston-harbor-beaches.txt' file has a different format than the datasheet files.",
+      "The number of columns in the datasheet files varies."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Date' column must be parsed to extract the year for filtering.",
+      "The 'Enterococcus' columns may contain '<' characters, indicating values below a detection limit. These need to be handled appropriately (e.g., replaced with the detection limit value).",
+      "Need to handle multiple Enterococcus columns in some files by combining them into a single Enterococcus reading for a given date and beach."
+    ],
+    "derived_filters": [
+      "Year >= 2020",
+      "Year <= 2024",
+      "Enterococcus < 104"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a list of beach names."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"List of Boston Harbor beaches that met swimming standards 100% of the time between 2020 and 2024 (inclusive). A sample meets the standard if it contains fewer than 104 counts of Enterococcus per 100 milliliters of water.\",\n    \"filters\": [\n      \"Years between 2020 and 2024 (inclusive)\",\n      \"Enterococcus count < 104\"\n    ],\n    \"grouping_variables\": [\n      \"Beach\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What are all the unique beach names?\",\n      \"For each beach, what are the Enterococcus counts for each date between 2020 and 2024?\",\n      \"For each beach, what percentage of samples meet the Enterococcus standard?\",\n      \"Which beaches have a 100% compliance rate?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"boston-harbor-beaches.txt\",\n      \"constitution_beach_datasheet.csv\",\n      \"carson_beach_datasheet.csv\",\n      \"pleasure_bay_and_castle_island_beach_datasheet.csv\",\n      \"m_street_beach_datasheet.csv\",\n      \"city_point_beach_datasheet.csv\",\n      \"malibu_beach_datasheet.csv\",\n      \"tenean_beach_datasheet.csv\",\n      \"wollaston_beach_datasheet.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Different datasheet files have different numbers of Enterococcus columns (e.g., 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2', 'Enterococcus.3').\",\n      \"Some datasheet files have 'Tag' columns associated with each 'Enterococcus' column, while others do not.\",\n      \"The 'Enterococcus' column has different dtypes across files (int64, float64).\"\n    ],\n    \"column_mappings\": {\n      \"Constitution\": \"Beach_Name\",\n      \"Beach\": \"Beach_Name\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"1-Day Rain\": \"inches\",\n      \"2-Day Rain\": \"inches\",\n      \"3-Day Rain\": \"inches\",\n      \"Enterococcus\": \"counts per 100 milliliters\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\",\n      \"<\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'boston-harbor-beaches.txt' file has a different format than the datasheet files.\",\n      \"The number of columns in the datasheet files varies.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Date' column must be parsed to extract the year for filtering.\",\n      \"The 'Enterococcus' columns may contain '<' characters, indicating values below a detection limit. These need to be handled appropriately (e.g., replaced with the detection limit value).\",\n      \"Need to handle multiple Enterococcus columns in some files by combining them into a single Enterococcus reading for a given date and beach.\"\n    ],\n    \"derived_filters\": [\n      \"Year >= 2020\",\n      \"Year <= 2024\",\n      \"Enterococcus < 104\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a list of beach names.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 10.70412802696228,
+  "token_usage": {}
+}

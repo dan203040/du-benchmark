@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "The train with the latest arrival time each day",
+    "filters": [
+      "Day contains 'Daily'",
+      "Arrival time is not null or sentinel value"
+    ],
+    "grouping_variables": [
+      "Day"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the latest arrival time among daily trains?",
+      "Which train(s) have that arrival time?",
+      "Are there multiple trains with the same latest arrival time?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Train Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Arrival": "HH:MM time format",
+      "Departure": "HH:MM time format"
+    },
+    "scale_issues": [
+      "Time values are in 24-hour format but need to be parsed for comparison",
+      "Day column contains complex strings with multiple day abbreviations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/a",
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Day column contains quoted strings with comma-separated day abbreviations",
+      "Some rows have trailing commas in Day field (e.g., 'S,Tu,')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Arrival times must be valid 24-hour format",
+      "Only trains with 'Daily' in Day column should be considered",
+      "N/a in Departure column indicates no departure time"
+    ],
+    "derived_filters": [
+      "Filter out rows where Day does not contain 'Daily'",
+      "Filter out rows where Arrival is null or sentinel value"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Train No.",
+      "Validate time format consistency"
+    ],
+    "output_format_requirements": [
+      "Should include Train No., Name of the Train, and Arrival time",
+      "If multiple trains have same latest arrival time, list all"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"The train with the latest arrival time each day\",\n        \"filters\": [\"Day contains 'Daily'\", \"Arrival time is not null or sentinel value\"],\n        \"grouping_variables\": [\"Day\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the latest arrival time among daily trains?\", \"Which train(s) have that arrival time?\", \"Are there multiple trains with the same latest arrival time?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Train Schedule\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Arrival\": \"HH:MM time format\", \"Departure\": \"HH:MM time format\"},\n        \"scale_issues\": [\"Time values are in 24-hour format but need to be parsed for comparison\", \"Day column contains complex strings with multiple day abbreviations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"N/a\", \"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Day column contains quoted strings with comma-separated day abbreviations\", \"Some rows have trailing commas in Day field (e.g., 'S,Tu,')\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Arrival times must be valid 24-hour format\", \"Only trains with 'Daily' in Day column should be considered\", \"N/a in Departure column indicates no departure time\"],\n        \"derived_filters\": [\"Filter out rows where Day does not contain 'Daily'\", \"Filter out rows where Arrival is null or sentinel value\"],\n        \"statistical_tests\": [\"Check for duplicate Train No.\", \"Validate time format consistency\"],\n        \"output_format_requirements\": [\"Should include Train No., Name of the Train, and Arrival time\", \"If multiple trains have same latest arrival time, list all\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.796179056167603,
+  "token_usage": {
+    "input_tokens": 1089,
+    "output_tokens": 480
+  }
+}

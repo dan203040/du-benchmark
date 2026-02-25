@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Compare the daily mean temperature in July to the yearly daily mean temperature.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the daily mean temperature for July.",
+      "Calculate the daily mean temperature for the entire year.",
+      "Compare the two calculated means."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Climate Data"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "degrees Celsius",
+      "Feb": "degrees Celsius",
+      "Mar": "degrees Celsius",
+      "Apr": "degrees Celsius",
+      "May": "degrees Celsius",
+      "Jun": "degrees Celsius",
+      "Jul": "degrees Celsius",
+      "Aug": "degrees Celsius",
+      "Sep": "degrees Celsius",
+      "Oct": "degrees Celsius",
+      "Nov": "degrees Celsius",
+      "Dec": "degrees Celsius",
+      "Year": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The temperature values are strings containing both Celsius and Fahrenheit values, separated by a newline character. Need to extract the Celsius values and convert them to numeric.",
+      "The 'Month' column contains descriptive text, need to filter to the 'Daily mean \u00b0C (\u00b0F)' row.",
+      "The 'Year' column contains an empty string for some rows."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Need to extract the 'Daily mean \u00b0C (\u00b0F)' row from the 'Climate Data' file.",
+      "Need to parse the temperature values from strings to numeric values (Celsius).",
+      "Need to handle the newline character and parentheses in the temperature strings.",
+      "Need to calculate the average of the 'Daily mean \u00b0C (\u00b0F)' for July.",
+      "Need to calculate the average of the 'Daily mean \u00b0C (\u00b0F)' for the entire year."
+    ],
+    "derived_filters": [
+      "Filter the 'Climate Data' to only include the 'Daily mean \u00b0C (\u00b0F)' row."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a boolean indicating whether the July daily mean is higher than the yearly daily mean."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Compare the daily mean temperature in July to the yearly daily mean temperature.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the daily mean temperature for July.\",\n      \"Calculate the daily mean temperature for the entire year.\",\n      \"Compare the two calculated means.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Climate Data\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Jan\": \"degrees Celsius\",\n      \"Feb\": \"degrees Celsius\",\n      \"Mar\": \"degrees Celsius\",\n      \"Apr\": \"degrees Celsius\",\n      \"May\": \"degrees Celsius\",\n      \"Jun\": \"degrees Celsius\",\n      \"Jul\": \"degrees Celsius\",\n      \"Aug\": \"degrees Celsius\",\n      \"Sep\": \"degrees Celsius\",\n      \"Oct\": \"degrees Celsius\",\n      \"Nov\": \"degrees Celsius\",\n      \"Dec\": \"degrees Celsius\",\n      \"Year\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 14,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The temperature values are strings containing both Celsius and Fahrenheit values, separated by a newline character. Need to extract the Celsius values and convert them to numeric.\",\n      \"The 'Month' column contains descriptive text, need to filter to the 'Daily mean \u00b0C (\u00b0F)' row.\",\n      \"The 'Year' column contains an empty string for some rows.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to extract the 'Daily mean \u00b0C (\u00b0F)' row from the 'Climate Data' file.\",\n      \"Need to parse the temperature values from strings to numeric values (Celsius).\",\n      \"Need to handle the newline character and parentheses in the temperature strings.\",\n      \"Need to calculate the average of the 'Daily mean \u00b0C (\u00b0F)' for July.\",\n      \"Need to calculate the average of the 'Daily mean \u00b0C (\u00b0F)' for the entire year.\"\n    ],\n    \"derived_filters\": [\n      \"Filter the 'Climate Data' to only include the 'Daily mean \u00b0C (\u00b0F)' row.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a boolean indicating whether the July daily mean is higher than the yearly daily mean.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.5059590339660645,
+  "token_usage": {}
+}

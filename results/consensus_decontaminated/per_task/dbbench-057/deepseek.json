@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "earliest game date where the score is exactly '99-89'",
+    "filters": [
+      "Score == '99-89'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which games have score 99-89?",
+      "Among those games, which has the earliest date?",
+      "How should date strings be parsed for chronological ordering?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Game Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Duplicate 'Game' column values (e.g., Game 3 appears twice with different data)",
+      "Inconsistent ordering - rows not sorted by Game number or Date"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Score": "points-team1-points-team2",
+      "Record": "wins-losses"
+    },
+    "scale_issues": [
+      "Date format varies (e.g., 'Fri. Nov. 2', 'Thu. Nov. 29') - need consistent parsing",
+      "Score column contains OT notation (e.g., '84-88 (OT)')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 20 rows but shape indicates 21 total rows",
+      "Data appears to be from multiple seasons or teams based on duplicate Game numbers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Score format: 'XX-YY' or 'XX-YY (OT)'",
+      "Date format: 'Day. Month. DayNumber'",
+      "Game numbers should be unique but aren't in this sample"
+    ],
+    "derived_filters": [
+      "Filter rows where Score contains '99-89' (exact match)"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Game values",
+      "Validate date parsing logic"
+    ],
+    "output_format_requirements": [
+      "Return single date value",
+      "If multiple games with score 99-89, return earliest",
+      "If no games with score 99-89, return null/empty"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"earliest game date where the score is exactly '99-89'\",\n        \"filters\": [\"Score == '99-89'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which games have score 99-89?\", \"Among those games, which has the earliest date?\", \"How should date strings be parsed for chronological ordering?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Game Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Duplicate 'Game' column values (e.g., Game 3 appears twice with different data)\", \"Inconsistent ordering - rows not sorted by Game number or Date\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Score\": \"points-team1-points-team2\", \"Record\": \"wins-losses\"},\n        \"scale_issues\": [\"Date format varies (e.g., 'Fri. Nov. 2', 'Thu. Nov. 29') - need consistent parsing\", \"Score column contains OT notation (e.g., '84-88 (OT)')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 20 rows but shape indicates 21 total rows\", \"Data appears to be from multiple seasons or teams based on duplicate Game numbers\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Score format: 'XX-YY' or 'XX-YY (OT)'\", \"Date format: 'Day. Month. DayNumber'\", \"Game numbers should be unique but aren't in this sample\"],\n        \"derived_filters\": [\"Filter rows where Score contains '99-89' (exact match)\"],\n        \"statistical_tests\": [\"Check for duplicate Game values\", \"Validate date parsing logic\"],\n        \"output_format_requirements\": [\"Return single date value\", \"If multiple games with score 99-89, return earliest\", \"If no games with score 99-89, return null/empty\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.489959955215454,
+  "token_usage": {
+    "input_tokens": 1096,
+    "output_tokens": 520
+  }
+}

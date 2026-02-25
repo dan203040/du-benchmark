@@ -1,0 +1,317 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total number of participants",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "total number of participants",
+        "total number of participants",
+        "Total number of participants from Norway and France"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Nationality in ['Norway', 'France']",
+        "Nationality is Norway",
+        "Nationality is France"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Nationality in ['Norway', 'France']"
+        ],
+        [
+          "Nationality in ['Norway', 'France']"
+        ],
+        [
+          "Nationality is Norway",
+          "Nationality is France"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Nationality"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Nationality"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many participants from Norway?",
+        "How many participants from France?",
+        "Are there any missing Nationality values that need to be handled?",
+        "How many participants are from Norway?",
+        "How many participants are from France?",
+        "What is the sum of participants from Norway and France?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How many participants from Norway?",
+          "How many participants from France?",
+          "Are there any missing Nationality values that need to be handled?"
+        ],
+        [
+          "How many participants are from Norway?",
+          "How many participants are from France?",
+          "What is the sum of participants from Norway and France?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Biathlon Results Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Biathlon Results Table"
+        ],
+        [
+          "Biathlon Results Table"
+        ],
+        [
+          "Biathlon Results Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "start": "time offset (minutes:seconds)",
+        "time": "race time (minutes:seconds.milliseconds)",
+        "deficit": "time deficit (minutes:seconds.milliseconds or seconds)"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Start": "time offset (minutes:seconds)",
+          "Time": "race time (minutes:seconds.milliseconds)",
+          "Deficit": "time deficit (minutes:seconds.milliseconds or seconds)"
+        },
+        {
+          "Time": "MM:SS.s",
+          "Deficit": "MM:SS.s or +SS.s",
+          "Start": "MM:SS"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Time and Deficit columns use mixed time formats (seconds vs minutes:seconds)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time and Deficit columns use mixed time formats (seconds vs minutes:seconds)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 1.0,
+      "votes": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Each row represents one participant",
+        "Nationality column should contain country names",
+        "Bib numbers should be unique per participant",
+        "Count only rows where Nationality equals 'Norway' or 'France'",
+        "Exclude any rows with null or missing Name or Nationality values",
+        "Nationality column should only contain valid country names"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Each row represents one participant",
+          "Nationality column should contain country names",
+          "Bib numbers should be unique per participant"
+        ],
+        [
+          "Count only rows where Nationality equals 'Norway' or 'France'",
+          "Each row represents one participant",
+          "Exclude any rows with null or missing Name or Nationality values"
+        ],
+        [
+          "Nationality column should only contain valid country names"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows with missing Nationality",
+        "Count distinct participants by Nationality",
+        "Nationality == 'Norway'",
+        "Nationality == 'France'",
+        "Participants from Norway",
+        "Participants from France"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows with missing Nationality",
+          "Count distinct participants by Nationality"
+        ],
+        [
+          "Nationality == 'Norway'",
+          "Nationality == 'France'"
+        ],
+        [
+          "Participants from Norway",
+          "Participants from France"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Bib numbers",
+        "Verify Nationality values are consistent"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Bib numbers",
+          "Verify Nationality values are consistent"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer total",
+        "Should include participants from both Norway and France",
+        "Return a single integer representing the total count",
+        "Sum the counts from both countries"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer total",
+          "Should include participants from both Norway and France"
+        ],
+        [
+          "Return a single integer representing the total count",
+          "Sum the counts from both countries"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6027777777777779
+}

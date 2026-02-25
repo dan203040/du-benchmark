@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Round value(s)",
+    "filters": [
+      "School/Club Team contains 'indiana' (case-insensitive)",
+      "Pick < 198 (numeric comparison)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the exact string value in 'School/Club Team' column for Indiana?",
+      "Should 'Pick' be treated as numeric despite being object dtype?",
+      "Are there multiple rows matching these criteria?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NFL Draft Picks"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Pick column has object dtype but needs numeric comparison"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Pick": "draft position number"
+    },
+    "scale_issues": [
+      "Pick values need conversion from string to integer for comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 16 rows total, 20 rows in sample is contradictory",
+      "Column names match expected structure"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Pick values must be convertible to integers",
+      "School/Club Team values should be consistent capitalization"
+    ],
+    "derived_filters": [
+      "Convert Pick to numeric before filtering",
+      "Case-insensitive search for 'indiana' in School/Club Team"
+    ],
+    "statistical_tests": [
+      "Check if Pick column contains only numeric strings",
+      "Verify School/Club Team values for Indiana variations"
+    ],
+    "output_format_requirements": [
+      "Return Round value(s) as list",
+      "Include both Round and Pick values in output"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Round value(s)\",\n        \"filters\": [\"School/Club Team contains 'indiana' (case-insensitive)\", \"Pick < 198 (numeric comparison)\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the exact string value in 'School/Club Team' column for Indiana?\", \"Should 'Pick' be treated as numeric despite being object dtype?\", \"Are there multiple rows matching these criteria?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"NFL Draft Picks\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Pick column has object dtype but needs numeric comparison\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Pick\": \"draft position number\"},\n        \"scale_issues\": [\"Pick values need conversion from string to integer for comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 16 rows total, 20 rows in sample is contradictory\", \"Column names match expected structure\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Pick values must be convertible to integers\", \"School/Club Team values should be consistent capitalization\"],\n        \"derived_filters\": [\"Convert Pick to numeric before filtering\", \"Case-insensitive search for 'indiana' in School/Club Team\"],\n        \"statistical_tests\": [\"Check if Pick column contains only numeric strings\", \"Verify School/Club Team values for Indiana variations\"],\n        \"output_format_requirements\": [\"Return Round value(s) as list\", \"Include both Round and Pick values in output\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.270841121673584,
+  "token_usage": {
+    "input_tokens": 812,
+    "output_tokens": 432
+  }
+}

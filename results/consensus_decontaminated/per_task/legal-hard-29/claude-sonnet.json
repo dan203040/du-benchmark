@@ -1,0 +1,146 @@
+{
+  "m_q": {
+    "target_metric": "Metropolitan area with the largest percentage of fraud reports within its own state, among states with 5 or more metro areas",
+    "filters": [
+      "States with 5 or more metropolitan areas only"
+    ],
+    "grouping_variables": [
+      "State",
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many metropolitan areas does each state have?",
+      "Which states have 5 or more metropolitan areas?",
+      "What is the total number of fraud reports per state (for states with 5+ metro areas)?",
+      "What percentage of the state's total fraud reports does each metropolitan area represent?",
+      "Which metropolitan area has the highest percentage within its state?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Last row in each file contains metadata text instead of data",
+      "Some metropolitan areas span multiple states (cross-border metros)"
+    ],
+    "column_mappings": {
+      "Metropolitan Area": "metro_area",
+      "# of Reports": "num_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "percentage": "percentage of state total"
+    },
+    "scale_issues": [
+      "Cross-state metropolitan areas appear in multiple state files with same report count",
+      "Need to assign cross-border metros to their primary state or allocate reports appropriately"
+    ],
+    "cross_source_conflicts": [
+      "Metropolitan areas like 'Chicago-Naperville-Elgin, IL-IN' appear in both Illinois.csv and Indiana.csv with identical report counts",
+      "Philadelphia-Camden-Wilmington appears in Pennsylvania, New Jersey, Delaware, and Maryland files",
+      "Cross-state metros should only be counted once per state to avoid double-counting"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row contains descriptive metadata text that should be excluded",
+      "Metropolitan Area names are quoted strings",
+      "# of Reports column contains float64 values",
+      "Footer row pattern: starts with 'Metropolitan Areas are defined by'",
+      "Metropolitan area names include state abbreviations in parentheses"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only consider states with 5 or more metropolitan areas",
+      "Exclude the metadata footer row from each file",
+      "Handle cross-state metropolitan areas appropriately (count only within each state's context)",
+      "# of Reports must be numeric and non-null"
+    ],
+    "derived_filters": [
+      "Count non-footer rows per state file to determine metro area count",
+      "Filter to states where metro_count >= 5"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the single metropolitan area name with highest percentage",
+      "Include the percentage value",
+      "Include the state name",
+      "Result should identify one specific metro area"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Metropolitan area with the largest percentage of fraud reports within its own state, among states with 5 or more metro areas\",\n    \"filters\": [\n      \"States with 5 or more metropolitan areas only\"\n    ],\n    \"grouping_variables\": [\n      \"State\",\n      \"Metropolitan Area\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many metropolitan areas does each state have?\",\n      \"Which states have 5 or more metropolitan areas?\",\n      \"What is the total number of fraud reports per state (for states with 5+ metro areas)?\",\n      \"What percentage of the state's total fraud reports does each metropolitan area represent?\",\n      \"Which metropolitan area has the highest percentage within its state?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Last row in each file contains metadata text instead of data\",\n      \"Some metropolitan areas span multiple states (cross-border metros)\"\n    ],\n    \"column_mappings\": {\n      \"Metropolitan Area\": \"metro_area\",\n      \"# of Reports\": \"num_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"percentage\": \"percentage of state total\"\n    },\n    \"scale_issues\": [\n      \"Cross-state metropolitan areas appear in multiple state files with same report count\",\n      \"Need to assign cross-border metros to their primary state or allocate reports appropriately\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Metropolitan areas like 'Chicago-Naperville-Elgin, IL-IN' appear in both Illinois.csv and Indiana.csv with identical report counts\",\n      \"Philadelphia-Camden-Wilmington appears in Pennsylvania, New Jersey, Delaware, and Maryland files\",\n      \"Cross-state metros should only be counted once per state to avoid double-counting\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Last row contains descriptive metadata text that should be excluded\",\n      \"Metropolitan Area names are quoted strings\",\n      \"# of Reports column contains float64 values\",\n      \"Footer row pattern: starts with 'Metropolitan Areas are defined by'\",\n      \"Metropolitan area names include state abbreviations in parentheses\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only consider states with 5 or more metropolitan areas\",\n      \"Exclude the metadata footer row from each file\",\n      \"Handle cross-state metropolitan areas appropriately (count only within each state's context)\",\n      \"# of Reports must be numeric and non-null\"\n    ],\n    \"derived_filters\": [\n      \"Count non-footer rows per state file to determine metro area count\",\n      \"Filter to states where metro_count >= 5\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the single metropolitan area name with highest percentage\",\n      \"Include the percentage value\",\n      \"Include the state name\",\n      \"Result should identify one specific metro area\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 19.607714891433716,
+  "token_usage": {
+    "input_tokens": 14757,
+    "output_tokens": 1257
+  }
+}

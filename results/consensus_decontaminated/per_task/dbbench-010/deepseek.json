@@ -1,0 +1,60 @@
+{
+  "m_q": {
+    "target_metric": "Team name that appears immediately after Manchester City in the dataset",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the ordering of teams in the dataset?",
+      "Which team follows Manchester City in the sequence?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Manager Changes"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns appear to be in 'dd Month yyyy' format",
+      "Team names are proper nouns with potential special characters"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Team column must contain 'Manchester City'",
+      "Data must maintain original row ordering"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Team name should be returned as a string"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Team name that appears immediately after Manchester City in the dataset\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the ordering of teams in the dataset?\", \"Which team follows Manchester City in the sequence?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Manager Changes\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date columns appear to be in 'dd Month yyyy' format\", \"Team names are proper nouns with potential special characters\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Team column must contain 'Manchester City'\", \"Data must maintain original row ordering\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [],\n        \"output_format_requirements\": [\"Team name should be returned as a string\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 6.696977138519287,
+  "token_usage": {
+    "input_tokens": 1273,
+    "output_tokens": 315
+  }
+}

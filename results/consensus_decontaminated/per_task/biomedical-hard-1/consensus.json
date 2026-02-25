@@ -1,0 +1,410 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Spearman correlation coefficient between PLK1 protein abundance and CHEK2-S163 phosphoprotein abundance in tumor samples",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Spearman correlation coefficient between PLK1 protein abundance and CHEK2-S163 phosphoprotein abundance in tumor samples",
+        "Spearman correlation coefficient between PLK1 protein abundance and CHEK2-S163 phosphoprotein abundance",
+        "Spearman correlation between PLK1 abundance and CHEK2-S163 abundance"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Proteomics_Tumor_Normal == 'Tumor'",
+        "Case_excluded == 'No'",
+        "Exclude samples with missing values in PLK1 or CHEK2-S163 abundance",
+        "Exclude samples where Case_excluded is not 'No'",
+        "Exclude samples with missing PLK1 values",
+        "Exclude samples with missing CHEK2-S163 values",
+        "Include only tumor samples (Proteomics_Tumor_Normal = 'Tumor')",
+        "Exclude samples where 'Case_excluded' is not 'No' in '1-s2.0-S0092867420301070-mmc1.xlsx'",
+        "Exclude samples with missing values for PLK1 and CHEK2-S163"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proteomics_Tumor_Normal == 'Tumor'",
+          "Case_excluded == 'No'",
+          "Exclude samples with missing values in PLK1 or CHEK2-S163 abundance"
+        ],
+        [
+          "Exclude samples where Case_excluded is not 'No'",
+          "Exclude samples with missing PLK1 values",
+          "Exclude samples with missing CHEK2-S163 values",
+          "Include only tumor samples (Proteomics_Tumor_Normal = 'Tumor')"
+        ],
+        [
+          "Exclude samples where 'Case_excluded' is not 'No' in '1-s2.0-S0092867420301070-mmc1.xlsx'",
+          "Exclude samples with missing values for PLK1 and CHEK2-S163"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Identify PLK1 protein abundance values from global proteomics data",
+        "Identify CHEK2-S163 phosphoprotein abundance values from phosphoproteomics data",
+        "Filter to tumor samples only",
+        "Remove samples excluded from study",
+        "Remove samples with missing values in either protein",
+        "Calculate Spearman correlation",
+        "Round result to 4 decimal places",
+        "Which file contains PLK1 protein abundance data?",
+        "Which file contains CHEK2-S163 phosphoprotein abundance data?",
+        "Which file contains the Case_excluded column for filtering?",
+        "How to join the proteomics data with the clinical metadata?",
+        "What is the exact identifier format for CHEK2-S163 in the phosphoproteomics data?",
+        "How many samples remain after applying all filters?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Identify PLK1 protein abundance values from global proteomics data",
+          "Identify CHEK2-S163 phosphoprotein abundance values from phosphoproteomics data",
+          "Filter to tumor samples only",
+          "Remove samples excluded from study",
+          "Remove samples with missing values in either protein",
+          "Calculate Spearman correlation",
+          "Round result to 4 decimal places"
+        ],
+        [
+          "Which file contains PLK1 protein abundance data?",
+          "Which file contains CHEK2-S163 phosphoprotein abundance data?",
+          "Which file contains the Case_excluded column for filtering?",
+          "How to join the proteomics data with the clinical metadata?",
+          "What is the exact identifier format for CHEK2-S163 in the phosphoproteomics data?",
+          "How many samples remain after applying all filters?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "1-s2.0-S0092867420301070-mmc2__A-global-proteomics",
+        "1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc2__A-global-proteomics",
+          "1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc2__A-global-proteomics",
+          "1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx",
+          "1-s2.0-S0092867420301070-mmc2__A-global-proteomics",
+          "1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Global proteomics data has 10999 rows \u00d7 154 columns",
+        "Phosphoproteomics data has 73212 rows \u00d7 154 columns",
+        "Sample metadata has 153 rows \u00d7 179 columns",
+        "Different number of rows across datasets",
+        "Clinical metadata has samples as rows (idx column), while proteomics data has samples as columns (S001-S153)",
+        "Need to transpose or pivot proteomics data to align with clinical metadata structure"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Global proteomics data has 10999 rows \u00d7 154 columns",
+          "Phosphoproteomics data has 73212 rows \u00d7 154 columns",
+          "Sample metadata has 153 rows \u00d7 179 columns",
+          "Different number of rows across datasets"
+        ],
+        [
+          "Clinical metadata has samples as rows (idx column), while proteomics data has samples as columns (S001-S153)",
+          "Need to transpose or pivot proteomics data to align with clinical metadata structure"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "plk1 abundance": "log2 transformed intensity",
+        "chek2-s163 abundance": "log2 transformed intensity",
+        "tp53_chek2": "pathway activity score (unitless)",
+        "plk1": "log2 transformed abundance (median polished)",
+        "chek2-s163": "log2 transformed abundance (median polished)",
+        "spearman_correlation": "unitless coefficient (-1 to 1)"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {
+          "PLK1 abundance": "log2 transformed intensity",
+          "CHEK2-S163 abundance": "log2 transformed intensity",
+          "TP53_CHEK2": "pathway activity score (unitless)"
+        },
+        {
+          "PLK1": "log2 transformed abundance (median polished)",
+          "CHEK2-S163": "log2 transformed abundance (median polished)",
+          "Spearman_correlation": "unitless coefficient (-1 to 1)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Protein abundances are log2 transformed",
+        "Missing values represented as empty strings in some datasets",
+        "Some columns have mixed data types (object)",
+        "Both proteomics datasets are log2 transformed",
+        "Data is median polished, meaning batch effects have been corrected"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Protein abundances are log2 transformed",
+          "Missing values represented as empty strings in some datasets",
+          "Some columns have mixed data types (object)"
+        ],
+        [
+          "Both proteomics datasets are log2 transformed",
+          "Data is median polished, meaning batch effects have been corrected"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "CHEK2 appears in multiple contexts: TP53_CHEK2 pathway activity in metadata vs CHEK2-S163 phosphosite in phosphoproteomics",
+        "Need to distinguish between CHEK2 protein and CHEK2-S163 phosphosite",
+        "Sample identifiers are row names in clinical data but column names in proteomics data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CHEK2 appears in multiple contexts: TP53_CHEK2 pathway activity in metadata vs CHEK2-S163 phosphosite in phosphoproteomics",
+          "Need to distinguish between CHEK2 protein and CHEK2-S163 phosphosite"
+        ],
+        [
+          "Sample identifiers are row names in clinical data but column names in proteomics data"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        ",",
+        "xlsx format (Excel)",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "Cannot be determined",
+        "Staging Incomplete",
+        "NaN"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "Cannot be determined",
+          "Staging Incomplete"
+        ],
+        [
+          "NA",
+          "NaN",
+          "",
+          "nan"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 154.0,
+      "confidence": 0.8387096774193549,
+      "votes": [
+        154.0,
+        154.0,
+        179.0
+      ]
+    },
+    "file_format": {
+      "value": "xlsx",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "csv",
+        "xlsx",
+        "xlsx"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only tumor samples (Proteomics_Tumor_Normal == 'Tumor')",
+        "Only samples not excluded (Case_excluded == 'No')",
+        "Complete cases only for PLK1 and CHEK2-S163",
+        "Sample count \u2264 153 (total samples in metadata)",
+        "Case_excluded must equal 'No'",
+        "Both PLK1 and CHEK2-S163 values must be non-missing for a sample to be included",
+        "Only tumor samples should be included (Proteomics_Tumor_Normal = 'Tumor')",
+        "Result must be rounded to 4 decimal places",
+        "Ensure 'Case_excluded' column in '1-s2.0-S0092867420301070-mmc1.xlsx' only contains 'No' after filtering."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only tumor samples (Proteomics_Tumor_Normal == 'Tumor')",
+          "Only samples not excluded (Case_excluded == 'No')",
+          "Complete cases only for PLK1 and CHEK2-S163",
+          "Sample count \u2264 153 (total samples in metadata)"
+        ],
+        [
+          "Case_excluded must equal 'No'",
+          "Both PLK1 and CHEK2-S163 values must be non-missing for a sample to be included",
+          "Only tumor samples should be included (Proteomics_Tumor_Normal = 'Tumor')",
+          "Result must be rounded to 4 decimal places"
+        ],
+        [
+          "Ensure 'Case_excluded' column in '1-s2.0-S0092867420301070-mmc1.xlsx' only contains 'No' after filtering."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove samples where PLK1 is missing",
+        "Remove samples where CHEK2-S163 is missing",
+        "Remove non-tumor samples",
+        "Remove excluded samples",
+        "Create a list of valid sample IDs where Case_excluded = 'No'",
+        "Extract PLK1 row from global proteomics data",
+        "Extract CHEK2-S163 row from phosphoproteomics data",
+        "Filter to samples that have non-missing values in both PLK1 and CHEK2-S163",
+        "Intersect valid samples across all filter conditions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove samples where PLK1 is missing",
+          "Remove samples where CHEK2-S163 is missing",
+          "Remove non-tumor samples",
+          "Remove excluded samples"
+        ],
+        [
+          "Create a list of valid sample IDs where Case_excluded = 'No'",
+          "Extract PLK1 row from global proteomics data",
+          "Extract CHEK2-S163 row from phosphoproteomics data",
+          "Filter to samples that have non-missing values in both PLK1 and CHEK2-S163",
+          "Intersect valid samples across all filter conditions"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Spearman rank correlation test",
+        "Two-tailed significance test",
+        "Spearman rank correlation coefficient (non-parametric correlation)",
+        "Spearman correlation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Spearman rank correlation test",
+          "Two-tailed significance test"
+        ],
+        [
+          "Spearman rank correlation coefficient (non-parametric correlation)"
+        ],
+        [
+          "Spearman correlation"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Correlation coefficient rounded to 4 decimal places",
+        "No additional formatting or text",
+        "Single numeric value",
+        "Rounded to exactly 4 decimal places",
+        "Result should be between -1 and 1",
+        "Round the Spearman correlation to 4 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Correlation coefficient rounded to 4 decimal places",
+          "No additional formatting or text"
+        ],
+        [
+          "Single numeric value",
+          "Rounded to exactly 4 decimal places",
+          "Result should be between -1 and 1"
+        ],
+        [
+          "Round the Spearman correlation to 4 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5252688172043012
+}

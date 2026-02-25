@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "RMSE of two single-variable linear regression models predicting Swarm Alpha's along-track acceleration 3 hours ahead",
+    "filters": [
+      "Data limited to May 11, 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "omni2_Kp_Index.lst",
+      "omni2_Flow_Pressure.lst",
+      "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "omni2_Kp_Index.lst:2024": "omni_year",
+      "omni2_Kp_Index.lst:132": "omni_day_of_year",
+      "omni2_Kp_Index.lst:0": "omni_hour",
+      "omni2_Kp_Index.lst:90": "omni_Kp",
+      "omni2_Flow_Pressure.lst:2024": "omni_year",
+      "omni2_Flow_Pressure.lst:132": "omni_day_of_year",
+      "omni2_Flow_Pressure.lst:0": "omni_hour",
+      "omni2_Flow_Pressure.lst:20.76": "omni_Pdyn"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "omni_Kp": "unitless Kp index",
+      "omni_Pdyn": "nPa",
+      "omni_year": "year",
+      "omni_day_of_year": "day of year",
+      "omni_hour": "hour of day"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "omni2_Kp_Index.lst and omni2_Flow_Pressure.lst are comma separated value files without headers.",
+      "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf is a CDF file, but the provided sample indicates it's empty or unreadable."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The SWARM data file is either empty or cannot be parsed, so the along-track acceleration cannot be extracted.",
+      "The OMNI data needs to be converted to a datetime format to be used for time series analysis."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a list of two numbers: [RMSE_Kp, RMSE_Pdyn]"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"RMSE of two single-variable linear regression models predicting Swarm Alpha's along-track acceleration 3 hours ahead\",\n    \"filters\": [\"Data limited to May 11, 2024\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"omni2_Kp_Index.lst\", \"omni2_Flow_Pressure.lst\", \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"omni2_Kp_Index.lst:2024\": \"omni_year\",\n      \"omni2_Kp_Index.lst:132\": \"omni_day_of_year\",\n      \"omni2_Kp_Index.lst:0\": \"omni_hour\",\n      \"omni2_Kp_Index.lst:90\": \"omni_Kp\",\n      \"omni2_Flow_Pressure.lst:2024\": \"omni_year\",\n      \"omni2_Flow_Pressure.lst:132\": \"omni_day_of_year\",\n      \"omni2_Flow_Pressure.lst:0\": \"omni_hour\",\n      \"omni2_Flow_Pressure.lst:20.76\": \"omni_Pdyn\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"omni_Kp\": \"unitless Kp index\",\n      \"omni_Pdyn\": \"nPa\",\n      \"omni_year\": \"year\",\n      \"omni_day_of_year\": \"day of year\",\n      \"omni_hour\": \"hour of day\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": false,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"omni2_Kp_Index.lst and omni2_Flow_Pressure.lst are comma separated value files without headers.\",\n      \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf is a CDF file, but the provided sample indicates it's empty or unreadable.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The SWARM data file is either empty or cannot be parsed, so the along-track acceleration cannot be extracted.\",\n      \"The OMNI data needs to be converted to a datetime format to be used for time series analysis.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a list of two numbers: [RMSE_Kp, RMSE_Pdyn]\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.355459928512573,
+  "token_usage": {}
+}

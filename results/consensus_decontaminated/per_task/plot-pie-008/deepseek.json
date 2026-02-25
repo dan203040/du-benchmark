@@ -1,0 +1,133 @@
+{
+  "m_q": {
+    "target_metric": "largest average delivery distance for bikers by hub city",
+    "filters": [
+      "driver_modal = 'BIKER'",
+      "delivery_status = 'DELIVERED'",
+      "driver_id IS NOT NULL"
+    ],
+    "grouping_variables": [
+      "hub_city"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "Which hub city has the highest average delivery distance for bikers?",
+      "What is the distribution of order deliveries by driver modes in that city?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "deliveries.csv",
+      "drivers.csv",
+      "orders.csv",
+      "stores.csv",
+      "hubs.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "deliveries.csv",
+        "right_source": "drivers.csv",
+        "left_column": "driver_id",
+        "right_column": "driver_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "deliveries.csv",
+        "right_source": "orders.csv",
+        "left_column": "delivery_order_id",
+        "right_column": "delivery_order_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "orders.csv",
+        "right_source": "stores.csv",
+        "left_column": "store_id",
+        "right_column": "store_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "stores.csv",
+        "right_source": "hubs.csv",
+        "left_column": "hub_id",
+        "right_column": "hub_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "deliveries.driver_id is float64 while drivers.driver_id is int64",
+      "deliveries.delivery_order_id is int64 while orders.delivery_order_id is int64 (consistent)"
+    ],
+    "column_mappings": {
+      "delivery_distance_meters": "distance_m",
+      "driver_modal": "vehicle_type"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "delivery_distance_meters": "meters",
+      "order_amount": "currency",
+      "order_delivery_fee": "currency",
+      "order_delivery_cost": "currency",
+      "store_plan_price": "currency",
+      "hub_latitude": "degrees",
+      "hub_longitude": "degrees",
+      "store_latitude": "degrees",
+      "store_longitude": "degrees"
+    },
+    "scale_issues": [
+      "delivery_distance_meters has decimal values suggesting precision to 1 meter",
+      "order_amount has 2 decimal places suggesting currency"
+    ],
+    "cross_source_conflicts": [
+      "Some stores have missing latitude/longitude values while hubs have complete coordinates"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "deliveries.csv has missing driver_id values (cancelled deliveries)",
+      "orders.csv has many timestamp columns with datetime format",
+      "stores.csv has empty string values for store_latitude/store_longitude"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "delivery_distance_meters > 0 for delivered orders",
+      "driver_id must be integer for valid deliveries",
+      "hub_city must not be null"
+    ],
+    "derived_filters": [
+      "Exclude cancelled deliveries from distance calculations",
+      "Only include biker deliveries for the main metric",
+      "Filter to completed/delivered orders only"
+    ],
+    "statistical_tests": [
+      "Check for outliers in delivery_distance_meters",
+      "Verify distribution of driver modes across cities",
+      "Test correlation between delivery distance and city size"
+    ],
+    "output_format_requirements": [
+      "Pie chart saved as result.jpg",
+      "Chart must follow plot.yaml guidelines",
+      "City name must be clearly labeled in output"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"largest average delivery distance for bikers by hub city\",\n        \"filters\": [\"driver_modal = 'BIKER'\", \"delivery_status = 'DELIVERED'\", \"driver_id IS NOT NULL\"],\n        \"grouping_variables\": [\"hub_city\"],\n        \"output_cardinality\": \"plot\",\n        \"sub_questions\": [\"Which hub city has the highest average delivery distance for bikers?\", \"What is the distribution of order deliveries by driver modes in that city?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"deliveries.csv\", \"drivers.csv\", \"orders.csv\", \"stores.csv\", \"hubs.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"deliveries.csv\", \"right_source\": \"drivers.csv\", \"left_column\": \"driver_id\", \"right_column\": \"driver_id\", \"join_type\": \"inner\"},\n            {\"left_source\": \"deliveries.csv\", \"right_source\": \"orders.csv\", \"left_column\": \"delivery_order_id\", \"right_column\": \"delivery_order_id\", \"join_type\": \"inner\"},\n            {\"left_source\": \"orders.csv\", \"right_source\": \"stores.csv\", \"left_column\": \"store_id\", \"right_column\": \"store_id\", \"join_type\": \"inner\"},\n            {\"left_source\": \"stores.csv\", \"right_source\": \"hubs.csv\", \"left_column\": \"hub_id\", \"right_column\": \"hub_id\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"deliveries.driver_id is float64 while drivers.driver_id is int64\", \"deliveries.delivery_order_id is int64 while orders.delivery_order_id is int64 (consistent)\"],\n        \"column_mappings\": {\"delivery_distance_meters\": \"distance_m\", \"driver_modal\": \"vehicle_type\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"delivery_distance_meters\": \"meters\", \"order_amount\": \"currency\", \"order_delivery_fee\": \"currency\", \"order_delivery_cost\": \"currency\", \"store_plan_price\": \"currency\", \"hub_latitude\": \"degrees\", \"hub_longitude\": \"degrees\", \"store_latitude\": \"degrees\", \"store_longitude\": \"degrees\"},\n        \"scale_issues\": [\"delivery_distance_meters has decimal values suggesting precision to 1 meter\", \"order_amount has 2 decimal places suggesting currency\"],\n        \"cross_source_conflicts\": [\"Some stores have missing latitude/longitude values while hubs have complete coordinates\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"deliveries.csv has missing driver_id values (cancelled deliveries)\", \"orders.csv has many timestamp columns with datetime format\", \"stores.csv has empty string values for store_latitude/store_longitude\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"delivery_distance_meters > 0 for delivered orders\", \"driver_id must be integer for valid deliveries\", \"hub_city must not be null\"],\n        \"derived_filters\": [\"Exclude cancelled deliveries from distance calculations\", \"Only include biker deliveries for the main metric\", \"Filter to completed/delivered orders only\"],\n        \"statistical_tests\": [\"Check for outliers in delivery_distance_meters\", \"Verify distribution of driver modes across cities\", \"Test correlation between delivery distance and city size\"],\n        \"output_format_requirements\": [\"Pie chart saved as result.jpg\", \"Chart must follow plot.yaml guidelines\", \"City name must be clearly labeled in output\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 16.45333504676819,
+  "token_usage": {
+    "input_tokens": 5894,
+    "output_tokens": 833
+  }
+}

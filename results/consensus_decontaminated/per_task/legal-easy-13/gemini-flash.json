@@ -1,0 +1,61 @@
+{
+  "m_q": {
+    "target_metric": "Ratio of the number of reports between the most frequent and least frequent category in 2024",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the category with the maximum '# of Reports' in 2024?",
+      "What is the category with the minimum '# of Reports' in 2024?",
+      "What is the '# of Reports' for the most frequent category?",
+      "What is the '# of Reports' for the least frequent category?",
+      "What is the ratio of the maximum '# of Reports' to the minimum '# of Reports'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "number of reports",
+      "Percentage": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage column needs to be converted to numeric by removing the '%' sign."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The ratio must be rounded to two decimal places."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single numerical value representing the ratio."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Ratio of the number of reports between the most frequent and least frequent category in 2024\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the category with the maximum '# of Reports' in 2024?\",\n      \"What is the category with the minimum '# of Reports' in 2024?\",\n      \"What is the '# of Reports' for the most frequent category?\",\n      \"What is the '# of Reports' for the least frequent category?\",\n      \"What is the ratio of the maximum '# of Reports' to the minimum '# of Reports'?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Report_Categories.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"# of Reports\": \"number of reports\", \"Percentage\": \"percentage\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"Percentage column needs to be converted to numeric by removing the '%' sign.\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\"The ratio must be rounded to two decimal places.\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"The output should be a single numerical value representing the ratio.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.6222400665283203,
+  "token_usage": {}
+}

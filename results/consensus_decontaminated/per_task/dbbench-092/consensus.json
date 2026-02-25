@@ -1,0 +1,342 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average number of laps",
+      "confidence": 1.0,
+      "votes": [
+        "average number of laps",
+        "average number of laps",
+        "Average number of laps"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Time/Retired contains 'Accident'",
+        "Manufacturer = 'Aprilia'",
+        "Grid = '27'",
+        "Manufacturer equals 'Aprilia'",
+        "Grid equals 27",
+        "Time/Retired is 'Accident' or 'Retired'",
+        "Manufacturer is 'Aprilia'",
+        "Grid is 27"
+      ],
+      "confidence": 0.375,
+      "votes": [
+        [
+          "Time/Retired contains 'Accident'",
+          "Manufacturer = 'Aprilia'",
+          "Grid = '27'"
+        ],
+        [
+          "Time/Retired contains 'Accident'",
+          "Manufacturer equals 'Aprilia'",
+          "Grid equals 27"
+        ],
+        [
+          "Time/Retired is 'Accident' or 'Retired'",
+          "Manufacturer is 'Aprilia'",
+          "Grid is 27"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many records match all three filter conditions?",
+        "What are the Laps values for matching records?",
+        "Are Laps values numeric or need conversion?",
+        "Which rows have 'Accident' in the Time/Retired column?",
+        "Which rows have Manufacturer as 'Aprilia'?",
+        "Which rows have Grid equal to 27?",
+        "What are the Laps values for rows meeting all three criteria?",
+        "What is the mean of the Laps values after filtering?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How many records match all three filter conditions?",
+          "What are the Laps values for matching records?",
+          "Are Laps values numeric or need conversion?"
+        ],
+        [
+          "Which rows have 'Accident' in the Time/Retired column?",
+          "Which rows have Manufacturer as 'Aprilia'?",
+          "Which rows have Grid equal to 27?",
+          "What are the Laps values for rows meeting all three criteria?",
+          "What is the mean of the Laps values after filtering?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Motorcycle Race Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Motorcycle Race Results"
+        ],
+        [
+          "Motorcycle Race Results"
+        ],
+        [
+          "Motorcycle Race Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "laps": "count",
+        "time/retired": "time or status string",
+        "grid": "starting position"
+      },
+      "confidence": 0.8888888888888888,
+      "votes": [
+        {
+          "Laps": "count",
+          "Time/Retired": "time or status string",
+          "Grid": "starting position"
+        },
+        {
+          "Laps": "count",
+          "Grid": "position_number",
+          "Time/Retired": "time_or_status"
+        },
+        {
+          "Laps": "number of laps",
+          "Grid": "starting position"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Laps column is object dtype but appears to contain numeric values",
+        "Grid column is object dtype but appears to contain numeric positions",
+        "Time/Retired mixes time values (e.g., '+46:22.971') with status strings (e.g., 'Accident')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Laps column is object dtype but appears to contain numeric values",
+          "Grid column is object dtype but appears to contain numeric positions",
+          "Time/Retired mixes time values (e.g., '+46:22.971') with status strings (e.g., 'Accident')"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Laps should be convertible to numeric values",
+        "Grid values should be convertible to numeric positions",
+        "Time/Retired values starting with '+' indicate finishing times, others indicate DNF reasons",
+        "Laps must be convertible to numeric for averaging",
+        "Grid must be convertible to numeric for comparison with 27",
+        "Time/Retired must be checked for substring 'Accident' case-insensitively",
+        "Grid column should be numeric",
+        "Laps column should be numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Laps should be convertible to numeric values",
+          "Grid values should be convertible to numeric positions",
+          "Time/Retired values starting with '+' indicate finishing times, others indicate DNF reasons"
+        ],
+        [
+          "Laps must be convertible to numeric for averaging",
+          "Grid must be convertible to numeric for comparison with 27",
+          "Time/Retired must be checked for substring 'Accident' case-insensitively"
+        ],
+        [
+          "Grid column should be numeric",
+          "Laps column should be numeric"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter for Time/Retired values containing 'Accident' (case-insensitive)",
+        "Filter for Manufacturer exactly 'Aprilia'",
+        "Filter for Grid exactly '27'",
+        "Filter where Time/Retired status is 'Accident' (not a time value)",
+        "Filter where Manufacturer matches 'Aprilia' exactly",
+        "Filter where Grid value equals 27 after numeric conversion",
+        "Time/Retired is 'Accident' or 'Retired'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter for Time/Retired values containing 'Accident' (case-insensitive)",
+          "Filter for Manufacturer exactly 'Aprilia'",
+          "Filter for Grid exactly '27'"
+        ],
+        [
+          "Filter where Time/Retired status is 'Accident' (not a time value)",
+          "Filter where Manufacturer matches 'Aprilia' exactly",
+          "Filter where Grid value equals 27 after numeric conversion"
+        ],
+        [
+          "Time/Retired is 'Accident' or 'Retired'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if any matching records exist before computing average",
+        "Verify Laps distribution for matching records"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if any matching records exist before computing average",
+          "Verify Laps distribution for matching records"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Average should be a single numeric value",
+        "Handle case where no records match filters",
+        "Return a single numeric value representing the average",
+        "Handle case where no records match the criteria (return null or 0)",
+        "Round to appropriate precision for lap counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Average should be a single numeric value",
+          "Handle case where no records match filters"
+        ],
+        [
+          "Return a single numeric value representing the average",
+          "Handle case where no records match the criteria (return null or 0)",
+          "Round to appropriate precision for lap counts"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6131944444444446
+}

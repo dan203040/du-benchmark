@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2 to 29, 2019",
+    "filters": [
+      "Time range: 2019-09-02 to 2019-09-29",
+      "Satellite: Swarm-A only"
+    ],
+    "grouping_variables": [
+      "timepoint"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Extract satellite positions from SP3 files",
+      "Interpolate geopotential field from mock_tiegcm_grid_sept2019.npz",
+      "Compute geopotential energy at each timepoint",
+      "Average energy values over time period"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "mock_tiegcm_grid_sept2019.npz",
+      "SP3 orbital data files (not provided in sample)"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "SP3 file format not specified in data files",
+      "Missing SP3 data source for satellite positions"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat_grid": "degrees",
+      "lon_grid": "degrees",
+      "alt_grid": "km",
+      "geopotential_energy": "J/kg",
+      "earth_radius": "km",
+      "g": "m/s\u00b2"
+    },
+    "scale_issues": [
+      "alt_grid appears to be in km (100-500 range), but earth radius given as 6371.0 km - need consistent units for altitude calculations"
+    ],
+    "cross_source_conflicts": [
+      "SP3 files needed for satellite positions but not provided in data files"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows missing values in alt_grid column (empty cells)",
+      "lat_grid: float64, lon_grid: int64, alt_grid: float64",
+      "72 rows in mock_tiegcm_grid_sept2019.npz"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Earth radius = 6371.0 km",
+      "g = 9.80665 m/s\u00b2",
+      "Time period: September 2-29, 2019",
+      "Output rounded to 2 decimal places"
+    ],
+    "derived_filters": [
+      "Filter SP3 data to Swarm-A satellite only",
+      "Filter SP3 data to specified date range"
+    ],
+    "statistical_tests": [
+      "Check for missing values in alt_grid",
+      "Validate interpolation accuracy for geopotential field"
+    ],
+    "output_format_requirements": [
+      "Numeric scalar with 2 decimal places",
+      "Units: J/kg"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Mean geopotential energy per unit mass (J/kg) for Swarm-A satellite from September 2 to 29, 2019\",\n        \"filters\": [\"Time range: 2019-09-02 to 2019-09-29\", \"Satellite: Swarm-A only\"],\n        \"grouping_variables\": [\"timepoint\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Extract satellite positions from SP3 files\", \"Interpolate geopotential field from mock_tiegcm_grid_sept2019.npz\", \"Compute geopotential energy at each timepoint\", \"Average energy values over time period\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"mock_tiegcm_grid_sept2019.npz\", \"SP3 orbital data files (not provided in sample)\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"SP3 file format not specified in data files\", \"Missing SP3 data source for satellite positions\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"lat_grid\": \"degrees\",\n            \"lon_grid\": \"degrees\",\n            \"alt_grid\": \"km\",\n            \"geopotential_energy\": \"J/kg\",\n            \"earth_radius\": \"km\",\n            \"g\": \"m/s\u00b2\"\n        },\n        \"scale_issues\": [\"alt_grid appears to be in km (100-500 range), but earth radius given as 6371.0 km - need consistent units for altitude calculations\"],\n        \"cross_source_conflicts\": [\"SP3 files needed for satellite positions but not provided in data files\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 3,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows missing values in alt_grid column (empty cells)\", \"lat_grid: float64, lon_grid: int64, alt_grid: float64\", \"72 rows in mock_tiegcm_grid_sept2019.npz\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Earth radius = 6371.0 km\", \"g = 9.80665 m/s\u00b2\", \"Time period: September 2-29, 2019\", \"Output rounded to 2 decimal places\"],\n        \"derived_filters\": [\"Filter SP3 data to Swarm-A satellite only\", \"Filter SP3 data to specified date range\"],\n        \"statistical_tests\": [\"Check for missing values in alt_grid\", \"Validate interpolation accuracy for geopotential field\"],\n        \"output_format_requirements\": [\"Numeric scalar with 2 decimal places\", \"Units: J/kg\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.718982934951782,
+  "token_usage": {
+    "input_tokens": 928,
+    "output_tokens": 634
+  }
+}

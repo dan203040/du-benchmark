@@ -1,0 +1,66 @@
+{
+  "m_q": {
+    "target_metric": "Retention rate for each cohort by month",
+    "filters": [],
+    "grouping_variables": [
+      "CohortMonth"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Identify unique customers for each cohort in the first month.",
+      "Determine which of these customers made purchases in subsequent months.",
+      "Calculate the retention rate by dividing the number of retained customers by the initial cohort size for each month."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Quantity": "number of items",
+      "UnitPrice": "monetary unit"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "InvoiceDate needs to be parsed as datetime."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "CustomerID should be unique for each customer.",
+      "InvoiceDate should be within a reasonable range."
+    ],
+    "derived_filters": [
+      "Create a CohortMonth column by extracting the year and month from the InvoiceDate for each customer's first purchase.",
+      "Create a MonthOffset column representing the number of months since the CohortMonth."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output CSV (retension.csv) should have 'CohortMonth' as the first column, followed by columns representing the retention rate for each subsequent month (1, 2, 3, ...).",
+      "Retention rates should be represented as percentages."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Retention rate for each cohort by month\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"CohortMonth\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Identify unique customers for each cohort in the first month.\",\n      \"Determine which of these customers made purchases in subsequent months.\",\n      \"Calculate the retention rate by dividing the number of retained customers by the initial cohort size for each month.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"online.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Quantity\": \"number of items\",\n      \"UnitPrice\": \"monetary unit\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"InvoiceDate needs to be parsed as datetime.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"CustomerID should be unique for each customer.\",\n      \"InvoiceDate should be within a reasonable range.\"\n    ],\n    \"derived_filters\": [\n      \"Create a CohortMonth column by extracting the year and month from the InvoiceDate for each customer's first purchase.\",\n      \"Create a MonthOffset column representing the number of months since the CohortMonth.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output CSV (retension.csv) should have 'CohortMonth' as the first column, followed by columns representing the retention rate for each subsequent month (1, 2, 3, ...).\",\n      \"Retention rates should be represented as percentages.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.318603992462158,
+  "token_usage": {}
+}

@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "year with greatest relative increase in total reports (Fraud, Identity Theft and Other) compared to previous year",
+    "filters": [
+      "Year >= 2002",
+      "Year <= 2024"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate total reports for each year",
+      "Calculate year-over-year relative increase for each year",
+      "Identify maximum relative increase"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "# of Reports": "total_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "# of Reports": "count of reports"
+    },
+    "scale_issues": [
+      "Year column appears as float64 but contains integer years",
+      "# of Reports column is float64 but contains integer counts"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year values include decimal .0 suffix",
+      "Column names contain special characters (#)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be integers between 2001-2024",
+      "# of Reports should be non-negative integers",
+      "Data should be sorted by Year ascending"
+    ],
+    "derived_filters": [
+      "Exclude 2001 as baseline year for comparison",
+      "Require consecutive years for year-over-year calculation"
+    ],
+    "statistical_tests": [
+      "Check for missing years in sequence",
+      "Verify monotonic increase in reports over time"
+    ],
+    "output_format_requirements": [
+      "Year value as integer",
+      "Relative increase as percentage"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"year with greatest relative increase in total reports (Fraud, Identity Theft and Other) compared to previous year\",\n        \"filters\": [\"Year >= 2002\", \"Year <= 2024\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Calculate total reports for each year\", \"Calculate year-over-year relative increase for each year\", \"Identify maximum relative increase\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Report_Count.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {\"# of Reports\": \"total_reports\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"calendar year\", \"# of Reports\": \"count of reports\"},\n        \"scale_issues\": [\"Year column appears as float64 but contains integer years\", \"# of Reports column is float64 but contains integer counts\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year values include decimal .0 suffix\", \"Column names contain special characters (#)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be integers between 2001-2024\", \"# of Reports should be non-negative integers\", \"Data should be sorted by Year ascending\"],\n        \"derived_filters\": [\"Exclude 2001 as baseline year for comparison\", \"Require consecutive years for year-over-year calculation\"],\n        \"statistical_tests\": [\"Check for missing years in sequence\", \"Verify monotonic increase in reports over time\"],\n        \"output_format_requirements\": [\"Year value as integer\", \"Relative increase as percentage\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.25355076789856,
+  "token_usage": {
+    "input_tokens": 795,
+    "output_tokens": 445
+  }
+}

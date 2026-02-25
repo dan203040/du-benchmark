@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "maximum value of 'No. of Titles' column",
+    "filters": [],
+    "grouping_variables": [
+      "Player Name"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which player(s) have the highest number of titles?",
+      "Are there multiple players tied for the highest number of titles?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Squash Players Ranking"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "No. of Titles": "count",
+      "Runner-up": "count",
+      "Final Appearances": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rank column contains duplicate values (e.g., rank 6 appears twice)",
+      "Data appears to be sorted by Rank column"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "No. of Titles >= 0",
+      "Final Appearances = No. of Titles + Runner-up",
+      "Rank values should be unique but data shows duplicates"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for duplicate player names",
+      "Verify consistency: Final Appearances = No. of Titles + Runner-up"
+    ],
+    "output_format_requirements": [
+      "Player name(s) with highest No. of Titles value",
+      "Include the actual number of titles"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"maximum value of 'No. of Titles' column\",\n        \"filters\": [],\n        \"grouping_variables\": [\"Player Name\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which player(s) have the highest number of titles?\", \"Are there multiple players tied for the highest number of titles?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Squash Players Ranking\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"No. of Titles\": \"count\", \"Runner-up\": \"count\", \"Final Appearances\": \"count\"},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Rank column contains duplicate values (e.g., rank 6 appears twice)\", \"Data appears to be sorted by Rank column\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"No. of Titles >= 0\", \"Final Appearances = No. of Titles + Runner-up\", \"Rank values should be unique but data shows duplicates\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [\"Check for duplicate player names\", \"Verify consistency: Final Appearances = No. of Titles + Runner-up\"],\n        \"output_format_requirements\": [\"Player name(s) with highest No. of Titles value\", \"Include the actual number of titles\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.216062068939209,
+  "token_usage": {
+    "input_tokens": 856,
+    "output_tokens": 397
+  }
+}

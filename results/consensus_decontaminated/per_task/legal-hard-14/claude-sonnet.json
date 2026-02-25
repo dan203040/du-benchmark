@@ -1,0 +1,109 @@
+{
+  "m_q": {
+    "target_metric": "Top 5 distinct Metropolitan areas with highest number of Identity Theft reports",
+    "filters": [
+      "New England states only (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont)",
+      "Year 2024"
+    ],
+    "grouping_variables": [
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which files contain data for New England states?",
+      "What are the New England states?",
+      "How to identify distinct Metropolitan areas across multiple states?",
+      "How to handle Metropolitan areas that span multiple states?",
+      "How to rank Metropolitan areas by number of reports?",
+      "How to select top 5 after ranking?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Connecticut.csv",
+      "Maine.csv",
+      "Massachusetts.csv",
+      "NewHampshire.csv",
+      "RhodeIsland.csv",
+      "Vermont.csv",
+      "new_england_states.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "new_england_states.csv",
+        "right_source": "state data files",
+        "left_column": "Name",
+        "right_column": "state identifier in filename",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "All state files have identical schema with columns: Metropolitan Area, # of Reports",
+      "Last row in each state file contains metadata footnote, not data"
+    ],
+    "column_mappings": {
+      "# of Reports": "num_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Metropolitan Area": "categorical text"
+    },
+    "scale_issues": [
+      "Reports are absolute counts, not rates per population"
+    ],
+    "cross_source_conflicts": [
+      "Metropolitan areas may appear in multiple state files if they span state boundaries",
+      "Same Metropolitan area should not be double-counted when aggregating"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row contains metadata text instead of data",
+      "Metropolitan Area names are quoted strings",
+      "# of Reports column contains float64 values with .0 suffix",
+      "Footer row has NaN in # of Reports column",
+      "Metropolitan Area names include state abbreviations and area type designations"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must filter to only New England states: Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont",
+      "Must exclude footer/metadata rows from each file",
+      "Must deduplicate Metropolitan areas that appear in multiple state files",
+      "Must return exactly 5 Metropolitan areas",
+      "Must rank by number of Identity Theft reports in descending order",
+      "Result must be distinct Metropolitan areas"
+    ],
+    "derived_filters": [
+      "Exclude rows where '# of Reports' is NaN or null",
+      "Exclude rows where 'Metropolitan Area' contains 'Metropolitan Areas are defined'",
+      "For multi-state Metropolitan areas, use the maximum or aggregate count appropriately"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return list of 5 Metropolitan area names",
+      "Ordered by number of reports descending",
+      "Include only distinct Metropolitan areas",
+      "Include both Metropolitan area name and report count for clarity"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 5 distinct Metropolitan areas with highest number of Identity Theft reports\",\n    \"filters\": [\"New England states only (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont)\", \"Year 2024\"],\n    \"grouping_variables\": [\"Metropolitan Area\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which files contain data for New England states?\",\n      \"What are the New England states?\",\n      \"How to identify distinct Metropolitan areas across multiple states?\",\n      \"How to handle Metropolitan areas that span multiple states?\",\n      \"How to rank Metropolitan areas by number of reports?\",\n      \"How to select top 5 after ranking?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Connecticut.csv\",\n      \"Maine.csv\",\n      \"Massachusetts.csv\",\n      \"NewHampshire.csv\",\n      \"RhodeIsland.csv\",\n      \"Vermont.csv\",\n      \"new_england_states.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"new_england_states.csv\",\n        \"right_source\": \"state data files\",\n        \"left_column\": \"Name\",\n        \"right_column\": \"state identifier in filename\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"All state files have identical schema with columns: Metropolitan Area, # of Reports\",\n      \"Last row in each state file contains metadata footnote, not data\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports\": \"num_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Metropolitan Area\": \"categorical text\"\n    },\n    \"scale_issues\": [\n      \"Reports are absolute counts, not rates per population\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Metropolitan areas may appear in multiple state files if they span state boundaries\",\n      \"Same Metropolitan area should not be double-counted when aggregating\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Last row contains metadata text instead of data\",\n      \"Metropolitan Area names are quoted strings\",\n      \"# of Reports column contains float64 values with .0 suffix\",\n      \"Footer row has NaN in # of Reports column\",\n      \"Metropolitan Area names include state abbreviations and area type designations\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must filter to only New England states: Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont\",\n      \"Must exclude footer/metadata rows from each file\",\n      \"Must deduplicate Metropolitan areas that appear in multiple state files\",\n      \"Must return exactly 5 Metropolitan areas\",\n      \"Must rank by number of Identity Theft reports in descending order\",\n      \"Result must be distinct Metropolitan areas\"\n    ],\n    \"derived_filters\": [\n      \"Exclude rows where '# of Reports' is NaN or null\",\n      \"Exclude rows where 'Metropolitan Area' contains 'Metropolitan Areas are defined'\",\n      \"For multi-state Metropolitan areas, use the maximum or aggregate count appropriately\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return list of 5 Metropolitan area names\",\n      \"Ordered by number of reports descending\",\n      \"Include only distinct Metropolitan areas\",\n      \"Include both Metropolitan area name and report count for clarity\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.429314136505127,
+  "token_usage": {
+    "input_tokens": 14114,
+    "output_tokens": 933
+  }
+}

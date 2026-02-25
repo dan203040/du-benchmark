@@ -1,0 +1,64 @@
+{
+  "m_q": {
+    "target_metric": "Country with the highest percentage of agricultural land after imputing missing values with the mean.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Calculate the mean of 'Agricultural Land( %)'",
+      "Impute missing values in 'Agricultural Land( %)' with the calculated mean",
+      "Find the maximum value in the imputed 'Agricultural Land( %)' column",
+      "Identify the country corresponding to the maximum 'Agricultural Land( %)'"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Agricultural Land( %)": "percentage",
+      "Land Area(Km2)": "square kilometers"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentage values in 'Agricultural Land( %)' column need to be converted to numeric type by removing the '%'",
+      "Numeric values with commas need to be converted to numeric type by removing the commas"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Agricultural Land( %)' column may contain missing values that need to be imputed.",
+      "The 'Agricultural Land( %)' column is stored as text and needs to be converted to a numeric type for calculations.",
+      "The 'Land Area(Km2)' column is stored as text and needs to be converted to a numeric type for calculations.",
+      "The 'Population' column is stored as text and needs to be converted to a numeric type for calculations."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output the country with the highest agricultural land percentage and the corresponding percentage."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Country with the highest percentage of agricultural land after imputing missing values with the mean.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Calculate the mean of 'Agricultural Land( %)'\",\n      \"Impute missing values in 'Agricultural Land( %)' with the calculated mean\",\n      \"Find the maximum value in the imputed 'Agricultural Land( %)' column\",\n      \"Identify the country corresponding to the maximum 'Agricultural Land( %)'\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"world-data-2023.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Agricultural Land( %)\": \"percentage\",\n      \"Land Area(Km2)\": \"square kilometers\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 35,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Percentage values in 'Agricultural Land( %)' column need to be converted to numeric type by removing the '%'\",\n      \"Numeric values with commas need to be converted to numeric type by removing the commas\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Agricultural Land( %)' column may contain missing values that need to be imputed.\",\n      \"The 'Agricultural Land( %)' column is stored as text and needs to be converted to a numeric type for calculations.\",\n      \"The 'Land Area(Km2)' column is stored as text and needs to be converted to a numeric type for calculations.\",\n      \"The 'Population' column is stored as text and needs to be converted to a numeric type for calculations.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output the country with the highest agricultural land percentage and the corresponding percentage.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.0069379806518555,
+  "token_usage": {}
+}

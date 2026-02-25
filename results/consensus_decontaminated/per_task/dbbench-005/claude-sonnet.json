@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "League names other than NPSL that NY men's soccer team has played in",
+    "filters": [
+      "League != 'NPSL'"
+    ],
+    "grouping_variables": [
+      "League"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What are all unique values in the League column?",
+      "Which league values are not equal to 'NPSL'?",
+      "How many distinct leagues other than NPSL appear in the dataset?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Soccer Team Performance Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year or season range",
+      "Division": "league division level (numeric)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A",
+      "Did not qualify",
+      "Did not enter",
+      "In progress",
+      "Upcoming",
+      "Season cancelled"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column contains both single years (e.g., '2008') and season ranges (e.g., '2010\u201311', '2016-17')",
+      "Different dash characters used in year ranges (em-dash vs hyphen)",
+      "Multiple status values in Regular Season, Playoffs, and Open Cup columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "League column must not be null or empty",
+      "Filter out rows where League = 'NPSL'"
+    ],
+    "derived_filters": [
+      "Exclude NPSL from League values"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return distinct league names only",
+      "Exclude 'NPSL' from results",
+      "Output should be a list of league names"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"League names other than NPSL that NY men's soccer team has played in\",\n    \"filters\": [\"League != 'NPSL'\"],\n    \"grouping_variables\": [\"League\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What are all unique values in the League column?\",\n      \"Which league values are not equal to 'NPSL'?\",\n      \"How many distinct leagues other than NPSL appear in the dataset?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Soccer Team Performance Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year or season range\",\n      \"Division\": \"league division level (numeric)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/A\", \"Did not qualify\", \"Did not enter\", \"In progress\", \"Upcoming\", \"Season cancelled\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Year column contains both single years (e.g., '2008') and season ranges (e.g., '2010\u201311', '2016-17')\",\n      \"Different dash characters used in year ranges (em-dash vs hyphen)\",\n      \"Multiple status values in Regular Season, Playoffs, and Open Cup columns\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"League column must not be null or empty\",\n      \"Filter out rows where League = 'NPSL'\"\n    ],\n    \"derived_filters\": [\n      \"Exclude NPSL from League values\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return distinct league names only\",\n      \"Exclude 'NPSL' from results\",\n      \"Output should be a list of league names\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.87270188331604,
+  "token_usage": {
+    "input_tokens": 1037,
+    "output_tokens": 558
+  }
+}

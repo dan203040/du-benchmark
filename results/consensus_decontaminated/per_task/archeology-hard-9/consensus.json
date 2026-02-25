@@ -1,0 +1,442 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Correlation coefficient (to 6 decimal places) between ancient Roman city rank and modern city population for cities with population > 1,000,000",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Correlation coefficient (to 6 decimal places) between ancient Roman city rank and modern city population for cities with population > 1,000,000",
+        "Correlation coefficient between the rank of ancient Roman cities and the population of their corresponding modern cities, rounded to 6 decimal places",
+        "Pearson correlation between the rank of ancient Roman cities and the population of their corresponding modern cities with a population of over one million, rounded to 6 decimal places."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Barrington Atlas Rank not null",
+        "population > 1000000",
+        "distance between ancient and modern city coordinates < 0.1 degrees",
+        "Modern cities with population > 1,000,000",
+        "Ancient cities within 0.1 degrees distance of modern cities",
+        "If multiple ancient cities match, take the last sample in the data",
+        "Distance between ancient and modern cities < 0.1 degrees",
+        "Take the last sample in the data if there are multiple ancient cities"
+      ],
+      "confidence": 0.375,
+      "votes": [
+        [
+          "Barrington Atlas Rank not null",
+          "population > 1000000",
+          "distance between ancient and modern city coordinates < 0.1 degrees"
+        ],
+        [
+          "Modern cities with population > 1,000,000",
+          "Ancient cities within 0.1 degrees distance of modern cities",
+          "If multiple ancient cities match, take the last sample in the data"
+        ],
+        [
+          "Modern cities with population > 1,000,000",
+          "Distance between ancient and modern cities < 0.1 degrees",
+          "Take the last sample in the data if there are multiple ancient cities"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Ancient Toponym",
+        "Modern Toponym"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Ancient Toponym",
+          "Modern Toponym"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to handle 'or' in Barrington Atlas Rank? (take average)",
+        "How to match ancient to modern cities? (distance < 0.1 degrees)",
+        "How to handle multiple ancient cities? (take last sample)",
+        "How to calculate correlation? (Pearson correlation)",
+        "How to parse 'Barrington Atlas Rank' values containing 'or' to compute average?",
+        "How to compute distance between ancient city coordinates (Longitude (X), Latitude (Y)) and modern city coordinates (lng, lat)?",
+        "Which ancient-modern city pairs are within 0.1 degrees distance?",
+        "Which modern cities have population > 1,000,000?",
+        "If multiple ancient cities match the same modern city, which is the last sample?",
+        "What is the Pearson correlation between rank and population for matched pairs?",
+        "Determine the rank of each ancient Roman city, averaging ranks if 'or' is present.",
+        "Find the modern city corresponding to each ancient Roman city based on proximity.",
+        "Filter modern cities to include only those with a population greater than 1,000,000.",
+        "Calculate the Pearson correlation between the ancient city ranks and modern city populations."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How to handle 'or' in Barrington Atlas Rank? (take average)",
+          "How to match ancient to modern cities? (distance < 0.1 degrees)",
+          "How to handle multiple ancient cities? (take last sample)",
+          "How to calculate correlation? (Pearson correlation)"
+        ],
+        [
+          "How to parse 'Barrington Atlas Rank' values containing 'or' to compute average?",
+          "How to compute distance between ancient city coordinates (Longitude (X), Latitude (Y)) and modern city coordinates (lng, lat)?",
+          "Which ancient-modern city pairs are within 0.1 degrees distance?",
+          "Which modern cities have population > 1,000,000?",
+          "If multiple ancient cities match the same modern city, which is the last sample?",
+          "What is the Pearson correlation between rank and population for matched pairs?"
+        ],
+        [
+          "Determine the rank of each ancient Roman city, averaging ranks if 'or' is present.",
+          "Find the modern city corresponding to each ancient Roman city based on proximity.",
+          "Filter modern cities to include only those with a population greater than 1,000,000.",
+          "Calculate the Pearson correlation between the ancient city ranks and modern city populations."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "roman_cities.csv",
+        "worldcities.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "roman_cities.csv",
+          "worldcities.csv"
+        ],
+        [
+          "roman_cities.csv",
+          "worldcities.csv"
+        ],
+        [
+          "roman_cities.csv",
+          "worldcities.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "roman_cities.csv uses 'Longitude (X)' and 'Latitude (Y)' while worldcities.csv uses 'lng' and 'lat'",
+        "roman_cities.csv has 'Modern Toponym' while worldcities.csv has 'city' and 'city_ascii'",
+        "Coordinate column names differ: 'Longitude (X)' vs 'lng', 'Latitude (Y)' vs 'lat'",
+        "City name columns differ: 'Ancient Toponym', 'Modern Toponym' vs 'city', 'city_ascii'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "roman_cities.csv uses 'Longitude (X)' and 'Latitude (Y)' while worldcities.csv uses 'lng' and 'lat'",
+          "roman_cities.csv has 'Modern Toponym' while worldcities.csv has 'city' and 'city_ascii'"
+        ],
+        [
+          "Coordinate column names differ: 'Longitude (X)' vs 'lng', 'Latitude (Y)' vs 'lat'",
+          "City name columns differ: 'Ancient Toponym', 'Modern Toponym' vs 'city', 'city_ascii'"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "barrington atlas rank": "ordinal rank (1=highest, 3=lowest)",
+        "population": "number of people",
+        "longitude (x)": "degrees",
+        "latitude (y)": "degrees",
+        "lng": "degrees",
+        "lat": "degrees",
+        "start date": "year",
+        "end date": "year"
+      },
+      "confidence": 0.8333333333333333,
+      "votes": [
+        {
+          "Barrington Atlas Rank": "ordinal rank (1=highest, 3=lowest)",
+          "population": "number of people",
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "lng": "degrees",
+          "lat": "degrees"
+        },
+        {
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "lng": "degrees",
+          "lat": "degrees",
+          "population": "count",
+          "Barrington Atlas Rank": "ordinal_rank",
+          "Start Date": "year",
+          "End Date": "year"
+        },
+        {
+          "Barrington Atlas Rank": "rank",
+          "population": "people",
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "lat": "degrees",
+          "lng": "degrees"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Population values are very large (millions)",
+        "Rank values are small (1-3)",
+        "Coordinate values are in degrees",
+        "Population values are in raw counts (e.g., 37732000.0)",
+        "Distance threshold is 0.1 degrees (approximately 11 km at equator)",
+        "Rank values may contain 'or' requiring averaging"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Population values are very large (millions)",
+          "Rank values are small (1-3)",
+          "Coordinate values are in degrees"
+        ],
+        [
+          "Population values are in raw counts (e.g., 37732000.0)",
+          "Distance threshold is 0.1 degrees (approximately 11 km at equator)",
+          "Rank values may contain 'or' requiring averaging"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Coordinate systems may differ (WGS84 assumed)",
+        "Ancient city names may not match modern city names exactly",
+        "Ancient cities may have different toponyms than modern cities despite geographic proximity",
+        "Multiple ancient cities may map to the same modern city location"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Coordinate systems may differ (WGS84 assumed)",
+          "Ancient city names may not match modern city names exactly"
+        ],
+        [
+          "Ancient cities may have different toponyms than modern cities despite geographic proximity",
+          "Multiple ancient cities may map to the same modern city location"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "Unknown",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333333,
+      "votes": [
+        [
+          "",
+          "Unknown",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 1.0,
+      "votes": [
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Distance calculation: sqrt((lng1-lng2)^2 + (lat1-lat2)^2) < 0.1",
+        "Rank parsing: if 'or' exists, take average of two numbers",
+        "Multiple ancient cities: take last sample in data",
+        "Population filter: > 1000000",
+        "Correlation: Pearson correlation coefficient",
+        "Rounding: to 6 decimal places",
+        "Distance between ancient and modern city must be < 0.1 degrees",
+        "Modern city population must be > 1,000,000",
+        "If 'Barrington Atlas Rank' contains 'or', compute average of the two numbers",
+        "If multiple ancient cities match same modern city, select last sample from data",
+        "Correlation must be rounded to exactly 6 decimal places",
+        "Calculate distance between ancient and modern cities using longitude and latitude.",
+        "Handle missing values in 'Barrington Atlas Rank'.",
+        "Ensure that the population is a valid number."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Distance calculation: sqrt((lng1-lng2)^2 + (lat1-lat2)^2) < 0.1",
+          "Rank parsing: if 'or' exists, take average of two numbers",
+          "Multiple ancient cities: take last sample in data",
+          "Population filter: > 1000000",
+          "Correlation: Pearson correlation coefficient",
+          "Rounding: to 6 decimal places"
+        ],
+        [
+          "Distance between ancient and modern city must be < 0.1 degrees",
+          "Modern city population must be > 1,000,000",
+          "If 'Barrington Atlas Rank' contains 'or', compute average of the two numbers",
+          "If multiple ancient cities match same modern city, select last sample from data",
+          "Correlation must be rounded to exactly 6 decimal places"
+        ],
+        [
+          "Calculate distance between ancient and modern cities using longitude and latitude.",
+          "Handle missing values in 'Barrington Atlas Rank'.",
+          "Ensure that the population is a valid number."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows where Barrington Atlas Rank is null",
+        "Filter out rows where population <= 1000000",
+        "Filter out rows where distance >= 0.1 degrees",
+        "Calculate Euclidean distance: sqrt((lng - Longitude(X))^2 + (lat - Latitude(Y))^2) < 0.1",
+        "Filter worldcities where population > 1000000",
+        "Parse rank values to handle 'or' format and convert to numeric average",
+        "Remove rows where rank is null or cannot be parsed",
+        "Distance between ancient and modern cities < 0.1 degrees",
+        "Modern cities with population > 1,000,000"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows where Barrington Atlas Rank is null",
+          "Filter out rows where population <= 1000000",
+          "Filter out rows where distance >= 0.1 degrees"
+        ],
+        [
+          "Calculate Euclidean distance: sqrt((lng - Longitude(X))^2 + (lat - Latitude(Y))^2) < 0.1",
+          "Filter worldcities where population > 1000000",
+          "Parse rank values to handle 'or' format and convert to numeric average",
+          "Remove rows where rank is null or cannot be parsed"
+        ],
+        [
+          "Distance between ancient and modern cities < 0.1 degrees",
+          "Modern cities with population > 1,000,000"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation test",
+        "Check for normality of rank and population distributions",
+        "Pearson correlation coefficient between parsed rank values and population values",
+        "Pearson correlation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation test",
+          "Check for normality of rank and population distributions"
+        ],
+        [
+          "Pearson correlation coefficient between parsed rank values and population values"
+        ],
+        [
+          "Pearson correlation"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single correlation coefficient",
+        "Rounded to 6 decimal places",
+        "No additional text or formatting",
+        "Output must be a single numeric value",
+        "Value must be rounded to exactly 6 decimal places",
+        "Format: X.XXXXXX",
+        "Round the correlation to 6 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single correlation coefficient",
+          "Rounded to 6 decimal places",
+          "No additional text or formatting"
+        ],
+        [
+          "Output must be a single numeric value",
+          "Value must be rounded to exactly 6 decimal places",
+          "Format: X.XXXXXX"
+        ],
+        [
+          "Round the correlation to 6 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.61375
+}

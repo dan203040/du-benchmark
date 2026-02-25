@@ -1,0 +1,133 @@
+{
+  "m_q": {
+    "target_metric": "RMSE (Root Mean Square Error) for two separate single-variable linear regression models predicting Swarm Alpha along-track acceleration 3 hours ahead",
+    "filters": [
+      "Date equals May 11, 2024 (day 132 of 2024)",
+      "Satellite: Swarm Alpha",
+      "Prediction horizon: 3 hours ahead"
+    ],
+    "grouping_variables": [
+      "Model type (Model 1: Kp index input, Model 2: Pdyn input)"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the structure and temporal resolution of OMNI Kp index data for May 11, 2024?",
+      "What is the structure and temporal resolution of OMNI solar wind dynamic pressure (Pdyn) data for May 11, 2024?",
+      "What is the along-track acceleration data for Swarm Alpha on May 11, 2024?",
+      "How to align temporal resolutions between OMNI data (hourly) and Swarm acceleration data?",
+      "How to create lagged features for 3-hour ahead prediction?",
+      "How to split data into training and test sets?",
+      "What is the RMSE for Model 1 (Kp as predictor) on the test set?",
+      "What is the RMSE for Model 2 (Pdyn as predictor) on the test set?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "omni2_Kp_Index.lst",
+      "omni2_Flow_Pressure.lst",
+      "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+    ],
+    "join_keys": [
+      {
+        "left_source": "omni2_Kp_Index.lst",
+        "right_source": "omni2_Flow_Pressure.lst",
+        "left_column": "timestamp (derived from columns 0-2)",
+        "right_column": "timestamp (derived from columns 0-2)",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "OMNI data (joined Kp and Pdyn)",
+        "right_source": "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf",
+        "left_column": "timestamp",
+        "right_column": "timestamp",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "omni2_Kp_Index.lst and omni2_Flow_Pressure.lst have unnamed columns requiring interpretation",
+      "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf failed to parse - only contains error message",
+      "Column headers not present in OMNI files - must infer from context (year, day of year, hour, value)"
+    ],
+    "column_mappings": {
+      "2024": "year",
+      "132": "day_of_year",
+      "0": "hour",
+      "90": "kp_index_value",
+      "20.76": "pdyn_value"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "kp_index_value": "Kp index (unitless, scaled by 10, e.g., 90 = 9.0, 83 = 8.3, 77 = 7.7)",
+      "pdyn_value": "nPa (nanoPascals) - solar wind dynamic pressure",
+      "hour": "hours (0-23)",
+      "day_of_year": "day number (132 = May 11 in leap year 2024)",
+      "swarm_acceleration": "m/s\u00b2 (expected unit for along-track acceleration)"
+    },
+    "scale_issues": [
+      "Kp index values appear to be scaled by 10 (90 = Kp 9.0, 83 = Kp 8.3)",
+      "Time resolution mismatch: OMNI data is hourly, Swarm data temporal resolution unknown due to CDF parse error",
+      "3-hour prediction lag requires temporal alignment and indexing"
+    ],
+    "cross_source_conflicts": [
+      "Swarm CDF file failed to parse - no acceleration data available",
+      "Cannot determine temporal resolution or data availability for Swarm Alpha acceleration",
+      "Unable to verify date/time alignment between OMNI and Swarm data sources"
+    ]
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "999.9",
+      "9999.99",
+      "99999",
+      "-1"
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "OMNI files are headerless CSV with 4 columns: year, day_of_year, hour, measurement_value",
+      "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf failed to parse with error message",
+      "CDF file format requires specialized parsing library (e.g., spacepy.pycdf, cdflib)",
+      "OMNI data has 23 rows (hours 0-22) suggesting incomplete day or data up to hour 22",
+      "Kp index changes every 3 hours typically but appears to be reported hourly with repeated values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Date must be May 11, 2024 (day 132 of year 2024)",
+      "Prediction horizon fixed at 3 hours ahead",
+      "Two separate models: Model 1 uses only Kp, Model 2 uses only Pdyn",
+      "Both models are single-variable linear regression",
+      "Output must be a list with exactly 2 numbers: [RMSE_Kp, RMSE_Pdyn]",
+      "RMSE calculated on test set only"
+    ],
+    "derived_filters": [
+      "Create lagged predictors: use Kp(t) to predict acceleration(t+3h) for Model 1",
+      "Create lagged predictors: use Pdyn(t) to predict acceleration(t+3h) for Model 2",
+      "Filter out rows where 3-hour ahead target is not available",
+      "Split data chronologically into training and test sets"
+    ],
+    "statistical_tests": [
+      "Linear regression fitting for Model 1: acceleration(t+3) ~ Kp(t)",
+      "Linear regression fitting for Model 2: acceleration(t+3) ~ Pdyn(t)",
+      "RMSE calculation: sqrt(mean((y_predicted - y_actual)^2))"
+    ],
+    "output_format_requirements": [
+      "Output must be a list with exactly 2 numeric values",
+      "Format: [RMSE_for_Kp_model, RMSE_for_Pdyn_model]",
+      "RMSE values should be positive real numbers",
+      "Values represent test set performance only"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"RMSE (Root Mean Square Error) for two separate single-variable linear regression models predicting Swarm Alpha along-track acceleration 3 hours ahead\",\n    \"filters\": [\n      \"Date equals May 11, 2024 (day 132 of 2024)\",\n      \"Satellite: Swarm Alpha\",\n      \"Prediction horizon: 3 hours ahead\"\n    ],\n    \"grouping_variables\": [\n      \"Model type (Model 1: Kp index input, Model 2: Pdyn input)\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What is the structure and temporal resolution of OMNI Kp index data for May 11, 2024?\",\n      \"What is the structure and temporal resolution of OMNI solar wind dynamic pressure (Pdyn) data for May 11, 2024?\",\n      \"What is the along-track acceleration data for Swarm Alpha on May 11, 2024?\",\n      \"How to align temporal resolutions between OMNI data (hourly) and Swarm acceleration data?\",\n      \"How to create lagged features for 3-hour ahead prediction?\",\n      \"How to split data into training and test sets?\",\n      \"What is the RMSE for Model 1 (Kp as predictor) on the test set?\",\n      \"What is the RMSE for Model 2 (Pdyn as predictor) on the test set?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"omni2_Kp_Index.lst\",\n      \"omni2_Flow_Pressure.lst\",\n      \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"omni2_Kp_Index.lst\",\n        \"right_source\": \"omni2_Flow_Pressure.lst\",\n        \"left_column\": \"timestamp (derived from columns 0-2)\",\n        \"right_column\": \"timestamp (derived from columns 0-2)\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"OMNI data (joined Kp and Pdyn)\",\n        \"right_source\": \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf\",\n        \"left_column\": \"timestamp\",\n        \"right_column\": \"timestamp\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"omni2_Kp_Index.lst and omni2_Flow_Pressure.lst have unnamed columns requiring interpretation\",\n      \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf failed to parse - only contains error message\",\n      \"Column headers not present in OMNI files - must infer from context (year, day of year, hour, value)\"\n    ],\n    \"column_mappings\": {\n      \"2024\": \"year\",\n      \"132\": \"day_of_year\",\n      \"0\": \"hour\",\n      \"90\": \"kp_index_value\",\n      \"20.76\": \"pdyn_value\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"kp_index_value\": \"Kp index (unitless, scaled by 10, e.g., 90 = 9.0, 83 = 8.3, 77 = 7.7)\",\n      \"pdyn_value\": \"nPa (nanoPascals) - solar wind dynamic pressure\",\n      \"hour\": \"hours (0-23)\",\n      \"day_of_year\": \"day number (132 = May 11 in leap year 2024)\",\n      \"swarm_acceleration\": \"m/s\u00b2 (expected unit for along-track acceleration)\"\n    },\n    \"scale_issues\": [\n      \"Kp index values appear to be scaled by 10 (90 = Kp 9.0, 83 = Kp 8.3)\",\n      \"Time resolution mismatch: OMNI data is hourly, Swarm data temporal resolution unknown due to CDF parse error\",\n      \"3-hour prediction lag requires temporal alignment and indexing\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Swarm CDF file failed to parse - no acceleration data available\",\n      \"Cannot determine temporal resolution or data availability for Swarm Alpha acceleration\",\n      \"Unable to verify date/time alignment between OMNI and Swarm data sources\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": false,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"999.9\",\n      \"9999.99\",\n      \"99999\",\n      \"-1\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"OMNI files are headerless CSV with 4 columns: year, day_of_year, hour, measurement_value\",\n      \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf failed to parse with error message\",\n      \"CDF file format requires specialized parsing library (e.g., spacepy.pycdf, cdflib)\",\n      \"OMNI data has 23 rows (hours 0-22) suggesting incomplete day or data up to hour 22\",\n      \"Kp index changes every 3 hours typically but appears to be reported hourly with repeated values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Date must be May 11, 2024 (day 132 of year 2024)\",\n      \"Prediction horizon fixed at 3 hours ahead\",\n      \"Two separate models: Model 1 uses only Kp, Model 2 uses only Pdyn\",\n      \"Both models are single-variable linear regression\",\n      \"Output must be a list with exactly 2 numbers: [RMSE_Kp, RMSE_Pdyn]\",\n      \"RMSE calculated on test set only\"\n    ],\n    \"derived_filters\": [\n      \"Create lagged predictors: use Kp(t) to predict acceleration(t+3h) for Model 1\",\n      \"Create lagged predictors: use Pdyn(t) to predict acceleration(t+3h) for Model 2\",\n      \"Filter out rows where 3-hour ahead target is not available\",\n      \"Split data chronologically into training and test sets\"\n    ],\n    \"statistical_tests\": [\n      \"Linear regression fitting for Model 1: acceleration(t+3) ~ Kp(t)\",\n      \"Linear regression fitting for Model 2: acceleration(t+3) ~ Pdyn(t)\",\n      \"RMSE calculation: sqrt(mean((y_predicted - y_actual)^2))\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be a list with exactly 2 numeric values\",\n      \"Format: [RMSE_for_Kp_model, RMSE_for_Pdyn_model]\",\n      \"RMSE values should be positive real numbers\",\n      \"Values represent test set performance only\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 29.06601595878601,
+  "token_usage": {
+    "input_tokens": 1357,
+    "output_tokens": 1848
+  }
+}

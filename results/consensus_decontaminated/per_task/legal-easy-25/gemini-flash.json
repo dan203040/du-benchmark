@@ -1,0 +1,56 @@
+{
+  "m_q": {
+    "target_metric": "Maximum 'Median Fraud Loss'",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Military Branch"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Median Fraud Loss": "USD"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "'Military Branch' must be one of the valid U.S. Military Branches"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Report the 'Military Branch' with the highest 'Median Fraud Loss'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum 'Median Fraud Loss'\",\n    \"filters\": [\"Year = 2024\"],\n    \"grouping_variables\": [\"Military Branch\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"Median Fraud Loss\": \"USD\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"'Military Branch' must be one of the valid U.S. Military Branches\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Report the 'Military Branch' with the highest 'Median Fraud Loss'\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.488832712173462,
+  "token_usage": {}
+}

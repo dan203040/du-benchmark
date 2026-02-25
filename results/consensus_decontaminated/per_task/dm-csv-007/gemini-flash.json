@@ -1,0 +1,66 @@
+{
+  "m_q": {
+    "target_metric": "Top 10 most popular movies based on a weighted rating formula, considering only movies in the top 15% of vote counts.",
+    "filters": [
+      "Movies whose vote_count is within the top 15% of all vote_counts"
+    ],
+    "grouping_variables": [
+      "title"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "tmdb_5000_movies.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "budget": "USD",
+      "revenue": "USD",
+      "runtime": "minutes"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 20,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Calculate the 15th percentile of vote_count.",
+      "Filter movies based on vote_count being greater than or equal to the 15th percentile.",
+      "Apply the weighted rating formula to the filtered movies.",
+      "Sort movies by the weighted rating in descending order.",
+      "Select the top 10 movies based on the sorted weighted rating."
+    ],
+    "derived_filters": [
+      "vote_count >= 15th percentile of vote_count"
+    ],
+    "statistical_tests": [
+      "Percentile calculation for vote_count"
+    ],
+    "output_format_requirements": [
+      "Write the 'title' of the top 10 movies to result.csv in a column named 'Movie'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 10 most popular movies based on a weighted rating formula, considering only movies in the top 15% of vote counts.\",\n    \"filters\": [\n      \"Movies whose vote_count is within the top 15% of all vote_counts\"\n    ],\n    \"grouping_variables\": [\n      \"title\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"tmdb_5000_movies.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"budget\": \"USD\",\n      \"revenue\": \"USD\",\n      \"runtime\": \"minutes\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 20,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Calculate the 15th percentile of vote_count.\",\n      \"Filter movies based on vote_count being greater than or equal to the 15th percentile.\",\n      \"Apply the weighted rating formula to the filtered movies.\",\n      \"Sort movies by the weighted rating in descending order.\",\n      \"Select the top 10 movies based on the sorted weighted rating.\"\n    ],\n    \"derived_filters\": [\n      \"vote_count >= 15th percentile of vote_count\"\n    ],\n    \"statistical_tests\": [\n      \"Percentile calculation for vote_count\"\n    ],\n    \"output_format_requirements\": [\n      \"Write the 'title' of the top 10 movies to result.csv in a column named 'Movie'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.16016697883606,
+  "token_usage": {}
+}

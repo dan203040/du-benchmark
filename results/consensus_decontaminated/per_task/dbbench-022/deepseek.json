@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "count of games played by the Badgers in October",
+    "filters": [
+      "Date column contains 'October'",
+      "Team is Badgers (implied from context)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to identify Badgers games from the schedule?",
+      "How to extract month from Date column?",
+      "Are there multiple seasons in the data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Schedule"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Date format varies (e.g., 'October 6' vs 'January 1, 2013')"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Attendance": "number of people",
+      "Time": "time of day"
+    },
+    "scale_issues": [
+      "Date column contains both simple month-day and full date formats"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date column has inconsistent formatting",
+      "Some values contain special characters (#, \u2022)",
+      "Result column contains W/L indicators and scores"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "All games in the file are Badgers games (implied from context)",
+      "Date column must be parsed to extract month"
+    ],
+    "derived_filters": [
+      "Filter rows where Date contains 'October'",
+      "Exclude rows with null/empty Date"
+    ],
+    "statistical_tests": [
+      "Count distinct October dates",
+      "Verify no duplicate dates"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of games played by the Badgers in October\",\n        \"filters\": [\"Date column contains 'October'\", \"Team is Badgers (implied from context)\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How to identify Badgers games from the schedule?\", \"How to extract month from Date column?\", \"Are there multiple seasons in the data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Football Schedule\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Date format varies (e.g., 'October 6' vs 'January 1, 2013')\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Attendance\": \"number of people\", \"Time\": \"time of day\"},\n        \"scale_issues\": [\"Date column contains both simple month-day and full date formats\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 8,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date column has inconsistent formatting\", \"Some values contain special characters (#, \u2022)\", \"Result column contains W/L indicators and scores\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"All games in the file are Badgers games (implied from context)\", \"Date column must be parsed to extract month\"],\n        \"derived_filters\": [\"Filter rows where Date contains 'October'\", \"Exclude rows with null/empty Date\"],\n        \"statistical_tests\": [\"Count distinct October dates\", \"Verify no duplicate dates\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.317363023757935,
+  "token_usage": {
+    "input_tokens": 1399,
+    "output_tokens": 424
+  }
+}

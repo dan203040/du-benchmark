@@ -1,0 +1,68 @@
+{
+  "m_q": {
+    "target_metric": "count of locomotives",
+    "filters": [
+      "Status == 'Operational'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What values exist in the Status column?",
+      "How many rows have Status equal to 'Operational'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Locomotive Inventory"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Number": "locomotive identifier",
+      "Status": "categorical status"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "~",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some Number fields are empty",
+      "Notes column uses '~' as placeholder for missing values",
+      "Type column contains multi-word values with quotes and special characters"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Status column must contain valid operational states",
+      "Each row represents one locomotive"
+    ],
+    "derived_filters": [
+      "Filter rows where Status equals 'Operational' (case-sensitive)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer count",
+      "Count only locomotives with Status='Operational'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"count of locomotives\",\n    \"filters\": [\"Status == 'Operational'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What values exist in the Status column?\",\n      \"How many rows have Status equal to 'Operational'?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Locomotive Inventory\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Number\": \"locomotive identifier\",\n      \"Status\": \"categorical status\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"~\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Some Number fields are empty\",\n      \"Notes column uses '~' as placeholder for missing values\",\n      \"Type column contains multi-word values with quotes and special characters\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Status column must contain valid operational states\",\n      \"Each row represents one locomotive\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Status equals 'Operational' (case-sensitive)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer count\",\n      \"Count only locomotives with Status='Operational'\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.323852062225342,
+  "token_usage": {
+    "input_tokens": 1292,
+    "output_tokens": 444
+  }
+}

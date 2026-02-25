@@ -1,0 +1,399 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Difference in bacterial exceedance rates (percentage points) between communities with >50% EJ populations and communities with <25% EJ populations, calculated as: (exceedance_rate_high_EJ - exceedance_rate_low_EJ) \u00d7 100, rounded to 2 decimal places",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Difference in bacterial exceedance rates (percentage points) between communities with >50% EJ populations and communities with <25% EJ populations, calculated as: (exceedance_rate_high_EJ - exceedance_rate_low_EJ) \u00d7 100, rounded to 2 decimal places",
+        "Difference in bacterial exceedance rates (violation rates) between communities with >50% EJ populations and communities with <25% EJ populations for marine beach samples in 2023, to 2 decimal places",
+        "Difference in bacterial exceedance rates (to 2 decimal places) for marine beach samples collected in 2023 between communities with >50% EJ populations and those with <25% EJ populations."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2023",
+        "Beach Type Description = 'Marine'",
+        "EJ population categories: >50% and <25%",
+        "Year == 2023",
+        "Beach Type Description == 'Marine'",
+        "Violation field is not null",
+        "Percent of population in EJ BGs > 50%",
+        "Percent of population in EJ BGs < 25%"
+      ],
+      "confidence": 0.4166666666666667,
+      "votes": [
+        [
+          "Year = 2023",
+          "Beach Type Description = 'Marine'",
+          "EJ population categories: >50% and <25%"
+        ],
+        [
+          "Year == 2023",
+          "Beach Type Description == 'Marine'",
+          "Violation field is not null"
+        ],
+        [
+          "Year = 2023",
+          "Beach Type Description = 'Marine'",
+          "Percent of population in EJ BGs > 50%",
+          "Percent of population in EJ BGs < 25%"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Community",
+        "EJ population category (>50% vs <25%)",
+        "EJ population group (>50% vs <25%)"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Community",
+          "EJ population category (>50% vs <25%)"
+        ],
+        [
+          "EJ population group (>50% vs <25%)",
+          "Community"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the bacterial exceedance rate for communities with >50% EJ populations?",
+        "What is the bacterial exceedance rate for communities with <25% EJ populations?",
+        "How are communities categorized by EJ population percentage?",
+        "How is bacterial exceedance defined (Violation = 'Yes')?",
+        "Which samples are from marine beaches in 2023?",
+        "What is the bacterial exceedance rate (percentage of samples with Violation='Yes') for marine beaches in communities with >50% EJ population in 2023?",
+        "What is the bacterial exceedance rate (percentage of samples with Violation='Yes') for marine beaches in communities with <25% EJ population in 2023?",
+        "What is the difference between these two rates to 2 decimal places?",
+        "Calculate the exceedance rate for communities with >50% EJ populations.",
+        "Calculate the exceedance rate for communities with <25% EJ populations.",
+        "Subtract the two exceedance rates and round to 2 decimal places."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What is the bacterial exceedance rate for communities with >50% EJ populations?",
+          "What is the bacterial exceedance rate for communities with <25% EJ populations?",
+          "How are communities categorized by EJ population percentage?",
+          "How is bacterial exceedance defined (Violation = 'Yes')?",
+          "Which samples are from marine beaches in 2023?"
+        ],
+        [
+          "What is the bacterial exceedance rate (percentage of samples with Violation='Yes') for marine beaches in communities with >50% EJ population in 2023?",
+          "What is the bacterial exceedance rate (percentage of samples with Violation='Yes') for marine beaches in communities with <25% EJ population in 2023?",
+          "What is the difference between these two rates to 2 decimal places?"
+        ],
+        [
+          "Calculate the exceedance rate for communities with >50% EJ populations.",
+          "Calculate the exceedance rate for communities with <25% EJ populations.",
+          "Subtract the two exceedance rates and round to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "environmental-justice-populations.csv",
+        "water-body-testing-2023.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "environmental-justice-populations.csv",
+          "water-body-testing-2023.csv"
+        ],
+        [
+          "environmental-justice-populations.csv",
+          "water-body-testing-2023.csv"
+        ],
+        [
+          "environmental-justice-populations.csv",
+          "water-body-testing-2023.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Municipality name format may differ between files (e.g., 'Provincetown' vs 'Provincetown')",
+        "EJ data has 187 municipalities while water testing has many communities - potential mismatch",
+        "Community vs Municipality column naming difference"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Municipality name format may differ between files (e.g., 'Provincetown' vs 'Provincetown')",
+          "EJ data has 187 municipalities while water testing has many communities - potential mismatch"
+        ],
+        [
+          "Community vs Municipality column naming difference"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "percent of population in ej bgs": "percentage",
+        "indicator level": "bacterial count units (CFU/100mL)",
+        "number of ej block groups": "count",
+        "total population": "count",
+        "exceedance_rate": "percentage"
+      },
+      "confidence": 0.6000000000000001,
+      "votes": [
+        {
+          "Percent of population in EJ BGs": "percentage",
+          "Indicator Level": "bacterial count units (CFU/100mL)",
+          "Number of EJ block groups": "count",
+          "Total population": "count"
+        },
+        {
+          "Percent of population in EJ BGs": "percentage",
+          "Indicator Level": "colony forming units or MPN per 100mL",
+          "exceedance_rate": "percentage"
+        },
+        {
+          "Percent of population in EJ BGs": "%",
+          "Indicator Level": "CFU/100mL"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "EJ percentages range 0-100%, need to categorize into >50% and <25% groups",
+        "Indicator Level values vary widely (5-178 in sample)",
+        "Percent of population in EJ BGs appears to be stored as percentage (0-100) not decimal (0-1)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "EJ percentages range 0-100%, need to categorize into >50% and <25% groups",
+          "Indicator Level values vary widely (5-178 in sample)"
+        ],
+        [
+          "Percent of population in EJ BGs appears to be stored as percentage (0-100) not decimal (0-1)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "EJ data uses 'Municipality' while water testing uses 'Community' - may not match exactly",
+        "Water testing includes multiple samples per beach/date while EJ data is municipality-level",
+        "Community names must match exactly between datasets for successful join"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "EJ data uses 'Municipality' while water testing uses 'Community' - may not match exactly",
+          "Water testing includes multiple samples per beach/date while EJ data is municipality-level"
+        ],
+        [
+          "Community names must match exactly between datasets for successful join"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.8181818181818181,
+      "votes": [
+        10.0,
+        11.0,
+        9.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only marine beach samples from 2023",
+        "EJ population percentage must be >50% or <25% (exclude 25-50%)",
+        "Exceedance defined as Violation = 'Yes'",
+        "Rate calculation: (violations/total_samples) \u00d7 100",
+        "Only include marine beach samples (Beach Type Description == 'Marine')",
+        "Only include 2023 data (Year == 2023)",
+        "Only include communities with >50% EJ population for group 1",
+        "Only include communities with <25% EJ population for group 2",
+        "Exclude samples with null Violation values",
+        "Ensure that the 'Violation' column in water-body-testing-2023.csv is a binary indicator (Yes/No).",
+        "Ensure that 'Beach Type Description' only includes 'Marine' values.",
+        "Ensure that 'Year' column in water-body-testing-2023.csv only includes 2023 values."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only marine beach samples from 2023",
+          "EJ population percentage must be >50% or <25% (exclude 25-50%)",
+          "Exceedance defined as Violation = 'Yes'",
+          "Rate calculation: (violations/total_samples) \u00d7 100"
+        ],
+        [
+          "Only include marine beach samples (Beach Type Description == 'Marine')",
+          "Only include 2023 data (Year == 2023)",
+          "Only include communities with >50% EJ population for group 1",
+          "Only include communities with <25% EJ population for group 2",
+          "Exclude samples with null Violation values"
+        ],
+        [
+          "Ensure that the 'Violation' column in water-body-testing-2023.csv is a binary indicator (Yes/No).",
+          "Ensure that 'Beach Type Description' only includes 'Marine' values.",
+          "Ensure that 'Year' column in water-body-testing-2023.csv only includes 2023 values."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter water testing to Year=2023 and Beach Type Description='Marine'",
+        "Categorize municipalities: EJ_population_percent > 50, EJ_population_percent < 25",
+        "Identify exceedances: Violation = 'Yes'",
+        "EJ_category: 'high' if Percent of population in EJ BGs > 50, 'low' if Percent of population in EJ BGs < 25",
+        "Exceedance rate = (count of Violation='Yes') / (total count of samples) * 100",
+        "Exceedance: Violation = 'Yes'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter water testing to Year=2023 and Beach Type Description='Marine'",
+          "Categorize municipalities: EJ_population_percent > 50, EJ_population_percent < 25",
+          "Identify exceedances: Violation = 'Yes'"
+        ],
+        [
+          "EJ_category: 'high' if Percent of population in EJ BGs > 50, 'low' if Percent of population in EJ BGs < 25",
+          "Exceedance rate = (count of Violation='Yes') / (total count of samples) * 100"
+        ],
+        [
+          "Exceedance: Violation = 'Yes'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Proportion test for difference in exceedance rates between groups",
+        "Confidence intervals for each group's exceedance rate"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Proportion test for difference in exceedance rates between groups",
+          "Confidence intervals for each group's exceedance rate"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Difference to 2 decimal places",
+        "Positive value means higher exceedance in high-EJ communities",
+        "Result as percentage points difference",
+        "Result must be a single number representing the difference",
+        "Result must be rounded to 2 decimal places",
+        "Difference should be calculated as (rate for >50% EJ) - (rate for <25% EJ)",
+        "Output the difference in exceedance rates rounded to 2 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Difference to 2 decimal places",
+          "Positive value means higher exceedance in high-EJ communities",
+          "Result as percentage points difference"
+        ],
+        [
+          "Result must be a single number representing the difference",
+          "Result must be rounded to 2 decimal places",
+          "Difference should be calculated as (rate for >50% EJ) - (rate for <25% EJ)"
+        ],
+        [
+          "Output the difference in exceedance rates rounded to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6056313131313134
+}

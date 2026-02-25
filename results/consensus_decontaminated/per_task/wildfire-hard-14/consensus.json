@@ -1,0 +1,430 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Correlation coefficient between proportion of generally unsafe air quality days (Unhealthy, Very Unhealthy, Hazardous) and total acres burned by fire, rounded to 2 decimal places",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Correlation coefficient between proportion of generally unsafe air quality days (Unhealthy, Very Unhealthy, Hazardous) and total acres burned by fire, rounded to 2 decimal places",
+        "Correlation coefficient between proportion of generally unsafe air quality days (according to EPA) and total acres burned by wildfires in 2024, rounded to 2 decimal places",
+        "Pearson correlation coefficient between the proportion of generally unsafe air quality days and the amount of land affected by fires in 2024, rounded to 2 decimal places."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2024",
+        "State-level aggregation required",
+        "Year == 2024"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year = 2024",
+          "State-level aggregation required"
+        ],
+        [
+          "Year == 2024"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "State"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "State"
+        ],
+        [
+          "State"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to calculate proportion of unsafe days from county-level AQI data?",
+        "How to aggregate county data to state level?",
+        "How to handle missing or incomplete data in wildfire dataset?",
+        "What correlation method to use (Pearson, Spearman)?",
+        "What constitutes 'generally unsafe air quality days' according to EPA standards?",
+        "How to calculate the proportion of unsafe days per state from county-level AQI data?",
+        "How to aggregate Total Acres Burned per state?",
+        "How to join air quality data with wildfire data by state?",
+        "Which correlation method to use (Pearson, Spearman)?",
+        "How to handle states with missing data in either dataset?",
+        "Calculate the proportion of generally unsafe air quality days for each state.",
+        "Calculate the total acres burned for each state.",
+        "Merge the air quality data and wildfire data by state.",
+        "Calculate the Pearson correlation coefficient between the proportion of generally unsafe air quality days and the total acres burned.",
+        "Round the correlation coefficient to 2 decimal places."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "How to calculate proportion of unsafe days from county-level AQI data?",
+          "How to aggregate county data to state level?",
+          "How to handle missing or incomplete data in wildfire dataset?",
+          "What correlation method to use (Pearson, Spearman)?"
+        ],
+        [
+          "What constitutes 'generally unsafe air quality days' according to EPA standards?",
+          "How to calculate the proportion of unsafe days per state from county-level AQI data?",
+          "How to aggregate Total Acres Burned per state?",
+          "How to join air quality data with wildfire data by state?",
+          "Which correlation method to use (Pearson, Spearman)?",
+          "How to handle states with missing data in either dataset?"
+        ],
+        [
+          "Calculate the proportion of generally unsafe air quality days for each state.",
+          "Calculate the total acres burned for each state.",
+          "Merge the air quality data and wildfire data by state.",
+          "Calculate the Pearson correlation coefficient between the proportion of generally unsafe air quality days and the total acres burned.",
+          "Round the correlation coefficient to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Wildfire_Acres_by_State.csv",
+        "annual_aqi_by_county_2024.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Wildfire_Acres_by_State.csv",
+          "annual_aqi_by_county_2024.csv"
+        ],
+        [
+          "annual_aqi_by_county_2024.csv",
+          "Wildfire_Acres_by_State.csv"
+        ],
+        [
+          "Wildfire_Acres_by_State.csv",
+          "annual_aqi_by_county_2024.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Wildfire data is at state level, AQI data is at county level",
+        "Wildfire data has 52 rows (including DC), AQI data has 986 county rows",
+        "District of Columbia has missing 'Total Acres Burned' value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Wildfire data is at state level, AQI data is at county level",
+          "Wildfire data has 52 rows (including DC), AQI data has 986 county rows",
+          "District of Columbia has missing 'Total Acres Burned' value"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "total acres burned": "acres",
+        "population": "people",
+        "good days": "days",
+        "moderate days": "days",
+        "unhealthy for sensitive groups days": "days",
+        "unhealthy days": "days",
+        "very unhealthy days": "days",
+        "hazardous days": "days",
+        "days with aqi": "days"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Total Acres Burned": "acres",
+          "Population": "people",
+          "Good Days": "days",
+          "Moderate Days": "days",
+          "Unhealthy for Sensitive Groups Days": "days",
+          "Unhealthy Days": "days",
+          "Very Unhealthy Days": "days",
+          "Hazardous Days": "days",
+          "Days with AQI": "days"
+        },
+        {
+          "Total Acres Burned": "acres",
+          "Days with AQI": "days",
+          "Good Days": "days",
+          "Moderate Days": "days",
+          "Unhealthy for Sensitive Groups Days": "days",
+          "Unhealthy Days": "days",
+          "Very Unhealthy Days": "days",
+          "Hazardous Days": "days",
+          "Population": "persons"
+        },
+        {
+          "Total Acres Burned": "acres",
+          "Population": "people",
+          "Days with AQI": "days",
+          "Good Days": "days",
+          "Moderate Days": "days",
+          "Unhealthy for Sensitive Groups Days": "days",
+          "Unhealthy Days": "days",
+          "Very Unhealthy Days": "days",
+          "Hazardous Days": "days"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Wildfire acres vary dramatically by state (from 137 to 1,081,144 acres)",
+        "Population varies dramatically by state (from 702,250 to 39,431,263)",
+        "Some counties have very few 'Days with AQI' (e.g., Jefferson, AL has only 22 days)",
+        "Total Acres Burned varies widely by state (from hundreds to millions of acres)",
+        "Number of counties per state varies, affecting aggregation of AQI data",
+        "Days with AQI varies by county (monitoring coverage differences)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Wildfire acres vary dramatically by state (from 137 to 1,081,144 acres)",
+          "Population varies dramatically by state (from 702,250 to 39,431,263)",
+          "Some counties have very few 'Days with AQI' (e.g., Jefferson, AL has only 22 days)"
+        ],
+        [
+          "Total Acres Burned varies widely by state (from hundreds to millions of acres)",
+          "Number of counties per state varies, affecting aggregation of AQI data",
+          "Days with AQI varies by county (monitoring coverage differences)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "State name formatting may differ between files (e.g., 'District of Columbia' vs potential variations)",
+        "Wildfire data includes DC with missing acreage, AQI data may or may not include DC counties",
+        "State-level wildfire data vs county-level AQI data requires aggregation",
+        "District of Columbia has missing Total Acres Burned value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "State name formatting may differ between files (e.g., 'District of Columbia' vs potential variations)",
+          "Wildfire data includes DC with missing acreage, AQI data may or may not include DC counties"
+        ],
+        [
+          "State-level wildfire data vs county-level AQI data requires aggregation",
+          "District of Columbia has missing Total Acres Burned value"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.33,
+      "votes": [
+        10.0,
+        18.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year is fixed at 2024 in AQI data",
+        "Must aggregate county AQI data to state level before correlation",
+        "Unsafe days defined as sum of Unhealthy, Very Unhealthy, and Hazardous Days",
+        "Proportion calculated as unsafe days / Days with AQI",
+        "Correlation must be rounded to 2 decimal places",
+        "Year must be 2024",
+        "Generally unsafe days defined as: Unhealthy for Sensitive Groups Days + Unhealthy Days + Very Unhealthy Days + Hazardous Days",
+        "Proportion = (unsafe days) / (Days with AQI)",
+        "Exclude states with missing Total Acres Burned values",
+        "County-level AQI data must be aggregated to state level",
+        "The proportion of generally unsafe air quality days is calculated as (Unhealthy for Sensitive Groups Days + Unhealthy Days + Very Unhealthy Days + Hazardous Days) / Days with AQI.",
+        "Ensure that 'Days with AQI' is not zero to avoid division by zero errors.",
+        "Handle potential missing values in 'Total Acres Burned' column in Wildfire_Acres_by_State.csv."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year is fixed at 2024 in AQI data",
+          "Must aggregate county AQI data to state level before correlation",
+          "Unsafe days defined as sum of Unhealthy, Very Unhealthy, and Hazardous Days",
+          "Proportion calculated as unsafe days / Days with AQI",
+          "Correlation must be rounded to 2 decimal places"
+        ],
+        [
+          "Year must be 2024",
+          "Generally unsafe days defined as: Unhealthy for Sensitive Groups Days + Unhealthy Days + Very Unhealthy Days + Hazardous Days",
+          "Proportion = (unsafe days) / (Days with AQI)",
+          "Exclude states with missing Total Acres Burned values",
+          "County-level AQI data must be aggregated to state level"
+        ],
+        [
+          "The proportion of generally unsafe air quality days is calculated as (Unhealthy for Sensitive Groups Days + Unhealthy Days + Very Unhealthy Days + Hazardous Days) / Days with AQI.",
+          "Ensure that 'Days with AQI' is not zero to avoid division by zero errors.",
+          "Handle potential missing values in 'Total Acres Burned' column in Wildfire_Acres_by_State.csv."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out states with missing wildfire acreage data",
+        "Consider filtering counties with incomplete AQI data (low 'Days with AQI')",
+        "May need to normalize by population or area for fair comparison",
+        "Remove District of Columbia if Total Acres Burned is null",
+        "States must have at least one county with AQI data",
+        "States must have valid Total Acres Burned values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out states with missing wildfire acreage data",
+          "Consider filtering counties with incomplete AQI data (low 'Days with AQI')",
+          "May need to normalize by population or area for fair comparison"
+        ],
+        [
+          "Remove District of Columbia if Total Acres Burned is null",
+          "States must have at least one county with AQI data",
+          "States must have valid Total Acres Burned values"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation test between state-level unsafe day proportion and acres burned",
+        "Check for normality of both variables",
+        "Consider Spearman correlation if data is not normally distributed",
+        "Calculate Pearson correlation coefficient between state-level proportion of unsafe days and Total Acres Burned",
+        "Verify sufficient sample size (n >= 3) for correlation calculation",
+        "Pearson correlation coefficient"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation test between state-level unsafe day proportion and acres burned",
+          "Check for normality of both variables",
+          "Consider Spearman correlation if data is not normally distributed"
+        ],
+        [
+          "Calculate Pearson correlation coefficient between state-level proportion of unsafe days and Total Acres Burned",
+          "Verify sufficient sample size (n >= 3) for correlation calculation"
+        ],
+        [
+          "Pearson correlation coefficient"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single correlation coefficient rounded to 2 decimal places",
+        "May need to report p-value for significance",
+        "Should document which states were included/excluded",
+        "Single correlation coefficient value",
+        "Rounded to exactly 2 decimal places",
+        "Numeric output format: X.XX",
+        "The final result should be a single floating-point number rounded to 2 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single correlation coefficient rounded to 2 decimal places",
+          "May need to report p-value for significance",
+          "Should document which states were included/excluded"
+        ],
+        [
+          "Single correlation coefficient value",
+          "Rounded to exactly 2 decimal places",
+          "Numeric output format: X.XX"
+        ],
+        [
+          "The final result should be a single floating-point number rounded to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6081666666666667
+}

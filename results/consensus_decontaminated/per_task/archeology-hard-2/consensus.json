@@ -1,0 +1,372 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Percentage of years where the ODP 967 wet-dry index showed an increasing trend",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Percentage of years where the ODP 967 wet-dry index showed an increasing trend",
+        "Percentage of years where the wet-dry index was increasing compared to the previous year",
+        "Percentage of years where the wet-dry index increased compared to the previous year."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Focus on 'ODP 967 wet-dry index' column",
+        "Consider only valid numeric values",
+        "Handle potential duplicate age columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Focus on 'ODP 967 wet-dry index' column",
+          "Consider only valid numeric values",
+          "Handle potential duplicate age columns"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Age_ky.3"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Age_ky.3"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the time range covered by the data?",
+        "How many distinct years are represented?",
+        "For each year transition, is the wet-dry index increasing?",
+        "What percentage of year-to-year transitions show increase?",
+        "What is the temporal sequence of wet-dry index measurements ordered by age?",
+        "For each consecutive pair of years, was the wet-dry index increasing?",
+        "What is the total count of year-to-year transitions?",
+        "What is the count of increasing transitions?",
+        "What percentage of transitions were increasing?",
+        "Calculate the year-over-year change in 'ODP 967 wet-dry index'.",
+        "Identify the years where the 'ODP 967 wet-dry index' increased.",
+        "Calculate the total number of years with available 'ODP 967 wet-dry index' data.",
+        "Divide the number of years with an increasing 'ODP 967 wet-dry index' by the total number of years and multiply by 100 to get the percentage."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the time range covered by the data?",
+          "How many distinct years are represented?",
+          "For each year transition, is the wet-dry index increasing?",
+          "What percentage of year-to-year transitions show increase?"
+        ],
+        [
+          "What is the temporal sequence of wet-dry index measurements ordered by age?",
+          "For each consecutive pair of years, was the wet-dry index increasing?",
+          "What is the total count of year-to-year transitions?",
+          "What is the count of increasing transitions?",
+          "What percentage of transitions were increasing?"
+        ],
+        [
+          "Calculate the year-over-year change in 'ODP 967 wet-dry index'.",
+          "Identify the years where the 'ODP 967 wet-dry index' increased.",
+          "Calculate the total number of years with available 'ODP 967 wet-dry index' data.",
+          "Divide the number of years with an increasing 'ODP 967 wet-dry index' by the total number of years and multiply by 100 to get the percentage."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "climateMeasurements.xlsx"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "climateMeasurements.xlsx"
+        ],
+        [
+          "climateMeasurements.xlsx"
+        ],
+        [
+          "climateMeasurements.xlsx"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Multiple 'Age_ky' columns with suffixes (.1, .2, .3) - need to identify which one corresponds to wet-dry index measurements",
+        "Unnamed columns (20, 24, 27) with unclear meaning",
+        "Multiple Age_ky columns exist (Age_ky, Age_ky.1, Age_ky.2, Age_ky.3)",
+        "ODP 967 wet-dry index appears only once but multiple age columns suggest data structure complexity"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Multiple 'Age_ky' columns with suffixes (.1, .2, .3) - need to identify which one corresponds to wet-dry index measurements",
+          "Unnamed columns (20, 24, 27) with unclear meaning"
+        ],
+        [
+          "Multiple Age_ky columns exist (Age_ky, Age_ky.1, Age_ky.2, Age_ky.3)",
+          "ODP 967 wet-dry index appears only once but multiple age columns suggest data structure complexity"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "age_ky": "thousands of years",
+        "odp 967 wet-dry index": "unitless index",
+        "depth below seafloor_m": "meters",
+        "splice depth_m": "meters",
+        "interval_cm": "centimeters",
+        "age_ky.3": "kiloyears (thousands of years)"
+      },
+      "confidence": 0.611111111111111,
+      "votes": [
+        {
+          "Age_ky": "thousands of years",
+          "ODP 967 wet-dry index": "unitless index",
+          "Depth below seafloor_m": "meters",
+          "Splice depth_m": "meters",
+          "Interval_cm": "centimeters"
+        },
+        {
+          "Age_ky.3": "kiloyears (thousands of years)",
+          "ODP 967 wet-dry index": "dimensionless index"
+        },
+        {
+          "Age_ky": "thousands of years",
+          "Depth below seafloor_m": "meters",
+          "Splice depth_m": "meters",
+          "Interval_cm": "centimeters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Age columns appear in different scales - need to verify consistency",
+        "Wet-dry index values range from negative to positive values",
+        "Age is in kiloyears (ky) which represents thousands of years, not individual years",
+        "The question asks about 'years' but data is in kiloyears - interpretation needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age columns appear in different scales - need to verify consistency",
+          "Wet-dry index values range from negative to positive values"
+        ],
+        [
+          "Age is in kiloyears (ky) which represents thousands of years, not individual years",
+          "The question asks about 'years' but data is in kiloyears - interpretation needed"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.75,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "NaN"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 30.0,
+      "confidence": 1.0,
+      "votes": [
+        30.0,
+        30.0,
+        30.0
+      ]
+    },
+    "file_format": {
+      "value": "xlsx",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "excel",
+        "xlsx",
+        "xlsx"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Age values should be monotonically increasing for temporal analysis",
+        "Wet-dry index should be numeric",
+        "Need to handle potential missing values in wet-dry index column",
+        "Filter out rows where Age_ky.3 is null",
+        "Filter out rows where ODP 967 wet-dry index is null",
+        "Ensure chronological ordering by Age_ky.3",
+        "The 'Age_ky' column should be used to represent the year.",
+        "Missing values in 'ODP 967 wet-dry index' should be handled appropriately (e.g., removed or imputed) before calculating year-over-year changes."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age values should be monotonically increasing for temporal analysis",
+          "Wet-dry index should be numeric",
+          "Need to handle potential missing values in wet-dry index column"
+        ],
+        [
+          "Filter out rows where Age_ky.3 is null",
+          "Filter out rows where ODP 967 wet-dry index is null",
+          "Ensure chronological ordering by Age_ky.3"
+        ],
+        [
+          "The 'Age_ky' column should be used to represent the year.",
+          "Missing values in 'ODP 967 wet-dry index' should be handled appropriately (e.g., removed or imputed) before calculating year-over-year changes."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove rows where 'ODP 967 wet-dry index' is null",
+        "Use 'Age_ky.3' column that appears to correspond with wet-dry index measurements",
+        "Consider only unique age values or aggregate by year",
+        "Remove duplicate age values if they exist",
+        "Handle potential non-sequential age measurements"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows where 'ODP 967 wet-dry index' is null",
+          "Use 'Age_ky.3' column that appears to correspond with wet-dry index measurements",
+          "Consider only unique age values or aggregate by year"
+        ],
+        [
+          "Remove duplicate age values if they exist",
+          "Handle potential non-sequential age measurements"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for monotonicity of age values",
+        "Test for stationarity of wet-dry index time series",
+        "Calculate year-over-year differences",
+        "Calculate year-over-year change in wet-dry index",
+        "Count transitions where change > 0",
+        "Calculate percentage: (increasing_count / total_transitions) * 100"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for monotonicity of age values",
+          "Test for stationarity of wet-dry index time series",
+          "Calculate year-over-year differences"
+        ],
+        [
+          "Calculate year-over-year change in wet-dry index",
+          "Count transitions where change > 0",
+          "Calculate percentage: (increasing_count / total_transitions) * 100"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Percentage rounded to 2 decimal places",
+        "Scalar output between 0-100%",
+        "Result must be a percentage",
+        "Round to 2 decimal places",
+        "Format as numeric value (e.g., 45.67)",
+        "Percentage value rounded to 2 decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage rounded to 2 decimal places",
+          "Scalar output between 0-100%"
+        ],
+        [
+          "Result must be a percentage",
+          "Round to 2 decimal places",
+          "Format as numeric value (e.g., 45.67)"
+        ],
+        [
+          "Percentage value rounded to 2 decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5680555555555556
+}

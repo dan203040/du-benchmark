@@ -1,0 +1,59 @@
+{
+  "m_q": {
+    "target_metric": "total number of medals for South Korea, North Korea, Sweden, and Brazil",
+    "filters": [
+      "Nation is South Korea",
+      "Nation is North Korea",
+      "Nation is Sweden",
+      "Nation is Brazil"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Medal Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rank": "rank",
+      "Gold": "medals",
+      "Silver": "medals",
+      "Bronze": "medals",
+      "Total": "medals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Total' column should be equal to the sum of 'Gold', 'Silver', and 'Bronze' columns for each row."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total number of medals for South Korea, North Korea, Sweden, and Brazil\",\n    \"filters\": [\n      \"Nation is South Korea\",\n      \"Nation is North Korea\",\n      \"Nation is Sweden\",\n      \"Nation is Brazil\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"Medal Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Rank\": \"rank\",\n      \"Gold\": \"medals\",\n      \"Silver\": \"medals\",\n      \"Bronze\": \"medals\",\n      \"Total\": \"medals\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Total' column should be equal to the sum of 'Gold', 'Silver', and 'Bronze' columns for each row.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.709463119506836,
+  "token_usage": {}
+}

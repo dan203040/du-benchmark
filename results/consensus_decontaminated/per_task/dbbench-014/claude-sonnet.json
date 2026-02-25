@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "Determine which team (Dallas or Ottawa) won the game on December 9, 1993",
+    "filters": [
+      "Date = 'December 9, 1993'",
+      "Teams involved are Dallas and Ottawa"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which team is in the 'Winning Team' column for the December 9, 1993 game?",
+      "Is Dallas the Winning Team or Losing Team for this game?",
+      "Is Ottawa the Winning Team or Losing Team for this game?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Hockey_Game_Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Winning Team Score": "goals",
+      "Losing Team Score": "goals",
+      "Attendance": "number of people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date column contains full date strings in format 'Month Day, Year'",
+      "Attendance values contain commas as thousands separators",
+      "Some Attendance values have asterisks (*) suffix",
+      "OT column contains '(OT)' for overtime games or empty string for regulation games"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Date must match exactly 'December 9, 1993'",
+      "Either Dallas or Ottawa must appear in Winning Team column",
+      "Either Dallas or Ottawa must appear in Losing Team column",
+      "A game record must exist for this date with both teams"
+    ],
+    "derived_filters": [
+      "Filter rows where Date = 'December 9, 1993' AND (Winning Team IN ('Dallas', 'Ottawa') OR Losing Team IN ('Dallas', 'Ottawa'))"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should identify which team won: Dallas or Ottawa",
+      "Answer should be definitive based on the Winning Team column value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Determine which team (Dallas or Ottawa) won the game on December 9, 1993\",\n    \"filters\": [\"Date = 'December 9, 1993'\", \"Teams involved are Dallas and Ottawa\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which team is in the 'Winning Team' column for the December 9, 1993 game?\",\n      \"Is Dallas the Winning Team or Losing Team for this game?\",\n      \"Is Ottawa the Winning Team or Losing Team for this game?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Hockey_Game_Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Winning Team Score\": \"goals\",\n      \"Losing Team Score\": \"goals\",\n      \"Attendance\": \"number of people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/A\", \"\"],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date column contains full date strings in format 'Month Day, Year'\",\n      \"Attendance values contain commas as thousands separators\",\n      \"Some Attendance values have asterisks (*) suffix\",\n      \"OT column contains '(OT)' for overtime games or empty string for regulation games\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Date must match exactly 'December 9, 1993'\",\n      \"Either Dallas or Ottawa must appear in Winning Team column\",\n      \"Either Dallas or Ottawa must appear in Losing Team column\",\n      \"A game record must exist for this date with both teams\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Date = 'December 9, 1993' AND (Winning Team IN ('Dallas', 'Ottawa') OR Losing Team IN ('Dallas', 'Ottawa'))\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should identify which team won: Dallas or Ottawa\",\n      \"Answer should be definitive based on the Winning Team column value\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.142945051193237,
+  "token_usage": {
+    "input_tokens": 1428,
+    "output_tokens": 637
+  }
+}

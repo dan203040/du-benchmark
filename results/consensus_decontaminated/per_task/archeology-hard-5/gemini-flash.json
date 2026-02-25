@@ -1,0 +1,65 @@
+{
+  "m_q": {
+    "target_metric": "Maximum aluminum value in the climate dataset in the closest year to the year of the most northern Neolithic sample in the Maltese dataset.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find the year of the most northern Neolithic sample in the radiocarbon_database_regional.xlsx dataset, breaking ties by considering the later year.",
+      "Find the closest year(s) in the climateMeasurements.xlsx dataset to the year found in the previous step.",
+      "Find the maximum aluminum value recorded in the climateMeasurements.xlsx dataset in the closest year(s).",
+      "Round the maximum aluminum value to 4 decimal places."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "climateMeasurements.xlsx",
+      "radiocarbon_database_regional.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Latitude": "degrees",
+      "Longitude": "degrees",
+      "Age_ky": "kilo years",
+      "Al": "concentration"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 30,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Consider only Neolithic samples when finding the most northern sample.",
+      "If there are multiple closest years in the climate dataset, take the maximum aluminum value across all of them.",
+      "Round the final answer to 4 decimal places."
+    ],
+    "derived_filters": [
+      "Filter radiocarbon_database_regional.xlsx to include only samples where Culture is 'Neolithic'."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The final answer must be a number rounded to 4 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum aluminum value in the climate dataset in the closest year to the year of the most northern Neolithic sample in the Maltese dataset.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Find the year of the most northern Neolithic sample in the radiocarbon_database_regional.xlsx dataset, breaking ties by considering the later year.\",\n      \"Find the closest year(s) in the climateMeasurements.xlsx dataset to the year found in the previous step.\",\n      \"Find the maximum aluminum value recorded in the climateMeasurements.xlsx dataset in the closest year(s).\",\n      \"Round the maximum aluminum value to 4 decimal places.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"climateMeasurements.xlsx\",\n      \"radiocarbon_database_regional.xlsx\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Latitude\": \"degrees\",\n      \"Longitude\": \"degrees\",\n      \"Age_ky\": \"kilo years\",\n      \"Al\": \"concentration\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 30,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Consider only Neolithic samples when finding the most northern sample.\",\n      \"If there are multiple closest years in the climate dataset, take the maximum aluminum value across all of them.\",\n      \"Round the final answer to 4 decimal places.\"\n    ],\n    \"derived_filters\": [\n      \"Filter radiocarbon_database_regional.xlsx to include only samples where Culture is 'Neolithic'.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The final answer must be a number rounded to 4 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.5704851150512695,
+  "token_usage": {}
+}

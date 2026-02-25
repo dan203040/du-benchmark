@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "sum of Playoffs appearances across all teams",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Are there any teams with 'Never Played' status that should be excluded?",
+      "Should we include teams with 0 seasons played?",
+      "Do we need to handle missing or invalid Playoffs appearances values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Teams History"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Playoffs appearances": "count",
+      "Seasons played": "count",
+      "Win%": "percentage"
+    },
+    "scale_issues": [
+      "Win\u2013loss record contains commas in some values (e.g., '3,445\u20132,318')",
+      "Win% column contains string values like '.578' and 'N/A'"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Years active column contains ranges like '1949\u20131950' and '1946\u2013present'",
+      "Win\u2013loss record uses en dash (\u2013) as separator",
+      "City column contains commas within quoted values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Playoffs appearances should be non-negative integers",
+      "Seasons played should be >= 0",
+      "Playoffs appearances should be <= Seasons played for active teams"
+    ],
+    "derived_filters": [
+      "Exclude rows where 'Years active' = 'Never Played'",
+      "Consider filtering out teams with 0 seasons played"
+    ],
+    "statistical_tests": [
+      "Check for consistency between Seasons played and Years active ranges",
+      "Validate that Playoffs appearances sum is reasonable given total seasons"
+    ],
+    "output_format_requirements": [
+      "Integer total",
+      "Consider providing context about number of teams included"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"sum of Playoffs appearances across all teams\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Are there any teams with 'Never Played' status that should be excluded?\", \"Should we include teams with 0 seasons played?\", \"Do we need to handle missing or invalid Playoffs appearances values?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Basketball Teams History\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Playoffs appearances\": \"count\", \"Seasons played\": \"count\", \"Win%\": \"percentage\"},\n        \"scale_issues\": [\"Win\u2013loss record contains commas in some values (e.g., '3,445\u20132,318')\", \"Win% column contains string values like '.578' and 'N/A'\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Years active column contains ranges like '1949\u20131950' and '1946\u2013present'\", \"Win\u2013loss record uses en dash (\u2013) as separator\", \"City column contains commas within quoted values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Playoffs appearances should be non-negative integers\", \"Seasons played should be >= 0\", \"Playoffs appearances should be <= Seasons played for active teams\"],\n        \"derived_filters\": [\"Exclude rows where 'Years active' = 'Never Played'\", \"Consider filtering out teams with 0 seasons played\"],\n        \"statistical_tests\": [\"Check for consistency between Seasons played and Years active ranges\", \"Validate that Playoffs appearances sum is reasonable given total seasons\"],\n        \"output_format_requirements\": [\"Integer total\", \"Consider providing context about number of teams included\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.199077844619751,
+  "token_usage": {
+    "input_tokens": 1153,
+    "output_tokens": 484
+  }
+}

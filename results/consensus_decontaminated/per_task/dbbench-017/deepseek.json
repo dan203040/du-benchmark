@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "Count of schools with website exactly 'http://www.camp.herts.sch.uk/'",
+    "filters": [
+      "School website = 'http://www.camp.herts.sch.uk/'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Is the website URL case-sensitive?",
+      "Should trailing slashes be considered in matching?",
+      "Are there any missing or malformed website values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Schools Information"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [
+      "Sample shows truncated website URLs (e.g., 'http://www.bernardsheath.herts' appears incomplete)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names match provided list",
+      "Sample shows some website URLs may be truncated in display"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "School column should be unique",
+      "School website should be valid URLs"
+    ],
+    "derived_filters": [
+      "Exclude rows with missing School website values",
+      "Consider exact string match for website URL"
+    ],
+    "statistical_tests": [
+      "Count distinct schools matching the website pattern"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of schools with website exactly 'http://www.camp.herts.sch.uk/'\",\n        \"filters\": [\"School website = 'http://www.camp.herts.sch.uk/'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Is the website URL case-sensitive?\", \"Should trailing slashes be considered in matching?\", \"Are there any missing or malformed website values?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Schools Information\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [\"Sample shows truncated website URLs (e.g., 'http://www.bernardsheath.herts' appears incomplete)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names match provided list\", \"Sample shows some website URLs may be truncated in display\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"School column should be unique\", \"School website should be valid URLs\"],\n        \"derived_filters\": [\"Exclude rows with missing School website values\", \"Consider exact string match for website URL\"],\n        \"statistical_tests\": [\"Count distinct schools matching the website pattern\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.130599737167358,
+  "token_usage": {
+    "input_tokens": 1238,
+    "output_tokens": 384
+  }
+}

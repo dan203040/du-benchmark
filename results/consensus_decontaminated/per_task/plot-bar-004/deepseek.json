@@ -1,0 +1,90 @@
+{
+  "m_q": {
+    "target_metric": "Enhance analysis.py, correct errors, generate plots and save as 'result.png' following 'plot.yaml' format",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "Correct potential errors in analysis.py",
+      "Generate visualization plots",
+      "Save plots in 'result.png'",
+      "Follow formatting from 'plot.yaml'"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "Fare": "currency units",
+      "SibSp": "count of siblings/spouses",
+      "Parch": "count of parents/children"
+    },
+    "scale_issues": [
+      "Age contains missing values (NaN)",
+      "Cabin contains many missing values",
+      "Embarked has some missing values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column is PassengerId (unique identifier)",
+      "Survived is binary (0/1)",
+      "Pclass is categorical (1,2,3)",
+      "Name contains commas within quotes",
+      "Sex is categorical (male/female)",
+      "Ticket may have special characters",
+      "Cabin has many empty values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "PassengerId should be unique",
+      "Survived values should be 0 or 1",
+      "Pclass values should be 1, 2, or 3",
+      "Age should be positive and reasonable (0-100)",
+      "Fare should be positive",
+      "SibSp and Parch should be non-negative integers"
+    ],
+    "derived_filters": [
+      "Filter out rows with missing Age if needed for analysis",
+      "Consider imputing missing Embarked values",
+      "Handle missing Cabin values appropriately"
+    ],
+    "statistical_tests": [
+      "Check for correlation between Survived and other variables",
+      "Test for significant differences in survival rates by Sex and Pclass",
+      "Check distribution of Age and Fare"
+    ],
+    "output_format_requirements": [
+      "Save plots to 'result.png'",
+      "Follow formatting specified in 'plot.yaml'",
+      "Ensure plots are properly labeled and readable"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Enhance analysis.py, correct errors, generate plots and save as 'result.png' following 'plot.yaml' format\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"plot\",\n        \"sub_questions\": [\"Correct potential errors in analysis.py\", \"Generate visualization plots\", \"Save plots in 'result.png'\", \"Follow formatting from 'plot.yaml'\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"train.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Age\": \"years\",\n            \"Fare\": \"currency units\",\n            \"SibSp\": \"count of siblings/spouses\",\n            \"Parch\": \"count of parents/children\"\n        },\n        \"scale_issues\": [\"Age contains missing values (NaN)\", \"Cabin contains many missing values\", \"Embarked has some missing values\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column is PassengerId (unique identifier)\", \"Survived is binary (0/1)\", \"Pclass is categorical (1,2,3)\", \"Name contains commas within quotes\", \"Sex is categorical (male/female)\", \"Ticket may have special characters\", \"Cabin has many empty values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"PassengerId should be unique\", \"Survived values should be 0 or 1\", \"Pclass values should be 1, 2, or 3\", \"Age should be positive and reasonable (0-100)\", \"Fare should be positive\", \"SibSp and Parch should be non-negative integers\"],\n        \"derived_filters\": [\"Filter out rows with missing Age if needed for analysis\", \"Consider imputing missing Embarked values\", \"Handle missing Cabin values appropriately\"],\n        \"statistical_tests\": [\"Check for correlation between Survived and other variables\", \"Test for significant differences in survival rates by Sex and Pclass\", \"Check distribution of Age and Fare\"],\n        \"output_format_requirements\": [\"Save plots to 'result.png'\", \"Follow formatting specified in 'plot.yaml'\", \"Ensure plots are properly labeled and readable\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.793524026870728,
+  "token_usage": {
+    "input_tokens": 1433,
+    "output_tokens": 568
+  }
+}

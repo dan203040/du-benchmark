@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "median of Log2_variant_per_Mbp",
+    "filters": [
+      "Histologic_type is Serous"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Log2_variant_per_Mbp": "log2(variants/Mbp)",
+      "Age": "years",
+      "Tumor_Size_cm": "cm",
+      "Estrogen_Receptor_%": "%",
+      "Progesterone_Receptor_%": "%",
+      "BMI": "kg/m^2"
+    },
+    "scale_issues": [
+      "Log2_variant_per_Mbp is log2 transformed, need to exponentiate to get variants per Mbp"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Histologic_type must be 'Serous'",
+      "Round the median to 4 decimal places"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output must be a single numerical value rounded to 4 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"median of Log2_variant_per_Mbp\",\n    \"filters\": [\n      \"Histologic_type is Serous\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"1-s2.0-S0092867420301070-mmc1.xlsx\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Log2_variant_per_Mbp\": \"log2(variants/Mbp)\",\n      \"Age\": \"years\",\n      \"Tumor_Size_cm\": \"cm\",\n      \"Estrogen_Receptor_%\": \"%\",\n      \"Progesterone_Receptor_%\": \"%\",\n      \"BMI\": \"kg/m^2\"\n    },\n    \"scale_issues\": [\n      \"Log2_variant_per_Mbp is log2 transformed, need to exponentiate to get variants per Mbp\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 179,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Histologic_type must be 'Serous'\",\n      \"Round the median to 4 decimal places\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output must be a single numerical value rounded to 4 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 20.712769031524658,
+  "token_usage": {}
+}

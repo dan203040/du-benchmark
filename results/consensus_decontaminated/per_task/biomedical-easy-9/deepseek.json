@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Difference between average false discovery rate (FDR) for CBX3 genes and average FDR for all other genes",
+    "filters": [
+      "Gene = 'CBX3'",
+      "Gene != 'CBX3'"
+    ],
+    "grouping_variables": [
+      "Gene"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the average FDR for CBX3 genes?",
+      "What is the average FDR for all non-CBX3 genes?",
+      "Which data source contains FDR values?",
+      "How are CBX3 genes identified in the data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc3__F-SS-phospho"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Sheet C-SE-phospho contains CBX3 gene name but lacks FDR values",
+      "Sheet F-SS-phospho contains FDR values but needs to be filtered for CBX3"
+    ],
+    "column_mappings": {
+      "FDR.phos": "FDR",
+      "Gene": "Gene"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "FDR.phos": "probability (0-1)",
+      "FoldChange.phos": "log2 fold change",
+      "pval.phos": "probability (0-1)"
+    },
+    "scale_issues": [
+      "FDR values are probabilities but also have log-transformed versions (logfdr.phos)"
+    ],
+    "cross_source_conflicts": [
+      "Sheet C-SE-phospho lists CBX3 as significant gene but doesn't provide FDR values",
+      "Sheet F-SS-phospho provides FDR values but needs gene-level filtering"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      " "
+    ],
+    "expected_columns": 17,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sheet F-SS-phospho contains the required FDR.phos column",
+      "Multiple FDR columns exist (FDR.phos, FDR.prot) - need FDR.phos for phosphoproteomics",
+      "Gene column contains gene names for filtering"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "FDR.phos values must be between 0 and 1",
+      "CBX3 must exist in Gene column of F-SS-phospho sheet",
+      "Need to filter by Gene column to separate CBX3 from other genes"
+    ],
+    "derived_filters": [
+      "WHERE Gene = 'CBX3'",
+      "WHERE Gene != 'CBX3'"
+    ],
+    "statistical_tests": [
+      "Two-sample t-test or Mann-Whitney U test for comparing FDR distributions",
+      "Check normality of FDR distributions before choosing test"
+    ],
+    "output_format_requirements": [
+      "Report difference as: avg_FDR_CBX3 - avg_FDR_other",
+      "Include confidence intervals if possible",
+      "Report sample sizes for both groups"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Difference between average false discovery rate (FDR) for CBX3 genes and average FDR for all other genes\",\n        \"filters\": [\"Gene = 'CBX3'\", \"Gene != 'CBX3'\"],\n        \"grouping_variables\": [\"Gene\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the average FDR for CBX3 genes?\", \"What is the average FDR for all non-CBX3 genes?\", \"Which data source contains FDR values?\", \"How are CBX3 genes identified in the data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc3__F-SS-phospho\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Sheet C-SE-phospho contains CBX3 gene name but lacks FDR values\", \"Sheet F-SS-phospho contains FDR values but needs to be filtered for CBX3\"],\n        \"column_mappings\": {\"FDR.phos\": \"FDR\", \"Gene\": \"Gene\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"FDR.phos\": \"probability (0-1)\", \"FoldChange.phos\": \"log2 fold change\", \"pval.phos\": \"probability (0-1)\"},\n        \"scale_issues\": [\"FDR values are probabilities but also have log-transformed versions (logfdr.phos)\"],\n        \"cross_source_conflicts\": [\"Sheet C-SE-phospho lists CBX3 as significant gene but doesn't provide FDR values\", \"Sheet F-SS-phospho provides FDR values but needs gene-level filtering\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \" \"],\n        \"expected_columns\": 17,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sheet F-SS-phospho contains the required FDR.phos column\", \"Multiple FDR columns exist (FDR.phos, FDR.prot) - need FDR.phos for phosphoproteomics\", \"Gene column contains gene names for filtering\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"FDR.phos values must be between 0 and 1\", \"CBX3 must exist in Gene column of F-SS-phospho sheet\", \"Need to filter by Gene column to separate CBX3 from other genes\"],\n        \"derived_filters\": [\"WHERE Gene = 'CBX3'\", \"WHERE Gene != 'CBX3'\"],\n        \"statistical_tests\": [\"Two-sample t-test or Mann-Whitney U test for comparing FDR distributions\", \"Check normality of FDR distributions before choosing test\"],\n        \"output_format_requirements\": [\"Report difference as: avg_FDR_CBX3 - avg_FDR_other\", \"Include confidence intervals if possible\", \"Report sample sizes for both groups\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.70072603225708,
+  "token_usage": {
+    "input_tokens": 7202,
+    "output_tokens": 677
+  }
+}

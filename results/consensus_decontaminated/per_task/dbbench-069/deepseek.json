@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "sum of RR2 Pts.",
+    "filters": [
+      "Won = 11"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify rows where Won column equals 11",
+      "Extract RR2 Pts. values from those rows",
+      "Sum the RR2 Pts. values"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "team_racing_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All columns are stored as object dtype despite containing numeric data"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "RR2 Pts.": "points",
+      "Won": "race wins count"
+    },
+    "scale_issues": [
+      "Won column contains numeric values but stored as object dtype",
+      "RR2 Pts. column contains numeric values but stored as object dtype"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Data appears to be clean with no missing values in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Won values should be integers",
+      "RR2 Pts. values should be numeric",
+      "Each team appears only once in the dataset"
+    ],
+    "derived_filters": [
+      "Filter rows where Won column equals '11' (string representation due to object dtype)"
+    ],
+    "statistical_tests": [
+      "Type conversion needed: Won and RR2 Pts. columns must be converted to numeric types"
+    ],
+    "output_format_requirements": [
+      "Single numeric value representing total RR2 points"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"sum of RR2 Pts.\",\n        \"filters\": [\"Won = 11\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify rows where Won column equals 11\", \"Extract RR2 Pts. values from those rows\", \"Sum the RR2 Pts. values\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"team_racing_results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All columns are stored as object dtype despite containing numeric data\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"RR2 Pts.\": \"points\", \"Won\": \"race wins count\"},\n        \"scale_issues\": [\"Won column contains numeric values but stored as object dtype\", \"RR2 Pts. column contains numeric values but stored as object dtype\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 8,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Data appears to be clean with no missing values in sample\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Won values should be integers\", \"RR2 Pts. values should be numeric\", \"Each team appears only once in the dataset\"],\n        \"derived_filters\": [\"Filter rows where Won column equals '11' (string representation due to object dtype)\"],\n        \"statistical_tests\": [\"Type conversion needed: Won and RR2 Pts. columns must be converted to numeric types\"],\n        \"output_format_requirements\": [\"Single numeric value representing total RR2 points\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.872336864471436,
+  "token_usage": {
+    "input_tokens": 1035,
+    "output_tokens": 428
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Identify tournament(s) where the 2007 result is 'sf' (semifinals), the 2008 result is 'sf' (semifinals), and the 2010 result is 'f' (final)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Identify tournament(s) where the 2007 result is 'sf' (semifinals), the 2008 result is 'sf' (semifinals), and the 2010 result is 'f' (final)",
+        "Value in the 2007 column",
+        "Tournament names that satisfy specific year results"
+      ]
+    },
+    "filters": {
+      "value": [
+        "2007 == 'SF'",
+        "2008 == 'SF'",
+        "2010 == 'F'",
+        "2008 column equals 'sf' or 'SF'",
+        "2010 column equals 'f' or 'F'",
+        "2008 equals 'sf'",
+        "2010 equals 'f'",
+        "Year 2007"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2007 == 'SF'",
+          "2008 == 'SF'",
+          "2010 == 'F'"
+        ],
+        [
+          "2008 column equals 'sf' or 'SF'",
+          "2010 column equals 'f' or 'F'"
+        ],
+        [
+          "2008 equals 'sf'",
+          "2010 equals 'f'",
+          "Year 2007"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Tournament"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Tournament"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which tournaments have SF in 2007?",
+        "Which of those also have SF in 2008?",
+        "Which of those also have F in 2010?",
+        "Which tournaments have 'sf' or 'SF' in the 2008 column?",
+        "Which tournaments have 'f' or 'F' in the 2010 column?",
+        "What is the intersection of these two sets?",
+        "What are the corresponding values in the 2007 column for this intersection?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which tournaments have SF in 2007?",
+          "Which of those also have SF in 2008?",
+          "Which of those also have F in 2010?"
+        ],
+        [
+          "Which tournaments have 'sf' or 'SF' in the 2008 column?",
+          "Which tournaments have 'f' or 'F' in the 2010 column?",
+          "What is the intersection of these two sets?",
+          "What are the corresponding values in the 2007 column for this intersection?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Tournament Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Tournament Results"
+        ],
+        [
+          "Tournament Results"
+        ],
+        [
+          "Tournament Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "2005": "tournament round result",
+        "2006": "tournament round result",
+        "2007": "tournament round result",
+        "2008": "tournament round result",
+        "2009": "tournament round result",
+        "2010": "tournament round result",
+        "2011": "tournament round result",
+        "2012": "tournament round result",
+        "2013": "tournament round result",
+        "win %": "percentage"
+      },
+      "confidence": 0.6666666666666667,
+      "votes": [
+        {
+          "2005": "tournament round result",
+          "2006": "tournament round result",
+          "2007": "tournament round result",
+          "2008": "tournament round result",
+          "2009": "tournament round result",
+          "2010": "tournament round result",
+          "2011": "tournament round result",
+          "2012": "tournament round result",
+          "2013": "tournament round result",
+          "Win %": "percentage"
+        },
+        {
+          "2005": "tournament result abbreviation",
+          "2006": "tournament result abbreviation",
+          "2007": "tournament result abbreviation",
+          "2008": "tournament result abbreviation",
+          "2009": "tournament result abbreviation",
+          "2010": "tournament result abbreviation",
+          "2011": "tournament result abbreviation",
+          "2012": "tournament result abbreviation",
+          "2013": "tournament result abbreviation",
+          "Win %": "percentage"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Win % column contains percentages but stored as strings with '%' symbol"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Win % column contains percentages but stored as strings with '%' symbol"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "\u2013",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "\u2013",
+          "",
+          "NA"
+        ],
+        [
+          "\u2013",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Tournament names must be unique",
+        "Year columns should contain valid tournament round codes",
+        "Win % should be between 0 and 100",
+        "Filter rows where 2008 column value matches 'sf' (case-insensitive)",
+        "Filter rows where 2010 column value matches 'f' (case-insensitive)",
+        "Exclude header or category rows that don't represent actual tournament entries",
+        "The values in columns '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013' represent tournament results."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Tournament names must be unique",
+          "Year columns should contain valid tournament round codes",
+          "Win % should be between 0 and 100"
+        ],
+        [
+          "Filter rows where 2008 column value matches 'sf' (case-insensitive)",
+          "Filter rows where 2010 column value matches 'f' (case-insensitive)",
+          "Exclude header or category rows that don't represent actual tournament entries"
+        ],
+        [
+          "The values in columns '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013' represent tournament results."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Tournament != 'Grand Slam tournaments'",
+        "Tournament != 'Win\u2013Loss'",
+        "Apply case-insensitive matching for tournament result abbreviations",
+        "Filter the 'Tournament Results' table for rows where '2008' is 'sf' and '2010' is 'f'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Tournament != 'Grand Slam tournaments'",
+          "Tournament != 'Win\u2013Loss'"
+        ],
+        [
+          "Apply case-insensitive matching for tournament result abbreviations"
+        ],
+        [
+          "Filter the 'Tournament Results' table for rows where '2008' is 'sf' and '2010' is 'f'."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate tournament names",
+        "Validate tournament round codes in year columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate tournament names",
+          "Validate tournament round codes in year columns"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of tournament names matching the criteria",
+        "Case-sensitive matching for 'SF' and 'F' values",
+        "Return the value(s) from the 2007 column for matching rows",
+        "If multiple rows match, return all matching 2007 values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of tournament names matching the criteria",
+          "Case-sensitive matching for 'SF' and 'F' values"
+        ],
+        [
+          "Return the value(s) from the 2007 column for matching rows",
+          "If multiple rows match, return all matching 2007 values"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5666666666666668
+}

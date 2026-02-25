@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Attendance value",
+    "filters": [
+      "Round = '52'",
+      "Home = 'S\u00f6dert\u00e4lje SK'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find the specific attendance number for the game with Round 52 where S\u00f6dert\u00e4lje SK is the home team"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Hockey Games"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Attendance": "number of spectators"
+    },
+    "scale_issues": [
+      "Attendance values contain commas as thousand separators (e.g., '11,497') which need to be parsed as numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date values are in format 'Day, Month DD' (e.g., 'Tuesday, February 10')",
+      "Result column contains scores with special characters like '\u2013' and overtime indicators like '(OT)'",
+      "Attendance values are quoted strings with comma separators"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Round values appear to be strings but represent numeric rounds",
+      "Home team names must match exactly (case-sensitive)",
+      "There should be exactly one game with Round 52 and Home = 'S\u00f6dert\u00e4lje SK' based on sample data"
+    ],
+    "derived_filters": [
+      "Round column filtering for value '52'",
+      "Home column filtering for value 'S\u00f6dert\u00e4lje SK'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Round+Home combinations"
+    ],
+    "output_format_requirements": [
+      "Attendance should be returned as a cleaned numeric value (remove commas and quotes)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Attendance value\",\n        \"filters\": [\"Round = '52'\", \"Home = 'S\u00f6dert\u00e4lje SK'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Find the specific attendance number for the game with Round 52 where S\u00f6dert\u00e4lje SK is the home team\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Hockey Games\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Attendance\": \"number of spectators\"},\n        \"scale_issues\": [\"Attendance values contain commas as thousand separators (e.g., '11,497') which need to be parsed as numeric\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date values are in format 'Day, Month DD' (e.g., 'Tuesday, February 10')\", \"Result column contains scores with special characters like '\u2013' and overtime indicators like '(OT)'\", \"Attendance values are quoted strings with comma separators\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Round values appear to be strings but represent numeric rounds\", \"Home team names must match exactly (case-sensitive)\", \"There should be exactly one game with Round 52 and Home = 'S\u00f6dert\u00e4lje SK' based on sample data\"],\n        \"derived_filters\": [\"Round column filtering for value '52'\", \"Home column filtering for value 'S\u00f6dert\u00e4lje SK'\"],\n        \"statistical_tests\": [\"Check for duplicate Round+Home combinations\"],\n        \"output_format_requirements\": [\"Attendance should be returned as a cleaned numeric value (remove commas and quotes)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.806838035583496,
+  "token_usage": {
+    "input_tokens": 1228,
+    "output_tokens": 459
+  }
+}

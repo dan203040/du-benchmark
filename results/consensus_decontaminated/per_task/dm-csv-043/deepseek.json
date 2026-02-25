@@ -1,0 +1,130 @@
+{
+  "m_q": {
+    "target_metric": "Retention rate for each cohort, defined as (number of unique customers who made a purchase in subsequent months) / (initial cohort size)",
+    "filters": [
+      "Valid CustomerID values (non-null)",
+      "Valid InvoiceDate values (non-null)",
+      "Positive Quantity values"
+    ],
+    "grouping_variables": [
+      "CohortMonth",
+      "MonthOffset (1-13)"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the initial cohort size for each CohortMonth?",
+      "How many unique customers from each cohort made purchases in each subsequent month?",
+      "How to handle missing values in cohort_counts.csv (empty cells)?",
+      "Should retention be calculated as percentage or ratio?",
+      "What is the expected format of retension.csv output?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online.csv",
+      "cohort_counts.csv",
+      "average_quantity.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "cohort_counts.csv",
+        "right_source": "average_quantity.csv",
+        "left_column": "CohortMonth",
+        "right_column": "CohortMonth",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "cohort_counts.csv and average_quantity.csv have identical column structures but different data types (float64 vs object for CohortMonth)",
+      "online.csv has InvoiceDate as object type that needs parsing",
+      "cohort_counts.csv has empty cells that appear as NaN/None values"
+    ],
+    "column_mappings": {
+      "Unnamed: 0": "RowIndex",
+      "1": "Month1",
+      "2": "Month2",
+      "3": "Month3",
+      "4": "Month4",
+      "5": "Month5",
+      "6": "Month6",
+      "7": "Month7",
+      "8": "Month8",
+      "9": "Month9",
+      "10": "Month10",
+      "11": "Month11",
+      "12": "Month12",
+      "13": "Month13"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Quantity": "count of items",
+      "UnitPrice": "currency units",
+      "cohort_counts.csv columns (1-13)": "count of unique customers",
+      "average_quantity.csv columns (1-13)": "average quantity per customer"
+    },
+    "scale_issues": [
+      "cohort_counts.csv values are floats but represent counts (should be integers)",
+      "Missing values in cohort_counts.csv represented as empty strings in sample",
+      "InvoiceDate needs timezone consideration (all UK in sample)"
+    ],
+    "cross_source_conflicts": [
+      "cohort_counts.csv provides aggregated data while online.csv provides transactional data - need to verify consistency",
+      "CohortMonth format differs between files (YYYY-MM-DD vs YYYY-MM-01)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "cohort_counts.csv and average_quantity.csv have triangular structure with increasing empty cells",
+      "online.csv has 9 columns including Unnamed: 0 index column",
+      "CohortMonth values end with '-01' suggesting first day of month",
+      "InvoiceDate includes timestamp in format YYYY-MM-DD HH:MM:SS"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "CohortMonth values must be valid dates",
+      "Month offset columns (1-13) must be sequential",
+      "Initial cohort size (Month1 in cohort_counts.csv) must be positive",
+      "Retention rate must be between 0 and 1 (or 0-100%)",
+      "CustomerID must be integer type"
+    ],
+    "derived_filters": [
+      "Exclude transactions with Quantity <= 0",
+      "Exclude transactions with UnitPrice <= 0",
+      "Exclude rows with missing CustomerID",
+      "Consider only first purchase month for cohort assignment"
+    ],
+    "statistical_tests": [
+      "Verify cohort_counts.csv Month1 matches unique customers from online.csv for each cohort",
+      "Check for duplicate InvoiceNo-CustomerID combinations",
+      "Validate retention rates are monotonically non-increasing over time"
+    ],
+    "output_format_requirements": [
+      "Output file named retension.csv (note spelling)",
+      "Match template format (likely similar to cohort_counts.csv structure)",
+      "Include CohortMonth column",
+      "Include retention rates for months 1-13",
+      "Handle missing values appropriately"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Retention rate for each cohort, defined as (number of unique customers who made a purchase in subsequent months) / (initial cohort size)\",\n        \"filters\": [\"Valid CustomerID values (non-null)\", \"Valid InvoiceDate values (non-null)\", \"Positive Quantity values\"],\n        \"grouping_variables\": [\"CohortMonth\", \"MonthOffset (1-13)\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What is the initial cohort size for each CohortMonth?\", \"How many unique customers from each cohort made purchases in each subsequent month?\", \"How to handle missing values in cohort_counts.csv (empty cells)?\", \"Should retention be calculated as percentage or ratio?\", \"What is the expected format of retension.csv output?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"online.csv\", \"cohort_counts.csv\", \"average_quantity.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"cohort_counts.csv\", \"right_source\": \"average_quantity.csv\", \"left_column\": \"CohortMonth\", \"right_column\": \"CohortMonth\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"cohort_counts.csv and average_quantity.csv have identical column structures but different data types (float64 vs object for CohortMonth)\", \"online.csv has InvoiceDate as object type that needs parsing\", \"cohort_counts.csv has empty cells that appear as NaN/None values\"],\n        \"column_mappings\": {\"Unnamed: 0\": \"RowIndex\", \"1\": \"Month1\", \"2\": \"Month2\", \"3\": \"Month3\", \"4\": \"Month4\", \"5\": \"Month5\", \"6\": \"Month6\", \"7\": \"Month7\", \"8\": \"Month8\", \"9\": \"Month9\", \"10\": \"Month10\", \"11\": \"Month11\", \"12\": \"Month12\", \"13\": \"Month13\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Quantity\": \"count of items\", \"UnitPrice\": \"currency units\", \"cohort_counts.csv columns (1-13)\": \"count of unique customers\", \"average_quantity.csv columns (1-13)\": \"average quantity per customer\"},\n        \"scale_issues\": [\"cohort_counts.csv values are floats but represent counts (should be integers)\", \"Missing values in cohort_counts.csv represented as empty strings in sample\", \"InvoiceDate needs timezone consideration (all UK in sample)\"],\n        \"cross_source_conflicts\": [\"cohort_counts.csv provides aggregated data while online.csv provides transactional data - need to verify consistency\", \"CohortMonth format differs between files (YYYY-MM-DD vs YYYY-MM-01)\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"null\"],\n        \"expected_columns\": 14,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"cohort_counts.csv and average_quantity.csv have triangular structure with increasing empty cells\", \"online.csv has 9 columns including Unnamed: 0 index column\", \"CohortMonth values end with '-01' suggesting first day of month\", \"InvoiceDate includes timestamp in format YYYY-MM-DD HH:MM:SS\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"CohortMonth values must be valid dates\", \"Month offset columns (1-13) must be sequential\", \"Initial cohort size (Month1 in cohort_counts.csv) must be positive\", \"Retention rate must be between 0 and 1 (or 0-100%)\", \"CustomerID must be integer type\"],\n        \"derived_filters\": [\"Exclude transactions with Quantity <= 0\", \"Exclude transactions with UnitPrice <= 0\", \"Exclude rows with missing CustomerID\", \"Consider only first purchase month for cohort assignment\"],\n        \"statistical_tests\": [\"Verify cohort_counts.csv Month1 matches unique customers from online.csv for each cohort\", \"Check for duplicate InvoiceNo-CustomerID combinations\", \"Validate retention rates are monotonically non-increasing over time\"],\n        \"output_format_requirements\": [\"Output file named retension.csv (note spelling)\", \"Match template format (likely similar to cohort_counts.csv structure)\", \"Include CohortMonth column\", \"Include retention rates for months 1-13\", \"Handle missing values appropriately\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 19.51718282699585,
+  "token_usage": {
+    "input_tokens": 3319,
+    "output_tokens": 976
+  }
+}

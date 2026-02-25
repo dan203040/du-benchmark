@@ -1,0 +1,60 @@
+{
+  "m_q": {
+    "target_metric": "City name corresponding to IATA code 'VIE'",
+    "filters": [
+      "IATA = 'VIE'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the city name in the row where IATA column equals 'VIE'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Airport Information"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2014",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Province/Region column uses '\u2014' for missing values",
+      "Sample shows first 20 rows of 24 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "IATA codes should be unique",
+      "Each row represents one airport"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Single city name as string"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"City name corresponding to IATA code 'VIE'\",\n        \"filters\": [\"IATA = 'VIE'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the city name in the row where IATA column equals 'VIE'?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Airport Information\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\u2014\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Province/Region column uses '\u2014' for missing values\", \"Sample shows first 20 rows of 24 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"IATA codes should be unique\", \"Each row represents one airport\"],\n        \"derived_filters\": [],\n        \"statistical_tests\": [],\n        \"output_format_requirements\": [\"Single city name as string\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 6.6050801277160645,
+  "token_usage": {
+    "input_tokens": 972,
+    "output_tokens": 312
+  }
+}

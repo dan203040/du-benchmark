@@ -1,0 +1,122 @@
+{
+  "m_q": {
+    "target_metric": "highest concentration of identity theft reports in a single metropolitan area among states with at least two metropolitan areas, considering each multi-state metropolitan area separately in each state it belongs to",
+    "filters": [
+      "states with at least two metropolitan areas"
+    ],
+    "grouping_variables": [
+      "state"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "For each state, identify all metropolitan areas.",
+      "For each state, count the number of metropolitan areas.",
+      "Filter states with at least two metropolitan areas.",
+      "For each state and metropolitan area, find the number of identity theft reports.",
+      "For each state, find the maximum number of identity theft reports across all its metropolitan areas.",
+      "Find the state with the highest maximum number of identity theft reports."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Metropolitan Area": "Metropolitan Area",
+      "# of Reports": "Number of Reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Number of Reports": "number of identity theft reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row of each file contains a note and should be removed."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Need to consider multi-state metropolitan areas separately for each state.",
+      "Need to filter states with at least two metropolitan areas."
+    ],
+    "derived_filters": [
+      "States with at least two metropolitan areas"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "State with the highest concentration of identity theft reports in a single metropolitan area."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"highest concentration of identity theft reports in a single metropolitan area among states with at least two metropolitan areas, considering each multi-state metropolitan area separately in each state it belongs to\",\n    \"filters\": [\n      \"states with at least two metropolitan areas\"\n    ],\n    \"grouping_variables\": [\n      \"state\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"For each state, identify all metropolitan areas.\",\n      \"For each state, count the number of metropolitan areas.\",\n      \"Filter states with at least two metropolitan areas.\",\n      \"For each state and metropolitan area, find the number of identity theft reports.\",\n      \"For each state, find the maximum number of identity theft reports across all its metropolitan areas.\",\n      \"Find the state with the highest maximum number of identity theft reports.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Metropolitan Area\": \"Metropolitan Area\",\n      \"# of Reports\": \"Number of Reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Number of Reports\": \"number of identity theft reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Last row of each file contains a note and should be removed.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to consider multi-state metropolitan areas separately for each state.\",\n      \"Need to filter states with at least two metropolitan areas.\"\n    ],\n    \"derived_filters\": [\n      \"States with at least two metropolitan areas\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"State with the highest concentration of identity theft reports in a single metropolitan area.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.196822166442871,
+  "token_usage": {}
+}

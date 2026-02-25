@@ -1,0 +1,334 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Difference between average fatalities on days with humidity <30% and overall average fatalities, rounded to four decimal places",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Difference between average fatalities on days with humidity <30% and overall average fatalities, rounded to four decimal places",
+        "Difference between fatalities on days with humidity <30% and average fatalities across all days",
+        "Difference between fatalities on days with humidity less than 30% and the average fatalities, rounded to four decimal places."
+      ]
+    },
+    "filters": {
+      "value": [
+        "avrh_mean < 30",
+        "fatalities_last is not null",
+        "avrh_mean < 30 for low humidity subset"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "avrh_mean < 30",
+          "fatalities_last is not null"
+        ],
+        [
+          "avrh_mean < 30 for low humidity subset"
+        ],
+        [
+          "avrh_mean < 30"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the average fatalities across all days?",
+        "What is the average fatalities on days with humidity <30%?",
+        "What is the difference between these two averages?",
+        "What is the total number of fatalities on days where avrh_mean < 30?",
+        "How many wildfire incidents occurred on days where avrh_mean < 30?",
+        "What is the average fatalities per incident on days where avrh_mean < 30?",
+        "What is the overall average fatalities per incident across all days?",
+        "Calculate the average fatalities across all days.",
+        "Calculate the total fatalities on days with humidity less than 30%.",
+        "Calculate the difference between the total fatalities on low humidity days and the average fatalities."
+      ],
+      "confidence": 0.3666666666666667,
+      "votes": [
+        [
+          "What is the average fatalities across all days?",
+          "What is the average fatalities on days with humidity <30%?",
+          "What is the difference between these two averages?"
+        ],
+        [
+          "What is the total number of fatalities on days where avrh_mean < 30?",
+          "How many wildfire incidents occurred on days where avrh_mean < 30?",
+          "What is the average fatalities per incident on days where avrh_mean < 30?",
+          "What is the overall average fatalities per incident across all days?",
+          "What is the difference between these two averages?"
+        ],
+        [
+          "Calculate the average fatalities across all days.",
+          "Calculate the total fatalities on days with humidity less than 30%.",
+          "Calculate the difference between the total fatalities on low humidity days and the average fatalities."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Fire_Weather_Data_2002-2014_2016.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ],
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ],
+        [
+          "Fire_Weather_Data_2002-2014_2016.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage humidity",
+        "fatalities_last": "count of fatalities",
+        "wind_med": "wind speed unit unspecified",
+        "erc_med": "energy release component index",
+        "rain_sum": "precipitation unit unspecified"
+      },
+      "confidence": 0.6000000000000001,
+      "votes": [
+        {
+          "avrh_mean": "percentage humidity",
+          "fatalities_last": "count of fatalities"
+        },
+        {
+          "avrh_mean": "percentage (humidity)",
+          "fatalities_last": "count of fatalities",
+          "wind_med": "wind speed unit unspecified",
+          "erc_med": "energy release component index",
+          "rain_sum": "precipitation unit unspecified"
+        },
+        {
+          "avrh_mean": "percent",
+          "fatalities_last": "count"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "avrh_mean appears to be integer percentage values (e.g., 39, 46, 19)",
+        "fatalities_last appears to be integer counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "avrh_mean appears to be integer percentage values (e.g., 39, 46, 19)",
+          "fatalities_last appears to be integer counts"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "fatalities_last >= 0",
+        "avrh_mean between 0 and 100",
+        "start_year between 2002 and 2016",
+        "avrh_mean represents humidity and should be between 0 and 100",
+        "fatalities_last should be non-negative integer",
+        "Result should be rounded to 4 decimal places"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "fatalities_last >= 0",
+          "avrh_mean between 0 and 100",
+          "start_year between 2002 and 2016"
+        ],
+        [
+          "avrh_mean represents humidity and should be between 0 and 100",
+          "fatalities_last should be non-negative integer",
+          "Result should be rounded to 4 decimal places"
+        ],
+        [
+          "fatalities_last >= 0"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where avrh_mean is missing",
+        "Exclude rows where fatalities_last is missing",
+        "low_humidity_subset = avrh_mean < 30",
+        "all_incidents_subset = no filter"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where avrh_mean is missing",
+          "Exclude rows where fatalities_last is missing"
+        ],
+        [
+          "low_humidity_subset = avrh_mean < 30",
+          "all_incidents_subset = no filter"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check distribution of fatalities_last for skewness",
+        "Compare variance of fatalities between humidity groups"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check distribution of fatalities_last for skewness",
+          "Compare variance of fatalities between humidity groups"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Round final result to four decimal places",
+        "Positive number indicates more fatalities on low humidity days",
+        "Negative number indicates fewer fatalities on low humidity days",
+        "Single scalar value rounded to 4 decimal places",
+        "Positive value indicates more fatalities in low humidity conditions",
+        "Negative value indicates fewer fatalities in low humidity conditions",
+        "Round the final result to four decimal places."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Round final result to four decimal places",
+          "Positive number indicates more fatalities on low humidity days",
+          "Negative number indicates fewer fatalities on low humidity days"
+        ],
+        [
+          "Single scalar value rounded to 4 decimal places",
+          "Positive value indicates more fatalities in low humidity conditions",
+          "Negative value indicates fewer fatalities in low humidity conditions"
+        ],
+        [
+          "Round the final result to four decimal places."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5733333333333335
+}

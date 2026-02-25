@@ -1,0 +1,116 @@
+{
+  "m_q": {
+    "target_metric": "Effect of suppression aggressiveness on fire duration and building impact, controlling for weather conditions",
+    "filters": [
+      "Remove rows with missing suppression strategy data",
+      "Remove rows with missing weather variables (avrh_mean, wind_med, erc_med, rain_sum)",
+      "Remove rows with missing duration or building threat columns"
+    ],
+    "grouping_variables": [
+      "dominant_strategy_25_s",
+      "dominant_strategy_50_s",
+      "dominant_strategy_75_s",
+      "subdom_strategy",
+      "dom_strat_ind_25",
+      "dom_strat_ind_50",
+      "dom_strat_ind_75"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Does higher percentage of full suppression (25% vs 50% vs 75%) correlate with shorter duration?",
+      "Do different suppression strategies (Full Suppression vs Confine vs Monitor) affect building threat levels differently?",
+      "How do weather variables (avrh_mean, wind_med, erc_med, rain_sum) moderate the relationship between suppression and outcomes?",
+      "Are there regional differences in suppression effectiveness?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Variable description file has different column names than main dataset",
+      "Main dataset has 37 columns but description file only shows partial list"
+    ],
+    "column_mappings": {
+      "dominant_strategy_25_s": "suppression_25_percent",
+      "dominant_strategy_50_s": "suppression_50_percent",
+      "dominant_strategy_75_s": "suppression_75_percent",
+      "prim_threatened_aggregate": "houses_threatened",
+      "comm_threatened_aggregate": "commercial_buildings_threatened",
+      "outb_threatened_aggregate": "outbuildings_threatened"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs/square foot",
+      "rain_sum": "total precipitation units",
+      "duration": "days",
+      "prim_threatened_aggregate": "count",
+      "comm_threatened_aggregate": "count",
+      "outb_threatened_aggregate": "count"
+    },
+    "scale_issues": [
+      "erc_med has decimal values while other weather variables are integers",
+      "rain_sum may represent different time periods (individual fire vs fire cluster)",
+      "latitude/longitude are integers but should likely be decimals"
+    ],
+    "cross_source_conflicts": [
+      "Description file mentions 'Young et al. 2020, Table 1' but not all variables have descriptions",
+      "Alternative description column has inconsistent formatting"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns (start_date, controlled_date) are in MM/DD/YYYY format",
+      "Some incident_number values have mixed formats (CA-ANF-3518 vs MEU-9470)",
+      "Cause codes: U=unknown, N=natural, H=human, L=lightning, O=other"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "duration = control_day_of_year - start_day_of_year (should be verified)",
+      "start_year should match year from start_date",
+      "control_year should match year from controlled_date",
+      "dominant_strategy columns should be consistent with dom_strat_ind columns"
+    ],
+    "derived_filters": [
+      "Filter to fires with complete weather data",
+      "Filter to fires with non-zero duration",
+      "Consider creating composite building threat metric = prim_threatened_aggregate + comm_threatened_aggregate + outb_threatened_aggregate"
+    ],
+    "statistical_tests": [
+      "ANCOVA with suppression strategy as factor, weather variables as covariates",
+      "Multiple regression with interaction terms between suppression and weather",
+      "Chi-square test for suppression strategy distribution across regions"
+    ],
+    "output_format_requirements": [
+      "Include confidence intervals for effect sizes",
+      "Report R-squared values for models",
+      "Show weather-adjusted means for each suppression strategy",
+      "Include sample sizes for each suppression category"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Effect of suppression aggressiveness on fire duration and building impact, controlling for weather conditions\",\n        \"filters\": [\"Remove rows with missing suppression strategy data\", \"Remove rows with missing weather variables (avrh_mean, wind_med, erc_med, rain_sum)\", \"Remove rows with missing duration or building threat columns\"],\n        \"grouping_variables\": [\"dominant_strategy_25_s\", \"dominant_strategy_50_s\", \"dominant_strategy_75_s\", \"subdom_strategy\", \"dom_strat_ind_25\", \"dom_strat_ind_50\", \"dom_strat_ind_75\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Does higher percentage of full suppression (25% vs 50% vs 75%) correlate with shorter duration?\", \"Do different suppression strategies (Full Suppression vs Confine vs Monitor) affect building threat levels differently?\", \"How do weather variables (avrh_mean, wind_med, erc_med, rain_sum) moderate the relationship between suppression and outcomes?\", \"Are there regional differences in suppression effectiveness?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Variable description file has different column names than main dataset\", \"Main dataset has 37 columns but description file only shows partial list\"],\n        \"column_mappings\": {\n            \"dominant_strategy_25_s\": \"suppression_25_percent\",\n            \"dominant_strategy_50_s\": \"suppression_50_percent\",\n            \"dominant_strategy_75_s\": \"suppression_75_percent\",\n            \"prim_threatened_aggregate\": \"houses_threatened\",\n            \"comm_threatened_aggregate\": \"commercial_buildings_threatened\",\n            \"outb_threatened_aggregate\": \"outbuildings_threatened\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"avrh_mean\": \"percentage\",\n            \"wind_med\": \"miles per hour\",\n            \"erc_med\": \"BTUs/square foot\",\n            \"rain_sum\": \"total precipitation units\",\n            \"duration\": \"days\",\n            \"prim_threatened_aggregate\": \"count\",\n            \"comm_threatened_aggregate\": \"count\",\n            \"outb_threatened_aggregate\": \"count\"\n        },\n        \"scale_issues\": [\"erc_med has decimal values while other weather variables are integers\", \"rain_sum may represent different time periods (individual fire vs fire cluster)\", \"latitude/longitude are integers but should likely be decimals\"],\n        \"cross_source_conflicts\": [\"Description file mentions 'Young et al. 2020, Table 1' but not all variables have descriptions\", \"Alternative description column has inconsistent formatting\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"null\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date columns (start_date, controlled_date) are in MM/DD/YYYY format\", \"Some incident_number values have mixed formats (CA-ANF-3518 vs MEU-9470)\", \"Cause codes: U=unknown, N=natural, H=human, L=lightning, O=other\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"duration = control_day_of_year - start_day_of_year (should be verified)\", \"start_year should match year from start_date\", \"control_year should match year from controlled_date\", \"dominant_strategy columns should be consistent with dom_strat_ind columns\"],\n        \"derived_filters\": [\"Filter to fires with complete weather data\", \"Filter to fires with non-zero duration\", \"Consider creating composite building threat metric = prim_threatened_aggregate + comm_threatened_aggregate + outb_threatened_aggregate\"],\n        \"statistical_tests\": [\"ANCOVA with suppression strategy as factor, weather variables as covariates\", \"Multiple regression with interaction terms between suppression and weather\", \"Chi-square test for suppression strategy distribution across regions\"],\n        \"output_format_requirements\": [\"Include confidence intervals for effect sizes\", \"Report R-squared values for models\", \"Show weather-adjusted means for each suppression strategy\", \"Include sample sizes for each suppression category\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 19.41781783103943,
+  "token_usage": {
+    "input_tokens": 3951,
+    "output_tokens": 987
+  }
+}

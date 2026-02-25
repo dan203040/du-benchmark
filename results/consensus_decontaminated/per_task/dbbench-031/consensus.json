@@ -1,0 +1,301 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of goals scored by Brazil",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "count of goals scored by Brazil",
+        "Number of goals scored by Brazil",
+        "Count of goals scored by Brazil"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date = 'November 6, 1968'",
+        "Opposition = 'FIFA XI'",
+        "Date equals November 6, 1968",
+        "Date is November 6th"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date = 'November 6, 1968'",
+          "Opposition = 'FIFA XI'"
+        ],
+        [
+          "Date equals November 6, 1968"
+        ],
+        [
+          "Date is November 6th"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the Score column value for the November 6, 1968 game?",
+        "How many goals are listed in the Brazil scorers column for that game?",
+        "Does the Score column format allow direct extraction of Brazil's goals?",
+        "What was the date format for November 6th in the dataset?",
+        "What was the Score for the game on November 6, 1968?",
+        "How to extract Brazil's goal count from the Score column?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the Score column value for the November 6, 1968 game?",
+          "How many goals are listed in the Brazil scorers column for that game?",
+          "Does the Score column format allow direct extraction of Brazil's goals?"
+        ],
+        [
+          "What was the date format for November 6th in the dataset?",
+          "What was the Score for the game on November 6, 1968?",
+          "How to extract Brazil's goal count from the Score column?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Brazil National Football Team Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Brazil National Football Team Results"
+        ],
+        [
+          "Brazil National Football Team Results"
+        ],
+        [
+          "Brazil National Football Team Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "score": "goals (format: Brazil-Opposition)",
+        "date": "text date format (Month Day, Year)"
+      },
+      "confidence": 0.5,
+      "votes": [
+        {
+          "Score": "goals (format: Brazil-Opposition)"
+        },
+        {
+          "Score": "goals (format: Brazil goals-Opposition goals)",
+          "Date": "text date format (Month Day, Year)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Date format uses month name and day with year (e.g., 'November 6, 1968')",
+        "Brazil scorers column contains player names with possible goal counts in parentheses"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date format uses month name and day with year (e.g., 'November 6, 1968')",
+          "Brazil scorers column contains player names with possible goal counts in parentheses"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "-",
+        "NA",
+        "",
+        "N/A"
+      ],
+      "confidence": 0.5833333333333334,
+      "votes": [
+        [
+          "-"
+        ],
+        [
+          "-",
+          "NA",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only one row should match Date = 'November 6, 1968'",
+        "Score column should be in format 'X-Y' where X is Brazil's goals",
+        "Brazil scorers column should list all goal scorers for Brazil",
+        "Date must match 'November 6, 1968'",
+        "Score must be parseable as 'X-Y' format",
+        "Result field should be W, L, or D",
+        "Date column must be parsed to datetime format to filter by November 6th"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only one row should match Date = 'November 6, 1968'",
+          "Score column should be in format 'X-Y' where X is Brazil's goals",
+          "Brazil scorers column should list all goal scorers for Brazil"
+        ],
+        [
+          "Date must match 'November 6, 1968'",
+          "Score must be parseable as 'X-Y' format",
+          "Result field should be W, L, or D"
+        ],
+        [
+          "Date column must be parsed to datetime format to filter by November 6th"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Result = 'W' (Brazil won 2-1)",
+        "Extract first number from Score column (before hyphen) for Brazil's goals",
+        "Extract the year from the Date column to ensure the correct November 6th is selected if multiple exist."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Result = 'W' (Brazil won 2-1)"
+        ],
+        [
+          "Extract first number from Score column (before hyphen) for Brazil's goals"
+        ],
+        [
+          "Extract the year from the Date column to ensure the correct November 6th is selected if multiple exist."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify Brazil scorers count matches first number in Score column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify Brazil scorers count matches first number in Score column"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Integer count of goals",
+        "Return a single integer representing the number of goals Brazil scored"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Integer count of goals"
+        ],
+        [
+          "Return a single integer representing the number of goals Brazil scored"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5541666666666668
+}

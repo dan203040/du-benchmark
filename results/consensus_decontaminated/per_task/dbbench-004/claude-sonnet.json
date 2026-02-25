@@ -1,0 +1,68 @@
+{
+  "m_q": {
+    "target_metric": "City name corresponding to IATA code 'VIE'",
+    "filters": [
+      "IATA = 'VIE'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which row in Airport Information has IATA code 'VIE'?",
+      "What is the City value for that row?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Airport Information"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "IATA": "three-letter airport code",
+      "ICAO": "four-letter airport code"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2014"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Province/Region uses '\u2014' for missing or not applicable values",
+      "All IATA codes are 3-character strings",
+      "All ICAO codes are 4-character strings"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "IATA must be exactly 3 characters",
+      "IATA codes should be unique per airport",
+      "City field should not be null or empty"
+    ],
+    "derived_filters": [
+      "Filter rows where IATA column equals 'VIE'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the city name as a simple string value",
+      "Expected answer format: 'Vienna'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"City name corresponding to IATA code 'VIE'\",\n    \"filters\": [\"IATA = 'VIE'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which row in Airport Information has IATA code 'VIE'?\",\n      \"What is the City value for that row?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Airport Information\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"IATA\": \"three-letter airport code\",\n      \"ICAO\": \"four-letter airport code\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\u2014\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Province/Region uses '\u2014' for missing or not applicable values\",\n      \"All IATA codes are 3-character strings\",\n      \"All ICAO codes are 4-character strings\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"IATA must be exactly 3 characters\",\n      \"IATA codes should be unique per airport\",\n      \"City field should not be null or empty\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where IATA column equals 'VIE'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the city name as a simple string value\",\n      \"Expected answer format: 'Vienna'\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.796585321426392,
+  "token_usage": {
+    "input_tokens": 1110,
+    "output_tokens": 497
+  }
+}

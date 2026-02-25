@@ -1,0 +1,139 @@
+{
+  "m_q": {
+    "target_metric": "RMSE between NRLMSISE-00 predicted neutral density and Swarm-B measured neutral density for all 2024 observations",
+    "filters": [
+      "Time range: 2024-01-01 to 2024-12-31",
+      "Swarm-B satellite data only",
+      "OMNI2 data for 2024 only"
+    ],
+    "grouping_variables": [
+      "timestamp",
+      "satellite_position_parameters"
+    ],
+    "output_cardinality": "scalar (single RMSE value)",
+    "sub_questions": [
+      "Extract F10.7, F10.7A, daily Ap, and 3-hour Ap vector from OMNI2 data",
+      "Prepare NRLMSISE-00 model inputs from OMNI2 data",
+      "Run NRLMSISE-00 model for each Swarm-B observation timestamp",
+      "Extract measured neutral density from Swarm-B POD files",
+      "Calculate RMSE between predicted and measured densities"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "SB_DNS_POD_2024_01_v02.txt",
+      "SB_DNS_POD_2024_02_v02.txt",
+      "SB_DNS_POD_2024_03_v02.txt",
+      "SB_DNS_POD_2024_04_v02.txt",
+      "SB_DNS_POD_2024_05_v02.txt",
+      "SB_DNS_POD_2024_06_v02.txt",
+      "SB_DNS_POD_2024_07_v02.txt",
+      "SB_DNS_POD_2024_08_v02.txt",
+      "SB_DNS_POD_2024_09_v02.txt",
+      "SB_DNS_POD_2024_10_v02.txt",
+      "SB_DNS_POD_2024_11_v02.txt",
+      "SB_DNS_POD_2024_12_v02.txt",
+      "omni2_2024.dat",
+      "omni2_2023.dat",
+      "omni2.text"
+    ],
+    "join_keys": [
+      {
+        "left_source": "SB_DNS_POD_2024_*_v02.txt",
+        "right_source": "omni2_2024.dat",
+        "left_column": "timestamp",
+        "right_column": "datetime",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Swarm-B files have date and time in separate columns (col0 and col1), OMNI2 has combined datetime",
+      "Swarm-B column names are generic (col0-col8), OMNI2 column names are numeric codes",
+      "OMNI2 data format requires reference to omni2.text for column interpretation"
+    ],
+    "column_mappings": {
+      "col0": "date",
+      "col1": "time",
+      "col2": "timezone",
+      "col3": "altitude_m",
+      "col4": "latitude_deg",
+      "col5": "longitude_deg",
+      "col6": "local_solar_time_h",
+      "col7": "solar_zenith_angle_deg",
+      "col8": "neutral_density_kg_m3"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "col3": "meters (altitude)",
+      "col4": "degrees (latitude)",
+      "col5": "degrees (longitude)",
+      "col6": "hours (local solar time)",
+      "col7": "degrees (solar zenith angle)",
+      "col8": "kg/m\u00b3 (neutral density)",
+      "F10.7": "solar flux unit (sfu)",
+      "Ap": "nT (geomagnetic index)"
+    },
+    "scale_issues": [
+      "Neutral density values in scientific notation (e.g., 0.30634757E-12)",
+      "OMNI2 data contains placeholder values (999999.99, 99999.99) that need filtering",
+      "Swarm-B time resolution is 30 seconds, OMNI2 is hourly"
+    ],
+    "cross_source_conflicts": [
+      "Time alignment: Swarm-B 30-second data vs OMNI2 hourly data requires temporal interpolation",
+      "Geographic coordinates vs solar/magnetic coordinates for NRLMSISE-00 inputs"
+    ]
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "999999.99",
+      "99999.99",
+      "999.9",
+      "-9",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Swarm-B files: No header, 9 columns, date and time separate",
+      "OMNI2 data files: No header, 55 columns, numeric column names",
+      "OMNI2 text file: Contains format specification with column descriptions",
+      "Neutral density values use 'E' notation for scientific format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must use only OMNI2 data for space weather inputs (no external feeds)",
+      "3-hour Ap vector must be constructed according to NRLMSISE-00 specification",
+      "F10.7A (81-day average) must be calculated from OMNI2 F10.7 data",
+      "Daily Ap must be derived from OMNI2 data",
+      "Time range limited to 2024"
+    ],
+    "derived_filters": [
+      "Filter out OMNI2 placeholder values (999999.99, etc.)",
+      "Ensure time alignment between Swarm-B observations and OMNI2 data",
+      "Validate geographic coordinate ranges (-90 to 90\u00b0 latitude, -180 to 180\u00b0 longitude)"
+    ],
+    "statistical_tests": [
+      "Check for missing values in time series",
+      "Validate neutral density value ranges (positive, physically plausible)",
+      "Test temporal consistency of OMNI2 indices"
+    ],
+    "output_format_requirements": [
+      "RMSE reported as single numeric value",
+      "Comparison should include all valid 2024 observations",
+      "NRLMSISE-00 must be run with correct input parameter ordering"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"RMSE between NRLMSISE-00 predicted neutral density and Swarm-B measured neutral density for all 2024 observations\",\n        \"filters\": [\"Time range: 2024-01-01 to 2024-12-31\", \"Swarm-B satellite data only\", \"OMNI2 data for 2024 only\"],\n        \"grouping_variables\": [\"timestamp\", \"satellite_position_parameters\"],\n        \"output_cardinality\": \"scalar (single RMSE value)\",\n        \"sub_questions\": [\"Extract F10.7, F10.7A, daily Ap, and 3-hour Ap vector from OMNI2 data\", \"Prepare NRLMSISE-00 model inputs from OMNI2 data\", \"Run NRLMSISE-00 model for each Swarm-B observation timestamp\", \"Extract measured neutral density from Swarm-B POD files\", \"Calculate RMSE between predicted and measured densities\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"SB_DNS_POD_2024_01_v02.txt\", \"SB_DNS_POD_2024_02_v02.txt\", \"SB_DNS_POD_2024_03_v02.txt\", \"SB_DNS_POD_2024_04_v02.txt\", \"SB_DNS_POD_2024_05_v02.txt\", \"SB_DNS_POD_2024_06_v02.txt\", \"SB_DNS_POD_2024_07_v02.txt\", \"SB_DNS_POD_2024_08_v02.txt\", \"SB_DNS_POD_2024_09_v02.txt\", \"SB_DNS_POD_2024_10_v02.txt\", \"SB_DNS_POD_2024_11_v02.txt\", \"SB_DNS_POD_2024_12_v02.txt\", \"omni2_2024.dat\", \"omni2_2023.dat\", \"omni2.text\"],\n        \"join_keys\": [\n            {\"left_source\": \"SB_DNS_POD_2024_*_v02.txt\", \"right_source\": \"omni2_2024.dat\", \"left_column\": \"timestamp\", \"right_column\": \"datetime\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"Swarm-B files have date and time in separate columns (col0 and col1), OMNI2 has combined datetime\", \"Swarm-B column names are generic (col0-col8), OMNI2 column names are numeric codes\", \"OMNI2 data format requires reference to omni2.text for column interpretation\"],\n        \"column_mappings\": {\n            \"col0\": \"date\",\n            \"col1\": \"time\",\n            \"col2\": \"timezone\",\n            \"col3\": \"altitude_m\",\n            \"col4\": \"latitude_deg\",\n            \"col5\": \"longitude_deg\",\n            \"col6\": \"local_solar_time_h\",\n            \"col7\": \"solar_zenith_angle_deg\",\n            \"col8\": \"neutral_density_kg_m3\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"col3\": \"meters (altitude)\",\n            \"col4\": \"degrees (latitude)\",\n            \"col5\": \"degrees (longitude)\",\n            \"col6\": \"hours (local solar time)\",\n            \"col7\": \"degrees (solar zenith angle)\",\n            \"col8\": \"kg/m\u00b3 (neutral density)\",\n            \"F10.7\": \"solar flux unit (sfu)\",\n            \"Ap\": \"nT (geomagnetic index)\"\n        },\n        \"scale_issues\": [\"Neutral density values in scientific notation (e.g., 0.30634757E-12)\", \"OMNI2 data contains placeholder values (999999.99, 99999.99) that need filtering\", \"Swarm-B time resolution is 30 seconds, OMNI2 is hourly\"],\n        \"cross_source_conflicts\": [\"Time alignment: Swarm-B 30-second data vs OMNI2 hourly data requires temporal interpolation\", \"Geographic coordinates vs solar/magnetic coordinates for NRLMSISE-00 inputs\"]\n    },\n    \"M_F\": {\n        \"has_header\": false,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"999999.99\", \"99999.99\", \"999.9\", \"-9\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Swarm-B files: No header, 9 columns, date and time separate\", \"OMNI2 data files: No header, 55 columns, numeric column names\", \"OMNI2 text file: Contains format specification with column descriptions\", \"Neutral density values use 'E' notation for scientific format\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Must use only OMNI2 data for space weather inputs (no external feeds)\", \"3-hour Ap vector must be constructed according to NRLMSISE-00 specification\", \"F10.7A (81-day average) must be calculated from OMNI2 F10.7 data\", \"Daily Ap must be derived from OMNI2 data\", \"Time range limited to 2024\"],\n        \"derived_filters\": [\"Filter out OMNI2 placeholder values (999999.99, etc.)\", \"Ensure time alignment between Swarm-B observations and OMNI2 data\", \"Validate geographic coordinate ranges (-90 to 90\u00b0 latitude, -180 to 180\u00b0 longitude)\"],\n        \"statistical_tests\": [\"Check for missing values in time series\", \"Validate neutral density value ranges (positive, physically plausible)\", \"Test temporal consistency of OMNI2 indices\"],\n        \"output_format_requirements\": [\"RMSE reported as single numeric value\", \"Comparison should include all valid 2024 observations\", \"NRLMSISE-00 must be run with correct input parameter ordering\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 25.155113220214844,
+  "token_usage": {
+    "input_tokens": 25534,
+    "output_tokens": 1287
+  }
+}

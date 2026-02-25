@@ -1,0 +1,430 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Z-score of total acres burned per geographic area per year compared to historical annual average for that area",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Z-score of total acres burned per geographic area per year compared to historical annual average for that area",
+        "Geographic area with the most anomalous year by Z-score of total acres burned compared to its historical annual average",
+        "Geographic area and year with the most anomalous total acres burned (human and lightning caused) based on Z-score compared to its historical average."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year range: 2005-2024 (based on data availability)",
+        "Geographic areas: All 11 regions (excluding 'Total' column)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year range: 2005-2024 (based on data availability)",
+          "Geographic areas: All 11 regions (excluding 'Total' column)"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Geographic area (region)",
+        "Year",
+        "geographic_area"
+      ],
+      "confidence": 0.5555555555555555,
+      "votes": [
+        [
+          "Geographic area (region)",
+          "Year"
+        ],
+        [
+          "geographic_area",
+          "Year"
+        ],
+        [
+          "Year"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the historical average acres burned per geographic area?",
+        "What is the standard deviation of acres burned per geographic area?",
+        "How to calculate Z-score for each year per area: (year_value - area_mean) / area_std",
+        "Which area-year combination has the maximum absolute Z-score?",
+        "Should we use combined human-caused and lightning-caused acres or analyze separately?",
+        "What is the total acres burned per geographic area per year (sum of human-caused and lightning-caused)?",
+        "What is the historical annual average of total acres burned for each geographic area?",
+        "What is the standard deviation of annual acres burned for each geographic area?",
+        "What is the Z-score for each geographic area-year combination?",
+        "Which geographic area-year combination has the maximum absolute Z-score?",
+        "Calculate total acres burned per geographic area per year by summing human and lightning caused acres.",
+        "Calculate the historical average acres burned for each geographic area.",
+        "Calculate the Z-score for each year and geographic area based on total acres burned.",
+        "Identify the geographic area and year with the highest absolute Z-score."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the historical average acres burned per geographic area?",
+          "What is the standard deviation of acres burned per geographic area?",
+          "How to calculate Z-score for each year per area: (year_value - area_mean) / area_std",
+          "Which area-year combination has the maximum absolute Z-score?",
+          "Should we use combined human-caused and lightning-caused acres or analyze separately?"
+        ],
+        [
+          "What is the total acres burned per geographic area per year (sum of human-caused and lightning-caused)?",
+          "What is the historical annual average of total acres burned for each geographic area?",
+          "What is the standard deviation of annual acres burned for each geographic area?",
+          "What is the Z-score for each geographic area-year combination?",
+          "Which geographic area-year combination has the maximum absolute Z-score?"
+        ],
+        [
+          "Calculate total acres burned per geographic area per year by summing human and lightning caused acres.",
+          "Calculate the historical average acres burned for each geographic area.",
+          "Calculate the Z-score for each year and geographic area based on total acres burned.",
+          "Identify the geographic area and year with the highest absolute Z-score."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "nifc_human_caused_acres.csv",
+        "nifc_lightning_caused_acres.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "nifc_human_caused_acres.csv",
+          "nifc_lightning_caused_acres.csv"
+        ],
+        [
+          "nifc_human_caused_acres.csv",
+          "nifc_lightning_caused_acres.csv"
+        ],
+        [
+          "nifc_human_caused_acres.csv",
+          "nifc_lightning_caused_acres.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column name mismatch: 'Western Great Basin' vs 'Western Great Basin*'",
+        "Missing values represented by empty strings in human-caused data",
+        "Year 38 appears in lightning data (likely typo for 2018)",
+        "Column name mismatch: 'Western Great Basin' in human-caused vs 'Western Great Basin*' in lightning-caused",
+        "Column 'Western Great Basin' in nifc_human_caused_acres.csv and 'Western Great Basin*' in nifc_lightning_caused_acres.csv have slightly different names but represent the same geographic area. The asterisk should be removed or the column renamed for consistency."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column name mismatch: 'Western Great Basin' vs 'Western Great Basin*'",
+          "Missing values represented by empty strings in human-caused data",
+          "Year 38 appears in lightning data (likely typo for 2018)"
+        ],
+        [
+          "Column name mismatch: 'Western Great Basin' in human-caused vs 'Western Great Basin*' in lightning-caused"
+        ],
+        [
+          "Column 'Western Great Basin' in nifc_human_caused_acres.csv and 'Western Great Basin*' in nifc_lightning_caused_acres.csv have slightly different names but represent the same geographic area. The asterisk should be removed or the column renamed for consistency."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "alaska": "acres",
+        "northwest": "acres",
+        "northern california": "acres",
+        "southern california": "acres",
+        "northern rockies": "acres",
+        "great basin": "acres",
+        "western great basin": "acres",
+        "southwest": "acres",
+        "rocky mountains": "acres",
+        "eastern area": "acres",
+        "southern area": "acres",
+        "total": "acres"
+      },
+      "confidence": 0.9487179487179487,
+      "votes": [
+        {
+          "Year": "calendar year",
+          "Alaska": "acres burned",
+          "Northwest": "acres burned",
+          "Northern California": "acres burned",
+          "Southern California": "acres burned",
+          "Northern Rockies": "acres burned",
+          "Great Basin": "acres burned",
+          "Western Great Basin": "acres burned",
+          "Southwest": "acres burned",
+          "Rocky Mountains": "acres burned",
+          "Eastern Area": "acres burned",
+          "Southern Area": "acres burned",
+          "Total": "acres burned"
+        },
+        {
+          "Alaska": "acres",
+          "Northwest": "acres",
+          "Northern California": "acres",
+          "Southern California": "acres",
+          "Northern Rockies": "acres",
+          "Great Basin": "acres",
+          "Western Great Basin": "acres",
+          "Southwest": "acres",
+          "Rocky Mountains": "acres",
+          "Eastern Area": "acres",
+          "Southern Area": "acres",
+          "Total": "acres"
+        },
+        {
+          "Alaska": "acres",
+          "Northwest": "acres",
+          "Northern California": "acres",
+          "Southern California": "acres",
+          "Northern Rockies": "acres",
+          "Great Basin": "acres",
+          "Western Great Basin": "acres",
+          "Southwest": "acres",
+          "Rocky Mountains": "acres",
+          "Eastern Area": "acres",
+          "Southern Area": "acres",
+          "Total": "acres"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Values range from single digits to millions of acres",
+        "Some years have missing data (empty strings)",
+        "Western Great Basin has float values while others are integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Values range from single digits to millions of acres",
+          "Some years have missing data (empty strings)",
+          "Western Great Basin has float values while others are integers"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Year 2020 shows identical values for Alaska in both files (180,885 acres) - may be data entry error or actual coincidence",
+        "Total columns differ between files - should be summed for combined analysis",
+        "Human-caused 2020 Alaska value (180885) equals lightning-caused 2020 Alaska value, suggesting potential data duplication"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year 2020 shows identical values for Alaska in both files (180,885 acres) - may be data entry error or actual coincidence",
+          "Total columns differ between files - should be summed for combined analysis"
+        ],
+        [
+          "Human-caused 2020 Alaska value (180885) equals lightning-caused 2020 Alaska value, suggesting potential data duplication"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 13.0,
+      "confidence": 1.0,
+      "votes": [
+        13.0,
+        13.0,
+        13.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year must be between 2005-2024",
+        "Acres burned cannot be negative",
+        "Total should equal sum of regional values",
+        "Z-score calculation requires at least 2 years of data per area",
+        "Year values should be valid years (2005-2024 range expected)",
+        "Acres burned values should be non-negative",
+        "Z-score calculation requires at least 2 data points per geographic area",
+        "Years should be consistent across both datasets.",
+        "Acres burned should be non-negative."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year must be between 2005-2024",
+          "Acres burned cannot be negative",
+          "Total should equal sum of regional values",
+          "Z-score calculation requires at least 2 years of data per area"
+        ],
+        [
+          "Year values should be valid years (2005-2024 range expected)",
+          "Acres burned values should be non-negative",
+          "Z-score calculation requires at least 2 data points per geographic area"
+        ],
+        [
+          "Years should be consistent across both datasets.",
+          "Acres burned should be non-negative."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude 'Total' column from geographic area analysis",
+        "Handle missing values before statistical calculations",
+        "Fix Year 38 to 2018 in lightning data",
+        "Combine human-caused and lightning-caused acres per area per year",
+        "Exclude 'Total' column from geographic area analysis to avoid double-counting",
+        "Handle Year 38 anomaly in lightning-caused data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude 'Total' column from geographic area analysis",
+          "Handle missing values before statistical calculations",
+          "Fix Year 38 to 2018 in lightning data",
+          "Combine human-caused and lightning-caused acres per area per year"
+        ],
+        [
+          "Exclude 'Total' column from geographic area analysis to avoid double-counting",
+          "Handle Year 38 anomaly in lightning-caused data"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Calculate mean and standard deviation per geographic area across years",
+        "Compute Z-scores: (x - \u03bc)/\u03c3 for each area-year",
+        "Find maximum absolute Z-score across all area-year combinations",
+        "Calculate Z-score = (value - mean) / standard_deviation for each geographic area across all years",
+        "Identify maximum absolute Z-score across all geographic area-year combinations",
+        "Z-score calculation requires a mean and standard deviation for each geographic area."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate mean and standard deviation per geographic area across years",
+          "Compute Z-scores: (x - \u03bc)/\u03c3 for each area-year",
+          "Find maximum absolute Z-score across all area-year combinations"
+        ],
+        [
+          "Calculate Z-score = (value - mean) / standard_deviation for each geographic area across all years",
+          "Identify maximum absolute Z-score across all geographic area-year combinations"
+        ],
+        [
+          "Z-score calculation requires a mean and standard deviation for each geographic area."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Geographic area and year separated by comma",
+        "Single answer format: 'Area Name, YYYY'",
+        "Output format: <geographic_area>, <year>",
+        "Geographic area should match column name from source data",
+        "Year should be 4-digit integer",
+        "Output should be a string: 'geographic area, year'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Geographic area and year separated by comma",
+          "Single answer format: 'Area Name, YYYY'"
+        ],
+        [
+          "Output format: <geographic_area>, <year>",
+          "Geographic area should match column name from source data",
+          "Year should be 4-digit integer"
+        ],
+        [
+          "Output should be a string: 'geographic area, year'"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.641880341880342
+}

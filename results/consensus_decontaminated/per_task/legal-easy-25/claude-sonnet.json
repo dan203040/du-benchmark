@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Maximum Median Fraud Loss among U.S. Military branches",
+    "filters": [
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Military Branch"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are all the U.S. Military branches in the dataset?",
+      "What is the Median Fraud Loss for each Military Branch?",
+      "Which Military Branch has the highest Median Fraud Loss value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Median Fraud Loss": "USD (dollars)",
+      "Total Fraud Loss": "USD (abbreviated with M for millions)",
+      "% Reporting Fraud Loss": "percentage"
+    },
+    "scale_issues": [
+      "Total Fraud Loss is abbreviated with 'M' suffix representing millions (e.g., '$96M' = $96,000,000)",
+      "% Reporting Fraud Loss includes '%' symbol in string format",
+      "Median Fraud Loss is in raw dollar amounts as integer"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Median Fraud Loss column is stored as int64",
+      "% Reporting Fraud Loss stored as object/string with '%' character",
+      "Total Fraud Loss stored as object/string with '$' and 'M' characters"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Military Branch must be one of: U.S. Air Force, U.S. Army, U.S. Coast Guard, U.S. Marines, U.S. Navy, U.S. Space Force",
+      "Median Fraud Loss must be non-negative integer",
+      "Only data from 2024 should be considered"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should identify the single Military Branch with the largest Median Fraud Loss",
+      "The answer should include the branch name and the corresponding Median Fraud Loss value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum Median Fraud Loss among U.S. Military branches\",\n    \"filters\": [\"Year = 2024\"],\n    \"grouping_variables\": [\"Military Branch\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are all the U.S. Military branches in the dataset?\",\n      \"What is the Median Fraud Loss for each Military Branch?\",\n      \"Which Military Branch has the highest Median Fraud Loss value?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Fraud, Identity Theft, and Other Reports by Military Consumers.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Median Fraud Loss\": \"USD (dollars)\",\n      \"Total Fraud Loss\": \"USD (abbreviated with M for millions)\",\n      \"% Reporting Fraud Loss\": \"percentage\"\n    },\n    \"scale_issues\": [\n      \"Total Fraud Loss is abbreviated with 'M' suffix representing millions (e.g., '$96M' = $96,000,000)\",\n      \"% Reporting Fraud Loss includes '%' symbol in string format\",\n      \"Median Fraud Loss is in raw dollar amounts as integer\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Median Fraud Loss column is stored as int64\",\n      \"% Reporting Fraud Loss stored as object/string with '%' character\",\n      \"Total Fraud Loss stored as object/string with '$' and 'M' characters\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Military Branch must be one of: U.S. Air Force, U.S. Army, U.S. Coast Guard, U.S. Marines, U.S. Navy, U.S. Space Force\",\n      \"Median Fraud Loss must be non-negative integer\",\n      \"Only data from 2024 should be considered\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should identify the single Military Branch with the largest Median Fraud Loss\",\n      \"The answer should include the branch name and the corresponding Median Fraud Loss value\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.768422842025757,
+  "token_usage": {
+    "input_tokens": 1400,
+    "output_tokens": 668
+  }
+}

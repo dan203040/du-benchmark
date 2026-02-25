@@ -1,0 +1,96 @@
+{
+  "m_q": {
+    "target_metric": "global seasonal average temperature changes over time",
+    "filters": [
+      "global aggregation (not by country/city/state)",
+      "seasonal grouping (quarterly or monthly to seasonal)"
+    ],
+    "grouping_variables": [
+      "season",
+      "year"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "How to extract seasonal averages from monthly data?",
+      "Which temperature metric to use (LandAverageTemperature vs LandAndOceanAverageTemperature)?",
+      "How to handle missing values in historical data?",
+      "What time range should be visualized?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "GlobalTemperatures.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "GlobalLandTemperaturesByCountry.csv has 'AverageTemperature' while GlobalTemperatures.csv has 'LandAverageTemperature' - different naming conventions",
+      "Different temporal coverage across files (1743 vs 1750 start dates)"
+    ],
+    "column_mappings": {
+      "dt": "date",
+      "LandAverageTemperature": "global_land_temp",
+      "LandAndOceanAverageTemperature": "global_combined_temp"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "LandAverageTemperature": "Celsius",
+      "LandAndOceanAverageTemperature": "Celsius",
+      "AverageTemperature": "Celsius",
+      "AverageTemperatureUncertainty": "Celsius"
+    },
+    "scale_issues": [
+      "Latitude/Longitude columns in GlobalLandTemperaturesByMajorCity.csv are strings with N/S/E/W suffixes",
+      "Temperature uncertainty columns have same units as temperature but represent measurement error"
+    ],
+    "cross_source_conflicts": [
+      "GlobalTemperatures.csv provides global aggregates while other files provide granular data - different aggregation levels"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date column 'dt' is in YYYY-MM-DD format but only has monthly precision (always day 01)",
+      "Missing values represented by empty strings in numeric columns",
+      "Special characters in country names (e.g., \u00c5land, C\u00f4te D'Ivoire)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "GlobalTemperatures.csv has 3192 rows representing monthly data from 1750-2015 (266 years)",
+      "Missing values in early years (e.g., 1750-11-01 has nulls)",
+      "Seasonal calculation requires grouping months (e.g., Dec-Feb, Mar-May, Jun-Aug, Sep-Nov)"
+    ],
+    "derived_filters": [
+      "Exclude rows with null LandAverageTemperature or LandAndOceanAverageTemperature",
+      "Consider only complete seasonal data (all 3 months available)"
+    ],
+    "statistical_tests": [
+      "Check for temporal autocorrelation in temperature series",
+      "Test for seasonal patterns using decomposition",
+      "Assess missing data patterns by year/season"
+    ],
+    "output_format_requirements": [
+      "Line graph format specified in plot.yaml",
+      "Output file must be saved as result.png",
+      "Seasonal averages should be clearly labeled"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"global seasonal average temperature changes over time\",\n        \"filters\": [\"global aggregation (not by country/city/state)\", \"seasonal grouping (quarterly or monthly to seasonal)\"],\n        \"grouping_variables\": [\"season\", \"year\"],\n        \"output_cardinality\": \"plot\",\n        \"sub_questions\": [\"How to extract seasonal averages from monthly data?\", \"Which temperature metric to use (LandAverageTemperature vs LandAndOceanAverageTemperature)?\", \"How to handle missing values in historical data?\", \"What time range should be visualized?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"GlobalTemperatures.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"GlobalLandTemperaturesByCountry.csv has 'AverageTemperature' while GlobalTemperatures.csv has 'LandAverageTemperature' - different naming conventions\", \"Different temporal coverage across files (1743 vs 1750 start dates)\"],\n        \"column_mappings\": {\"dt\": \"date\", \"LandAverageTemperature\": \"global_land_temp\", \"LandAndOceanAverageTemperature\": \"global_combined_temp\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"LandAverageTemperature\": \"Celsius\", \"LandAndOceanAverageTemperature\": \"Celsius\", \"AverageTemperature\": \"Celsius\", \"AverageTemperatureUncertainty\": \"Celsius\"},\n        \"scale_issues\": [\"Latitude/Longitude columns in GlobalLandTemperaturesByMajorCity.csv are strings with N/S/E/W suffixes\", \"Temperature uncertainty columns have same units as temperature but represent measurement error\"],\n        \"cross_source_conflicts\": [\"GlobalTemperatures.csv provides global aggregates while other files provide granular data - different aggregation levels\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date column 'dt' is in YYYY-MM-DD format but only has monthly precision (always day 01)\", \"Missing values represented by empty strings in numeric columns\", \"Special characters in country names (e.g., \u00c5land, C\u00f4te D'Ivoire)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"GlobalTemperatures.csv has 3192 rows representing monthly data from 1750-2015 (266 years)\", \"Missing values in early years (e.g., 1750-11-01 has nulls)\", \"Seasonal calculation requires grouping months (e.g., Dec-Feb, Mar-May, Jun-Aug, Sep-Nov)\"],\n        \"derived_filters\": [\"Exclude rows with null LandAverageTemperature or LandAndOceanAverageTemperature\", \"Consider only complete seasonal data (all 3 months available)\"],\n        \"statistical_tests\": [\"Check for temporal autocorrelation in temperature series\", \"Test for seasonal patterns using decomposition\", \"Assess missing data patterns by year/season\"],\n        \"output_format_requirements\": [\"Line graph format specified in plot.yaml\", \"Output file must be saved as result.png\", \"Seasonal averages should be clearly labeled\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.67486310005188,
+  "token_usage": {
+    "input_tokens": 2875,
+    "output_tokens": 697
+  }
+}

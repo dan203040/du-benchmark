@@ -1,0 +1,53 @@
+{
+  "m_q": {
+    "target_metric": "Builders with more than 7 GT numbers",
+    "filters": [],
+    "grouping_variables": [
+      "Builder"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Train Builders and their Works Numbers"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "GT numbers column contains ranges of numbers, which need to be expanded into individual numbers before counting."
+    ],
+    "derived_filters": [
+      "Count the number of GT numbers for each builder.",
+      "Filter builders with a count greater than 7."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Builders with more than 7 GT numbers\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Builder\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\"Train Builders and their Works Numbers\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"GT numbers column contains ranges of numbers, which need to be expanded into individual numbers before counting.\"],\n    \"derived_filters\": [\"Count the number of GT numbers for each builder.\", \"Filter builders with a count greater than 7.\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.898397207260132,
+  "token_usage": {}
+}

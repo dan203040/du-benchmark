@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Name of the coach who won promotion to the first tier",
+    "filters": [
+      "Honours contains 'promotion to first tier' or 'promotion to the first tier'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which coaches have honours related to promotion to first tier?",
+      "Is there only one coach with this specific honour?",
+      "What is the exact name of that coach?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Coaches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "From": "date",
+      "To": "date"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Honours column contains free text describing achievements",
+      "Date formats vary (full dates vs year only)",
+      "'Present' used for ongoing tenure in To column"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only one coach should match the criteria",
+      "Honours field must contain exact phrase related to first tier promotion",
+      "Result must be a single coach name"
+    ],
+    "derived_filters": [
+      "Filter Honours column where text matches 'Won promotion to first tier' (case-insensitive)",
+      "Exclude promotions to second tier, third tier, or fourth tier"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return only the coach name as a single value",
+      "Verify cardinality is exactly 1 matching record"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Name of the coach who won promotion to the first tier\",\n    \"filters\": [\"Honours contains 'promotion to first tier' or 'promotion to the first tier'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which coaches have honours related to promotion to first tier?\",\n      \"Is there only one coach with this specific honour?\",\n      \"What is the exact name of that coach?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Coaches\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"From\": \"date\",\n      \"To\": \"date\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Honours column contains free text describing achievements\",\n      \"Date formats vary (full dates vs year only)\",\n      \"'Present' used for ongoing tenure in To column\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only one coach should match the criteria\",\n      \"Honours field must contain exact phrase related to first tier promotion\",\n      \"Result must be a single coach name\"\n    ],\n    \"derived_filters\": [\n      \"Filter Honours column where text matches 'Won promotion to first tier' (case-insensitive)\",\n      \"Exclude promotions to second tier, third tier, or fourth tier\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return only the coach name as a single value\",\n      \"Verify cardinality is exactly 1 matching record\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.133869171142578,
+  "token_usage": {
+    "input_tokens": 1263,
+    "output_tokens": 523
+  }
+}

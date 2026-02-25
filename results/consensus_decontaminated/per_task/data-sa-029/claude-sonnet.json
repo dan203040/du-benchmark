@@ -1,0 +1,101 @@
+{
+  "m_q": {
+    "target_metric": "Mean beak length-to-depth ratio with 99% confidence intervals using bootstrap replicates (n=10,000) for G. scandens birds in 1975 and 2012",
+    "filters": [
+      "Species == 'G. scandens'",
+      "Location == 'Daphne Major'",
+      "Year in [1975, 2012]"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Compute beak length-to-depth ratio for each individual bird",
+      "Calculate mean ratio for 1975",
+      "Calculate mean ratio for 2012",
+      "Generate 10,000 bootstrap replicates for 1975 data",
+      "Generate 10,000 bootstrap replicates for 2012 data",
+      "Compute 99% confidence intervals from bootstrap distributions",
+      "Format results as specified in sample_result.csv"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "result.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Missing source data file containing beak measurements (length and depth) for G. scandens birds"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "beak_length": "millimeters (assumed)",
+      "beak_depth": "millimeters (assumed)",
+      "mean ratio": "dimensionless ratio",
+      "conf": "ratio units (confidence interval width or bound)"
+    },
+    "scale_issues": [
+      "Need to verify beak length and depth are in same units for valid ratio calculation"
+    ],
+    "cross_source_conflicts": [
+      "Source data with beak measurements not provided in data files list"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "result.csv is output template with empty values to be filled",
+      "Source data file with beak measurements (length, depth, species, year, location) is required but not listed",
+      "conf column format unclear - could be margin of error, lower/upper bound, or half-width of CI"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include G. scandens species",
+      "Only include Daphne Major location",
+      "Only include years 1975 and 2012",
+      "Bootstrap replicates must equal 10,000",
+      "Confidence level must be 99%",
+      "Beak depth must be non-zero to compute ratio"
+    ],
+    "derived_filters": [
+      "Remove records with missing beak length values",
+      "Remove records with missing beak depth values",
+      "Remove records where beak depth equals zero"
+    ],
+    "statistical_tests": [
+      "Bootstrap resampling with replacement (10,000 iterations)",
+      "99% confidence interval calculation (percentile method: 0.5th and 99.5th percentiles)"
+    ],
+    "output_format_requirements": [
+      "Output must be CSV format",
+      "Must contain exactly 3 columns: Year, mean ratio, conf",
+      "Must contain exactly 2 data rows (1975 and 2012)",
+      "Year column must be integer type",
+      "mean ratio column must be float type",
+      "conf column must be float type",
+      "Follow exact format shown in sample_result.csv"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mean beak length-to-depth ratio with 99% confidence intervals using bootstrap replicates (n=10,000) for G. scandens birds in 1975 and 2012\",\n    \"filters\": [\"Species == 'G. scandens'\", \"Location == 'Daphne Major'\", \"Year in [1975, 2012]\"],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Compute beak length-to-depth ratio for each individual bird\",\n      \"Calculate mean ratio for 1975\",\n      \"Calculate mean ratio for 2012\",\n      \"Generate 10,000 bootstrap replicates for 1975 data\",\n      \"Generate 10,000 bootstrap replicates for 2012 data\",\n      \"Compute 99% confidence intervals from bootstrap distributions\",\n      \"Format results as specified in sample_result.csv\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"result.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\"Missing source data file containing beak measurements (length and depth) for G. scandens birds\"],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"beak_length\": \"millimeters (assumed)\",\n      \"beak_depth\": \"millimeters (assumed)\",\n      \"mean ratio\": \"dimensionless ratio\",\n      \"conf\": \"ratio units (confidence interval width or bound)\"\n    },\n    \"scale_issues\": [\"Need to verify beak length and depth are in same units for valid ratio calculation\"],\n    \"cross_source_conflicts\": [\"Source data with beak measurements not provided in data files list\"]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"result.csv is output template with empty values to be filled\",\n      \"Source data file with beak measurements (length, depth, species, year, location) is required but not listed\",\n      \"conf column format unclear - could be margin of error, lower/upper bound, or half-width of CI\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include G. scandens species\",\n      \"Only include Daphne Major location\",\n      \"Only include years 1975 and 2012\",\n      \"Bootstrap replicates must equal 10,000\",\n      \"Confidence level must be 99%\",\n      \"Beak depth must be non-zero to compute ratio\"\n    ],\n    \"derived_filters\": [\n      \"Remove records with missing beak length values\",\n      \"Remove records with missing beak depth values\",\n      \"Remove records where beak depth equals zero\"\n    ],\n    \"statistical_tests\": [\n      \"Bootstrap resampling with replacement (10,000 iterations)\",\n      \"99% confidence interval calculation (percentile method: 0.5th and 99.5th percentiles)\"\n    ],\n    \"output_format_requirements\": [\n      \"Output must be CSV format\",\n      \"Must contain exactly 3 columns: Year, mean ratio, conf\",\n      \"Must contain exactly 2 data rows (1975 and 2012)\",\n      \"Year column must be integer type\",\n      \"mean ratio column must be float type\",\n      \"conf column must be float type\",\n      \"Follow exact format shown in sample_result.csv\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 15.356826066970825,
+  "token_usage": {
+    "input_tokens": 718,
+    "output_tokens": 910
+  }
+}

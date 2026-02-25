@@ -1,0 +1,409 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Average annual difference in number of fires reported by NOAA compared to NIFC since 2000, rounded to nearest whole number",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Average annual difference in number of fires reported by NOAA compared to NIFC since 2000, rounded to nearest whole number",
+        "Average difference in annual number of fires reported by NOAA compared to NIFC since 2000, rounded to nearest whole number",
+        "Average difference in annual reported fires between NOAA and NIFC since 2000"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date >= 200001",
+        "Year >= 2000"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Date >= 200001",
+          "Year >= 2000"
+        ],
+        [
+          "Year >= 2000"
+        ],
+        [
+          "Year >= 2000"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year",
+        "Source"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Year"
+        ],
+        [
+          "Year",
+          "Source"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the annual total number of fires from NOAA monthly data?",
+        "What is the annual number of fires from NIFC data?",
+        "What is the difference between NOAA and NIFC annual fire counts for each year since 2000?",
+        "What is the average of these annual differences?",
+        "What is the total number of fires per year from NOAA data since 2000?",
+        "What is the total number of fires per year from NIFC data since 2000?",
+        "What is the difference between NOAA and NIFC fire counts for each year?",
+        "What is the average of these yearly differences?",
+        "Calculate the annual number of fires reported by NOAA since 2000.",
+        "Calculate the annual number of fires reported by NIFC since 2000.",
+        "Calculate the difference between NOAA and NIFC annual fire counts for each year since 2000.",
+        "Calculate the average of the annual differences."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the annual total number of fires from NOAA monthly data?",
+          "What is the annual number of fires from NIFC data?",
+          "What is the difference between NOAA and NIFC annual fire counts for each year since 2000?",
+          "What is the average of these annual differences?"
+        ],
+        [
+          "What is the total number of fires per year from NOAA data since 2000?",
+          "What is the total number of fires per year from NIFC data since 2000?",
+          "What is the difference between NOAA and NIFC fire counts for each year?",
+          "What is the average of these yearly differences?"
+        ],
+        [
+          "Calculate the annual number of fires reported by NOAA since 2000.",
+          "Calculate the annual number of fires reported by NIFC since 2000.",
+          "Calculate the difference between NOAA and NIFC annual fire counts for each year since 2000.",
+          "Calculate the average of the annual differences."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires_monthly_stats.csv",
+        "nifc_wildfires.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "nifc_wildfires.csv"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "nifc_wildfires.csv"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv",
+          "nifc_wildfires.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "NOAA data has monthly granularity while NIFC data appears to be annual",
+        "NOAA Date column is in YYYYMM format while NIFC year column needs extraction",
+        "NIFC column names appear corrupted with tab characters and mixed data types",
+        "NOAA data has monthly granularity with Date column (YYYYMM format), NIFC has annual granularity",
+        "NIFC column names are malformed with tab-separated values in column name '2024\\t64'",
+        "NIFC first column contains both year and fire count data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NOAA data has monthly granularity while NIFC data appears to be annual",
+          "NOAA Date column is in YYYYMM format while NIFC year column needs extraction",
+          "NIFC column names appear corrupted with tab characters and mixed data types"
+        ],
+        [
+          "NOAA data has monthly granularity with Date column (YYYYMM format), NIFC has annual granularity",
+          "NIFC column names are malformed with tab-separated values in column name '2024\\t64'",
+          "NIFC first column contains both year and fire count data"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "date": "YYYYMM integer",
+        "acres burned": "acres",
+        "number of fires": "count",
+        "acres burned per fire": "acres per fire"
+      },
+      "confidence": 0.8333333333333333,
+      "votes": [
+        {
+          "Date": "YYYYMM integer",
+          "Acres Burned": "acres",
+          "Number of Fires": "count of fires",
+          "Acres Burned per Fire": "acres per fire"
+        },
+        {
+          "Number of Fires": "count",
+          "Acres Burned": "acres",
+          "Acres Burned per Fire": "acres per fire",
+          "Date": "YYYYMM integer format"
+        },
+        {
+          "Acres Burned": "acres",
+          "Number of Fires": "count"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "NOAA data is monthly, NIFC data appears to be annual - need to aggregate NOAA to annual totals",
+        "NIFC data appears to combine year, fire count, and acres in single column with tab separation",
+        "NOAA data is monthly, needs aggregation to annual level",
+        "NIFC data is already annual"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NOAA data is monthly, NIFC data appears to be annual - need to aggregate NOAA to annual totals",
+          "NIFC data appears to combine year, fire count, and acres in single column with tab separation"
+        ],
+        [
+          "NOAA data is monthly, needs aggregation to annual level",
+          "NIFC data is already annual"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "NOAA reports monthly fire counts while NIFC appears to report annual totals directly",
+        "NIFC data format suggests fire counts and acres are combined in same column with tab separator",
+        "Different reporting granularity: NOAA monthly vs NIFC annual",
+        "Potential differences in fire counting methodology between agencies"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "NOAA reports monthly fire counts while NIFC appears to report annual totals directly",
+          "NIFC data format suggests fire counts and acres are combined in same column with tab separator"
+        ],
+        [
+          "Different reporting granularity: NOAA monthly vs NIFC annual",
+          "Potential differences in fire counting methodology between agencies"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "Missing:-999",
+        "*",
+        "-999",
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.611111111111111,
+      "votes": [
+        [
+          "Missing:-999",
+          "*",
+          "-999"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "-999",
+          "*"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only include years >= 2000",
+        "NOAA data needs annual aggregation from monthly values",
+        "NIFC data needs parsing to extract year and fire count from combined columns",
+        "Round final result to nearest whole number",
+        "Must aggregate NOAA monthly data to annual totals",
+        "Must parse NIFC tab-delimited first column to extract year and fire count",
+        "Final answer must be rounded to nearest whole number",
+        "Calculate NOAA minus NIFC for comparison",
+        "noaa_wildfires_monthly_stats.csv: Need to extract the year from the 'Date' column.",
+        "nifc_wildfires.csv: Need to parse the year and number of fires from the first two columns.",
+        "nifc_wildfires.csv: The number of fires column contains text and special characters that need to be removed."
+      ],
+      "confidence": 0.36363636363636365,
+      "votes": [
+        [
+          "Only include years >= 2000",
+          "NOAA data needs annual aggregation from monthly values",
+          "NIFC data needs parsing to extract year and fire count from combined columns",
+          "Round final result to nearest whole number"
+        ],
+        [
+          "Only include years >= 2000",
+          "Must aggregate NOAA monthly data to annual totals",
+          "Must parse NIFC tab-delimited first column to extract year and fire count",
+          "Final answer must be rounded to nearest whole number",
+          "Calculate NOAA minus NIFC for comparison"
+        ],
+        [
+          "noaa_wildfires_monthly_stats.csv: Need to extract the year from the 'Date' column.",
+          "nifc_wildfires.csv: Need to parse the year and number of fires from the first two columns.",
+          "nifc_wildfires.csv: The number of fires column contains text and special characters that need to be removed."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter NOAA data where Date >= 200001",
+        "Filter NIFC data where Year >= 2000",
+        "Exclude rows with sentinel values like '*', '-999'",
+        "Extract year from NOAA Date field: year = Date // 100",
+        "Filter NOAA data where year >= 2000",
+        "Year >= 2000"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Filter NOAA data where Date >= 200001",
+          "Filter NIFC data where Year >= 2000",
+          "Exclude rows with sentinel values like '*', '-999'"
+        ],
+        [
+          "Extract year from NOAA Date field: year = Date // 100",
+          "Filter NOAA data where year >= 2000",
+          "Filter NIFC data where year >= 2000"
+        ],
+        [
+          "Year >= 2000"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing years in either dataset",
+        "Validate that NOAA annual sums are reasonable compared to NIFC annual values",
+        "Check for outliers in annual differences",
+        "Compute annual sum of 'Number of Fires' from NOAA for each year",
+        "Extract annual fire count from NIFC first column",
+        "Calculate difference: NOAA_annual - NIFC_annual for each year",
+        "Compute mean of differences across all years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing years in either dataset",
+          "Validate that NOAA annual sums are reasonable compared to NIFC annual values",
+          "Check for outliers in annual differences"
+        ],
+        [
+          "Compute annual sum of 'Number of Fires' from NOAA for each year",
+          "Extract annual fire count from NIFC first column",
+          "Calculate difference: NOAA_annual - NIFC_annual for each year",
+          "Compute mean of differences across all years"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Final output should be a single integer rounded to nearest whole number",
+        "Calculation: average(NOAA_annual_fires - NIFC_annual_fires) for years >= 2000",
+        "Return single integer value",
+        "Round to nearest whole number using standard rounding rules",
+        "Positive value indicates NOAA reports more fires, negative indicates fewer",
+        "Round the final answer to the nearest whole number."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Final output should be a single integer rounded to nearest whole number",
+          "Calculation: average(NOAA_annual_fires - NIFC_annual_fires) for years >= 2000"
+        ],
+        [
+          "Return single integer value",
+          "Round to nearest whole number using standard rounding rules",
+          "Positive value indicates NOAA reports more fires, negative indicates fewer"
+        ],
+        [
+          "Round the final answer to the nearest whole number."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6348484848484849
+}

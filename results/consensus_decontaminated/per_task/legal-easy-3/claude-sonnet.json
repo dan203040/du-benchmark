@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "Ratio of identity theft reports in 2024 vs 2001",
+    "filters": [
+      "Year == 2024",
+      "Year == 2001"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the number of identity theft reports in 2024?",
+      "What is the number of identity theft reports in 2001?",
+      "What is the ratio of 2024 identity theft reports divided by 2001 identity theft reports?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Fraud": "count of fraud reports",
+      "Identity Theft": "count of identity theft reports",
+      "Other": "count of other reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data appears complete for years 2001-2020 in sample",
+      "Need to verify if Year 2024 exists in complete dataset"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year 2001 must exist in dataset",
+      "Year 2024 must exist in dataset",
+      "Identity Theft column must have non-zero value for 2001 to avoid division by zero"
+    ],
+    "derived_filters": [
+      "Extract Identity Theft value where Year == 2024",
+      "Extract Identity Theft value where Year == 2001"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Round result to 4 decimal places",
+      "Output should be a single numeric value"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Ratio of identity theft reports in 2024 vs 2001\",\n    \"filters\": [\"Year == 2024\", \"Year == 2001\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the number of identity theft reports in 2024?\",\n      \"What is the number of identity theft reports in 2001?\",\n      \"What is the ratio of 2024 identity theft reports divided by 2001 identity theft reports?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar year\",\n      \"Fraud\": \"count of fraud reports\",\n      \"Identity Theft\": \"count of identity theft reports\",\n      \"Other\": \"count of other reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data appears complete for years 2001-2020 in sample\",\n      \"Need to verify if Year 2024 exists in complete dataset\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year 2001 must exist in dataset\",\n      \"Year 2024 must exist in dataset\",\n      \"Identity Theft column must have non-zero value for 2001 to avoid division by zero\"\n    ],\n    \"derived_filters\": [\n      \"Extract Identity Theft value where Year == 2024\",\n      \"Extract Identity Theft value where Year == 2001\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Round result to 4 decimal places\",\n      \"Output should be a single numeric value\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.793293952941895,
+  "token_usage": {
+    "input_tokens": 927,
+    "output_tokens": 577
+  }
+}

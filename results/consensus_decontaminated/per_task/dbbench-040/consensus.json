@@ -1,0 +1,326 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Nation names that have Gold > 0 and Silver = 0",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Nation names that have Gold > 0 and Silver = 0",
+        "Nations that won at least one gold medal but won zero silver medals",
+        "Nations that won gold but did not win silver medals"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Gold > 0",
+        "Silver = 0",
+        "Silver == 0"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Gold > 0",
+          "Silver = 0"
+        ],
+        [
+          "Gold > 0",
+          "Silver = 0"
+        ],
+        [
+          "Gold > 0",
+          "Silver == 0"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Nation"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Nation"
+        ],
+        [
+          "Nation"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which nations have at least one gold medal?",
+        "Which nations have zero silver medals?",
+        "What is the intersection of these two sets?",
+        "Which nations have Gold medal count greater than 0?",
+        "Which nations have Silver medal count equal to 0?",
+        "What is the intersection of nations with gold medals and no silver medals?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which nations have at least one gold medal?",
+          "Which nations have zero silver medals?",
+          "What is the intersection of these two sets?"
+        ],
+        [
+          "Which nations have Gold medal count greater than 0?",
+          "Which nations have Silver medal count equal to 0?",
+          "What is the intersection of nations with gold medals and no silver medals?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Olympic Medals"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Olympic Medals"
+        ],
+        [
+          "Olympic Medals"
+        ],
+        [
+          "Olympic Medals"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "rank": "ordinal position",
+        "gold": "count of gold medals",
+        "silver": "count of silver medals",
+        "bronze": "count of bronze medals",
+        "total": "sum of all medals"
+      },
+      "confidence": 0.9333333333333332,
+      "votes": [
+        {
+          "Rank": "ordinal position",
+          "Gold": "count of gold medals",
+          "Silver": "count of silver medals",
+          "Bronze": "count of bronze medals",
+          "Total": "sum of all medals"
+        },
+        {
+          "Rank": "ordinal ranking",
+          "Gold": "count of medals",
+          "Silver": "count of medals",
+          "Bronze": "count of medals",
+          "Total": "count of medals"
+        },
+        {
+          "Gold": "number of gold medals",
+          "Silver": "number of silver medals",
+          "Bronze": "number of bronze medals",
+          "Total": "total number of medals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Rank column appears to restart at 1 in the sample data (e.g., row 1 is Cuba, row 10 is Japan with Rank 1), suggesting possible grouping by region or event type not shown in sample"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Rank column appears to restart at 1 in the sample data (e.g., row 1 is Cuba, row 10 is Japan with Rank 1), suggesting possible grouping by region or event type not shown in sample"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total = Gold + Silver + Bronze for each row",
+        "All medal counts should be non-negative integers",
+        "Rank should be positive integer",
+        "Gold >= 0",
+        "Silver >= 0",
+        "Bronze >= 0",
+        "Total = Gold + Silver + Bronze",
+        "Rank >= 1",
+        "Gold, Silver, Bronze, and Total are non-negative integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total = Gold + Silver + Bronze for each row",
+          "All medal counts should be non-negative integers",
+          "Rank should be positive integer"
+        ],
+        [
+          "Gold >= 0",
+          "Silver >= 0",
+          "Bronze >= 0",
+          "Total = Gold + Silver + Bronze",
+          "Rank >= 1"
+        ],
+        [
+          "Gold, Silver, Bronze, and Total are non-negative integers"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Gold > 0 AND Silver = 0"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Gold > 0 AND Silver = 0"
+        ],
+        [
+          "Gold > 0 AND Silver = 0"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Verify Total column consistency: sum(Gold + Silver + Bronze) = Total for each row"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Verify Total column consistency: sum(Gold + Silver + Bronze) = Total for each row"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of nation names",
+        "Should include all nations meeting criteria across entire dataset",
+        "Return list of nation names",
+        "Only include nations meeting both criteria: Gold > 0 AND Silver = 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of nation names",
+          "Should include all nations meeting criteria across entire dataset"
+        ],
+        [
+          "Return list of nation names",
+          "Only include nations meeting both criteria: Gold > 0 AND Silver = 0"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6466666666666667
+}

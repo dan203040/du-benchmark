@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "sum of goals scored by players named 'Chipperfield' and 'Viduka'",
+    "filters": [
+      "Player in ['Chipperfield', 'Viduka']"
+    ],
+    "grouping_variables": [
+      "Player"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the individual goal counts for Chipperfield?",
+      "What are the individual goal counts for Viduka?",
+      "How should missing values in goal columns be handled?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Player Goals in International Tournaments"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'FIFA World Cup Qual.' has dtype 'object' while other goal columns are 'Int64' - contains non-numeric values like '-'"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Friendlies": "goals",
+      "FIFA Confederations Cup": "goals",
+      "FIFA World Cup Qual.": "goals",
+      "Total Goals": "goals"
+    },
+    "scale_issues": [
+      "Missing values represented differently: empty strings in some columns, '-' in FIFA World Cup Qual."
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "-"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Sample shows 20 rows but shape indicates 24 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total Goals should equal sum of Friendlies + FIFA Confederations Cup + FIFA World Cup Qual. for each player",
+      "Goal counts must be non-negative integers"
+    ],
+    "derived_filters": [
+      "Filter rows where Player matches 'Chipperfield' or 'Viduka' (case-sensitive)"
+    ],
+    "statistical_tests": [
+      "Check if Total Goals column matches sum of component columns for each player"
+    ],
+    "output_format_requirements": [
+      "Single numeric result representing total sum",
+      "Handle missing values appropriately (treat as 0)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"sum of goals scored by players named 'Chipperfield' and 'Viduka'\",\n        \"filters\": [\"Player in ['Chipperfield', 'Viduka']\"],\n        \"grouping_variables\": [\"Player\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What are the individual goal counts for Chipperfield?\", \"What are the individual goal counts for Viduka?\", \"How should missing values in goal columns be handled?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Player Goals in International Tournaments\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Column 'FIFA World Cup Qual.' has dtype 'object' while other goal columns are 'Int64' - contains non-numeric values like '-'\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Friendlies\": \"goals\", \"FIFA Confederations Cup\": \"goals\", \"FIFA World Cup Qual.\": \"goals\", \"Total Goals\": \"goals\"},\n        \"scale_issues\": [\"Missing values represented differently: empty strings in some columns, '-' in FIFA World Cup Qual.\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"-\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Sample shows 20 rows but shape indicates 24 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total Goals should equal sum of Friendlies + FIFA Confederations Cup + FIFA World Cup Qual. for each player\", \"Goal counts must be non-negative integers\"],\n        \"derived_filters\": [\"Filter rows where Player matches 'Chipperfield' or 'Viduka' (case-sensitive)\"],\n        \"statistical_tests\": [\"Check if Total Goals column matches sum of component columns for each player\"],\n        \"output_format_requirements\": [\"Single numeric result representing total sum\", \"Handle missing values appropriately (treat as 0)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.03272795677185,
+  "token_usage": {
+    "input_tokens": 810,
+    "output_tokens": 492
+  }
+}

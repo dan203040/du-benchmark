@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "RFM score and customer segmentation level for each customer",
+    "filters": [],
+    "grouping_variables": [
+      "CustomerID"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Calculate Recency, Frequency, and Monetary values for each customer.",
+      "Calculate RFM scores based on Recency, Frequency, and Monetary values.",
+      "Segment customers based on RFM scores.",
+      "Assign a level (e.g., Top, Middle, Low) to each customer based on their segment."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online12M.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Quantity": "number of items",
+      "UnitPrice": "monetary unit",
+      "Recency": "days",
+      "Frequency": "number of transactions",
+      "MonetaryValue": "monetary unit"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "InvoiceDate needs to be parsed as datetime object."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "CustomerID should be unique.",
+      "Recency, Frequency, and Monetary values should be non-negative."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a CSV file named result.csv.",
+      "The result.csv file should contain CustomerID and RFM_Level columns."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"RFM score and customer segmentation level for each customer\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"CustomerID\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Calculate Recency, Frequency, and Monetary values for each customer.\",\n      \"Calculate RFM scores based on Recency, Frequency, and Monetary values.\",\n      \"Segment customers based on RFM scores.\",\n      \"Assign a level (e.g., Top, Middle, Low) to each customer based on their segment.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"online12M.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Quantity\": \"number of items\",\n      \"UnitPrice\": \"monetary unit\",\n      \"Recency\": \"days\",\n      \"Frequency\": \"number of transactions\",\n      \"MonetaryValue\": \"monetary unit\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"InvoiceDate needs to be parsed as datetime object.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"CustomerID should be unique.\",\n      \"Recency, Frequency, and Monetary values should be non-negative.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a CSV file named result.csv.\",\n      \"The result.csv file should contain CustomerID and RFM_Level columns.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.210460901260376,
+  "token_usage": {}
+}

@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "List of competitions competed in before the 2001 World Championships",
+    "filters": [
+      "Year < 2001 OR (Year = 2001 AND Competition occurs before World Championships)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the chronological order of competitions in 2001?",
+      "Which competitions occurred before 2001?",
+      "How to identify the 2001 World Championships row?",
+      "What competitions are listed in rows prior to 2001 World Championships?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Athletics Performances"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar_year",
+      "Notes": "meters (m) for performance distances"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Notes column contains performance measurements with units or is empty",
+      "Position column contains ordinal values (1st, 2nd, etc.) or numeric rankings with 'th' suffix",
+      "Year column is Int64 type, allowing for null values",
+      "Some Notes entries are empty for earlier competitions"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be less than or equal to 2001",
+      "For Year = 2001, only include competitions that chronologically occur before World Championships",
+      "2001 World Championships is identified by Year=2001 AND Competition='World Championships'"
+    ],
+    "derived_filters": [
+      "Filter rows where Year < 2001",
+      "Filter rows where Year = 2001 AND Competition in ['World Youth Championships', 'World Junior Championships', 'European Junior Championships'] based on temporal ordering"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return list of Competition names",
+      "Include Venue information for context",
+      "Maintain chronological order by Year"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"List of competitions competed in before the 2001 World Championships\",\n    \"filters\": [\"Year < 2001 OR (Year = 2001 AND Competition occurs before World Championships)\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What is the chronological order of competitions in 2001?\",\n      \"Which competitions occurred before 2001?\",\n      \"How to identify the 2001 World Championships row?\",\n      \"What competitions are listed in rows prior to 2001 World Championships?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Athletics Performances\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar_year\",\n      \"Notes\": \"meters (m) for performance distances\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Notes column contains performance measurements with units or is empty\",\n      \"Position column contains ordinal values (1st, 2nd, etc.) or numeric rankings with 'th' suffix\",\n      \"Year column is Int64 type, allowing for null values\",\n      \"Some Notes entries are empty for earlier competitions\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be less than or equal to 2001\",\n      \"For Year = 2001, only include competitions that chronologically occur before World Championships\",\n      \"2001 World Championships is identified by Year=2001 AND Competition='World Championships'\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Year < 2001\",\n      \"Filter rows where Year = 2001 AND Competition in ['World Youth Championships', 'World Junior Championships', 'European Junior Championships'] based on temporal ordering\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return list of Competition names\",\n      \"Include Venue information for context\",\n      \"Maintain chronological order by Year\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.649946928024292,
+  "token_usage": {
+    "input_tokens": 1056,
+    "output_tokens": 617
+  }
+}

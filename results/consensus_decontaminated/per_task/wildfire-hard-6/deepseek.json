@@ -1,0 +1,109 @@
+{
+  "m_q": {
+    "target_metric": "Pearson correlation coefficient between (1) annual difference in number of fires (NOAA minus NIFC) and (2) annual difference in acres burned (NOAA minus NIFC)",
+    "filters": [
+      "Annual aggregation required",
+      "Data must be available for same years in both sources"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to extract year from NOAA monthly Date column (format YYYYMM)?",
+      "How to parse NIFC data with inconsistent formatting?",
+      "How to handle missing or malformed values in NIFC data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv",
+      "nifc_wildfires.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires_monthly_stats.csv",
+        "right_source": "nifc_wildfires.csv",
+        "left_column": "Year (derived from Date)",
+        "right_column": "Year (first column in NIFC)",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "NOAA data is monthly, NIFC appears annual",
+      "NOAA Date format is YYYYMM integer, NIFC year format unclear",
+      "NIFC column names appear corrupted with tabs and numbers"
+    ],
+    "column_mappings": {
+      "2024\t64": "Year",
+      "897\t8": "Number of Fires (NIFC)",
+      "924": "Acres Burned (NIFC)",
+      "884": "Unknown column 4 (NIFC)"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Acres Burned (NOAA)": "acres",
+      "Number of Fires (NOAA)": "count",
+      "Acres Burned per Fire (NOAA)": "acres per fire",
+      "Acres Burned (NIFC)": "acres (likely)",
+      "Number of Fires (NIFC)": "count (likely)"
+    },
+    "scale_issues": [
+      "NIFC data appears to use commas as thousands separators within numbers",
+      "NIFC column 3 (924) and column 4 (884) meaning unclear - possibly acres burned with formatting issues"
+    ],
+    "cross_source_conflicts": [
+      "NOAA reports monthly, NIFC appears annual - need annual aggregation for NOAA",
+      "NIFC data formatting inconsistent with commas and asterisks in values"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "Missing:-999",
+      "*",
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "NOAA file has clean CSV format",
+      "NIFC file appears corrupted - first row suggests tab-separated values within columns",
+      "NIFC column names appear to be data values rather than proper headers",
+      "NIFC sample shows asterisk in 2004 data: *8,97,880"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Correlation must be calculated on annual basis",
+      "Result must be to three decimal places",
+      "Only years with data in both sources can be used"
+    ],
+    "derived_filters": [
+      "Extract year from NOAA Date column (first 4 digits)",
+      "Clean NIFC data: remove commas, handle asterisks, parse tab-separated values",
+      "Aggregate NOAA monthly data to annual totals"
+    ],
+    "statistical_tests": [
+      "Pearson correlation test",
+      "Check for normality of differences"
+    ],
+    "output_format_requirements": [
+      "Single correlation coefficient to three decimal places",
+      "Annual data table showing differences for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Pearson correlation coefficient between (1) annual difference in number of fires (NOAA minus NIFC) and (2) annual difference in acres burned (NOAA minus NIFC)\",\n        \"filters\": [\"Annual aggregation required\", \"Data must be available for same years in both sources\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How to extract year from NOAA monthly Date column (format YYYYMM)?\", \"How to parse NIFC data with inconsistent formatting?\", \"How to handle missing or malformed values in NIFC data?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires_monthly_stats.csv\", \"nifc_wildfires.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"noaa_wildfires_monthly_stats.csv\",\n                \"right_source\": \"nifc_wildfires.csv\",\n                \"left_column\": \"Year (derived from Date)\",\n                \"right_column\": \"Year (first column in NIFC)\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"NOAA data is monthly, NIFC appears annual\", \"NOAA Date format is YYYYMM integer, NIFC year format unclear\", \"NIFC column names appear corrupted with tabs and numbers\"],\n        \"column_mappings\": {\n            \"2024\\t64\": \"Year\",\n            \"897\\t8\": \"Number of Fires (NIFC)\",\n            \"924\": \"Acres Burned (NIFC)\",\n            \"884\": \"Unknown column 4 (NIFC)\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Acres Burned (NOAA)\": \"acres\",\n            \"Number of Fires (NOAA)\": \"count\",\n            \"Acres Burned per Fire (NOAA)\": \"acres per fire\",\n            \"Acres Burned (NIFC)\": \"acres (likely)\",\n            \"Number of Fires (NIFC)\": \"count (likely)\"\n        },\n        \"scale_issues\": [\"NIFC data appears to use commas as thousands separators within numbers\", \"NIFC column 3 (924) and column 4 (884) meaning unclear - possibly acres burned with formatting issues\"],\n        \"cross_source_conflicts\": [\"NOAA reports monthly, NIFC appears annual - need annual aggregation for NOAA\", \"NIFC data formatting inconsistent with commas and asterisks in values\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"Missing:-999\", \"*\", \"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"NOAA file has clean CSV format\", \"NIFC file appears corrupted - first row suggests tab-separated values within columns\", \"NIFC column names appear to be data values rather than proper headers\", \"NIFC sample shows asterisk in 2004 data: *8,97,880\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Correlation must be calculated on annual basis\", \"Result must be to three decimal places\", \"Only years with data in both sources can be used\"],\n        \"derived_filters\": [\"Extract year from NOAA Date column (first 4 digits)\", \"Clean NIFC data: remove commas, handle asterisks, parse tab-separated values\", \"Aggregate NOAA monthly data to annual totals\"],\n        \"statistical_tests\": [\"Pearson correlation test\", \"Check for normality of differences\"],\n        \"output_format_requirements\": [\"Single correlation coefficient to three decimal places\", \"Annual data table showing differences for verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 16.742194175720215,
+  "token_usage": {
+    "input_tokens": 1335,
+    "output_tokens": 855
+  }
+}

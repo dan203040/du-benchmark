@@ -1,0 +1,477 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Three beaches with highest pollution levels (Indicator Level) in 2015 for the city with lowest summer (June, July, August) rainfall in 2015",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Three beaches with highest pollution levels (Indicator Level) in 2015 for the city with lowest summer (June, July, August) rainfall in 2015",
+        "Three most polluted beaches (highest average Indicator Level) in 2015 from the city with least summer rainfall",
+        "Three most polluted beaches in the city with the least rainfall in the summer of 2015, ranked by average 'Indicator Level'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2015",
+        "Summer months (Jun, Jul, Aug)",
+        "Focus on city with minimum summer precipitation",
+        "Summer months (June, July, August)",
+        "Months are June, July, and August"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [
+          "Year = 2015",
+          "Summer months (Jun, Jul, Aug)",
+          "Focus on city with minimum summer precipitation"
+        ],
+        [
+          "Year = 2015",
+          "Summer months (June, July, August)"
+        ],
+        [
+          "Year = 2015",
+          "Months are June, July, and August"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Community",
+        "Beach Name",
+        "City (from precipitation files)",
+        "Beach Name (from water-body-testing-2015.csv)",
+        "Community (from water-body-testing-2015.csv)"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [
+          "Community",
+          "Beach Name"
+        ],
+        [
+          "City (from precipitation files)",
+          "Beach Name (from water-body-testing-2015.csv)",
+          "Community (from water-body-testing-2015.csv)"
+        ],
+        [
+          "Community",
+          "Beach Name"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which city had the least rainfall in summer 2015?",
+        "What are the pollution levels (Indicator Level) for beaches in that city in 2015?",
+        "Which three beaches have the highest pollution levels?",
+        "What is the total summer (Jun+Jul+Aug) rainfall for each city in 2015?",
+        "Which city has the minimum summer rainfall in 2015?",
+        "What beaches exist in that city in the water-body-testing-2015.csv file?",
+        "What is the average Indicator Level for each beach in that city in 2015?",
+        "Which three beaches have the highest average Indicator Level?",
+        "Calculate total rainfall for each city in June, July, and August of 2015.",
+        "Identify the city with the least total rainfall in the summer of 2015.",
+        "Calculate the average 'Indicator Level' for each beach in the selected city in 2015.",
+        "Rank the beaches in the selected city by their average 'Indicator Level' in descending order.",
+        "Select the top three beaches from the ranked list."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which city had the least rainfall in summer 2015?",
+          "What are the pollution levels (Indicator Level) for beaches in that city in 2015?",
+          "Which three beaches have the highest pollution levels?"
+        ],
+        [
+          "What is the total summer (Jun+Jul+Aug) rainfall for each city in 2015?",
+          "Which city has the minimum summer rainfall in 2015?",
+          "What beaches exist in that city in the water-body-testing-2015.csv file?",
+          "What is the average Indicator Level for each beach in that city in 2015?",
+          "Which three beaches have the highest average Indicator Level?"
+        ],
+        [
+          "Calculate total rainfall for each city in June, July, and August of 2015.",
+          "Identify the city with the least total rainfall in the summer of 2015.",
+          "Calculate the average 'Indicator Level' for each beach in the selected city in 2015.",
+          "Rank the beaches in the selected city by their average 'Indicator Level' in descending order.",
+          "Select the top three beaches from the ranked list."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "monthly_precipitations_boston.csv",
+        "monthly_precipitations_chatham.csv",
+        "monthly_precipitations_amherst.csv",
+        "monthly_precipitations_ashburnham.csv",
+        "water-body-testing-2015.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "monthly_precipitations_boston.csv",
+          "monthly_precipitations_chatham.csv",
+          "monthly_precipitations_amherst.csv",
+          "monthly_precipitations_ashburnham.csv",
+          "water-body-testing-2015.csv"
+        ],
+        [
+          "monthly_precipitations_boston.csv",
+          "monthly_precipitations_chatham.csv",
+          "monthly_precipitations_amherst.csv",
+          "monthly_precipitations_ashburnham.csv",
+          "water-body-testing-2015.csv"
+        ],
+        [
+          "monthly_precipitations_boston.csv",
+          "monthly_precipitations_chatham.csv",
+          "monthly_precipitations_amherst.csv",
+          "monthly_precipitations_ashburnham.csv",
+          "water-body-testing-2015.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Precipitation files have city names in filenames but not in data columns",
+        "Community names in water-body-testing-2015.csv need to match precipitation city names",
+        "Year columns have different types: float64 in precipitation files vs int64 in water testing",
+        "City name must be extracted from precipitation filename and matched to Community column",
+        "Precipitation data has monthly columns while beach data has Sample Date requiring temporal alignment"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Precipitation files have city names in filenames but not in data columns",
+          "Community names in water-body-testing-2015.csv need to match precipitation city names",
+          "Year columns have different types: float64 in precipitation files vs int64 in water testing"
+        ],
+        [
+          "City name must be extracted from precipitation filename and matched to Community column",
+          "Precipitation data has monthly columns while beach data has Sample Date requiring temporal alignment"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "jan-dec columns in precipitation files": "inches",
+        "indicator level": "MPN/100mL (Most Probable Number per 100 milliliters)",
+        "annual": "inches",
+        "jan": "inches",
+        "feb": "inches",
+        "mar": "inches",
+        "apr": "inches",
+        "may": "inches",
+        "jun": "inches",
+        "jul": "inches",
+        "aug": "inches",
+        "sep": "inches",
+        "oct": "inches",
+        "nov": "inches",
+        "dec": "inches"
+      },
+      "confidence": 0.6888888888888888,
+      "votes": [
+        {
+          "Jan-Dec columns in precipitation files": "inches",
+          "Indicator Level": "MPN/100mL (Most Probable Number per 100 milliliters)",
+          "Annual": "inches"
+        },
+        {
+          "Jan": "inches",
+          "Feb": "inches",
+          "Mar": "inches",
+          "Apr": "inches",
+          "May": "inches",
+          "Jun": "inches",
+          "Jul": "inches",
+          "Aug": "inches",
+          "Sep": "inches",
+          "Oct": "inches",
+          "Nov": "inches",
+          "Dec": "inches",
+          "Annual": "inches",
+          "Indicator Level": "colony forming units per 100ml or similar microbial count"
+        },
+        {
+          "Jan": "inches",
+          "Feb": "inches",
+          "Mar": "inches",
+          "Apr": "inches",
+          "May": "inches",
+          "Jun": "inches",
+          "Jul": "inches",
+          "Aug": "inches",
+          "Sep": "inches",
+          "Oct": "inches",
+          "Nov": "inches",
+          "Dec": "inches",
+          "Annual": "inches",
+          "Indicator Level": "cfu/100mL"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Missing values in precipitation data (empty cells)",
+        "Multiple samples per beach may need aggregation",
+        "Different number of precipitation measurements per city",
+        "Precipitation values are continuous floats while Indicator Level may have different ranges",
+        "Missing values present in precipitation data for some months"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Missing values in precipitation data (empty cells)",
+          "Multiple samples per beach may need aggregation",
+          "Different number of precipitation measurements per city"
+        ],
+        [
+          "Precipitation values are continuous floats while Indicator Level may have different ranges",
+          "Missing values present in precipitation data for some months"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Precipitation data covers multiple years but only 2015 needed",
+        "Water testing has multiple samples per beach per year - need aggregation method",
+        "City name case sensitivity between filename and Community column",
+        "Temporal granularity mismatch: monthly precipitation vs daily beach samples"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Precipitation data covers multiple years but only 2015 needed",
+          "Water testing has multiple samples per beach per year - need aggregation method"
+        ],
+        [
+          "City name case sensitivity between filename and Community column",
+          "Temporal granularity mismatch: monthly precipitation vs daily beach samples"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "NaN"
+      ],
+      "confidence": 0.9166666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          " "
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 14.0,
+      "confidence": 1.0,
+      "votes": [
+        14.0,
+        14.0,
+        14.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only consider 2015 data",
+        "Summer defined as June, July, August",
+        "Pollution measured by Indicator Level",
+        "Beaches must be in the identified city",
+        "Year must equal 2015 in both precipitation data and beach testing data",
+        "Summer months are defined as June, July, and August only",
+        "Pollution level measured by Indicator Level column",
+        "Must identify exactly three beaches ranked by pollution level",
+        "City matching requires exact string comparison between filename-derived city and Community field",
+        "Ensure that the 'Year' column is an integer in both precipitation and water quality files.",
+        "Handle missing values in precipitation data appropriately (e.g., imputation or exclusion)."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Only consider 2015 data",
+          "Summer defined as June, July, August",
+          "Pollution measured by Indicator Level",
+          "Beaches must be in the identified city"
+        ],
+        [
+          "Year must equal 2015 in both precipitation data and beach testing data",
+          "Summer months are defined as June, July, and August only",
+          "Pollution level measured by Indicator Level column",
+          "Must identify exactly three beaches ranked by pollution level",
+          "City matching requires exact string comparison between filename-derived city and Community field"
+        ],
+        [
+          "Ensure that the 'Year' column is an integer in both precipitation and water quality files.",
+          "Handle missing values in precipitation data appropriately (e.g., imputation or exclusion)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter precipitation data to Year = 2015",
+        "Sum Jun, Jul, Aug precipitation for each city",
+        "Filter water testing to Year = 2015 and matching Community",
+        "Aggregate beach pollution levels (max or average Indicator Level)",
+        "Filter precipitation data: Year = 2015",
+        "Filter beach data: Year = 2015",
+        "Calculate summer_rainfall = Jun + Jul + Aug for each city",
+        "Identify city_with_min_rainfall = city with minimum summer_rainfall",
+        "Filter beach data: Community = city_with_min_rainfall",
+        "Filter water quality data for the year 2015.",
+        "Filter precipitation data for the year 2015.",
+        "Filter water quality data for the city with the least rainfall."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter precipitation data to Year = 2015",
+          "Sum Jun, Jul, Aug precipitation for each city",
+          "Filter water testing to Year = 2015 and matching Community",
+          "Aggregate beach pollution levels (max or average Indicator Level)"
+        ],
+        [
+          "Filter precipitation data: Year = 2015",
+          "Filter beach data: Year = 2015",
+          "Calculate summer_rainfall = Jun + Jul + Aug for each city",
+          "Identify city_with_min_rainfall = city with minimum summer_rainfall",
+          "Filter beach data: Community = city_with_min_rainfall"
+        ],
+        [
+          "Filter water quality data for the year 2015.",
+          "Filter precipitation data for the year 2015.",
+          "Filter water quality data for the city with the least rainfall."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Identify city with minimum summer precipitation",
+        "Rank beaches by pollution level",
+        "Select top 3 beaches",
+        "Aggregate Indicator Level by beach using mean or median",
+        "Handle missing Indicator Level values appropriately",
+        "Rank beaches by aggregated pollution metric in descending order"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Identify city with minimum summer precipitation",
+          "Rank beaches by pollution level",
+          "Select top 3 beaches"
+        ],
+        [
+          "Aggregate Indicator Level by beach using mean or median",
+          "Handle missing Indicator Level values appropriately",
+          "Rank beaches by aggregated pollution metric in descending order"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of 3 beach names",
+        "Should include pollution levels",
+        "Should identify the city with least rainfall",
+        "Return list of three beach names",
+        "Beaches ordered from most to least polluted",
+        "Must correspond to the city with least summer rainfall in 2015",
+        "List of the three most polluted beaches with their average 'Indicator Level'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of 3 beach names",
+          "Should include pollution levels",
+          "Should identify the city with least rainfall"
+        ],
+        [
+          "Return list of three beach names",
+          "Beaches ordered from most to least polluted",
+          "Must correspond to the city with least summer rainfall in 2015"
+        ],
+        [
+          "List of the three most polluted beaches with their average 'Indicator Level'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6269444444444445
+}

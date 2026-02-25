@@ -1,0 +1,381 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of fires by political affiliation of states (Democratic vs Republican)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of fires by political affiliation of states (Democratic vs Republican)",
+        "Count of fires by political party affiliation of states (Democratic vs Republican)",
+        "Count of fires, grouped by whether the state is predominantly Democratic or Republican"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Exclude states with missing Total Fires data",
+        "Exclude states with missing political affiliation data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude states with missing Total Fires data",
+          "Exclude states with missing political affiliation data"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Political affiliation (Democratic/Republican)",
+        "political_party_majority",
+        "political leaning"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Political affiliation (Democratic/Republican)"
+        ],
+        [
+          "political_party_majority"
+        ],
+        [
+          "political leaning"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to determine if a state is Democratic or Republican?",
+        "Which data source contains fire counts?",
+        "How to handle states with missing data?",
+        "Which states are Democratic and which are Republican based on 2020 election results?",
+        "What is the total fire count for each state?",
+        "What is the sum of Total Fires for all Democratic states?",
+        "What is the sum of Total Fires for all Republican states?",
+        "Which group has more fires: Democratic or Republican states?",
+        "Determine the political leaning of each state based on the democratic_vs_republican_votes_by_usa_state_2020.csv file.",
+        "Count the total number of fires for states leaning Democratic.",
+        "Count the total number of fires for states leaning Republican.",
+        "Compare the counts of fires between Democratic and Republican leaning states."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How to determine if a state is Democratic or Republican?",
+          "Which data source contains fire counts?",
+          "How to handle states with missing data?"
+        ],
+        [
+          "Which states are Democratic and which are Republican based on 2020 election results?",
+          "What is the total fire count for each state?",
+          "What is the sum of Total Fires for all Democratic states?",
+          "What is the sum of Total Fires for all Republican states?",
+          "Which group has more fires: Democratic or Republican states?"
+        ],
+        [
+          "Determine the political leaning of each state based on the democratic_vs_republican_votes_by_usa_state_2020.csv file.",
+          "Count the total number of fires for states leaning Democratic.",
+          "Count the total number of fires for states leaning Republican.",
+          "Compare the counts of fires between Democratic and Republican leaning states."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Wildfire_Acres_by_State.csv",
+        "democratic_vs_republican_votes_by_usa_state_2020.csv",
+        "wildfire_total_fires_p45_54.csv"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "Wildfire_Acres_by_State.csv",
+          "democratic_vs_republican_votes_by_usa_state_2020.csv",
+          "wildfire_total_fires_p45_54.csv"
+        ],
+        [
+          "wildfire_total_fires_p45_54.csv",
+          "democratic_vs_republican_votes_by_usa_state_2020.csv"
+        ],
+        [
+          "Wildfire_Acres_by_State.csv",
+          "democratic_vs_republican_votes_by_usa_state_2020.csv",
+          "wildfire_total_fires_p45_54.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column name mismatch: 'State' vs 'state'",
+        "Different number of states in each file (52, 51, 50)",
+        "Missing District of Columbia in wildfire_total_fires_p45_54.csv",
+        "State column naming differs: 'State' in wildfire data vs 'usa_state' in political data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column name mismatch: 'State' vs 'state'",
+          "Different number of states in each file (52, 51, 50)",
+          "Missing District of Columbia in wildfire_total_fires_p45_54.csv"
+        ],
+        [
+          "State column naming differs: 'State' in wildfire data vs 'usa_state' in political data"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "total acres burned": "acres",
+        "population": "people",
+        "total fires": "count",
+        "dem": "votes",
+        "rep": "votes",
+        "percent_democrat": "percentage"
+      },
+      "confidence": 0.8333333333333334,
+      "votes": [
+        {
+          "Total Acres Burned": "acres",
+          "Population": "people",
+          "Total Fires": "count",
+          "DEM": "votes",
+          "REP": "votes"
+        },
+        {
+          "Total Fires": "count",
+          "DEM": "votes",
+          "REP": "votes",
+          "percent_democrat": "percentage"
+        },
+        {
+          "Total Acres Burned": "acres",
+          "Population": "people",
+          "DEM": "votes",
+          "REP": "votes",
+          "percent_democrat": "percentage",
+          "Total Fires": "number of fires"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Total Acres Burned varies dramatically across states (e.g., 137 vs 1,081,144)",
+        "Population varies dramatically across states",
+        "Total Fires varies dramatically across states"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total Acres Burned varies dramatically across states (e.g., 137 vs 1,081,144)",
+          "Population varies dramatically across states",
+          "Total Fires varies dramatically across states"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Wildfire_Acres_by_State.csv has 52 states including District of Columbia, but wildfire_total_fires_p45_54.csv has only 50 states",
+        "Need to determine political affiliation threshold (e.g., percent_democrat > 50% = Democratic)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Wildfire_Acres_by_State.csv has 52 states including District of Columbia, but wildfire_total_fires_p45_54.csv has only 50 states",
+          "Need to determine political affiliation threshold (e.g., percent_democrat > 50% = Democratic)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.33,
+      "votes": [
+        10.0,
+        2.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Political affiliation must be determined from 2020 election data",
+        "Only states with complete fire count data can be included",
+        "States must be classified as either Democratic or Republican (no ties)",
+        "Must classify each state as Democratic or Republican based on majority votes (DEM > REP or REP > DEM)",
+        "Must sum Total Fires for each political group",
+        "Must compare counts and return only 'Democratic' or 'Republican'",
+        "Determine political leaning based on 'percent_democrat' column in democratic_vs_republican_votes_by_usa_state_2020.csv. States with >50% are Democratic, <=50% are Republican.",
+        "The District of Columbia should be considered Democratic."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Political affiliation must be determined from 2020 election data",
+          "Only states with complete fire count data can be included",
+          "States must be classified as either Democratic or Republican (no ties)"
+        ],
+        [
+          "Must classify each state as Democratic or Republican based on majority votes (DEM > REP or REP > DEM)",
+          "Must sum Total Fires for each political group",
+          "Must compare counts and return only 'Democratic' or 'Republican'"
+        ],
+        [
+          "Determine political leaning based on 'percent_democrat' column in democratic_vs_republican_votes_by_usa_state_2020.csv. States with >50% are Democratic, <=50% are Republican.",
+          "The District of Columbia should be considered Democratic."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to states where percent_democrat > 50% for Democratic, < 50% for Republican",
+        "Exclude states with missing Total Fires values",
+        "Democratic states: where DEM > REP",
+        "Republican states: where REP > DEM",
+        "States leaning Democratic",
+        "States leaning Republican"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to states where percent_democrat > 50% for Democratic, < 50% for Republican",
+          "Exclude states with missing Total Fires values"
+        ],
+        [
+          "Democratic states: where DEM > REP",
+          "Republican states: where REP > DEM"
+        ],
+        [
+          "States leaning Democratic",
+          "States leaning Republican"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Sum of Total Fires for Democratic states",
+        "Sum of Total Fires for Republican states",
+        "Comparison of sums to determine which is larger"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Sum of Total Fires for Democratic states",
+          "Sum of Total Fires for Republican states",
+          "Comparison of sums to determine which is larger"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Answer must be exactly 'Democratic' or 'Republican'",
+        "Based on count of fires, not acres burned or population",
+        "Output must be exactly one word: 'Democratic' or 'Republican'",
+        "No additional explanation or data should be provided",
+        "Output either 'Democratic' or 'Republican'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Answer must be exactly 'Democratic' or 'Republican'",
+          "Based on count of fires, not acres burned or population"
+        ],
+        [
+          "Output must be exactly one word: 'Democratic' or 'Republican'",
+          "No additional explanation or data should be provided"
+        ],
+        [
+          "Output either 'Democratic' or 'Republican'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5859444444444446
+}

@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Count of distinct values of 'Raiders first downs' for game number 9",
+    "filters": [
+      "Game = '9'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the value of 'Raiders first downs' for game 9?",
+      "Is there only one row for game 9?",
+      "Are there any duplicate or conflicting values for game 9?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "raiders_game_stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Raiders first downs": "count",
+      "Raiders points": "points",
+      "Opponents": "points",
+      "Attendance": "people"
+    },
+    "scale_issues": [
+      "All columns stored as object/string type despite numeric content"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain spaces",
+      "Date format uses abbreviated month names",
+      "Record column uses en dash character"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Game values should be unique",
+      "Raiders first downs should be numeric",
+      "Game 9 should exist in the data"
+    ],
+    "derived_filters": [
+      "Filter rows where Game = '9'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate Game values",
+      "Verify Raiders first downs can be converted to numeric"
+    ],
+    "output_format_requirements": [
+      "Single numeric value representing count of distinct first downs values for game 9"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of distinct values of 'Raiders first downs' for game number 9\",\n        \"filters\": [\"Game = '9'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the value of 'Raiders first downs' for game 9?\", \"Is there only one row for game 9?\", \"Are there any duplicate or conflicting values for game 9?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"raiders_game_stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Raiders first downs\": \"count\",\n            \"Raiders points\": \"points\",\n            \"Opponents\": \"points\",\n            \"Attendance\": \"people\"\n        },\n        \"scale_issues\": [\"All columns stored as object/string type despite numeric content\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names contain spaces\", \"Date format uses abbreviated month names\", \"Record column uses en dash character\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Game values should be unique\", \"Raiders first downs should be numeric\", \"Game 9 should exist in the data\"],\n        \"derived_filters\": [\"Filter rows where Game = '9'\"],\n        \"statistical_tests\": [\"Check for duplicate Game values\", \"Verify Raiders first downs can be converted to numeric\"],\n        \"output_format_requirements\": [\"Single numeric value representing count of distinct first downs values for game 9\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.232494115829468,
+  "token_usage": {
+    "input_tokens": 999,
+    "output_tokens": 432
+  }
+}

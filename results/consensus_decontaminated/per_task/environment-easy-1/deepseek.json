@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "percentage of water samples that exceeded bacterial standards (Violation = 'yes') during the 2013 bathing season in Massachusetts beaches",
+    "filters": [
+      "Year = 2013",
+      "Violation = 'yes'",
+      "State = Massachusetts (implied from data context)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of water samples collected in 2013?",
+      "How many samples had Violation = 'yes'?",
+      "What dates constitute the 'bathing season' in Massachusetts?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2013.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "bacterial concentration units (varies by Organism)"
+    },
+    "scale_issues": [
+      "Sample Date stored as object/string instead of datetime",
+      "Violation column uses 'yes'/'no' strings instead of boolean"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date includes timestamp portion '00:00:00'",
+      "First column name has leading space in sample display but not in column list"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year column should only contain 2013",
+      "Violation column should only contain 'yes' or 'no'",
+      "Indicator Level should be non-negative"
+    ],
+    "derived_filters": [
+      "Filter to Massachusetts beaches (all data appears to be from Massachusetts based on county names)",
+      "Determine bathing season date range (typically summer months)"
+    ],
+    "statistical_tests": [
+      "Check for duplicate samples",
+      "Validate that Violation='yes' corresponds to high Indicator Level values"
+    ],
+    "output_format_requirements": [
+      "Percentage to 3 decimal places",
+      "Include only 2013 data",
+      "Consider only samples during bathing season"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"percentage of water samples that exceeded bacterial standards (Violation = 'yes') during the 2013 bathing season in Massachusetts beaches\",\n        \"filters\": [\"Year = 2013\", \"Violation = 'yes'\", \"State = Massachusetts (implied from data context)\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total number of water samples collected in 2013?\", \"How many samples had Violation = 'yes'?\", \"What dates constitute the 'bathing season' in Massachusetts?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"water-body-testing-2013.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Indicator Level\": \"bacterial concentration units (varies by Organism)\"},\n        \"scale_issues\": [\"Sample Date stored as object/string instead of datetime\", \"Violation column uses 'yes'/'no' strings instead of boolean\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample Date includes timestamp portion '00:00:00'\", \"First column name has leading space in sample display but not in column list\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year column should only contain 2013\", \"Violation column should only contain 'yes' or 'no'\", \"Indicator Level should be non-negative\"],\n        \"derived_filters\": [\"Filter to Massachusetts beaches (all data appears to be from Massachusetts based on county names)\", \"Determine bathing season date range (typically summer months)\"],\n        \"statistical_tests\": [\"Check for duplicate samples\", \"Validate that Violation='yes' corresponds to high Indicator Level values\"],\n        \"output_format_requirements\": [\"Percentage to 3 decimal places\", \"Include only 2013 data\", \"Consider only samples during bathing season\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.406576156616211,
+  "token_usage": {
+    "input_tokens": 1589,
+    "output_tokens": 504
+  }
+}

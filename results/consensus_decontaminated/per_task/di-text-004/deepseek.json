@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "most frequent experience level and its corresponding ratio as a decimal",
+    "filters": [
+      "employment_type = 'FT' (implied from sample data)"
+    ],
+    "grouping_variables": [
+      "experience_level"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the label mapping from tips.md?",
+      "How to transform experience_level labels using the mapping?",
+      "What is the frequency distribution of transformed experience levels?",
+      "Which experience level has the highest frequency?",
+      "What is the ratio of that level's count to total count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "ds_salaries.csv",
+      "tips.md"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "tips.md file not provided in data files list"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "salary": "currency units vary by salary_currency",
+      "salary_in_usd": "USD",
+      "remote_ratio": "percentage (0-100)"
+    },
+    "scale_issues": [
+      "salary column has extreme values (e.g., 11000000 HUF) that need currency conversion",
+      "salary_in_usd provides normalized values"
+    ],
+    "cross_source_conflicts": [
+      "tips.md content unknown - needed for label mapping"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First column 'Unnamed: 0' appears to be an index column",
+      "experience_level codes: EN, MI, SE observed in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "experience_level should be transformed using tips.md mapping",
+      "ratio should be calculated as decimal (0-1)",
+      "Only FT employment_type considered based on sample"
+    ],
+    "derived_filters": [
+      "employment_type = 'FT' (full-time)"
+    ],
+    "statistical_tests": [
+      "Frequency count of transformed experience_level",
+      "Maximum frequency identification"
+    ],
+    "output_format_requirements": [
+      "JSON format with 'The most frequent experience level' and 'ratio' keys",
+      "ratio as decimal"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"most frequent experience level and its corresponding ratio as a decimal\",\n        \"filters\": [\"employment_type = 'FT' (implied from sample data)\"],\n        \"grouping_variables\": [\"experience_level\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the label mapping from tips.md?\", \"How to transform experience_level labels using the mapping?\", \"What is the frequency distribution of transformed experience levels?\", \"Which experience level has the highest frequency?\", \"What is the ratio of that level's count to total count?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"ds_salaries.csv\", \"tips.md\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"tips.md file not provided in data files list\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"salary\": \"currency units vary by salary_currency\", \"salary_in_usd\": \"USD\", \"remote_ratio\": \"percentage (0-100)\"},\n        \"scale_issues\": [\"salary column has extreme values (e.g., 11000000 HUF) that need currency conversion\", \"salary_in_usd provides normalized values\"],\n        \"cross_source_conflicts\": [\"tips.md content unknown - needed for label mapping\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First column 'Unnamed: 0' appears to be an index column\", \"experience_level codes: EN, MI, SE observed in sample\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"experience_level should be transformed using tips.md mapping\", \"ratio should be calculated as decimal (0-1)\", \"Only FT employment_type considered based on sample\"],\n        \"derived_filters\": [\"employment_type = 'FT' (full-time)\"],\n        \"statistical_tests\": [\"Frequency count of transformed experience_level\", \"Maximum frequency identification\"],\n        \"output_format_requirements\": [\"JSON format with 'The most frequent experience level' and 'ratio' keys\", \"ratio as decimal\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.202815294265747,
+  "token_usage": {
+    "input_tokens": 1324,
+    "output_tokens": 502
+  }
+}

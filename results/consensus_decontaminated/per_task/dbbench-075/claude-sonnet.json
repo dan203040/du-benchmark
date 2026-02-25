@@ -1,0 +1,68 @@
+{
+  "m_q": {
+    "target_metric": "sum of playoffs appearances from all teams",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the 'Playoffs appearances' value for each team?",
+      "How should teams with 0 playoff appearances be handled?",
+      "Should all teams (active and inactive) be included in the total?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Teams History"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Playoffs appearances": "count",
+      "Seasons played": "count",
+      "Win%": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A",
+      "NA",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Playoffs appearances column uses Int64 dtype which handles null values",
+      "Some teams have 0 playoff appearances",
+      "Teams that never played have 0 playoff appearances"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Playoffs appearances must be non-negative integers",
+      "Playoffs appearances cannot exceed Seasons played for any team",
+      "Sum should include all 27 teams in the dataset"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single integer value representing the total count",
+      "Result should be the sum of all values in the 'Playoffs appearances' column"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"sum of playoffs appearances from all teams\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the 'Playoffs appearances' value for each team?\",\n      \"How should teams with 0 playoff appearances be handled?\",\n      \"Should all teams (active and inactive) be included in the total?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Basketball Teams History\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Playoffs appearances\": \"count\",\n      \"Seasons played\": \"count\",\n      \"Win%\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/A\", \"NA\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Playoffs appearances column uses Int64 dtype which handles null values\",\n      \"Some teams have 0 playoff appearances\",\n      \"Teams that never played have 0 playoff appearances\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Playoffs appearances must be non-negative integers\",\n      \"Playoffs appearances cannot exceed Seasons played for any team\",\n      \"Sum should include all 27 teams in the dataset\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single integer value representing the total count\",\n      \"Result should be the sum of all values in the 'Playoffs appearances' column\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.355057954788208,
+  "token_usage": {
+    "input_tokens": 1231,
+    "output_tokens": 498
+  }
+}

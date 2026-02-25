@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Count of distinct college teams that have at least one player with Russian nationality",
+    "filters": [
+      "Nationality == 'Russia'",
+      "College/junior/club team contains 'NCAA' or university name pattern"
+    ],
+    "grouping_variables": [
+      "College/junior/club team"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which players have Russian nationality?",
+      "Which of those players are on college teams?",
+      "What are the distinct college teams from those players?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NHL_draft_picks"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [
+      "College/junior/club team column contains mixed types: college teams, junior teams, and club teams from different countries"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 20 rows but shape indicates 36 total rows",
+      "College/junior/club team column contains team names with country/league indicators in parentheses"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Nationality column must contain 'Russia' values",
+      "College/junior/club team column must be parsed to identify college teams vs other types"
+    ],
+    "derived_filters": [
+      "Filter rows where Nationality = 'Russia'",
+      "Filter rows where College/junior/club team indicates NCAA or university affiliation"
+    ],
+    "statistical_tests": [
+      "Count distinct college teams after filtering"
+    ],
+    "output_format_requirements": [
+      "Single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of distinct college teams that have at least one player with Russian nationality\",\n        \"filters\": [\"Nationality == 'Russia'\", \"College/junior/club team contains 'NCAA' or university name pattern\"],\n        \"grouping_variables\": [\"College/junior/club team\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which players have Russian nationality?\", \"Which of those players are on college teams?\", \"What are the distinct college teams from those players?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"NHL_draft_picks\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [\"College/junior/club team column contains mixed types: college teams, junior teams, and club teams from different countries\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 20 rows but shape indicates 36 total rows\", \"College/junior/club team column contains team names with country/league indicators in parentheses\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Nationality column must contain 'Russia' values\", \"College/junior/club team column must be parsed to identify college teams vs other types\"],\n        \"derived_filters\": [\"Filter rows where Nationality = 'Russia'\", \"Filter rows where College/junior/club team indicates NCAA or university affiliation\"],\n        \"statistical_tests\": [\"Count distinct college teams after filtering\"],\n        \"output_format_requirements\": [\"Single integer count\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.12057614326477,
+  "token_usage": {
+    "input_tokens": 1146,
+    "output_tokens": 436
+  }
+}

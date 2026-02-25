@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "average year",
+    "filters": [
+      "Entrant = 'Belanger Motors'",
+      "Engine = 'Offenhauser L4'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What years did Belanger Motors use Offenhauser L4 engines?",
+      "How many records match both filters?",
+      "Are the Year values numeric for calculation?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "racers_database"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Year column is object dtype but contains numeric years",
+      "Points column is object dtype but appears to contain numeric values"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year",
+      "Points": "racing points (integer)"
+    },
+    "scale_issues": [
+      "Year values need conversion from object to numeric for averaging"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Sample shows 20 rows but shape indicates 21 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values must be convertible to numeric for averaging",
+      "Only one data source needed for this question",
+      "Filtered data must contain at least one record to compute average"
+    ],
+    "derived_filters": [
+      "Year should be between 1950-1969 based on sample data"
+    ],
+    "statistical_tests": [
+      "Check for missing Year values in filtered subset",
+      "Verify Year values are consistent numeric format"
+    ],
+    "output_format_requirements": [
+      "Average year should be presented as a numeric value",
+      "Consider rounding to appropriate precision"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average year\",\n        \"filters\": [\"Entrant = 'Belanger Motors'\", \"Engine = 'Offenhauser L4'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What years did Belanger Motors use Offenhauser L4 engines?\", \"How many records match both filters?\", \"Are the Year values numeric for calculation?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"racers_database\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Year column is object dtype but contains numeric years\", \"Points column is object dtype but appears to contain numeric values\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"calendar year\", \"Points\": \"racing points (integer)\"},\n        \"scale_issues\": [\"Year values need conversion from object to numeric for averaging\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Sample shows 20 rows but shape indicates 21 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values must be convertible to numeric for averaging\", \"Only one data source needed for this question\", \"Filtered data must contain at least one record to compute average\"],\n        \"derived_filters\": [\"Year should be between 1950-1969 based on sample data\"],\n        \"statistical_tests\": [\"Check for missing Year values in filtered subset\", \"Verify Year values are consistent numeric format\"],\n        \"output_format_requirements\": [\"Average year should be presented as a numeric value\", \"Consider rounding to appropriate precision\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.223864078521729,
+  "token_usage": {
+    "input_tokens": 1047,
+    "output_tokens": 443
+  }
+}

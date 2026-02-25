@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "Temporal shift in fire start distribution within the year (start_day_of_year) over multiple years",
+    "filters": [],
+    "grouping_variables": [
+      "start_year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the distribution of start_day_of_year for each start_year?",
+      "Has the central tendency (mean/median) of start_day_of_year changed over time?",
+      "Is there a statistically significant trend in start_day_of_year over start_year?",
+      "Are fires starting earlier (lower start_day_of_year) or later (higher start_day_of_year) in recent years compared to earlier years?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "start_day_of_year": "day_of_year (1-366)",
+      "start_year": "year",
+      "start_date": "date (mm/dd/yyyy format)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "start_date is string format mm/dd/yyyy",
+      "start_day_of_year is integer (1-366)",
+      "start_year ranges from 2002-2014, 2016"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "start_day_of_year must be between 1 and 366",
+      "start_year should be in range 2002-2016",
+      "Records with missing or invalid start_day_of_year should be excluded"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Linear regression of start_day_of_year vs start_year",
+      "Mann-Kendall trend test for temporal trend in start_day_of_year",
+      "Comparison of mean/median start_day_of_year between early years (2002-2009) and later years (2010-2016)"
+    ],
+    "output_format_requirements": [
+      "Answer must be 'Yes' or 'No' only",
+      "No explanation or additional text"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Temporal shift in fire start distribution within the year (start_day_of_year) over multiple years\",\n    \"filters\": [],\n    \"grouping_variables\": [\"start_year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the distribution of start_day_of_year for each start_year?\",\n      \"Has the central tendency (mean/median) of start_day_of_year changed over time?\",\n      \"Is there a statistically significant trend in start_day_of_year over start_year?\",\n      \"Are fires starting earlier (lower start_day_of_year) or later (higher start_day_of_year) in recent years compared to earlier years?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Fire_Weather_Data_2002-2014_2016.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"start_day_of_year\": \"day_of_year (1-366)\",\n      \"start_year\": \"year\",\n      \"start_date\": \"date (mm/dd/yyyy format)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"start_date is string format mm/dd/yyyy\",\n      \"start_day_of_year is integer (1-366)\",\n      \"start_year ranges from 2002-2014, 2016\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"start_day_of_year must be between 1 and 366\",\n      \"start_year should be in range 2002-2016\",\n      \"Records with missing or invalid start_day_of_year should be excluded\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Linear regression of start_day_of_year vs start_year\",\n      \"Mann-Kendall trend test for temporal trend in start_day_of_year\",\n      \"Comparison of mean/median start_day_of_year between early years (2002-2009) and later years (2010-2016)\"\n    ],\n    \"output_format_requirements\": [\n      \"Answer must be 'Yes' or 'No' only\",\n      \"No explanation or additional text\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.7707040309906,
+  "token_usage": {
+    "input_tokens": 3543,
+    "output_tokens": 692
+  }
+}

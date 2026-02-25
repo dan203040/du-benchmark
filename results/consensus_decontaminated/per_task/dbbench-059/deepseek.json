@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "minimum Time value",
+    "filters": [
+      "Nationality == 'China'"
+    ],
+    "grouping_variables": [
+      "Athlete"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the fastest time among Chinese athletes?",
+      "Which Chinese athlete achieved that time?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "race_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Time": "hours:minutes:seconds"
+    },
+    "scale_issues": [
+      "Time column is string format, needs conversion to time duration for comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row has empty Rank value",
+      "Time values use colon-separated format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Time must be convertible to duration",
+      "Nationality must include 'China' values",
+      "Athlete names must be unique per row"
+    ],
+    "derived_filters": [
+      "Filter rows where Nationality contains 'China'",
+      "Exclude rows with missing Time values"
+    ],
+    "statistical_tests": [
+      "Check for duplicate athlete entries",
+      "Validate Time format consistency"
+    ],
+    "output_format_requirements": [
+      "Return athlete name as string",
+      "Include corresponding Time value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum Time value\",\n        \"filters\": [\"Nationality == 'China'\"],\n        \"grouping_variables\": [\"Athlete\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the fastest time among Chinese athletes?\", \"Which Chinese athlete achieved that time?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"race_results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Time\": \"hours:minutes:seconds\"},\n        \"scale_issues\": [\"Time column is string format, needs conversion to time duration for comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row has empty Rank value\", \"Time values use colon-separated format\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Time must be convertible to duration\", \"Nationality must include 'China' values\", \"Athlete names must be unique per row\"],\n        \"derived_filters\": [\"Filter rows where Nationality contains 'China'\", \"Exclude rows with missing Time values\"],\n        \"statistical_tests\": [\"Check for duplicate athlete entries\", \"Validate Time format consistency\"],\n        \"output_format_requirements\": [\"Return athlete name as string\", \"Include corresponding Time value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.839706659317017,
+  "token_usage": {
+    "input_tokens": 901,
+    "output_tokens": 372
+  }
+}

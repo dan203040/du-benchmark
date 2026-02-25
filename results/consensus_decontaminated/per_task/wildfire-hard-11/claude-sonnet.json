@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Land area in acres impacted by fire per capita (Total Acres Burned / Population)",
+    "filters": [
+      "Exclude states with missing Total Acres Burned or Population data"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total acres burned for each state?",
+      "What is the population for each state?",
+      "What is the acres burned per capita for each state?",
+      "Which state has the maximum acres burned per capita?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "acres",
+      "Population": "persons",
+      "acres_per_capita": "acres per person"
+    },
+    "scale_issues": [
+      "Per capita calculation requires division of acres by population count",
+      "Result will be a small decimal representing acres per person"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "District of Columbia has missing Total Acres Burned value",
+      "Total Acres Burned is float64 type allowing for decimal values",
+      "Population is int64 type representing whole person counts"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total Acres Burned must be non-null and non-negative",
+      "Population must be non-null and greater than zero to avoid division by zero",
+      "State field should be non-null"
+    ],
+    "derived_filters": [
+      "Exclude rows where Total Acres Burned is null",
+      "Exclude rows where Population is null or zero"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the state name with the highest acres burned per capita",
+      "Optionally include the calculated per capita value for context"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Land area in acres impacted by fire per capita (Total Acres Burned / Population)\",\n    \"filters\": [\"Exclude states with missing Total Acres Burned or Population data\"],\n    \"grouping_variables\": [\"State\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total acres burned for each state?\",\n      \"What is the population for each state?\",\n      \"What is the acres burned per capita for each state?\",\n      \"Which state has the maximum acres burned per capita?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Wildfire_Acres_by_State.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total Acres Burned\": \"acres\",\n      \"Population\": \"persons\",\n      \"acres_per_capita\": \"acres per person\"\n    },\n    \"scale_issues\": [\n      \"Per capita calculation requires division of acres by population count\",\n      \"Result will be a small decimal representing acres per person\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"District of Columbia has missing Total Acres Burned value\",\n      \"Total Acres Burned is float64 type allowing for decimal values\",\n      \"Population is int64 type representing whole person counts\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Total Acres Burned must be non-null and non-negative\",\n      \"Population must be non-null and greater than zero to avoid division by zero\",\n      \"State field should be non-null\"\n    ],\n    \"derived_filters\": [\n      \"Exclude rows where Total Acres Burned is null\",\n      \"Exclude rows where Population is null or zero\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the state name with the highest acres burned per capita\",\n      \"Optionally include the calculated per capita value for context\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.495951890945435,
+  "token_usage": {
+    "input_tokens": 860,
+    "output_tokens": 607
+  }
+}

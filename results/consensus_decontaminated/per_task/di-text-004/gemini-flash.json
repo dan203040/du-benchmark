@@ -1,0 +1,59 @@
+{
+  "m_q": {
+    "target_metric": "Most frequent transformed experience level and its ratio",
+    "filters": [],
+    "grouping_variables": [
+      "experience_level_transformed"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Transform the 'experience_level' column using the provided mapping.",
+      "Calculate the frequency of each transformed experience level.",
+      "Identify the most frequent transformed experience level.",
+      "Calculate the ratio of the most frequent experience level to the total number of entries."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "ds_salaries.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "salary": "currency",
+      "salary_in_usd": "USD"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The most frequent experience level should be a string.",
+      "The ratio should be a decimal."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Most frequent transformed experience level and its ratio\",\n    \"filters\": [],\n    \"grouping_variables\": [\"experience_level_transformed\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Transform the 'experience_level' column using the provided mapping.\",\n      \"Calculate the frequency of each transformed experience level.\",\n      \"Identify the most frequent transformed experience level.\",\n      \"Calculate the ratio of the most frequent experience level to the total number of entries.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"ds_salaries.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"salary\": \"currency\", \"salary_in_usd\": \"USD\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The most frequent experience level should be a string.\",\n      \"The ratio should be a decimal.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 7.874827146530151,
+  "token_usage": {}
+}

@@ -1,0 +1,444 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Cluster labels for customer groups based on behavioral features",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Cluster labels for customer groups based on behavioral features",
+        "Customer segmentation clusters with feature vectors and cluster labels",
+        "Customer clusters based on purchasing behavior"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Data from 2009-2010 only",
+        "Valid Customer ID not null",
+        "Positive Quantity and Price",
+        "Valid Customer ID (non-null)",
+        "Data from 2009-2010"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Data from 2009-2010 only",
+          "Valid Customer ID not null",
+          "Positive Quantity and Price"
+        ],
+        [
+          "Data from 2009-2010 only",
+          "Valid Customer ID (non-null)"
+        ],
+        [
+          "Data from 2009-2010"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Customer ID"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Customer ID"
+        ],
+        [
+          "Customer ID"
+        ],
+        [
+          "Customer ID"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features should represent customer behavior?",
+        "How many clusters are appropriate?",
+        "Which clustering algorithm to use?",
+        "How to handle customers with limited transactions?",
+        "What customer-level features should be engineered for clustering (e.g., total spend, frequency, recency, average order value)?",
+        "How many customers have valid Customer ID in the 2009-2010 dataset?",
+        "What is the appropriate number of clusters for customer segmentation?",
+        "How to handle missing Customer IDs and negative quantities (returns)?",
+        "What feature scaling/normalization is needed before clustering?",
+        "Which clustering algorithm should be used (K-means, hierarchical, DBSCAN)?",
+        "How to validate cluster quality and determine optimal cluster count?",
+        "What features can be engineered from the available data to represent customer purchasing behavior?",
+        "How many clusters are appropriate for this dataset?",
+        "What are the characteristics of each cluster?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What features should represent customer behavior?",
+          "How many clusters are appropriate?",
+          "Which clustering algorithm to use?",
+          "How to handle customers with limited transactions?"
+        ],
+        [
+          "What customer-level features should be engineered for clustering (e.g., total spend, frequency, recency, average order value)?",
+          "How many customers have valid Customer ID in the 2009-2010 dataset?",
+          "What is the appropriate number of clusters for customer segmentation?",
+          "How to handle missing Customer IDs and negative quantities (returns)?",
+          "What feature scaling/normalization is needed before clustering?",
+          "Which clustering algorithm should be used (K-means, hierarchical, DBSCAN)?",
+          "How to validate cluster quality and determine optimal cluster count?"
+        ],
+        [
+          "What features can be engineered from the available data to represent customer purchasing behavior?",
+          "How many clusters are appropriate for this dataset?",
+          "What are the characteristics of each cluster?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Year 2009-2010.csv",
+        "Year 2010-2011.csv",
+        "online_retail_II.xlsx"
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "Year 2009-2010.csv",
+          "Year 2010-2011.csv",
+          "online_retail_II.xlsx"
+        ],
+        [
+          "Year 2009-2010.csv"
+        ],
+        [
+          "Year 2009-2010.csv",
+          "Year 2010-2011.csv",
+          "online_retail_II.xlsx"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "InvoiceDate dtype differs: object in CSV vs datetime64[ns] in Excel",
+        "Year 2010-2011.csv contains data from 2010-2011, not just 2009-2010",
+        "Customer ID has float64 dtype with NaN values, should be treated as integer identifier",
+        "InvoiceDate is object type in CSV files but datetime64 in Excel file",
+        "InvoiceDate column has different data types across files (object in CSVs, datetime64[ns] in XLSX).",
+        "Column names are consistent across files."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "InvoiceDate dtype differs: object in CSV vs datetime64[ns] in Excel",
+          "Year 2010-2011.csv contains data from 2010-2011, not just 2009-2010"
+        ],
+        [
+          "Customer ID has float64 dtype with NaN values, should be treated as integer identifier",
+          "InvoiceDate is object type in CSV files but datetime64 in Excel file"
+        ],
+        [
+          "InvoiceDate column has different data types across files (object in CSVs, datetime64[ns] in XLSX).",
+          "Column names are consistent across files."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "quantity": "units",
+        "price": "currency units (likely GBP)",
+        "invoicedate": "datetime"
+      },
+      "confidence": 0.8888888888888888,
+      "votes": [
+        {
+          "Quantity": "units",
+          "Price": "currency units (likely GBP)",
+          "InvoiceDate": "datetime"
+        },
+        {
+          "Price": "currency (GBP implied from UK-based retailer)",
+          "Quantity": "count of items",
+          "InvoiceDate": "timestamp"
+        },
+        {
+          "Quantity": "number of items",
+          "Price": "monetary unit"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Quantity may have negative values (returns)",
+        "Price may have extreme values",
+        "Customer ID is float but should be categorical",
+        "Price values vary significantly across products",
+        "Quantity can be negative (indicating returns/cancellations)",
+        "Customer purchase frequencies and amounts likely span multiple orders of magnitude"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Quantity may have negative values (returns)",
+          "Price may have extreme values",
+          "Customer ID is float but should be categorical"
+        ],
+        [
+          "Price values vary significantly across products",
+          "Quantity can be negative (indicating returns/cancellations)",
+          "Customer purchase frequencies and amounts likely span multiple orders of magnitude"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Year 2010-2011.csv includes 2011 data which should be excluded per question",
+        "online_retail_II.xlsx appears to duplicate Year 2009-2010.csv data",
+        "Year 2010-2011.csv contains data outside the required 2009-2010 range",
+        "Need to ensure only 2009-2010 data is used from Year 2009-2010.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year 2010-2011.csv includes 2011 data which should be excluded per question",
+          "online_retail_II.xlsx appears to duplicate Year 2009-2010.csv data"
+        ],
+        [
+          "Year 2010-2011.csv contains data outside the required 2009-2010 range",
+          "Need to ensure only 2009-2010 data is used from Year 2009-2010.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 1.0,
+      "votes": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only use data from 2009-2010",
+        "Customer ID must not be null",
+        "Quantity > 0 for purchases (exclude returns)",
+        "Price > 0",
+        "Output file must be named cluster.csv",
+        "Output columns: Feature_i (for feature values) and Cluster (cluster label)",
+        "Only use data from 2009-2010 period",
+        "Customer ID must not be null for clustering",
+        "Quantity and Price should be validated for data quality",
+        "Each customer should be represented by a single feature vector",
+        "Customer ID should be treated as a categorical variable.",
+        "Quantity and Price should be non-negative."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only use data from 2009-2010",
+          "Customer ID must not be null",
+          "Quantity > 0 for purchases (exclude returns)",
+          "Price > 0",
+          "Output file must be named cluster.csv",
+          "Output columns: Feature_i (for feature values) and Cluster (cluster label)"
+        ],
+        [
+          "Only use data from 2009-2010 period",
+          "Customer ID must not be null for clustering",
+          "Quantity and Price should be validated for data quality",
+          "Each customer should be represented by a single feature vector"
+        ],
+        [
+          "Customer ID should be treated as a categorical variable.",
+          "Quantity and Price should be non-negative."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "InvoiceDate between 2009-01-01 and 2010-12-31",
+        "Quantity > 0",
+        "Price > 0",
+        "Customer ID not null",
+        "Remove records with missing Customer ID",
+        "Filter InvoiceDate to ensure 2009-2010 range only",
+        "Consider filtering cancelled orders (invoices starting with 'C')",
+        "Remove or handle negative quantities appropriately",
+        "Remove rows with missing Customer ID.",
+        "Handle or remove cancelled orders (invoices starting with 'C')."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "InvoiceDate between 2009-01-01 and 2010-12-31",
+          "Quantity > 0",
+          "Price > 0",
+          "Customer ID not null"
+        ],
+        [
+          "Remove records with missing Customer ID",
+          "Filter InvoiceDate to ensure 2009-2010 range only",
+          "Consider filtering cancelled orders (invoices starting with 'C')",
+          "Remove or handle negative quantities appropriately"
+        ],
+        [
+          "Remove rows with missing Customer ID.",
+          "Handle or remove cancelled orders (invoices starting with 'C')."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Quantity and Price",
+        "Assess customer transaction frequency distribution",
+        "Evaluate feature correlation for multicollinearity",
+        "Determine optimal number of clusters using elbow method/silhouette score",
+        "Elbow method to determine optimal number of clusters",
+        "Silhouette score for cluster quality evaluation",
+        "Davies-Bouldin index for cluster separation",
+        "Feature correlation analysis before clustering",
+        "Determine the optimal number of clusters using methods like the Elbow method or Silhouette analysis."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Quantity and Price",
+          "Assess customer transaction frequency distribution",
+          "Evaluate feature correlation for multicollinearity",
+          "Determine optimal number of clusters using elbow method/silhouette score"
+        ],
+        [
+          "Elbow method to determine optimal number of clusters",
+          "Silhouette score for cluster quality evaluation",
+          "Davies-Bouldin index for cluster separation",
+          "Feature correlation analysis before clustering"
+        ],
+        [
+          "Determine the optimal number of clusters using methods like the Elbow method or Silhouette analysis."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV format",
+        "Column names: Feature_1, Feature_2, ..., Feature_n, Cluster",
+        "One row per customer",
+        "Cluster column contains integer labels",
+        "Output file must be named 'cluster.csv'",
+        "Column names must be 'Feature_1', 'Feature_2', ..., 'Feature_n', 'Cluster'",
+        "One row per customer in the feature space",
+        "Cluster labels should be integer identifiers",
+        "Feature columns should contain normalized/scaled values used for clustering",
+        "Output file should be named 'cluster.csv'.",
+        "Output file should contain columns 'Feature_i' and 'Cluster'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "CSV format",
+          "Column names: Feature_1, Feature_2, ..., Feature_n, Cluster",
+          "One row per customer",
+          "Cluster column contains integer labels"
+        ],
+        [
+          "Output file must be named 'cluster.csv'",
+          "Column names must be 'Feature_1', 'Feature_2', ..., 'Feature_n', 'Cluster'",
+          "One row per customer in the feature space",
+          "Cluster labels should be integer identifiers",
+          "Feature columns should contain normalized/scaled values used for clustering"
+        ],
+        [
+          "Output file should be named 'cluster.csv'.",
+          "Output file should contain columns 'Feature_i' and 'Cluster'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.64
+}

@@ -1,0 +1,100 @@
+{
+  "m_q": {
+    "target_metric": "Total rainfall in inches for June, July, and August combined",
+    "filters": [
+      "Year = 2020",
+      "Months in ['Jun', 'Jul', 'Aug']"
+    ],
+    "grouping_variables": [
+      "Region"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total rainfall for each region in June 2020?",
+      "What is the total rainfall for each region in July 2020?",
+      "What is the total rainfall for each region in August 2020?",
+      "Which region has the highest sum of June, July, and August rainfall in 2020?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv",
+      "monthly_precipitations_amherst.csv",
+      "monthly_precipitations_ashburnham.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All files have identical column names and data types, but they represent different regions"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches"
+    },
+    "scale_issues": [
+      "Missing values represented by empty cells in sample data",
+      "Annual column may have missing values when monthly data is incomplete"
+    ],
+    "cross_source_conflicts": [
+      "Different regions may have different measurement methodologies or station locations"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 14,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column is float64 but represents integer years",
+      "Missing values appear as empty cells in CSV",
+      "All files have identical structure with 27 rows and 14 columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be between 2000 and 2026",
+      "Monthly precipitation values should be non-negative",
+      "Annual column should approximately equal sum of monthly columns when all months present"
+    ],
+    "derived_filters": [
+      "Filter to Year = 2020",
+      "Select only Jun, Jul, Aug columns"
+    ],
+    "statistical_tests": [
+      "Check for missing values in 2020 data",
+      "Verify data consistency across months"
+    ],
+    "output_format_requirements": [
+      "Region name with highest rainfall",
+      "Numeric value of total rainfall for that region"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Total rainfall in inches for June, July, and August combined\",\n        \"filters\": [\"Year = 2020\", \"Months in ['Jun', 'Jul', 'Aug']\"],\n        \"grouping_variables\": [\"Region\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total rainfall for each region in June 2020?\", \"What is the total rainfall for each region in July 2020?\", \"What is the total rainfall for each region in August 2020?\", \"Which region has the highest sum of June, July, and August rainfall in 2020?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"monthly_precipitations_boston.csv\", \"monthly_precipitations_chatham.csv\", \"monthly_precipitations_amherst.csv\", \"monthly_precipitations_ashburnham.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All files have identical column names and data types, but they represent different regions\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Jan\": \"inches\", \"Feb\": \"inches\", \"Mar\": \"inches\", \"Apr\": \"inches\", \"May\": \"inches\", \"Jun\": \"inches\", \"Jul\": \"inches\", \"Aug\": \"inches\", \"Sep\": \"inches\", \"Oct\": \"inches\", \"Nov\": \"inches\", \"Dec\": \"inches\", \"Annual\": \"inches\"},\n        \"scale_issues\": [\"Missing values represented by empty cells in sample data\", \"Annual column may have missing values when monthly data is incomplete\"],\n        \"cross_source_conflicts\": [\"Different regions may have different measurement methodologies or station locations\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 14,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year column is float64 but represents integer years\", \"Missing values appear as empty cells in CSV\", \"All files have identical structure with 27 rows and 14 columns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be between 2000 and 2026\", \"Monthly precipitation values should be non-negative\", \"Annual column should approximately equal sum of monthly columns when all months present\"],\n        \"derived_filters\": [\"Filter to Year = 2020\", \"Select only Jun, Jul, Aug columns\"],\n        \"statistical_tests\": [\"Check for missing values in 2020 data\", \"Verify data consistency across months\"],\n        \"output_format_requirements\": [\"Region name with highest rainfall\", \"Numeric value of total rainfall for that region\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.17969799041748,
+  "token_usage": {
+    "input_tokens": 5788,
+    "output_tokens": 620
+  }
+}

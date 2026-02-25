@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "difference between Southampton's total score and Sunderland's total score across all matches",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total score for Southampton across all matches?",
+      "What is the total score for Sunderland across all matches?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The 'Score' column needs to be split into 'Home Team Score' and 'Away Team Score'.",
+      "Need to determine if the team in 'Home team' or 'Away team' won to assign the score correctly.",
+      "The 'Date' column may need to be parsed into a datetime object if date-based filtering is required in the future."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Score' column contains two scores separated by a delimiter (e.g., '\u2013').",
+      "Need to handle cases where a team appears in both 'Home team' and 'Away team' columns.",
+      "Need to parse the score string to extract numerical values."
+    ],
+    "derived_filters": [
+      "Matches where Southampton is either the 'Home team' or the 'Away team'.",
+      "Matches where Sunderland is either the 'Home team' or the 'Away team'."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single numerical value representing the difference in total scores."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"difference between Southampton's total score and Sunderland's total score across all matches\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total score for Southampton across all matches?\",\n      \"What is the total score for Sunderland across all matches?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Football Matches\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The 'Score' column needs to be split into 'Home Team Score' and 'Away Team Score'.\",\n      \"Need to determine if the team in 'Home team' or 'Away team' won to assign the score correctly.\",\n      \"The 'Date' column may need to be parsed into a datetime object if date-based filtering is required in the future.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Score' column contains two scores separated by a delimiter (e.g., '\u2013').\",\n      \"Need to handle cases where a team appears in both 'Home team' and 'Away team' columns.\",\n      \"Need to parse the score string to extract numerical values.\"\n    ],\n    \"derived_filters\": [\n      \"Matches where Southampton is either the 'Home team' or the 'Away team'.\",\n      \"Matches where Sunderland is either the 'Home team' or the 'Away team'.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a single numerical value representing the difference in total scores.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.71661901473999,
+  "token_usage": {}
+}

@@ -1,0 +1,417 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "largest average delivery distance for bikers by hub city",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "largest average delivery distance for bikers by hub city",
+        "Hub city with largest biker average delivery distance, and distribution of order deliveries by driver modes in that city",
+        "Average delivery distance for biker deliveries, grouped by hub city, and the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance."
+      ]
+    },
+    "filters": {
+      "value": [
+        "driver_modal = 'BIKER'",
+        "delivery_status = 'DELIVERED'",
+        "driver_id IS NOT NULL",
+        "driver_modal == 'BIKER'",
+        "delivery_status == 'DELIVERED'",
+        "hub_city == <city_with_max_biker_avg_distance>"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "driver_modal = 'BIKER'",
+          "delivery_status = 'DELIVERED'",
+          "driver_id IS NOT NULL"
+        ],
+        [
+          "driver_modal == 'BIKER'",
+          "delivery_status == 'DELIVERED'",
+          "hub_city == <city_with_max_biker_avg_distance>"
+        ],
+        [
+          "delivery_status = 'DELIVERED'",
+          "driver_modal = 'BIKER'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "hub_city",
+        "driver_modal"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "hub_city"
+        ],
+        [
+          "hub_city",
+          "driver_modal"
+        ],
+        [
+          "hub_city"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "plot",
+      "confidence": 1.0,
+      "votes": [
+        "plot",
+        "plot",
+        "plot"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which hub city has the highest average delivery distance for bikers?",
+        "What is the distribution of order deliveries by driver modes in that city?",
+        "What is the average delivery distance for BIKER drivers in each hub city?",
+        "Which hub city has the largest average delivery distance for BIKER drivers?",
+        "What is the distribution of deliveries by driver_modal (all modes) in that specific hub city?",
+        "Generate a pie chart showing the distribution and save to result.jpg",
+        "What is the average delivery distance for biker deliveries in each hub city?",
+        "Which hub city has the largest average delivery distance for biker deliveries?",
+        "What is the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which hub city has the highest average delivery distance for bikers?",
+          "What is the distribution of order deliveries by driver modes in that city?"
+        ],
+        [
+          "What is the average delivery distance for BIKER drivers in each hub city?",
+          "Which hub city has the largest average delivery distance for BIKER drivers?",
+          "What is the distribution of deliveries by driver_modal (all modes) in that specific hub city?",
+          "Generate a pie chart showing the distribution and save to result.jpg"
+        ],
+        [
+          "What is the average delivery distance for biker deliveries in each hub city?",
+          "Which hub city has the largest average delivery distance for biker deliveries?",
+          "What is the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "deliveries.csv",
+        "drivers.csv",
+        "orders.csv",
+        "stores.csv",
+        "hubs.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "deliveries.csv",
+          "drivers.csv",
+          "orders.csv",
+          "stores.csv",
+          "hubs.csv"
+        ],
+        [
+          "deliveries.csv",
+          "drivers.csv",
+          "orders.csv",
+          "stores.csv",
+          "hubs.csv"
+        ],
+        [
+          "deliveries.csv",
+          "drivers.csv",
+          "orders.csv",
+          "stores.csv",
+          "hubs.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "deliveries.driver_id is float64 while drivers.driver_id is int64",
+        "deliveries.delivery_order_id is int64 while orders.delivery_order_id is int64 (consistent)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "deliveries.driver_id is float64 while drivers.driver_id is int64",
+          "deliveries.delivery_order_id is int64 while orders.delivery_order_id is int64 (consistent)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "delivery_distance_meters": "meters",
+        "order_amount": "currency",
+        "order_delivery_fee": "currency",
+        "order_delivery_cost": "currency",
+        "store_plan_price": "currency",
+        "hub_latitude": "degrees",
+        "hub_longitude": "degrees",
+        "store_latitude": "degrees",
+        "store_longitude": "degrees"
+      },
+      "confidence": 0.5555555555555556,
+      "votes": [
+        {
+          "delivery_distance_meters": "meters",
+          "order_amount": "currency",
+          "order_delivery_fee": "currency",
+          "order_delivery_cost": "currency",
+          "store_plan_price": "currency",
+          "hub_latitude": "degrees",
+          "hub_longitude": "degrees",
+          "store_latitude": "degrees",
+          "store_longitude": "degrees"
+        },
+        {
+          "delivery_distance_meters": "meters",
+          "hub_latitude": "degrees",
+          "hub_longitude": "degrees",
+          "store_latitude": "degrees",
+          "store_longitude": "degrees"
+        },
+        {
+          "delivery_distance_meters": "meters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "delivery_distance_meters has decimal values suggesting precision to 1 meter",
+        "order_amount has 2 decimal places suggesting currency",
+        "delivery_distance_meters is in meters, may need conversion for visualization",
+        "delivery_distance_meters is in meters, might need conversion to km"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "delivery_distance_meters has decimal values suggesting precision to 1 meter",
+          "order_amount has 2 decimal places suggesting currency"
+        ],
+        [
+          "delivery_distance_meters is in meters, may need conversion for visualization"
+        ],
+        [
+          "delivery_distance_meters is in meters, might need conversion to km"
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Some stores have missing latitude/longitude values while hubs have complete coordinates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Some stores have missing latitude/longitude values while hubs have complete coordinates"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.6363636363636364,
+      "votes": [
+        10.0,
+        0.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "delivery_distance_meters > 0 for delivered orders",
+        "driver_id must be integer for valid deliveries",
+        "hub_city must not be null",
+        "Only include deliveries with delivery_status == 'DELIVERED'",
+        "Only include records where driver_id is not null",
+        "Filter for driver_modal == 'BIKER' when calculating average delivery distance by city",
+        "Include all driver_modal values for the pie chart distribution in the identified city",
+        "delivery_distance_meters should be non-negative",
+        "driver_id in deliveries.csv can be null"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "delivery_distance_meters > 0 for delivered orders",
+          "driver_id must be integer for valid deliveries",
+          "hub_city must not be null"
+        ],
+        [
+          "Only include deliveries with delivery_status == 'DELIVERED'",
+          "Only include records where driver_id is not null",
+          "Filter for driver_modal == 'BIKER' when calculating average delivery distance by city",
+          "Include all driver_modal values for the pie chart distribution in the identified city"
+        ],
+        [
+          "delivery_distance_meters should be non-negative",
+          "driver_id in deliveries.csv can be null"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude cancelled deliveries from distance calculations",
+        "Only include biker deliveries for the main metric",
+        "Filter to completed/delivered orders only",
+        "Identify hub_city with maximum average(delivery_distance_meters) where driver_modal == 'BIKER'",
+        "Filter all deliveries to only that hub_city for pie chart generation",
+        "Filter out cancelled deliveries (delivery_status != 'DELIVERED')",
+        "Filter for biker deliveries (driver_modal = 'BIKER')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude cancelled deliveries from distance calculations",
+          "Only include biker deliveries for the main metric",
+          "Filter to completed/delivered orders only"
+        ],
+        [
+          "Identify hub_city with maximum average(delivery_distance_meters) where driver_modal == 'BIKER'",
+          "Filter all deliveries to only that hub_city for pie chart generation"
+        ],
+        [
+          "Filter out cancelled deliveries (delivery_status != 'DELIVERED')",
+          "Filter for biker deliveries (driver_modal = 'BIKER')"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in delivery_distance_meters",
+        "Verify distribution of driver modes across cities",
+        "Test correlation between delivery distance and city size",
+        "Calculate average delivery_distance_meters grouped by hub_city for BIKER drivers",
+        "Count deliveries grouped by driver_modal for the identified hub city"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in delivery_distance_meters",
+          "Verify distribution of driver modes across cities",
+          "Test correlation between delivery distance and city size"
+        ],
+        [
+          "Calculate average delivery_distance_meters grouped by hub_city for BIKER drivers",
+          "Count deliveries grouped by driver_modal for the identified hub city"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Pie chart saved as result.jpg",
+        "Chart must follow plot.yaml guidelines",
+        "City name must be clearly labeled in output",
+        "Generate pie chart following specifications in plot.yaml",
+        "Save chart as result.jpg",
+        "Pie chart should show distribution of order deliveries by driver_modal",
+        "Chart must be for the hub city with largest biker average delivery distance",
+        "Pie chart showing the distribution of order deliveries by driver modes in the city with the largest biker average delivery distance.",
+        "Save the chart in result.jpg"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pie chart saved as result.jpg",
+          "Chart must follow plot.yaml guidelines",
+          "City name must be clearly labeled in output"
+        ],
+        [
+          "Generate pie chart following specifications in plot.yaml",
+          "Save chart as result.jpg",
+          "Pie chart should show distribution of order deliveries by driver_modal",
+          "Chart must be for the hub city with largest biker average delivery distance"
+        ],
+        [
+          "Pie chart showing the distribution of order deliveries by driver modes in the city with the largest biker average delivery distance.",
+          "Save the chart in result.jpg"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6018181818181819
+}

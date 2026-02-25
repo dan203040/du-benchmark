@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "Maximum quantity value and the corresponding model",
+    "filters": [],
+    "grouping_variables": [
+      "Model"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the quantity for each model?",
+      "Which model has the highest quantity value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Vehicle_Data"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Quantity": "count",
+      "Length (feet)": "feet"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Fleet Series column contains ranges and asterisks",
+      "Powertrain column contains multi-line text with newline characters",
+      "Length (feet) column contains text descriptions like 'articulated'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Quantity column must be numeric (Int64)",
+      "Model column must be non-null for comparison"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the model name with the highest quantity",
+      "Include the quantity value in the output"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Maximum quantity value and the corresponding model\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Model\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the quantity for each model?\",\n      \"Which model has the highest quantity value?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Vehicle_Data\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Quantity\": \"count\",\n      \"Length (feet)\": \"feet\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Fleet Series column contains ranges and asterisks\",\n      \"Powertrain column contains multi-line text with newline characters\",\n      \"Length (feet) column contains text descriptions like 'articulated'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Quantity column must be numeric (Int64)\",\n      \"Model column must be non-null for comparison\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the model name with the highest quantity\",\n      \"Include the quantity value in the output\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 6.986735820770264,
+  "token_usage": {
+    "input_tokens": 1434,
+    "output_tokens": 438
+  }
+}

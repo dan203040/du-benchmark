@@ -1,0 +1,457 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Binary prediction (0 or 1) for 'IsDefaulter' column indicating whether each client in test.csv will default next month",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Binary prediction (0 or 1) for 'IsDefaulter' column indicating whether each client in test.csv will default next month",
+        "Binary classification predictions indicating whether credit card clients will default on payment",
+        "Probability of default for each client in test.csv"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Only test.csv rows need predictions",
+        "Training data from UCI_Credit_Card.csv includes all historical records"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only test.csv rows need predictions",
+          "Training data from UCI_Credit_Card.csv includes all historical records"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "ID"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "ID"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "list",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What patterns in payment history predict default?",
+        "How do demographic factors (AGE, SEX, EDUCATION, MARRIAGE) relate to default risk?",
+        "What is the relationship between credit limit (LIMIT_BAL) and default probability?",
+        "How do bill amounts and payment amounts interact to predict default?",
+        "What features best predict credit card default?",
+        "How should the training data be preprocessed?",
+        "What classification model should be used?",
+        "How should model performance be evaluated?",
+        "What format should the output predictions take?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What patterns in payment history predict default?",
+          "How do demographic factors (AGE, SEX, EDUCATION, MARRIAGE) relate to default risk?",
+          "What is the relationship between credit limit (LIMIT_BAL) and default probability?",
+          "How do bill amounts and payment amounts interact to predict default?"
+        ],
+        [
+          "What features best predict credit card default?",
+          "How should the training data be preprocessed?",
+          "What classification model should be used?",
+          "How should model performance be evaluated?",
+          "What format should the output predictions take?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "UCI_Credit_Card.csv",
+        "test.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "UCI_Credit_Card.csv",
+          "test.csv"
+        ],
+        [
+          "UCI_Credit_Card.csv",
+          "test.csv"
+        ],
+        [
+          "UCI_Credit_Card.csv",
+          "test.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "test.csv missing 'default.payment.next.month' column (target variable)",
+        "UCI_Credit_Card.csv has 25 columns vs test.csv has 24 columns",
+        "UCI_Credit_Card.csv has 25 columns including target variable 'default.payment.next.month', test.csv has 24 columns without target variable"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv missing 'default.payment.next.month' column (target variable)",
+          "UCI_Credit_Card.csv has 25 columns vs test.csv has 24 columns"
+        ],
+        [
+          "UCI_Credit_Card.csv has 25 columns including target variable 'default.payment.next.month', test.csv has 24 columns without target variable"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "limit_bal": "New Taiwan Dollar (NT$)",
+        "bill_amt1-6": "New Taiwan Dollar (NT$)",
+        "pay_amt1-6": "New Taiwan Dollar (NT$)",
+        "age": "years",
+        "sex": "1=male, 2=female",
+        "education": "1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown",
+        "marriage": "1=married, 2=single, 3=others, 0=unknown",
+        "pay_0-6": "-2=no consumption, -1=paid duly, 0=revolving credit, 1=payment delay 1 month, 2=payment delay 2 months, ..., 9=payment delay 9+ months",
+        "bill_amt1": "NT dollars",
+        "bill_amt2": "NT dollars",
+        "bill_amt3": "NT dollars",
+        "bill_amt4": "NT dollars",
+        "bill_amt5": "NT dollars",
+        "bill_amt6": "NT dollars",
+        "pay_amt1": "NT dollars",
+        "pay_amt2": "NT dollars",
+        "pay_amt3": "NT dollars",
+        "pay_amt4": "NT dollars",
+        "pay_amt5": "NT dollars",
+        "pay_amt6": "NT dollars",
+        "pay_0": "repayment status in September",
+        "pay_2": "repayment status in August",
+        "pay_3": "repayment status in July",
+        "pay_4": "repayment status in June",
+        "pay_5": "repayment status in May",
+        "pay_6": "repayment status in April",
+        "default.payment.next.month": "binary (0=no default, 1=default)"
+      },
+      "confidence": 0.5679012345679012,
+      "votes": [
+        {
+          "LIMIT_BAL": "New Taiwan Dollar (NT$)",
+          "BILL_AMT1-6": "New Taiwan Dollar (NT$)",
+          "PAY_AMT1-6": "New Taiwan Dollar (NT$)",
+          "AGE": "years",
+          "SEX": "1=male, 2=female",
+          "EDUCATION": "1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown",
+          "MARRIAGE": "1=married, 2=single, 3=others, 0=unknown",
+          "PAY_0-6": "-2=no consumption, -1=paid duly, 0=revolving credit, 1=payment delay 1 month, 2=payment delay 2 months, ..., 9=payment delay 9+ months"
+        },
+        {
+          "LIMIT_BAL": "NT dollars (credit limit)",
+          "AGE": "years",
+          "BILL_AMT1": "NT dollars",
+          "BILL_AMT2": "NT dollars",
+          "BILL_AMT3": "NT dollars",
+          "BILL_AMT4": "NT dollars",
+          "BILL_AMT5": "NT dollars",
+          "BILL_AMT6": "NT dollars",
+          "PAY_AMT1": "NT dollars",
+          "PAY_AMT2": "NT dollars",
+          "PAY_AMT3": "NT dollars",
+          "PAY_AMT4": "NT dollars",
+          "PAY_AMT5": "NT dollars",
+          "PAY_AMT6": "NT dollars",
+          "SEX": "categorical (1=male, 2=female)",
+          "EDUCATION": "categorical (1=graduate school, 2=university, 3=high school, 4=others)",
+          "MARRIAGE": "categorical (1=married, 2=single, 3=others)",
+          "PAY_0": "repayment status in September",
+          "PAY_2": "repayment status in August",
+          "PAY_3": "repayment status in July",
+          "PAY_4": "repayment status in June",
+          "PAY_5": "repayment status in May",
+          "PAY_6": "repayment status in April",
+          "default.payment.next.month": "binary (0=no default, 1=default)"
+        },
+        {
+          "LIMIT_BAL": "NT$",
+          "AGE": "years",
+          "BILL_AMT1": "NT$",
+          "BILL_AMT2": "NT$",
+          "BILL_AMT3": "NT$",
+          "BILL_AMT4": "NT$",
+          "BILL_AMT5": "NT$",
+          "BILL_AMT6": "NT$",
+          "PAY_AMT1": "NT$",
+          "PAY_AMT2": "NT$",
+          "PAY_AMT3": "NT$",
+          "PAY_AMT4": "NT$",
+          "PAY_AMT5": "NT$",
+          "PAY_AMT6": "NT$"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Negative values in BILL_AMT columns in test.csv (e.g., -2, -3)",
+        "Negative values in PAY_AMT columns in test.csv",
+        "PAY_X columns have both negative and positive values with different meanings",
+        "LIMIT_BAL and BILL_AMT columns are in much larger scale (thousands) compared to categorical features",
+        "PAY_AMT columns have wide range requiring normalization"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Negative values in BILL_AMT columns in test.csv (e.g., -2, -3)",
+          "Negative values in PAY_AMT columns in test.csv",
+          "PAY_X columns have both negative and positive values with different meanings"
+        ],
+        [
+          "LIMIT_BAL and BILL_AMT columns are in much larger scale (thousands) compared to categorical features",
+          "PAY_AMT columns have wide range requiring normalization"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "test.csv contains negative bill amounts (BILL_AMT) while UCI_Credit_Card.csv doesn't show this pattern in sample",
+        "test.csv has EDUCATION=6 while UCI_Credit_Card.csv sample shows EDUCATION=6 exists",
+        "No conflicts - test.csv has identical schema to UCI_Credit_Card.csv except missing target variable"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv contains negative bill amounts (BILL_AMT) while UCI_Credit_Card.csv doesn't show this pattern in sample",
+          "test.csv has EDUCATION=6 while UCI_Credit_Card.csv sample shows EDUCATION=6 exists"
+        ],
+        [
+          "No conflicts - test.csv has identical schema to UCI_Credit_Card.csv except missing target variable"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 25.0,
+      "confidence": 1.0,
+      "votes": [
+        25.0,
+        25.0,
+        25.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "ID should be unique in both datasets",
+        "AGE should be positive integer",
+        "LIMIT_BAL should be positive",
+        "PAY_X values should be between -2 and 9",
+        "default.payment.next.month should be 0 or 1",
+        "SEX should be 1 or 2",
+        "EDUCATION should be 1-6",
+        "MARRIAGE should be 0-3",
+        "Predictions must be made for all 4500 rows in test.csv",
+        "Output must be saved in file named 'defaulter.csv'",
+        "Output must contain column named 'IsDefaulter'",
+        "Predictions must be binary (0 or 1) indicating default status",
+        "ID column from test.csv should be preserved for matching predictions to clients",
+        "Values in 'SEX', 'EDUCATION', 'MARRIAGE', 'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', and 'PAY_6' should be checked against their documented ranges.",
+        "The 'ID' column in test.csv should be present in the output 'defaulter.csv'."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "ID should be unique in both datasets",
+          "AGE should be positive integer",
+          "LIMIT_BAL should be positive",
+          "PAY_X values should be between -2 and 9",
+          "default.payment.next.month should be 0 or 1",
+          "SEX should be 1 or 2",
+          "EDUCATION should be 1-6",
+          "MARRIAGE should be 0-3"
+        ],
+        [
+          "Predictions must be made for all 4500 rows in test.csv",
+          "Output must be saved in file named 'defaulter.csv'",
+          "Output must contain column named 'IsDefaulter'",
+          "Predictions must be binary (0 or 1) indicating default status",
+          "ID column from test.csv should be preserved for matching predictions to clients"
+        ],
+        [
+          "Values in 'SEX', 'EDUCATION', 'MARRIAGE', 'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', and 'PAY_6' should be checked against their documented ranges.",
+          "The 'ID' column in test.csv should be present in the output 'defaulter.csv'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove rows with invalid EDUCATION values (0, 5, 6 might need recoding)",
+        "Check for inconsistent PAY_X sequences (should show deteriorating or improving payment behavior)",
+        "Validate that BILL_AMT >= 0 (except test.csv shows negatives)",
+        "Train on UCI_Credit_Card.csv using 'default.payment.next.month' as target",
+        "Predict on test.csv using same features (excluding ID and target)",
+        "Features used: LIMIT_BAL, SEX, EDUCATION, MARRIAGE, AGE, PAY_0 through PAY_6, BILL_AMT1 through BILL_AMT6, PAY_AMT1 through PAY_AMT6"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows with invalid EDUCATION values (0, 5, 6 might need recoding)",
+          "Check for inconsistent PAY_X sequences (should show deteriorating or improving payment behavior)",
+          "Validate that BILL_AMT >= 0 (except test.csv shows negatives)"
+        ],
+        [
+          "Train on UCI_Credit_Card.csv using 'default.payment.next.month' as target",
+          "Predict on test.csv using same features (excluding ID and target)",
+          "Features used: LIMIT_BAL, SEX, EDUCATION, MARRIAGE, AGE, PAY_0 through PAY_6, BILL_AMT1 through BILL_AMT6, PAY_AMT1 through PAY_AMT6"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check class imbalance in default.payment.next.month",
+        "Test correlation between PAY_0 and default",
+        "Check multicollinearity among PAY_X variables",
+        "Test relationship between LIMIT_BAL and default rate",
+        "Evaluate model performance using classification metrics (accuracy, precision, recall, F1-score) on validation set",
+        "Check for class imbalance in training data",
+        "Assess feature importance to understand prediction drivers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check class imbalance in default.payment.next.month",
+          "Test correlation between PAY_0 and default",
+          "Check multicollinearity among PAY_X variables",
+          "Test relationship between LIMIT_BAL and default rate"
+        ],
+        [
+          "Evaluate model performance using classification metrics (accuracy, precision, recall, F1-score) on validation set",
+          "Check for class imbalance in training data",
+          "Assess feature importance to understand prediction drivers"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "defaulter.csv must have exactly 4500 rows matching test.csv",
+        "defaulter.csv must have columns: ID, IsDefaulter",
+        "IsDefaulter must be 0 or 1 for each row",
+        "Predictions must be based on test.csv features",
+        "Output file must be CSV format named 'defaulter.csv'",
+        "Must include column 'IsDefaulter' with binary predictions",
+        "Should include ID column to match predictions to test records",
+        "Predictions should be integers 0 or 1",
+        "Output file must be named 'defaulter.csv'.",
+        "Output file must contain 'ID' and 'IsDefaulter' columns.",
+        "Output file must be in CSV format."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "defaulter.csv must have exactly 4500 rows matching test.csv",
+          "defaulter.csv must have columns: ID, IsDefaulter",
+          "IsDefaulter must be 0 or 1 for each row",
+          "Predictions must be based on test.csv features"
+        ],
+        [
+          "Output file must be CSV format named 'defaulter.csv'",
+          "Must include column 'IsDefaulter' with binary predictions",
+          "Should include ID column to match predictions to test records",
+          "Predictions should be integers 0 or 1"
+        ],
+        [
+          "Output file must be named 'defaulter.csv'.",
+          "Output file must contain 'ID' and 'IsDefaulter' columns.",
+          "Output file must be in CSV format."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5950617283950619
+}

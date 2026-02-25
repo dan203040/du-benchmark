@@ -1,0 +1,316 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Area (km\u00b2) or Area (sq mi) value for each island",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Area (km\u00b2) or Area (sq mi) value for each island",
+        "Island with the largest area between Tiree and Kasos",
+        "area of Tiree and Kasos islands"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Island = 'tiree'",
+        "Island = 'kasos'",
+        "Island = 'Tiree' OR Island = 'Kasos'",
+        "Island is Tiree",
+        "Island is Kasos"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Island = 'tiree'",
+          "Island = 'kasos'"
+        ],
+        [
+          "Island = 'Tiree' OR Island = 'Kasos'"
+        ],
+        [
+          "Island is Tiree",
+          "Island is Kasos"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Island"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Island"
+        ],
+        [],
+        [
+          "Island"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the area of Tiree in km\u00b2?",
+        "What is the area of Kasos in km\u00b2?",
+        "Which island has the larger area value?",
+        "What is the area of Tiree?",
+        "What is the area of Kasos?",
+        "Which island has the greater area value?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the area of Tiree in km\u00b2?",
+          "What is the area of Kasos in km\u00b2?",
+          "Which island has the larger area value?"
+        ],
+        [
+          "What is the area of Tiree?",
+          "What is the area of Kasos?",
+          "Which island has the greater area value?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Island Area by Country/Region"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Island Area by Country/Region"
+        ],
+        [
+          "Island Area by Country/Region"
+        ],
+        [
+          "Island Area by Country/Region"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "area (km\u00b2)": "square kilometers",
+        "area (sq mi)": "square miles"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Area (km\u00b2)": "square kilometers",
+          "Area (sq mi)": "square miles"
+        },
+        {
+          "Area (km\u00b2)": "square kilometers",
+          "Area (sq mi)": "square miles"
+        },
+        {
+          "Area (km\u00b2)": "km\u00b2",
+          "Area (sq mi)": "sq mi"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Two different area units provided - need to ensure consistent comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Two different area units provided - need to ensure consistent comparison"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Island names must match exactly (case-sensitive)",
+        "Area values should be positive numbers",
+        "Only two specific islands need to be compared",
+        "Island names must be filtered case-insensitively to match 'Tiree' and 'Kasos'",
+        "Both islands must exist in the dataset to produce valid comparison",
+        "Area comparison should use same unit (either km\u00b2 or sq mi)",
+        "Island names must be exact matches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Island names must match exactly (case-sensitive)",
+          "Area values should be positive numbers",
+          "Only two specific islands need to be compared"
+        ],
+        [
+          "Island names must be filtered case-insensitively to match 'Tiree' and 'Kasos'",
+          "Both islands must exist in the dataset to produce valid comparison",
+          "Area comparison should use same unit (either km\u00b2 or sq mi)"
+        ],
+        [
+          "Island names must be exact matches"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter dataset to only rows where Island contains 'tiree' or 'kasos' (case-insensitive)",
+        "Filter rows where Island column matches 'Tiree' or 'Kasos' (case-insensitive)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter dataset to only rows where Island contains 'tiree' or 'kasos' (case-insensitive)"
+        ],
+        [
+          "Filter rows where Island column matches 'Tiree' or 'Kasos' (case-insensitive)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Direct numerical comparison of Area (km\u00b2) values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Direct numerical comparison of Area (km\u00b2) values"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Clear statement of which island has larger area",
+        "Include both area values for verification",
+        "Return the name of the island with larger area",
+        "Optionally include the area values for both islands for verification",
+        "Report the island with the largest area in km\u00b2"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Clear statement of which island has larger area",
+          "Include both area values for verification"
+        ],
+        [
+          "Return the name of the island with larger area",
+          "Optionally include the area values for both islands for verification"
+        ],
+        [
+          "Report the island with the largest area in km\u00b2"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6166666666666668
+}

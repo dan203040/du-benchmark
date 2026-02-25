@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "Acres burned per capita (Total Acres Burned / Population)",
+    "filters": [
+      "Exclude rows with missing Total Acres Burned values",
+      "Exclude rows with Population = 0"
+    ],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Which state has the highest acres burned per capita?",
+      "What is the distribution of acres burned per capita across states?",
+      "Are there states with missing data that need to be handled?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "Acres",
+      "Population": "People"
+    },
+    "scale_issues": [
+      "Population values vary by orders of magnitude (e.g., District of Columbia 702,250 vs California 39,431,263)",
+      "Total Acres Burned values vary widely (e.g., Connecticut 339 vs Idaho 996,762)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "District of Columbia has empty value for Total Acres Burned",
+      "All 52 rows include states and territories"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total Acres Burned must be non-negative",
+      "Population must be positive integer",
+      "Per capita calculation requires non-zero population"
+    ],
+    "derived_filters": [
+      "Filter out rows where Total Acres Burned is null",
+      "Filter out rows where Population is 0 or null"
+    ],
+    "statistical_tests": [
+      "Check for outliers in Total Acres Burned",
+      "Check for outliers in Population",
+      "Validate per capita calculation doesn't produce extreme values"
+    ],
+    "output_format_requirements": [
+      "State name",
+      "Acres burned per capita (calculated)",
+      "Ranking by per capita value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Acres burned per capita (Total Acres Burned / Population)\",\n        \"filters\": [\"Exclude rows with missing Total Acres Burned values\", \"Exclude rows with Population = 0\"],\n        \"grouping_variables\": [\"State\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Which state has the highest acres burned per capita?\", \"What is the distribution of acres burned per capita across states?\", \"Are there states with missing data that need to be handled?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Wildfire_Acres_by_State.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Total Acres Burned\": \"Acres\", \"Population\": \"People\"},\n        \"scale_issues\": [\"Population values vary by orders of magnitude (e.g., District of Columbia 702,250 vs California 39,431,263)\", \"Total Acres Burned values vary widely (e.g., Connecticut 339 vs Idaho 996,762)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 3,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"District of Columbia has empty value for Total Acres Burned\", \"All 52 rows include states and territories\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total Acres Burned must be non-negative\", \"Population must be positive integer\", \"Per capita calculation requires non-zero population\"],\n        \"derived_filters\": [\"Filter out rows where Total Acres Burned is null\", \"Filter out rows where Population is 0 or null\"],\n        \"statistical_tests\": [\"Check for outliers in Total Acres Burned\", \"Check for outliers in Population\", \"Validate per capita calculation doesn't produce extreme values\"],\n        \"output_format_requirements\": [\"State name\", \"Acres burned per capita (calculated)\", \"Ranking by per capita value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.84493899345398,
+  "token_usage": {
+    "input_tokens": 804,
+    "output_tokens": 491
+  }
+}

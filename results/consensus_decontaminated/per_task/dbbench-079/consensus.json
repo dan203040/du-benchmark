@@ -1,0 +1,323 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "The name of the building that was first designated as the tallest",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "The name of the building that was first designated as the tallest",
+        "The name of the first building that held the title of tallest",
+        "Name of the building that was the tallest first"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Years as tallest must contain a valid year range",
+        "Height ft (m) must contain valid height data",
+        "Buildings that were tallest at some point in time"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Years as tallest must contain a valid year range",
+          "Height ft (m) must contain valid height data"
+        ],
+        [
+          "Buildings that were tallest at some point in time"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Years as tallest"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Years as tallest"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the earliest start year in Years as tallest column?",
+        "Which building corresponds to that earliest start year?",
+        "How should we handle buildings with the same start year?",
+        "Which buildings have valid 'Years as tallest' values?",
+        "What is the earliest year in the 'Years as tallest' column?",
+        "Which building corresponds to the earliest year as tallest?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the earliest start year in Years as tallest column?",
+          "Which building corresponds to that earliest start year?",
+          "How should we handle buildings with the same start year?"
+        ],
+        [
+          "Which buildings have valid 'Years as tallest' values?",
+          "What is the earliest year in the 'Years as tallest' column?",
+          "Which building corresponds to the earliest year as tallest?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Tall Buildings in Minneapolis"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Tall Buildings in Minneapolis"
+        ],
+        [
+          "Tall Buildings in Minneapolis"
+        ],
+        [
+          "Tall Buildings in Minneapolis"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "height ft (m)": "feet (meters)",
+        "floors": "count",
+        "years as tallest": "year range"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Height ft (m)": "feet (meters)",
+          "Floors": "count"
+        },
+        {
+          "Height ft (m)": "feet and meters",
+          "Floors": "count",
+          "Years as tallest": "year range"
+        },
+        {
+          "Height ft (m)": "feet (meters)"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Height ft (m) column contains both feet and meters in same string",
+        "Years as tallest contains ranges with en dash separator",
+        "Height ft (m) contains both feet and meters in a single string",
+        "Years as tallest contains year ranges (e.g., '1882\u20131886') and 'present' keyword"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Height ft (m) column contains both feet and meters in same string",
+          "Years as tallest contains ranges with en dash separator"
+        ],
+        [
+          "Height ft (m) contains both feet and meters in a single string",
+          "Years as tallest contains year ranges (e.g., '1882\u20131886') and 'present' keyword"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "-",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.7499999999999999,
+      "votes": [
+        [
+          "-",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "-"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Years as tallest must be parsed to extract start year",
+        "Rows with '-' in Years as tallest should be excluded",
+        "First building is determined by minimum start year",
+        "Years as tallest must be parseable to extract start year",
+        "Rows with missing or dash values in Years as tallest should be excluded",
+        "The first building is determined by the earliest start year in Years as tallest",
+        "The 'Years as tallest' column needs to be parsed to determine the start year.",
+        "Need to find the minimum start year from the 'Years as tallest' column."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Years as tallest must be parsed to extract start year",
+          "Rows with '-' in Years as tallest should be excluded",
+          "First building is determined by minimum start year"
+        ],
+        [
+          "Years as tallest must be parseable to extract start year",
+          "Rows with missing or dash values in Years as tallest should be excluded",
+          "The first building is determined by the earliest start year in Years as tallest"
+        ],
+        [
+          "The 'Years as tallest' column needs to be parsed to determine the start year.",
+          "Need to find the minimum start year from the 'Years as tallest' column."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Years as tallest = '-'",
+        "Exclude rows where Height ft (m) = '-'",
+        "Filter out rows where Years as tallest is '-' or empty",
+        "Extract start year from Years as tallest range"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Years as tallest = '-'",
+          "Exclude rows where Height ft (m) = '-'"
+        ],
+        [
+          "Filter out rows where Years as tallest is '-' or empty",
+          "Extract start year from Years as tallest range"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate start years",
+        "Validate year range format"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate start years",
+          "Validate year range format"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single building name",
+        "Include supporting year information",
+        "Return the Name value of the building with the earliest start year",
+        "Output should be a single building name as a string"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single building name",
+          "Include supporting year information"
+        ],
+        [
+          "Return the Name value of the building with the earliest start year",
+          "Output should be a single building name as a string"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5708333333333334
+}

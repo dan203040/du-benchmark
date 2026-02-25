@@ -1,0 +1,86 @@
+{
+  "m_q": {
+    "target_metric": "Most common FIGO_stage value (mode) among samples from patients aged >70",
+    "filters": [
+      "Age > 70",
+      "Case_excluded == 'No' (if applicable for analysis)"
+    ],
+    "grouping_variables": [
+      "FIGO_stage"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the distribution of FIGO_stage values?",
+      "How many patients are above age 70?",
+      "Are there missing values in Age or FIGO_stage columns?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "BMI": "kg/m\u00b2",
+      "Tumor_Size_cm": "centimeters"
+    },
+    "scale_issues": [
+      "Age is float64 but represents whole years",
+      "Some percentage columns may be represented as decimals or percentages (e.g., Estrogen_Receptor_%)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined",
+      "Staging Incomplete"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data provided as CSV sample but original file is Excel (.xlsx)",
+      "First column 'idx' appears to be row identifier",
+      "Mixed data types with many object columns for categorical data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age should be positive (0-120 reasonable range)",
+      "FIGO_stage should be categorical (IA, IB, II, III, IV, etc.)",
+      "Age > 70 filter must handle missing values appropriately"
+    ],
+    "derived_filters": [
+      "Exclude rows with missing Age",
+      "Exclude rows with missing FIGO_stage",
+      "Consider filtering Case_excluded == 'No' if excluding poor quality samples"
+    ],
+    "statistical_tests": [
+      "Frequency count of FIGO_stage values",
+      "Mode calculation for FIGO_stage in age >70 subset"
+    ],
+    "output_format_requirements": [
+      "Report the most common FIGO_stage value",
+      "Include count and percentage of this value among age >70 patients",
+      "Consider reporting full distribution if requested"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Most common FIGO_stage value (mode) among samples from patients aged >70\",\n        \"filters\": [\"Age > 70\", \"Case_excluded == 'No' (if applicable for analysis)\"],\n        \"grouping_variables\": [\"FIGO_stage\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the distribution of FIGO_stage values?\", \"How many patients are above age 70?\", \"Are there missing values in Age or FIGO_stage columns?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Age\": \"years\", \"BMI\": \"kg/m\u00b2\", \"Tumor_Size_cm\": \"centimeters\"},\n        \"scale_issues\": [\"Age is float64 but represents whole years\", \"Some percentage columns may be represented as decimals or percentages (e.g., Estrogen_Receptor_%)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Cannot be determined\", \"Staging Incomplete\"],\n        \"expected_columns\": 179,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data provided as CSV sample but original file is Excel (.xlsx)\", \"First column 'idx' appears to be row identifier\", \"Mixed data types with many object columns for categorical data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Age should be positive (0-120 reasonable range)\", \"FIGO_stage should be categorical (IA, IB, II, III, IV, etc.)\", \"Age > 70 filter must handle missing values appropriately\"],\n        \"derived_filters\": [\"Exclude rows with missing Age\", \"Exclude rows with missing FIGO_stage\", \"Consider filtering Case_excluded == 'No' if excluding poor quality samples\"],\n        \"statistical_tests\": [\"Frequency count of FIGO_stage values\", \"Mode calculation for FIGO_stage in age >70 subset\"],\n        \"output_format_requirements\": [\"Report the most common FIGO_stage value\", \"Include count and percentage of this value among age >70 patients\", \"Consider reporting full distribution if requested\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.543643951416016,
+  "token_usage": {
+    "input_tokens": 6458,
+    "output_tokens": 563
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Sentiment classification for each tweet in Corona_NLP_test.csv",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Sentiment classification for each tweet in Corona_NLP_test.csv",
+        "Sentiment classification predictions for tweets in test dataset",
+        "Sentiment"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Only text data from OriginalTweet column needs sentiment prediction"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only text data from OriginalTweet column needs sentiment prediction"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "list",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the sentiment categories in training data?",
+        "How is sentiment distributed in training data?",
+        "What text features correlate with different sentiments?",
+        "What preprocessing is needed for tweet text?",
+        "What are the sentiment classes present in the training data?",
+        "What features from the tweets should be used for classification (OriginalTweet text)?",
+        "Should UserName, ScreenName, Location, and TweetAt be used as features?",
+        "What is the distribution of sentiment classes in the training data?",
+        "How should text preprocessing be handled (URLs, mentions, hashtags, special characters)?",
+        "What classification model should be trained on Corona_NLP_train.csv?",
+        "How should predictions be formatted in sentiment.csv?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What are the sentiment categories in training data?",
+          "How is sentiment distributed in training data?",
+          "What text features correlate with different sentiments?",
+          "What preprocessing is needed for tweet text?"
+        ],
+        [
+          "What are the sentiment classes present in the training data?",
+          "What features from the tweets should be used for classification (OriginalTweet text)?",
+          "Should UserName, ScreenName, Location, and TweetAt be used as features?",
+          "What is the distribution of sentiment classes in the training data?",
+          "How should text preprocessing be handled (URLs, mentions, hashtags, special characters)?",
+          "What classification model should be trained on Corona_NLP_train.csv?",
+          "How should predictions be formatted in sentiment.csv?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Corona_NLP_train.csv",
+        "Corona_NLP_test.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Corona_NLP_train.csv",
+          "Corona_NLP_test.csv"
+        ],
+        [
+          "Corona_NLP_train.csv",
+          "Corona_NLP_test.csv"
+        ],
+        [
+          "Corona_NLP_test.csv",
+          "Corona_NLP_train.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Corona_NLP_train.csv has Sentiment column (6 columns) while Corona_NLP_test.csv lacks it (5 columns)",
+        "Both files have same column structure except for Sentiment column",
+        "Corona_NLP_test.csv lacks the Sentiment column which is the target variable present in Corona_NLP_train.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Corona_NLP_train.csv has Sentiment column (6 columns) while Corona_NLP_test.csv lacks it (5 columns)",
+          "Both files have same column structure except for Sentiment column"
+        ],
+        [
+          "Corona_NLP_test.csv lacks the Sentiment column which is the target variable present in Corona_NLP_train.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "tweetat": "date in DD-MM-YYYY format",
+        "username": "integer identifier",
+        "screenname": "integer identifier",
+        "location": "free text location string",
+        "originaltweet": "raw tweet text with URLs, hashtags, mentions",
+        "sentiment": "categorical sentiment label"
+      },
+      "confidence": 0.38888888888888884,
+      "votes": [
+        {
+          "TweetAt": "date in DD-MM-YYYY format"
+        },
+        {
+          "UserName": "integer identifier",
+          "ScreenName": "integer identifier",
+          "Location": "free text location string",
+          "TweetAt": "date string (DD-MM-YYYY format)",
+          "OriginalTweet": "raw tweet text with URLs, hashtags, mentions",
+          "Sentiment": "categorical sentiment label"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "UserName and ScreenName appear to be sequential IDs rather than actual usernames",
+        "Location data has inconsistent formatting with some entries containing coordinates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "UserName and ScreenName appear to be sequential IDs rather than actual usernames",
+          "Location data has inconsistent formatting with some entries containing coordinates"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Training data has 41,157 rows while test data has 3,798 rows - significant size difference",
+        "Training data includes sentiment labels (Positive, Negative, Neutral, Extremely Positive, Extremely Negative) while test data lacks labels",
+        "UserName and ScreenName ranges may differ between train and test sets",
+        "Date ranges differ: training data shows 16-03-2020 dates, test data shows 02-03-2020 to 05-03-2020 dates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Training data has 41,157 rows while test data has 3,798 rows - significant size difference",
+          "Training data includes sentiment labels (Positive, Negative, Neutral, Extremely Positive, Extremely Negative) while test data lacks labels"
+        ],
+        [
+          "UserName and ScreenName ranges may differ between train and test sets",
+          "Date ranges differ: training data shows 16-03-2020 dates, test data shows 02-03-2020 to 05-03-2020 dates"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 0.8571428571428572,
+      "votes": [
+        6.0,
+        6.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Predictions must be written to sentiment.csv with column name 'Sentiment'",
+        "Sentiment predictions must align with training data categories: Positive, Negative, Neutral, Extremely Positive, Extremely Negative",
+        "Each test tweet must receive exactly one sentiment prediction",
+        "Output file must be named sentiment.csv",
+        "Output must contain column named 'Sentiment'",
+        "Number of predictions must match number of rows in Corona_NLP_test.csv (3798 rows)",
+        "Sentiment predictions must use same class labels as in training data",
+        "Model must be trained on Corona_NLP_train.csv",
+        "Predictions must be made for Corona_NLP_test.csv",
+        "The 'Sentiment' column in the output file 'sentiment.csv' must contain predicted sentiment values for each tweet in 'Corona_NLP_test.csv'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Predictions must be written to sentiment.csv with column name 'Sentiment'",
+          "Sentiment predictions must align with training data categories: Positive, Negative, Neutral, Extremely Positive, Extremely Negative",
+          "Each test tweet must receive exactly one sentiment prediction"
+        ],
+        [
+          "Output file must be named sentiment.csv",
+          "Output must contain column named 'Sentiment'",
+          "Number of predictions must match number of rows in Corona_NLP_test.csv (3798 rows)",
+          "Sentiment predictions must use same class labels as in training data",
+          "Model must be trained on Corona_NLP_train.csv",
+          "Predictions must be made for Corona_NLP_test.csv"
+        ],
+        [
+          "The 'Sentiment' column in the output file 'sentiment.csv' must contain predicted sentiment values for each tweet in 'Corona_NLP_test.csv'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove or handle URLs from OriginalTweet",
+        "Extract hashtags as potential features",
+        "Handle missing Location data",
+        "Standardize date format for TweetAt"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove or handle URLs from OriginalTweet",
+          "Extract hashtags as potential features",
+          "Handle missing Location data",
+          "Standardize date format for TweetAt"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check class distribution in training data",
+        "Validate sentiment label consistency",
+        "Test for text length correlation with sentiment",
+        "Check for duplicate tweets"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check class distribution in training data",
+          "Validate sentiment label consistency",
+          "Test for text length correlation with sentiment",
+          "Check for duplicate tweets"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file with single 'Sentiment' column",
+        "Same row order as Corona_NLP_test.csv",
+        "No additional columns or metadata",
+        "CSV file with header row",
+        "Column name must be exactly 'Sentiment'",
+        "3798 predictions required (one per test instance)",
+        "Sentiment values must match training data categories",
+        "Should maintain order corresponding to Corona_NLP_test.csv rows",
+        "Output file must be named 'sentiment.csv'.",
+        "Output file must contain a column named 'Sentiment'.",
+        "The 'Sentiment' column in the output file should correspond to the predicted sentiment for the 'OriginalTweet' column in 'Corona_NLP_test.csv'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "CSV file with single 'Sentiment' column",
+          "Same row order as Corona_NLP_test.csv",
+          "No additional columns or metadata"
+        ],
+        [
+          "CSV file with header row",
+          "Column name must be exactly 'Sentiment'",
+          "3798 predictions required (one per test instance)",
+          "Sentiment values must match training data categories",
+          "Should maintain order corresponding to Corona_NLP_test.csv rows"
+        ],
+        [
+          "Output file must be named 'sentiment.csv'.",
+          "Output file must contain a column named 'Sentiment'.",
+          "The 'Sentiment' column in the output file should correspond to the predicted sentiment for the 'OriginalTweet' column in 'Corona_NLP_test.csv'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5567460317460319
+}

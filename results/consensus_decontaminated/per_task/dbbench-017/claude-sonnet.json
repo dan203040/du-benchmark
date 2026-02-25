@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "count of schools",
+    "filters": [
+      "School website equals 'http://www.camp.herts.sch.uk/'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which schools have the website http://www.camp.herts.sch.uk/?",
+      "What is the exact format/string of the website URL to match?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Schools Information"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "School": "school name (text)",
+      "School website": "URL (text)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "N/A",
+      "NA"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "School website column contains URLs that may have trailing slashes or be truncated in display",
+      "Sample shows 'http://www.camp.herts.sch.uk/' for Camp Primary and Nursery School",
+      "Some URLs in sample appear truncated (e.g., 'http://www.aboyne.herts.sch.')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "School website must exactly match 'http://www.camp.herts.sch.uk/'",
+      "Comparison should be case-sensitive for URL matching",
+      "Account for potential trailing slash variations in URL"
+    ],
+    "derived_filters": [
+      "Filter rows where School website == 'http://www.camp.herts.sch.uk/'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single integer representing the count",
+      "Count should be >= 0"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"count of schools\",\n    \"filters\": [\"School website equals 'http://www.camp.herts.sch.uk/'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which schools have the website http://www.camp.herts.sch.uk/?\",\n      \"What is the exact format/string of the website URL to match?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Schools Information\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"School\": \"school name (text)\",\n      \"School website\": \"URL (text)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"N/A\", \"NA\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"School website column contains URLs that may have trailing slashes or be truncated in display\",\n      \"Sample shows 'http://www.camp.herts.sch.uk/' for Camp Primary and Nursery School\",\n      \"Some URLs in sample appear truncated (e.g., 'http://www.aboyne.herts.sch.')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"School website must exactly match 'http://www.camp.herts.sch.uk/'\",\n      \"Comparison should be case-sensitive for URL matching\",\n      \"Account for potential trailing slash variations in URL\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where School website == 'http://www.camp.herts.sch.uk/'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single integer representing the count\",\n      \"Count should be >= 0\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.092888832092285,
+  "token_usage": {
+    "input_tokens": 1375,
+    "output_tokens": 559
+  }
+}

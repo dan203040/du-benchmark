@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Number of wins for Dunfermline Athletic",
+    "filters": [
+      "Club equals 'Dunfermline Athletic'",
+      "Total final appearances less than 2"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the value in the 'Wins' column for Dunfermline Athletic?",
+      "What is the value in the 'Total final appearances' column for Dunfermline Athletic?",
+      "Does Dunfermline Athletic have Total final appearances less than 2?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Scottish Challenge Cup Finalists"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Wins": "count",
+      "Runners-up": "count",
+      "Total final appearances": "count",
+      "Last final won": "year",
+      "Last final lost": "year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2014",
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "The '\u2014' symbol is used to indicate no value (for teams that never won or never lost a final)",
+      "All numeric columns are stored as object dtype and may need type conversion",
+      "Last final won and Last final lost contain years or '\u2014' for no occurrence"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total final appearances must be numeric and convertible from object type",
+      "Wins must be numeric and convertible from object type",
+      "Total final appearances should equal Wins plus Runners-up",
+      "Club name must match exactly 'Dunfermline Athletic'"
+    ],
+    "derived_filters": [
+      "Filter to Club == 'Dunfermline Athletic'",
+      "Convert 'Total final appearances' to numeric type",
+      "Filter to Total final appearances < 2"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value representing the number of wins",
+      "If no records match the filters, return 0 or indicate no match"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of wins for Dunfermline Athletic\",\n    \"filters\": [\n      \"Club equals 'Dunfermline Athletic'\",\n      \"Total final appearances less than 2\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the value in the 'Wins' column for Dunfermline Athletic?\",\n      \"What is the value in the 'Total final appearances' column for Dunfermline Athletic?\",\n      \"Does Dunfermline Athletic have Total final appearances less than 2?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Scottish Challenge Cup Finalists\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Wins\": \"count\",\n      \"Runners-up\": \"count\",\n      \"Total final appearances\": \"count\",\n      \"Last final won\": \"year\",\n      \"Last final lost\": \"year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\u2014\", \"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"The '\u2014' symbol is used to indicate no value (for teams that never won or never lost a final)\",\n      \"All numeric columns are stored as object dtype and may need type conversion\",\n      \"Last final won and Last final lost contain years or '\u2014' for no occurrence\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Total final appearances must be numeric and convertible from object type\",\n      \"Wins must be numeric and convertible from object type\",\n      \"Total final appearances should equal Wins plus Runners-up\",\n      \"Club name must match exactly 'Dunfermline Athletic'\"\n    ],\n    \"derived_filters\": [\n      \"Filter to Club == 'Dunfermline Athletic'\",\n      \"Convert 'Total final appearances' to numeric type\",\n      \"Filter to Total final appearances < 2\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value representing the number of wins\",\n      \"If no records match the filters, return 0 or indicate no match\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.20538592338562,
+  "token_usage": {
+    "input_tokens": 1039,
+    "output_tokens": 658
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "List of competition names",
+    "filters": [
+      "Year < 2001",
+      "Competition != 'World Championships'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the earliest competition year?",
+      "Are there multiple competitions in the same year before 2001?",
+      "Does 'before 2001 world championships' include competitions in 2001 but before the world championships event?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Athletics Performances"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Notes": "meters (m) for throw distances"
+    },
+    "scale_issues": [
+      "Year column uses Int64 type which may handle missing values differently than standard int"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Venue column contains quoted values with commas",
+      "Notes column contains mixed data (empty strings and measurement values)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be between 1999 and 2015 based on sample",
+      "Position values follow ordinal pattern (1st, 2nd, 3rd, etc.)",
+      "Competition names are categorical"
+    ],
+    "derived_filters": [
+      "Exclude 2001 World Championships from results",
+      "Include only rows where Year < 2001 OR (Year = 2001 AND Competition != 'World Championships')"
+    ],
+    "statistical_tests": [
+      "Check for duplicate competition entries in same year",
+      "Verify chronological order of competitions"
+    ],
+    "output_format_requirements": [
+      "List competitions in chronological order",
+      "Include year with each competition name"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"List of competition names\",\n        \"filters\": [\"Year < 2001\", \"Competition != 'World Championships'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the earliest competition year?\", \"Are there multiple competitions in the same year before 2001?\", \"Does 'before 2001 world championships' include competitions in 2001 but before the world championships event?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Athletics Performances\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Notes\": \"meters (m) for throw distances\"},\n        \"scale_issues\": [\"Year column uses Int64 type which may handle missing values differently than standard int\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Venue column contains quoted values with commas\", \"Notes column contains mixed data (empty strings and measurement values)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be between 1999 and 2015 based on sample\", \"Position values follow ordinal pattern (1st, 2nd, 3rd, etc.)\", \"Competition names are categorical\"],\n        \"derived_filters\": [\"Exclude 2001 World Championships from results\", \"Include only rows where Year < 2001 OR (Year = 2001 AND Competition != 'World Championships')\"],\n        \"statistical_tests\": [\"Check for duplicate competition entries in same year\", \"Verify chronological order of competitions\"],\n        \"output_format_requirements\": [\"List competitions in chronological order\", \"Include year with each competition name\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.648375034332275,
+  "token_usage": {
+    "input_tokens": 978,
+    "output_tokens": 455
+  }
+}

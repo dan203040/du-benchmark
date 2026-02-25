@@ -1,0 +1,120 @@
+{
+  "m_q": {
+    "target_metric": "Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast made on March 9, 2025 for the period March 10-12, 2025",
+    "filters": [
+      "Date range: March 10-12, 2025",
+      "Forecast issued date: March 9, 2025"
+    ],
+    "grouping_variables": [
+      "forecast_day"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the forecasted AP values for March 10-12, 2025 from the March 9 forecast?",
+      "What are the actual AP values for March 10-12, 2025?",
+      "How to calculate MAE from forecast vs actual AP values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "0309geomag_forecast.txt",
+      "0311geomag_forecast.txt",
+      "0312geomag_forecast.txt",
+      "0313geomag_forecast.txt"
+    ],
+    "join_keys": [
+      {
+        "left_source": "0309geomag_forecast.txt",
+        "right_source": "0311geomag_forecast.txt",
+        "left_column": "row_index",
+        "right_column": "row_index",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "0309geomag_forecast.txt",
+        "right_source": "0312geomag_forecast.txt",
+        "left_column": "row_index",
+        "right_column": "row_index",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "0309geomag_forecast.txt",
+        "right_source": "0313geomag_forecast.txt",
+        "left_column": "row_index",
+        "right_column": "row_index",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "All files have identical column names but different data values",
+      "Column names are not descriptive (':Product:' and filename columns)"
+    ],
+    "column_mappings": {
+      ":Product:": "row_index",
+      "0309geomag_forecast.txt": "forecast_mar9",
+      "0311geomag_forecast.txt": "actual_mar11",
+      "0312geomag_forecast.txt": "actual_mar12",
+      "0313geomag_forecast.txt": "actual_mar13"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "forecast_mar9": "AP index",
+      "actual_mar11": "AP index",
+      "actual_mar12": "AP index",
+      "actual_mar13": "AP index"
+    },
+    "scale_issues": [
+      "AP values appear to be in standard AP index units (typically 0-400)"
+    ],
+    "cross_source_conflicts": [
+      "Need to verify that all files use same AP measurement scale and methodology"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      " ",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Files contain mixed data types in same column",
+      "Some rows contain date information (e.g., 'Mar,12')",
+      "Some rows contain AP forecast ranges (e.g., 'Mar,025-020-012')",
+      "First column appears to be row identifiers or metadata"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Forecast period must be exactly March 10-12, 2025",
+      "Forecast must be from March 9, 2025 issuance",
+      "AP values must be non-negative integers"
+    ],
+    "derived_filters": [
+      "Extract only rows containing AP forecast/actual values",
+      "Filter out metadata rows (UTC, month names, blank rows)"
+    ],
+    "statistical_tests": [
+      "Check for missing values in forecast/actual pairs",
+      "Validate AP value ranges (typically 0-400)"
+    ],
+    "output_format_requirements": [
+      "MAE should be calculated as: MAE = mean(|forecast - actual|) for March 10-12",
+      "Result should be a single numeric value with appropriate precision"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Mean Absolute Error (MAE) of NOAA SWPC's 3-day AP forecast made on March 9, 2025 for the period March 10-12, 2025\",\n        \"filters\": [\"Date range: March 10-12, 2025\", \"Forecast issued date: March 9, 2025\"],\n        \"grouping_variables\": [\"forecast_day\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What are the forecasted AP values for March 10-12, 2025 from the March 9 forecast?\", \"What are the actual AP values for March 10-12, 2025?\", \"How to calculate MAE from forecast vs actual AP values?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"0309geomag_forecast.txt\", \"0311geomag_forecast.txt\", \"0312geomag_forecast.txt\", \"0313geomag_forecast.txt\"],\n        \"join_keys\": [\n            {\"left_source\": \"0309geomag_forecast.txt\", \"right_source\": \"0311geomag_forecast.txt\", \"left_column\": \"row_index\", \"right_column\": \"row_index\", \"join_type\": \"inner\"},\n            {\"left_source\": \"0309geomag_forecast.txt\", \"right_source\": \"0312geomag_forecast.txt\", \"left_column\": \"row_index\", \"right_column\": \"row_index\", \"join_type\": \"inner\"},\n            {\"left_source\": \"0309geomag_forecast.txt\", \"right_source\": \"0313geomag_forecast.txt\", \"left_column\": \"row_index\", \"right_column\": \"row_index\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"All files have identical column names but different data values\", \"Column names are not descriptive (':Product:' and filename columns)\"],\n        \"column_mappings\": {\":Product:\": \"row_index\", \"0309geomag_forecast.txt\": \"forecast_mar9\", \"0311geomag_forecast.txt\": \"actual_mar11\", \"0312geomag_forecast.txt\": \"actual_mar12\", \"0313geomag_forecast.txt\": \"actual_mar13\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"forecast_mar9\": \"AP index\", \"actual_mar11\": \"AP index\", \"actual_mar12\": \"AP index\", \"actual_mar13\": \"AP index\"},\n        \"scale_issues\": [\"AP values appear to be in standard AP index units (typically 0-400)\"],\n        \"cross_source_conflicts\": [\"Need to verify that all files use same AP measurement scale and methodology\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \" \", \"NA\", \"N/A\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Files contain mixed data types in same column\", \"Some rows contain date information (e.g., 'Mar,12')\", \"Some rows contain AP forecast ranges (e.g., 'Mar,025-020-012')\", \"First column appears to be row identifiers or metadata\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Forecast period must be exactly March 10-12, 2025\", \"Forecast must be from March 9, 2025 issuance\", \"AP values must be non-negative integers\"],\n        \"derived_filters\": [\"Extract only rows containing AP forecast/actual values\", \"Filter out metadata rows (UTC, month names, blank rows)\"],\n        \"statistical_tests\": [\"Check for missing values in forecast/actual pairs\", \"Validate AP value ranges (typically 0-400)\"],\n        \"output_format_requirements\": [\"MAE should be calculated as: MAE = mean(|forecast - actual|) for March 10-12\", \"Result should be a single numeric value with appropriate precision\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 18.16602921485901,
+  "token_usage": {
+    "input_tokens": 983,
+    "output_tokens": 906
+  }
+}

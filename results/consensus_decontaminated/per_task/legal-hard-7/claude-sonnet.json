@@ -1,0 +1,81 @@
+{
+  "m_q": {
+    "target_metric": "Identity theft category with fastest relative growth rate between 2020 and 2024",
+    "filters": [
+      "Year IN (2020, 2024)"
+    ],
+    "grouping_variables": [
+      "Theft Type"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the number of reports for each theft type in 2020?",
+      "What are the number of reports for each theft type in 2024?",
+      "What is the relative growth rate (percentage change) for each theft type from 2020 to 2024?",
+      "Which theft type has the maximum relative growth rate?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in the data",
+      "Column 'Year' has dtype object but contains numeric year values"
+    ],
+    "column_mappings": {
+      "Theft Type": "theft_category",
+      "# of Reports": "num_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Year": "year",
+      "Theft Type": "categorical"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data structure appears inverted: first column labeled 'Theft Type' contains years, 'Year' column contains theft categories",
+      "Actual data structure: Row format is Year, Theft_Category, Count",
+      "Column headers do not match data content - likely mislabeled during export"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only years 2020 and 2024 are needed for the analysis",
+      "Relative growth calculated as ((2024 value - 2020 value) / 2020 value) * 100",
+      "All three theft categories must have data for both 2020 and 2024"
+    ],
+    "derived_filters": [
+      "Filter to baseline year 2020 and end year 2024"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the single theft category name with highest relative growth",
+      "Include the growth rate percentage as supporting information"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Identity theft category with fastest relative growth rate between 2020 and 2024\",\n    \"filters\": [\"Year IN (2020, 2024)\"],\n    \"grouping_variables\": [\"Theft Type\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are the number of reports for each theft type in 2020?\",\n      \"What are the number of reports for each theft type in 2024?\",\n      \"What is the relative growth rate (percentage change) for each theft type from 2020 to 2024?\",\n      \"Which theft type has the maximum relative growth rate?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account', 'Credit Card', 'Loan or Lease' in the data\",\n      \"Column 'Year' has dtype object but contains numeric year values\"\n    ],\n    \"column_mappings\": {\n      \"Theft Type\": \"theft_category\",\n      \"# of Reports\": \"num_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Year\": \"year\",\n      \"Theft Type\": \"categorical\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data structure appears inverted: first column labeled 'Theft Type' contains years, 'Year' column contains theft categories\",\n      \"Actual data structure: Row format is Year, Theft_Category, Count\",\n      \"Column headers do not match data content - likely mislabeled during export\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only years 2020 and 2024 are needed for the analysis\",\n      \"Relative growth calculated as ((2024 value - 2020 value) / 2020 value) * 100\",\n      \"All three theft categories must have data for both 2020 and 2024\"\n    ],\n    \"derived_filters\": [\n      \"Filter to baseline year 2020 and end year 2024\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the single theft category name with highest relative growth\",\n      \"Include the growth rate percentage as supporting information\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.880975246429443,
+  "token_usage": {
+    "input_tokens": 812,
+    "output_tokens": 724
+  }
+}

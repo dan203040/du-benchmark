@@ -1,0 +1,148 @@
+{
+  "m_q": {
+    "target_metric": "RMSE between predicted and observed Swarm Alpha atmospheric density values over a 4-hour forecast window",
+    "filters": [
+      "Training data: OMNI2/GOES from 2016-10-22 to 2016-10-23, Density from 2016-10-23 to 2016-10-24 (wu334)",
+      "Evaluation data: OMNI2/GOES from 2016-10-25 to 2016-10-26, Density from 2016-10-29 (wu335)",
+      "Use 16-hour context window for VAR(1) model",
+      "Forecast 4 hours ahead using linear regression"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Extract the last 16 hours of OMNI2/GOES data from wu334 training period (2016-10-22 to 2016-10-23)",
+      "Extract corresponding Swarm Alpha density data beginning at the end of OMNI2/GOES window (2016-10-23 to 2016-10-24)",
+      "Fit VAR(1) model on the 16-hour context window using f10.7_index, Kp_index, Dst_index_nT, xrsb_flux_observed, xrsa_flux_observed",
+      "Project the input time series 4 hours forward using the VAR(1) model",
+      "Fit linear regression model mapping projected features to density values",
+      "Extract the last 16 hours of OMNI2/GOES data from wu335 evaluation period (2016-10-25 to 2016-10-26)",
+      "Project wu335 OMNI2/GOES features 4 hours forward using fitted VAR(1) model",
+      "Predict density for 4-hour window using linear regression model",
+      "Extract observed density from wu335 for 2016-10-29",
+      "Calculate RMSE between predicted and observed density values"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "omni2-wu334-20160824_to_20161023.csv",
+      "goes-wu334-20160824_to_20161023.csv",
+      "swarma-wu334-20161023_to_20161026.csv",
+      "omni2-wu335-20160827_to_20161026.csv",
+      "goes-wu335-20160827_to_20161026.csv",
+      "swarma-wu335-20161026_to_20161029.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "omni2-wu334-20160824_to_20161023.csv",
+        "right_source": "goes-wu334-20160824_to_20161023.csv",
+        "left_column": "Timestamp",
+        "right_column": "Timestamp",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "omni2-wu335-20160827_to_20161026.csv",
+        "right_source": "goes-wu335-20160827_to_20161026.csv",
+        "left_column": "Timestamp",
+        "right_column": "Timestamp",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "OMNI2 data has hourly resolution while GOES data has minute-level resolution (needs resampling to hourly)",
+      "Swarm Alpha density data has 10-minute resolution (needs resampling or alignment)",
+      "Temporal alignment required between OMNI2/GOES end timestamp and Swarm Alpha density start timestamp"
+    ],
+    "column_mappings": {
+      "Orbit Mean Density (kg/m^3)": "density"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "f10.7_index": "solar flux units (10^-22 W/m^2/Hz)",
+      "Kp_index": "dimensionless geomagnetic index",
+      "Dst_index_nT": "nanotesla",
+      "xrsb_flux_observed": "W/m^2",
+      "xrsa_flux_observed": "W/m^2",
+      "Orbit Mean Density (kg/m^3)": "kg/m^3",
+      "Timestamp": "datetime"
+    },
+    "scale_issues": [
+      "xrsa_flux_observed and xrsb_flux_observed are in very small values (1e-9 to 1e-7 range), may need log transformation",
+      "Density values are extremely small (1e-13 range), may need scaling for numerical stability in regression",
+      "GOES data has minute resolution requiring aggregation to hourly to match OMNI2",
+      "Swarm Alpha has 10-minute resolution requiring alignment to forecast timestamps"
+    ],
+    "cross_source_conflicts": [
+      "OMNI2 hourly data vs GOES minute-level data temporal resolution mismatch",
+      "Training period ends 2016-10-23 for OMNI/GOES and starts 2016-10-23 for density (overlap at single timestamp)",
+      "Evaluation period ends 2016-10-26 for OMNI/GOES but density is from 2016-10-29 (3-day gap suggesting 4-hour forecast spans multiple days)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "999999.99",
+      "99999.99",
+      "9999.99",
+      "-1"
+    ],
+    "expected_columns": {
+      "omni2-wu334": 57,
+      "goes-wu334": 13,
+      "swarma-wu334": 2,
+      "omni2-wu335": 57,
+      "goes-wu335": 13,
+      "swarma-wu335": 2
+    },
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Timestamp column is object type, needs parsing to datetime",
+      "OMNI2 files contain many columns but only f10.7_index, Kp_index, Dst_index_nT are needed",
+      "GOES files contain many columns but only xrsb_flux_observed, xrsa_flux_observed are needed",
+      "Proton flux values use 999999.99 and 99999.99 as missing data indicators",
+      "Flux_FLAG column value -1 indicates missing or excluded data",
+      "GOES flag columns may indicate data quality issues",
+      "Date ranges in filenames do not precisely match the actual data needed (need to filter by specific dates)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Use exactly 16-hour context window for VAR(1) model training",
+      "Forecast exactly 4 hours ahead",
+      "Use only specified OMNI2 variables: f10.7_index, Kp_index, Dst_index_nT",
+      "Use only specified GOES variables: xrsb_flux_observed, xrsa_flux_observed",
+      "Training OMNI/GOES: 2016-10-22 to 2016-10-23; Training Density: 2016-10-23 to 2016-10-24",
+      "Evaluation OMNI/GOES: 2016-10-25 to 2016-10-26; Evaluation Density: 2016-10-29",
+      "VAR(1) model must be order 1 (use only 1 lag)",
+      "OMNI/GOES data ends at a timestamp where Density begins (single timestamp overlap)",
+      "Assume all windows contain valid data (no missing data handling required)"
+    ],
+    "derived_filters": [
+      "Filter omni2-wu334 to extract rows from 2016-10-22 00:00:00 to 2016-10-23 23:00:00",
+      "Filter goes-wu334 to extract rows from 2016-10-22 00:00:00 to 2016-10-23 23:59:00 and aggregate to hourly",
+      "Filter swarma-wu334 to extract rows from 2016-10-23 00:00:00 to 2016-10-24 23:50:00",
+      "Filter omni2-wu335 to extract rows from 2016-10-25 00:00:00 to 2016-10-26 23:00:00",
+      "Filter goes-wu335 to extract rows from 2016-10-25 00:00:00 to 2016-10-26 23:59:00 and aggregate to hourly",
+      "Filter swarma-wu335 to extract rows from 2016-10-29 with 4-hour duration for evaluation",
+      "Extract last 16 hours from training OMNI/GOES for VAR model context",
+      "Extract corresponding 4 hours of density data immediately following the 16-hour context window"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Report single RMSE value as the final metric",
+      "RMSE formula: sqrt(mean((predicted_density - observed_density)^2))",
+      "Predictions and observations must align temporally over 4-hour forecast window",
+      "All intermediate model artifacts (VAR(1) coefficients, linear regression coefficients) should be computed but not reported"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"RMSE between predicted and observed Swarm Alpha atmospheric density values over a 4-hour forecast window\",\n    \"filters\": [\n      \"Training data: OMNI2/GOES from 2016-10-22 to 2016-10-23, Density from 2016-10-23 to 2016-10-24 (wu334)\",\n      \"Evaluation data: OMNI2/GOES from 2016-10-25 to 2016-10-26, Density from 2016-10-29 (wu335)\",\n      \"Use 16-hour context window for VAR(1) model\",\n      \"Forecast 4 hours ahead using linear regression\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Extract the last 16 hours of OMNI2/GOES data from wu334 training period (2016-10-22 to 2016-10-23)\",\n      \"Extract corresponding Swarm Alpha density data beginning at the end of OMNI2/GOES window (2016-10-23 to 2016-10-24)\",\n      \"Fit VAR(1) model on the 16-hour context window using f10.7_index, Kp_index, Dst_index_nT, xrsb_flux_observed, xrsa_flux_observed\",\n      \"Project the input time series 4 hours forward using the VAR(1) model\",\n      \"Fit linear regression model mapping projected features to density values\",\n      \"Extract the last 16 hours of OMNI2/GOES data from wu335 evaluation period (2016-10-25 to 2016-10-26)\",\n      \"Project wu335 OMNI2/GOES features 4 hours forward using fitted VAR(1) model\",\n      \"Predict density for 4-hour window using linear regression model\",\n      \"Extract observed density from wu335 for 2016-10-29\",\n      \"Calculate RMSE between predicted and observed density values\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"omni2-wu334-20160824_to_20161023.csv\",\n      \"goes-wu334-20160824_to_20161023.csv\",\n      \"swarma-wu334-20161023_to_20161026.csv\",\n      \"omni2-wu335-20160827_to_20161026.csv\",\n      \"goes-wu335-20160827_to_20161026.csv\",\n      \"swarma-wu335-20161026_to_20161029.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"omni2-wu334-20160824_to_20161023.csv\",\n        \"right_source\": \"goes-wu334-20160824_to_20161023.csv\",\n        \"left_column\": \"Timestamp\",\n        \"right_column\": \"Timestamp\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"omni2-wu335-20160827_to_20161026.csv\",\n        \"right_source\": \"goes-wu335-20160827_to_20161026.csv\",\n        \"left_column\": \"Timestamp\",\n        \"right_column\": \"Timestamp\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"OMNI2 data has hourly resolution while GOES data has minute-level resolution (needs resampling to hourly)\",\n      \"Swarm Alpha density data has 10-minute resolution (needs resampling or alignment)\",\n      \"Temporal alignment required between OMNI2/GOES end timestamp and Swarm Alpha density start timestamp\"\n    ],\n    \"column_mappings\": {\n      \"Orbit Mean Density (kg/m^3)\": \"density\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"f10.7_index\": \"solar flux units (10^-22 W/m^2/Hz)\",\n      \"Kp_index\": \"dimensionless geomagnetic index\",\n      \"Dst_index_nT\": \"nanotesla\",\n      \"xrsb_flux_observed\": \"W/m^2\",\n      \"xrsa_flux_observed\": \"W/m^2\",\n      \"Orbit Mean Density (kg/m^3)\": \"kg/m^3\",\n      \"Timestamp\": \"datetime\"\n    },\n    \"scale_issues\": [\n      \"xrsa_flux_observed and xrsb_flux_observed are in very small values (1e-9 to 1e-7 range), may need log transformation\",\n      \"Density values are extremely small (1e-13 range), may need scaling for numerical stability in regression\",\n      \"GOES data has minute resolution requiring aggregation to hourly to match OMNI2\",\n      \"Swarm Alpha has 10-minute resolution requiring alignment to forecast timestamps\"\n    ],\n    \"cross_source_conflicts\": [\n      \"OMNI2 hourly data vs GOES minute-level data temporal resolution mismatch\",\n      \"Training period ends 2016-10-23 for OMNI/GOES and starts 2016-10-23 for density (overlap at single timestamp)\",\n      \"Evaluation period ends 2016-10-26 for OMNI/GOES but density is from 2016-10-29 (3-day gap suggesting 4-hour forecast spans multiple days)\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"999999.99\", \"99999.99\", \"9999.99\", \"-1\"],\n    \"expected_columns\": {\n      \"omni2-wu334\": 57,\n      \"goes-wu334\": 13,\n      \"swarma-wu334\": 2,\n      \"omni2-wu335\": 57,\n      \"goes-wu335\": 13,\n      \"swarma-wu335\": 2\n    },\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Timestamp column is object type, needs parsing to datetime\",\n      \"OMNI2 files contain many columns but only f10.7_index, Kp_index, Dst_index_nT are needed\",\n      \"GOES files contain many columns but only xrsb_flux_observed, xrsa_flux_observed are needed\",\n      \"Proton flux values use 999999.99 and 99999.99 as missing data indicators\",\n      \"Flux_FLAG column value -1 indicates missing or excluded data\",\n      \"GOES flag columns may indicate data quality issues\",\n      \"Date ranges in filenames do not precisely match the actual data needed (need to filter by specific dates)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Use exactly 16-hour context window for VAR(1) model training\",\n      \"Forecast exactly 4 hours ahead\",\n      \"Use only specified OMNI2 variables: f10.7_index, Kp_index, Dst_index_nT\",\n      \"Use only specified GOES variables: xrsb_flux_observed, xrsa_flux_observed\",\n      \"Training OMNI/GOES: 2016-10-22 to 2016-10-23; Training Density: 2016-10-23 to 2016-10-24\",\n      \"Evaluation OMNI/GOES: 2016-10-25 to 2016-10-26; Evaluation Density: 2016-10-29\",\n      \"VAR(1) model must be order 1 (use only 1 lag)\",\n      \"OMNI/GOES data ends at a timestamp where Density begins (single timestamp overlap)\",\n      \"Assume all windows contain valid data (no missing data handling required)\"\n    ],\n    \"derived_filters\": [\n      \"Filter omni2-wu334 to extract rows from 2016-10-22 00:00:00 to 2016-10-23 23:00:00\",\n      \"Filter goes-wu334 to extract rows from 2016-10-22 00:00:00 to 2016-10-23 23:59:00 and aggregate to hourly\",\n      \"Filter swarma-wu334 to extract rows from 2016-10-23 00:00:00 to 2016-10-24 23:50:00\",\n      \"Filter omni2-wu335 to extract rows from 2016-10-25 00:00:00 to 2016-10-26 23:00:00\",\n      \"Filter goes-wu335 to extract rows from 2016-10-25 00:00:00 to 2016-10-26 23:59:00 and aggregate to hourly\",\n      \"Filter swarma-wu335 to extract rows from 2016-10-29 with 4-hour duration for evaluation\",\n      \"Extract last 16 hours from training OMNI/GOES for VAR model context\",\n      \"Extract corresponding 4 hours of density data immediately following the 16-hour context window\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Report single RMSE value as the final metric\",\n      \"RMSE formula: sqrt(mean((predicted_density - observed_density)^2))\",\n      \"Predictions and observations must align temporally over 4-hour forecast window\",\n      \"All intermediate model artifacts (VAR(1) coefficients, linear regression coefficients) should be computed but not reported\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 38.75801491737366,
+  "token_usage": {
+    "input_tokens": 15689,
+    "output_tokens": 2408
+  }
+}

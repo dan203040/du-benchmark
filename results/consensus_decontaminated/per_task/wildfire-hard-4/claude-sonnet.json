@@ -1,0 +1,110 @@
+{
+  "m_q": {
+    "target_metric": "Suppression cost per acre for human-caused fires, rounded to the nearest cent",
+    "filters": [
+      "Human-caused fires only"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total suppression cost by year?",
+      "What is the total acres burned by human-caused fires by year?",
+      "What is the cost per acre for each year?",
+      "Which year has the maximum cost per acre?",
+      "What is that maximum cost per acre value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "nifc_suppression_costs.csv",
+      "nifc_human_caused_acres.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "nifc_suppression_costs.csv",
+        "right_source": "nifc_human_caused_acres.csv",
+        "left_column": "year_column",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "nifc_suppression_costs.csv has malformed headers - appears to have data in header row",
+      "Column names in nifc_suppression_costs.csv contain tab-separated values and mixed data",
+      "First column in nifc_suppression_costs.csv appears to be Year but is named '1985\\t82'",
+      "nifc_suppression_costs.csv needs complete re-parsing to extract proper columns"
+    ],
+    "column_mappings": {
+      "1985\\t82": "year_or_fires",
+      "591\\t2": "acres_or_something",
+      "Total": "total_human_caused_acres"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total": "acres",
+      "suppression_cost_column": "dollars",
+      "cost_per_acre": "dollars_per_acre"
+    },
+    "scale_issues": [
+      "Suppression costs appear to be in dollars with values like $161,505,000",
+      "Acres are in whole numbers",
+      "Final answer must be rounded to nearest cent (2 decimal places)"
+    ],
+    "cross_source_conflicts": [
+      "Year ranges may not overlap completely between files",
+      "nifc_suppression_costs.csv shows years 1985-2010 with gaps",
+      "nifc_human_caused_acres.csv shows years 2005-2024"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": "tab-separated or comma-separated depending on file",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "nifc_suppression_costs.csv appears severely malformed with tab characters embedded in column names",
+      "Data values appear in the header row of nifc_suppression_costs.csv",
+      "Sample rows show tab-separated format but CSV extension",
+      "Currency values contain $ symbols and commas that need parsing",
+      "Some numeric values have commas for thousands separators",
+      "nifc_human_caused_acres.csv appears properly formatted with clear headers",
+      "Need to identify which columns in nifc_suppression_costs.csv represent year and total suppression cost"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include human-caused fires (use nifc_human_caused_acres.csv Total column)",
+      "Years must match between both datasets",
+      "Suppression costs must be positive",
+      "Acres must be positive and non-zero to avoid division errors"
+    ],
+    "derived_filters": [
+      "Filter to years present in both datasets",
+      "Exclude years with zero or missing acres",
+      "Exclude years with missing suppression cost data"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the year with highest cost per acre",
+      "Return the cost per acre rounded to nearest cent (2 decimal places)",
+      "Format: $X.XX per acre"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Suppression cost per acre for human-caused fires, rounded to the nearest cent\",\n    \"filters\": [\"Human-caused fires only\"],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total suppression cost by year?\",\n      \"What is the total acres burned by human-caused fires by year?\",\n      \"What is the cost per acre for each year?\",\n      \"Which year has the maximum cost per acre?\",\n      \"What is that maximum cost per acre value?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"nifc_suppression_costs.csv\", \"nifc_human_caused_acres.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"nifc_suppression_costs.csv\",\n        \"right_source\": \"nifc_human_caused_acres.csv\",\n        \"left_column\": \"year_column\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"nifc_suppression_costs.csv has malformed headers - appears to have data in header row\",\n      \"Column names in nifc_suppression_costs.csv contain tab-separated values and mixed data\",\n      \"First column in nifc_suppression_costs.csv appears to be Year but is named '1985\\\\t82'\",\n      \"nifc_suppression_costs.csv needs complete re-parsing to extract proper columns\"\n    ],\n    \"column_mappings\": {\n      \"1985\\\\t82\": \"year_or_fires\",\n      \"591\\\\t2\": \"acres_or_something\",\n      \"Total\": \"total_human_caused_acres\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total\": \"acres\",\n      \"suppression_cost_column\": \"dollars\",\n      \"cost_per_acre\": \"dollars_per_acre\"\n    },\n    \"scale_issues\": [\n      \"Suppression costs appear to be in dollars with values like $161,505,000\",\n      \"Acres are in whole numbers\",\n      \"Final answer must be rounded to nearest cent (2 decimal places)\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Year ranges may not overlap completely between files\",\n      \"nifc_suppression_costs.csv shows years 1985-2010 with gaps\",\n      \"nifc_human_caused_acres.csv shows years 2005-2024\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \"tab-separated or comma-separated depending on file\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"nifc_suppression_costs.csv appears severely malformed with tab characters embedded in column names\",\n      \"Data values appear in the header row of nifc_suppression_costs.csv\",\n      \"Sample rows show tab-separated format but CSV extension\",\n      \"Currency values contain $ symbols and commas that need parsing\",\n      \"Some numeric values have commas for thousands separators\",\n      \"nifc_human_caused_acres.csv appears properly formatted with clear headers\",\n      \"Need to identify which columns in nifc_suppression_costs.csv represent year and total suppression cost\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include human-caused fires (use nifc_human_caused_acres.csv Total column)\",\n      \"Years must match between both datasets\",\n      \"Suppression costs must be positive\",\n      \"Acres must be positive and non-zero to avoid division errors\"\n    ],\n    \"derived_filters\": [\n      \"Filter to years present in both datasets\",\n      \"Exclude years with zero or missing acres\",\n      \"Exclude years with missing suppression cost data\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the year with highest cost per acre\",\n      \"Return the cost per acre rounded to nearest cent (2 decimal places)\",\n      \"Format: $X.XX per acre\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 18.287043809890747,
+  "token_usage": {
+    "input_tokens": 2434,
+    "output_tokens": 1070
+  }
+}

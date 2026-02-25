@@ -1,0 +1,67 @@
+{
+  "m_q": {
+    "target_metric": "count of episodes",
+    "filters": [
+      "US air date = 'Saturday, July 11, 2009'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have US air date equal to Saturday, July 11, 2009?",
+      "How many such rows exist?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Episode Ratings"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rating": "percentage points",
+      "Share": "percentage points",
+      "Viewers (millions)": "millions of viewers"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "TBA",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "US air date column contains full date strings with day of week and formatting like 'Saturday, July 11, 2009'",
+      "Some Rating and Share values are 'TBA' indicating data not yet available"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "US air date must exactly match 'Saturday, July 11, 2009' including formatting",
+      "Result should be a non-negative integer count"
+    ],
+    "derived_filters": [
+      "Parse US air date as string and perform exact match on 'Saturday, July 11, 2009'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Single integer value representing the count of episodes"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"count of episodes\",\n    \"filters\": [\"US air date = 'Saturday, July 11, 2009'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have US air date equal to Saturday, July 11, 2009?\",\n      \"How many such rows exist?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Episode Ratings\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Rating\": \"percentage points\",\n      \"Share\": \"percentage points\",\n      \"Viewers (millions)\": \"millions of viewers\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"TBA\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"US air date column contains full date strings with day of week and formatting like 'Saturday, July 11, 2009'\",\n      \"Some Rating and Share values are 'TBA' indicating data not yet available\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"US air date must exactly match 'Saturday, July 11, 2009' including formatting\",\n      \"Result should be a non-negative integer count\"\n    ],\n    \"derived_filters\": [\n      \"Parse US air date as string and perform exact match on 'Saturday, July 11, 2009'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Single integer value representing the count of episodes\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.780296087265015,
+  "token_usage": {
+    "input_tokens": 1258,
+    "output_tokens": 497
+  }
+}

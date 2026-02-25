@@ -1,0 +1,132 @@
+{
+  "m_q": {
+    "target_metric": "Lag (0-48 hours) that maximizes r^2 correlation between semi-major axis change (km) from TLE data and OMNI AP index during May 1-30, 2024",
+    "filters": [
+      "epoch_year = 24",
+      "epoch_day between 122 and 151 (May 1-30, 2024)",
+      "AP index not missing",
+      "semi-major axis change calculable from consecutive TLEs"
+    ],
+    "grouping_variables": [
+      "hourly_timestamp"
+    ],
+    "output_cardinality": "scalar (best lag value)",
+    "sub_questions": [
+      "Calculate semi-major axis from mean_motion using mu=398600.4418",
+      "Round TLE epoch times to nearest hour",
+      "Compute hourly change in semi-major axis",
+      "Extract AP index from OMNI2 data",
+      "Calculate correlations for lags 0-48 hours",
+      "Find lag with maximum r^2"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "43180.tle",
+      "omni2_2024.dat",
+      "omni2.text"
+    ],
+    "join_keys": [
+      {
+        "left_source": "43180.tle",
+        "right_source": "omni2_2024.dat",
+        "left_column": "rounded_hourly_timestamp",
+        "right_column": "datetime_from_columns",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "TLE epoch_year uses 2-digit year (24)",
+      "OMNI2 uses 4-digit year (2024)",
+      "TLE epoch_day is fractional day of year",
+      "OMNI2 has separate year, day, hour columns"
+    ],
+    "column_mappings": {
+      "epoch_year": "year_2digit",
+      "epoch_day": "day_of_year_fractional",
+      "mean_motion": "revolutions_per_day",
+      "2024": "year",
+      "1": "day_of_year",
+      "0": "hour"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "mean_motion": "revolutions/day",
+      "semi_major_axis": "km",
+      "semi_major_axis_change": "km",
+      "AP_index": "nT (from OMNI2 specification)",
+      "inclination": "degrees",
+      "raan": "degrees",
+      "eccentricity": "unitless",
+      "arg_perigee": "degrees",
+      "mean_anomaly": "degrees"
+    },
+    "scale_issues": [
+      "TLE epoch_day has precision to 8 decimal places (seconds)",
+      "OMNI2 hour is integer 0-23",
+      "Mean motion needs conversion to semi-major axis using mu"
+    ],
+    "cross_source_conflicts": [
+      "TLE times need rounding to nearest hour to match OMNI2 hourly resolution",
+      "TLE data points are irregular (not hourly), need interpolation or nearest matching"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "999999.99",
+      "99999.99",
+      "99999.99.1",
+      "99999.99.2",
+      "99999.99.3",
+      "99999.99.4",
+      "999.9",
+      "-9",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "TLE file has duplicate rows (e.g., row 11-12 identical)",
+      "OMNI2 has 55 columns with cryptic names",
+      "omni2.text is documentation file, not data",
+      "AP index column needs identification from omni2.text specification"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "mu = 398600.4418 km^3/s^2",
+      "Lag range: 0-48 hours",
+      "Time period: May 1-30, 2024",
+      "TLE epoch times must be rounded to nearest hour",
+      "Correlation must use r^2 metric"
+    ],
+    "derived_filters": [
+      "Remove TLE rows outside May 1-30, 2024",
+      "Filter OMNI2 to May 1-30, 2024",
+      "Exclude rows where AP index is sentinel value",
+      "Ensure consecutive TLEs for change calculation"
+    ],
+    "statistical_tests": [
+      "Pearson correlation for each lag",
+      "Maximum r^2 identification",
+      "Significance testing of correlations"
+    ],
+    "output_format_requirements": [
+      "Best lag as integer 0-48",
+      "Corresponding maximum r^2 value",
+      "Time-aligned dataset for verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Lag (0-48 hours) that maximizes r^2 correlation between semi-major axis change (km) from TLE data and OMNI AP index during May 1-30, 2024\",\n        \"filters\": [\"epoch_year = 24\", \"epoch_day between 122 and 151 (May 1-30, 2024)\", \"AP index not missing\", \"semi-major axis change calculable from consecutive TLEs\"],\n        \"grouping_variables\": [\"hourly_timestamp\"],\n        \"output_cardinality\": \"scalar (best lag value)\",\n        \"sub_questions\": [\"Calculate semi-major axis from mean_motion using mu=398600.4418\", \"Round TLE epoch times to nearest hour\", \"Compute hourly change in semi-major axis\", \"Extract AP index from OMNI2 data\", \"Calculate correlations for lags 0-48 hours\", \"Find lag with maximum r^2\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"43180.tle\", \"omni2_2024.dat\", \"omni2.text\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"43180.tle\",\n                \"right_source\": \"omni2_2024.dat\",\n                \"left_column\": \"rounded_hourly_timestamp\",\n                \"right_column\": \"datetime_from_columns\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"TLE epoch_year uses 2-digit year (24)\", \"OMNI2 uses 4-digit year (2024)\", \"TLE epoch_day is fractional day of year\", \"OMNI2 has separate year, day, hour columns\"],\n        \"column_mappings\": {\n            \"epoch_year\": \"year_2digit\",\n            \"epoch_day\": \"day_of_year_fractional\",\n            \"mean_motion\": \"revolutions_per_day\",\n            \"2024\": \"year\",\n            \"1\": \"day_of_year\",\n            \"0\": \"hour\"\n        }\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"mean_motion\": \"revolutions/day\",\n            \"semi_major_axis\": \"km\",\n            \"semi_major_axis_change\": \"km\",\n            \"AP_index\": \"nT (from OMNI2 specification)\",\n            \"inclination\": \"degrees\",\n            \"raan\": \"degrees\",\n            \"eccentricity\": \"unitless\",\n            \"arg_perigee\": \"degrees\",\n            \"mean_anomaly\": \"degrees\"\n        },\n        \"scale_issues\": [\"TLE epoch_day has precision to 8 decimal places (seconds)\", \"OMNI2 hour is integer 0-23\", \"Mean motion needs conversion to semi-major axis using mu\"],\n        \"cross_source_conflicts\": [\"TLE times need rounding to nearest hour to match OMNI2 hourly resolution\", \"TLE data points are irregular (not hourly), need interpolation or nearest matching\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"999999.99\", \"99999.99\", \"99999.99.1\", \"99999.99.2\", \"99999.99.3\", \"99999.99.4\", \"999.9\", \"-9\", \"\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"TLE file has duplicate rows (e.g., row 11-12 identical)\", \"OMNI2 has 55 columns with cryptic names\", \"omni2.text is documentation file, not data\", \"AP index column needs identification from omni2.text specification\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"mu = 398600.4418 km^3/s^2\", \"Lag range: 0-48 hours\", \"Time period: May 1-30, 2024\", \"TLE epoch times must be rounded to nearest hour\", \"Correlation must use r^2 metric\"],\n        \"derived_filters\": [\"Remove TLE rows outside May 1-30, 2024\", \"Filter OMNI2 to May 1-30, 2024\", \"Exclude rows where AP index is sentinel value\", \"Ensure consecutive TLEs for change calculation\"],\n        \"statistical_tests\": [\"Pearson correlation for each lag\", \"Maximum r^2 identification\", \"Significance testing of correlations\"],\n        \"output_format_requirements\": [\"Best lag as integer 0-48\", \"Corresponding maximum r^2 value\", \"Time-aligned dataset for verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 20.063541889190674,
+  "token_usage": {
+    "input_tokens": 6545,
+    "output_tokens": 1024
+  }
+}

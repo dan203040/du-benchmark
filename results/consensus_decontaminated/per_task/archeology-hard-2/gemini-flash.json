@@ -1,0 +1,61 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of years where the wet-dry index increased compared to the previous year.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the year-over-year change in 'ODP 967 wet-dry index'.",
+      "Identify the years where the 'ODP 967 wet-dry index' increased.",
+      "Calculate the total number of years with available 'ODP 967 wet-dry index' data.",
+      "Divide the number of years with an increasing 'ODP 967 wet-dry index' by the total number of years and multiply by 100 to get the percentage."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "climateMeasurements.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age_ky": "thousands of years",
+      "Depth below seafloor_m": "meters",
+      "Splice depth_m": "meters",
+      "Interval_cm": "centimeters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 30,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Age_ky' column should be used to represent the year.",
+      "Missing values in 'ODP 967 wet-dry index' should be handled appropriately (e.g., removed or imputed) before calculating year-over-year changes."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Percentage value rounded to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of years where the wet-dry index increased compared to the previous year.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the year-over-year change in 'ODP 967 wet-dry index'.\",\n      \"Identify the years where the 'ODP 967 wet-dry index' increased.\",\n      \"Calculate the total number of years with available 'ODP 967 wet-dry index' data.\",\n      \"Divide the number of years with an increasing 'ODP 967 wet-dry index' by the total number of years and multiply by 100 to get the percentage.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"climateMeasurements.xlsx\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age_ky\": \"thousands of years\",\n      \"Depth below seafloor_m\": \"meters\",\n      \"Splice depth_m\": \"meters\",\n      \"Interval_cm\": \"centimeters\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 30,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Age_ky' column should be used to represent the year.\",\n      \"Missing values in 'ODP 967 wet-dry index' should be handled appropriately (e.g., removed or imputed) before calculating year-over-year changes.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Percentage value rounded to 2 decimal places.\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 35.07551574707031,
+  "token_usage": {}
+}

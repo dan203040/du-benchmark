@@ -1,0 +1,53 @@
+{
+  "m_q": {
+    "target_metric": "Count of NIFC Geographic Areas for each US state",
+    "filters": [],
+    "grouping_variables": [
+      "adm1_name"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "usa.gpkg",
+      "nifc_geographic_areas.gpkg"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 26,
+    "expected_rows": 0,
+    "file_format": "gpkg",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Need to perform a spatial join between the two datasets to determine which states fall within which NIFC Geographic Areas."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a table with US state full names and the count of NIFC Geographic Areas they fall into, sorted by the count in descending order."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of NIFC Geographic Areas for each US state\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"adm1_name\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"usa.gpkg\",\n      \"nifc_geographic_areas.gpkg\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 26,\n    \"file_format\": \"gpkg\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Need to perform a spatial join between the two datasets to determine which states fall within which NIFC Geographic Areas.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a table with US state full names and the count of NIFC Geographic Areas they fall into, sorted by the count in descending order.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 30.450812101364136,
+  "token_usage": {}
+}

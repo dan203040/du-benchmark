@@ -1,0 +1,65 @@
+{
+  "m_q": {
+    "target_metric": "Survival rate and other relationships between features, visualized and saved as 'result.png' according to 'plot.yaml'.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What is the distribution of each feature?",
+      "What is the relationship between each feature and survival?",
+      "Are there any missing values in the data?",
+      "How are the plots defined in 'plot.yaml'?",
+      "How to correctly implement the plots defined in 'plot.yaml' using the data?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "Fare": "currency"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Age should be non-negative.",
+      "SibSp and Parch should be non-negative.",
+      "Survived should be binary (0 or 1)."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Chi-squared test for categorical features and survival.",
+      "T-test or ANOVA for numerical features and survival."
+    ],
+    "output_format_requirements": [
+      "Plots should be saved as 'result.png'.",
+      "Plots should follow the specifications in 'plot.yaml'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Survival rate and other relationships between features, visualized and saved as 'result.png' according to 'plot.yaml'.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"What is the distribution of each feature?\",\n      \"What is the relationship between each feature and survival?\",\n      \"Are there any missing values in the data?\",\n      \"How are the plots defined in 'plot.yaml'?\",\n      \"How to correctly implement the plots defined in 'plot.yaml' using the data?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"train.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"Fare\": \"currency\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 12,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Age should be non-negative.\",\n      \"SibSp and Parch should be non-negative.\",\n      \"Survived should be binary (0 or 1).\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Chi-squared test for categorical features and survival.\",\n      \"T-test or ANOVA for numerical features and survival.\"\n    ],\n    \"output_format_requirements\": [\n      \"Plots should be saved as 'result.png'.\",\n      \"Plots should follow the specifications in 'plot.yaml'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.210700035095215,
+  "token_usage": {}
+}

@@ -1,0 +1,370 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Number of Auto Related reports in 2007 if category distribution matched 2024",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Number of Auto Related reports in 2007 if category distribution matched 2024",
+        "Number of Auto Related reports in 2007 if the category distribution matched 2024 proportions",
+        "Number of reports in 2007 that would be 'Auto Related' if the category distribution matched 2024, rounded to the nearest integer."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2007",
+        "Category = 'Auto Related'",
+        "Year == 2007"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year = 2007",
+          "Category = 'Auto Related'"
+        ],
+        [
+          "Year == 2007"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year",
+        "Category"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Year",
+          "Category"
+        ],
+        [
+          "Year",
+          "Category"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total number of reports in 2007?",
+        "What percentage of reports in 2024 are Auto Related?",
+        "How to apply 2024 Auto Related percentage to 2007 total reports?",
+        "What was the total number of reports in 2007?",
+        "What is the percentage of Auto Related reports in 2024?",
+        "What is the calculated number of Auto Related reports for 2007 using 2024 percentage?",
+        "What is the percentage of 'Auto Related' reports in 2024?",
+        "Multiply the total number of reports in 2007 by the percentage of 'Auto Related' reports in 2024.",
+        "Round the result to the nearest integer."
+      ],
+      "confidence": 0.3703703703703704,
+      "votes": [
+        [
+          "What is the total number of reports in 2007?",
+          "What percentage of reports in 2024 are Auto Related?",
+          "How to apply 2024 Auto Related percentage to 2007 total reports?"
+        ],
+        [
+          "What was the total number of reports in 2007?",
+          "What is the percentage of Auto Related reports in 2024?",
+          "What is the calculated number of Auto Related reports for 2007 using 2024 percentage?"
+        ],
+        [
+          "What is the total number of reports in 2007?",
+          "What is the percentage of 'Auto Related' reports in 2024?",
+          "Multiply the total number of reports in 2007 by the percentage of 'Auto Related' reports in 2024.",
+          "Round the result to the nearest integer."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Report_Count.csv",
+        "2024_CSN_Report_Categories.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Report_Count.csv",
+          "2024_CSN_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_Report_Count.csv",
+          "2024_CSN_Report_Categories.csv"
+        ],
+        [
+          "2024_CSN_Report_Count.csv",
+          "2024_CSN_Report_Categories.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Year column in 2024_CSN_Report_Count.csv is float64 but represents integer years",
+        "Percentage column in 2024_CSN_Report_Categories.csv is object/string with '%' symbol",
+        "Both files have '# of Reports' column but represent different concepts (total vs category-specific)",
+        "No natural join key between files - relationship is implicit through 2024 data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column in 2024_CSN_Report_Count.csv is float64 but represents integer years",
+          "Percentage column in 2024_CSN_Report_Categories.csv is object/string with '%' symbol"
+        ],
+        [
+          "Both files have '# of Reports' column but represent different concepts (total vs category-specific)",
+          "No natural join key between files - relationship is implicit through 2024 data"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count",
+        "percentage": "percentage",
+        "year": "year"
+      },
+      "confidence": 0.8888888888888888,
+      "votes": [
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage",
+          "Year": "year"
+        },
+        {
+          "# of Reports": "count",
+          "Percentage": "percentage_string",
+          "Year": "year"
+        },
+        {
+          "# of Reports": "number of reports",
+          "Percentage": "percentage"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "2024_CSN_Report_Categories.csv shows 2024 data but filename suggests it might contain historical data",
+        "2024_CSN_Report_Count.csv contains data from 2001-2020 but filename suggests only 2024",
+        "Percentage column in 2024_CSN_Report_Categories.csv is stored as string with '%' symbol, needs conversion to numeric",
+        "Percentage column in 2024_CSN_Report_Categories.csv needs to be converted to a decimal by removing the '%' sign and dividing by 100."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Report_Categories.csv shows 2024 data but filename suggests it might contain historical data",
+          "2024_CSN_Report_Count.csv contains data from 2001-2020 but filename suggests only 2024"
+        ],
+        [
+          "Percentage column in 2024_CSN_Report_Categories.csv is stored as string with '%' symbol, needs conversion to numeric"
+        ],
+        [
+          "Percentage column in 2024_CSN_Report_Categories.csv needs to be converted to a decimal by removing the '%' sign and dividing by 100."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "2024_CSN_Report_Categories.csv doesn't have Year column, so we assume it represents 2024 distribution only",
+        "2024_CSN_Report_Categories.csv contains 2024 category distribution data",
+        "2024_CSN_Report_Count.csv contains historical yearly totals including 2007",
+        "No direct year linkage in category file"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "2024_CSN_Report_Categories.csv doesn't have Year column, so we assume it represents 2024 distribution only"
+        ],
+        [
+          "2024_CSN_Report_Categories.csv contains 2024 category distribution data",
+          "2024_CSN_Report_Count.csv contains historical yearly totals including 2007",
+          "No direct year linkage in category file"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 0.33,
+      "votes": [
+        4.0,
+        2.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total percentage in 2024_CSN_Report_Categories.csv should sum to 100%",
+        "2007 must exist in 2024_CSN_Report_Count.csv",
+        "'Auto Related' category must exist in 2024_CSN_Report_Categories.csv",
+        "Year must equal 2007 when filtering 2024_CSN_Report_Count.csv",
+        "Category must equal 'Auto Related' when filtering 2024_CSN_Report_Categories.csv",
+        "Percentage values must be converted from string format (e.g., '3.04%') to numeric decimal",
+        "Final result must be rounded to nearest integer",
+        "The 'Year' column in 2024_CSN_Report_Count.csv should be filtered to the year 2007.",
+        "The 'Category' column in 2024_CSN_Report_Categories.csv should be filtered to the category 'Auto Related'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total percentage in 2024_CSN_Report_Categories.csv should sum to 100%",
+          "2007 must exist in 2024_CSN_Report_Count.csv",
+          "'Auto Related' category must exist in 2024_CSN_Report_Categories.csv"
+        ],
+        [
+          "Year must equal 2007 when filtering 2024_CSN_Report_Count.csv",
+          "Category must equal 'Auto Related' when filtering 2024_CSN_Report_Categories.csv",
+          "Percentage values must be converted from string format (e.g., '3.04%') to numeric decimal",
+          "Final result must be rounded to nearest integer"
+        ],
+        [
+          "The 'Year' column in 2024_CSN_Report_Count.csv should be filtered to the year 2007.",
+          "The 'Category' column in 2024_CSN_Report_Categories.csv should be filtered to the category 'Auto Related'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract Auto Related percentage from 2024_CSN_Report_Categories.csv",
+        "Extract 2007 total reports from 2024_CSN_Report_Count.csv",
+        "Extract 2007 total from 2024_CSN_Report_Count.csv where Year == 2007.0",
+        "Extract Auto Related percentage from 2024_CSN_Report_Categories.csv where Category == 'Auto Related'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract Auto Related percentage from 2024_CSN_Report_Categories.csv",
+          "Extract 2007 total reports from 2024_CSN_Report_Count.csv"
+        ],
+        [
+          "Extract 2007 total from 2024_CSN_Report_Count.csv where Year == 2007.0",
+          "Extract Auto Related percentage from 2024_CSN_Report_Categories.csv where Category == 'Auto Related'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if 2024 distribution percentages sum to 100%",
+        "Verify 2007 exists in the time series"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if 2024 distribution percentages sum to 100%",
+          "Verify 2007 exists in the time series"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Rounded to nearest integer",
+        "Single numeric value",
+        "Single integer value",
+        "Result represents hypothetical Auto Related reports in 2007 using 2024 distribution",
+        "The final answer should be rounded to the nearest integer."
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Rounded to nearest integer",
+          "Single numeric value"
+        ],
+        [
+          "Single integer value",
+          "Rounded to nearest integer",
+          "Result represents hypothetical Auto Related reports in 2007 using 2024 distribution"
+        ],
+        [
+          "The final answer should be rounded to the nearest integer."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6161296296296297
+}

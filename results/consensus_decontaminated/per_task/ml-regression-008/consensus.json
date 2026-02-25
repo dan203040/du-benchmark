@@ -1,0 +1,522 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "quantity_sold (predicted sales quantity for shoe products)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "quantity_sold (predicted sales quantity for shoe products)",
+        "quantity_sold for shoe products",
+        "Predicted quantity sold for each shoe product in test.csv"
+      ]
+    },
+    "filters": {
+      "value": [
+        "category = 'men' (from test.csv sample)",
+        "product type is shoes",
+        "category='men' (from test.csv)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "category = 'men' (from test.csv sample)",
+          "product type is shoes"
+        ],
+        [
+          "category='men' (from test.csv)"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "id",
+        "name",
+        "brand",
+        "category"
+      ],
+      "confidence": 0.41666666666666663,
+      "votes": [
+        [
+          "id",
+          "name",
+          "brand",
+          "category"
+        ],
+        [],
+        [
+          "id"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table (1750 rows matching test.csv shape)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "table (1750 rows matching test.csv shape)",
+        "list",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features predict shoe sales?",
+        "How to transfer learning from other product categories?",
+        "What is the relationship between price, reviews, and sales?",
+        "How does brand affect sales prediction?",
+        "Should we use all available training data or only shoe-specific data?",
+        "What features predict quantity_sold for shoe products?",
+        "How to build a predictive model using training data from other product categories?",
+        "What is the relationship between price, brand, reviews, and sales quantity?",
+        "How to handle missing quantity_sold in test.csv?",
+        "What columns are most predictive of sales volume?",
+        "What features in the training data are most predictive of quantity_sold?",
+        "How can the text data in 'name' and 'description' be used to improve prediction?",
+        "Are there any interactions between features that are important for predicting quantity_sold?",
+        "How should missing values be handled in each feature?",
+        "What is the best model to predict quantity_sold based on the available data?"
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "What features predict shoe sales?",
+          "How to transfer learning from other product categories?",
+          "What is the relationship between price, reviews, and sales?",
+          "How does brand affect sales prediction?",
+          "Should we use all available training data or only shoe-specific data?"
+        ],
+        [
+          "What features predict quantity_sold for shoe products?",
+          "How to build a predictive model using training data from other product categories?",
+          "What is the relationship between price, brand, reviews, and sales quantity?",
+          "How to handle missing quantity_sold in test.csv?",
+          "What columns are most predictive of sales volume?"
+        ],
+        [
+          "What features in the training data are most predictive of quantity_sold?",
+          "How can the text data in 'name' and 'description' be used to improve prediction?",
+          "Are there any interactions between features that are important for predicting quantity_sold?",
+          "How should missing values be handled in each feature?",
+          "What is the best model to predict quantity_sold based on the available data?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "test.csv",
+        "vietnamese_tiki_products_backpacks_suitcases.csv",
+        "vietnamese_tiki_products_fashion_accessories.csv",
+        "vietnamese_tiki_products_men_bags.csv",
+        "vietnamese_tiki_products_men_shoes.csv",
+        "vietnamese_tiki_products_women_bags.csv",
+        "vietnamese_tiki_products_women_shoes.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "test.csv",
+          "vietnamese_tiki_products_backpacks_suitcases.csv",
+          "vietnamese_tiki_products_fashion_accessories.csv",
+          "vietnamese_tiki_products_men_bags.csv",
+          "vietnamese_tiki_products_men_shoes.csv",
+          "vietnamese_tiki_products_women_bags.csv",
+          "vietnamese_tiki_products_women_shoes.csv"
+        ],
+        [
+          "test.csv",
+          "vietnamese_tiki_products_men_shoes.csv",
+          "vietnamese_tiki_products_women_shoes.csv",
+          "vietnamese_tiki_products_backpacks_suitcases.csv",
+          "vietnamese_tiki_products_fashion_accessories.csv",
+          "vietnamese_tiki_products_men_bags.csv",
+          "vietnamese_tiki_products_women_bags.csv"
+        ],
+        [
+          "test.csv",
+          "vietnamese_tiki_products_backpacks_suitcases.csv",
+          "vietnamese_tiki_products_fashion_accessories.csv",
+          "vietnamese_tiki_products_men_bags.csv",
+          "vietnamese_tiki_products_men_shoes.csv",
+          "vietnamese_tiki_products_women_bags.csv",
+          "vietnamese_tiki_products_women_shoes.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "test.csv has 18 columns while training files have 19-20 columns",
+        "test.csv missing 'quantity_sold' column",
+        "vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have duplicate 'Unnamed: 0.1' and 'Unnamed: 0' columns",
+        "Column order differs across files",
+        "Some training files have 'category' values that don't match test.csv 'category' values",
+        "test.csv has 18 columns without quantity_sold",
+        "training files have 19-20 columns including quantity_sold",
+        "vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have extra 'Unnamed: 0.1' column",
+        "test.csv category='men' while training files have various categories",
+        "test.csv does not have quantity_sold column, while other files do.",
+        "The vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have an extra 'Unnamed: 0.1' column.",
+        "Some files have 'category' column, while test.csv does not."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv has 18 columns while training files have 19-20 columns",
+          "test.csv missing 'quantity_sold' column",
+          "vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have duplicate 'Unnamed: 0.1' and 'Unnamed: 0' columns",
+          "Column order differs across files",
+          "Some training files have 'category' values that don't match test.csv 'category' values"
+        ],
+        [
+          "test.csv has 18 columns without quantity_sold",
+          "training files have 19-20 columns including quantity_sold",
+          "vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have extra 'Unnamed: 0.1' column",
+          "test.csv category='men' while training files have various categories"
+        ],
+        [
+          "test.csv does not have quantity_sold column, while other files do.",
+          "The vietnamese_tiki_products_men_shoes.csv and vietnamese_tiki_products_women_shoes.csv have an extra 'Unnamed: 0.1' column.",
+          "Some files have 'category' column, while test.csv does not."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "original_price": "VND",
+        "price": "VND",
+        "vnd_cashback": "VND",
+        "date_created": "timestamp or days since epoch",
+        "review_count": "count",
+        "rating_average": "scale 0-5",
+        "favourite_count": "count",
+        "number_of_images": "count",
+        "quantity_sold": "units"
+      },
+      "confidence": 0.8888888888888888,
+      "votes": [
+        {
+          "original_price": "VND",
+          "price": "VND",
+          "vnd_cashback": "VND",
+          "date_created": "timestamp or days since epoch",
+          "review_count": "count",
+          "rating_average": "scale 0-5",
+          "favourite_count": "count",
+          "number_of_images": "count",
+          "quantity_sold": "units"
+        },
+        {
+          "original_price": "VND (Vietnamese Dong)",
+          "price": "VND (Vietnamese Dong)",
+          "vnd_cashback": "VND (Vietnamese Dong)",
+          "date_created": "unix_timestamp_or_days_since_epoch",
+          "rating_average": "scale_0_to_5",
+          "review_count": "count",
+          "favourite_count": "count",
+          "number_of_images": "count",
+          "quantity_sold": "count"
+        },
+        {
+          "original_price": "VND",
+          "price": "VND",
+          "vnd_cashback": "VND",
+          "review_count": "count",
+          "favourite_count": "count",
+          "number_of_images": "count"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "price ranges from 1,350 VND to 1,900,000 VND - extreme range",
+        "review_count has many zeros",
+        "rating_average has many zeros",
+        "date_created values like 616, 775 suggest non-standard timestamp format",
+        "favourite_count has extreme values like 2811",
+        "price and original_price are in VND currency (large numbers)",
+        "date_created appears to be numeric timestamp, needs interpretation",
+        "rating_average is on 0-5 scale with float precision"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "price ranges from 1,350 VND to 1,900,000 VND - extreme range",
+          "review_count has many zeros",
+          "rating_average has many zeros",
+          "date_created values like 616, 775 suggest non-standard timestamp format",
+          "favourite_count has extreme values like 2811"
+        ],
+        [
+          "price and original_price are in VND currency (large numbers)",
+          "date_created appears to be numeric timestamp, needs interpretation",
+          "rating_average is on 0-5 scale with float precision"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "test.csv 'category' values ('men') vs training files 'category' values ('Root', 'Balo n\u1eef', 'C\u00e0i \u00c1o', 'T\u00fai \u0111eo ch\u00e9o nam', etc.)",
+        "Different product categories in training data (shoes, bags, accessories) vs test data (shoes only)",
+        "Brand naming inconsistencies: 'OEM' appears frequently but may represent different manufacturers",
+        "test.csv has all category='men' but training data spans multiple categories",
+        "test.csv lacks quantity_sold which is the target variable",
+        "date_created values range differs across sources"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv 'category' values ('men') vs training files 'category' values ('Root', 'Balo n\u1eef', 'C\u00e0i \u00c1o', 'T\u00fai \u0111eo ch\u00e9o nam', etc.)",
+          "Different product categories in training data (shoes, bags, accessories) vs test data (shoes only)",
+          "Brand naming inconsistencies: 'OEM' appears frequently but may represent different manufacturers"
+        ],
+        [
+          "test.csv has all category='men' but training data spans multiple categories",
+          "test.csv lacks quantity_sold which is the target variable",
+          "date_created values range differs across sources"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "0",
+        "0.0",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "",
+          "0",
+          "0.0",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 18.0,
+      "confidence": 1.0,
+      "votes": [
+        18.0,
+        18.0,
+        18.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "test.csv has no quantity_sold column - target variable missing",
+        "Must predict for all 1750 rows in test.csv",
+        "Output must be saved to quantity.csv with column name 'quantity_sold'",
+        "Training data includes non-shoe products that may not be relevant",
+        "id should be unique across datasets",
+        "price <= original_price (discount constraint)",
+        "test.csv contains only shoe products with category='men'",
+        "quantity_sold must be predicted (not present in test.csv)",
+        "output must be written to quantity.csv with column name 'quantity_sold'",
+        "prediction must be made for all 1750 rows in test.csv",
+        "training data comes from multiple product categories (shoes, bags, accessories, backpacks)",
+        "quantity_sold in training data is integer type (count variable)",
+        "must use product features from test.csv for prediction",
+        "The 'id' column should be unique within each file.",
+        "The 'price' should be less than or equal to 'original_price'."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "test.csv has no quantity_sold column - target variable missing",
+          "Must predict for all 1750 rows in test.csv",
+          "Output must be saved to quantity.csv with column name 'quantity_sold'",
+          "Training data includes non-shoe products that may not be relevant",
+          "id should be unique across datasets",
+          "price <= original_price (discount constraint)"
+        ],
+        [
+          "test.csv contains only shoe products with category='men'",
+          "quantity_sold must be predicted (not present in test.csv)",
+          "output must be written to quantity.csv with column name 'quantity_sold'",
+          "prediction must be made for all 1750 rows in test.csv",
+          "training data comes from multiple product categories (shoes, bags, accessories, backpacks)",
+          "quantity_sold in training data is integer type (count variable)",
+          "must use product features from test.csv for prediction"
+        ],
+        [
+          "The 'id' column should be unique within each file.",
+          "The 'price' should be less than or equal to 'original_price'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove rows where price = 0",
+        "Filter training data to similar product categories",
+        "Consider only products with non-zero review_count for reliability",
+        "Exclude extreme outlier prices",
+        "filter training data to shoe-related products for better model fit",
+        "consider category='men' products from training data as most relevant",
+        "exclude products with 0 or missing reviews if modeling review impact",
+        "filter out extreme outliers in price or quantity_sold during training",
+        "Filter out products where 'price' is negative.",
+        "Filter out products where 'original_price' is negative."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Remove rows where price = 0",
+          "Filter training data to similar product categories",
+          "Consider only products with non-zero review_count for reliability",
+          "Exclude extreme outlier prices"
+        ],
+        [
+          "filter training data to shoe-related products for better model fit",
+          "consider category='men' products from training data as most relevant",
+          "exclude products with 0 or missing reviews if modeling review impact",
+          "filter out extreme outliers in price or quantity_sold during training"
+        ],
+        [
+          "Filter out products where 'price' is negative.",
+          "Filter out products where 'original_price' is negative."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Correlation analysis between price and quantity_sold",
+        "Test significance of review_count on sales",
+        "Check for multicollinearity among features",
+        "Validate model on holdout shoe data if available",
+        "Test distribution differences between training categories",
+        "correlation analysis between price, rating_average, review_count and quantity_sold",
+        "feature importance ranking for prediction model",
+        "distribution analysis of quantity_sold in training data",
+        "cross-validation performance metrics (RMSE, MAE) for model evaluation",
+        "Correlation analysis between numerical features and 'quantity_sold'.",
+        "Test for statistically significant differences in 'quantity_sold' across different 'brand' values.",
+        "Check distribution of numerical features for skewness and outliers."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Correlation analysis between price and quantity_sold",
+          "Test significance of review_count on sales",
+          "Check for multicollinearity among features",
+          "Validate model on holdout shoe data if available",
+          "Test distribution differences between training categories"
+        ],
+        [
+          "correlation analysis between price, rating_average, review_count and quantity_sold",
+          "feature importance ranking for prediction model",
+          "distribution analysis of quantity_sold in training data",
+          "cross-validation performance metrics (RMSE, MAE) for model evaluation"
+        ],
+        [
+          "Correlation analysis between numerical features and 'quantity_sold'.",
+          "Test for statistically significant differences in 'quantity_sold' across different 'brand' values.",
+          "Check distribution of numerical features for skewness and outliers."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file named quantity.csv",
+        "Single column 'quantity_sold'",
+        "1750 rows matching test.csv order",
+        "Integer values (sales quantities)",
+        "No header row beyond column name",
+        "output file must be named 'quantity.csv'",
+        "output must contain column named 'quantity_sold'",
+        "output must have 1750 rows matching test.csv",
+        "quantity_sold values must be non-negative integers",
+        "output should preserve row order from test.csv or include identifier for matching",
+        "Output file must be named 'quantity.csv'.",
+        "Output file must contain a column named 'quantity_sold'.",
+        "Output file must contain 'id' column from test.csv."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "CSV file named quantity.csv",
+          "Single column 'quantity_sold'",
+          "1750 rows matching test.csv order",
+          "Integer values (sales quantities)",
+          "No header row beyond column name"
+        ],
+        [
+          "output file must be named 'quantity.csv'",
+          "output must contain column named 'quantity_sold'",
+          "output must have 1750 rows matching test.csv",
+          "quantity_sold values must be non-negative integers",
+          "output should preserve row order from test.csv or include identifier for matching"
+        ],
+        [
+          "Output file must be named 'quantity.csv'.",
+          "Output file must contain a column named 'quantity_sold'.",
+          "Output file must contain 'id' column from test.csv."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5819444444444446
+}

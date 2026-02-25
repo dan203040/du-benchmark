@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of water samples that exceeded bacterial standards (Violation='yes') to 3 decimal places",
+    "filters": [
+      "Year == 2013",
+      "Community is in Massachusetts (all records appear to be from MA)",
+      "Bathing season samples only (likely June-August based on sample dates)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What constitutes the bathing season timeframe?",
+      "How many total water samples were collected?",
+      "How many samples had Violation='yes'?",
+      "What is the percentage calculation: (violations/total)*100?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2013.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "CFU/100mL or MPN/100mL (bacterial count)",
+      "Sample Date": "datetime (YYYY-MM-DD HH:MM:SS)",
+      "Year": "year",
+      "Violation": "categorical (yes/no)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date is in datetime format with timestamp (00:00:00)",
+      "Violation column contains string values 'yes' or 'no'",
+      "Indicator Level is float64, may contain null values",
+      "All samples appear to be from Massachusetts beaches"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Violation column must have values 'yes' or 'no'",
+      "Year must equal 2013",
+      "Sample Date must be valid datetime",
+      "Exclude null/missing Violation values from calculation"
+    ],
+    "derived_filters": [
+      "Filter to bathing season dates (need to confirm: typically Memorial Day to Labor Day or June-August)",
+      "Include only valid samples with non-null Violation values"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output as percentage with exactly 3 decimal places",
+      "Format: XX.XXX%",
+      "Round to 3 decimal places, not truncate"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of water samples that exceeded bacterial standards (Violation='yes') to 3 decimal places\",\n    \"filters\": [\n      \"Year == 2013\",\n      \"Community is in Massachusetts (all records appear to be from MA)\",\n      \"Bathing season samples only (likely June-August based on sample dates)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What constitutes the bathing season timeframe?\",\n      \"How many total water samples were collected?\",\n      \"How many samples had Violation='yes'?\",\n      \"What is the percentage calculation: (violations/total)*100?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"water-body-testing-2013.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"CFU/100mL or MPN/100mL (bacterial count)\",\n      \"Sample Date\": \"datetime (YYYY-MM-DD HH:MM:SS)\",\n      \"Year\": \"year\",\n      \"Violation\": \"categorical (yes/no)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date is in datetime format with timestamp (00:00:00)\",\n      \"Violation column contains string values 'yes' or 'no'\",\n      \"Indicator Level is float64, may contain null values\",\n      \"All samples appear to be from Massachusetts beaches\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Violation column must have values 'yes' or 'no'\",\n      \"Year must equal 2013\",\n      \"Sample Date must be valid datetime\",\n      \"Exclude null/missing Violation values from calculation\"\n    ],\n    \"derived_filters\": [\n      \"Filter to bathing season dates (need to confirm: typically Memorial Day to Labor Day or June-August)\",\n      \"Include only valid samples with non-null Violation values\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output as percentage with exactly 3 decimal places\",\n      \"Format: XX.XXX%\",\n      \"Round to 3 decimal places, not truncate\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.809587001800537,
+  "token_usage": {
+    "input_tokens": 1724,
+    "output_tokens": 688
+  }
+}

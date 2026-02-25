@@ -1,0 +1,527 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Lag (0-48 hours) that maximizes r^2 correlation between semi-major axis change (km) from TLE data and OMNI AP index during May 1-30, 2024",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Lag (0-48 hours) that maximizes r^2 correlation between semi-major axis change (km) from TLE data and OMNI AP index during May 1-30, 2024",
+        "Best lag (0-48 hours) that maximizes r^2 correlation between atmospheric drag (semi-major axis change in km from TLE data) and OMNI AP index",
+        "Best lag (0-48 hours) between semi-major axis change of SATCAT 43180 and OMNI AP index that maximizes r^2 correlation during May 1-30, 2024"
+      ]
+    },
+    "filters": {
+      "value": [
+        "epoch_year = 24",
+        "epoch_day between 122 and 151 (May 1-30, 2024)",
+        "AP index not missing",
+        "semi-major axis change calculable from consecutive TLEs",
+        "May 1-30, 2024",
+        "SATCAT 43180",
+        "TLE epoch times rounded to nearest hour",
+        "Lag range 0-48 hours",
+        "TLE data within May 1-30, 2024",
+        "OMNI2 data within May 1-30, 2024"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "epoch_year = 24",
+          "epoch_day between 122 and 151 (May 1-30, 2024)",
+          "AP index not missing",
+          "semi-major axis change calculable from consecutive TLEs"
+        ],
+        [
+          "May 1-30, 2024",
+          "SATCAT 43180",
+          "TLE epoch times rounded to nearest hour",
+          "Lag range 0-48 hours"
+        ],
+        [
+          "TLE data within May 1-30, 2024",
+          "OMNI2 data within May 1-30, 2024"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "hourly_timestamp",
+        "lag_hours"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "hourly_timestamp"
+        ],
+        [
+          "lag_hours"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar (best lag value)",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate semi-major axis from mean_motion using mu=398600.4418",
+        "Round TLE epoch times to nearest hour",
+        "Compute hourly change in semi-major axis",
+        "Extract AP index from OMNI2 data",
+        "Calculate correlations for lags 0-48 hours",
+        "Find lag with maximum r^2",
+        "How to parse TLE epoch (epoch_year, epoch_day) into datetime?",
+        "How to compute semi-major axis from mean_motion using mu=398600.4418 km^3/s^2?",
+        "How to calculate semi-major axis change (atmospheric drag) between consecutive TLE entries?",
+        "How to round TLE epoch times to nearest hour?",
+        "How to identify and extract AP index from OMNI2 hourly data?",
+        "How to align TLE and OMNI2 data on hourly timestamps?",
+        "How to apply variable lags (0-48 hours) between AP index and drag measurements?",
+        "How to compute r^2 correlation for each lag value?",
+        "Which lag value produces maximum r^2?",
+        "Calculate semi-major axis from TLE data.",
+        "Calculate semi-major axis change (delta) between consecutive TLE data points.",
+        "Extract AP index from OMNI2 data.",
+        "Round TLE epoch times to the nearest hour.",
+        "Merge TLE data and OMNI2 data based on rounded epoch time and lag.",
+        "Calculate r^2 correlation between semi-major axis change and AP index for each lag (0-48 hours).",
+        "Identify the lag with the maximum r^2 correlation."
+      ],
+      "confidence": 0.3333333333333332,
+      "votes": [
+        [
+          "Calculate semi-major axis from mean_motion using mu=398600.4418",
+          "Round TLE epoch times to nearest hour",
+          "Compute hourly change in semi-major axis",
+          "Extract AP index from OMNI2 data",
+          "Calculate correlations for lags 0-48 hours",
+          "Find lag with maximum r^2"
+        ],
+        [
+          "How to parse TLE epoch (epoch_year, epoch_day) into datetime?",
+          "How to compute semi-major axis from mean_motion using mu=398600.4418 km^3/s^2?",
+          "How to calculate semi-major axis change (atmospheric drag) between consecutive TLE entries?",
+          "How to round TLE epoch times to nearest hour?",
+          "How to identify and extract AP index from OMNI2 hourly data?",
+          "How to align TLE and OMNI2 data on hourly timestamps?",
+          "How to apply variable lags (0-48 hours) between AP index and drag measurements?",
+          "How to compute r^2 correlation for each lag value?",
+          "Which lag value produces maximum r^2?"
+        ],
+        [
+          "Calculate semi-major axis from TLE data.",
+          "Calculate semi-major axis change (delta) between consecutive TLE data points.",
+          "Extract AP index from OMNI2 data.",
+          "Round TLE epoch times to the nearest hour.",
+          "Merge TLE data and OMNI2 data based on rounded epoch time and lag.",
+          "Calculate r^2 correlation between semi-major axis change and AP index for each lag (0-48 hours).",
+          "Identify the lag with the maximum r^2 correlation."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "43180.tle",
+        "omni2_2024.dat",
+        "omni2.text"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "43180.tle",
+          "omni2_2024.dat",
+          "omni2.text"
+        ],
+        [
+          "43180.tle",
+          "omni2_2024.dat",
+          "omni2.text"
+        ],
+        [
+          "43180.tle",
+          "omni2_2024.dat",
+          "omni2.text"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "TLE epoch_year uses 2-digit year (24)",
+        "OMNI2 uses 4-digit year (2024)",
+        "TLE epoch_day is fractional day of year",
+        "OMNI2 has separate year, day, hour columns",
+        "omni2_2024.dat has numeric column names instead of meaningful headers",
+        "omni2.text describes format but is not machine-readable data",
+        "TLE epoch is split into epoch_year and epoch_day (fractional day of year)",
+        "OMNI2 datetime is split into year, day-of-year, hour columns",
+        "Column names in omni2_2024.dat are not descriptive.",
+        "omni2.text provides format specification for omni2_2024.dat"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "TLE epoch_year uses 2-digit year (24)",
+          "OMNI2 uses 4-digit year (2024)",
+          "TLE epoch_day is fractional day of year",
+          "OMNI2 has separate year, day, hour columns"
+        ],
+        [
+          "omni2_2024.dat has numeric column names instead of meaningful headers",
+          "omni2.text describes format but is not machine-readable data",
+          "TLE epoch is split into epoch_year and epoch_day (fractional day of year)",
+          "OMNI2 datetime is split into year, day-of-year, hour columns"
+        ],
+        [
+          "Column names in omni2_2024.dat are not descriptive.",
+          "omni2.text provides format specification for omni2_2024.dat"
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "mean_motion": "revolutions per day",
+        "semi_major_axis": "km",
+        "semi_major_axis_change": "km",
+        "ap_index": "nT (from OMNI2 specification)",
+        "inclination": "degrees",
+        "raan": "degrees",
+        "eccentricity": "unitless",
+        "arg_perigee": "degrees",
+        "mean_anomaly": "degrees",
+        "mu": "km^3/s^2",
+        "epoch_day": "fractional day of year",
+        "lag": "hours"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "mean_motion": "revolutions/day",
+          "semi_major_axis": "km",
+          "semi_major_axis_change": "km",
+          "AP_index": "nT (from OMNI2 specification)",
+          "inclination": "degrees",
+          "raan": "degrees",
+          "eccentricity": "unitless",
+          "arg_perigee": "degrees",
+          "mean_anomaly": "degrees"
+        },
+        {
+          "mean_motion": "revolutions per day",
+          "semi_major_axis": "km",
+          "semi_major_axis_change": "km",
+          "mu": "km^3/s^2",
+          "epoch_day": "fractional day of year",
+          "inclination": "degrees",
+          "raan": "degrees",
+          "eccentricity": "dimensionless",
+          "arg_perigee": "degrees",
+          "mean_anomaly": "degrees",
+          "lag": "hours",
+          "AP_index": "dimensionless"
+        },
+        {
+          "inclination": "degrees",
+          "raan": "degrees",
+          "eccentricity": "unitless",
+          "arg_perigee": "degrees",
+          "mean_anomaly": "degrees",
+          "mean_motion": "revolutions per day",
+          "ap_index": "unitless"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "TLE epoch_day has precision to 8 decimal places (seconds)",
+        "OMNI2 hour is integer 0-23",
+        "Mean motion needs conversion to semi-major axis using mu",
+        "mean_motion is in revolutions per day, needs conversion for semi-major axis calculation",
+        "epoch_day is fractional (e.g., 122.17811289 = day 122 + time fraction)",
+        "semi-major axis calculation: a = (mu / (2*pi*n/86400)^2)^(1/3) where n is mean_motion",
+        "TLE eccentricity stored without leading decimal point (e.g., 0.0001844 represents 0.0001844)",
+        "Mean motion needs to be converted to radians per second for semi-major axis calculation.",
+        "Semi-major axis is in km."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "TLE epoch_day has precision to 8 decimal places (seconds)",
+          "OMNI2 hour is integer 0-23",
+          "Mean motion needs conversion to semi-major axis using mu"
+        ],
+        [
+          "mean_motion is in revolutions per day, needs conversion for semi-major axis calculation",
+          "epoch_day is fractional (e.g., 122.17811289 = day 122 + time fraction)",
+          "semi-major axis calculation: a = (mu / (2*pi*n/86400)^2)^(1/3) where n is mean_motion",
+          "TLE eccentricity stored without leading decimal point (e.g., 0.0001844 represents 0.0001844)"
+        ],
+        [
+          "Mean motion needs to be converted to radians per second for semi-major axis calculation.",
+          "Semi-major axis is in km."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "TLE times need rounding to nearest hour to match OMNI2 hourly resolution",
+        "TLE data points are irregular (not hourly), need interpolation or nearest matching",
+        "Time representation: TLE uses year+fractional_day, OMNI2 uses year+day_of_year+hour",
+        "Need to determine which column in omni2_2024.dat corresponds to AP index from omni2.text specification"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "TLE times need rounding to nearest hour to match OMNI2 hourly resolution",
+          "TLE data points are irregular (not hourly), need interpolation or nearest matching"
+        ],
+        [
+          "Time representation: TLE uses year+fractional_day, OMNI2 uses year+day_of_year+hour",
+          "Need to determine which column in omni2_2024.dat corresponds to AP index from omni2.text specification"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "999999.99",
+        "99999.99",
+        "99999.99.1",
+        "99999.99.2",
+        "99999.99.3",
+        "99999.99.4",
+        "999.9",
+        "-9",
+        "",
+        "9999.99",
+        "9999.9",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6153846153846152,
+      "votes": [
+        [
+          "999999.99",
+          "99999.99",
+          "99999.99.1",
+          "99999.99.2",
+          "99999.99.3",
+          "99999.99.4",
+          "999.9",
+          "-9",
+          ""
+        ],
+        [
+          "999999.99",
+          "99999.99",
+          "999.9",
+          "9999.99",
+          "9999.9",
+          "999.9"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "999999.99",
+          "99999.99.1",
+          "99999.99.2",
+          "99999.99.3",
+          "99999.99.4",
+          "999.9"
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 0.33,
+      "votes": [
+        12.0,
+        55.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "mu = 398600.4418 km^3/s^2",
+        "Lag range: 0-48 hours",
+        "Time period: May 1-30, 2024",
+        "TLE epoch times must be rounded to nearest hour",
+        "Correlation must use r^2 metric",
+        "Date range: May 1-30, 2024 (epoch_day between 122-151 for year 2024)",
+        "SATCAT/NORAD ID: 43180",
+        "Lag range: 0 to 48 hours inclusive",
+        "Gravitational parameter mu = 398600.4418 km^3/s^2",
+        "Use hourly OMNI2 data",
+        "Round TLE epoch times to nearest hour for alignment",
+        "Lag must be an integer between 0 and 48 (inclusive).",
+        "TLE data must be converted to semi-major axis (a) using mu and mean_motion: a = (mu / mean_motion^2)^(1/3), where mu = 398600.4418 km^3/s^2"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "mu = 398600.4418 km^3/s^2",
+          "Lag range: 0-48 hours",
+          "Time period: May 1-30, 2024",
+          "TLE epoch times must be rounded to nearest hour",
+          "Correlation must use r^2 metric"
+        ],
+        [
+          "Date range: May 1-30, 2024 (epoch_day between 122-151 for year 2024)",
+          "SATCAT/NORAD ID: 43180",
+          "Lag range: 0 to 48 hours inclusive",
+          "Gravitational parameter mu = 398600.4418 km^3/s^2",
+          "Use hourly OMNI2 data",
+          "Round TLE epoch times to nearest hour for alignment"
+        ],
+        [
+          "Lag must be an integer between 0 and 48 (inclusive).",
+          "TLE data must be converted to semi-major axis (a) using mu and mean_motion: a = (mu / mean_motion^2)^(1/3), where mu = 398600.4418 km^3/s^2"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove TLE rows outside May 1-30, 2024",
+        "Filter OMNI2 to May 1-30, 2024",
+        "Exclude rows where AP index is sentinel value",
+        "Ensure consecutive TLEs for change calculation",
+        "Filter 43180.tle for epoch_year==24 AND epoch_day>=122 AND epoch_day<152",
+        "Filter omni2_2024.dat for May 2024 (day_of_year 122-151)",
+        "Exclude records with sentinel values in AP index column",
+        "Require at least 2 consecutive TLE entries to compute semi-major axis change",
+        "Epoch time rounded to the nearest hour.",
+        "Semi-major axis change (delta) between consecutive TLE data points."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Remove TLE rows outside May 1-30, 2024",
+          "Filter OMNI2 to May 1-30, 2024",
+          "Exclude rows where AP index is sentinel value",
+          "Ensure consecutive TLEs for change calculation"
+        ],
+        [
+          "Filter 43180.tle for epoch_year==24 AND epoch_day>=122 AND epoch_day<152",
+          "Filter omni2_2024.dat for May 2024 (day_of_year 122-151)",
+          "Exclude records with sentinel values in AP index column",
+          "Require at least 2 consecutive TLE entries to compute semi-major axis change"
+        ],
+        [
+          "Epoch time rounded to the nearest hour.",
+          "Semi-major axis change (delta) between consecutive TLE data points."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation for each lag",
+        "Maximum r^2 identification",
+        "Significance testing of correlations",
+        "Compute Pearson r^2 correlation coefficient for each lag (0-48 hours)",
+        "Identify lag with maximum r^2 value",
+        "Pearson correlation coefficient (r) between semi-major axis change and AP index.",
+        "R-squared (r^2) calculation."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation for each lag",
+          "Maximum r^2 identification",
+          "Significance testing of correlations"
+        ],
+        [
+          "Compute Pearson r^2 correlation coefficient for each lag (0-48 hours)",
+          "Identify lag with maximum r^2 value"
+        ],
+        [
+          "Pearson correlation coefficient (r) between semi-major axis change and AP index.",
+          "R-squared (r^2) calculation."
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Best lag as integer 0-48",
+        "Corresponding maximum r^2 value",
+        "Time-aligned dataset for verification",
+        "Return the optimal lag value in hours (integer 0-48)",
+        "Include the maximum r^2 value achieved",
+        "Result should be a single scalar lag value",
+        "Report the lag (in hours) with the highest r^2 correlation.",
+        "Report the maximum r^2 value."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Best lag as integer 0-48",
+          "Corresponding maximum r^2 value",
+          "Time-aligned dataset for verification"
+        ],
+        [
+          "Return the optimal lag value in hours (integer 0-48)",
+          "Include the maximum r^2 value achieved",
+          "Result should be a single scalar lag value"
+        ],
+        [
+          "Report the lag (in hours) with the highest r^2 correlation.",
+          "Report the maximum r^2 value."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5528247863247865
+}

@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Global seasonal average temperature changes over time",
+    "filters": [],
+    "grouping_variables": [
+      "year",
+      "season"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "Calculate the average temperature for each month.",
+      "Determine the season for each month.",
+      "Calculate the average temperature for each season in each year.",
+      "Plot the seasonal average temperatures over time."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "GlobalTemperatures.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "LandAverageTemperature": "degrees Celsius",
+      "LandAverageTemperatureUncertainty": "degrees Celsius"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "dt column must be parsed as datetime objects.",
+      "Handle missing values in temperature columns appropriately (e.g., imputation or removal)."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The plot should be saved as result.png.",
+      "The plot should be formatted according to plot.yaml."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Global seasonal average temperature changes over time\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"year\",\n      \"season\"\n    ],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"Calculate the average temperature for each month.\",\n      \"Determine the season for each month.\",\n      \"Calculate the average temperature for each season in each year.\",\n      \"Plot the seasonal average temperatures over time.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"GlobalTemperatures.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"LandAverageTemperature\": \"degrees Celsius\",\n      \"LandAverageTemperatureUncertainty\": \"degrees Celsius\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"dt column must be parsed as datetime objects.\",\n      \"Handle missing values in temperature columns appropriately (e.g., imputation or removal).\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The plot should be saved as result.png.\",\n      \"The plot should be formatted according to plot.yaml.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.340456962585449,
+  "token_usage": {}
+}

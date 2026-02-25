@@ -1,0 +1,439 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of human conflicts between 800 and 1400 AD, attributed to modern countries",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Count of human conflicts between 800 and 1400 AD, attributed to modern countries",
+        "Count of human conflicts between 800 and 1400 AD that lasted at least one year, attributed to modern countries",
+        "Count of human conflicts between 800 and 1400 AD, attributed to modern countries"
+      ]
+    },
+    "filters": {
+      "value": [
+        "StartYear >= 800",
+        "EndYear <= 1400",
+        "(EndYear - StartYear) >= 1",
+        "StartYear >= 800 AND StartYear <= 1400",
+        "Conflict duration (EndYear - StartYear) >= 1",
+        "Conflict duration >= 1 year"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "StartYear >= 800",
+          "EndYear <= 1400",
+          "(EndYear - StartYear) >= 1"
+        ],
+        [
+          "StartYear >= 800 AND StartYear <= 1400",
+          "Conflict duration (EndYear - StartYear) >= 1"
+        ],
+        [
+          "StartYear >= 800",
+          "EndYear <= 1400",
+          "Conflict duration >= 1 year"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "country",
+        "modern_country",
+        "Modern Country"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "country"
+        ],
+        [
+          "modern_country"
+        ],
+        [
+          "Modern Country"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 1.0,
+      "votes": [
+        "table",
+        "table",
+        "table"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to extract location information from conflict names?",
+        "How to map historical locations to modern countries?",
+        "How to handle conflicts spanning multiple years?",
+        "How to attribute multi-location conflicts to countries?",
+        "How many conflicts occurred between 800 and 1400 AD?",
+        "Which conflicts lasted at least one year (EndYear - StartYear >= 1)?",
+        "How to extract actor/location information from Conflict column?",
+        "How to map historical entities (kingdoms, empires, regions) to modern countries?",
+        "How to use worldcities.csv to map location names to modern countries?",
+        "Should conflicts involving multiple countries be counted once or multiple times (per country)?",
+        "How to handle conflicts where locations cannot be mapped to modern countries?",
+        "How to determine the duration of a conflict?",
+        "How to map historical conflict locations to modern countries?",
+        "How to handle conflicts spanning multiple modern countries?",
+        "How to define 'human conflict'?",
+        "How to handle conflicts with missing location information?"
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "How to extract location information from conflict names?",
+          "How to map historical locations to modern countries?",
+          "How to handle conflicts spanning multiple years?",
+          "How to attribute multi-location conflicts to countries?"
+        ],
+        [
+          "How many conflicts occurred between 800 and 1400 AD?",
+          "Which conflicts lasted at least one year (EndYear - StartYear >= 1)?",
+          "How to extract actor/location information from Conflict column?",
+          "How to map historical entities (kingdoms, empires, regions) to modern countries?",
+          "How to use worldcities.csv to map location names to modern countries?",
+          "Should conflicts involving multiple countries be counted once or multiple times (per country)?",
+          "How to handle conflicts where locations cannot be mapped to modern countries?"
+        ],
+        [
+          "How to determine the duration of a conflict?",
+          "How to map historical conflict locations to modern countries?",
+          "How to handle conflicts spanning multiple modern countries?",
+          "How to define 'human conflict'?",
+          "How to handle conflicts with missing location information?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "conflict_brecke.csv",
+        "worldcities.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "conflict_brecke.csv",
+          "worldcities.csv"
+        ],
+        [
+          "conflict_brecke.csv",
+          "worldcities.csv"
+        ],
+        [
+          "conflict_brecke.csv",
+          "worldcities.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Conflict column contains location information but no standardized location columns",
+        "No direct join key between conflict data and modern cities data",
+        "conflict_brecke.csv contains historical entity names in Conflict column, not standardized location fields",
+        "worldcities.csv contains modern country names, requires mapping from historical to modern entities",
+        "No direct join key exists between files - requires text parsing and fuzzy matching"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Conflict column contains location information but no standardized location columns",
+          "No direct join key between conflict data and modern cities data"
+        ],
+        [
+          "conflict_brecke.csv contains historical entity names in Conflict column, not standardized location fields",
+          "worldcities.csv contains modern country names, requires mapping from historical to modern entities",
+          "No direct join key exists between files - requires text parsing and fuzzy matching"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "startyear": "AD year",
+        "endyear": "AD year",
+        "fatalities": "number of deaths",
+        "century": "century number",
+        "decade": "decade number",
+        "lat": "degrees (decimal latitude)",
+        "lng": "degrees (decimal longitude)",
+        "population": "count (persons)"
+      },
+      "confidence": 0.6666666666666665,
+      "votes": [
+        {
+          "StartYear": "AD year",
+          "EndYear": "AD year",
+          "Fatalities": "number of deaths",
+          "Century": "century number",
+          "Decade": "decade number"
+        },
+        {
+          "StartYear": "year (integer, AD)",
+          "EndYear": "year (integer, AD)",
+          "Fatalities": "count (float, with nulls)",
+          "Century": "year (integer, century marker)",
+          "Decade": "year (integer, decade marker)",
+          "lat": "degrees (decimal latitude)",
+          "lng": "degrees (decimal longitude)",
+          "population": "count (persons)"
+        },
+        {
+          "StartYear": "AD",
+          "EndYear": "AD",
+          "Fatalities": "number of deaths"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Conflict names contain location information but need parsing",
+        "Historical locations need mapping to modern countries",
+        "Some conflicts may span multiple modern countries",
+        "Fatalities column has many missing values (nulls)",
+        "Century and Decade columns appear to be year values, not century/decade numbers",
+        "Historical year ranges may need validation (EndYear >= StartYear)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Conflict names contain location information but need parsing",
+          "Historical locations need mapping to modern countries",
+          "Some conflicts may span multiple modern countries"
+        ],
+        [
+          "Fatalities column has many missing values (nulls)",
+          "Century and Decade columns appear to be year values, not century/decade numbers",
+          "Historical year ranges may need validation (EndYear >= StartYear)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "conflict_brecke.csv uses historical names, worldcities.csv uses modern country names",
+        "Historical place names in conflict_brecke.csv may not match modern names in worldcities.csv",
+        "Historical political entities (kingdoms, empires) need mapping to modern nation-states",
+        "Multiple modern countries may correspond to one historical entity"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "conflict_brecke.csv uses historical names, worldcities.csv uses modern country names"
+        ],
+        [
+          "Historical place names in conflict_brecke.csv may not match modern names in worldcities.csv",
+          "Historical political entities (kingdoms, empires) need mapping to modern nation-states",
+          "Multiple modern countries may correspond to one historical entity"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null"
+      ],
+      "confidence": 0.8333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Conflict must have StartYear and EndYear",
+        "Conflict must last at least 1 year (EndYear - StartYear >= 1)",
+        "Time period limited to 800-1400 AD",
+        "StartYear >= 800 AND StartYear <= 1400",
+        "EndYear - StartYear >= 1",
+        "Conflict must involve human actors (exclude natural disasters)",
+        "Each conflict should be counted once per analysis",
+        "Conflict duration must be at least 1 year (EndYear - StartYear >= 0)",
+        "StartYear and EndYear must be integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Conflict must have StartYear and EndYear",
+          "Conflict must last at least 1 year (EndYear - StartYear >= 1)",
+          "Time period limited to 800-1400 AD"
+        ],
+        [
+          "StartYear >= 800 AND StartYear <= 1400",
+          "EndYear - StartYear >= 1",
+          "Conflict must involve human actors (exclude natural disasters)",
+          "Each conflict should be counted once per analysis"
+        ],
+        [
+          "Conflict duration must be at least 1 year (EndYear - StartYear >= 0)",
+          "StartYear and EndYear must be integers"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Extract location names from Conflict column",
+        "Map historical locations to modern countries using worldcities.csv or external knowledge",
+        "Calculate conflict_duration = EndYear - StartYear",
+        "Filter conflicts where conflict_duration >= 1",
+        "Extract location and actor names from Conflict column using text parsing",
+        "Map extracted entities to modern countries using worldcities.csv and historical mapping logic",
+        "ConflictDuration = EndYear - StartYear + 1",
+        "ConflictDuration >= 1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Extract location names from Conflict column",
+          "Map historical locations to modern countries using worldcities.csv or external knowledge"
+        ],
+        [
+          "Calculate conflict_duration = EndYear - StartYear",
+          "Filter conflicts where conflict_duration >= 1",
+          "Extract location and actor names from Conflict column using text parsing",
+          "Map extracted entities to modern countries using worldcities.csv and historical mapping logic"
+        ],
+        [
+          "ConflictDuration = EndYear - StartYear + 1",
+          "ConflictDuration >= 1"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate conflicts",
+        "Validate year ranges (StartYear <= EndYear)",
+        "Verify century/decade calculations match year values",
+        "Validate all StartYear and EndYear values are within 800-1400 range",
+        "Verify EndYear >= StartYear for all records",
+        "Count unmapped conflicts (those that cannot be attributed to modern countries)"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Check for duplicate conflicts",
+          "Validate year ranges (StartYear <= EndYear)",
+          "Verify century/decade calculations match year values"
+        ],
+        [
+          "Validate all StartYear and EndYear values are within 800-1400 range",
+          "Check for duplicate conflicts",
+          "Verify EndYear >= StartYear for all records",
+          "Count unmapped conflicts (those that cannot be attributed to modern countries)"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Count per modern country",
+        "Total count across all countries",
+        "List of conflicts with attributed countries",
+        "Output should be a table with modern_country and conflict_count columns",
+        "Include count of total conflicts analyzed",
+        "Document attribution methodology and confidence level",
+        "Note conflicts that could not be mapped to modern countries",
+        "Handle conflicts involving multiple countries appropriately (specify counting method)",
+        "Table with columns: Modern Country, Number of Conflicts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count per modern country",
+          "Total count across all countries",
+          "List of conflicts with attributed countries"
+        ],
+        [
+          "Output should be a table with modern_country and conflict_count columns",
+          "Include count of total conflicts analyzed",
+          "Document attribution methodology and confidence level",
+          "Note conflicts that could not be mapped to modern countries",
+          "Handle conflicts involving multiple countries appropriately (specify counting method)"
+        ],
+        [
+          "Table with columns: Modern Country, Number of Conflicts"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6333333333333334
+}

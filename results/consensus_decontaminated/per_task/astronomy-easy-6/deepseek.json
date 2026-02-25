@@ -1,0 +1,98 @@
+{
+  "m_q": {
+    "target_metric": "average rate of semi-major axis decay (km/day) for two periods: quiet period (May 1-4, 2024) and storm period (May 10-13, 2024)",
+    "filters": [
+      "EPOCH between 2024-05-01 and 2024-05-04 for quiet period",
+      "EPOCH between 2024-05-10 and 2024-05-13 for storm period",
+      "NORAD_CAT_ID = 58214"
+    ],
+    "grouping_variables": [
+      "period_type (quiet/storm)"
+    ],
+    "output_cardinality": "pair of numbers (average_quiet_rate_km_day, average_storm_rate_km_day)",
+    "sub_questions": [
+      "Calculate semi-major axis from MEAN_MOTION using Kepler's law",
+      "Compute daily decay rate from semi-major axis changes over time",
+      "Average decay rates separately for quiet and storm periods"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "58214_quiet.csv",
+      "58214_storm.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Both files have identical column structures and dtypes"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "MEAN_MOTION": "revolutions per day",
+      "SEMIMAJOR_AXIS": "km",
+      "EPOCH": "UTC datetime",
+      "MEAN_MOTION_DOT": "revolutions per day squared",
+      "PERIOD": "minutes",
+      "APOAPSIS": "km",
+      "PERIAPSIS": "km"
+    },
+    "scale_issues": [
+      "MEAN_MOTION_DOT values are very small (e-05 to e-03)",
+      "BSTAR values are negative and small (e-03 to e-04)",
+      "ECCENTRICITY values are very small (e-04 to e-03)"
+    ],
+    "cross_source_conflicts": [
+      "Time periods are different but data structure is consistent"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "0.0"
+    ],
+    "expected_columns": 39,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Files contain TLE data with orbital elements",
+      "EPOCH column contains ISO 8601 timestamps",
+      "MEAN_MOTION_DDOT column appears to be all zeros",
+      "Files include both calculated fields (SEMIMAJOR_AXIS) and raw TLE data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "mu = 398600.4418 km^3/s^2 must be used for Kepler's law",
+      "earth radius = 6371.0 km",
+      "Semi-major axis must be calculated from MEAN_MOTION: a = (mu/(n*2\u03c0/86400)^2)^(1/3) where n is MEAN_MOTION in rev/day",
+      "Decay rate = \u0394a/\u0394t where \u0394a is change in semi-major axis and \u0394t is time difference in days"
+    ],
+    "derived_filters": [
+      "Remove duplicate EPOCH timestamps",
+      "Ensure chronological ordering within each period",
+      "Filter to only include valid MEAN_MOTION values > 0"
+    ],
+    "statistical_tests": [
+      "Linear regression of semi-major axis vs time for each period",
+      "Check for outliers in MEAN_MOTION values",
+      "Verify temporal coverage within specified date ranges"
+    ],
+    "output_format_requirements": [
+      "Pair of numbers with units km/day",
+      "Precision appropriate for orbital decay rates (likely 4-6 decimal places)"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average rate of semi-major axis decay (km/day) for two periods: quiet period (May 1-4, 2024) and storm period (May 10-13, 2024)\",\n        \"filters\": [\"EPOCH between 2024-05-01 and 2024-05-04 for quiet period\", \"EPOCH between 2024-05-10 and 2024-05-13 for storm period\", \"NORAD_CAT_ID = 58214\"],\n        \"grouping_variables\": [\"period_type (quiet/storm)\"],\n        \"output_cardinality\": \"pair of numbers (average_quiet_rate_km_day, average_storm_rate_km_day)\",\n        \"sub_questions\": [\"Calculate semi-major axis from MEAN_MOTION using Kepler's law\", \"Compute daily decay rate from semi-major axis changes over time\", \"Average decay rates separately for quiet and storm periods\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"58214_quiet.csv\", \"58214_storm.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Both files have identical column structures and dtypes\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"MEAN_MOTION\": \"revolutions per day\",\n            \"SEMIMAJOR_AXIS\": \"km\",\n            \"EPOCH\": \"UTC datetime\",\n            \"MEAN_MOTION_DOT\": \"revolutions per day squared\",\n            \"PERIOD\": \"minutes\",\n            \"APOAPSIS\": \"km\",\n            \"PERIAPSIS\": \"km\"\n        },\n        \"scale_issues\": [\"MEAN_MOTION_DOT values are very small (e-05 to e-03)\", \"BSTAR values are negative and small (e-03 to e-04)\", \"ECCENTRICITY values are very small (e-04 to e-03)\"],\n        \"cross_source_conflicts\": [\"Time periods are different but data structure is consistent\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"0.0\"],\n        \"expected_columns\": 39,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Files contain TLE data with orbital elements\", \"EPOCH column contains ISO 8601 timestamps\", \"MEAN_MOTION_DDOT column appears to be all zeros\", \"Files include both calculated fields (SEMIMAJOR_AXIS) and raw TLE data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"mu = 398600.4418 km^3/s^2 must be used for Kepler's law\", \"earth radius = 6371.0 km\", \"Semi-major axis must be calculated from MEAN_MOTION: a = (mu/(n*2\u03c0/86400)^2)^(1/3) where n is MEAN_MOTION in rev/day\", \"Decay rate = \u0394a/\u0394t where \u0394a is change in semi-major axis and \u0394t is time difference in days\"],\n        \"derived_filters\": [\"Remove duplicate EPOCH timestamps\", \"Ensure chronological ordering within each period\", \"Filter to only include valid MEAN_MOTION values > 0\"],\n        \"statistical_tests\": [\"Linear regression of semi-major axis vs time for each period\", \"Check for outliers in MEAN_MOTION values\", \"Verify temporal coverage within specified date ranges\"],\n        \"output_format_requirements\": [\"Pair of numbers with units km/day\", \"Precision appropriate for orbital decay rates (likely 4-6 decimal places)\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 16.643338203430176,
+  "token_usage": {
+    "input_tokens": 6927,
+    "output_tokens": 833
+  }
+}

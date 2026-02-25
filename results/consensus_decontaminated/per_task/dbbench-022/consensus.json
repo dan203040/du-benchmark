@@ -1,0 +1,309 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of games played by the Badgers in October",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "count of games played by the Badgers in October",
+        "count of games played in October",
+        "Count of games played by the Badgers in October"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date column contains 'October'",
+        "Team is Badgers (implied from context)",
+        "Date contains 'October'",
+        "Date is in October",
+        "Team is the Badgers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date column contains 'October'",
+          "Team is Badgers (implied from context)"
+        ],
+        [
+          "Date contains 'October'"
+        ],
+        [
+          "Date is in October",
+          "Team is the Badgers"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to identify Badgers games from the schedule?",
+        "How to extract month from Date column?",
+        "Are there multiple seasons in the data?",
+        "Which rows have dates in October?",
+        "How many rows match the October filter?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How to identify Badgers games from the schedule?",
+          "How to extract month from Date column?",
+          "Are there multiple seasons in the data?"
+        ],
+        [
+          "Which rows have dates in October?",
+          "How many rows match the October filter?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Football Schedule"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Football Schedule"
+        ],
+        [
+          "Football Schedule"
+        ],
+        [
+          "Football Schedule"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Date format varies (e.g., 'October 6' vs 'January 1, 2013')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date format varies (e.g., 'October 6' vs 'January 1, 2013')"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "attendance": "number of people",
+        "time": "time of day",
+        "date": "string representation of date (Month Day format)"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "Attendance": "number of people",
+          "Time": "time of day"
+        },
+        {
+          "Date": "string representation of date (Month Day format)",
+          "Attendance": "number of people (string with comma separator)"
+        },
+        {
+          "Attendance": "number of attendees"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Date column contains both simple month-day and full date formats"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date column contains both simple month-day and full date formats"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 1.0,
+      "votes": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "All games in the file are Badgers games (implied from context)",
+        "Date column must be parsed to extract month",
+        "Date must be parseable to identify month",
+        "Only count games where Date starts with 'October'",
+        "The 'Date' column must be parsed to determine the month.",
+        "The team name 'Badgers' needs to be identified either in the 'Opponent#' or 'Site' column."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All games in the file are Badgers games (implied from context)",
+          "Date column must be parsed to extract month"
+        ],
+        [
+          "Date must be parseable to identify month",
+          "Only count games where Date starts with 'October'"
+        ],
+        [
+          "The 'Date' column must be parsed to determine the month.",
+          "The team name 'Badgers' needs to be identified either in the 'Opponent#' or 'Site' column."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Date contains 'October'",
+        "Exclude rows with null/empty Date",
+        "Filter rows where Date column starts with 'October'",
+        "Month of 'Date' = October"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Date contains 'October'",
+          "Exclude rows with null/empty Date"
+        ],
+        [
+          "Filter rows where Date column starts with 'October'"
+        ],
+        [
+          "Month of 'Date' = October"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct October dates",
+        "Verify no duplicate dates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct October dates",
+          "Verify no duplicate dates"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Return single integer representing count of October games"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count"
+        ],
+        [
+          "Return single integer representing count of October games"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.588888888888889
+}

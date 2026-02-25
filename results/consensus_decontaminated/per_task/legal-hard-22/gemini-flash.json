@@ -1,0 +1,63 @@
+{
+  "m_q": {
+    "target_metric": "Proportion of reports with Identity Theft where Theft Type is 'Bank Account' and Theft Subtype is 'New Accounts'",
+    "filters": [
+      "Theft Type = 'Bank Account'",
+      "Theft Subtype = 'New Accounts'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports with Identity Theft?",
+      "What is the number of reports with Identity Theft, Theft Type 'Bank Account', and Theft Subtype 'New Accounts'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Type__Report Type",
+      "2024_CSN_Identity_Theft_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The proportion must be rounded to 4 decimal places."
+    ],
+    "derived_filters": [
+      "Isolate Identity Theft reports from '2024_CSN_Report_Type__Report Type'",
+      "Filter '2024_CSN_Identity_Theft_Reports_by_Type.csv' for 'Theft Type' = 'Bank Account' and 'Theft Subtype' = 'New Accounts'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a JSON object.",
+      "The proportion must be a number."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Proportion of reports with Identity Theft where Theft Type is 'Bank Account' and Theft Subtype is 'New Accounts'\",\n    \"filters\": [\n      \"Theft Type = 'Bank Account'\",\n      \"Theft Subtype = 'New Accounts'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of reports with Identity Theft?\",\n      \"What is the number of reports with Identity Theft, Theft Type 'Bank Account', and Theft Subtype 'New Accounts'?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_Report_Type__Report Type\",\n      \"2024_CSN_Identity_Theft_Reports_by_Type.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"number of reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The proportion must be rounded to 4 decimal places.\"\n    ],\n    \"derived_filters\": [\n      \"Isolate Identity Theft reports from '2024_CSN_Report_Type__Report Type'\",\n      \"Filter '2024_CSN_Identity_Theft_Reports_by_Type.csv' for 'Theft Type' = 'Bank Account' and 'Theft Subtype' = 'New Accounts'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a JSON object.\",\n      \"The proportion must be a number.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.0029261112213135,
+  "token_usage": {}
+}

@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "First player picked who attended a school in California",
+    "filters": [
+      "School/Club Team is located in California",
+      "Pick is minimum among California schools"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which schools in the School/Club Team column are located in California?",
+      "Among players who attended California schools, what is the minimum Pick number?",
+      "What is the Player name corresponding to that minimum Pick?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "NBA Draft History"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Round": "draft round number",
+      "Pick": "overall draft pick number"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some Position values are empty strings",
+      "School/Club Team contains both universities and club teams",
+      "California schools include variations like 'California State-Long Beach', 'California State-Fullerton', 'San Diego State'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Pick number must be valid (non-null)",
+      "School/Club Team must be identifiable as California institution",
+      "Return single player with earliest/lowest pick number"
+    ],
+    "derived_filters": [
+      "Identify California schools by matching patterns: 'California', 'Stanford', 'USC', 'UCLA', 'San Diego State', etc.",
+      "Filter to only rows where School/Club Team matches California institution"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return player name as string",
+      "Should be the player with minimum Pick value among California school attendees"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"First player picked who attended a school in California\",\n    \"filters\": [\n      \"School/Club Team is located in California\",\n      \"Pick is minimum among California schools\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which schools in the School/Club Team column are located in California?\",\n      \"Among players who attended California schools, what is the minimum Pick number?\",\n      \"What is the Player name corresponding to that minimum Pick?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"NBA Draft History\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Round\": \"draft round number\",\n      \"Pick\": \"overall draft pick number\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Some Position values are empty strings\",\n      \"School/Club Team contains both universities and club teams\",\n      \"California schools include variations like 'California State-Long Beach', 'California State-Fullerton', 'San Diego State'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Pick number must be valid (non-null)\",\n      \"School/Club Team must be identifiable as California institution\",\n      \"Return single player with earliest/lowest pick number\"\n    ],\n    \"derived_filters\": [\n      \"Identify California schools by matching patterns: 'California', 'Stanford', 'USC', 'UCLA', 'San Diego State', etc.\",\n      \"Filter to only rows where School/Club Team matches California institution\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return player name as string\",\n      \"Should be the player with minimum Pick value among California school attendees\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.71793007850647,
+  "token_usage": {
+    "input_tokens": 995,
+    "output_tokens": 585
+  }
+}

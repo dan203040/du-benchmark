@@ -1,0 +1,74 @@
+{
+  "m_q": {
+    "target_metric": "total crowd attendance",
+    "filters": [
+      "Venue equals 'Glenferrie Oval'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have Venue = 'Glenferrie Oval'?",
+      "What are the Crowd values for those rows?",
+      "Sum all Crowd values for Glenferrie Oval matches"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Aussie Rules Football Match Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Crowd": "number of people (count)",
+      "Date": "date format"
+    },
+    "scale_issues": [
+      "Crowd values contain commas as thousands separators (e.g., '8,000')",
+      "Crowd column has dtype 'object' but represents numeric values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Crowd values are stored as strings with comma thousand separators",
+      "Dates appear in 'd MMMM yyyy' format",
+      "Team scores stored as 'goals.behinds (total points)' format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Venue must exactly match 'Glenferrie Oval' (case-sensitive)",
+      "Crowd values must be parsed from string format with commas removed",
+      "Only sum non-null Crowd values"
+    ],
+    "derived_filters": [
+      "Filter rows where Venue == 'Glenferrie Oval'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return total as numeric value",
+      "Total should be sum of all matching crowd values"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total crowd attendance\",\n    \"filters\": [\"Venue equals 'Glenferrie Oval'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have Venue = 'Glenferrie Oval'?\",\n      \"What are the Crowd values for those rows?\",\n      \"Sum all Crowd values for Glenferrie Oval matches\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Aussie Rules Football Match Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Crowd\": \"number of people (count)\",\n      \"Date\": \"date format\"\n    },\n    \"scale_issues\": [\n      \"Crowd values contain commas as thousands separators (e.g., '8,000')\",\n      \"Crowd column has dtype 'object' but represents numeric values\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Crowd values are stored as strings with comma thousand separators\",\n      \"Dates appear in 'd MMMM yyyy' format\",\n      \"Team scores stored as 'goals.behinds (total points)' format\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Venue must exactly match 'Glenferrie Oval' (case-sensitive)\",\n      \"Crowd values must be parsed from string format with commas removed\",\n      \"Only sum non-null Crowd values\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Venue == 'Glenferrie Oval'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return total as numeric value\",\n      \"Total should be sum of all matching crowd values\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.601175785064697,
+  "token_usage": {
+    "input_tokens": 1276,
+    "output_tokens": 579
+  }
+}

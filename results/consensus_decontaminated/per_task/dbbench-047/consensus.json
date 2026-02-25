@@ -1,0 +1,324 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Result (score outcome) for a specific match",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Result (score outcome) for a specific match",
+        "Result value",
+        "The 'Result' of basketball matches"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Arena = 'A'",
+        "League = 'SL'",
+        "Match > 16",
+        "Arena is 'A Arena'",
+        "League is 'SL'",
+        "Match number is greater than 16"
+      ],
+      "confidence": 0.5000000000000001,
+      "votes": [
+        [
+          "Arena = 'A'",
+          "League = 'SL'",
+          "Match > 16"
+        ],
+        [
+          "Arena = 'A'",
+          "League = 'SL'",
+          "Match > 16"
+        ],
+        [
+          "Arena is 'A Arena'",
+          "League is 'SL'",
+          "Match number is greater than 16"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the match number?",
+        "What is the exact result (score) for that match?",
+        "Which teams were involved in that match?",
+        "Which rows have Arena equal to 'A'?",
+        "Which rows have League equal to 'SL'?",
+        "Which rows have Match number greater than 16?",
+        "What is the Result value for rows matching all three conditions?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the match number?",
+          "What is the exact result (score) for that match?",
+          "Which teams were involved in that match?"
+        ],
+        [
+          "Which rows have Arena equal to 'A'?",
+          "Which rows have League equal to 'SL'?",
+          "Which rows have Match number greater than 16?",
+          "What is the Result value for rows matching all three conditions?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Basketball Matches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Basketball Matches"
+        ],
+        [
+          "Basketball Matches"
+        ],
+        [
+          "Basketball Matches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "date & time ( cet )": "CET timezone",
+        "team and score": "Team names and score separated by dash",
+        "match": "sequential match number",
+        "result": "final score in format Score1-Score2"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Date & Time ( CET )": "CET timezone",
+          "Team and Score": "Team names and score separated by dash"
+        },
+        {
+          "Match": "sequential match number",
+          "Date & Time ( CET )": "date and time in Central European Time format dd.mm.yy, HH:MM",
+          "Team and Score": "team names and scores in format 'Team1 - Team2, Score1-Score2'",
+          "Result": "final score in format Score1-Score2"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Match numbers appear to be sequential but may have gaps",
+        "Score format uses en-dash (\u2013) not hyphen (-)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Match numbers appear to be sequential but may have gaps",
+          "Score format uses en-dash (\u2013) not hyphen (-)"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Match numbers should be unique",
+        "Each row represents one match",
+        "Scores should be numeric pairs separated by en-dash",
+        "Match must be numeric and greater than 16",
+        "Arena must equal 'A'",
+        "League must equal 'SL'",
+        "The 'Match' column needs to be converted to a numerical type to filter for values greater than 16."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Match numbers should be unique",
+          "Each row represents one match",
+          "Scores should be numeric pairs separated by en-dash"
+        ],
+        [
+          "Match must be numeric and greater than 16",
+          "Arena must equal 'A'",
+          "League must equal 'SL'"
+        ],
+        [
+          "The 'Match' column needs to be converted to a numerical type to filter for values greater than 16."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Arena = 'A' AND League = 'SL' AND Match > 16",
+        "Extract the single matching row",
+        "Convert Match column from string/object to numeric for comparison",
+        "Filter where Arena == 'A' AND League == 'SL' AND Match > 16",
+        "Convert 'Match' column to integer type."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Arena = 'A' AND League = 'SL' AND Match > 16",
+          "Extract the single matching row"
+        ],
+        [
+          "Convert Match column from string/object to numeric for comparison",
+          "Filter where Arena == 'A' AND League == 'SL' AND Match > 16"
+        ],
+        [
+          "Convert 'Match' column to integer type."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if exactly one match satisfies all conditions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if exactly one match satisfies all conditions"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return the complete 'Result' field value",
+        "Include match number and teams for context",
+        "Return the Result value(s) matching all filter conditions",
+        "If multiple matches exist, return all Results",
+        "If no matches exist, indicate no results found"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return the complete 'Result' field value",
+          "Include match number and teams for context"
+        ],
+        [
+          "Return the Result value(s) matching all filter conditions",
+          "If multiple matches exist, return all Results",
+          "If no matches exist, indicate no results found"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.538888888888889
+}

@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "Compare total count of fires impacting above 100 acres caused by lightning versus humans",
+    "filters": [
+      "gt_100 == 1",
+      "cause in ['L', 'H']"
+    ],
+    "grouping_variables": [
+      "cause"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the count of fires with gt_100=1 where cause='L'?",
+      "What is the count of fires with gt_100=1 where cause='H'?",
+      "Which count is larger?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage?",
+      "wind_med": "speed units?",
+      "erc_med": "energy release component",
+      "rain_sum": "precipitation units?",
+      "duration": "days",
+      "latitude": "degrees",
+      "longitude": "degrees",
+      "start_day_of_year": "day number",
+      "control_day_of_year": "day number"
+    },
+    "scale_issues": [
+      "latitude and longitude stored as integers (likely scaled)",
+      "Some columns like prim_threatened_aggregate have large ranges"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns (start_date, controlled_date) are in MM/DD/YYYY format",
+      "Sample shows cause codes: U, N, H, L (likely Unknown, Natural, Human, Lightning)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "gt_100 is binary (0 or 1)",
+      "cause_ind likely maps to cause (0=U, 1=H, etc.)",
+      "start_year should match control_year for most rows"
+    ],
+    "derived_filters": [
+      "Filter to rows where gt_100 == 1",
+      "Map cause codes: 'L' = Lightning, 'H' = Human"
+    ],
+    "statistical_tests": [
+      "Count comparison between cause='L' and cause='H' for gt_100=1"
+    ],
+    "output_format_requirements": [
+      "Final answer must be exactly 'Lightning' or 'Human' with no additional text"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Compare total count of fires impacting above 100 acres caused by lightning versus humans\",\n        \"filters\": [\"gt_100 == 1\", \"cause in ['L', 'H']\"],\n        \"grouping_variables\": [\"cause\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the count of fires with gt_100=1 where cause='L'?\", \"What is the count of fires with gt_100=1 where cause='H'?\", \"Which count is larger?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Fire_Weather_Data_2002-2014_2016.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"avrh_mean\": \"percentage?\", \"wind_med\": \"speed units?\", \"erc_med\": \"energy release component\", \"rain_sum\": \"precipitation units?\", \"duration\": \"days\", \"latitude\": \"degrees\", \"longitude\": \"degrees\", \"start_day_of_year\": \"day number\", \"control_day_of_year\": \"day number\"},\n        \"scale_issues\": [\"latitude and longitude stored as integers (likely scaled)\", \"Some columns like prim_threatened_aggregate have large ranges\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date columns (start_date, controlled_date) are in MM/DD/YYYY format\", \"Sample shows cause codes: U, N, H, L (likely Unknown, Natural, Human, Lightning)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"gt_100 is binary (0 or 1)\", \"cause_ind likely maps to cause (0=U, 1=H, etc.)\", \"start_year should match control_year for most rows\"],\n        \"derived_filters\": [\"Filter to rows where gt_100 == 1\", \"Map cause codes: 'L' = Lightning, 'H' = Human\"],\n        \"statistical_tests\": [\"Count comparison between cause='L' and cause='H' for gt_100=1\"],\n        \"output_format_requirements\": [\"Final answer must be exactly 'Lightning' or 'Human' with no additional text\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.555507898330688,
+  "token_usage": {
+    "input_tokens": 3282,
+    "output_tokens": 570
+  }
+}

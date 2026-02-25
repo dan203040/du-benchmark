@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "total number of RR2 Pts.",
+    "filters": [
+      "Won = 11"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which teams have Won = 11?",
+      "What are the RR2 Pts. values for teams with Won = 11?",
+      "Sum all RR2 Pts. values where Won = 11"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "team_racing_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "RR2 Pts.": "RR2_Pts"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Races": "count",
+      "Won": "count",
+      "RR1 Pts.": "points",
+      "RR2 Pts.": "points",
+      "RR3 Pts.": "points",
+      "Total Pts.": "points",
+      "Ranking": "ordinal"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All columns stored as 'object' dtype, may need numeric conversion",
+      "Column 'RR2 Pts.' contains a period in the name"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Won column must be converted to numeric for filtering",
+      "RR2 Pts. column must be converted to numeric for summation",
+      "Filter condition: Won == 11"
+    ],
+    "derived_filters": [
+      "CAST(Won AS INTEGER) = 11"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single scalar numeric value representing the total",
+      "Sum of all RR2 Pts. where Won equals 11"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total number of RR2 Pts.\",\n    \"filters\": [\"Won = 11\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which teams have Won = 11?\",\n      \"What are the RR2 Pts. values for teams with Won = 11?\",\n      \"Sum all RR2 Pts. values where Won = 11\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"team_racing_results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"RR2 Pts.\": \"RR2_Pts\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Races\": \"count\",\n      \"Won\": \"count\",\n      \"RR1 Pts.\": \"points\",\n      \"RR2 Pts.\": \"points\",\n      \"RR3 Pts.\": \"points\",\n      \"Total Pts.\": \"points\",\n      \"Ranking\": \"ordinal\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All columns stored as 'object' dtype, may need numeric conversion\",\n      \"Column 'RR2 Pts.' contains a period in the name\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Won column must be converted to numeric for filtering\",\n      \"RR2 Pts. column must be converted to numeric for summation\",\n      \"Filter condition: Won == 11\"\n    ],\n    \"derived_filters\": [\n      \"CAST(Won AS INTEGER) = 11\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single scalar numeric value representing the total\",\n      \"Sum of all RR2 Pts. where Won equals 11\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.37256121635437,
+  "token_usage": {
+    "input_tokens": 1144,
+    "output_tokens": 592
+  }
+}

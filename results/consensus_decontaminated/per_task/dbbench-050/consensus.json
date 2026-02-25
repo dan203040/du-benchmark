@@ -1,0 +1,321 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Platform names",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Platform names",
+        "Platform name",
+        "Platform and Developer"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year > 2006",
+        "Developer = '3G Studios'"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Year > 2006",
+          "Developer = '3G Studios'"
+        ],
+        [
+          "Year > 2006",
+          "Developer = '3G Studios'"
+        ],
+        [
+          "Year > 2006",
+          "Developer = '3G Studios'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "list",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Filter games where Year > 2006",
+        "Filter games where Developer is '3G Studios'",
+        "Extract Platform values from filtered rows",
+        "Which records have Year greater than 2006?",
+        "Which records have Developer equal to '3G Studios'?",
+        "What is the Platform value for records matching both conditions?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter games where Year > 2006",
+          "Filter games where Developer is '3G Studios'",
+          "Extract Platform values from filtered rows"
+        ],
+        [
+          "Which records have Year greater than 2006?",
+          "Which records have Developer equal to '3G Studios'?",
+          "What is the Platform value for records matching both conditions?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "SWAT Games"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "SWAT Games"
+        ],
+        [
+          "SWAT Games"
+        ],
+        [
+          "SWAT Games"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "platform": "gaming platform name",
+        "developer": "company name",
+        "publisher": "company name",
+        "title": "game title"
+      },
+      "confidence": 0.4666666666666666,
+      "votes": [
+        {
+          "Year": "calendar year"
+        },
+        {
+          "Year": "calendar year",
+          "Platform": "gaming platform name",
+          "Developer": "company name",
+          "Publisher": "company name",
+          "Title": "game title"
+        },
+        {
+          "Year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column is object type instead of numeric, may contain non-numeric values or need type conversion"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column is object type instead of numeric, may contain non-numeric values or need type conversion"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year must be convertible to numeric for comparison > 2006",
+        "Developer name matching must be exact (case-sensitive: '3G Studios' vs '3g studios' in question)",
+        "Year must be convertible to integer for comparison",
+        "Developer string match must be exact or case-insensitive",
+        "Year > 2006 means Year >= 2007",
+        "Year column should be numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year must be convertible to numeric for comparison > 2006",
+          "Developer name matching must be exact (case-sensitive: '3G Studios' vs '3g studios' in question)"
+        ],
+        [
+          "Year must be convertible to integer for comparison",
+          "Developer string match must be exact or case-insensitive",
+          "Year > 2006 means Year >= 2007"
+        ],
+        [
+          "Year column should be numeric"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Year > 2006",
+        "Developer = '3G Studios'",
+        "Convert Year column from string to integer before applying Year > 2006 filter",
+        "Apply both filters conjunctively (AND logic)",
+        "Year > 2006 is derived from the Year column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year > 2006",
+          "Developer = '3G Studios'"
+        ],
+        [
+          "Convert Year column from string to integer before applying Year > 2006 filter",
+          "Apply both filters conjunctively (AND logic)"
+        ],
+        [
+          "Year > 2006 is derived from the Year column"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check Year column for non-numeric values",
+        "Check Developer column for variations of '3G Studios'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check Year column for non-numeric values",
+          "Check Developer column for variations of '3G Studios'"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of unique platform names",
+        "Case-sensitive platform names as they appear in data",
+        "Return the Platform value as a string",
+        "If no records match, return null or empty result",
+        "If multiple records match, return all matching Platform values",
+        "Output should be a list of platforms and developers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of unique platform names",
+          "Case-sensitive platform names as they appear in data"
+        ],
+        [
+          "Return the Platform value as a string",
+          "If no records match, return null or empty result",
+          "If multiple records match, return all matching Platform values"
+        ],
+        [
+          "Output should be a list of platforms and developers"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5733333333333335
+}

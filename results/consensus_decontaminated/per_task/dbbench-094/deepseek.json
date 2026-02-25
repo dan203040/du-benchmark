@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "average of First Elected year",
+    "filters": [
+      "District = '11'",
+      "Committee contains 'Environmental Matters'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the exact string match for District 11?",
+      "Does 'Environmental Matters' need exact match or partial match?",
+      "Should we include variations like 'Environmental Matters (Vice-Chair)'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Maryland State Legislature Representatives"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "First Elected": "year"
+    },
+    "scale_issues": [
+      "First Elected is stored as object/string instead of integer"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "District column contains mixed formats (e.g., '05.2 5B', '06.0 6', '11')",
+      "Committee column contains parenthetical notes like '(Vice-Chair)'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "First Elected should be convertible to integer",
+      "District values should be consistent for filtering"
+    ],
+    "derived_filters": [
+      "Filter rows where District contains '11' as exact match",
+      "Filter rows where Committee contains 'Environmental Matters' substring"
+    ],
+    "statistical_tests": [
+      "Check distribution of First Elected years for filtered subset"
+    ],
+    "output_format_requirements": [
+      "Average year should be numeric, possibly with decimal places"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average of First Elected year\",\n        \"filters\": [\"District = '11'\", \"Committee contains 'Environmental Matters'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the exact string match for District 11?\", \"Does 'Environmental Matters' need exact match or partial match?\", \"Should we include variations like 'Environmental Matters (Vice-Chair)'?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Maryland State Legislature Representatives\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"First Elected\": \"year\"},\n        \"scale_issues\": [\"First Elected is stored as object/string instead of integer\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"District column contains mixed formats (e.g., '05.2 5B', '06.0 6', '11')\", \"Committee column contains parenthetical notes like '(Vice-Chair)'\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"First Elected should be convertible to integer\", \"District values should be consistent for filtering\"],\n        \"derived_filters\": [\"Filter rows where District contains '11' as exact match\", \"Filter rows where Committee contains 'Environmental Matters' substring\"],\n        \"statistical_tests\": [\"Check distribution of First Elected years for filtered subset\"],\n        \"output_format_requirements\": [\"Average year should be numeric, possibly with decimal places\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.637763977050781,
+  "token_usage": {
+    "input_tokens": 963,
+    "output_tokens": 422
+  }
+}

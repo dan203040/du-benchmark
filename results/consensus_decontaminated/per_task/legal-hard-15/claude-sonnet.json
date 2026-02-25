@@ -1,0 +1,133 @@
+{
+  "m_q": {
+    "target_metric": "Total count of Identity Theft reports",
+    "filters": [
+      "Year = 2024",
+      "Metropolitan Statistical Areas that span multiple states (cross-state MSAs)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which Metropolitan Statistical Areas span multiple states?",
+      "What is the value in '# of Reports' column for each cross-state MSA?",
+      "What is the sum of all reports from cross-state MSAs?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Last row in each file contains metadata description instead of data"
+    ],
+    "column_mappings": {
+      "Metropolitan Area": "Metropolitan Area",
+      "# of Reports": "# of Reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of identity theft reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "Same cross-state MSA appears in multiple state files with identical report counts (e.g., 'Washington-Arlington-Alexandria, DC-VA-MD-WV' appears in DC, MD, VA, WV files)",
+      "Duplicate counting risk: cross-state MSAs replicated across state files must be counted only once"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row contains metadata description text instead of data values",
+      "Metropolitan Area names contain state abbreviations separated by hyphens (e.g., 'GA-AL', 'TN-MS-AR')",
+      "Quoted strings with commas in Metropolitan Area column"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Data is for year 2024 only",
+      "Only count Metropolitan Statistical Areas that contain multiple state abbreviations in their name",
+      "Each unique cross-state MSA should be counted only once despite appearing in multiple state files",
+      "Exclude the metadata row at the end of each file",
+      "Exclude Micropolitan Statistical Areas unless they are cross-state"
+    ],
+    "derived_filters": [
+      "Filter Metropolitan Area names containing multiple state codes (e.g., patterns like 'XX-YY' where XX and YY are different state abbreviations)",
+      "Identify cross-state by presence of comma followed by multiple state abbreviations before 'Metropolitan Statistical Area' or 'Micropolitan Statistical Area'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer value representing total count",
+      "Sum should not double-count MSAs that appear in multiple state files"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total count of Identity Theft reports\",\n    \"filters\": [\n      \"Year = 2024\",\n      \"Metropolitan Statistical Areas that span multiple states (cross-state MSAs)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which Metropolitan Statistical Areas span multiple states?\",\n      \"What is the value in '# of Reports' column for each cross-state MSA?\",\n      \"What is the sum of all reports from cross-state MSAs?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Last row in each file contains metadata description instead of data\"\n    ],\n    \"column_mappings\": {\n      \"Metropolitan Area\": \"Metropolitan Area\",\n      \"# of Reports\": \"# of Reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count of identity theft reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"Same cross-state MSA appears in multiple state files with identical report counts (e.g., 'Washington-Arlington-Alexandria, DC-VA-MD-WV' appears in DC, MD, VA, WV files)\",\n      \"Duplicate counting risk: cross-state MSAs replicated across state files must be counted only once\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Last row contains metadata description text instead of data values\",\n      \"Metropolitan Area names contain state abbreviations separated by hyphens (e.g., 'GA-AL', 'TN-MS-AR')\",\n      \"Quoted strings with commas in Metropolitan Area column\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Data is for year 2024 only\",\n      \"Only count Metropolitan Statistical Areas that contain multiple state abbreviations in their name\",\n      \"Each unique cross-state MSA should be counted only once despite appearing in multiple state files\",\n      \"Exclude the metadata row at the end of each file\",\n      \"Exclude Micropolitan Statistical Areas unless they are cross-state\"\n    ],\n    \"derived_filters\": [\n      \"Filter Metropolitan Area names containing multiple state codes (e.g., patterns like 'XX-YY' where XX and YY are different state abbreviations)\",\n      \"Identify cross-state by presence of comma followed by multiple state abbreviations before 'Metropolitan Statistical Area' or 'Micropolitan Statistical Area'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single integer value representing total count\",\n      \"Sum should not double-count MSAs that appear in multiple state files\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 17.820131063461304,
+  "token_usage": {
+    "input_tokens": 14045,
+    "output_tokens": 1180
+  }
+}

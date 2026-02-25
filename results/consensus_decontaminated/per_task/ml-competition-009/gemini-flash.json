@@ -1,0 +1,89 @@
+{
+  "m_q": {
+    "target_metric": "Predict the number of rings for each abalone in the test set.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "train.csv",
+      "test.csv",
+      "sample_submission.csv",
+      "abalone.data"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column names in abalone.data are generic (e.g., '0.455', '0.365') and need renaming based on abalone.names or train.csv.",
+      "train.csv and test.csv have overlapping 'id' ranges, which might cause issues if not handled correctly.",
+      "The 'Rings' column is present in train.csv but not in test.csv, as expected."
+    ],
+    "column_mappings": {
+      "M": "Sex",
+      "0.455": "Length",
+      "0.365": "Diameter",
+      "0.095": "Height",
+      "0.514": "Whole weight",
+      "0.2245": "Shucked weight",
+      "0.101": "Viscera weight",
+      "0.15": "Shell weight",
+      "15": "Rings",
+      "Whole weight.1": "Shucked weight",
+      "Whole weight.2": "Viscera weight"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Length": "mm",
+      "Diameter": "mm",
+      "Height": "mm",
+      "Whole weight": "grams",
+      "Shucked weight": "grams",
+      "Viscera weight": "grams",
+      "Shell weight": "grams"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "abalone.data has no header row and uses commas as delimiters.",
+      "train.csv, test.csv, and sample_submission.csv have header rows and use commas as delimiters."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Rings' column in train.csv represents the target variable and must be an integer.",
+      "The 'Sex' column has categorical values (M, F, I).",
+      "The 'id' column in test.csv must be present in the submission file.",
+      "The 'Rings' column in sample_submission.csv provides the expected format for the submission file."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Check for multicollinearity among the continuous features (Length, Diameter, Height, Whole weight, Shucked weight, Viscera weight, Shell weight).",
+      "Check the distribution of the target variable 'Rings' for skewness."
+    ],
+    "output_format_requirements": [
+      "The submission file must be named 'submission.csv'.",
+      "The submission file must contain two columns: 'id' and 'Rings'.",
+      "The 'id' column in the submission file must match the 'id' column in test.csv.",
+      "The 'Rings' column in the submission file must contain integer predictions."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Predict the number of rings for each abalone in the test set.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"train.csv\",\n      \"test.csv\",\n      \"sample_submission.csv\",\n      \"abalone.data\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Column names in abalone.data are generic (e.g., '0.455', '0.365') and need renaming based on abalone.names or train.csv.\",\n      \"train.csv and test.csv have overlapping 'id' ranges, which might cause issues if not handled correctly.\",\n      \"The 'Rings' column is present in train.csv but not in test.csv, as expected.\"\n    ],\n    \"column_mappings\": {\n      \"M\": \"Sex\",\n      \"0.455\": \"Length\",\n      \"0.365\": \"Diameter\",\n      \"0.095\": \"Height\",\n      \"0.514\": \"Whole weight\",\n      \"0.2245\": \"Shucked weight\",\n      \"0.101\": \"Viscera weight\",\n      \"0.15\": \"Shell weight\",\n      \"15\": \"Rings\",\n      \"Whole weight.1\": \"Shucked weight\",\n      \"Whole weight.2\": \"Viscera weight\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Length\": \"mm\",\n      \"Diameter\": \"mm\",\n      \"Height\": \"mm\",\n      \"Whole weight\": \"grams\",\n      \"Shucked weight\": \"grams\",\n      \"Viscera weight\": \"grams\",\n      \"Shell weight\": \"grams\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"abalone.data has no header row and uses commas as delimiters.\",\n      \"train.csv, test.csv, and sample_submission.csv have header rows and use commas as delimiters.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Rings' column in train.csv represents the target variable and must be an integer.\",\n      \"The 'Sex' column has categorical values (M, F, I).\",\n      \"The 'id' column in test.csv must be present in the submission file.\",\n      \"The 'Rings' column in sample_submission.csv provides the expected format for the submission file.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\n      \"Check for multicollinearity among the continuous features (Length, Diameter, Height, Whole weight, Shucked weight, Viscera weight, Shell weight).\",\n      \"Check the distribution of the target variable 'Rings' for skewness.\"\n    ],\n    \"output_format_requirements\": [\n      \"The submission file must be named 'submission.csv'.\",\n      \"The submission file must contain two columns: 'id' and 'Rings'.\",\n      \"The 'id' column in the submission file must match the 'id' column in test.csv.\",\n      \"The 'Rings' column in the submission file must contain integer predictions.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 16.85586190223694,
+  "token_usage": {}
+}

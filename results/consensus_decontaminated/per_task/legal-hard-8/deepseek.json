@@ -1,0 +1,91 @@
+{
+  "m_q": {
+    "target_metric": "Consistency of '# of Reports' for 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area' in 2024",
+    "filters": [
+      "Metropolitan Area = 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area'",
+      "Year = 2024"
+    ],
+    "grouping_variables": [
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the '# of Reports' value in Florida.csv?",
+      "What is the '# of Reports' value in 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv?",
+      "Do these two values match exactly?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Florida.csv",
+      "2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "Florida.csv",
+        "right_source": "2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv",
+        "left_column": "Metropolitan Area",
+        "right_column": "Metropolitan Area",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Florida.csv has '# of Reports' as float64 while 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv has '# of Reports' as int64",
+      "Florida.csv has only 2 columns while 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv has 4 columns"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of fraud and other data reports",
+      "Reports per 100K Population": "reports per 100,000 population"
+    },
+    "scale_issues": [
+      "Florida.csv contains only Florida metropolitan areas while 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv contains national data"
+    ],
+    "cross_source_conflicts": [
+      "Florida.csv may represent a different time period or subset of data than the 2024 file"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Both files use quoted strings for Metropolitan Area names",
+      "Florida.csv has 23 rows, 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv has 401 rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The same metropolitan area name must appear in both files",
+      "The '# of Reports' values should be comparable numeric values",
+      "Both datasets should refer to the same time period (2024)"
+    ],
+    "derived_filters": [
+      "Filter both datasets to only include 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area'"
+    ],
+    "statistical_tests": [
+      "Exact equality test between the two '# of Reports' values"
+    ],
+    "output_format_requirements": [
+      "Boolean True/False output",
+      "No explanation needed"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Consistency of '# of Reports' for 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area' in 2024\",\n        \"filters\": [\"Metropolitan Area = 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area'\", \"Year = 2024\"],\n        \"grouping_variables\": [\"Metropolitan Area\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the '# of Reports' value in Florida.csv?\", \"What is the '# of Reports' value in 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv?\", \"Do these two values match exactly?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Florida.csv\", \"2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"Florida.csv\",\n                \"right_source\": \"2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv\",\n                \"left_column\": \"Metropolitan Area\",\n                \"right_column\": \"Metropolitan Area\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"Florida.csv has '# of Reports' as float64 while 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv has '# of Reports' as int64\", \"Florida.csv has only 2 columns while 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv has 4 columns\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"# of Reports\": \"count of fraud and other data reports\",\n            \"Reports per 100K Population\": \"reports per 100,000 population\"\n        },\n        \"scale_issues\": [\"Florida.csv contains only Florida metropolitan areas while 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv contains national data\"],\n        \"cross_source_conflicts\": [\"Florida.csv may represent a different time period or subset of data than the 2024 file\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Both files use quoted strings for Metropolitan Area names\", \"Florida.csv has 23 rows, 2024_CSN_Metropolitan_Areas_Fraud_and_Other_Reports.csv has 401 rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"The same metropolitan area name must appear in both files\", \"The '# of Reports' values should be comparable numeric values\", \"Both datasets should refer to the same time period (2024)\"],\n        \"derived_filters\": [\"Filter both datasets to only include 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area'\"],\n        \"statistical_tests\": [\"Exact equality test between the two '# of Reports' values\"],\n        \"output_format_requirements\": [\"Boolean True/False output\", \"No explanation needed\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 14.70504903793335,
+  "token_usage": {
+    "input_tokens": 1486,
+    "output_tokens": 725
+  }
+}

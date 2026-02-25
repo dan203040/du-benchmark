@@ -1,0 +1,129 @@
+{
+  "m_q": {
+    "target_metric": "FloodProbability (float64)",
+    "filters": [
+      "No explicit filters mentioned in analytical question"
+    ],
+    "grouping_variables": [
+      "id"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features are most predictive of flood probability?",
+      "How should the model handle the integer-valued features?",
+      "What validation strategy should be used given the competition format?",
+      "Are there any data quality issues that need addressing before modeling?",
+      "How should predictions be formatted for submission?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "train.csv",
+      "test.csv",
+      "sample_submission.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "train.csv",
+        "right_source": "test.csv",
+        "left_column": "id",
+        "right_column": "id",
+        "join_type": "outer"
+      },
+      {
+        "left_source": "test.csv",
+        "right_source": "sample_submission.csv",
+        "left_column": "id",
+        "right_column": "id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "train.csv has FloodProbability column while test.csv does not",
+      "sample_submission.csv only has id and FloodProbability columns while test.csv has 21 columns"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "MonsoonIntensity": "ordinal scale (likely 0-10+)",
+      "TopographyDrainage": "ordinal scale (likely 0-10+)",
+      "RiverManagement": "ordinal scale (likely 0-10+)",
+      "Deforestation": "ordinal scale (likely 0-10+)",
+      "Urbanization": "ordinal scale (likely 0-10+)",
+      "ClimateChange": "ordinal scale (likely 0-10+)",
+      "DamsQuality": "ordinal scale (likely 0-10+)",
+      "Siltation": "ordinal scale (likely 0-10+)",
+      "AgriculturalPractices": "ordinal scale (likely 0-10+)",
+      "Encroachments": "ordinal scale (likely 0-10+)",
+      "IneffectiveDisasterPreparedness": "ordinal scale (likely 0-10+)",
+      "DrainageSystems": "ordinal scale (likely 0-10+)",
+      "CoastalVulnerability": "ordinal scale (likely 0-10+)",
+      "Landslides": "ordinal scale (likely 0-10+)",
+      "Watersheds": "ordinal scale (likely 0-10+)",
+      "DeterioratingInfrastructure": "ordinal scale (likely 0-10+)",
+      "PopulationScore": "ordinal scale (likely 0-10+)",
+      "WetlandLoss": "ordinal scale (likely 0-10+)",
+      "InadequatePlanning": "ordinal scale (likely 0-10+)",
+      "PoliticalFactors": "ordinal scale (likely 0-10+)",
+      "FloodProbability": "probability (0-1)"
+    },
+    "scale_issues": [
+      "All features appear to be integer ordinal scales but ranges vary (e.g., Urbanization has value 11 in test.csv sample)",
+      "Need to verify if all features use consistent scale ranges",
+      "FloodProbability is float between 0-1 but training data shows values like 0.375, 0.445, etc."
+    ],
+    "cross_source_conflicts": [
+      "test.csv has 167,694 rows while sample_submission.csv has 745,305 rows - significant mismatch in expected output size"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 22,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files use consistent CSV format with header row",
+      "id column appears in all files for joining",
+      "sample_submission.csv shows placeholder values of 0.5 for all rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "FloodProbability must be between 0 and 1",
+      "id values must match between test.csv and submission.csv",
+      "All test.csv rows must have predictions in submission.csv",
+      "Submission must follow sample_submission.csv format exactly"
+    ],
+    "derived_filters": [
+      "Check for duplicate id values across datasets",
+      "Validate feature value ranges (e.g., Urbanization=11 may be valid or error)",
+      "Identify outliers in feature distributions"
+    ],
+    "statistical_tests": [
+      "Check correlation between features and FloodProbability",
+      "Test for multicollinearity among features",
+      "Validate distribution consistency between train and test sets",
+      "Check for class imbalance in FloodProbability"
+    ],
+    "output_format_requirements": [
+      "Must produce submission.csv with exactly 745,305 rows and 2 columns: id and FloodProbability",
+      "FloodProbability must be float values",
+      "File must match sample_submission.csv structure"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"FloodProbability (float64)\",\n        \"filters\": [\"No explicit filters mentioned in analytical question\"],\n        \"grouping_variables\": [\"id\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What features are most predictive of flood probability?\", \"How should the model handle the integer-valued features?\", \"What validation strategy should be used given the competition format?\", \"Are there any data quality issues that need addressing before modeling?\", \"How should predictions be formatted for submission?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"train.csv\", \"test.csv\", \"sample_submission.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"train.csv\", \"right_source\": \"test.csv\", \"left_column\": \"id\", \"right_column\": \"id\", \"join_type\": \"outer\"},\n            {\"left_source\": \"test.csv\", \"right_source\": \"sample_submission.csv\", \"left_column\": \"id\", \"right_column\": \"id\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"train.csv has FloodProbability column while test.csv does not\", \"sample_submission.csv only has id and FloodProbability columns while test.csv has 21 columns\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"MonsoonIntensity\": \"ordinal scale (likely 0-10+)\",\n            \"TopographyDrainage\": \"ordinal scale (likely 0-10+)\",\n            \"RiverManagement\": \"ordinal scale (likely 0-10+)\",\n            \"Deforestation\": \"ordinal scale (likely 0-10+)\",\n            \"Urbanization\": \"ordinal scale (likely 0-10+)\",\n            \"ClimateChange\": \"ordinal scale (likely 0-10+)\",\n            \"DamsQuality\": \"ordinal scale (likely 0-10+)\",\n            \"Siltation\": \"ordinal scale (likely 0-10+)\",\n            \"AgriculturalPractices\": \"ordinal scale (likely 0-10+)\",\n            \"Encroachments\": \"ordinal scale (likely 0-10+)\",\n            \"IneffectiveDisasterPreparedness\": \"ordinal scale (likely 0-10+)\",\n            \"DrainageSystems\": \"ordinal scale (likely 0-10+)\",\n            \"CoastalVulnerability\": \"ordinal scale (likely 0-10+)\",\n            \"Landslides\": \"ordinal scale (likely 0-10+)\",\n            \"Watersheds\": \"ordinal scale (likely 0-10+)\",\n            \"DeterioratingInfrastructure\": \"ordinal scale (likely 0-10+)\",\n            \"PopulationScore\": \"ordinal scale (likely 0-10+)\",\n            \"WetlandLoss\": \"ordinal scale (likely 0-10+)\",\n            \"InadequatePlanning\": \"ordinal scale (likely 0-10+)\",\n            \"PoliticalFactors\": \"ordinal scale (likely 0-10+)\",\n            \"FloodProbability\": \"probability (0-1)\"\n        },\n        \"scale_issues\": [\"All features appear to be integer ordinal scales but ranges vary (e.g., Urbanization has value 11 in test.csv sample)\", \"Need to verify if all features use consistent scale ranges\", \"FloodProbability is float between 0-1 but training data shows values like 0.375, 0.445, etc.\"],\n        \"cross_source_conflicts\": [\"test.csv has 167,694 rows while sample_submission.csv has 745,305 rows - significant mismatch in expected output size\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 22,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"All files use consistent CSV format with header row\", \"id column appears in all files for joining\", \"sample_submission.csv shows placeholder values of 0.5 for all rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"FloodProbability must be between 0 and 1\", \"id values must match between test.csv and submission.csv\", \"All test.csv rows must have predictions in submission.csv\", \"Submission must follow sample_submission.csv format exactly\"],\n        \"derived_filters\": [\"Check for duplicate id values across datasets\", \"Validate feature value ranges (e.g., Urbanization=11 may be valid or error)\", \"Identify outliers in feature distributions\"],\n        \"statistical_tests\": [\"Check correlation between features and FloodProbability\", \"Test for multicollinearity among features\", \"Validate distribution consistency between train and test sets\", \"Check for class imbalance in FloodProbability\"],\n        \"output_format_requirements\": [\"Must produce submission.csv with exactly 745,305 rows and 2 columns: id and FloodProbability\", \"FloodProbability must be float values\", \"File must match sample_submission.csv structure\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 21.24799108505249,
+  "token_usage": {
+    "input_tokens": 3422,
+    "output_tokens": 1099
+  }
+}

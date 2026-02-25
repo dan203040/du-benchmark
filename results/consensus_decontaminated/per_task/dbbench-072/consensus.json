@@ -1,0 +1,304 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "sum of Total medals",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "sum of Total medals",
+        "total number of medals",
+        "total number of medals for South Korea, North Korea, Sweden, and Brazil"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Nation in ['South Korea', 'North Korea', 'Sweden', 'Brazil']",
+        "Nation is South Korea",
+        "Nation is North Korea",
+        "Nation is Sweden",
+        "Nation is Brazil"
+      ],
+      "confidence": 0.39999999999999997,
+      "votes": [
+        [
+          "Nation in ['South Korea', 'North Korea', 'Sweden', 'Brazil']"
+        ],
+        [
+          "Nation in ['South Korea', 'North Korea', 'Sweden', 'Brazil']"
+        ],
+        [
+          "Nation is South Korea",
+          "Nation is North Korea",
+          "Nation is Sweden",
+          "Nation is Brazil"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Identify rows for each specified nation",
+        "Extract Total column values",
+        "Sum the extracted values",
+        "What is the total number of medals for South Korea?",
+        "What is the total number of medals for North Korea?",
+        "What is the total number of medals for Sweden?",
+        "What is the total number of medals for Brazil?",
+        "What is the sum of these four totals?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Identify rows for each specified nation",
+          "Extract Total column values",
+          "Sum the extracted values"
+        ],
+        [
+          "What is the total number of medals for South Korea?",
+          "What is the total number of medals for North Korea?",
+          "What is the total number of medals for Sweden?",
+          "What is the total number of medals for Brazil?",
+          "What is the sum of these four totals?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Medal Table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Medal Table"
+        ],
+        [
+          "Medal Table"
+        ],
+        [
+          "Medal Table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "gold": "medals",
+        "silver": "medals",
+        "bronze": "medals",
+        "total": "medals",
+        "rank": "ordinal"
+      },
+      "confidence": 0.9333333333333333,
+      "votes": [
+        {
+          "Gold": "medals",
+          "Silver": "medals",
+          "Bronze": "medals",
+          "Total": "medals"
+        },
+        {
+          "Gold": "count",
+          "Silver": "count",
+          "Bronze": "count",
+          "Total": "count",
+          "Rank": "ordinal"
+        },
+        {
+          "Rank": "rank",
+          "Gold": "medals",
+          "Silver": "medals",
+          "Bronze": "medals",
+          "Total": "medals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total = Gold + Silver + Bronze for each row",
+        "Rank values are unique",
+        "Nation values are unique",
+        "Total column should equal Gold + Silver + Bronze for each nation",
+        "All medal counts should be non-negative integers",
+        "Nation names must match exactly: 'South Korea', 'North Korea', 'Sweden', 'Brazil'",
+        "The 'Total' column should be equal to the sum of 'Gold', 'Silver', and 'Bronze' columns for each row."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total = Gold + Silver + Bronze for each row",
+          "Rank values are unique",
+          "Nation values are unique"
+        ],
+        [
+          "Total column should equal Gold + Silver + Bronze for each nation",
+          "All medal counts should be non-negative integers",
+          "Nation names must match exactly: 'South Korea', 'North Korea', 'Sweden', 'Brazil'"
+        ],
+        [
+          "The 'Total' column should be equal to the sum of 'Gold', 'Silver', and 'Bronze' columns for each row."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Nation == 'South Korea' OR Nation == 'North Korea' OR Nation == 'Sweden' OR Nation == 'Brazil'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [],
+        [
+          "Filter rows where Nation == 'South Korea' OR Nation == 'North Korea' OR Nation == 'Sweden' OR Nation == 'Brazil'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric total",
+        "Return a single numeric value representing the sum of Total column for the four specified nations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric total"
+        ],
+        [
+          "Return a single numeric value representing the sum of Total column for the four specified nations"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5333333333333334
+}

@@ -1,0 +1,341 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total number of fraud reports submitted to FTC via web between 2022 and 2024",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total number of fraud reports submitted to FTC via web between 2022 and 2024",
+        "Total number of fraud reports submitted via FTC web interface between 2022 and 2024",
+        "Total number of fraud reports reported by FTC over the web between 2022 and 2024"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year between 2022 and 2024 inclusive",
+        "Data Contributor contains 'FTC - Web Reports (Fraud & Other)'",
+        "Year in [2022, 2023, 2024]",
+        "Data Contributor contains 'FTC - Web Reports' and 'Fraud'",
+        "Exclude IDT (Identity Theft) reports, include only Fraud & Other",
+        "Year between 2022 and 2024",
+        "Data Contributor contains 'FTC - Web Reports'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year between 2022 and 2024 inclusive",
+          "Data Contributor contains 'FTC - Web Reports (Fraud & Other)'"
+        ],
+        [
+          "Year in [2022, 2023, 2024]",
+          "Data Contributor contains 'FTC - Web Reports' and 'Fraud'",
+          "Exclude IDT (Identity Theft) reports, include only Fraud & Other"
+        ],
+        [
+          "Year between 2022 and 2024",
+          "Data Contributor contains 'FTC - Web Reports'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the breakdown by year?",
+        "Are there other FTC web report categories that should be included?",
+        "Should IDT (Identity Theft) web reports be considered fraud?",
+        "Which file contains FTC web fraud reports?",
+        "How to identify web-based fraud reports vs other report types?",
+        "What is the distinction between 'Fraud & Other' and 'IDT' in the data?",
+        "Should IDT be included in fraud count or excluded?",
+        "What are the report counts for each year (2022, 2023, 2024)?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the breakdown by year?",
+          "Are there other FTC web report categories that should be included?",
+          "Should IDT (Identity Theft) web reports be considered fraud?"
+        ],
+        [
+          "Which file contains FTC web fraud reports?",
+          "How to identify web-based fraud reports vs other report types?",
+          "What is the distinction between 'Fraud & Other' and 'IDT' in the data?",
+          "Should IDT be included in fraud count or excluded?",
+          "What are the report counts for each year (2022, 2023, 2024)?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Data_Contributors__FTC"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Data_Contributors__FTC"
+        ],
+        [
+          "2024_CSN_Data_Contributors__FTC"
+        ],
+        [
+          "2024_CSN_Data_Contributors__FTC"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "First file has 'State Law Enforcement Agencies' column instead of 'Year' column",
+        "Different files have same column names but different data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "First file has 'State Law Enforcement Agencies' column instead of 'Year' column",
+          "Different files have same column names but different data"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count of reports",
+        "%": "percentage of total reports",
+        "year": "calendar year"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "# of Reports": "count of reports",
+          "%": "percentage of total reports"
+        },
+        {
+          "# of Reports": "count",
+          "%": "percentage",
+          "Year": "calendar year"
+        },
+        {
+          "# of Reports": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Percentages are stored as strings with '%' symbol",
+        "Need to convert percentage strings to numeric values if needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentages are stored as strings with '%' symbol",
+          "Need to convert percentage strings to numeric values if needed"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Multiple files contain 'Data Contributor' column with different values",
+        "Year ranges may differ across files"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Multiple files contain 'Data Contributor' column with different values",
+          "Year ranges may differ across files"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year must be 2022, 2023, or 2024",
+        "Data Contributor must exactly match 'FTC - Web Reports (Fraud & Other)'",
+        "Sum of # of Reports should be calculated",
+        "Year must be between 2022 and 2024 inclusive",
+        "Data Contributor must match pattern 'FTC - Web Reports (Fraud & Other)'",
+        "# of Reports must be non-negative integer",
+        "Year must be between 2022 and 2024",
+        "Data Contributor must contain 'FTC - Web Reports'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year must be 2022, 2023, or 2024",
+          "Data Contributor must exactly match 'FTC - Web Reports (Fraud & Other)'",
+          "Sum of # of Reports should be calculated"
+        ],
+        [
+          "Year must be between 2022 and 2024 inclusive",
+          "Data Contributor must match pattern 'FTC - Web Reports (Fraud & Other)'",
+          "# of Reports must be non-negative integer"
+        ],
+        [
+          "Year must be between 2022 and 2024",
+          "Data Contributor must contain 'FTC - Web Reports'"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter 2024_CSN_Data_Contributors__FTC where Year in [2022, 2023, 2024]",
+        "Filter where Data Contributor = 'FTC - Web Reports (Fraud & Other)'",
+        "Filter rows where Data Contributor == 'FTC - Web Reports (Fraud & Other)'",
+        "Filter rows where Year in [2022, 2023, 2024]"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter 2024_CSN_Data_Contributors__FTC where Year in [2022, 2023, 2024]",
+          "Filter where Data Contributor = 'FTC - Web Reports (Fraud & Other)'"
+        ],
+        [
+          "Filter rows where Data Contributor == 'FTC - Web Reports (Fraud & Other)'",
+          "Filter rows where Year in [2022, 2023, 2024]"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing years in the range",
+        "Verify no duplicate rows for same Year and Data Contributor combination"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing years in the range",
+          "Verify no duplicate rows for same Year and Data Contributor combination"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Numeric total without formatting",
+        "Should be integer value",
+        "Return single integer value representing sum of fraud reports",
+        "Sum # of Reports column across filtered rows",
+        "Output must be a single number representing the total number of reports"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Numeric total without formatting",
+          "Should be integer value"
+        ],
+        [
+          "Return single integer value representing sum of fraud reports",
+          "Sum # of Reports column across filtered rows"
+        ],
+        [
+          "Output must be a single number representing the total number of reports"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6000000000000001
+}

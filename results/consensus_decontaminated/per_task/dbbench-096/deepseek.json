@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "average number of gold medals",
+    "filters": [
+      "Nation in ['China', 'Japan', 'North Korea']"
+    ],
+    "grouping_variables": [
+      "Nation"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total gold medals for each country?",
+      "How many data points exist for each country?",
+      "Are there multiple entries for the same country?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medals"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Gold": "medals",
+      "Silver": "medals",
+      "Bronze": "medals",
+      "Total": "medals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data appears to contain multiple groups (possibly different sports or events) as Rank resets to 1",
+      "Nation column contains country names"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Gold >= 0",
+      "Silver >= 0",
+      "Bronze >= 0",
+      "Total = Gold + Silver + Bronze"
+    ],
+    "derived_filters": [
+      "Filter to only China, Japan, and North Korea rows"
+    ],
+    "statistical_tests": [
+      "Check for duplicate entries for same country",
+      "Verify Gold values are integers"
+    ],
+    "output_format_requirements": [
+      "Average should be a single numeric value",
+      "Consider whether to average across all entries or per-country then average"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average number of gold medals\",\n        \"filters\": [\"Nation in ['China', 'Japan', 'North Korea']\"],\n        \"grouping_variables\": [\"Nation\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total gold medals for each country?\", \"How many data points exist for each country?\", \"Are there multiple entries for the same country?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Olympic Medals\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Gold\": \"medals\", \"Silver\": \"medals\", \"Bronze\": \"medals\", \"Total\": \"medals\"},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data appears to contain multiple groups (possibly different sports or events) as Rank resets to 1\", \"Nation column contains country names\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Gold >= 0\", \"Silver >= 0\", \"Bronze >= 0\", \"Total = Gold + Silver + Bronze\"],\n        \"derived_filters\": [\"Filter to only China, Japan, and North Korea rows\"],\n        \"statistical_tests\": [\"Check for duplicate entries for same country\", \"Verify Gold values are integers\"],\n        \"output_format_requirements\": [\"Average should be a single numeric value\", \"Consider whether to average across all entries or per-country then average\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.412775754928589,
+  "token_usage": {
+    "input_tokens": 808,
+    "output_tokens": 419
+  }
+}

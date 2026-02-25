@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "ratio of peak atmospheric mass density (Orbit Mean Density in kg/m^3) between two time periods: March 14-17, 2014 vs July 18-21, 2018",
+    "filters": [
+      "Timestamp between 2014-03-14 and 2014-03-17",
+      "Timestamp between 2018-07-18 and 2018-07-21"
+    ],
+    "grouping_variables": [
+      "year",
+      "period"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum Orbit Mean Density during March 14-17, 2014?",
+      "What is the maximum Orbit Mean Density during July 18-21, 2018?",
+      "What is the ratio: (peak 2014)/(peak 2018)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "swarma-wu016-20140314_to_20140317.csv",
+      "swarma-wu545-20180718_to_20180721.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Both files have identical column names and dtypes, no schema conflicts"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Timestamp": "datetime",
+      "Orbit Mean Density (kg/m^3)": "kg/m^3"
+    },
+    "scale_issues": [
+      "Density values are extremely small (e-12 to e-13 scale), ensure numerical precision in calculations"
+    ],
+    "cross_source_conflicts": [
+      "Values in 2014 file are ~10x larger than 2018 file (e-12 vs e-13), this appears to be real physical variation rather than measurement conflict"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Both files have same structure: 433 rows \u00d7 2 columns",
+      "Timestamp column needs parsing to datetime",
+      "No missing values visible in samples"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Density values must be positive",
+      "Timestamps are at 10-minute intervals",
+      "Both periods have exactly 4 days of data (96 hours = 576 ten-minute intervals, but files show 433 rows)"
+    ],
+    "derived_filters": [
+      "Exclude any rows with non-positive density values",
+      "Ensure timestamps are within specified date ranges"
+    ],
+    "statistical_tests": [
+      "Check for outliers in density measurements",
+      "Verify temporal continuity in timestamps"
+    ],
+    "output_format_requirements": [
+      "Ratio should be reported as a single numeric value",
+      "Consider reporting both peak values alongside the ratio",
+      "Specify which period's peak is numerator vs denominator"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"ratio of peak atmospheric mass density (Orbit Mean Density in kg/m^3) between two time periods: March 14-17, 2014 vs July 18-21, 2018\",\n        \"filters\": [\"Timestamp between 2014-03-14 and 2014-03-17\", \"Timestamp between 2018-07-18 and 2018-07-21\"],\n        \"grouping_variables\": [\"year\", \"period\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the maximum Orbit Mean Density during March 14-17, 2014?\", \"What is the maximum Orbit Mean Density during July 18-21, 2018?\", \"What is the ratio: (peak 2014)/(peak 2018)?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"swarma-wu016-20140314_to_20140317.csv\", \"swarma-wu545-20180718_to_20180721.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Both files have identical column names and dtypes, no schema conflicts\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Timestamp\": \"datetime\", \"Orbit Mean Density (kg/m^3)\": \"kg/m^3\"},\n        \"scale_issues\": [\"Density values are extremely small (e-12 to e-13 scale), ensure numerical precision in calculations\"],\n        \"cross_source_conflicts\": [\"Values in 2014 file are ~10x larger than 2018 file (e-12 vs e-13), this appears to be real physical variation rather than measurement conflict\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Both files have same structure: 433 rows \u00d7 2 columns\", \"Timestamp column needs parsing to datetime\", \"No missing values visible in samples\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Density values must be positive\", \"Timestamps are at 10-minute intervals\", \"Both periods have exactly 4 days of data (96 hours = 576 ten-minute intervals, but files show 433 rows)\"],\n        \"derived_filters\": [\"Exclude any rows with non-positive density values\", \"Ensure timestamps are within specified date ranges\"],\n        \"statistical_tests\": [\"Check for outliers in density measurements\", \"Verify temporal continuity in timestamps\"],\n        \"output_format_requirements\": [\"Ratio should be reported as a single numeric value\", \"Consider reporting both peak values alongside the ratio\", \"Specify which period's peak is numerator vs denominator\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.986343145370483,
+  "token_usage": {
+    "input_tokens": 1684,
+    "output_tokens": 638
+  }
+}

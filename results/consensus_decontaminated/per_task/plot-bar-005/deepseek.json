@@ -1,0 +1,95 @@
+{
+  "m_q": {
+    "target_metric": "Count of people in each age group",
+    "filters": [
+      "Survey respondents only (no header rows)",
+      "Valid age responses (non-null, numeric age values)"
+    ],
+    "grouping_variables": [
+      "Age Group (derived from Q2 using AgeGroup.md method)"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What are the age group boundaries defined in AgeGroup.md?",
+      "How should age values be converted from Q2 responses?",
+      "Should missing/unknown age values be included or excluded?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "multipleChoiceResponses.csv",
+      "SurveySchema.csv",
+      "freeFormResponses.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "SurveySchema.csv has different structure (12 rows, 52 columns) vs multipleChoiceResponses.csv (23860 rows, 395 columns)",
+      "freeFormResponses.csv has 35 columns that appear to be text responses corresponding to multipleChoiceResponses.csv columns"
+    ],
+    "column_mappings": {
+      "Q2": "age_column",
+      "Time from Start to Finish (seconds)": "duration"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Q2": "years",
+      "Time from Start to Finish (seconds)": "seconds"
+    },
+    "scale_issues": [
+      "Age values in Q2 may be categorical ranges (e.g., '18-21', '22-24') rather than numeric",
+      "Need to check actual Q2 values in multipleChoiceResponses.csv to determine format"
+    ],
+    "cross_source_conflicts": [
+      "SurveySchema.csv appears to contain question text, not response data",
+      "freeFormResponses.csv contains text responses that may not be needed for age analysis"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 395,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "multipleChoiceResponses.csv is the main data file with survey responses",
+      "SurveySchema.csv appears to be metadata/question text",
+      "freeFormResponses.csv contains open-ended text responses"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age values must be interpretable according to AgeGroup.md method",
+      "Counts must be non-negative integers",
+      "All age groups defined in AgeGroup.md must be represented in output"
+    ],
+    "derived_filters": [
+      "Exclude header row from SurveySchema.csv if present in data",
+      "Filter to valid age responses based on Q2 format"
+    ],
+    "statistical_tests": [
+      "Check for missing age values in Q2 column",
+      "Validate age distribution against expected survey demographics"
+    ],
+    "output_format_requirements": [
+      "Bar chart saved as 'result.png'",
+      "Title: 'Age Group Distribution'",
+      "X-axis label: 'Age Group'",
+      "Y-axis label: 'Count'"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of people in each age group\",\n        \"filters\": [\"Survey respondents only (no header rows)\", \"Valid age responses (non-null, numeric age values)\"],\n        \"grouping_variables\": [\"Age Group (derived from Q2 using AgeGroup.md method)\"],\n        \"output_cardinality\": \"plot\",\n        \"sub_questions\": [\"What are the age group boundaries defined in AgeGroup.md?\", \"How should age values be converted from Q2 responses?\", \"Should missing/unknown age values be included or excluded?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"multipleChoiceResponses.csv\", \"SurveySchema.csv\", \"freeFormResponses.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"SurveySchema.csv has different structure (12 rows, 52 columns) vs multipleChoiceResponses.csv (23860 rows, 395 columns)\", \"freeFormResponses.csv has 35 columns that appear to be text responses corresponding to multipleChoiceResponses.csv columns\"],\n        \"column_mappings\": {\"Q2\": \"age_column\", \"Time from Start to Finish (seconds)\": \"duration\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Q2\": \"years\", \"Time from Start to Finish (seconds)\": \"seconds\"},\n        \"scale_issues\": [\"Age values in Q2 may be categorical ranges (e.g., '18-21', '22-24') rather than numeric\", \"Need to check actual Q2 values in multipleChoiceResponses.csv to determine format\"],\n        \"cross_source_conflicts\": [\"SurveySchema.csv appears to contain question text, not response data\", \"freeFormResponses.csv contains text responses that may not be needed for age analysis\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 395,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"multipleChoiceResponses.csv is the main data file with survey responses\", \"SurveySchema.csv appears to be metadata/question text\", \"freeFormResponses.csv contains open-ended text responses\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Age values must be interpretable according to AgeGroup.md method\", \"Counts must be non-negative integers\", \"All age groups defined in AgeGroup.md must be represented in output\"],\n        \"derived_filters\": [\"Exclude header row from SurveySchema.csv if present in data\", \"Filter to valid age responses based on Q2 format\"],\n        \"statistical_tests\": [\"Check for missing age values in Q2 column\", \"Validate age distribution against expected survey demographics\"],\n        \"output_format_requirements\": [\"Bar chart saved as 'result.png'\", \"Title: 'Age Group Distribution'\", \"X-axis label: 'Age Group'\", \"Y-axis label: 'Count'\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 14.951392889022827,
+  "token_usage": {
+    "input_tokens": 13754,
+    "output_tokens": 652
+  }
+}

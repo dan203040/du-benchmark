@@ -1,0 +1,331 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Home team score",
+      "confidence": 1.0,
+      "votes": [
+        "Home team score",
+        "Home team score",
+        "Home team score"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Venue = 'Victoria Park'",
+        "Crowd > 12000",
+        "Venue equals 'Victoria Park'",
+        "Crowd greater than 12,000",
+        "Venue is Victoria Park",
+        "Crowd is greater than 12,000"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Venue = 'Victoria Park'",
+          "Crowd > 12000"
+        ],
+        [
+          "Venue equals 'Victoria Park'",
+          "Crowd greater than 12,000"
+        ],
+        [
+          "Venue is Victoria Park",
+          "Crowd is greater than 12,000"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the format of Home team score values?",
+        "How is Crowd data formatted (with commas)?",
+        "Are there multiple matches at Victoria Park with attendance > 12000?",
+        "Which matches were played at Victoria Park?",
+        "Which matches had attendance (Crowd) greater than 12,000?",
+        "What is the home team score for matches meeting both conditions?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the format of Home team score values?",
+          "How is Crowd data formatted (with commas)?",
+          "Are there multiple matches at Victoria Park with attendance > 12000?"
+        ],
+        [
+          "Which matches were played at Victoria Park?",
+          "Which matches had attendance (Crowd) greater than 12,000?",
+          "What is the home team score for matches meeting both conditions?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Australian Rules Football Matches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Australian Rules Football Matches"
+        ],
+        [
+          "Australian Rules Football Matches"
+        ],
+        [
+          "Australian Rules Football Matches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "crowd": "number of people",
+        "home team score": "Australian rules football score format (goals.behinds (total))",
+        "away team score": "goals.behinds (total_points)",
+        "date": "date"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Crowd": "number of people",
+          "Home team score": "Australian rules football score format (goals.behinds (total))"
+        },
+        {
+          "Home team score": "goals.behinds (total_points)",
+          "Away team score": "goals.behinds (total_points)",
+          "Crowd": "number of people",
+          "Date": "date"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Crowd values contain commas that need removal for numeric comparison",
+        "Home team score has complex format needing parsing",
+        "Crowd values contain commas and need to be parsed as integers for comparison",
+        "Home team score is in format 'goals.behinds (points)' and may need parsing depending on desired output"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Crowd values contain commas that need removal for numeric comparison",
+          "Home team score has complex format needing parsing"
+        ],
+        [
+          "Crowd values contain commas and need to be parsed as integers for comparison",
+          "Home team score is in format 'goals.behinds (points)' and may need parsing depending on desired output"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Only one data source needed",
+        "Must parse Crowd as numeric by removing commas and quotes",
+        "Must filter for Victoria Park venue",
+        "Must filter for Crowd > 12000 after numeric conversion",
+        "Venue must equal 'Victoria Park'",
+        "Crowd must be greater than 12,000 (numeric comparison required)",
+        "All columns contain string data types that may need conversion",
+        "Venue must be Victoria Park",
+        "Crowd must be greater than 12000"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Only one data source needed",
+          "Must parse Crowd as numeric by removing commas and quotes",
+          "Must filter for Victoria Park venue",
+          "Must filter for Crowd > 12000 after numeric conversion"
+        ],
+        [
+          "Venue must equal 'Victoria Park'",
+          "Crowd must be greater than 12,000 (numeric comparison required)",
+          "All columns contain string data types that may need conversion"
+        ],
+        [
+          "Venue must be Victoria Park",
+          "Crowd must be greater than 12000"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Crowd_numeric = CAST(REPLACE(REPLACE(Crowd, ',', ''), '\"', '') AS INTEGER)",
+        "Crowd_numeric > 12000",
+        "Venue = 'Victoria Park'",
+        "Parse Crowd column to integer by removing commas before comparison",
+        "Filter rows where Venue == 'Victoria Park' AND parsed_Crowd > 12000",
+        "Crowd > 12000"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Crowd_numeric = CAST(REPLACE(REPLACE(Crowd, ',', ''), '\"', '') AS INTEGER)",
+          "Crowd_numeric > 12000",
+          "Venue = 'Victoria Park'"
+        ],
+        [
+          "Parse Crowd column to integer by removing commas before comparison",
+          "Filter rows where Venue == 'Victoria Park' AND parsed_Crowd > 12000"
+        ],
+        [
+          "Venue = 'Victoria Park'",
+          "Crowd > 12000"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if any Victoria Park matches exist in data",
+        "Check distribution of Crowd values at Victoria Park"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if any Victoria Park matches exist in data",
+          "Check distribution of Crowd values at Victoria Park"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return list of Home team score values",
+        "Consider returning both raw score format and parsed total points",
+        "Return Home team score value(s) for matching rows",
+        "May return multiple scores if multiple matches meet criteria",
+        "Score format should preserve original notation (goals.behinds (points))"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return list of Home team score values",
+          "Consider returning both raw score format and parsed total points"
+        ],
+        [
+          "Return Home team score value(s) for matching rows",
+          "May return multiple scores if multiple matches meet criteria",
+          "Score format should preserve original notation (goals.behinds (points))"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5777777777777778
+}

@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "Score against Portland in games where Game number is less than 20",
+    "filters": [
+      "Team = 'Portland'",
+      "Game < 20"
+    ],
+    "grouping_variables": [
+      "Game",
+      "Date"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the Game number for each Portland game?",
+      "What is the Score for each Portland game with Game number under 20?",
+      "Is the Score format consistent for parsing?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "game_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Score column contains both result indicator (W/L) and score values in format like 'L 93\u2013132 (OT)'"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Location Attendance": "number of people",
+      "Score": "points"
+    },
+    "scale_issues": [
+      "Score column contains combined data: win/loss indicator, score values, and overtime indicator"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Score column contains non-numeric characters and needs parsing",
+      "High rebounds column sometimes contains multiple players separated by commas"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Game column should be numeric for comparison with 20",
+      "Only one row per game per team needs to be considered",
+      "Portland games appear both as home and away teams"
+    ],
+    "derived_filters": [
+      "Extract numeric Game value from Game column",
+      "Parse Score to extract actual score values",
+      "Identify Portland games regardless of home/away status"
+    ],
+    "statistical_tests": [
+      "Check if Game values are sequential and complete",
+      "Verify Score format consistency across all rows"
+    ],
+    "output_format_requirements": [
+      "Should show Game number, Date, and Score for each qualifying game",
+      "Score should be presented in readable format"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Score against Portland in games where Game number is less than 20\",\n        \"filters\": [\"Team = 'Portland'\", \"Game < 20\"],\n        \"grouping_variables\": [\"Game\", \"Date\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the Game number for each Portland game?\", \"What is the Score for each Portland game with Game number under 20?\", \"Is the Score format consistent for parsing?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"game_results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Score column contains both result indicator (W/L) and score values in format like 'L 93\u2013132 (OT)'\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Location Attendance\": \"number of people\", \"Score\": \"points\"},\n        \"scale_issues\": [\"Score column contains combined data: win/loss indicator, score values, and overtime indicator\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 9,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Score column contains non-numeric characters and needs parsing\", \"High rebounds column sometimes contains multiple players separated by commas\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Game column should be numeric for comparison with 20\", \"Only one row per game per team needs to be considered\", \"Portland games appear both as home and away teams\"],\n        \"derived_filters\": [\"Extract numeric Game value from Game column\", \"Parse Score to extract actual score values\", \"Identify Portland games regardless of home/away status\"],\n        \"statistical_tests\": [\"Check if Game values are sequential and complete\", \"Verify Score format consistency across all rows\"],\n        \"output_format_requirements\": [\"Should show Game number, Date, and Score for each qualifying game\", \"Score should be presented in readable format\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.139957904815674,
+  "token_usage": {
+    "input_tokens": 1442,
+    "output_tokens": 484
+  }
+}

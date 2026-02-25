@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "The name of the first building that held the title of tallest",
+    "filters": [
+      "Buildings that were tallest at some point in time"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which buildings have valid 'Years as tallest' values?",
+      "What is the earliest year in the 'Years as tallest' column?",
+      "Which building corresponds to the earliest year as tallest?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Tall Buildings in Minneapolis"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height ft (m)": "feet and meters",
+      "Floors": "count",
+      "Years as tallest": "year range"
+    },
+    "scale_issues": [
+      "Height ft (m) contains both feet and meters in a single string",
+      "Years as tallest contains year ranges (e.g., '1882\u20131886') and 'present' keyword"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "-"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Years as tallest column contains year ranges in format 'YYYY\u2013YYYY' or 'YYYY\u2013present'",
+      "Some rows have missing or dash values for Years as tallest (e.g., Nicollet Mall)",
+      "Height ft (m) column contains composite string with format 'feet (meters)'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Years as tallest must be parseable to extract start year",
+      "Rows with missing or dash values in Years as tallest should be excluded",
+      "The first building is determined by the earliest start year in Years as tallest"
+    ],
+    "derived_filters": [
+      "Filter out rows where Years as tallest is '-' or empty",
+      "Extract start year from Years as tallest range"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Name value of the building with the earliest start year",
+      "Output should be a single building name as a string"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The name of the first building that held the title of tallest\",\n    \"filters\": [\"Buildings that were tallest at some point in time\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which buildings have valid 'Years as tallest' values?\",\n      \"What is the earliest year in the 'Years as tallest' column?\",\n      \"Which building corresponds to the earliest year as tallest?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Tall Buildings in Minneapolis\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Height ft (m)\": \"feet and meters\",\n      \"Floors\": \"count\",\n      \"Years as tallest\": \"year range\"\n    },\n    \"scale_issues\": [\n      \"Height ft (m) contains both feet and meters in a single string\",\n      \"Years as tallest contains year ranges (e.g., '1882\u20131886') and 'present' keyword\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"-\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Years as tallest column contains year ranges in format 'YYYY\u2013YYYY' or 'YYYY\u2013present'\",\n      \"Some rows have missing or dash values for Years as tallest (e.g., Nicollet Mall)\",\n      \"Height ft (m) column contains composite string with format 'feet (meters)'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Years as tallest must be parseable to extract start year\",\n      \"Rows with missing or dash values in Years as tallest should be excluded\",\n      \"The first building is determined by the earliest start year in Years as tallest\"\n    ],\n    \"derived_filters\": [\n      \"Filter out rows where Years as tallest is '-' or empty\",\n      \"Extract start year from Years as tallest range\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Name value of the building with the earliest start year\",\n      \"Output should be a single building name as a string\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.62448501586914,
+  "token_usage": {
+    "input_tokens": 1087,
+    "output_tokens": 645
+  }
+}

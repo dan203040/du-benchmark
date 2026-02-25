@@ -1,0 +1,66 @@
+{
+  "m_q": {
+    "target_metric": "Top 10 best-rated authors, most expensive authors, and authors with the most ratings",
+    "filters": [],
+    "grouping_variables": [
+      "Author"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Identify the top 10 authors with the highest average rating.",
+      "Identify the top 10 authors with the highest average price.",
+      "Identify the top 10 authors with the highest total number of ratings."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Books_df.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Price": "\u20b9",
+      "Rating": "out of 5",
+      "No. of People rated": "number of people"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Price column needs to be cleaned by removing the currency symbol and converting to numeric.",
+      "The 'Unnamed: 0' column is an index and can be dropped."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Price' column contains currency symbols and needs to be converted to a numerical type.",
+      "The 'No. of People rated' column should be treated as an integer."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a CSV file named 'author.csv'.",
+      "The output CSV should contain columns: 'Best-Rated Author', 'Most Expensive Author', and 'Most Rated Author'.",
+      "The output should contain the top 10 authors for each category."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 10 best-rated authors, most expensive authors, and authors with the most ratings\",\n    \"filters\": [],\n    \"grouping_variables\": [\n      \"Author\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Identify the top 10 authors with the highest average rating.\",\n      \"Identify the top 10 authors with the highest average price.\",\n      \"Identify the top 10 authors with the highest total number of ratings.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Books_df.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Price\": \"\u20b9\",\n      \"Rating\": \"out of 5\",\n      \"No. of People rated\": \"number of people\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Price column needs to be cleaned by removing the currency symbol and converting to numeric.\",\n      \"The 'Unnamed: 0' column is an index and can be dropped.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Price' column contains currency symbols and needs to be converted to a numerical type.\",\n      \"The 'No. of People rated' column should be treated as an integer.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a CSV file named 'author.csv'.\",\n      \"The output CSV should contain columns: 'Best-Rated Author', 'Most Expensive Author', and 'Most Rated Author'.\",\n      \"The output should contain the top 10 authors for each category.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.1319451332092285,
+  "token_usage": {}
+}

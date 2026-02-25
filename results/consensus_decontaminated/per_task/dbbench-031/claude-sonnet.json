@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "Number of goals scored by Brazil",
+    "filters": [
+      "Date equals November 6, 1968"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What was the date format for November 6th in the dataset?",
+      "What was the Score for the game on November 6, 1968?",
+      "How to extract Brazil's goal count from the Score column?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Brazil National Football Team Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Score": "goals (format: Brazil goals-Opposition goals)",
+      "Date": "text date format (Month Day, Year)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-",
+      "NA",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date column uses format 'Month Day, Year' (e.g., 'November 6, 1968')",
+      "Score column format is 'X-Y' where X is Brazil's score and Y is opposition's score",
+      "Brazil scorers column contains scorer names with goal counts in parentheses if multiple"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Date must match 'November 6, 1968'",
+      "Score must be parseable as 'X-Y' format",
+      "Result field should be W, L, or D"
+    ],
+    "derived_filters": [
+      "Extract first number from Score column (before hyphen) for Brazil's goals"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer representing the number of goals Brazil scored"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of goals scored by Brazil\",\n    \"filters\": [\"Date equals November 6, 1968\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What was the date format for November 6th in the dataset?\",\n      \"What was the Score for the game on November 6, 1968?\",\n      \"How to extract Brazil's goal count from the Score column?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Brazil National Football Team Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Score\": \"goals (format: Brazil goals-Opposition goals)\",\n      \"Date\": \"text date format (Month Day, Year)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"-\", \"NA\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date column uses format 'Month Day, Year' (e.g., 'November 6, 1968')\",\n      \"Score column format is 'X-Y' where X is Brazil's score and Y is opposition's score\",\n      \"Brazil scorers column contains scorer names with goal counts in parentheses if multiple\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Date must match 'November 6, 1968'\",\n      \"Score must be parseable as 'X-Y' format\",\n      \"Result field should be W, L, or D\"\n    ],\n    \"derived_filters\": [\n      \"Extract first number from Score column (before hyphen) for Brazil's goals\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer representing the number of goals Brazil scored\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.639744997024536,
+  "token_usage": {
+    "input_tokens": 1347,
+    "output_tokens": 550
+  }
+}

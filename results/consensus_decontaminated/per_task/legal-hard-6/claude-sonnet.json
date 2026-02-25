@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "Ratio of reported credit card frauds between 2024 and 2020, calculated as (2024 reports) / (2020 reports), rounded to 4 decimal places",
+    "filters": [
+      "Theft Type == 'Credit Card'",
+      "Year in ['2020', '2024']"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the number of credit card fraud reports in 2024?",
+      "What is the number of credit card fraud reports in 2020?",
+      "What is the ratio of 2024 reports to 2020 reports?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'Theft Type' has dtype int64 but contains string values like 'Credit Card' in the data",
+      "Column 'Year' appears in both column name and first data position, suggesting header misalignment"
+    ],
+    "column_mappings": {
+      "Theft Type": "Year",
+      "Year": "Theft Type",
+      "# of Reports": "# of Reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Year": "year",
+      "Theft Type": "categorical"
+    },
+    "scale_issues": [
+      "All report counts are in absolute numbers, no scaling needed"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Header row appears to be misaligned - 'Theft Type' column contains years, 'Year' column contains theft types",
+      "Data starts from row 1 with actual headers likely swapped",
+      "First column should be Year, second should be Theft Type based on data values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be in ['2020', '2024']",
+      "Theft Type must be 'Credit Card'",
+      "# of Reports must be > 0",
+      "Both 2020 and 2024 must have Credit Card data"
+    ],
+    "derived_filters": [
+      "Filter for rows where actual year column contains '2020' or '2024'",
+      "Filter for rows where actual theft type column contains 'Credit Card'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a single numeric value",
+      "Result must be rounded to exactly 4 decimal places",
+      "Format: decimal number (e.g., 1.1413)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Ratio of reported credit card frauds between 2024 and 2020, calculated as (2024 reports) / (2020 reports), rounded to 4 decimal places\",\n    \"filters\": [\n      \"Theft Type == 'Credit Card'\",\n      \"Year in ['2020', '2024']\"\n    ],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the number of credit card fraud reports in 2024?\",\n      \"What is the number of credit card fraud reports in 2020?\",\n      \"What is the ratio of 2024 reports to 2020 reports?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Column 'Theft Type' has dtype int64 but contains string values like 'Credit Card' in the data\",\n      \"Column 'Year' appears in both column name and first data position, suggesting header misalignment\"\n    ],\n    \"column_mappings\": {\n      \"Theft Type\": \"Year\",\n      \"Year\": \"Theft Type\",\n      \"# of Reports\": \"# of Reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Year\": \"year\",\n      \"Theft Type\": \"categorical\"\n    },\n    \"scale_issues\": [\n      \"All report counts are in absolute numbers, no scaling needed\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Header row appears to be misaligned - 'Theft Type' column contains years, 'Year' column contains theft types\",\n      \"Data starts from row 1 with actual headers likely swapped\",\n      \"First column should be Year, second should be Theft Type based on data values\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be in ['2020', '2024']\",\n      \"Theft Type must be 'Credit Card'\",\n      \"# of Reports must be > 0\",\n      \"Both 2020 and 2024 must have Credit Card data\"\n    ],\n    \"derived_filters\": [\n      \"Filter for rows where actual year column contains '2020' or '2024'\",\n      \"Filter for rows where actual theft type column contains 'Credit Card'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a single numeric value\",\n      \"Result must be rounded to exactly 4 decimal places\",\n      \"Format: decimal number (e.g., 1.1413)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.854912996292114,
+  "token_usage": {
+    "input_tokens": 831,
+    "output_tokens": 787
+  }
+}

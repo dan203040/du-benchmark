@@ -1,0 +1,90 @@
+{
+  "m_q": {
+    "target_metric": "Average latitude of capital cities, with only one capital per country (the one with largest population), rounded to 4 decimal places",
+    "filters": [
+      "capital column is not null/empty",
+      "only include rows where capital column indicates a capital city",
+      "for countries with multiple capitals, keep only the one with maximum population"
+    ],
+    "grouping_variables": [
+      "country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify which cities are capitals",
+      "Group capitals by country",
+      "For each country, select the capital with largest population",
+      "Calculate average latitude of selected capitals",
+      "Round result to 4 decimal places"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "worldcities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "lat": "degrees",
+      "lng": "degrees",
+      "population": "people"
+    },
+    "scale_issues": [
+      "Population values appear to be very large (millions)",
+      "Latitude values range from -90 to 90 degrees"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows 11 columns but description says 10",
+      "Capital column contains values like 'primary', 'admin', 'minor' and empty strings",
+      "Population column is float64 type"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each country should contribute exactly one capital city to the average",
+      "Only cities marked as capitals should be considered",
+      "Population values must be valid numbers for comparison",
+      "Latitude values must be within valid range (-90 to 90)"
+    ],
+    "derived_filters": [
+      "capital != ''",
+      "capital is not null",
+      "population is not null",
+      "lat is not null"
+    ],
+    "statistical_tests": [
+      "Check for duplicate capital designations within countries",
+      "Verify latitude distribution is reasonable",
+      "Check for outliers in population values"
+    ],
+    "output_format_requirements": [
+      "Result must be a single numeric value",
+      "Value must be rounded to 4 decimal places",
+      "Result should be a float representing average latitude"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Average latitude of capital cities, with only one capital per country (the one with largest population), rounded to 4 decimal places\",\n        \"filters\": [\"capital column is not null/empty\", \"only include rows where capital column indicates a capital city\", \"for countries with multiple capitals, keep only the one with maximum population\"],\n        \"grouping_variables\": [\"country\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify which cities are capitals\", \"Group capitals by country\", \"For each country, select the capital with largest population\", \"Calculate average latitude of selected capitals\", \"Round result to 4 decimal places\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"worldcities.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"lat\": \"degrees\", \"lng\": \"degrees\", \"population\": \"people\"},\n        \"scale_issues\": [\"Population values appear to be very large (millions)\", \"Latitude values range from -90 to 90 degrees\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows 11 columns but description says 10\", \"Capital column contains values like 'primary', 'admin', 'minor' and empty strings\", \"Population column is float64 type\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each country should contribute exactly one capital city to the average\", \"Only cities marked as capitals should be considered\", \"Population values must be valid numbers for comparison\", \"Latitude values must be within valid range (-90 to 90)\"],\n        \"derived_filters\": [\"capital != ''\", \"capital is not null\", \"population is not null\", \"lat is not null\"],\n        \"statistical_tests\": [\"Check for duplicate capital designations within countries\", \"Verify latitude distribution is reasonable\", \"Check for outliers in population values\"],\n        \"output_format_requirements\": [\"Result must be a single numeric value\", \"Value must be rounded to 4 decimal places\", \"Result should be a float representing average latitude\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.756561040878296,
+  "token_usage": {
+    "input_tokens": 1483,
+    "output_tokens": 539
+  }
+}

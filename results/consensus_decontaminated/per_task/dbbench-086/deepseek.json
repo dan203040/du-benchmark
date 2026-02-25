@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Height value for rank 95",
+    "filters": [
+      "Rank == '95'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the Height value in the row where Rank equals '95'?",
+      "Is the Height column properly formatted for numerical extraction?",
+      "Does rank 95 exist in the dataset?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "highest_points"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height": "meters and feet (m (ft))"
+    },
+    "scale_issues": [
+      "Height column contains mixed text and numbers with formatting like '4,421 m (14,505 ft)'",
+      "Commas used as thousands separators in Height values",
+      "Need to extract numerical value from Height column for rank 95"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Height column contains formatted strings with both metric and imperial units",
+      "Rank column appears to contain string values rather than integers",
+      "Sample shows data is not sorted by Rank"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Rank values should be unique",
+      "Height should contain valid measurement data for each row",
+      "For rank 95, Height should follow the pattern 'X,XXX m (X,XXX ft)'"
+    ],
+    "derived_filters": [
+      "Filter dataset to only row where Rank == '95'",
+      "Extract numerical value from Height column for that row"
+    ],
+    "statistical_tests": [
+      "Check if rank 95 exists in the dataset",
+      "Verify Height format consistency for rank 95"
+    ],
+    "output_format_requirements": [
+      "Return the Height value as a string",
+      "Consider extracting just the meter value as a number if needed for comparison"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Height value for rank 95\",\n        \"filters\": [\"Rank == '95'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the Height value in the row where Rank equals '95'?\", \"Is the Height column properly formatted for numerical extraction?\", \"Does rank 95 exist in the dataset?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"highest_points\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Height\": \"meters and feet (m (ft))\"},\n        \"scale_issues\": [\"Height column contains mixed text and numbers with formatting like '4,421 m (14,505 ft)'\", \"Commas used as thousands separators in Height values\", \"Need to extract numerical value from Height column for rank 95\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Height column contains formatted strings with both metric and imperial units\", \"Rank column appears to contain string values rather than integers\", \"Sample shows data is not sorted by Rank\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Rank values should be unique\", \"Height should contain valid measurement data for each row\", \"For rank 95, Height should follow the pattern 'X,XXX m (X,XXX ft)'\"],\n        \"derived_filters\": [\"Filter dataset to only row where Rank == '95'\", \"Extract numerical value from Height column for that row\"],\n        \"statistical_tests\": [\"Check if rank 95 exists in the dataset\", \"Verify Height format consistency for rank 95\"],\n        \"output_format_requirements\": [\"Return the Height value as a string\", \"Consider extracting just the meter value as a number if needed for comparison\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.9147310256958,
+  "token_usage": {
+    "input_tokens": 909,
+    "output_tokens": 482
+  }
+}

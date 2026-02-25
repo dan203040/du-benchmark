@@ -1,0 +1,56 @@
+{
+  "m_q": {
+    "target_metric": "Predicted category for each news article in test.csv",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "test.csv",
+      "uci-news-aggregator.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "TIMESTAMP": "milliseconds since epoch"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'CATEGORY' column in uci-news-aggregator.csv represents the target variable for training the model.",
+      "The predicted categories must be saved in a file named 'category.csv' with a column named 'CATEGORY'."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named 'category.csv'.",
+      "Output file must contain a column named 'CATEGORY'.",
+      "The 'CATEGORY' column in the output file should contain the predicted category for each news article in test.csv."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Predicted category for each news article in test.csv\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"test.csv\",\n      \"uci-news-aggregator.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"TIMESTAMP\": \"milliseconds since epoch\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'CATEGORY' column in uci-news-aggregator.csv represents the target variable for training the model.\",\n      \"The predicted categories must be saved in a file named 'category.csv' with a column named 'CATEGORY'.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named 'category.csv'.\",\n      \"Output file must contain a column named 'CATEGORY'.\",\n      \"The 'CATEGORY' column in the output file should contain the predicted category for each news article in test.csv.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 21.888709783554077,
+  "token_usage": {}
+}

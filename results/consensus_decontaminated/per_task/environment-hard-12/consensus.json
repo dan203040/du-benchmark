@@ -1,0 +1,442 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of samples that failed swimming standards (Enterococcus >= 104 counts/100mL) when there was no rainfall in the preceding three days (1-Day Rain = 0, 2-Day Rain = 0, 3-Day Rain = 0)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of samples that failed swimming standards (Enterococcus >= 104 counts/100mL) when there was no rainfall in the preceding three days (1-Day Rain = 0, 2-Day Rain = 0, 3-Day Rain = 0)",
+        "Count of samples that failed swimming standards (Enterococcus >= 104 counts per 100mL) by beach",
+        "Number of samples that failed to meet swimming standards (Enterococcus count >= 104) for each beach, when there was no rainfall in the preceding three days, and identify the beach with the highest count."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Enterococcus >= 104",
+        "1-Day Rain = 0",
+        "2-Day Rain = 0",
+        "3-Day Rain = 0",
+        "3-Day Rain == 0.0 (no rainfall in preceding three days)",
+        "Enterococcus >= 104 (failed standard)"
+      ],
+      "confidence": 0.5555555555555556,
+      "votes": [
+        [
+          "Enterococcus >= 104",
+          "1-Day Rain = 0",
+          "2-Day Rain = 0",
+          "3-Day Rain = 0"
+        ],
+        [
+          "3-Day Rain == 0.0 (no rainfall in preceding three days)",
+          "Enterococcus >= 104 (failed standard)"
+        ],
+        [
+          "3-Day Rain = 0",
+          "2-Day Rain = 0",
+          "1-Day Rain = 0",
+          "Enterococcus >= 104"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Beach",
+        "Beach name (from file names)"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Beach"
+        ],
+        [
+          "Beach name (from file names)"
+        ],
+        [
+          "Beach"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar (single beach name with highest count)",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which beaches have Enterococcus measurements?",
+        "How are multiple Enterococcus columns per beach handled?",
+        "How to handle Tag columns indicating detection limits?",
+        "How to parse Date column format?",
+        "How to handle missing values in Enterococcus columns?",
+        "What constitutes no rainfall in the preceding three days?",
+        "Which samples failed the standard (Enterococcus >= 104)?",
+        "How many failed samples does each beach have under no-rain conditions?",
+        "Which beach has the maximum count of failed samples?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which beaches have Enterococcus measurements?",
+          "How are multiple Enterococcus columns per beach handled?",
+          "How to handle Tag columns indicating detection limits?",
+          "How to parse Date column format?",
+          "How to handle missing values in Enterococcus columns?"
+        ],
+        [
+          "What constitutes no rainfall in the preceding three days?",
+          "Which samples failed the standard (Enterococcus >= 104)?",
+          "How many failed samples does each beach have under no-rain conditions?",
+          "Which beach has the maximum count of failed samples?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "boston-harbor-beaches.txt",
+        "constitution_beach_datasheet.csv",
+        "carson_beach_datasheet.csv",
+        "pleasure_bay_and_castle_island_beach_datasheet.csv",
+        "m_street_beach_datasheet.csv",
+        "city_point_beach_datasheet.csv",
+        "malibu_beach_datasheet.csv",
+        "tenean_beach_datasheet.csv",
+        "wollaston_beach_datasheet.csv"
+      ],
+      "confidence": 0.9629629629629629,
+      "votes": [
+        [
+          "boston-harbor-beaches.txt",
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ],
+        [
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ],
+        [
+          "boston-harbor-beaches.txt",
+          "constitution_beach_datasheet.csv",
+          "carson_beach_datasheet.csv",
+          "pleasure_bay_and_castle_island_beach_datasheet.csv",
+          "m_street_beach_datasheet.csv",
+          "city_point_beach_datasheet.csv",
+          "malibu_beach_datasheet.csv",
+          "tenean_beach_datasheet.csv",
+          "wollaston_beach_datasheet.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different number of Enterococcus columns per beach file (1-4 columns)",
+        "Different data types for Enterococcus (float64 vs int64)",
+        "Different column naming patterns (Tag, Tag.1, Tag.2, Tag.3)",
+        "Different number of total columns per file (6-12 columns)",
+        "Date column format appears consistent but needs validation",
+        "Different number of sample columns across beaches (constitution has 3 samples per date, carson has 2, m_street has 1, wollaston has 4)",
+        "Enterococcus columns have different data types (float64 vs int64)",
+        "Tag columns contain inequality symbols ('<') indicating values below detection limit"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different number of Enterococcus columns per beach file (1-4 columns)",
+          "Different data types for Enterococcus (float64 vs int64)",
+          "Different column naming patterns (Tag, Tag.1, Tag.2, Tag.3)",
+          "Different number of total columns per file (6-12 columns)",
+          "Date column format appears consistent but needs validation"
+        ],
+        [
+          "Different number of sample columns across beaches (constitution has 3 samples per date, carson has 2, m_street has 1, wollaston has 4)",
+          "Enterococcus columns have different data types (float64 vs int64)",
+          "Tag columns contain inequality symbols ('<') indicating values below detection limit"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "1-day rain": "inches",
+        "2-day rain": "inches",
+        "3-day rain": "inches",
+        "enterococcus": "counts per 100 milliliters",
+        "enterococcus.1": "counts per 100 milliliters",
+        "enterococcus.2": "counts per 100 milliliters",
+        "enterococcus.3": "counts per 100 milliliters"
+      },
+      "confidence": 0.7142857142857142,
+      "votes": [
+        {
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Enterococcus": "counts per 100 milliliters",
+          "Enterococcus.1": "counts per 100 milliliters",
+          "Enterococcus.2": "counts per 100 milliliters",
+          "Enterococcus.3": "counts per 100 milliliters"
+        },
+        {
+          "Enterococcus": "counts per 100 milliliters",
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches"
+        },
+        {
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Enterococcus": "counts per 100 milliliters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Rain columns appear to be cumulative rainfall measurements",
+        "Enterococcus values range from <10 to >2000",
+        "Tag column contains '<' symbol indicating values below detection limit",
+        "Tag column contains '<' symbol indicating values are below detection limit (e.g., '<10' means less than 10)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Rain columns appear to be cumulative rainfall measurements",
+          "Enterococcus values range from <10 to >2000",
+          "Tag column contains '<' symbol indicating values below detection limit"
+        ],
+        [
+          "Tag column contains '<' symbol indicating values are below detection limit (e.g., '<10' means less than 10)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Detection limit handling differs (some files use '<' tag, others may use different notation)",
+        "Rainfall measurement consistency across beaches needs verification",
+        "Date ranges may differ between beach datasets",
+        "Same measurement units across all beaches",
+        "Consistent rainfall measurement approach"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Detection limit handling differs (some files use '<' tag, others may use different notation)",
+          "Rainfall measurement consistency across beaches needs verification",
+          "Date ranges may differ between beach datasets"
+        ],
+        [
+          "Same measurement units across all beaches",
+          "Consistent rainfall measurement approach"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.9999999999999999,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          " ",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 0.6363636363636364,
+      "votes": [
+        10.0,
+        6.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Enterococcus must be numeric (float or int)",
+        "Rain columns must be >= 0",
+        "Date must be parseable to datetime",
+        "Only consider samples where all three rain columns = 0",
+        "Only count samples where Enterococcus >= 104",
+        "3-Day Rain must equal 0.0",
+        "Enterococcus >= 104 indicates failure to meet swimming standard",
+        "Must handle multiple samples per date for some beaches",
+        "Tag values starting with '<' indicate below-detection measurements that should be treated as the numeric value shown",
+        "Enterococcus values represented with '<' need to be converted to numeric values (e.g., <10 to 10 or a smaller value like 9)",
+        "Need to iterate through each beach datasheet file.",
+        "Need to handle different column names for Enterococcus counts across different files (e.g., Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Enterococcus must be numeric (float or int)",
+          "Rain columns must be >= 0",
+          "Date must be parseable to datetime",
+          "Only consider samples where all three rain columns = 0",
+          "Only count samples where Enterococcus >= 104"
+        ],
+        [
+          "3-Day Rain must equal 0.0",
+          "Enterococcus >= 104 indicates failure to meet swimming standard",
+          "Must handle multiple samples per date for some beaches",
+          "Tag values starting with '<' indicate below-detection measurements that should be treated as the numeric value shown"
+        ],
+        [
+          "Enterococcus values represented with '<' need to be converted to numeric values (e.g., <10 to 10 or a smaller value like 9)",
+          "Need to iterate through each beach datasheet file.",
+          "Need to handle different column names for Enterococcus counts across different files (e.g., Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where 1-Day Rain = 0 AND 2-Day Rain = 0 AND 3-Day Rain = 0",
+        "Filter Enterococcus values >= 104 (ignoring detection limit tags)",
+        "Handle '<' tags by treating as actual measured value or exclusion based on analysis approach",
+        "Filter rows where 3-Day Rain == 0.0",
+        "For each Enterococcus column, count values >= 104",
+        "Aggregate counts by beach"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where 1-Day Rain = 0 AND 2-Day Rain = 0 AND 3-Day Rain = 0",
+          "Filter Enterococcus values >= 104 (ignoring detection limit tags)",
+          "Handle '<' tags by treating as actual measured value or exclusion based on analysis approach"
+        ],
+        [
+          "Filter rows where 3-Day Rain == 0.0",
+          "For each Enterococcus column, count values >= 104",
+          "Aggregate counts by beach"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for temporal autocorrelation in Enterococcus measurements",
+        "Verify rainfall measurements are consistent across same dates",
+        "Test for differences in sampling frequency between beaches"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for temporal autocorrelation in Enterococcus measurements",
+          "Verify rainfall measurements are consistent across same dates",
+          "Test for differences in sampling frequency between beaches"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Beach name must match names from boston-harbor-beaches.txt",
+        "Count must be integer",
+        "Must specify how detection limit values (<10) were handled",
+        "Must specify date range considered",
+        "Return single beach name with highest failure count",
+        "Beach name should match the file name prefix (e.g., 'Constitution Beach', 'Carson Beach')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Beach name must match names from boston-harbor-beaches.txt",
+          "Count must be integer",
+          "Must specify how detection limit values (<10) were handled",
+          "Must specify date range considered"
+        ],
+        [
+          "Return single beach name with highest failure count",
+          "Beach name should match the file name prefix (e.g., 'Constitution Beach', 'Carson Beach')"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.601791726791727
+}

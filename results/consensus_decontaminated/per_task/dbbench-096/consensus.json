@@ -1,0 +1,324 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average number of gold medals",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "average number of gold medals",
+        "average number of gold medals won by China, Japan, and North Korea",
+        "average number of gold medals"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Nation in ['China', 'Japan', 'North Korea']",
+        "Nation is China",
+        "Nation is Japan",
+        "Nation is North Korea"
+      ],
+      "confidence": 0.41666666666666663,
+      "votes": [
+        [
+          "Nation in ['China', 'Japan', 'North Korea']"
+        ],
+        [
+          "Nation in ['China', 'Japan', 'North Korea']"
+        ],
+        [
+          "Nation is China",
+          "Nation is Japan",
+          "Nation is North Korea"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Nation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Nation"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the total gold medals for each country?",
+        "How many data points exist for each country?",
+        "Are there multiple entries for the same country?",
+        "What is the number of gold medals won by China?",
+        "What is the number of gold medals won by Japan?",
+        "What is the number of gold medals won by North Korea?",
+        "What is the mean of these three values?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the total gold medals for each country?",
+          "How many data points exist for each country?",
+          "Are there multiple entries for the same country?"
+        ],
+        [
+          "What is the number of gold medals won by China?",
+          "What is the number of gold medals won by Japan?",
+          "What is the number of gold medals won by North Korea?",
+          "What is the mean of these three values?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Olympic Medals"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Olympic Medals"
+        ],
+        [
+          "Olympic Medals"
+        ],
+        [
+          "Olympic Medals"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "gold": "medals",
+        "silver": "medals",
+        "bronze": "medals",
+        "total": "medals",
+        "rank": "ordinal"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Gold": "medals",
+          "Silver": "medals",
+          "Bronze": "medals",
+          "Total": "medals"
+        },
+        {
+          "Gold": "count",
+          "Silver": "count",
+          "Bronze": "count",
+          "Total": "count",
+          "Rank": "ordinal"
+        },
+        {
+          "Gold": "number of medals"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Gold >= 0",
+        "Silver >= 0",
+        "Bronze >= 0",
+        "Total = Gold + Silver + Bronze",
+        "Gold column must be non-negative integer",
+        "Nation names must match exactly: 'China', 'Japan', 'North Korea'",
+        "All three nations must be present in the dataset",
+        "Gold column must be non-negative"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Gold >= 0",
+          "Silver >= 0",
+          "Bronze >= 0",
+          "Total = Gold + Silver + Bronze"
+        ],
+        [
+          "Gold column must be non-negative integer",
+          "Nation names must match exactly: 'China', 'Japan', 'North Korea'",
+          "All three nations must be present in the dataset"
+        ],
+        [
+          "Gold column must be non-negative"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to only China, Japan, and North Korea rows",
+        "Filter rows where Nation equals 'China', 'Japan', or 'North Korea'",
+        "Extract Gold values for filtered nations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to only China, Japan, and North Korea rows"
+        ],
+        [
+          "Filter rows where Nation equals 'China', 'Japan', or 'North Korea'",
+          "Extract Gold values for filtered nations"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate entries for same country",
+        "Verify Gold values are integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate entries for same country",
+          "Verify Gold values are integers"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Average should be a single numeric value",
+        "Consider whether to average across all entries or per-country then average",
+        "Return a single numeric value representing the arithmetic mean",
+        "Result should be rounded to appropriate precision (e.g., 2 decimal places)",
+        "The output should be a single numerical value representing the average number of gold medals."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Average should be a single numeric value",
+          "Consider whether to average across all entries or per-country then average"
+        ],
+        [
+          "Return a single numeric value representing the arithmetic mean",
+          "Result should be rounded to appropriate precision (e.g., 2 decimal places)"
+        ],
+        [
+          "The output should be a single numerical value representing the average number of gold medals."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5875000000000001
+}

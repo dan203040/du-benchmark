@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Result (score outcome) for a specific match",
+    "filters": [
+      "Arena = 'A'",
+      "League = 'SL'",
+      "Match > 16"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the match number?",
+      "What is the exact result (score) for that match?",
+      "Which teams were involved in that match?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Date & Time ( CET )": "CET timezone",
+      "Team and Score": "Team names and score separated by dash"
+    },
+    "scale_issues": [
+      "Match numbers appear to be sequential but may have gaps",
+      "Score format uses en-dash (\u2013) not hyphen (-)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date format: DD.MM.YY, HH:MM",
+      "Score format: Team1 \u2013 Team2,Score1\u2013Score2",
+      "Arena codes: 'A' for away, 'H' for home"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Match numbers should be unique",
+      "Each row represents one match",
+      "Scores should be numeric pairs separated by en-dash"
+    ],
+    "derived_filters": [
+      "Filter rows where Arena = 'A' AND League = 'SL' AND Match > 16",
+      "Extract the single matching row"
+    ],
+    "statistical_tests": [
+      "Check if exactly one match satisfies all conditions"
+    ],
+    "output_format_requirements": [
+      "Return the complete 'Result' field value",
+      "Include match number and teams for context"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Result (score outcome) for a specific match\",\n        \"filters\": [\"Arena = 'A'\", \"League = 'SL'\", \"Match > 16\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the match number?\", \"What is the exact result (score) for that match?\", \"Which teams were involved in that match?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Basketball Matches\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Date & Time ( CET )\": \"CET timezone\", \"Team and Score\": \"Team names and score separated by dash\"},\n        \"scale_issues\": [\"Match numbers appear to be sequential but may have gaps\", \"Score format uses en-dash (\u2013) not hyphen (-)\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date format: DD.MM.YY, HH:MM\", \"Score format: Team1 \u2013 Team2,Score1\u2013Score2\", \"Arena codes: 'A' for away, 'H' for home\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Match numbers should be unique\", \"Each row represents one match\", \"Scores should be numeric pairs separated by en-dash\"],\n        \"derived_filters\": [\"Filter rows where Arena = 'A' AND League = 'SL' AND Match > 16\", \"Extract the single matching row\"],\n        \"statistical_tests\": [\"Check if exactly one match satisfies all conditions\"],\n        \"output_format_requirements\": [\"Return the complete 'Result' field value\", \"Include match number and teams for context\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.947688817977905,
+  "token_usage": {
+    "input_tokens": 1224,
+    "output_tokens": 471
+  }
+}

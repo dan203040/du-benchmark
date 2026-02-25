@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "average Total score",
+    "filters": [
+      "Player = 'Hale Irwin'",
+      "Finish contains 'T52'"
+    ],
+    "grouping_variables": [
+      "Player"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the Total scores for Hale Irwin when Finish is T52?",
+      "How many T52 finishes does Hale Irwin have?",
+      "Are there multiple Total values for Hale Irwin's T52 finishes that need averaging?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Golf Champions"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total": "golf strokes",
+      "To par": "strokes relative to par"
+    },
+    "scale_issues": [
+      "Total column is stored as object/string instead of numeric",
+      "To par column contains mixed formats (e.g., '+8', '-4', 'E')",
+      "Year(s) won contains multiple years separated by commas"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Total column contains numeric values but stored as object dtype",
+      "To par column uses en dash (\u2013) instead of minus sign (-) in sample row",
+      "Year(s) won column contains quoted multi-year values with spaces around commas"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total should be convertible to numeric",
+      "Finish values starting with 'T' indicate tied positions",
+      "Each row represents a player's performance in a specific tournament/year"
+    ],
+    "derived_filters": [
+      "Need to extract numeric part from Total column",
+      "Need to handle Finish values that match 'T52' pattern"
+    ],
+    "statistical_tests": [
+      "Check if Total values for Hale Irwin's T52 finishes are consistent",
+      "Verify there are multiple T52 finishes to calculate average"
+    ],
+    "output_format_requirements": [
+      "Average should be reported as a numeric value",
+      "Should specify if average is based on multiple observations or single value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"average Total score\",\n        \"filters\": [\"Player = 'Hale Irwin'\", \"Finish contains 'T52'\"],\n        \"grouping_variables\": [\"Player\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What are the Total scores for Hale Irwin when Finish is T52?\", \"How many T52 finishes does Hale Irwin have?\", \"Are there multiple Total values for Hale Irwin's T52 finishes that need averaging?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Golf Champions\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Total\": \"golf strokes\", \"To par\": \"strokes relative to par\"},\n        \"scale_issues\": [\"Total column is stored as object/string instead of numeric\", \"To par column contains mixed formats (e.g., '+8', '-4', 'E')\", \"Year(s) won contains multiple years separated by commas\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Total column contains numeric values but stored as object dtype\", \"To par column uses en dash (\u2013) instead of minus sign (-) in sample row\", \"Year(s) won column contains quoted multi-year values with spaces around commas\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total should be convertible to numeric\", \"Finish values starting with 'T' indicate tied positions\", \"Each row represents a player's performance in a specific tournament/year\"],\n        \"derived_filters\": [\"Need to extract numeric part from Total column\", \"Need to handle Finish values that match 'T52' pattern\"],\n        \"statistical_tests\": [\"Check if Total values for Hale Irwin's T52 finishes are consistent\", \"Verify there are multiple T52 finishes to calculate average\"],\n        \"output_format_requirements\": [\"Average should be reported as a numeric value\", \"Should specify if average is based on multiple observations or single value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.652825832366943,
+  "token_usage": {
+    "input_tokens": 949,
+    "output_tokens": 510
+  }
+}

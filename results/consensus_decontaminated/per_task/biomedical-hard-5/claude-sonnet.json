@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "median number of variants per Mbp",
+    "filters": [
+      "Histologic_type == 'Serous'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which samples have Histologic_type equal to 'Serous'?",
+      "What is the variants per Mbp value for each serous sample?",
+      "What is the median of these values?",
+      "How should the result be rounded to 4 decimal places?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Log2_variant_per_Mbp": "log2 transformed variants per megabase pair",
+      "variants_per_Mbp": "variants per megabase pair (derived from Log2_variant_per_Mbp)"
+    },
+    "scale_issues": [
+      "Log2_variant_per_Mbp is in log2 scale and needs to be converted to linear scale: variants_per_Mbp = 2^Log2_variant_per_Mbp"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined",
+      "Staging Incomplete"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": [
+      "File is Excel format with multiple sheets",
+      "Main data in first sheet with clinical and genomic information",
+      "Log2_variant_per_Mbp column contains log2-transformed values",
+      "Histologic_type column contains tumor type classifications including 'Serous'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include samples where Histologic_type is 'Serous'",
+      "Exclude samples where Log2_variant_per_Mbp is null or missing",
+      "Convert Log2_variant_per_Mbp to linear scale before calculating median"
+    ],
+    "derived_filters": [
+      "Filter to serous tumor samples using Histologic_type column",
+      "Remove any samples with missing variant data"
+    ],
+    "statistical_tests": [
+      "Calculate median (50th percentile) of variants per Mbp for filtered samples"
+    ],
+    "output_format_requirements": [
+      "Round final result to exactly 4 decimal places",
+      "Return single scalar value representing median variants per Mbp"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"median number of variants per Mbp\",\n    \"filters\": [\"Histologic_type == 'Serous'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which samples have Histologic_type equal to 'Serous'?\",\n      \"What is the variants per Mbp value for each serous sample?\",\n      \"What is the median of these values?\",\n      \"How should the result be rounded to 4 decimal places?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Log2_variant_per_Mbp\": \"log2 transformed variants per megabase pair\",\n      \"variants_per_Mbp\": \"variants per megabase pair (derived from Log2_variant_per_Mbp)\"\n    },\n    \"scale_issues\": [\n      \"Log2_variant_per_Mbp is in log2 scale and needs to be converted to linear scale: variants_per_Mbp = 2^Log2_variant_per_Mbp\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Cannot be determined\", \"Staging Incomplete\"],\n    \"expected_columns\": 179,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": [\n      \"File is Excel format with multiple sheets\",\n      \"Main data in first sheet with clinical and genomic information\",\n      \"Log2_variant_per_Mbp column contains log2-transformed values\",\n      \"Histologic_type column contains tumor type classifications including 'Serous'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include samples where Histologic_type is 'Serous'\",\n      \"Exclude samples where Log2_variant_per_Mbp is null or missing\",\n      \"Convert Log2_variant_per_Mbp to linear scale before calculating median\"\n    ],\n    \"derived_filters\": [\n      \"Filter to serous tumor samples using Histologic_type column\",\n      \"Remove any samples with missing variant data\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate median (50th percentile) of variants per Mbp for filtered samples\"\n    ],\n    \"output_format_requirements\": [\n      \"Round final result to exactly 4 decimal places\",\n      \"Return single scalar value representing median variants per Mbp\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 12.077797889709473,
+  "token_usage": {
+    "input_tokens": 13599,
+    "output_tokens": 730
+  }
+}

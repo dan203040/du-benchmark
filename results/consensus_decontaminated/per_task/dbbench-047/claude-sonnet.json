@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Result value",
+    "filters": [
+      "Arena = 'A'",
+      "League = 'SL'",
+      "Match > 16"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have Arena equal to 'A'?",
+      "Which rows have League equal to 'SL'?",
+      "Which rows have Match number greater than 16?",
+      "What is the Result value for rows matching all three conditions?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Match": "sequential match number",
+      "Date & Time ( CET )": "date and time in Central European Time format dd.mm.yy, HH:MM",
+      "Team and Score": "team names and scores in format 'Team1 - Team2, Score1-Score2'",
+      "Result": "final score in format Score1-Score2"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Match column contains numeric values as strings",
+      "Arena column contains single letter codes (A or H for Away or Home)",
+      "League column contains abbreviated league codes (FM, SL, EL, CBA)",
+      "Result column contains score pairs separated by en-dash (\u2013)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Match must be numeric and greater than 16",
+      "Arena must equal 'A'",
+      "League must equal 'SL'"
+    ],
+    "derived_filters": [
+      "Convert Match column from string/object to numeric for comparison",
+      "Filter where Arena == 'A' AND League == 'SL' AND Match > 16"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Result value(s) matching all filter conditions",
+      "If multiple matches exist, return all Results",
+      "If no matches exist, indicate no results found"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Result value\",\n    \"filters\": [\n      \"Arena = 'A'\",\n      \"League = 'SL'\",\n      \"Match > 16\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have Arena equal to 'A'?\",\n      \"Which rows have League equal to 'SL'?\",\n      \"Which rows have Match number greater than 16?\",\n      \"What is the Result value for rows matching all three conditions?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Basketball Matches\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Match\": \"sequential match number\",\n      \"Date & Time ( CET )\": \"date and time in Central European Time format dd.mm.yy, HH:MM\",\n      \"Team and Score\": \"team names and scores in format 'Team1 - Team2, Score1-Score2'\",\n      \"Result\": \"final score in format Score1-Score2\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Match column contains numeric values as strings\",\n      \"Arena column contains single letter codes (A or H for Away or Home)\",\n      \"League column contains abbreviated league codes (FM, SL, EL, CBA)\",\n      \"Result column contains score pairs separated by en-dash (\u2013)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Match must be numeric and greater than 16\",\n      \"Arena must equal 'A'\",\n      \"League must equal 'SL'\"\n    ],\n    \"derived_filters\": [\n      \"Convert Match column from string/object to numeric for comparison\",\n      \"Filter where Arena == 'A' AND League == 'SL' AND Match > 16\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Result value(s) matching all filter conditions\",\n      \"If multiple matches exist, return all Results\",\n      \"If no matches exist, indicate no results found\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.908967018127441,
+  "token_usage": {
+    "input_tokens": 1350,
+    "output_tokens": 647
+  }
+}

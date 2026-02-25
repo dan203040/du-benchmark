@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Country of origin",
+    "filters": [
+      "Type = 'Disposable'",
+      "Primary Cartridge = '105mm'",
+      "Year of Intro < 2008"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What are the specific countries that produced disposable RPGs with 105mm primary cartridges introduced before 2008?",
+      "Are there multiple entries meeting these criteria?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Rocket Propelled Grenade (RPG) Weapons"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Primary cartridge": "millimeters (mm)",
+      "Year of intro": "year"
+    },
+    "scale_issues": [
+      "Year of intro is stored as object/string type instead of numeric, requiring type conversion for comparison operations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain spaces and special characters",
+      "Data appears to be clean with consistent formatting in sample rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year of intro must be convertible to numeric for comparison",
+      "Primary cartridge values must match exactly '105mm' (case-sensitive)",
+      "Type values must match exactly 'Disposable' (case-sensitive)"
+    ],
+    "derived_filters": [
+      "Year of intro < 2008 AND Type = 'Disposable' AND Primary Cartridge = '105mm'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate entries with same criteria",
+      "Validate year values are within reasonable range (e.g., 1900-2024)"
+    ],
+    "output_format_requirements": [
+      "List of distinct country names",
+      "Should include any relevant metadata like weapon names if multiple results"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Country of origin\",\n        \"filters\": [\"Type = 'Disposable'\", \"Primary Cartridge = '105mm'\", \"Year of Intro < 2008\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What are the specific countries that produced disposable RPGs with 105mm primary cartridges introduced before 2008?\", \"Are there multiple entries meeting these criteria?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Rocket Propelled Grenade (RPG) Weapons\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Primary cartridge\": \"millimeters (mm)\", \"Year of intro\": \"year\"},\n        \"scale_issues\": [\"Year of intro is stored as object/string type instead of numeric, requiring type conversion for comparison operations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names contain spaces and special characters\", \"Data appears to be clean with consistent formatting in sample rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year of intro must be convertible to numeric for comparison\", \"Primary cartridge values must match exactly '105mm' (case-sensitive)\", \"Type values must match exactly 'Disposable' (case-sensitive)\"],\n        \"derived_filters\": [\"Year of intro < 2008 AND Type = 'Disposable' AND Primary Cartridge = '105mm'\"],\n        \"statistical_tests\": [\"Check for duplicate entries with same criteria\", \"Validate year values are within reasonable range (e.g., 1900-2024)\"],\n        \"output_format_requirements\": [\"List of distinct country names\", \"Should include any relevant metadata like weapon names if multiple results\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.650520086288452,
+  "token_usage": {
+    "input_tokens": 980,
+    "output_tokens": 472
+  }
+}

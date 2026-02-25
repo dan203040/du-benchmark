@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "relative growth rate (percentage change) of identity theft reports between 2020 and 2024 for each theft category",
+    "filters": [
+      "Year between 2020 and 2024 inclusive",
+      "Theft Type in top three categories: Bank Account, Credit Card, Loan or Lease"
+    ],
+    "grouping_variables": [
+      "Theft Type"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the number of reports for each theft type in 2020?",
+      "What is the number of reports for each theft type in 2024?",
+      "How to calculate relative growth: (2024_reports - 2020_reports) / 2020_reports * 100%?",
+      "Which theft type has the highest percentage growth from 2020 to 2024?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account' in sample data - likely mislabeled dtype"
+    ],
+    "column_mappings": {
+      "Theft Type": "Theft_Type",
+      "# of Reports": "Num_Reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of identity theft reports"
+    },
+    "scale_issues": [
+      "Data appears to be aggregated yearly counts - no scaling issues evident"
+    ],
+    "cross_source_conflicts": [
+      "Only one data source provided - no cross-source conflicts"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows Year column appears first but header shows 'Theft Type' first - possible header mismatch",
+      "Shape indicates 15 rows but sample shows 15 rows - consistent",
+      "Dtype for 'Theft Type' listed as int64 but sample shows string values - requires verification"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be 2020-2024 inclusive",
+      "Theft Type should be one of: Bank Account, Credit Card, Loan or Lease",
+      "# of Reports should be non-negative integers"
+    ],
+    "derived_filters": [
+      "Filter to only include years 2020 and 2024 for growth calculation",
+      "Ensure each theft type has data for both 2020 and 2024"
+    ],
+    "statistical_tests": [
+      "Check for missing years for any theft category",
+      "Verify monotonic growth/decline patterns are reasonable"
+    ],
+    "output_format_requirements": [
+      "Table showing theft type, 2020 reports, 2024 reports, percentage growth",
+      "Sort by percentage growth descending to identify fastest growing"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"relative growth rate (percentage change) of identity theft reports between 2020 and 2024 for each theft category\",\n        \"filters\": [\"Year between 2020 and 2024 inclusive\", \"Theft Type in top three categories: Bank Account, Credit Card, Loan or Lease\"],\n        \"grouping_variables\": [\"Theft Type\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What is the number of reports for each theft type in 2020?\", \"What is the number of reports for each theft type in 2024?\", \"How to calculate relative growth: (2024_reports - 2020_reports) / 2020_reports * 100%?\", \"Which theft type has the highest percentage growth from 2020 to 2024?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Column 'Theft Type' has dtype int64 but contains string values like 'Bank Account' in sample data - likely mislabeled dtype\"],\n        \"column_mappings\": {\"Theft Type\": \"Theft_Type\", \"# of Reports\": \"Num_Reports\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of identity theft reports\"},\n        \"scale_issues\": [\"Data appears to be aggregated yearly counts - no scaling issues evident\"],\n        \"cross_source_conflicts\": [\"Only one data source provided - no cross-source conflicts\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 3,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows Year column appears first but header shows 'Theft Type' first - possible header mismatch\", \"Shape indicates 15 rows but sample shows 15 rows - consistent\", \"Dtype for 'Theft Type' listed as int64 but sample shows string values - requires verification\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be 2020-2024 inclusive\", \"Theft Type should be one of: Bank Account, Credit Card, Loan or Lease\", \"# of Reports should be non-negative integers\"],\n        \"derived_filters\": [\"Filter to only include years 2020 and 2024 for growth calculation\", \"Ensure each theft type has data for both 2020 and 2024\"],\n        \"statistical_tests\": [\"Check for missing years for any theft category\", \"Verify monotonic growth/decline patterns are reasonable\"],\n        \"output_format_requirements\": [\"Table showing theft type, 2020 reports, 2024 reports, percentage growth\", \"Sort by percentage growth descending to identify fastest growing\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 13.320318937301636,
+  "token_usage": {
+    "input_tokens": 731,
+    "output_tokens": 646
+  }
+}

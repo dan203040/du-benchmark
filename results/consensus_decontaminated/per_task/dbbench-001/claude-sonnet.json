@@ -1,0 +1,80 @@
+{
+  "m_q": {
+    "target_metric": "Value in the 2007 column",
+    "filters": [
+      "2008 column equals 'sf' or 'SF'",
+      "2010 column equals 'f' or 'F'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which tournaments have 'sf' or 'SF' in the 2008 column?",
+      "Which tournaments have 'f' or 'F' in the 2010 column?",
+      "What is the intersection of these two sets?",
+      "What are the corresponding values in the 2007 column for this intersection?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Tournament Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "2005": "tournament result abbreviation",
+      "2006": "tournament result abbreviation",
+      "2007": "tournament result abbreviation",
+      "2008": "tournament result abbreviation",
+      "2009": "tournament result abbreviation",
+      "2010": "tournament result abbreviation",
+      "2011": "tournament result abbreviation",
+      "2012": "tournament result abbreviation",
+      "2013": "tournament result abbreviation",
+      "Win %": "percentage"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Tournament result abbreviations: W (Won), F (Final), SF (Semi-Final), QF (Quarter-Final), R16/R32 (Round of 16/32), 1R/2R/3R/4R (Round 1/2/3/4), BR (Bronze medal), RR (Round Robin)",
+      "First row appears to be a category header row, not actual tournament data",
+      "Case sensitivity may vary for abbreviations (e.g., 'SF' vs 'sf', 'F' vs 'f')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Filter rows where 2008 column value matches 'sf' (case-insensitive)",
+      "Filter rows where 2010 column value matches 'f' (case-insensitive)",
+      "Exclude header or category rows that don't represent actual tournament entries"
+    ],
+    "derived_filters": [
+      "Apply case-insensitive matching for tournament result abbreviations"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the value(s) from the 2007 column for matching rows",
+      "If multiple rows match, return all matching 2007 values"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Value in the 2007 column\",\n    \"filters\": [\n      \"2008 column equals 'sf' or 'SF'\",\n      \"2010 column equals 'f' or 'F'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which tournaments have 'sf' or 'SF' in the 2008 column?\",\n      \"Which tournaments have 'f' or 'F' in the 2010 column?\",\n      \"What is the intersection of these two sets?\",\n      \"What are the corresponding values in the 2007 column for this intersection?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Tournament Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"2005\": \"tournament result abbreviation\",\n      \"2006\": \"tournament result abbreviation\",\n      \"2007\": \"tournament result abbreviation\",\n      \"2008\": \"tournament result abbreviation\",\n      \"2009\": \"tournament result abbreviation\",\n      \"2010\": \"tournament result abbreviation\",\n      \"2011\": \"tournament result abbreviation\",\n      \"2012\": \"tournament result abbreviation\",\n      \"2013\": \"tournament result abbreviation\",\n      \"Win %\": \"percentage\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\u2013\", \"\"],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Tournament result abbreviations: W (Won), F (Final), SF (Semi-Final), QF (Quarter-Final), R16/R32 (Round of 16/32), 1R/2R/3R/4R (Round 1/2/3/4), BR (Bronze medal), RR (Round Robin)\",\n      \"First row appears to be a category header row, not actual tournament data\",\n      \"Case sensitivity may vary for abbreviations (e.g., 'SF' vs 'sf', 'F' vs 'f')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Filter rows where 2008 column value matches 'sf' (case-insensitive)\",\n      \"Filter rows where 2010 column value matches 'f' (case-insensitive)\",\n      \"Exclude header or category rows that don't represent actual tournament entries\"\n    ],\n    \"derived_filters\": [\n      \"Apply case-insensitive matching for tournament result abbreviations\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the value(s) from the 2007 column for matching rows\",\n      \"If multiple rows match, return all matching 2007 values\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 19.04663920402527,
+  "token_usage": {
+    "input_tokens": 1248,
+    "output_tokens": 776
+  }
+}

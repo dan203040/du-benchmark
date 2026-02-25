@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round",
+    "filters": [
+      "Playoffs = 'Did not qualify'",
+      "Open Cup = '2nd Round'"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What years did the team not qualify for playoffs?",
+      "What years did the team reach Open Cup 2nd Round?",
+      "What is the intersection of these two sets?",
+      "What is the maximum year in that intersection?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Soccer Team Performance"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year"
+    },
+    "scale_issues": [
+      "Year column is stored as object/string instead of integer"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Canceled"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year 2020 has 'Canceled' values for all performance columns due to pandemic"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be between 2009-2023",
+      "Playoffs column contains specific values: 'Did not qualify', 'Division Final', 'Conference Semifinal', etc.",
+      "Open Cup column contains specific values: 'Did not qualify', '1st Round', '2nd Round'"
+    ],
+    "derived_filters": [
+      "Exclude Year 2020 where all performance metrics are 'Canceled'"
+    ],
+    "statistical_tests": [
+      "Check for duplicate years",
+      "Verify chronological order of years"
+    ],
+    "output_format_requirements": [
+      "Year should be returned as integer"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Latest year where Real Colorado Foxes did not qualify for playoffs but reached Open Cup 2nd Round\",\n        \"filters\": [\"Playoffs = 'Did not qualify'\", \"Open Cup = '2nd Round'\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What years did the team not qualify for playoffs?\", \"What years did the team reach Open Cup 2nd Round?\", \"What is the intersection of these two sets?\", \"What is the maximum year in that intersection?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Soccer Team Performance\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"calendar year\"},\n        \"scale_issues\": [\"Year column is stored as object/string instead of integer\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Canceled\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year 2020 has 'Canceled' values for all performance columns due to pandemic\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be between 2009-2023\", \"Playoffs column contains specific values: 'Did not qualify', 'Division Final', 'Conference Semifinal', etc.\", \"Open Cup column contains specific values: 'Did not qualify', '1st Round', '2nd Round'\"],\n        \"derived_filters\": [\"Exclude Year 2020 where all performance metrics are 'Canceled'\"],\n        \"statistical_tests\": [\"Check for duplicate years\", \"Verify chronological order of years\"],\n        \"output_format_requirements\": [\"Year should be returned as integer\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.159238815307617,
+  "token_usage": {
+    "input_tokens": 969,
+    "output_tokens": 454
+  }
+}

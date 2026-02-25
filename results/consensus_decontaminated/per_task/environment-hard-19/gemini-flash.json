@@ -1,0 +1,134 @@
+{
+  "m_q": {
+    "target_metric": "Compare the year with the highest average exceedance rate difference (with the previous year) for marine beaches to the year with the highest total rainfall difference (with the previous year) in June, July, August in Boston and Chatham.",
+    "filters": [
+      "Beach Type Description = 'Marine'",
+      "Rainfall months are June, July, August",
+      "Rainfall locations are Boston and Chatham"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the average exceedance rate for marine beaches for each year.",
+      "Calculate the difference in average exceedance rate between consecutive years.",
+      "Identify the year with the highest difference in average exceedance rate.",
+      "Calculate the total rainfall for June, July, and August for each year in Boston and Chatham.",
+      "Impute missing rainfall values with the median of the month in non-missing years.",
+      "Calculate the difference in total rainfall between consecutive years.",
+      "Identify the year with the highest difference in total rainfall.",
+      "Compare the year with the highest exceedance rate difference to the year with the highest rainfall difference."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2002.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv",
+      "water-body-testing-2023.csv",
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "water-body-testing-2002.csv",
+        "right_source": "water-body-testing-2003.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "monthly_precipitations_boston.csv",
+        "right_source": "monthly_precipitations_chatham.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Violation column has different values (yes/no vs YES/NO) across water-body-testing files.",
+      "Column names are inconsistent across water-body-testing files (e.g., 'Community Code' vs 'CommunityCode').",
+      "Violation column has different casing (e.g., 'no' vs 'No')."
+    ],
+    "column_mappings": {
+      "Sample Date": "SampleDate",
+      "Beach Type Description": "BeachTypeDescription",
+      "Indicator Level": "IndicatorLevel"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "IndicatorLevel": "Enterococci count",
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date format in water-body-testing files needs to be parsed.",
+      "Some rainfall values are missing."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Years in water-body-testing files should match years in rainfall files.",
+      "Ensure that the 'Sample Date' column is correctly parsed as a date.",
+      "Ensure that the 'Beach Type Description' column only contains 'Marine' values after filtering."
+    ],
+    "derived_filters": [
+      "Create a 'Month' column from 'Sample Date' to filter for June, July, and August.",
+      "Filter water-body-testing data for 'Beach Type Description' equal to 'Marine'."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a boolean value (True or False)."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Compare the year with the highest average exceedance rate difference (with the previous year) for marine beaches to the year with the highest total rainfall difference (with the previous year) in June, July, August in Boston and Chatham.\",\n    \"filters\": [\n      \"Beach Type Description = 'Marine'\",\n      \"Rainfall months are June, July, August\",\n      \"Rainfall locations are Boston and Chatham\"\n    ],\n    \"grouping_variables\": [\n      \"Year\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the average exceedance rate for marine beaches for each year.\",\n      \"Calculate the difference in average exceedance rate between consecutive years.\",\n      \"Identify the year with the highest difference in average exceedance rate.\",\n      \"Calculate the total rainfall for June, July, and August for each year in Boston and Chatham.\",\n      \"Impute missing rainfall values with the median of the month in non-missing years.\",\n      \"Calculate the difference in total rainfall between consecutive years.\",\n      \"Identify the year with the highest difference in total rainfall.\",\n      \"Compare the year with the highest exceedance rate difference to the year with the highest rainfall difference.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2002.csv\",\n      \"water-body-testing-2003.csv\",\n      \"water-body-testing-2004.csv\",\n      \"water-body-testing-2005.csv\",\n      \"water-body-testing-2006.csv\",\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2009.csv\",\n      \"water-body-testing-2010.csv\",\n      \"water-body-testing-2011.csv\",\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\",\n      \"water-body-testing-2014.csv\",\n      \"water-body-testing-2015.csv\",\n      \"water-body-testing-2016.csv\",\n      \"water-body-testing-2017.csv\",\n      \"water-body-testing-2018.csv\",\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2023.csv\",\n      \"monthly_precipitations_boston.csv\",\n      \"monthly_precipitations_chatham.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"water-body-testing-2002.csv\",\n        \"right_source\": \"water-body-testing-2003.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"monthly_precipitations_boston.csv\",\n        \"right_source\": \"monthly_precipitations_chatham.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Violation column has different values (yes/no vs YES/NO) across water-body-testing files.\",\n      \"Column names are inconsistent across water-body-testing files (e.g., 'Community Code' vs 'CommunityCode').\",\n      \"Violation column has different casing (e.g., 'no' vs 'No').\"\n    ],\n    \"column_mappings\": {\n      \"Sample Date\": \"SampleDate\",\n      \"Beach Type Description\": \"BeachTypeDescription\",\n      \"Indicator Level\": \"IndicatorLevel\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"IndicatorLevel\": \"Enterococci count\",\n      \"Jan\": \"inches\",\n      \"Feb\": \"inches\",\n      \"Mar\": \"inches\",\n      \"Apr\": \"inches\",\n      \"May\": \"inches\",\n      \"Jun\": \"inches\",\n      \"Jul\": \"inches\",\n      \"Aug\": \"inches\",\n      \"Sep\": \"inches\",\n      \"Oct\": \"inches\",\n      \"Nov\": \"inches\",\n      \"Dec\": \"inches\",\n      \"Annual\": \"inches\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date format in water-body-testing files needs to be parsed.\",\n      \"Some rainfall values are missing.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Years in water-body-testing files should match years in rainfall files.\",\n      \"Ensure that the 'Sample Date' column is correctly parsed as a date.\",\n      \"Ensure that the 'Beach Type Description' column only contains 'Marine' values after filtering.\"\n    ],\n    \"derived_filters\": [\n      \"Create a 'Month' column from 'Sample Date' to filter for June, July, and August.\",\n      \"Filter water-body-testing data for 'Beach Type Description' equal to 'Marine'.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a boolean value (True or False).\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 27.708703994750977,
+  "token_usage": {}
+}

@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "Avg. Finish",
+    "filters": [
+      "Position = '70th'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the value of 'Avg. Finish' column where 'Position' column equals '70th'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Racing Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Avg. Finish": "position number",
+      "Avg. Start": "position number",
+      "Winnings": "US dollars",
+      "Year": "calendar year"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Winnings column contains currency formatting with dollar signs and commas",
+      "Position column contains ordinal indicators (th, st, rd, nd)",
+      "Some numeric columns may be stored as strings"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Position column must match exactly '70th' (case-sensitive with ordinal suffix)",
+      "Only one row expected to match Position='70th'",
+      "Avg. Finish should be a numeric value"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single numeric value for Avg. Finish",
+      "Handle potential string-to-numeric conversion for Avg. Finish column"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Avg. Finish\",\n    \"filters\": [\"Position = '70th'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the value of 'Avg. Finish' column where 'Position' column equals '70th'?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Racing Stats\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Avg. Finish\": \"position number\",\n      \"Avg. Start\": \"position number\",\n      \"Winnings\": \"US dollars\",\n      \"Year\": \"calendar year\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Winnings column contains currency formatting with dollar signs and commas\",\n      \"Position column contains ordinal indicators (th, st, rd, nd)\",\n      \"Some numeric columns may be stored as strings\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Position column must match exactly '70th' (case-sensitive with ordinal suffix)\",\n      \"Only one row expected to match Position='70th'\",\n      \"Avg. Finish should be a numeric value\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single numeric value for Avg. Finish\",\n      \"Handle potential string-to-numeric conversion for Avg. Finish column\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.485059261322021,
+  "token_usage": {
+    "input_tokens": 1416,
+    "output_tokens": 504
+  }
+}

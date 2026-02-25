@@ -1,0 +1,325 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of distinct college teams that have at least one player with Russian nationality",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Count of distinct college teams that have at least one player with Russian nationality",
+        "Count of distinct college teams that have at least one player with Russian nationality",
+        "Count of distinct college teams that have at least one player with a nationality of Russia"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Nationality == 'Russia'",
+        "College/junior/club team contains 'NCAA' or university name pattern",
+        "Nationality equals 'Russia'",
+        "Nationality is Russia",
+        "College/junior/club team is a college team"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Nationality == 'Russia'",
+          "College/junior/club team contains 'NCAA' or university name pattern"
+        ],
+        [
+          "Nationality equals 'Russia'"
+        ],
+        [
+          "Nationality is Russia",
+          "College/junior/club team is a college team"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "College/junior/club team"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "College/junior/club team"
+        ],
+        [
+          "College/junior/club team"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which players have Russian nationality?",
+        "Which of those players are on college teams?",
+        "What are the distinct college teams from those players?",
+        "Which players have nationality of Russia?",
+        "What are the college/junior/club teams associated with Russian players?",
+        "How many unique college teams are there among Russian players?",
+        "Identify players with nationality Russia.",
+        "Determine the college teams associated with those players.",
+        "Count the distinct college teams."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which players have Russian nationality?",
+          "Which of those players are on college teams?",
+          "What are the distinct college teams from those players?"
+        ],
+        [
+          "Which players have nationality of Russia?",
+          "What are the college/junior/club teams associated with Russian players?",
+          "How many unique college teams are there among Russian players?"
+        ],
+        [
+          "Identify players with nationality Russia.",
+          "Determine the college teams associated with those players.",
+          "Count the distinct college teams."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "NHL_draft_picks"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NHL_draft_picks"
+        ],
+        [
+          "NHL_draft_picks"
+        ],
+        [
+          "NHL_draft_picks"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "pick": "draft pick number",
+        "player": "player name",
+        "position": "hockey position",
+        "nationality": "country of origin",
+        "nhl team": "NHL franchise name",
+        "college/junior/club team": "team name with league identifier"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {},
+        {
+          "Pick": "draft pick number",
+          "Player": "player name",
+          "Position": "hockey position",
+          "Nationality": "country of origin",
+          "NHL team": "NHL franchise name",
+          "College/junior/club team": "team name with league identifier"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "College/junior/club team column contains mixed types: college teams, junior teams, and club teams from different countries"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "College/junior/club team column contains mixed types: college teams, junior teams, and club teams from different countries"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Nationality column must contain 'Russia' values",
+        "College/junior/club team column must be parsed to identify college teams vs other types",
+        "Nationality must exactly match 'Russia' (case-sensitive check may be needed)",
+        "College/junior/club team values must be non-null for counting",
+        "Each unique team name should be counted only once regardless of how many Russian players from that team",
+        "The 'College/junior/club team' column may contain values that are not college teams. Need to filter to only include college teams."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Nationality column must contain 'Russia' values",
+          "College/junior/club team column must be parsed to identify college teams vs other types"
+        ],
+        [
+          "Nationality must exactly match 'Russia' (case-sensitive check may be needed)",
+          "College/junior/club team values must be non-null for counting",
+          "Each unique team name should be counted only once regardless of how many Russian players from that team"
+        ],
+        [
+          "The 'College/junior/club team' column may contain values that are not college teams. Need to filter to only include college teams."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Nationality = 'Russia'",
+        "Filter rows where College/junior/club team indicates NCAA or university affiliation",
+        "Filter rows where Nationality == 'Russia'",
+        "Extract distinct College/junior/club team values from filtered results",
+        "College/junior/club team is a college team"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Nationality = 'Russia'",
+          "Filter rows where College/junior/club team indicates NCAA or university affiliation"
+        ],
+        [
+          "Filter rows where Nationality == 'Russia'",
+          "Extract distinct College/junior/club team values from filtered results"
+        ],
+        [
+          "College/junior/club team is a college team"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct college teams after filtering"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct college teams after filtering"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Return a single integer representing the count of unique college teams",
+        "Count should be zero if no Russian players exist in dataset"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count"
+        ],
+        [
+          "Return a single integer representing the count of unique college teams",
+          "Count should be zero if no Russian players exist in dataset"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6000000000000001
+}

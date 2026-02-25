@@ -1,0 +1,301 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total count of films",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "count of distinct films",
+        "total count of films",
+        "Total count of films"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Are there duplicate film titles?",
+        "Should films with missing ratings be included?",
+        "Should multi-part films (like Nymphomaniac: Volume I and II) count as one or two films?",
+        "How many rows are in the Film Ratings dataset?",
+        "Are there any duplicate films in the dataset?",
+        "Should films with N/A ratings still be counted?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Are there duplicate film titles?",
+          "Should films with missing ratings be included?",
+          "Should multi-part films (like Nymphomaniac: Volume I and II) count as one or two films?"
+        ],
+        [
+          "How many rows are in the Film Ratings dataset?",
+          "Are there any duplicate films in the dataset?",
+          "Should films with N/A ratings still be counted?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Film Ratings"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Film Ratings"
+        ],
+        [
+          "Film Ratings"
+        ],
+        [
+          "Film Ratings"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "rotten tomatoes": "percentage",
+        "metacritic": "score out of 100",
+        "imdb": "score out of 10",
+        "year": "year",
+        "film": "film_title"
+      },
+      "confidence": 0.8,
+      "votes": [
+        {
+          "Rotten Tomatoes": "percentage",
+          "Metacritic": "score out of 100",
+          "IMDb": "score out of 10"
+        },
+        {
+          "Year": "year",
+          "Film": "film_title",
+          "Rotten Tomatoes": "percentage",
+          "Metacritic": "percentage",
+          "IMDb": "rating_out_of_10"
+        },
+        {
+          "Year": "year",
+          "Rotten Tomatoes": "percentage",
+          "Metacritic": "score",
+          "IMDb": "rating"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Rotten Tomatoes and Metacritic columns contain 'N/A' values",
+        "IMDb column contains scores with '/10' suffix"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Rotten Tomatoes and Metacritic columns contain 'N/A' values",
+          "IMDb column contains scores with '/10' suffix"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "N/A",
+          ""
+        ],
+        [
+          "N/A"
+        ],
+        [
+          "N/A"
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Film column should not contain null values",
+        "Year should be between reasonable film production years",
+        "Each row represents one film",
+        "Film column should contain unique titles",
+        "Year should be a valid year value",
+        "The 'Film' column should contain unique values for each film."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Film column should not contain null values",
+          "Year should be between reasonable film production years"
+        ],
+        [
+          "Each row represents one film",
+          "Film column should contain unique titles",
+          "Year should be a valid year value"
+        ],
+        [
+          "The 'Film' column should contain unique values for each film."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Film is null or empty",
+        "Consider filtering by Year range if needed"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Film is null or empty",
+          "Consider filtering by Year range if needed"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Film entries",
+        "Verify Year distribution",
+        "Check for duplicate film titles",
+        "Verify row count matches unique film count"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Film entries",
+          "Verify Year distribution"
+        ],
+        [
+          "Check for duplicate film titles",
+          "Verify row count matches unique film count"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Return single integer value representing total number of films",
+        "The output should be a single integer representing the total number of films."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count"
+        ],
+        [
+          "Return single integer value representing total number of films"
+        ],
+        [
+          "The output should be a single integer representing the total number of films."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5566666666666669
+}

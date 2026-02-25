@@ -1,0 +1,110 @@
+{
+  "m_q": {
+    "target_metric": "Average unit price paid for items by customer cohorts over time",
+    "filters": [
+      "Exclude transactions with missing CustomerID",
+      "Exclude transactions with negative or zero UnitPrice",
+      "Exclude transactions with negative Quantity"
+    ],
+    "grouping_variables": [
+      "CohortMonth (month of customer's first purchase)",
+      "Purchase month relative to cohort month (1-13)"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the first purchase date for each CustomerID?",
+      "What is the cohort month (YYYY-MM-01) for each customer?",
+      "For each transaction, what is the month offset from the customer's cohort month?",
+      "What is the average UnitPrice for each cohort-month offset combination?",
+      "How should the results be formatted to match the template structure?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online.csv",
+      "average_price.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "average_price.csv contains only template structure with null values that need to be populated",
+      "online.csv contains raw transactional data that needs aggregation"
+    ],
+    "column_mappings": {
+      "InvoiceDate": "PurchaseDateTime",
+      "CustomerID": "Customer"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "UnitPrice": "currency (presumably GBP based on Country column)",
+      "Quantity": "units",
+      "InvoiceDate": "datetime string",
+      "CohortMonth": "date string YYYY-MM-DD"
+    },
+    "scale_issues": [
+      "InvoiceDate is stored as string and needs conversion to datetime",
+      "CohortMonth needs to be extracted as first day of month from customer's first purchase"
+    ],
+    "cross_source_conflicts": [
+      "average_price.csv uses numeric column headers (1-13) representing month offsets",
+      "online.csv contains raw dates that need to be converted to relative month offsets"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "NaN"
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "online.csv has Unnamed: 0 column which appears to be an index",
+      "average_price.csv template has 14 columns: CohortMonth plus columns 1-13",
+      "InvoiceDate is in format YYYY-MM-DD HH:MM:SS",
+      "CohortMonth in template is in format YYYY-MM-DD with day always 01",
+      "Numeric columns in average_price.csv are float64 type",
+      "Output must preserve float64 precision for average prices"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include customers with valid CustomerID (not null)",
+      "Only include transactions with positive UnitPrice",
+      "Only include transactions with positive Quantity",
+      "CohortMonth must be the first day of the month of customer's first purchase",
+      "Month offset columns (1-13) represent months since cohort month",
+      "Average price calculation should use UnitPrice from transactions"
+    ],
+    "derived_filters": [
+      "Customers must have at least one purchase to be assigned to a cohort",
+      "Only transactions occurring within 13 months of cohort month should be included",
+      "Each customer should be assigned to exactly one cohort based on first purchase month"
+    ],
+    "statistical_tests": [
+      "Verify that cohort month assignments are consistent",
+      "Validate that average prices are within reasonable ranges"
+    ],
+    "output_format_requirements": [
+      "Output file must be named average_price.csv",
+      "First column must be CohortMonth in YYYY-MM-DD format",
+      "Subsequent columns must be labeled 1 through 13",
+      "CohortMonth values should match those in template: 2010-12-01 through 2011-12-01",
+      "Numeric values should be float64 type",
+      "Empty cells should remain as NaN for cohort-month combinations with no data",
+      "File structure must have 13 rows (one per cohort) and 14 columns total"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average unit price paid for items by customer cohorts over time\",\n    \"filters\": [\n      \"Exclude transactions with missing CustomerID\",\n      \"Exclude transactions with negative or zero UnitPrice\",\n      \"Exclude transactions with negative Quantity\"\n    ],\n    \"grouping_variables\": [\n      \"CohortMonth (month of customer's first purchase)\",\n      \"Purchase month relative to cohort month (1-13)\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the first purchase date for each CustomerID?\",\n      \"What is the cohort month (YYYY-MM-01) for each customer?\",\n      \"For each transaction, what is the month offset from the customer's cohort month?\",\n      \"What is the average UnitPrice for each cohort-month offset combination?\",\n      \"How should the results be formatted to match the template structure?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"online.csv\",\n      \"average_price.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"average_price.csv contains only template structure with null values that need to be populated\",\n      \"online.csv contains raw transactional data that needs aggregation\"\n    ],\n    \"column_mappings\": {\n      \"InvoiceDate\": \"PurchaseDateTime\",\n      \"CustomerID\": \"Customer\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"UnitPrice\": \"currency (presumably GBP based on Country column)\",\n      \"Quantity\": \"units\",\n      \"InvoiceDate\": \"datetime string\",\n      \"CohortMonth\": \"date string YYYY-MM-DD\"\n    },\n    \"scale_issues\": [\n      \"InvoiceDate is stored as string and needs conversion to datetime\",\n      \"CohortMonth needs to be extracted as first day of month from customer's first purchase\"\n    ],\n    \"cross_source_conflicts\": [\n      \"average_price.csv uses numeric column headers (1-13) representing month offsets\",\n      \"online.csv contains raw dates that need to be converted to relative month offsets\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\",\n      \"NaN\"\n    ],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"online.csv has Unnamed: 0 column which appears to be an index\",\n      \"average_price.csv template has 14 columns: CohortMonth plus columns 1-13\",\n      \"InvoiceDate is in format YYYY-MM-DD HH:MM:SS\",\n      \"CohortMonth in template is in format YYYY-MM-DD with day always 01\",\n      \"Numeric columns in average_price.csv are float64 type\",\n      \"Output must preserve float64 precision for average prices\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include customers with valid CustomerID (not null)\",\n      \"Only include transactions with positive UnitPrice\",\n      \"Only include transactions with positive Quantity\",\n      \"CohortMonth must be the first day of the month of customer's first purchase\",\n      \"Month offset columns (1-13) represent months since cohort month\",\n      \"Average price calculation should use UnitPrice from transactions\"\n    ],\n    \"derived_filters\": [\n      \"Customers must have at least one purchase to be assigned to a cohort\",\n      \"Only transactions occurring within 13 months of cohort month should be included\",\n      \"Each customer should be assigned to exactly one cohort based on first purchase month\"\n    ],\n    \"statistical_tests\": [\n      \"Verify that cohort month assignments are consistent\",\n      \"Validate that average prices are within reasonable ranges\"\n    ],\n    \"output_format_requirements\": [\n      \"Output file must be named average_price.csv\",\n      \"First column must be CohortMonth in YYYY-MM-DD format\",\n      \"Subsequent columns must be labeled 1 through 13\",\n      \"CohortMonth values should match those in template: 2010-12-01 through 2011-12-01\",\n      \"Numeric values should be float64 type\",\n      \"Empty cells should remain as NaN for cohort-month combinations with no data\",\n      \"File structure must have 13 rows (one per cohort) and 14 columns total\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 20.177597045898438,
+  "token_usage": {
+    "input_tokens": 3881,
+    "output_tokens": 1151
+  }
+}

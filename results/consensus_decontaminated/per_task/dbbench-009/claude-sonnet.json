@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Attendance",
+    "filters": [
+      "Round equals 52",
+      "Home equals 's\u00f6dert\u00e4lje sk' (case-insensitive match to 'S\u00f6dert\u00e4lje SK')"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the exact match for home team name given case differences?",
+      "Are there multiple games matching Round 52 and Home S\u00f6dert\u00e4lje SK?",
+      "What is the attendance value for the matching game?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Hockey Games"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Attendance": "number of people",
+      "Round": "game round number"
+    },
+    "scale_issues": [
+      "Attendance values appear to contain commas as thousands separators (e.g., '2,859')",
+      "Attendance is stored as string type instead of numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Attendance column contains comma-separated numbers stored as strings",
+      "Round column stored as object type but contains numeric values",
+      "Home team names use proper capitalization (e.g., 'S\u00f6dert\u00e4lje SK')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Round must equal 52",
+      "Home must match 'S\u00f6dert\u00e4lje SK' (case-insensitive)",
+      "Attendance must be present and non-null"
+    ],
+    "derived_filters": [
+      "Convert Round from string to numeric for comparison if needed",
+      "Normalize Home team name to handle case-insensitive matching"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single attendance value",
+      "Remove comma separators from attendance if present",
+      "Return numeric attendance value or formatted string as '2,859'"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Attendance\",\n    \"filters\": [\n      \"Round equals 52\",\n      \"Home equals 's\u00f6dert\u00e4lje sk' (case-insensitive match to 'S\u00f6dert\u00e4lje SK')\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the exact match for home team name given case differences?\",\n      \"Are there multiple games matching Round 52 and Home S\u00f6dert\u00e4lje SK?\",\n      \"What is the attendance value for the matching game?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Hockey Games\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Attendance\": \"number of people\",\n      \"Round\": \"game round number\"\n    },\n    \"scale_issues\": [\n      \"Attendance values appear to contain commas as thousands separators (e.g., '2,859')\",\n      \"Attendance is stored as string type instead of numeric\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Attendance column contains comma-separated numbers stored as strings\",\n      \"Round column stored as object type but contains numeric values\",\n      \"Home team names use proper capitalization (e.g., 'S\u00f6dert\u00e4lje SK')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Round must equal 52\",\n      \"Home must match 'S\u00f6dert\u00e4lje SK' (case-insensitive)\",\n      \"Attendance must be present and non-null\"\n    ],\n    \"derived_filters\": [\n      \"Convert Round from string to numeric for comparison if needed\",\n      \"Normalize Home team name to handle case-insensitive matching\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single attendance value\",\n      \"Remove comma separators from attendance if present\",\n      \"Return numeric attendance value or formatted string as '2,859'\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.162664890289307,
+  "token_usage": {
+    "input_tokens": 1411,
+    "output_tokens": 616
+  }
+}

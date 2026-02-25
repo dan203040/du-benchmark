@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "minimum value of 'Int yards' column",
+    "filters": [
+      "Sacks = 11.5"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find all rows where Sacks equals 11.5",
+      "Among those rows, identify the minimum value in the 'Int yards' column",
+      "Return that minimum value"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Player Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Sacks": "count (decimal allowed)",
+      "Int yards": "yards"
+    },
+    "scale_issues": [
+      "All numeric columns are stored as object/string dtype, requiring type conversion for numerical operations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain special characters like '.' and spaces",
+      "Numeric values appear as strings in the sample data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Sacks column contains decimal values like 11.5, 1.0, 0.0",
+      "Int yards column contains integer values",
+      "Only one data source needed for this analysis"
+    ],
+    "derived_filters": [
+      "Convert Sacks column to numeric type for comparison with 11.5",
+      "Convert Int yards column to numeric type for finding minimum"
+    ],
+    "statistical_tests": [
+      "Check for missing values in Sacks and Int yards columns",
+      "Verify that Sacks=11.5 filter returns at least one row"
+    ],
+    "output_format_requirements": [
+      "Single numeric value representing the least Int yards when Sacks is 11.5"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum value of 'Int yards' column\",\n        \"filters\": [\"Sacks = 11.5\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Find all rows where Sacks equals 11.5\", \"Among those rows, identify the minimum value in the 'Int yards' column\", \"Return that minimum value\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Player Stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Sacks\": \"count (decimal allowed)\", \"Int yards\": \"yards\"},\n        \"scale_issues\": [\"All numeric columns are stored as object/string dtype, requiring type conversion for numerical operations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names contain special characters like '.' and spaces\", \"Numeric values appear as strings in the sample data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Sacks column contains decimal values like 11.5, 1.0, 0.0\", \"Int yards column contains integer values\", \"Only one data source needed for this analysis\"],\n        \"derived_filters\": [\"Convert Sacks column to numeric type for comparison with 11.5\", \"Convert Int yards column to numeric type for finding minimum\"],\n        \"statistical_tests\": [\"Check for missing values in Sacks and Int yards columns\", \"Verify that Sacks=11.5 filter returns at least one row\"],\n        \"output_format_requirements\": [\"Single numeric value representing the least Int yards when Sacks is 11.5\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.370922803878784,
+  "token_usage": {
+    "input_tokens": 1286,
+    "output_tokens": 450
+  }
+}

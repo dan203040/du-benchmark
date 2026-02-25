@@ -1,0 +1,120 @@
+{
+  "m_q": {
+    "target_metric": "Mean Absolute Error (MAE) between NOAA SWPC's 3-day forecast of AP index issued on March 9, 2025 and actual AP values for March 10-12, 2025",
+    "filters": [
+      "Forecast issued on March 9, 2025",
+      "Forecast period: March 10-12, 2025",
+      "3-day forecast only"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are the forecasted AP values for March 10, 11, and 12, 2025 from the March 9 forecast?",
+      "What are the actual AP values for March 10, 11, and 12, 2025?",
+      "What is the absolute error for each day (March 10, 11, 12)?",
+      "What is the mean of the three absolute errors?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "0309geomag_forecast.txt",
+      "0311geomag_forecast.txt",
+      "0312geomag_forecast.txt",
+      "0313geomag_forecast.txt"
+    ],
+    "join_keys": [
+      {
+        "left_source": "0309geomag_forecast.txt",
+        "right_source": "0311geomag_forecast.txt",
+        "left_column": "date",
+        "right_column": "date",
+        "join_type": "outer"
+      },
+      {
+        "left_source": "0309geomag_forecast.txt",
+        "right_source": "0312geomag_forecast.txt",
+        "left_column": "date",
+        "right_column": "date",
+        "join_type": "outer"
+      }
+    ],
+    "schema_conflicts": [
+      "File structure is non-standard with unclear column headers",
+      "Data appears to be in fixed-format text rather than standard CSV",
+      "Column names ':Product:' and filename do not represent actual data fields"
+    ],
+    "column_mappings": {
+      ":Product:": "field_identifier",
+      "0309geomag_forecast.txt": "value_or_date",
+      "0311geomag_forecast.txt": "value_or_date",
+      "0312geomag_forecast.txt": "value_or_date",
+      "0313geomag_forecast.txt": "value_or_date"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "AP": "dimensionless geomagnetic index",
+      "forecast_date": "date (UTC)",
+      "target_date": "date (UTC)"
+    },
+    "scale_issues": [
+      "AP values appear to be in raw index form (0-400 scale)",
+      "Need to verify if values like '025-020-012' represent three sequential day forecasts"
+    ],
+    "cross_source_conflicts": [
+      "Files from different dates may contain forecasts vs actuals",
+      "Later files (0311, 0312, 0313) may contain actual observed values for March 10-12"
+    ]
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      " "
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Files appear to be NOAA SWPC text bulletins in semi-structured format",
+      "Data is not in standard tabular format",
+      "Key information appears in specific rows (row 5 contains 'Mar' and hyphen-separated values like '025-020-012')",
+      "Values like '025-020-012' likely represent 3-day AP forecast (day1-day2-day3)",
+      "Row 11 contains 'Mar' and a day number indicating the forecast reference date",
+      "Need to parse bulletin format to extract: issue date, forecast values, and target dates",
+      "Files dated 0311, 0312, 0313 may contain actual observed AP values for validation"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Forecast must be from March 9, 2025 (0309geomag_forecast.txt)",
+      "Target period must be March 10-12, 2025",
+      "Must extract 3-day forecast values (025-020-012 format)",
+      "Actual values must be obtained from subsequent daily reports",
+      "MAE = mean(|forecast - actual|) for all three days"
+    ],
+    "derived_filters": [
+      "Extract forecast values from row containing 'Mar' and hyphenated values in 0309geomag_forecast.txt",
+      "Extract actual AP values for March 10, 11, 12 from files 0311, 0312, 0313 respectively",
+      "Parse hyphen-separated values to individual daily forecasts"
+    ],
+    "statistical_tests": [
+      "Calculate absolute error for each day: |forecast_day - actual_day|",
+      "Calculate MAE: (|error_Mar10| + |error_Mar11| + |error_Mar12|) / 3"
+    ],
+    "output_format_requirements": [
+      "Return single scalar MAE value",
+      "MAE should be in same units as AP index",
+      "Round to appropriate precision (typically 1-2 decimal places)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mean Absolute Error (MAE) between NOAA SWPC's 3-day forecast of AP index issued on March 9, 2025 and actual AP values for March 10-12, 2025\",\n    \"filters\": [\n      \"Forecast issued on March 9, 2025\",\n      \"Forecast period: March 10-12, 2025\",\n      \"3-day forecast only\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are the forecasted AP values for March 10, 11, and 12, 2025 from the March 9 forecast?\",\n      \"What are the actual AP values for March 10, 11, and 12, 2025?\",\n      \"What is the absolute error for each day (March 10, 11, 12)?\",\n      \"What is the mean of the three absolute errors?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"0309geomag_forecast.txt\",\n      \"0311geomag_forecast.txt\",\n      \"0312geomag_forecast.txt\",\n      \"0313geomag_forecast.txt\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"0309geomag_forecast.txt\",\n        \"right_source\": \"0311geomag_forecast.txt\",\n        \"left_column\": \"date\",\n        \"right_column\": \"date\",\n        \"join_type\": \"outer\"\n      },\n      {\n        \"left_source\": \"0309geomag_forecast.txt\",\n        \"right_source\": \"0312geomag_forecast.txt\",\n        \"left_column\": \"date\",\n        \"right_column\": \"date\",\n        \"join_type\": \"outer\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"File structure is non-standard with unclear column headers\",\n      \"Data appears to be in fixed-format text rather than standard CSV\",\n      \"Column names ':Product:' and filename do not represent actual data fields\"\n    ],\n    \"column_mappings\": {\n      \":Product:\": \"field_identifier\",\n      \"0309geomag_forecast.txt\": \"value_or_date\",\n      \"0311geomag_forecast.txt\": \"value_or_date\",\n      \"0312geomag_forecast.txt\": \"value_or_date\",\n      \"0313geomag_forecast.txt\": \"value_or_date\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"AP\": \"dimensionless geomagnetic index\",\n      \"forecast_date\": \"date (UTC)\",\n      \"target_date\": \"date (UTC)\"\n    },\n    \"scale_issues\": [\n      \"AP values appear to be in raw index form (0-400 scale)\",\n      \"Need to verify if values like '025-020-012' represent three sequential day forecasts\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Files from different dates may contain forecasts vs actuals\",\n      \"Later files (0311, 0312, 0313) may contain actual observed values for March 10-12\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": false,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \" \"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Files appear to be NOAA SWPC text bulletins in semi-structured format\",\n      \"Data is not in standard tabular format\",\n      \"Key information appears in specific rows (row 5 contains 'Mar' and hyphen-separated values like '025-020-012')\",\n      \"Values like '025-020-012' likely represent 3-day AP forecast (day1-day2-day3)\",\n      \"Row 11 contains 'Mar' and a day number indicating the forecast reference date\",\n      \"Need to parse bulletin format to extract: issue date, forecast values, and target dates\",\n      \"Files dated 0311, 0312, 0313 may contain actual observed AP values for validation\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Forecast must be from March 9, 2025 (0309geomag_forecast.txt)\",\n      \"Target period must be March 10-12, 2025\",\n      \"Must extract 3-day forecast values (025-020-012 format)\",\n      \"Actual values must be obtained from subsequent daily reports\",\n      \"MAE = mean(|forecast - actual|) for all three days\"\n    ],\n    \"derived_filters\": [\n      \"Extract forecast values from row containing 'Mar' and hyphenated values in 0309geomag_forecast.txt\",\n      \"Extract actual AP values for March 10, 11, 12 from files 0311, 0312, 0313 respectively\",\n      \"Parse hyphen-separated values to individual daily forecasts\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate absolute error for each day: |forecast_day - actual_day|\",\n      \"Calculate MAE: (|error_Mar10| + |error_Mar11| + |error_Mar12|) / 3\"\n    ],\n    \"output_format_requirements\": [\n      \"Return single scalar MAE value\",\n      \"MAE should be in same units as AP index\",\n      \"Round to appropriate precision (typically 1-2 decimal places)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 21.660193920135498,
+  "token_usage": {
+    "input_tokens": 1157,
+    "output_tokens": 1392
+  }
+}

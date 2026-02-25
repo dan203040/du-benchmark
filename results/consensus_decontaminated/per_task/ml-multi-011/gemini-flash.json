@@ -1,0 +1,53 @@
+{
+  "m_q": {
+    "target_metric": "Sentiment",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "table",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Corona_NLP_test.csv",
+      "Corona_NLP_train.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Sentiment' column in the output file 'sentiment.csv' must contain predicted sentiment values for each tweet in 'Corona_NLP_test.csv'."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named 'sentiment.csv'.",
+      "Output file must contain a column named 'Sentiment'.",
+      "The 'Sentiment' column in the output file should correspond to the predicted sentiment for the 'OriginalTweet' column in 'Corona_NLP_test.csv'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Sentiment\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Corona_NLP_test.csv\",\n      \"Corona_NLP_train.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Sentiment' column in the output file 'sentiment.csv' must contain predicted sentiment values for each tweet in 'Corona_NLP_test.csv'.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named 'sentiment.csv'.\",\n      \"Output file must contain a column named 'Sentiment'.\",\n      \"The 'Sentiment' column in the output file should correspond to the predicted sentiment for the 'OriginalTweet' column in 'Corona_NLP_test.csv'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.5741589069366455,
+  "token_usage": {}
+}

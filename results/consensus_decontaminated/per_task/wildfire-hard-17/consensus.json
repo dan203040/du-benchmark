@@ -1,0 +1,401 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average elevation (in feet) of weather stations used for fire site monitoring",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "average elevation (in feet) of weather stations used for fire site monitoring",
+        "average elevation in feet of weather stations used for fire site monitoring",
+        "average elevation (in feet) of weather stations used for fire site monitoring"
+      ]
+    },
+    "filters": {
+      "value": [
+        "stations used for fire site monitoring",
+        "stations in NOAA dataset",
+        "weather stations used for fire site monitoring (linked to wildfire incidents)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "stations used for fire site monitoring",
+          "stations in NOAA dataset"
+        ],
+        [
+          "weather stations used for fire site monitoring (linked to wildfire incidents)"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which stations are used for fire site monitoring?",
+        "How to identify elevation data in the station dataset?",
+        "How to map weather stations to fire incidents?",
+        "What is the unit of elevation measurement?",
+        "Which file contains weather station data?",
+        "Which column contains elevation information?",
+        "What is the unit of measurement for elevation in the source data?",
+        "How are weather stations linked to fire incidents?",
+        "Are all stations in the RAWS file used for fire monitoring, or do we need to filter?",
+        "How to convert elevation to feet if not already in feet?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Which stations are used for fire site monitoring?",
+          "How to identify elevation data in the station dataset?",
+          "How to map weather stations to fire incidents?",
+          "What is the unit of elevation measurement?"
+        ],
+        [
+          "Which file contains weather station data?",
+          "Which column contains elevation information?",
+          "What is the unit of measurement for elevation in the source data?",
+          "How are weather stations linked to fire incidents?",
+          "Are all stations in the RAWS file used for fire monitoring, or do we need to filter?",
+          "How to convert elevation to feet if not already in feet?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires.csv",
+        "noaa_wildfires_variabledescrip.csv",
+        "PublicView_RAWS_-3515561676727363726.csv"
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv",
+          "PublicView_RAWS_-3515561676727363726.csv"
+        ],
+        [
+          "PublicView_RAWS_-3515561676727363726.csv",
+          "noaa_wildfires.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "PublicView_RAWS_-3515561676727363726.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Column names in PublicView_RAWS file are ambiguous (e.g., '39.47109', '-120.08698', '12.61 inches')",
+        "No clear elevation column in any dataset",
+        "Station ID column naming mismatch: 'station_verified_in_psa' vs numeric column names like '16968251'",
+        "RAWS file has column names that appear to be data values (e.g., '39.47109', '-120.08698', 'SMDC1')",
+        "RAWS file structure unclear - column names do not match expected headers",
+        "Header row appears to be missing or malformed in RAWS file",
+        "Duplicate coordinate columns in RAWS file (e.g., '-120.08698' and '-120.08698.1')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Column names in PublicView_RAWS file are ambiguous (e.g., '39.47109', '-120.08698', '12.61 inches')",
+          "No clear elevation column in any dataset",
+          "Station ID column naming mismatch: 'station_verified_in_psa' vs numeric column names like '16968251'"
+        ],
+        [
+          "RAWS file has column names that appear to be data values (e.g., '39.47109', '-120.08698', 'SMDC1')",
+          "RAWS file structure unclear - column names do not match expected headers",
+          "Header row appears to be missing or malformed in RAWS file",
+          "Duplicate coordinate columns in RAWS file (e.g., '-120.08698' and '-120.08698.1')"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "avrh_mean": "percentage",
+        "wind_med": "miles per hour",
+        "erc_med": "BTUs/square foot",
+        "rain_sum": "inches",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "12.61 inches": "precipitation",
+        "4 mph": "wind speed",
+        "35 degrees": "wind direction",
+        "56 deg. f": "temperature",
+        "73 deg. f": "temperature",
+        "17 %": "relative humidity",
+        "open pine forest": "potentially feet or meters (needs verification)"
+      },
+      "confidence": 0.46153846153846145,
+      "votes": [
+        {
+          "avrh_mean": "percentage",
+          "wind_med": "miles per hour",
+          "erc_med": "BTUs/square foot",
+          "rain_sum": "inches",
+          "latitude": "degrees",
+          "longitude": "degrees",
+          "12.61 inches": "precipitation",
+          "4 mph": "wind speed",
+          "35 degrees": "wind direction",
+          "56 deg. F": "temperature",
+          "73 deg. F": "temperature",
+          "17 %": "relative humidity"
+        },
+        {
+          "OPEN PINE FOREST": "potentially feet or meters (needs verification)",
+          "12.61 inches": "precipitation in inches",
+          "4 mph": "wind speed in miles per hour",
+          "56 deg. F": "temperature in Fahrenheit",
+          "latitude": "decimal degrees",
+          "longitude": "decimal degrees"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Elevation data not clearly identified in any dataset",
+        "Potential unit mismatch if elevation found (feet vs meters)",
+        "Station IDs appear as numeric column names in PublicView_RAWS file",
+        "Elevation unit unclear - could be feet or meters",
+        "Need to verify if 'OPEN PINE FOREST' column contains elevation data",
+        "Coordinate precision varies between integer and float representations in wildfire data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Elevation data not clearly identified in any dataset",
+          "Potential unit mismatch if elevation found (feet vs meters)",
+          "Station IDs appear as numeric column names in PublicView_RAWS file"
+        ],
+        [
+          "Elevation unit unclear - could be feet or meters",
+          "Need to verify if 'OPEN PINE FOREST' column contains elevation data",
+          "Coordinate precision varies between integer and float representations in wildfire data"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "No direct elevation column in any provided dataset",
+        "Station identification unclear between datasets",
+        "PublicView_RAWS column names are values rather than descriptive names",
+        "Wildfire coordinates stored as integers (latitude, longitude) while RAWS coordinates are floats",
+        "Precision mismatch may prevent direct joins on coordinates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No direct elevation column in any provided dataset",
+          "Station identification unclear between datasets",
+          "PublicView_RAWS column names are values rather than descriptive names"
+        ],
+        [
+          "Wildfire coordinates stored as integers (latitude, longitude) while RAWS coordinates are floats",
+          "Precision mismatch may prevent direct joins on coordinates"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NO DATA",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.9166666666666666,
+      "votes": [
+        [
+          "NO DATA",
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NO DATA",
+          "NA",
+          "",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 0.7631578947368421,
+      "votes": [
+        37.0,
+        28.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Elevation data must be identified or derived",
+        "Only stations used for fire monitoring should be included",
+        "Average should be computed in feet",
+        "Station-to-fire mapping must be established",
+        "Only include weather stations that are linked to fire incidents in noaa_wildfires.csv",
+        "Elevation must be converted to feet if in different units",
+        "Exclude records with missing or invalid elevation values (NO DATA, null)",
+        "Must verify correct column contains elevation data in RAWS file"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Elevation data must be identified or derived",
+          "Only stations used for fire monitoring should be included",
+          "Average should be computed in feet",
+          "Station-to-fire mapping must be established"
+        ],
+        [
+          "Only include weather stations that are linked to fire incidents in noaa_wildfires.csv",
+          "Elevation must be converted to feet if in different units",
+          "Exclude records with missing or invalid elevation values (NO DATA, null)",
+          "Must verify correct column contains elevation data in RAWS file"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to stations with valid elevation data",
+        "Filter to stations referenced in wildfire incidents",
+        "station_verified_in_psa column in wildfire data may indicate station verification status",
+        "Filter to stations with valid geographic coordinates matching wildfire incident locations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to stations with valid elevation data",
+          "Filter to stations referenced in wildfire incidents"
+        ],
+        [
+          "station_verified_in_psa column in wildfire data may indicate station verification status",
+          "Filter to stations with valid geographic coordinates matching wildfire incident locations"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing elevation values",
+        "Validate elevation unit consistency",
+        "Test station-fire join completeness",
+        "Check for outliers in elevation values (unrealistic values)",
+        "Verify elevation range is consistent with US geography (below sea level to ~14,500 feet)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing elevation values",
+          "Validate elevation unit consistency",
+          "Test station-fire join completeness"
+        ],
+        [
+          "Check for outliers in elevation values (unrealistic values)",
+          "Verify elevation range is consistent with US geography (below sea level to ~14,500 feet)"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Numeric average with units specified",
+        "Precision appropriate for elevation measurement",
+        "Result should be a single numeric value (average elevation in feet)",
+        "Round to appropriate precision (e.g., 1-2 decimal places)",
+        "Include count of stations used in calculation",
+        "The output should be a single numerical value representing the average elevation in feet."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Numeric average with units specified",
+          "Precision appropriate for elevation measurement"
+        ],
+        [
+          "Result should be a single numeric value (average elevation in feet)",
+          "Round to appropriate precision (e.g., 1-2 decimal places)",
+          "Include count of stations used in calculation"
+        ],
+        [
+          "The output should be a single numerical value representing the average elevation in feet."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5792903733693209
+}

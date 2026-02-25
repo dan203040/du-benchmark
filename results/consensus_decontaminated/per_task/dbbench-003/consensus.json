@@ -1,0 +1,339 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Difference between Southampton's total goals scored and Sunderland's total goals scored across all matches",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Difference between Southampton's total goals scored and Sunderland's total goals scored across all matches",
+        "difference between Southampton's score and Sunderland's score",
+        "difference between Southampton's total score and Sunderland's total score across all matches"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Home team = 'Southampton' OR Away team = 'Southampton'",
+        "Home team = 'Sunderland' OR Away team = 'Sunderland'",
+        "team name = 'Southampton' (as Home team or Away team)",
+        "team name = 'Sunderland' (as Home team or Away team)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Home team = 'Southampton' OR Away team = 'Southampton'",
+          "Home team = 'Sunderland' OR Away team = 'Sunderland'"
+        ],
+        [
+          "team name = 'Southampton' (as Home team or Away team)",
+          "team name = 'Sunderland' (as Home team or Away team)"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Home team",
+        "Away team"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Home team",
+          "Away team"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is Southampton's total score across all matches?",
+        "What is Sunderland's total score across all matches?",
+        "How to parse the 'Score' column to extract home and away goals?",
+        "Should we consider both home and away matches for each team?",
+        "Are there any missing values in the Score column for these teams?",
+        "What is Southampton's score in their match(es)?",
+        "What is Sunderland's score in their match(es)?",
+        "How to parse the 'Score' column to extract individual team scores?",
+        "Which matches involve Southampton (home or away)?",
+        "Which matches involve Sunderland (home or away)?",
+        "Are there multiple matches per team or a single match to consider?",
+        "What is the total score for Southampton across all matches?",
+        "What is the total score for Sunderland across all matches?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is Southampton's total score across all matches?",
+          "What is Sunderland's total score across all matches?",
+          "How to parse the 'Score' column to extract home and away goals?",
+          "Should we consider both home and away matches for each team?",
+          "Are there any missing values in the Score column for these teams?"
+        ],
+        [
+          "What is Southampton's score in their match(es)?",
+          "What is Sunderland's score in their match(es)?",
+          "How to parse the 'Score' column to extract individual team scores?",
+          "Which matches involve Southampton (home or away)?",
+          "Which matches involve Sunderland (home or away)?",
+          "Are there multiple matches per team or a single match to consider?"
+        ],
+        [
+          "What is the total score for Southampton across all matches?",
+          "What is the total score for Sunderland across all matches?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Football Matches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Football Matches"
+        ],
+        [
+          "Football Matches"
+        ],
+        [
+          "Football Matches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "score": "goals (format: home_goals\u2013away_goals)",
+        "tie no": "match identifier (integer)"
+      },
+      "confidence": 0.5,
+      "votes": [
+        {
+          "Score": "goals (format: home_goals\u2013away_goals)"
+        },
+        {
+          "Score": "goals (format: home_goals\u2013away_goals)",
+          "Tie no": "match identifier (integer)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Score column contains combined home-away scores separated by '\u2013' (en dash), needs parsing"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score column contains combined home-away scores separated by '\u2013' (en dash), needs parsing"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Score column must be parsed to extract numerical values",
+        "Teams may appear in both Home team and Away team columns",
+        "Some matches may have multiple rows (replays based on draws)",
+        "Score must be parsed to separate home team score and away team score",
+        "Must identify whether Southampton/Sunderland played as home or away team",
+        "Must handle the en-dash character (\u2013) in Score field",
+        "Need to determine which specific match is being referenced if multiple matches exist",
+        "The 'Score' column contains two scores separated by a delimiter (e.g., '\u2013').",
+        "Need to handle cases where a team appears in both 'Home team' and 'Away team' columns.",
+        "Need to parse the score string to extract numerical values."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Score column must be parsed to extract numerical values",
+          "Teams may appear in both Home team and Away team columns",
+          "Some matches may have multiple rows (replays based on draws)"
+        ],
+        [
+          "Score must be parsed to separate home team score and away team score",
+          "Must identify whether Southampton/Sunderland played as home or away team",
+          "Must handle the en-dash character (\u2013) in Score field",
+          "Need to determine which specific match is being referenced if multiple matches exist"
+        ],
+        [
+          "The 'Score' column contains two scores separated by a delimiter (e.g., '\u2013').",
+          "Need to handle cases where a team appears in both 'Home team' and 'Away team' columns.",
+          "Need to parse the score string to extract numerical values."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Home team or Away team contains 'Southampton'",
+        "Filter rows where Home team or Away team contains 'Sunderland'",
+        "Home team = 'Southampton' OR Away team = 'Southampton'",
+        "Home team = 'Sunderland' OR Away team = 'Sunderland'",
+        "Matches where Southampton is either the 'Home team' or the 'Away team'.",
+        "Matches where Sunderland is either the 'Home team' or the 'Away team'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Home team or Away team contains 'Southampton'",
+          "Filter rows where Home team or Away team contains 'Sunderland'"
+        ],
+        [
+          "Home team = 'Southampton' OR Away team = 'Southampton'",
+          "Home team = 'Sunderland' OR Away team = 'Sunderland'"
+        ],
+        [
+          "Matches where Southampton is either the 'Home team' or the 'Away team'.",
+          "Matches where Sunderland is either the 'Home team' or the 'Away team'."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing Score values in filtered data",
+        "Validate that all Score values can be parsed into two integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing Score values in filtered data",
+          "Validate that all Score values can be parsed into two integers"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Numerical difference (integer)",
+        "Positive if Southampton scored more, negative if Sunderland scored more",
+        "Output should be a single numeric value representing the score difference",
+        "Clarify which match is being referenced if ambiguity exists",
+        "The output should be a single numerical value representing the difference in total scores."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Numerical difference (integer)",
+          "Positive if Southampton scored more, negative if Sunderland scored more"
+        ],
+        [
+          "Output should be a single numeric value representing the score difference",
+          "Clarify which match is being referenced if ambiguity exists"
+        ],
+        [
+          "The output should be a single numerical value representing the difference in total scores."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.563888888888889
+}

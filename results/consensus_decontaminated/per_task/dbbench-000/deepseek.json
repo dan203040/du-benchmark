@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "Notes values",
+    "filters": [
+      "Method == 'Decision'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What are the specific Notes entries when Method is 'Decision'?",
+      "How many matches were decided by Decision?",
+      "What events had Decision outcomes?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Jiu-Jitsu Championships Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data appears to be clean with consistent formatting",
+      "All columns are object/string type",
+      "Sample shows 18 rows total"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Method column contains categorical values like 'Decision', 'Points', 'Submission'",
+      "Notes column contains descriptive text about match context",
+      "Result column contains 'Win' or 'Loss' values"
+    ],
+    "derived_filters": [
+      "Filter rows where Method exactly equals 'Decision' (case-sensitive)",
+      "Exclude rows where Notes is null or empty"
+    ],
+    "statistical_tests": [
+      "Count of Decision outcomes",
+      "Frequency distribution of Notes for Decision method"
+    ],
+    "output_format_requirements": [
+      "List of Notes values",
+      "Maintain original text formatting from Notes column"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Notes values\",\n        \"filters\": [\"Method == 'Decision'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What are the specific Notes entries when Method is 'Decision'?\", \"How many matches were decided by Decision?\", \"What events had Decision outcomes?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Jiu-Jitsu Championships Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Data appears to be clean with consistent formatting\", \"All columns are object/string type\", \"Sample shows 18 rows total\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Method column contains categorical values like 'Decision', 'Points', 'Submission'\", \"Notes column contains descriptive text about match context\", \"Result column contains 'Win' or 'Loss' values\"],\n        \"derived_filters\": [\"Filter rows where Method exactly equals 'Decision' (case-sensitive)\", \"Exclude rows where Notes is null or empty\"],\n        \"statistical_tests\": [\"Count of Decision outcomes\", \"Frequency distribution of Notes for Decision method\"],\n        \"output_format_requirements\": [\"List of Notes values\", \"Maintain original text formatting from Notes column\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 7.8908371925354,
+  "token_usage": {
+    "input_tokens": 1087,
+    "output_tokens": 390
+  }
+}

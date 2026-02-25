@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Title of the episode",
+    "filters": [
+      "Directed by = 'Michael Pressman'",
+      "No. in season < 10.0"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which episodes were directed by Michael Pressman?",
+      "Among those, which have season number less than 10.0?",
+      "What is the title of the matching episode?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "episode_table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "U.S. viewers (millions)": "millions"
+    },
+    "scale_issues": [
+      "No. in series and No. in season are stored as objects but contain numeric data",
+      "U.S. viewers (millions) is stored as object but contains numeric data"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Title column contains quoted values with double quotes",
+      "Original air date column has date format without standard separators (e.g., 'September21,2005')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "No. in season should be numeric for comparison with 10.0",
+      "Directed by column should contain director names",
+      "Title should be unique for each episode"
+    ],
+    "derived_filters": [
+      "Convert No. in season to numeric type before filtering",
+      "Trim whitespace from Title and Directed by columns"
+    ],
+    "statistical_tests": [
+      "Check for missing values in Directed by and No. in season columns",
+      "Verify numeric conversion of No. in season column"
+    ],
+    "output_format_requirements": [
+      "Return single episode title as string",
+      "Handle case where multiple episodes might match criteria"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Title of the episode\",\n        \"filters\": [\"Directed by = 'Michael Pressman'\", \"No. in season < 10.0\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which episodes were directed by Michael Pressman?\", \"Among those, which have season number less than 10.0?\", \"What is the title of the matching episode?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"episode_table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"U.S. viewers (millions)\": \"millions\"},\n        \"scale_issues\": [\"No. in series and No. in season are stored as objects but contain numeric data\", \"U.S. viewers (millions) is stored as object but contains numeric data\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 8,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Title column contains quoted values with double quotes\", \"Original air date column has date format without standard separators (e.g., 'September21,2005')\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"No. in season should be numeric for comparison with 10.0\", \"Directed by column should contain director names\", \"Title should be unique for each episode\"],\n        \"derived_filters\": [\"Convert No. in season to numeric type before filtering\", \"Trim whitespace from Title and Directed by columns\"],\n        \"statistical_tests\": [\"Check for missing values in Directed by and No. in season columns\", \"Verify numeric conversion of No. in season column\"],\n        \"output_format_requirements\": [\"Return single episode title as string\", \"Handle case where multiple episodes might match criteria\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.812889099121094,
+  "token_usage": {
+    "input_tokens": 1304,
+    "output_tokens": 470
+  }
+}

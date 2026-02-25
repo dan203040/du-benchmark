@@ -1,0 +1,97 @@
+{
+  "m_q": {
+    "target_metric": "Customer segmentation using clustering algorithm with feature vectors and cluster labels",
+    "filters": [
+      "Remove records with missing Customer ID",
+      "Remove records with invalid Quantity or Price values"
+    ],
+    "grouping_variables": [
+      "Customer ID"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What features should be engineered from transactional data to represent customer behavior?",
+      "How many customers have sufficient transaction history for clustering?",
+      "What is the optimal number of clusters for customer segmentation?",
+      "What clustering algorithm should be used (K-means, hierarchical, DBSCAN)?",
+      "How should the feature vector be normalized/standardized?",
+      "What are the characteristics of each customer cluster?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online_retail_II.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Quantity": "number of items",
+      "Price": "currency (likely GBP)",
+      "InvoiceDate": "timestamp",
+      "Customer ID": "identifier"
+    },
+    "scale_issues": [
+      "Price values may vary significantly across products",
+      "Quantity can include negative values (returns)",
+      "Customer ID stored as float64 instead of integer"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "InvoiceDate is string format, needs parsing to datetime",
+      "Customer ID has missing values (NaN)",
+      "Some Description values may contain commas within quotes",
+      "Invoice codes starting with 'C' typically indicate cancellations/returns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Customer ID must not be null for clustering analysis",
+      "Must aggregate transactional data to customer level before clustering",
+      "Feature vectors must have consistent dimensionality across all customers",
+      "Cluster labels must be integer values starting from 0 or 1"
+    ],
+    "derived_filters": [
+      "Exclude transactions with missing Customer ID",
+      "Consider filtering out cancelled orders (Invoice starting with 'C')",
+      "Remove customers with insufficient transaction history",
+      "Filter outliers in monetary values and quantities"
+    ],
+    "statistical_tests": [
+      "Elbow method or silhouette score to determine optimal number of clusters",
+      "Check for feature multicollinearity before clustering",
+      "Validate cluster separation using silhouette analysis",
+      "Test cluster stability using multiple random initializations"
+    ],
+    "output_format_requirements": [
+      "Output file must be named 'cluster.csv'",
+      "Must contain columns: Feature_1, Feature_2, ..., Feature_n, Cluster",
+      "Column names for features must follow pattern 'Feature_i' where i is 1-indexed",
+      "Cluster column contains integer cluster labels",
+      "One row per customer in the output",
+      "CSV format with header row"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Customer segmentation using clustering algorithm with feature vectors and cluster labels\",\n    \"filters\": [\"Remove records with missing Customer ID\", \"Remove records with invalid Quantity or Price values\"],\n    \"grouping_variables\": [\"Customer ID\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What features should be engineered from transactional data to represent customer behavior?\",\n      \"How many customers have sufficient transaction history for clustering?\",\n      \"What is the optimal number of clusters for customer segmentation?\",\n      \"What clustering algorithm should be used (K-means, hierarchical, DBSCAN)?\",\n      \"How should the feature vector be normalized/standardized?\",\n      \"What are the characteristics of each customer cluster?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"online_retail_II.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Quantity\": \"number of items\",\n      \"Price\": \"currency (likely GBP)\",\n      \"InvoiceDate\": \"timestamp\",\n      \"Customer ID\": \"identifier\"\n    },\n    \"scale_issues\": [\n      \"Price values may vary significantly across products\",\n      \"Quantity can include negative values (returns)\",\n      \"Customer ID stored as float64 instead of integer\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"InvoiceDate is string format, needs parsing to datetime\",\n      \"Customer ID has missing values (NaN)\",\n      \"Some Description values may contain commas within quotes\",\n      \"Invoice codes starting with 'C' typically indicate cancellations/returns\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Customer ID must not be null for clustering analysis\",\n      \"Must aggregate transactional data to customer level before clustering\",\n      \"Feature vectors must have consistent dimensionality across all customers\",\n      \"Cluster labels must be integer values starting from 0 or 1\"\n    ],\n    \"derived_filters\": [\n      \"Exclude transactions with missing Customer ID\",\n      \"Consider filtering out cancelled orders (Invoice starting with 'C')\",\n      \"Remove customers with insufficient transaction history\",\n      \"Filter outliers in monetary values and quantities\"\n    ],\n    \"statistical_tests\": [\n      \"Elbow method or silhouette score to determine optimal number of clusters\",\n      \"Check for feature multicollinearity before clustering\",\n      \"Validate cluster separation using silhouette analysis\",\n      \"Test cluster stability using multiple random initializations\"\n    ],\n    \"output_format_requirements\": [\n      \"Output file must be named 'cluster.csv'\",\n      \"Must contain columns: Feature_1, Feature_2, ..., Feature_n, Cluster\",\n      \"Column names for features must follow pattern 'Feature_i' where i is 1-indexed\",\n      \"Cluster column contains integer cluster labels\",\n      \"One row per customer in the output\",\n      \"CSV format with header row\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 15.015398025512695,
+  "token_usage": {
+    "input_tokens": 1631,
+    "output_tokens": 839
+  }
+}

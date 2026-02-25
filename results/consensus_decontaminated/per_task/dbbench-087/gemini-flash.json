@@ -1,0 +1,61 @@
+{
+  "m_q": {
+    "target_metric": "latest year when Real Colorado Foxes did not qualify for playoffs but made it to Open Cup 2nd Round",
+    "filters": [
+      "Playoffs = 'Did not qualify'",
+      "Open Cup = '2nd Round'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify all years where Playoffs is 'Did not qualify' and Open Cup is '2nd Round'.",
+      "From the identified years, find the maximum year."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Soccer Team Performance"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Division": "division level",
+      "League": "league name"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be a valid year.",
+      "Playoffs and Open Cup columns should contain consistent values (e.g., 'Did not qualify', '2nd Round', etc.)."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a single year."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"latest year when Real Colorado Foxes did not qualify for playoffs but made it to Open Cup 2nd Round\",\n    \"filters\": [\n      \"Playoffs = 'Did not qualify'\",\n      \"Open Cup = '2nd Round'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify all years where Playoffs is 'Did not qualify' and Open Cup is '2nd Round'.\",\n      \"From the identified years, find the maximum year.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Soccer Team Performance\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Division\": \"division level\",\n      \"League\": \"league name\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be a valid year.\",\n      \"Playoffs and Open Cup columns should contain consistent values (e.g., 'Did not qualify', '2nd Round', etc.).\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a single year.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.094252109527588,
+  "token_usage": {}
+}

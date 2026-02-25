@@ -1,0 +1,86 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of years where the wet-dry index was increasing compared to the previous year",
+    "filters": [],
+    "grouping_variables": [
+      "Age_ky.3"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the temporal sequence of wet-dry index measurements ordered by age?",
+      "For each consecutive pair of years, was the wet-dry index increasing?",
+      "What is the total count of year-to-year transitions?",
+      "What is the count of increasing transitions?",
+      "What percentage of transitions were increasing?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "climateMeasurements.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple Age_ky columns exist (Age_ky, Age_ky.1, Age_ky.2, Age_ky.3)",
+      "ODP 967 wet-dry index appears only once but multiple age columns suggest data structure complexity"
+    ],
+    "column_mappings": {
+      "Age_ky.3": "age_years",
+      "ODP 967 wet-dry index": "wet_dry_index"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age_ky.3": "kiloyears (thousands of years)",
+      "ODP 967 wet-dry index": "dimensionless index"
+    },
+    "scale_issues": [
+      "Age is in kiloyears (ky) which represents thousands of years, not individual years",
+      "The question asks about 'years' but data is in kiloyears - interpretation needed"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 30,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": [
+      "Multiple unnamed columns (Unnamed: 20, 24, 27) suggest possible formatting issues",
+      "Duplicate Age_ky columns may indicate merged data from different sources"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Filter out rows where Age_ky.3 is null",
+      "Filter out rows where ODP 967 wet-dry index is null",
+      "Ensure chronological ordering by Age_ky.3"
+    ],
+    "derived_filters": [
+      "Remove duplicate age values if they exist",
+      "Handle potential non-sequential age measurements"
+    ],
+    "statistical_tests": [
+      "Calculate year-over-year change in wet-dry index",
+      "Count transitions where change > 0",
+      "Calculate percentage: (increasing_count / total_transitions) * 100"
+    ],
+    "output_format_requirements": [
+      "Result must be a percentage",
+      "Round to 2 decimal places",
+      "Format as numeric value (e.g., 45.67)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of years where the wet-dry index was increasing compared to the previous year\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Age_ky.3\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the temporal sequence of wet-dry index measurements ordered by age?\",\n      \"For each consecutive pair of years, was the wet-dry index increasing?\",\n      \"What is the total count of year-to-year transitions?\",\n      \"What is the count of increasing transitions?\",\n      \"What percentage of transitions were increasing?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"climateMeasurements.xlsx\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Multiple Age_ky columns exist (Age_ky, Age_ky.1, Age_ky.2, Age_ky.3)\",\n      \"ODP 967 wet-dry index appears only once but multiple age columns suggest data structure complexity\"\n    ],\n    \"column_mappings\": {\n      \"Age_ky.3\": \"age_years\",\n      \"ODP 967 wet-dry index\": \"wet_dry_index\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age_ky.3\": \"kiloyears (thousands of years)\",\n      \"ODP 967 wet-dry index\": \"dimensionless index\"\n    },\n    \"scale_issues\": [\n      \"Age is in kiloyears (ky) which represents thousands of years, not individual years\",\n      \"The question asks about 'years' but data is in kiloyears - interpretation needed\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 30,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": [\n      \"Multiple unnamed columns (Unnamed: 20, 24, 27) suggest possible formatting issues\",\n      \"Duplicate Age_ky columns may indicate merged data from different sources\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Filter out rows where Age_ky.3 is null\",\n      \"Filter out rows where ODP 967 wet-dry index is null\",\n      \"Ensure chronological ordering by Age_ky.3\"\n    ],\n    \"derived_filters\": [\n      \"Remove duplicate age values if they exist\",\n      \"Handle potential non-sequential age measurements\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate year-over-year change in wet-dry index\",\n      \"Count transitions where change > 0\",\n      \"Calculate percentage: (increasing_count / total_transitions) * 100\"\n    ],\n    \"output_format_requirements\": [\n      \"Result must be a percentage\",\n      \"Round to 2 decimal places\",\n      \"Format as numeric value (e.g., 45.67)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.883526802062988,
+  "token_usage": {
+    "input_tokens": 5656,
+    "output_tokens": 782
+  }
+}

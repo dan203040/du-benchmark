@@ -1,0 +1,411 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "top 10 most popular movies using weighted rating formula from wrFormula.tex, considering only movies in top 15% by vote_count",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "top 10 most popular movies using weighted rating formula from wrFormula.tex, considering only movies in top 15% by vote_count",
+        "Top 10 most popular movies calculated using a weighted rating formula from wrFormula.tex, considering only movies whose vote_count is in the top 15%",
+        "Top 10 most popular movies based on a weighted rating formula, considering only movies in the top 15% of vote counts."
+      ]
+    },
+    "filters": {
+      "value": [
+        "vote_count must be in top 15% of all movies",
+        "only movies with sufficient votes considered",
+        "vote_count >= 85th percentile threshold",
+        "Movies whose vote_count is within the top 15% of all vote_counts"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "vote_count must be in top 15% of all movies",
+          "only movies with sufficient votes considered"
+        ],
+        [
+          "vote_count >= 85th percentile threshold"
+        ],
+        [
+          "Movies whose vote_count is within the top 15% of all vote_counts"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "title",
+        "movie_id/id"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "title",
+          "movie_id/id"
+        ],
+        [],
+        [
+          "title"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the weighted rating formula in wrFormula.tex?",
+        "How to calculate top 15% threshold for vote_count?",
+        "How to join movie data from both files?",
+        "How to sort by calculated weighted rating?",
+        "What is the 85th percentile threshold for vote_count?",
+        "What is the weighted rating formula specified in wrFormula.tex?",
+        "Which movies have vote_count values in the top 15%?",
+        "How to calculate the weighted rating for each filtered movie?",
+        "What are the top 10 movies by weighted rating after applying the formula?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the weighted rating formula in wrFormula.tex?",
+          "How to calculate top 15% threshold for vote_count?",
+          "How to join movie data from both files?",
+          "How to sort by calculated weighted rating?"
+        ],
+        [
+          "What is the 85th percentile threshold for vote_count?",
+          "What is the weighted rating formula specified in wrFormula.tex?",
+          "Which movies have vote_count values in the top 15%?",
+          "How to calculate the weighted rating for each filtered movie?",
+          "What are the top 10 movies by weighted rating after applying the formula?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "tmdb_5000_movies.csv",
+        "tmdb_5000_credits.csv",
+        "wrFormula.tex"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "tmdb_5000_movies.csv",
+          "tmdb_5000_credits.csv",
+          "wrFormula.tex"
+        ],
+        [
+          "tmdb_5000_movies.csv",
+          "tmdb_5000_credits.csv"
+        ],
+        [
+          "tmdb_5000_movies.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "tmdb_5000_movies.csv has 'id' column while tmdb_5000_credits.csv has 'movie_id' for same identifier",
+        "Both files have 'title' column but may have inconsistencies",
+        "title column exists in both tmdb_5000_movies.csv and tmdb_5000_credits.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "tmdb_5000_movies.csv has 'id' column while tmdb_5000_credits.csv has 'movie_id' for same identifier",
+          "Both files have 'title' column but may have inconsistencies"
+        ],
+        [
+          "title column exists in both tmdb_5000_movies.csv and tmdb_5000_credits.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "budget": "USD",
+        "revenue": "USD",
+        "runtime": "minutes",
+        "vote_average": "scale 0-10",
+        "vote_count": "count",
+        "popularity": "TMDB proprietary score"
+      },
+      "confidence": 0.8333333333333334,
+      "votes": [
+        {
+          "budget": "USD",
+          "revenue": "USD",
+          "runtime": "minutes",
+          "vote_average": "scale 0-10",
+          "vote_count": "count",
+          "popularity": "TMDB proprietary score"
+        },
+        {
+          "vote_count": "count",
+          "vote_average": "rating_score_0_10",
+          "popularity": "popularity_score",
+          "budget": "dollars",
+          "revenue": "dollars",
+          "runtime": "minutes"
+        },
+        {
+          "budget": "USD",
+          "revenue": "USD",
+          "runtime": "minutes"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "vote_average scale unknown (likely 0-10)",
+        "popularity metric scale unclear",
+        "budget/revenue may have currency inconsistencies",
+        "vote_average appears to be on a 0-10 scale",
+        "popularity is a computed score with unknown scale"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "vote_average scale unknown (likely 0-10)",
+          "popularity metric scale unclear",
+          "budget/revenue may have currency inconsistencies"
+        ],
+        [
+          "vote_average appears to be on a 0-10 scale",
+          "popularity is a computed score with unknown scale"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "vote_count in movies.csv vs no vote data in credits.csv",
+        "title field may have different formatting between files"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "vote_count in movies.csv vs no vote data in credits.csv",
+          "title field may have different formatting between files"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null",
+          "NaN"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 20.0,
+      "confidence": 1.0,
+      "votes": [
+        20.0,
+        20.0,
+        20.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "vote_count > 0",
+        "vote_average between 0 and 10",
+        "runtime > 0",
+        "release_date valid date",
+        "top 15% vote_count threshold must be calculated from data",
+        "Only include movies with vote_count in top 15% (>=85th percentile)",
+        "Calculate weighted rating using formula from wrFormula.tex",
+        "Select top 10 movies by calculated weighted rating",
+        "Output must include movie title/name only",
+        "Calculate the 15th percentile of vote_count.",
+        "Filter movies based on vote_count being greater than or equal to the 15th percentile.",
+        "Apply the weighted rating formula to the filtered movies.",
+        "Sort movies by the weighted rating in descending order.",
+        "Select the top 10 movies based on the sorted weighted rating."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "vote_count > 0",
+          "vote_average between 0 and 10",
+          "runtime > 0",
+          "release_date valid date",
+          "top 15% vote_count threshold must be calculated from data"
+        ],
+        [
+          "Only include movies with vote_count in top 15% (>=85th percentile)",
+          "Calculate weighted rating using formula from wrFormula.tex",
+          "Select top 10 movies by calculated weighted rating",
+          "Output must include movie title/name only"
+        ],
+        [
+          "Calculate the 15th percentile of vote_count.",
+          "Filter movies based on vote_count being greater than or equal to the 15th percentile.",
+          "Apply the weighted rating formula to the filtered movies.",
+          "Sort movies by the weighted rating in descending order.",
+          "Select the top 10 movies based on the sorted weighted rating."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "vote_count >= percentile_85(vote_count)",
+        "movies must have valid title",
+        "movies must have both vote_average and vote_count",
+        "Calculate 85th percentile of vote_count across all movies",
+        "Filter movies where vote_count >= calculated threshold",
+        "vote_count >= 15th percentile of vote_count"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "vote_count >= percentile_85(vote_count)",
+          "movies must have valid title",
+          "movies must have both vote_average and vote_count"
+        ],
+        [
+          "Calculate 85th percentile of vote_count across all movies",
+          "Filter movies where vote_count >= calculated threshold"
+        ],
+        [
+          "vote_count >= 15th percentile of vote_count"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Calculate 85th percentile of vote_count",
+        "Check distribution of vote_average",
+        "Verify no duplicate movie_ids",
+        "Percentile calculation for vote_count to determine top 15% threshold",
+        "Percentile calculation for vote_count"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate 85th percentile of vote_count",
+          "Check distribution of vote_average",
+          "Verify no duplicate movie_ids"
+        ],
+        [
+          "Percentile calculation for vote_count to determine top 15% threshold"
+        ],
+        [
+          "Percentile calculation for vote_count"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "CSV file with single 'Movie' column",
+        "Exactly 10 rows",
+        "Sorted by calculated weighted rating descending",
+        "Follow sample_result.csv format",
+        "CSV format with single column 'Movie'",
+        "One movie name per row",
+        "Exactly 10 rows (top 10 movies)",
+        "Header row must be 'Movie'",
+        "Follow format specified in sample_result.csv",
+        "Write the 'title' of the top 10 movies to result.csv in a column named 'Movie'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "CSV file with single 'Movie' column",
+          "Exactly 10 rows",
+          "Sorted by calculated weighted rating descending",
+          "Follow sample_result.csv format"
+        ],
+        [
+          "CSV format with single column 'Movie'",
+          "One movie name per row",
+          "Exactly 10 rows (top 10 movies)",
+          "Header row must be 'Movie'",
+          "Follow format specified in sample_result.csv"
+        ],
+        [
+          "Write the 'title' of the top 10 movies to result.csv in a column named 'Movie'."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6033333333333334
+}

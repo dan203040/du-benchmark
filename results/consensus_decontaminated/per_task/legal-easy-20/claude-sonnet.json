@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of fraud reporters out of total reporters in 2024",
+    "filters": [
+      "Year == 2024"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the number of fraud reports in 2024?",
+      "What is the total number of all reports (Fraud + Identity Theft + Other) in 2024?",
+      "What is the percentage calculated as (Fraud / Total) * 100?",
+      "How should the percentage be rounded to an integer?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Number_of_Reports_by_Type.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "Fraud": "count of fraud reports",
+      "Identity Theft": "count of identity theft reports",
+      "Other": "count of other reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All numeric columns are int64 type",
+      "Sample data shows years from 2001-2020, but question asks for 2024",
+      "Need to verify if 2024 data exists in the full dataset beyond the 20-row sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must equal 2024",
+      "All report counts (Fraud, Identity Theft, Other) must be non-negative",
+      "Total reports must be greater than 0 to avoid division by zero"
+    ],
+    "derived_filters": [
+      "Filter dataset to Year == 2024",
+      "Calculate Total = Fraud + Identity Theft + Other",
+      "Calculate Percentage = (Fraud / Total) * 100"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be an integer",
+      "Percentage should be rounded (not truncated) to nearest integer",
+      "No decimal places in final answer",
+      "No percentage symbol in numeric output"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of fraud reporters out of total reporters in 2024\",\n    \"filters\": [\"Year == 2024\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the number of fraud reports in 2024?\",\n      \"What is the total number of all reports (Fraud + Identity Theft + Other) in 2024?\",\n      \"What is the percentage calculated as (Fraud / Total) * 100?\",\n      \"How should the percentage be rounded to an integer?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Number_of_Reports_by_Type.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"Fraud\": \"count of fraud reports\",\n      \"Identity Theft\": \"count of identity theft reports\",\n      \"Other\": \"count of other reports\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All numeric columns are int64 type\",\n      \"Sample data shows years from 2001-2020, but question asks for 2024\",\n      \"Need to verify if 2024 data exists in the full dataset beyond the 20-row sample\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must equal 2024\",\n      \"All report counts (Fraud, Identity Theft, Other) must be non-negative\",\n      \"Total reports must be greater than 0 to avoid division by zero\"\n    ],\n    \"derived_filters\": [\n      \"Filter dataset to Year == 2024\",\n      \"Calculate Total = Fraud + Identity Theft + Other\",\n      \"Calculate Percentage = (Fraud / Total) * 100\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be an integer\",\n      \"Percentage should be rounded (not truncated) to nearest integer\",\n      \"No decimal places in final answer\",\n      \"No percentage symbol in numeric output\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.246590852737427,
+  "token_usage": {
+    "input_tokens": 922,
+    "output_tokens": 646
+  }
+}

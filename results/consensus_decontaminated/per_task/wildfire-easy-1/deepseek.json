@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "total acres burned in a 3-month period",
+    "filters": [
+      "Date >= 200001 (Jan 2000 or later)"
+    ],
+    "grouping_variables": [
+      "3-month period (rolling window)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify all possible 3-month rolling windows since Jan 2000",
+      "Calculate sum of 'Acres Burned' for each 3-month window",
+      "Find the maximum sum value",
+      "Identify the date range of that 3-month period"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires_monthly_stats.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Second file 'noaa_wildfires_monthly_stats__section_1' appears to be metadata or documentation with different structure and no joinable columns"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Acres Burned": "acres",
+      "Number of Fires": "count",
+      "Acres Burned per Fire": "acres per fire"
+    },
+    "scale_issues": [
+      "Date column uses YYYYMM integer format, not datetime",
+      "Acres Burned values span multiple orders of magnitude (40K to 2.5M in sample)"
+    ],
+    "cross_source_conflicts": [
+      "Second file contains only a title and missing value indicator, cannot be integrated with main data"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-999"
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Main file has clean CSV format with proper headers",
+      "Second file appears to be metadata/documentation with different format",
+      "Date column is integer YYYYMM format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Data starts at 200001 (Jan 2000)",
+      "Monthly granularity requires rolling window calculation",
+      "3-month periods must be consecutive months (e.g., Jan-Mar, Feb-Apr)"
+    ],
+    "derived_filters": [
+      "Exclude any rows with Date < 200001",
+      "Handle edge cases for partial data at end of time series"
+    ],
+    "statistical_tests": [
+      "Check for missing values in 'Acres Burned' column",
+      "Verify date sequence is complete and consecutive"
+    ],
+    "output_format_requirements": [
+      "Report both the 3-month period (start and end dates) and the total acres burned"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total acres burned in a 3-month period\",\n        \"filters\": [\"Date >= 200001 (Jan 2000 or later)\"],\n        \"grouping_variables\": [\"3-month period (rolling window)\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify all possible 3-month rolling windows since Jan 2000\", \"Calculate sum of 'Acres Burned' for each 3-month window\", \"Find the maximum sum value\", \"Identify the date range of that 3-month period\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires_monthly_stats.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Second file 'noaa_wildfires_monthly_stats__section_1' appears to be metadata or documentation with different structure and no joinable columns\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Acres Burned\": \"acres\", \"Number of Fires\": \"count\", \"Acres Burned per Fire\": \"acres per fire\"},\n        \"scale_issues\": [\"Date column uses YYYYMM integer format, not datetime\", \"Acres Burned values span multiple orders of magnitude (40K to 2.5M in sample)\"],\n        \"cross_source_conflicts\": [\"Second file contains only a title and missing value indicator, cannot be integrated with main data\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"-999\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Main file has clean CSV format with proper headers\", \"Second file appears to be metadata/documentation with different format\", \"Date column is integer YYYYMM format\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Data starts at 200001 (Jan 2000)\", \"Monthly granularity requires rolling window calculation\", \"3-month periods must be consecutive months (e.g., Jan-Mar, Feb-Apr)\"],\n        \"derived_filters\": [\"Exclude any rows with Date < 200001\", \"Handle edge cases for partial data at end of time series\"],\n        \"statistical_tests\": [\"Check for missing values in 'Acres Burned' column\", \"Verify date sequence is complete and consecutive\"],\n        \"output_format_requirements\": [\"Report both the 3-month period (start and end dates) and the total acres burned\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.549360990524292,
+  "token_usage": {
+    "input_tokens": 963,
+    "output_tokens": 572
+  }
+}

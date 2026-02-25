@@ -1,0 +1,301 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of unique sources in the 'Select Bibliography' column",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "count of unique sources in the 'Select Bibliography' column",
+        "count of unique sources",
+        "Count of unique sources used in the 'Select Bibliography' column"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How are sources separated in the 'Select Bibliography' column?",
+        "Are there any missing values in the 'Select Bibliography' column?",
+        "Do source abbreviations need to be standardized (e.g., 'BNP' vs 'BNP;')?",
+        "What column contains source information?",
+        "How are multiple sources delimited within the source column?",
+        "What constitutes a unique source (e.g., acronym vs full citation)?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How are sources separated in the 'Select Bibliography' column?",
+          "Are there any missing values in the 'Select Bibliography' column?",
+          "Do source abbreviations need to be standardized (e.g., 'BNP' vs 'BNP;')?"
+        ],
+        [
+          "What column contains source information?",
+          "How are multiple sources delimited within the source column?",
+          "What constitutes a unique source (e.g., acronym vs full citation)?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "roman_cities.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "roman_cities.csv"
+        ],
+        [
+          "roman_cities.csv"
+        ],
+        [
+          "roman_cities.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "barrington atlas rank": "ordinal scale (1.0-3.0)",
+        "start date": "year (negative values for BCE)",
+        "end date": "year (negative values for BCE)",
+        "longitude (x)": "decimal degrees",
+        "latitude (y)": "decimal degrees"
+      },
+      "confidence": 0.5999999999999999,
+      "votes": [
+        {
+          "Barrington Atlas Rank": "ordinal scale (1.0-3.0)",
+          "Start Date": "year (negative values for BCE)",
+          "End Date": "year (negative values for BCE)",
+          "Longitude (X)": "decimal degrees",
+          "Latitude (Y)": "decimal degrees"
+        },
+        {},
+        {
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "Start Date": "year",
+          "End Date": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Mixed date systems (BCE/CE) in Start Date and End Date columns"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Mixed date systems (BCE/CE) in Start Date and End Date columns"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 1.0,
+      "votes": [
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Primary Key values should be unique",
+        "Start Date should be <= End Date when both present",
+        "Latitude values should be between -90 and 90",
+        "Longitude values should be between -180 and 180",
+        "Select Bibliography column must be parsed to extract individual sources",
+        "Sources are delimited by semicolons and periods",
+        "Uniqueness should count each distinct source identifier once across entire dataset",
+        "The 'Select Bibliography' column may contain multiple sources separated by semicolons."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Primary Key values should be unique",
+          "Start Date should be <= End Date when both present",
+          "Latitude values should be between -90 and 90",
+          "Longitude values should be between -180 and 180"
+        ],
+        [
+          "Select Bibliography column must be parsed to extract individual sources",
+          "Sources are delimited by semicolons and periods",
+          "Uniqueness should count each distinct source identifier once across entire dataset"
+        ],
+        [
+          "The 'Select Bibliography' column may contain multiple sources separated by semicolons."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows with missing 'Select Bibliography' values",
+        "Consider only rows with non-empty 'Select Bibliography' for source counting"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows with missing 'Select Bibliography' values",
+          "Consider only rows with non-empty 'Select Bibliography' for source counting"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate Primary Key values",
+        "Validate coordinate ranges",
+        "Check date consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate Primary Key values",
+          "Validate coordinate ranges",
+          "Check date consistency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Integer count of unique sources",
+        "List of unique sources for verification",
+        "Return single integer representing count of unique sources"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Integer count of unique sources",
+          "List of unique sources for verification"
+        ],
+        [
+          "Return single integer representing count of unique sources"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5466666666666667
+}

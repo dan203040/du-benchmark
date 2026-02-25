@@ -1,0 +1,369 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Country with highest Agricultural Land (%) after filling missing values with mean",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Country with highest Agricultural Land (%) after filling missing values with mean",
+        "Country with highest percentage of agricultural land",
+        "Country with the highest percentage of agricultural land after imputing missing values with the mean."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Remove rows where 'Agricultural Land( %)' is completely missing or invalid"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove rows where 'Agricultural Land( %)' is completely missing or invalid"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Country"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "Country"
+        ],
+        [
+          "Country"
+        ],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Calculate mean of 'Agricultural Land( %)' column",
+        "Fill missing values with calculated mean",
+        "Find maximum value of 'Agricultural Land( %)'",
+        "Identify country with maximum value",
+        "What is the mean value of Agricultural Land( %) for non-missing values?",
+        "Which values in Agricultural Land( %) are missing?",
+        "After filling missing values with mean, which country has the maximum Agricultural Land( %)?",
+        "What is the Agricultural Land( %) value for the country with highest percentage?",
+        "Calculate the mean of 'Agricultural Land( %)'",
+        "Impute missing values in 'Agricultural Land( %)' with the calculated mean",
+        "Find the maximum value in the imputed 'Agricultural Land( %)' column",
+        "Identify the country corresponding to the maximum 'Agricultural Land( %)'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Calculate mean of 'Agricultural Land( %)' column",
+          "Fill missing values with calculated mean",
+          "Find maximum value of 'Agricultural Land( %)'",
+          "Identify country with maximum value"
+        ],
+        [
+          "What is the mean value of Agricultural Land( %) for non-missing values?",
+          "Which values in Agricultural Land( %) are missing?",
+          "After filling missing values with mean, which country has the maximum Agricultural Land( %)?",
+          "What is the Agricultural Land( %) value for the country with highest percentage?"
+        ],
+        [
+          "Calculate the mean of 'Agricultural Land( %)'",
+          "Impute missing values in 'Agricultural Land( %)' with the calculated mean",
+          "Find the maximum value in the imputed 'Agricultural Land( %)' column",
+          "Identify the country corresponding to the maximum 'Agricultural Land( %)'"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "world-data-2023.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "world-data-2023.csv"
+        ],
+        [
+          "world-data-2023.csv"
+        ],
+        [
+          "world-data-2023.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "'Agricultural Land( %)' column has dtype 'object' but contains percentage values with '%' symbol",
+        "Multiple numeric columns stored as 'object' dtype (e.g., 'Density\\n(P/Km2)', 'Land Area(Km2)', 'GDP')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "'Agricultural Land( %)' column has dtype 'object' but contains percentage values with '%' symbol",
+          "Multiple numeric columns stored as 'object' dtype (e.g., 'Density\\n(P/Km2)', 'Land Area(Km2)', 'GDP')"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "agricultural land( %)": "percentage",
+        "land area(km2)": "square kilometers",
+        "density\\n(p/km2)": "persons per square kilometer",
+        "gdp": "USD",
+        "co2-emissions": "metric tons",
+        "density\n(p/km2)": "persons_per_square_kilometer"
+      },
+      "confidence": 0.5555555555555557,
+      "votes": [
+        {
+          "Agricultural Land( %)": "percentage",
+          "Land Area(Km2)": "square kilometers",
+          "Density\\n(P/Km2)": "persons per square kilometer",
+          "GDP": "USD",
+          "Co2-Emissions": "metric tons"
+        },
+        {
+          "Agricultural Land( %)": "percentage",
+          "Land Area(Km2)": "square_kilometers",
+          "Density\n(P/Km2)": "persons_per_square_kilometer"
+        },
+        {
+          "Agricultural Land( %)": "percentage",
+          "Land Area(Km2)": "square kilometers"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Percentage values contain '%' symbol in data",
+        "Numeric values contain commas and currency symbols",
+        "Some values have trailing spaces (e.g., '$0.70 ')",
+        "Agricultural Land( %) appears to be stored as string with % symbol, needs conversion to numeric",
+        "Land Area(Km2) stored as string with comma separators, needs conversion to numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Percentage values contain '%' symbol in data",
+          "Numeric values contain commas and currency symbols",
+          "Some values have trailing spaces (e.g., '$0.70 ')"
+        ],
+        [
+          "Agricultural Land( %) appears to be stored as string with % symbol, needs conversion to numeric",
+          "Land Area(Km2) stored as string with comma separators, needs conversion to numeric"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "null",
+        "nan"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "null"
+        ],
+        [
+          "",
+          "NA",
+          "N/A",
+          "nan"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 35.0,
+      "confidence": 1.0,
+      "votes": [
+        35.0,
+        35.0,
+        35.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Agricultural Land( %) must be between 0 and 100",
+        "Country names must be unique",
+        "Percentage values must be cleaned before calculation",
+        "Agricultural Land( %) should be between 0 and 100",
+        "Each country should appear only once in the dataset",
+        "Missing values must be filled with mean before identifying maximum",
+        "The 'Agricultural Land( %)' column may contain missing values that need to be imputed.",
+        "The 'Agricultural Land( %)' column is stored as text and needs to be converted to a numeric type for calculations.",
+        "The 'Land Area(Km2)' column is stored as text and needs to be converted to a numeric type for calculations.",
+        "The 'Population' column is stored as text and needs to be converted to a numeric type for calculations."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Agricultural Land( %) must be between 0 and 100",
+          "Country names must be unique",
+          "Percentage values must be cleaned before calculation"
+        ],
+        [
+          "Agricultural Land( %) should be between 0 and 100",
+          "Each country should appear only once in the dataset",
+          "Missing values must be filled with mean before identifying maximum"
+        ],
+        [
+          "The 'Agricultural Land( %)' column may contain missing values that need to be imputed.",
+          "The 'Agricultural Land( %)' column is stored as text and needs to be converted to a numeric type for calculations.",
+          "The 'Land Area(Km2)' column is stored as text and needs to be converted to a numeric type for calculations.",
+          "The 'Population' column is stored as text and needs to be converted to a numeric type for calculations."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove '%' symbol from 'Agricultural Land( %)' values",
+        "Convert cleaned values to numeric type",
+        "Exclude non-numeric values after cleaning",
+        "Convert Agricultural Land( %) from string to numeric by removing % symbol",
+        "Handle missing/null values in Agricultural Land( %) column",
+        "Calculate mean of non-missing Agricultural Land( %) values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove '%' symbol from 'Agricultural Land( %)' values",
+          "Convert cleaned values to numeric type",
+          "Exclude non-numeric values after cleaning"
+        ],
+        [
+          "Convert Agricultural Land( %) from string to numeric by removing % symbol",
+          "Handle missing/null values in Agricultural Land( %) column",
+          "Calculate mean of non-missing Agricultural Land( %) values"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for outliers in Agricultural Land( %) distribution",
+        "Verify mean calculation excludes missing values before imputation",
+        "Verify mean calculation excludes missing values",
+        "Confirm maximum value after imputation is valid"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for outliers in Agricultural Land( %) distribution",
+          "Verify mean calculation excludes missing values before imputation"
+        ],
+        [
+          "Verify mean calculation excludes missing values",
+          "Confirm maximum value after imputation is valid"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Output must be in specified JSON format with 'highest country' and 'Agricultural Land %' keys",
+        "Agricultural Land % should be formatted as percentage",
+        "Output must be in exact JSON format with keys 'highest country' and 'Agricultural Land %'",
+        "Values should be provided as lists even for single values",
+        "Agricultural Land % should be numeric value (without % symbol in output)",
+        "Output the country with the highest agricultural land percentage and the corresponding percentage."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Output must be in specified JSON format with 'highest country' and 'Agricultural Land %' keys",
+          "Agricultural Land % should be formatted as percentage"
+        ],
+        [
+          "Output must be in exact JSON format with keys 'highest country' and 'Agricultural Land %'",
+          "Values should be provided as lists even for single values",
+          "Agricultural Land % should be numeric value (without % symbol in output)"
+        ],
+        [
+          "Output the country with the highest agricultural land percentage and the corresponding percentage."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5811111111111111
+}

@@ -1,0 +1,89 @@
+{
+  "m_q": {
+    "target_metric": "solar activity cycles period and top five years of minimum and maximum activity",
+    "filters": [
+      "year between 1960 and 2020",
+      "peaks with prominence >= 20 and distance >= 5",
+      "troughs with similar prominence and distance rules"
+    ],
+    "grouping_variables": [
+      "year"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "calculate approximate period of solar cycles",
+      "identify top 5 maximum activity years",
+      "identify top 5 minimum activity years"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "SN_y_tot_V2.0.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "single column contains multiple data fields separated by semicolons"
+    ],
+    "column_mappings": {
+      "1700.5;   8.3; -1.0;    -1;1": "raw_data"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "year": "decimal year",
+      "sunspot_number": "yearly mean",
+      "uncertainty": "standard deviation",
+      "observations": "count",
+      "definitive_provisional_flag": "categorical"
+    },
+    "scale_issues": [
+      "year values are decimal (e.g., 1700.5)",
+      "negative sunspot numbers may indicate missing data"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ";",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "-1.0",
+      "-1"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "data appears to have 5 columns: year, yearly mean sunspot number, standard deviation, number of observations, definitive/provisional flag",
+      "header shown in description is misleading - actual data has no column names",
+      "spaces used as padding in data values"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "year range: 1700.5 to 2023.5 (based on 324 rows)",
+      "sunspot numbers should be non-negative for valid observations",
+      "flag values likely indicate data quality"
+    ],
+    "derived_filters": [
+      "filter to years 1960-2020",
+      "exclude rows with negative sunspot numbers or uncertainty values"
+    ],
+    "statistical_tests": [
+      "peak detection with prominence and distance thresholds",
+      "cycle period calculation using Fourier analysis or peak-to-peak distances"
+    ],
+    "output_format_requirements": [
+      "list of top 5 maximum years with values",
+      "list of top 5 minimum years with values",
+      "average cycle period calculation"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"solar activity cycles period and top five years of minimum and maximum activity\",\n        \"filters\": [\"year between 1960 and 2020\", \"peaks with prominence >= 20 and distance >= 5\", \"troughs with similar prominence and distance rules\"],\n        \"grouping_variables\": [\"year\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"calculate approximate period of solar cycles\", \"identify top 5 maximum activity years\", \"identify top 5 minimum activity years\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"SN_y_tot_V2.0.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"single column contains multiple data fields separated by semicolons\"],\n        \"column_mappings\": {\"1700.5;   8.3; -1.0;    -1;1\": \"raw_data\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"year\": \"decimal year\", \"sunspot_number\": \"yearly mean\", \"uncertainty\": \"standard deviation\", \"observations\": \"count\", \"definitive_provisional_flag\": \"categorical\"},\n        \"scale_issues\": [\"year values are decimal (e.g., 1700.5)\", \"negative sunspot numbers may indicate missing data\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": false,\n        \"delimiter\": \";\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"-1.0\", \"-1\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"data appears to have 5 columns: year, yearly mean sunspot number, standard deviation, number of observations, definitive/provisional flag\", \"header shown in description is misleading - actual data has no column names\", \"spaces used as padding in data values\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"year range: 1700.5 to 2023.5 (based on 324 rows)\", \"sunspot numbers should be non-negative for valid observations\", \"flag values likely indicate data quality\"],\n        \"derived_filters\": [\"filter to years 1960-2020\", \"exclude rows with negative sunspot numbers or uncertainty values\"],\n        \"statistical_tests\": [\"peak detection with prominence and distance thresholds\", \"cycle period calculation using Fourier analysis or peak-to-peak distances\"],\n        \"output_format_requirements\": [\"list of top 5 maximum years with values\", \"list of top 5 minimum years with values\", \"average cycle period calculation\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 18.242121934890747,
+  "token_usage": {
+    "input_tokens": 1069,
+    "output_tokens": 588
+  }
+}

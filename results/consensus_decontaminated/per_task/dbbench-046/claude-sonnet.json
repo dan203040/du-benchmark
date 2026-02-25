@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Round value(s)",
+    "filters": [
+      "Winner = 'Ivanovic'",
+      "Year < 2008",
+      "Tournament = 'Paris'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Filter records where Winner is 'Ivanovic'",
+      "Filter records where Year is less than 2008",
+      "Filter records where Tournament is 'Paris'",
+      "Extract Round value from filtered results"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "tennis_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar_year",
+      "Round": "tournament_stage_code",
+      "Score": "game_score_format"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column stored as object/string type but contains numeric years",
+      "Score column contains tennis match scores with various formats",
+      "Round column uses abbreviations (QF=Quarterfinal, SF=Semifinal, F=Final, 4R=4th Round, etc.)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be numeric and less than 2008",
+      "Winner must exactly match 'Ivanovic'",
+      "Tournament must exactly match 'Paris'"
+    ],
+    "derived_filters": [
+      "Year column needs conversion from object to numeric for comparison Year < 2008",
+      "Case-sensitive string matching for Winner and Tournament"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Round value as a string",
+      "If multiple matches exist, return all matching Round values",
+      "If no matches exist, return null or empty result"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Round value(s)\",\n    \"filters\": [\n      \"Winner = 'Ivanovic'\",\n      \"Year < 2008\",\n      \"Tournament = 'Paris'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Filter records where Winner is 'Ivanovic'\",\n      \"Filter records where Year is less than 2008\",\n      \"Filter records where Tournament is 'Paris'\",\n      \"Extract Round value from filtered results\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"tennis_results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar_year\",\n      \"Round\": \"tournament_stage_code\",\n      \"Score\": \"game_score_format\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Year column stored as object/string type but contains numeric years\",\n      \"Score column contains tennis match scores with various formats\",\n      \"Round column uses abbreviations (QF=Quarterfinal, SF=Semifinal, F=Final, 4R=4th Round, etc.)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be numeric and less than 2008\",\n      \"Winner must exactly match 'Ivanovic'\",\n      \"Tournament must exactly match 'Paris'\"\n    ],\n    \"derived_filters\": [\n      \"Year column needs conversion from object to numeric for comparison Year < 2008\",\n      \"Case-sensitive string matching for Winner and Tournament\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Round value as a string\",\n      \"If multiple matches exist, return all matching Round values\",\n      \"If no matches exist, return null or empty result\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.367857217788696,
+  "token_usage": {
+    "input_tokens": 1253,
+    "output_tokens": 592
+  }
+}

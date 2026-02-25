@@ -1,0 +1,415 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Biogas Generation Estimate (cu-ft/day) for each entry in test.csv",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Biogas Generation Estimate (cu-ft/day)",
+        "Biogas Generation Estimate (cu-ft/day) for each entry in test.csv",
+        "Biogas Generation Estimate (cu-ft/day) for each entry in test.csv"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "table",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "table",
+        "table",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What features best predict biogas generation?",
+        "How do animal types and counts affect biogas output?",
+        "What is the relationship between waste efficiency and biogas generation?",
+        "How does digester type influence biogas production?",
+        "What impact do operational years have on biogas estimates?",
+        "What features from test.csv are most predictive of Biogas Generation Estimate?",
+        "How to handle missing values in predictor columns?",
+        "Which machine learning model is appropriate for this regression task?",
+        "How to map test.csv entries to predicted biogas_generation_estimate_cuftday values?",
+        "What preprocessing steps are needed for categorical and numerical features?"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "What features best predict biogas generation?",
+          "How do animal types and counts affect biogas output?",
+          "What is the relationship between waste efficiency and biogas generation?",
+          "How does digester type influence biogas production?",
+          "What impact do operational years have on biogas estimates?"
+        ],
+        [
+          "What features from test.csv are most predictive of Biogas Generation Estimate?",
+          "How to handle missing values in predictor columns?",
+          "Which machine learning model is appropriate for this regression task?",
+          "How to map test.csv entries to predicted biogas_generation_estimate_cuftday values?",
+          "What preprocessing steps are needed for categorical and numerical features?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "test.csv",
+        "veri_seti_son_2.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "test.csv",
+          "veri_seti_son_2.csv"
+        ],
+        [
+          "test.csv",
+          "veri_seti_son_2.csv"
+        ],
+        [
+          "test.csv",
+          "veri_seti_son_2.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "test.csv has 28 columns while veri_seti_son_2.csv has 29 columns (missing target column)",
+        "test.csv missing 'Biogas Generation Estimate (cu-ft/day)' column needed for training",
+        "test.csv has 28 columns while veri_seti_son_2.csv has 29 columns",
+        "veri_seti_son_2.csv contains the target variable 'Biogas Generation Estimate (cu-ft/day)' which is missing in test.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv has 28 columns while veri_seti_son_2.csv has 29 columns (missing target column)",
+          "test.csv missing 'Biogas Generation Estimate (cu-ft/day)' column needed for training"
+        ],
+        [
+          "test.csv has 28 columns while veri_seti_son_2.csv has 29 columns",
+          "veri_seti_son_2.csv contains the target variable 'Biogas Generation Estimate (cu-ft/day)' which is missing in test.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "biogas generation estimate (cu-ft/day)": "cubic feet per day",
+        "biogas_per_animal (cu-ft/day)": "cubic feet per day per animal",
+        "electricity generated (kwh/yr)": "kilowatt-hours per year",
+        "total emission reductions (mtco2e/yr)": "metric tons CO2 equivalent per year",
+        "total_waste_kg/day": "kilograms per day",
+        "emission_reduction_per_year": "MTCO2e per year per operational year",
+        "electricity_to_biogas_ratio": "kWh/yr per cu-ft/day (unitless ratio)",
+        "waste_efficiency": "cu-ft/day per kg/day (unitless ratio)",
+        "electricity_efficiency": "kWh/yr per kg/day (unitless ratio)",
+        "year operational": "year",
+        "operational years": "years",
+        "total_animals": "count",
+        "cattle": "count",
+        "dairy": "count",
+        "poultry": "count",
+        "swine": "count"
+      },
+      "confidence": 0.5416666666666665,
+      "votes": [
+        {
+          "Biogas Generation Estimate (cu-ft/day)": "cubic feet per day",
+          "Biogas_per_Animal (cu-ft/day)": "cubic feet per day per animal",
+          "Electricity Generated (kWh/yr)": "kilowatt-hours per year",
+          "Total Emission Reductions (MTCO2e/yr)": "metric tons CO2 equivalent per year",
+          "Total_Waste_kg/day": "kilograms per day",
+          "Emission_Reduction_per_Year": "MTCO2e per year per operational year",
+          "Electricity_to_Biogas_Ratio": "kWh/yr per cu-ft/day (unitless ratio)",
+          "Waste_Efficiency": "cu-ft/day per kg/day (unitless ratio)",
+          "Electricity_Efficiency": "kWh/yr per kg/day (unitless ratio)"
+        },
+        {
+          "Biogas Generation Estimate (cu-ft/day)": "cubic feet per day",
+          "Electricity Generated (kWh/yr)": "kilowatt-hours per year",
+          "Total Emission Reductions (MTCO2e/yr)": "metric tons CO2 equivalent per year",
+          "Biogas_per_Animal (cu-ft/day)": "cubic feet per day per animal",
+          "Total_Waste_kg/day": "kilograms per day",
+          "Year Operational": "year",
+          "Operational Years": "years",
+          "Total_Animals": "count",
+          "Cattle": "count",
+          "Dairy": "count",
+          "Poultry": "count",
+          "Swine": "count"
+        },
+        {
+          "Electricity Generated (kWh/yr)": "kWh/yr",
+          "Total Emission Reductions (MTCO2e/yr)": "MTCO2e/yr",
+          "Biogas Generation Estimate (cu-ft/day)": "cu-ft/day",
+          "Biogas_per_Animal (cu-ft/day)": "cu-ft/day",
+          "Total_Waste_kg/day": "kg/day"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Large range in animal counts (120 to 500,000)",
+        "Biogas_per_Animal varies from 2.08 to 2985.18 cu-ft/day",
+        "Electricity Generated ranges from 0 to 16,206,000 kWh/yr",
+        "Electricity Generated is in kWh/yr while biogas is in cu-ft/day (different time scales)",
+        "Total Emission Reductions is yearly but biogas generation is daily",
+        "Biogas_per_Animal and total Biogas Generation Estimate may have scaling relationships"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Large range in animal counts (120 to 500,000)",
+          "Biogas_per_Animal varies from 2.08 to 2985.18 cu-ft/day",
+          "Electricity Generated ranges from 0 to 16,206,000 kWh/yr"
+        ],
+        [
+          "Electricity Generated is in kWh/yr while biogas is in cu-ft/day (different time scales)",
+          "Total Emission Reductions is yearly but biogas generation is daily",
+          "Biogas_per_Animal and total Biogas Generation Estimate may have scaling relationships"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "test.csv has 74 rows for prediction, veri_seti_son_2.csv has 417 rows for training",
+        "Both datasets share 28 common columns with same names and dtypes",
+        "Target variable only exists in training data (veri_seti_son_2.csv)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "test.csv has 74 rows for prediction, veri_seti_son_2.csv has 417 rows for training"
+        ],
+        [
+          "Both datasets share 28 common columns with same names and dtypes",
+          "Target variable only exists in training data (veri_seti_son_2.csv)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "No-Info",
+        "NA",
+        "N/A",
+        "",
+        "0.0"
+      ],
+      "confidence": 0.8,
+      "votes": [
+        [
+          "No-Info",
+          "NA",
+          "N/A",
+          "",
+          "0.0"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "No-Info"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 28.0,
+      "confidence": 1.0,
+      "votes": [
+        28.0,
+        28.0,
+        28.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Biogas Generation Estimate must be positive",
+        "Total_Animals >= Cattle + Dairy + Poultry + Swine",
+        "Operational Years = Current Year - Year Operational",
+        "Biogas_per_Animal = Biogas Generation Estimate / Total_Animals (when both available)",
+        "Predictions must be generated for all 74 entries in test.csv",
+        "Output column must be named exactly 'biogas_generation_estimate_cuftday'",
+        "Biogas Generation Estimate values should be non-negative",
+        "Result must be saved as result.csv",
+        "The output file must be named 'result.csv'.",
+        "The output file must contain a column named 'biogas_generation_estimate_cuftday'."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Biogas Generation Estimate must be positive",
+          "Total_Animals >= Cattle + Dairy + Poultry + Swine",
+          "Operational Years = Current Year - Year Operational",
+          "Biogas_per_Animal = Biogas Generation Estimate / Total_Animals (when both available)"
+        ],
+        [
+          "Predictions must be generated for all 74 entries in test.csv",
+          "Output column must be named exactly 'biogas_generation_estimate_cuftday'",
+          "Biogas Generation Estimate values should be non-negative",
+          "Result must be saved as result.csv"
+        ],
+        [
+          "The output file must be named 'result.csv'.",
+          "The output file must contain a column named 'biogas_generation_estimate_cuftday'."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter out rows with Total_Animals = 0",
+        "Consider operational status for prediction relevance",
+        "Check for data completeness in key predictor columns",
+        "Training data: veri_seti_son_2.csv contains non-null 'Biogas Generation Estimate (cu-ft/day)' values",
+        "Test data: test.csv entries where target variable needs to be predicted"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter out rows with Total_Animals = 0",
+          "Consider operational status for prediction relevance",
+          "Check for data completeness in key predictor columns"
+        ],
+        [
+          "Training data: veri_seti_son_2.csv contains non-null 'Biogas Generation Estimate (cu-ft/day)' values",
+          "Test data: test.csv entries where target variable needs to be predicted"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Correlation analysis between biogas generation and animal counts",
+        "ANOVA for biogas generation across digester types",
+        "Regression analysis for waste efficiency vs biogas output",
+        "Check multicollinearity among predictor variables",
+        "Validate that predicted values are in reasonable range based on training data distribution",
+        "Check for correlations between Total_Animals, Biogas_per_Animal, and target variable",
+        "Assess feature importance of animal counts (Cattle, Dairy, Poultry, Swine) on biogas generation",
+        "Evaluate impact of Digester Type and Status on predictions"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Correlation analysis between biogas generation and animal counts",
+          "ANOVA for biogas generation across digester types",
+          "Regression analysis for waste efficiency vs biogas output",
+          "Check multicollinearity among predictor variables"
+        ],
+        [
+          "Validate that predicted values are in reasonable range based on training data distribution",
+          "Check for correlations between Total_Animals, Biogas_per_Animal, and target variable",
+          "Assess feature importance of animal counts (Cattle, Dairy, Poultry, Swine) on biogas generation",
+          "Evaluate impact of Digester Type and Status on predictions"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Predictions must be saved in result.csv",
+        "Column name must be 'biogas_generation_estimate_cuftday'",
+        "One prediction per row in test.csv",
+        "Numeric values only",
+        "Output file name: result.csv",
+        "Output must contain column: biogas_generation_estimate_cuftday",
+        "Output should have 74 rows matching test.csv entries",
+        "Values should be float type representing cu-ft/day",
+        "CSV format with header row",
+        "CSV file with a column named 'biogas_generation_estimate_cuftday'"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Predictions must be saved in result.csv",
+          "Column name must be 'biogas_generation_estimate_cuftday'",
+          "One prediction per row in test.csv",
+          "Numeric values only"
+        ],
+        [
+          "Output file name: result.csv",
+          "Output must contain column: biogas_generation_estimate_cuftday",
+          "Output should have 74 rows matching test.csv entries",
+          "Values should be float type representing cu-ft/day",
+          "CSV format with header row"
+        ],
+        [
+          "CSV file with a column named 'biogas_generation_estimate_cuftday'"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5670833333333334
+}

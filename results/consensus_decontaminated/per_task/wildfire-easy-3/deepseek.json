@@ -1,0 +1,109 @@
+{
+  "m_q": {
+    "target_metric": "Count of NIFC Geographic Areas each US state intersects with",
+    "filters": [
+      "adm0_name = 'United States'",
+      "adm1_name is not null",
+      "GACCName is not null"
+    ],
+    "grouping_variables": [
+      "adm1_name"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which US state has the highest count of intersecting NIFC Geographic Areas?",
+      "What is the distribution of intersection counts across states?",
+      "Are there states that don't intersect any NIFC Geographic Areas?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "usa.gpkg",
+      "nifc_geographic_areas.gpkg"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Different geometry column names: 'geometry' in both files but representing different spatial features",
+      "Different administrative level representations: usa.gpkg has hierarchical admin columns while nifc_geographic_areas.gpkg has geographic area metadata"
+    ],
+    "column_mappings": {
+      "adm1_name": "state_name",
+      "GACCName": "nifc_area_name",
+      "GACCAbbreviation": "nifc_area_abbrev"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "adm2_id": "string identifier",
+      "adm1_id": "string identifier",
+      "adm0_id": "string identifier",
+      "GACCUnitID": "string identifier",
+      "ContactPhone": "phone number",
+      "DateCurrent": "timestamp",
+      "src_date": "date",
+      "src_update": "date"
+    },
+    "scale_issues": [
+      "usa.gpkg contains county-level geometries (adm2) while question requires state-level aggregation",
+      "nifc_geographic_areas.gpkg contains 120 geographic areas that may cross state boundaries",
+      "Need spatial intersection at state level rather than county level"
+    ],
+    "cross_source_conflicts": [
+      "Spatial reference systems may differ between the two GeoPackage files",
+      "usa.gpkg uses 2018-01-01 source date while nifc_geographic_areas.gpkg uses 2022-01-03 date",
+      "Different geographic coverage: usa.gpkg covers all US states while nifc areas may not cover all states"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 26,
+    "expected_rows": 0,
+    "file_format": "geopackage",
+    "format_notes": [
+      "Both files are GeoPackage format with geometry columns",
+      "usa.gpkg has 3142 rows representing US counties",
+      "nifc_geographic_areas.gpkg has 120 rows representing geographic areas",
+      "Geometry columns contain MULTIPOLYGON features",
+      "Sample data shows truncated geometry strings"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each state must be represented by its full name from adm1_name column",
+      "Spatial intersection must be calculated between state geometries and NIFC area geometries",
+      "Counts must be based on distinct NIFC Geographic Areas per state",
+      "Results should be sorted by count descending"
+    ],
+    "derived_filters": [
+      "Filter usa.gpkg to unique state geometries by aggregating county geometries",
+      "Exclude territories if adm1_name represents non-state entities",
+      "Consider only active NIFC areas (DateCurrent indicates recent data)"
+    ],
+    "statistical_tests": [
+      "Check for missing state geometries",
+      "Verify spatial coverage of NIFC areas across all states",
+      "Validate that each state intersects with at least one NIFC area"
+    ],
+    "output_format_requirements": [
+      "Output should list states with their intersection counts",
+      "State names should be full names from adm1_name",
+      "Results should be sorted by count descending",
+      "Include tie handling for states with equal counts"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of NIFC Geographic Areas each US state intersects with\",\n        \"filters\": [\"adm0_name = 'United States'\", \"adm1_name is not null\", \"GACCName is not null\"],\n        \"grouping_variables\": [\"adm1_name\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which US state has the highest count of intersecting NIFC Geographic Areas?\", \"What is the distribution of intersection counts across states?\", \"Are there states that don't intersect any NIFC Geographic Areas?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"usa.gpkg\", \"nifc_geographic_areas.gpkg\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Different geometry column names: 'geometry' in both files but representing different spatial features\", \"Different administrative level representations: usa.gpkg has hierarchical admin columns while nifc_geographic_areas.gpkg has geographic area metadata\"],\n        \"column_mappings\": {\"adm1_name\": \"state_name\", \"GACCName\": \"nifc_area_name\", \"GACCAbbreviation\": \"nifc_area_abbrev\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"adm2_id\": \"string identifier\", \"adm1_id\": \"string identifier\", \"adm0_id\": \"string identifier\", \"GACCUnitID\": \"string identifier\", \"ContactPhone\": \"phone number\", \"DateCurrent\": \"timestamp\", \"src_date\": \"date\", \"src_update\": \"date\"},\n        \"scale_issues\": [\"usa.gpkg contains county-level geometries (adm2) while question requires state-level aggregation\", \"nifc_geographic_areas.gpkg contains 120 geographic areas that may cross state boundaries\", \"Need spatial intersection at state level rather than county level\"],\n        \"cross_source_conflicts\": [\"Spatial reference systems may differ between the two GeoPackage files\", \"usa.gpkg uses 2018-01-01 source date while nifc_geographic_areas.gpkg uses 2022-01-03 date\", \"Different geographic coverage: usa.gpkg covers all US states while nifc areas may not cover all states\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 26,\n        \"file_format\": \"geopackage\",\n        \"format_notes\": [\"Both files are GeoPackage format with geometry columns\", \"usa.gpkg has 3142 rows representing US counties\", \"nifc_geographic_areas.gpkg has 120 rows representing geographic areas\", \"Geometry columns contain MULTIPOLYGON features\", \"Sample data shows truncated geometry strings\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each state must be represented by its full name from adm1_name column\", \"Spatial intersection must be calculated between state geometries and NIFC area geometries\", \"Counts must be based on distinct NIFC Geographic Areas per state\", \"Results should be sorted by count descending\"],\n        \"derived_filters\": [\"Filter usa.gpkg to unique state geometries by aggregating county geometries\", \"Exclude territories if adm1_name represents non-state entities\", \"Consider only active NIFC areas (DateCurrent indicates recent data)\"],\n        \"statistical_tests\": [\"Check for missing state geometries\", \"Verify spatial coverage of NIFC areas across all states\", \"Validate that each state intersects with at least one NIFC area\"],\n        \"output_format_requirements\": [\"Output should list states with their intersection counts\", \"State names should be full names from adm1_name\", \"Results should be sorted by count descending\", \"Include tie handling for states with equal counts\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.35925579071045,
+  "token_usage": {
+    "input_tokens": 5463,
+    "output_tokens": 850
+  }
+}

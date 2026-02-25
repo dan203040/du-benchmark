@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "average number of laps driven in the Indianapolis 500 in Tony Gulotta's career",
+    "filters": [
+      "Tony Gulotta's career races",
+      "Indianapolis 500 races only"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many Indianapolis 500 races did Tony Gulotta participate in?",
+      "What is the total number of laps driven across all races?",
+      "What is the sum of laps divided by number of races?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Race Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Laps": "count",
+      "Qual": "mph",
+      "Led": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All columns are stored as object/string dtype",
+      "Laps column needs conversion to numeric",
+      "Year column represents race year",
+      "Sample data shows 23 total rows representing race entries"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Laps column must be numeric and non-negative",
+      "Only count races where Laps value is valid/non-null",
+      "Each row represents one Indianapolis 500 race entry"
+    ],
+    "derived_filters": [
+      "Exclude rows where Laps cannot be converted to numeric",
+      "Include all rows as they represent Indianapolis 500 races"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Result should be a single numeric value",
+      "Should represent average laps per race",
+      "Round to reasonable precision (e.g., 2 decimal places)"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average number of laps driven in the Indianapolis 500 in Tony Gulotta's career\",\n    \"filters\": [\"Tony Gulotta's career races\", \"Indianapolis 500 races only\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many Indianapolis 500 races did Tony Gulotta participate in?\",\n      \"What is the total number of laps driven across all races?\",\n      \"What is the sum of laps divided by number of races?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Race Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Laps\": \"count\",\n      \"Qual\": \"mph\",\n      \"Led\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All columns are stored as object/string dtype\",\n      \"Laps column needs conversion to numeric\",\n      \"Year column represents race year\",\n      \"Sample data shows 23 total rows representing race entries\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Laps column must be numeric and non-negative\",\n      \"Only count races where Laps value is valid/non-null\",\n      \"Each row represents one Indianapolis 500 race entry\"\n    ],\n    \"derived_filters\": [\n      \"Exclude rows where Laps cannot be converted to numeric\",\n      \"Include all rows as they represent Indianapolis 500 races\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Result should be a single numeric value\",\n      \"Should represent average laps per race\",\n      \"Round to reasonable precision (e.g., 2 decimal places)\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.054419040679932,
+  "token_usage": {
+    "input_tokens": 1154,
+    "output_tokens": 572
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "m_q": {
+    "target_metric": "Count of human conflicts between 800 and 1400 AD, attributed to modern countries",
+    "filters": [
+      "StartYear >= 800",
+      "EndYear <= 1400",
+      "Conflict duration >= 1 year"
+    ],
+    "grouping_variables": [
+      "Modern Country"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "How to determine the duration of a conflict?",
+      "How to map historical conflict locations to modern countries?",
+      "How to handle conflicts spanning multiple modern countries?",
+      "How to define 'human conflict'?",
+      "How to handle conflicts with missing location information?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "conflict_brecke.csv",
+      "worldcities.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "StartYear": "AD",
+      "EndYear": "AD",
+      "Fatalities": "number of deaths"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Conflict duration must be at least 1 year (EndYear - StartYear >= 0)",
+      "StartYear and EndYear must be integers"
+    ],
+    "derived_filters": [
+      "ConflictDuration = EndYear - StartYear + 1",
+      "ConflictDuration >= 1"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Table with columns: Modern Country, Number of Conflicts"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of human conflicts between 800 and 1400 AD, attributed to modern countries\",\n    \"filters\": [\n      \"StartYear >= 800\",\n      \"EndYear <= 1400\",\n      \"Conflict duration >= 1 year\"\n    ],\n    \"grouping_variables\": [\n      \"Modern Country\"\n    ],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"How to determine the duration of a conflict?\",\n      \"How to map historical conflict locations to modern countries?\",\n      \"How to handle conflicts spanning multiple modern countries?\",\n      \"How to define 'human conflict'?\",\n      \"How to handle conflicts with missing location information?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"conflict_brecke.csv\",\n      \"worldcities.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"StartYear\": \"AD\",\n      \"EndYear\": \"AD\",\n      \"Fatalities\": \"number of deaths\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Conflict duration must be at least 1 year (EndYear - StartYear >= 0)\",\n      \"StartYear and EndYear must be integers\"\n    ],\n    \"derived_filters\": [\n      \"ConflictDuration = EndYear - StartYear + 1\",\n      \"ConflictDuration >= 1\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Table with columns: Modern Country, Number of Conflicts\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.987391948699951,
+  "token_usage": {}
+}

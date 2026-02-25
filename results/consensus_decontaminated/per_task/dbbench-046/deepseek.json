@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Round",
+    "filters": [
+      "Winner = 'Ivanovic'",
+      "Year < 2008",
+      "Tournament = 'Paris'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the round value when all three conditions are satisfied?",
+      "Are there multiple matches that satisfy these conditions?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "tennis_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year"
+    },
+    "scale_issues": [
+      "Year column is stored as object/string type but contains numeric years",
+      "Score column contains inconsistent formatting with spaces around commas"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column shown as object dtype but contains numeric values",
+      "Score column contains tennis score notation with dashes and parentheses"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be numeric years",
+      "Round values should be valid tennis round notations",
+      "Winner and Tournament should be non-empty strings"
+    ],
+    "derived_filters": [
+      "Filter rows where Winner = 'Ivanovic'",
+      "Filter rows where Year < 2008",
+      "Filter rows where Tournament = 'Paris'"
+    ],
+    "statistical_tests": [
+      "Check if exactly one row satisfies all three conditions",
+      "Verify Year values can be converted to integers for comparison"
+    ],
+    "output_format_requirements": [
+      "Return single Round value if exactly one match found",
+      "Return list of Round values if multiple matches found",
+      "Return null/empty if no matches found"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Round\",\n        \"filters\": [\"Winner = 'Ivanovic'\", \"Year < 2008\", \"Tournament = 'Paris'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the round value when all three conditions are satisfied?\", \"Are there multiple matches that satisfy these conditions?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"tennis_results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"calendar year\"},\n        \"scale_issues\": [\"Year column is stored as object/string type but contains numeric years\", \"Score column contains inconsistent formatting with spaces around commas\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year column shown as object dtype but contains numeric values\", \"Score column contains tennis score notation with dashes and parentheses\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be numeric years\", \"Round values should be valid tennis round notations\", \"Winner and Tournament should be non-empty strings\"],\n        \"derived_filters\": [\"Filter rows where Winner = 'Ivanovic'\", \"Filter rows where Year < 2008\", \"Filter rows where Tournament = 'Paris'\"],\n        \"statistical_tests\": [\"Check if exactly one row satisfies all three conditions\", \"Verify Year values can be converted to integers for comparison\"],\n        \"output_format_requirements\": [\"Return single Round value if exactly one match found\", \"Return list of Round values if multiple matches found\", \"Return null/empty if no matches found\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.417280912399292,
+  "token_usage": {
+    "input_tokens": 1111,
+    "output_tokens": 445
+  }
+}

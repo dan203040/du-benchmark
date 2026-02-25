@@ -1,0 +1,415 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of modern cities with population > 100,000 located within 0.1 degrees (approximately 11 km) of ancient Roman-era cities",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of modern cities with population > 100,000 located within 0.1 degrees (approximately 11 km) of ancient Roman-era cities",
+        "Count of modern cities with population > 100,000 that are within 0.1 degrees (both latitude and longitude) of any ancient Roman-era city",
+        "Count of modern cities with population > 100k within 0.1 degrees of any ancient Roman city"
+      ]
+    },
+    "filters": {
+      "value": [
+        "worldcities.population > 100000",
+        "Distance between roman_cities coordinates and worldcities coordinates <= 0.1 degrees",
+        "roman_cities.Start Date and End Date indicate Roman-era timeframe",
+        "Modern cities with population > 100,000",
+        "Ancient cities that existed during Roman era (overlapping date ranges with Roman period)",
+        "Distance threshold: within 0.1 degrees in both latitude and longitude",
+        "distance between worldcities (lat, lng) and roman_cities (Latitude (Y), Longitude (X)) <= 0.1 degrees"
+      ],
+      "confidence": 0.38095238095238093,
+      "votes": [
+        [
+          "worldcities.population > 100000",
+          "Distance between roman_cities coordinates and worldcities coordinates <= 0.1 degrees",
+          "roman_cities.Start Date and End Date indicate Roman-era timeframe"
+        ],
+        [
+          "Modern cities with population > 100,000",
+          "Ancient cities that existed during Roman era (overlapping date ranges with Roman period)",
+          "Distance threshold: within 0.1 degrees in both latitude and longitude"
+        ],
+        [
+          "worldcities.population > 100000",
+          "distance between worldcities (lat, lng) and roman_cities (Latitude (Y), Longitude (X)) <= 0.1 degrees"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What constitutes 'Roman-era' based on Start Date and End Date columns?",
+        "How to handle missing population values in worldcities?",
+        "Should we consider only exact matches between Modern Toponym and city/city_ascii or just geographic proximity?",
+        "How to calculate geographic distance using latitude/longitude coordinates?",
+        "What date range constitutes the Roman era for filtering ancient cities?",
+        "How to interpret Start Date and End Date columns to determine if a city existed during Roman era?",
+        "How to calculate spatial proximity using coordinate differences?",
+        "How to handle missing population values in worldcities.csv?",
+        "How to handle missing coordinates in roman_cities.csv?",
+        "Should a modern city be counted once even if it matches multiple Roman cities?",
+        "Calculate the distance between each modern city and each ancient Roman city.",
+        "Filter modern cities with population greater than 100,000.",
+        "Identify modern cities within 0.1 degrees of any ancient Roman city.",
+        "Count the number of modern cities that meet the criteria."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What constitutes 'Roman-era' based on Start Date and End Date columns?",
+          "How to handle missing population values in worldcities?",
+          "Should we consider only exact matches between Modern Toponym and city/city_ascii or just geographic proximity?",
+          "How to calculate geographic distance using latitude/longitude coordinates?"
+        ],
+        [
+          "What date range constitutes the Roman era for filtering ancient cities?",
+          "How to interpret Start Date and End Date columns to determine if a city existed during Roman era?",
+          "How to calculate spatial proximity using coordinate differences?",
+          "How to handle missing population values in worldcities.csv?",
+          "How to handle missing coordinates in roman_cities.csv?",
+          "Should a modern city be counted once even if it matches multiple Roman cities?"
+        ],
+        [
+          "Calculate the distance between each modern city and each ancient Roman city.",
+          "Filter modern cities with population greater than 100,000.",
+          "Identify modern cities within 0.1 degrees of any ancient Roman city.",
+          "Count the number of modern cities that meet the criteria."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "roman_cities.csv",
+        "worldcities.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "roman_cities.csv",
+          "worldcities.csv"
+        ],
+        [
+          "roman_cities.csv",
+          "worldcities.csv"
+        ],
+        [
+          "roman_cities.csv",
+          "worldcities.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Different coordinate column names: roman_cities uses 'Longitude (X)' and 'Latitude (Y)' while worldcities uses 'lng' and 'lat'",
+        "Different naming conventions for modern cities: roman_cities.Modern Toponym vs worldcities.city/city_ascii",
+        "Coordinate column names differ: 'Longitude (X)' vs 'lng', 'Latitude (Y)' vs 'lat'",
+        "No direct join key; requires spatial distance calculation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different coordinate column names: roman_cities uses 'Longitude (X)' and 'Latitude (Y)' while worldcities uses 'lng' and 'lat'",
+          "Different naming conventions for modern cities: roman_cities.Modern Toponym vs worldcities.city/city_ascii"
+        ],
+        [
+          "Coordinate column names differ: 'Longitude (X)' vs 'lng', 'Latitude (Y)' vs 'lat'",
+          "No direct join key; requires spatial distance calculation"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "longitude (x)": "degrees",
+        "latitude (y)": "degrees",
+        "lng": "degrees",
+        "lat": "degrees",
+        "population": "people",
+        "start date": "year BCE/CE",
+        "end date": "year BCE/CE"
+      },
+      "confidence": 0.9047619047619049,
+      "votes": [
+        {
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "lng": "degrees",
+          "lat": "degrees",
+          "population": "people",
+          "Start Date": "year BCE/CE",
+          "End Date": "year BCE/CE"
+        },
+        {
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "lng": "degrees",
+          "lat": "degrees",
+          "population": "persons",
+          "Start Date": "year (negative for BCE, positive for CE)",
+          "End Date": "year (negative for BCE, positive for CE)"
+        },
+        {
+          "Longitude (X)": "degrees",
+          "Latitude (Y)": "degrees",
+          "lat": "degrees",
+          "lng": "degrees",
+          "population": "people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Distance threshold of 0.1 degrees varies with latitude (approximately 11 km at equator, less at higher latitudes)",
+        "Population values in worldcities may be estimates with varying precision",
+        "Roman-era dates may have different calendar systems",
+        "Distance threshold is 0.1 degrees, which varies in actual distance depending on latitude (approximately 11 km at equator for longitude)",
+        "Start Date and End Date use negative values for BCE dates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Distance threshold of 0.1 degrees varies with latitude (approximately 11 km at equator, less at higher latitudes)",
+          "Population values in worldcities may be estimates with varying precision",
+          "Roman-era dates may have different calendar systems"
+        ],
+        [
+          "Distance threshold is 0.1 degrees, which varies in actual distance depending on latitude (approximately 11 km at equator for longitude)",
+          "Start Date and End Date use negative values for BCE dates"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Geographic coordinate systems may differ (WGS84 assumed but not confirmed)",
+        "Time period definitions: Roman-era vs modern city data from different time periods",
+        "Roman cities use negative years for BCE, modern cities have no temporal data",
+        "Population in worldcities is float64 and may contain NaN values",
+        "End Date in roman_cities.csv is float64 with potential NaN values indicating cities that continued"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Geographic coordinate systems may differ (WGS84 assumed but not confirmed)",
+          "Time period definitions: Roman-era vs modern city data from different time periods"
+        ],
+        [
+          "Roman cities use negative years for BCE, modern cities have no temporal data",
+          "Population in worldcities is float64 and may contain NaN values",
+          "End Date in roman_cities.csv is float64 with potential NaN values indicating cities that continued"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "Unknown",
+        "NA",
+        "N/A",
+        "NaN"
+      ],
+      "confidence": 0.7333333333333333,
+      "votes": [
+        [
+          "",
+          "Unknown",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 0.9230769230769231,
+      "votes": [
+        12.0,
+        12.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Geographic coordinates must be valid (lat: -90 to 90, lon: -180 to 180)",
+        "Population must be positive for filtering",
+        "Distance calculation requires both coordinate pairs",
+        "Roman-era cities should have valid date ranges",
+        "Population threshold: population > 100,000",
+        "Spatial proximity: abs(lat_modern - lat_roman) <= 0.1 AND abs(lng_modern - lng_roman) <= 0.1",
+        "Exclude records with missing coordinates",
+        "Exclude records with missing or invalid population values",
+        "Distance calculation must use appropriate formula (e.g., Haversine) for spherical coordinates.",
+        "Ensure consistent coordinate systems (WGS84) for both datasets."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Geographic coordinates must be valid (lat: -90 to 90, lon: -180 to 180)",
+          "Population must be positive for filtering",
+          "Distance calculation requires both coordinate pairs",
+          "Roman-era cities should have valid date ranges"
+        ],
+        [
+          "Population threshold: population > 100,000",
+          "Spatial proximity: abs(lat_modern - lat_roman) <= 0.1 AND abs(lng_modern - lng_roman) <= 0.1",
+          "Exclude records with missing coordinates",
+          "Exclude records with missing or invalid population values"
+        ],
+        [
+          "Distance calculation must use appropriate formula (e.g., Haversine) for spherical coordinates.",
+          "Ensure consistent coordinate systems (WGS84) for both datasets."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "ABS(roman_cities.Latitude (Y) - worldcities.lat) <= 0.1",
+        "ABS(roman_cities.Longitude (X) - worldcities.lng) <= 0.1",
+        "worldcities.population > 100000",
+        "roman_cities.Start Date <= 476 AND roman_cities.End Date >= -27 (Roman Empire timeframe)",
+        "Filter roman_cities to those existing during Roman era (approximately 753 BCE to 476 CE, or -753 to 476)",
+        "A Roman city existed during Roman era if: (Start Date <= 476) AND (End Date >= -753 OR End Date is NULL)",
+        "Filter worldcities where population > 100000 and population is not null",
+        "modern_city_within_0.1_degrees = distance(worldcities.lat, worldcities.lng, roman_cities.Latitude (Y), roman_cities.Longitude (X)) <= 0.1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "ABS(roman_cities.Latitude (Y) - worldcities.lat) <= 0.1",
+          "ABS(roman_cities.Longitude (X) - worldcities.lng) <= 0.1",
+          "worldcities.population > 100000",
+          "roman_cities.Start Date <= 476 AND roman_cities.End Date >= -27 (Roman Empire timeframe)"
+        ],
+        [
+          "Filter roman_cities to those existing during Roman era (approximately 753 BCE to 476 CE, or -753 to 476)",
+          "A Roman city existed during Roman era if: (Start Date <= 476) AND (End Date >= -753 OR End Date is NULL)",
+          "Filter worldcities where population > 100000 and population is not null"
+        ],
+        [
+          "modern_city_within_0.1_degrees = distance(worldcities.lat, worldcities.lng, roman_cities.Latitude (Y), roman_cities.Longitude (X)) <= 0.1"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for coordinate outliers",
+        "Validate population distribution",
+        "Test distance calculation accuracy",
+        "Verify date range consistency"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for coordinate outliers",
+          "Validate population distribution",
+          "Test distance calculation accuracy",
+          "Verify date range consistency"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Should include validation of proximity calculation method",
+        "May need to document which cities matched for verification",
+        "Return a single integer count",
+        "Count distinct modern cities (avoid double-counting if one modern city matches multiple Roman cities)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count",
+          "Should include validation of proximity calculation method",
+          "May need to document which cities matched for verification"
+        ],
+        [
+          "Return a single integer count",
+          "Count distinct modern cities (avoid double-counting if one modern city matches multiple Roman cities)"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5971062271062272
+}

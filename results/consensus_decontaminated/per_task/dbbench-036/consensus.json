@@ -1,0 +1,322 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Round value(s)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Round value(s)",
+        "Round number(s)",
+        "Count of Rounds that satisfy the conditions"
+      ]
+    },
+    "filters": {
+      "value": [
+        "School/Club Team contains 'indiana' (case-insensitive)",
+        "Pick < 198 (numeric comparison)",
+        "School/Club Team = 'Indiana'",
+        "Pick < 198",
+        "School/Club Team is 'Indiana'",
+        "Pick is smaller than 198"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "School/Club Team contains 'indiana' (case-insensitive)",
+          "Pick < 198 (numeric comparison)"
+        ],
+        [
+          "School/Club Team = 'Indiana'",
+          "Pick < 198"
+        ],
+        [
+          "School/Club Team is 'Indiana'",
+          "Pick is smaller than 198"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "list",
+        "list",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the exact string value in 'School/Club Team' column for Indiana?",
+        "Should 'Pick' be treated as numeric despite being object dtype?",
+        "Are there multiple rows matching these criteria?",
+        "What records have School/Club Team equal to 'Indiana'?",
+        "Among those Indiana records, which have Pick values less than 198?",
+        "What are the Round values for the filtered records?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the exact string value in 'School/Club Team' column for Indiana?",
+          "Should 'Pick' be treated as numeric despite being object dtype?",
+          "Are there multiple rows matching these criteria?"
+        ],
+        [
+          "What records have School/Club Team equal to 'Indiana'?",
+          "Among those Indiana records, which have Pick values less than 198?",
+          "What are the Round values for the filtered records?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "NFL Draft Picks"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NFL Draft Picks"
+        ],
+        [
+          "NFL Draft Picks"
+        ],
+        [
+          "NFL Draft Picks"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Pick column has object dtype but needs numeric comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick column has object dtype but needs numeric comparison"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "pick": "draft position number",
+        "round": "draft round number"
+      },
+      "confidence": 0.5,
+      "votes": [
+        {
+          "Pick": "draft position number"
+        },
+        {
+          "Round": "draft round number",
+          "Pick": "overall pick number in draft"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Pick values need conversion from string to integer for comparison",
+        "Round and Pick columns are stored as 'object' dtype but represent numeric values",
+        "Need to convert Round and Pick to numeric types for comparison operations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick values need conversion from string to integer for comparison"
+        ],
+        [
+          "Round and Pick columns are stored as 'object' dtype but represent numeric values",
+          "Need to convert Round and Pick to numeric types for comparison operations"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Pick values must be convertible to integers",
+        "School/Club Team values should be consistent capitalization",
+        "School/Club Team must equal 'Indiana' (case-insensitive)",
+        "Pick must be numeric and less than 198",
+        "Round must exist and be valid for filtered records",
+        "Pick must be a valid integer",
+        "Round must be a valid value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pick values must be convertible to integers",
+          "School/Club Team values should be consistent capitalization"
+        ],
+        [
+          "School/Club Team must equal 'Indiana' (case-insensitive)",
+          "Pick must be numeric and less than 198",
+          "Round must exist and be valid for filtered records"
+        ],
+        [
+          "Pick must be a valid integer",
+          "Round must be a valid value"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Convert Pick to numeric before filtering",
+        "Case-insensitive search for 'indiana' in School/Club Team",
+        "Convert Pick column to numeric type before applying < 198 filter",
+        "Apply case-insensitive string matching for 'Indiana' in School/Club Team"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Convert Pick to numeric before filtering",
+          "Case-insensitive search for 'indiana' in School/Club Team"
+        ],
+        [
+          "Convert Pick column to numeric type before applying < 198 filter",
+          "Apply case-insensitive string matching for 'Indiana' in School/Club Team"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if Pick column contains only numeric strings",
+        "Verify School/Club Team values for Indiana variations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if Pick column contains only numeric strings",
+          "Verify School/Club Team values for Indiana variations"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return Round value(s) as list",
+        "Include both Round and Pick values in output",
+        "Return distinct Round values that satisfy both conditions",
+        "If no records match, return empty result",
+        "If multiple records match, return all unique Round values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return Round value(s) as list",
+          "Include both Round and Pick values in output"
+        ],
+        [
+          "Return distinct Round values that satisfy both conditions",
+          "If no records match, return empty result",
+          "If multiple records match, return all unique Round values"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5583333333333335
+}

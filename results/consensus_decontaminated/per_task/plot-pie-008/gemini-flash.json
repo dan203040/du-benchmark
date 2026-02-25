@@ -1,0 +1,101 @@
+{
+  "m_q": {
+    "target_metric": "Average delivery distance for biker deliveries, grouped by hub city, and the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance.",
+    "filters": [
+      "delivery_status = 'DELIVERED'",
+      "driver_modal = 'BIKER'"
+    ],
+    "grouping_variables": [
+      "hub_city"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What is the average delivery distance for biker deliveries in each hub city?",
+      "Which hub city has the largest average delivery distance for biker deliveries?",
+      "What is the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "deliveries.csv",
+      "drivers.csv",
+      "orders.csv",
+      "stores.csv",
+      "hubs.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "deliveries.csv",
+        "right_source": "drivers.csv",
+        "left_column": "driver_id",
+        "right_column": "driver_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "deliveries.csv",
+        "right_source": "orders.csv",
+        "left_column": "delivery_order_id",
+        "right_column": "delivery_order_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "orders.csv",
+        "right_source": "stores.csv",
+        "left_column": "store_id",
+        "right_column": "store_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "stores.csv",
+        "right_source": "hubs.csv",
+        "left_column": "hub_id",
+        "right_column": "hub_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "delivery_distance_meters": "meters"
+    },
+    "scale_issues": [
+      "delivery_distance_meters is in meters, might need conversion to km"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "delivery_distance_meters should be non-negative",
+      "driver_id in deliveries.csv can be null"
+    ],
+    "derived_filters": [
+      "Filter out cancelled deliveries (delivery_status != 'DELIVERED')",
+      "Filter for biker deliveries (driver_modal = 'BIKER')"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Pie chart showing the distribution of order deliveries by driver modes in the city with the largest biker average delivery distance.",
+      "Save the chart in result.jpg"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average delivery distance for biker deliveries, grouped by hub city, and the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance.\",\n    \"filters\": [\n      \"delivery_status = 'DELIVERED'\",\n      \"driver_modal = 'BIKER'\"\n    ],\n    \"grouping_variables\": [\n      \"hub_city\"\n    ],\n    \"output_cardinality\": \"plot\",\n    \"sub_questions\": [\n      \"What is the average delivery distance for biker deliveries in each hub city?\",\n      \"Which hub city has the largest average delivery distance for biker deliveries?\",\n      \"What is the distribution of order deliveries by driver modes in the hub city with the largest biker average delivery distance?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"deliveries.csv\",\n      \"drivers.csv\",\n      \"orders.csv\",\n      \"stores.csv\",\n      \"hubs.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"deliveries.csv\",\n        \"right_source\": \"drivers.csv\",\n        \"left_column\": \"driver_id\",\n        \"right_column\": \"driver_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"deliveries.csv\",\n        \"right_source\": \"orders.csv\",\n        \"left_column\": \"delivery_order_id\",\n        \"right_column\": \"delivery_order_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"orders.csv\",\n        \"right_source\": \"stores.csv\",\n        \"left_column\": \"store_id\",\n        \"right_column\": \"store_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"stores.csv\",\n        \"right_source\": \"hubs.csv\",\n        \"left_column\": \"hub_id\",\n        \"right_column\": \"hub_id\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"delivery_distance_meters\": \"meters\"\n    },\n    \"scale_issues\": [\n      \"delivery_distance_meters is in meters, might need conversion to km\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"delivery_distance_meters should be non-negative\",\n      \"driver_id in deliveries.csv can be null\"\n    ],\n    \"derived_filters\": [\n      \"Filter out cancelled deliveries (delivery_status != 'DELIVERED')\",\n      \"Filter for biker deliveries (driver_modal = 'BIKER')\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Pie chart showing the distribution of order deliveries by driver modes in the city with the largest biker average delivery distance.\",\n      \"Save the chart in result.jpg\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.683377981185913,
+  "token_usage": {}
+}

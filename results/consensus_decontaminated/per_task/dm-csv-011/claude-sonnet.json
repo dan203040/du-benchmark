@@ -1,0 +1,110 @@
+{
+  "m_q": {
+    "target_metric": "Total quantity sold and total sales revenue (after discounts) for each bike category",
+    "filters": [
+      "order_date between 2016-01-01 and 2018-12-31"
+    ],
+    "grouping_variables": [
+      "category_name"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the total quantity of items sold for each bike category?",
+      "What is the total sales revenue after applying discounts for each bike category?",
+      "How to calculate revenue with discount: quantity * list_price * (1 - discount)",
+      "Which orders fall within the 2016-2018 date range?",
+      "How to map products to their categories?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "orders.csv",
+      "order_items.csv",
+      "products.csv",
+      "categories.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "orders.csv",
+        "right_source": "order_items.csv",
+        "left_column": "order_id",
+        "right_column": "order_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "order_items.csv",
+        "right_source": "products.csv",
+        "left_column": "product_id",
+        "right_column": "product_id",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "products.csv",
+        "right_source": "categories.csv",
+        "left_column": "category_id",
+        "right_column": "category_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "quantity": "count",
+      "list_price": "USD",
+      "discount": "decimal (0-1 representing percentage)",
+      "total_price": "USD",
+      "total_quantity": "count"
+    },
+    "scale_issues": [
+      "discount is in decimal format (0.2 = 20% discount), not percentage",
+      "revenue calculation must apply discount: quantity * list_price * (1 - discount)"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "order_date in orders.csv is in string format, needs date parsing",
+      "sample_result.csv shows output structure with 3 columns: total_quantity, total_price, category_name",
+      "sample_result.csv contains empty values (placeholders) for all categories",
+      "Output should have 7 rows corresponding to 7 bike categories"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include orders with order_date >= 2016-01-01 and order_date <= 2018-12-31",
+      "Revenue must account for discounts: quantity * list_price * (1 - discount)",
+      "All 7 bike categories from categories.csv must appear in output"
+    ],
+    "derived_filters": [
+      "Extract year from order_date and filter for years 2016, 2017, 2018"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named result.csv",
+      "Column order: total_quantity, total_price, category_name",
+      "Format must match sample_result.csv structure exactly",
+      "Include all 7 categories even if they have zero sales",
+      "Numeric values should be calculated (not empty as in sample)",
+      "CSV format with header row"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total quantity sold and total sales revenue (after discounts) for each bike category\",\n    \"filters\": [\"order_date between 2016-01-01 and 2018-12-31\"],\n    \"grouping_variables\": [\"category_name\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What is the total quantity of items sold for each bike category?\",\n      \"What is the total sales revenue after applying discounts for each bike category?\",\n      \"How to calculate revenue with discount: quantity * list_price * (1 - discount)\",\n      \"Which orders fall within the 2016-2018 date range?\",\n      \"How to map products to their categories?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"orders.csv\", \"order_items.csv\", \"products.csv\", \"categories.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"orders.csv\",\n        \"right_source\": \"order_items.csv\",\n        \"left_column\": \"order_id\",\n        \"right_column\": \"order_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"order_items.csv\",\n        \"right_source\": \"products.csv\",\n        \"left_column\": \"product_id\",\n        \"right_column\": \"product_id\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"products.csv\",\n        \"right_source\": \"categories.csv\",\n        \"left_column\": \"category_id\",\n        \"right_column\": \"category_id\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"quantity\": \"count\",\n      \"list_price\": \"USD\",\n      \"discount\": \"decimal (0-1 representing percentage)\",\n      \"total_price\": \"USD\",\n      \"total_quantity\": \"count\"\n    },\n    \"scale_issues\": [\n      \"discount is in decimal format (0.2 = 20% discount), not percentage\",\n      \"revenue calculation must apply discount: quantity * list_price * (1 - discount)\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"order_date in orders.csv is in string format, needs date parsing\",\n      \"sample_result.csv shows output structure with 3 columns: total_quantity, total_price, category_name\",\n      \"sample_result.csv contains empty values (placeholders) for all categories\",\n      \"Output should have 7 rows corresponding to 7 bike categories\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include orders with order_date >= 2016-01-01 and order_date <= 2018-12-31\",\n      \"Revenue must account for discounts: quantity * list_price * (1 - discount)\",\n      \"All 7 bike categories from categories.csv must appear in output\"\n    ],\n    \"derived_filters\": [\n      \"Extract year from order_date and filter for years 2016, 2017, 2018\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named result.csv\",\n      \"Column order: total_quantity, total_price, category_name\",\n      \"Format must match sample_result.csv structure exactly\",\n      \"Include all 7 categories even if they have zero sales\",\n      \"Numeric values should be calculated (not empty as in sample)\",\n      \"CSV format with header row\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 15.468876123428345,
+  "token_usage": {
+    "input_tokens": 4894,
+    "output_tokens": 998
+  }
+}

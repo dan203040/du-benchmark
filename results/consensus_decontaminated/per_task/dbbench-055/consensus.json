@@ -1,0 +1,339 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Identify the athlete(s) with the highest rank (lowest numerical rank value)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Identify the athlete(s) with the highest rank (lowest numerical rank value)",
+        "Athlete with the highest rank (lowest numeric rank value)",
+        "Athlete with the minimum 'Total Rank' value"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Exclude rows where Total Rank is '\u2013' or 'DNF' or 'DSQ'",
+        "Consider only valid numerical rank values",
+        "Exclude rows where Total Rank is '\u2013' or DNF or DSQ"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Total Rank is '\u2013' or 'DNF' or 'DSQ'",
+          "Consider only valid numerical rank values"
+        ],
+        [
+          "Exclude rows where Total Rank is '\u2013' or DNF or DSQ"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Athlete"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Athlete"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "list",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What does '\u2013' in Total Rank column mean?",
+        "Are DNF/DSQ considered ranks?",
+        "Should we consider all events or specific events?",
+        "How to handle ties in rank?",
+        "What does 'highest rank' mean - lowest numeric value or highest numeric value?",
+        "Should we consider only completed races (valid Total Rank values)?",
+        "Are there multiple athletes tied for the highest rank?",
+        "Should results be filtered by Event type?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What does '\u2013' in Total Rank column mean?",
+          "Are DNF/DSQ considered ranks?",
+          "Should we consider all events or specific events?",
+          "How to handle ties in rank?"
+        ],
+        [
+          "What does 'highest rank' mean - lowest numeric value or highest numeric value?",
+          "Should we consider only completed races (valid Total Rank values)?",
+          "Are there multiple athletes tied for the highest rank?",
+          "Should results be filtered by Event type?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Athlete Event Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Athlete Event Results"
+        ],
+        [
+          "Athlete Event Results"
+        ],
+        [
+          "Athlete Event Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "race 1 time": "minutes:seconds.hundredths",
+        "race 2 time": "minutes:seconds.hundredths",
+        "total time": "minutes:seconds.hundredths",
+        "total rank": "ordinal rank (lower is better)"
+      },
+      "confidence": 0.5833333333333334,
+      "votes": [
+        {
+          "Race 1 Time": "minutes:seconds.hundredths",
+          "Race 2 Time": "minutes:seconds.hundredths",
+          "Total Time": "minutes:seconds.hundredths"
+        },
+        {
+          "Race 1 Time": "seconds (MM:SS.SS format)",
+          "Race 2 Time": "seconds (MM:SS.SS format)",
+          "Total Time": "seconds (MM:SS.SS format)",
+          "Total Rank": "ordinal rank (lower is better)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Time values mix different formats (MM:SS.ss vs SS.ss)",
+        "Total Rank contains both numerical values and special codes ('\u2013', 'DNF', 'DSQ')",
+        "Total Rank is stored as string/object type but represents numeric ordinal values",
+        "Time values are in MM:SS.SS format stored as strings, need conversion for calculations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Time values mix different formats (MM:SS.ss vs SS.ss)",
+          "Total Rank contains both numerical values and special codes ('\u2013', 'DNF', 'DSQ')"
+        ],
+        [
+          "Total Rank is stored as string/object type but represents numeric ordinal values",
+          "Time values are in MM:SS.SS format stored as strings, need conversion for calculations"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "\u2013",
+        "DNF",
+        "DSQ",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6111111111111112,
+      "votes": [
+        [
+          "\u2013",
+          "DNF",
+          "DSQ",
+          ""
+        ],
+        [
+          "DNF",
+          "DSQ",
+          "\u2013",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total Rank should be numeric for valid race completions",
+        "Total Time should be sum of Race 1 Time and Race 2 Time for valid races",
+        "Athlete names should be unique per event",
+        "Total Rank must be numeric and valid (not DNF, DSQ, or '\u2013')",
+        "Highest rank means lowest numeric value in Total Rank column",
+        "Each athlete may have multiple events, need to determine if looking for best rank across all events or per event",
+        "'Total Rank' column should be converted to numeric type for comparison.",
+        "Handle non-numeric values (e.g., '\u2013', 'DNF', 'DSQ') in 'Total Rank' appropriately (e.g., convert to NaN or a very large number) before finding the minimum."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total Rank should be numeric for valid race completions",
+          "Total Time should be sum of Race 1 Time and Race 2 Time for valid races",
+          "Athlete names should be unique per event"
+        ],
+        [
+          "Total Rank must be numeric and valid (not DNF, DSQ, or '\u2013')",
+          "Highest rank means lowest numeric value in Total Rank column",
+          "Each athlete may have multiple events, need to determine if looking for best rank across all events or per event"
+        ],
+        [
+          "'Total Rank' column should be converted to numeric type for comparison.",
+          "Handle non-numeric values (e.g., '\u2013', 'DNF', 'DSQ') in 'Total Rank' appropriately (e.g., convert to NaN or a very large number) before finding the minimum."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to rows where Total Rank is numeric",
+        "Consider minimum rank value across all events per athlete",
+        "Filter out rows where Total Rank is non-numeric",
+        "Convert Total Rank to integer for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to rows where Total Rank is numeric",
+          "Consider minimum rank value across all events per athlete"
+        ],
+        [
+          "Filter out rows where Total Rank is non-numeric",
+          "Convert Total Rank to integer for comparison"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check consistency between Total Time and sum of Race 1 + Race 2 Times",
+        "Validate rank ordering matches time ordering"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check consistency between Total Time and sum of Race 1 + Race 2 Times",
+          "Validate rank ordering matches time ordering"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List athlete name(s) with highest rank",
+        "Include rank value",
+        "Handle multiple athletes if tied",
+        "Return athlete name(s) with the minimum Total Rank value",
+        "Handle ties if multiple athletes have the same rank",
+        "Include Event and Total Rank in output for context",
+        "Output the name of the athlete with the highest rank (lowest 'Total Rank' value)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List athlete name(s) with highest rank",
+          "Include rank value",
+          "Handle multiple athletes if tied"
+        ],
+        [
+          "Return athlete name(s) with the minimum Total Rank value",
+          "Handle ties if multiple athletes have the same rank",
+          "Include Event and Total Rank in output for context"
+        ],
+        [
+          "Output the name of the athlete with the highest rank (lowest 'Total Rank' value)."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5430555555555557
+}

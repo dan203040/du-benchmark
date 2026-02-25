@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "average number of laps",
+    "filters": [
+      "Time/Retired contains 'Accident'",
+      "Manufacturer equals 'Aprilia'",
+      "Grid equals 27"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have 'Accident' in the Time/Retired column?",
+      "Which rows have Manufacturer as 'Aprilia'?",
+      "Which rows have Grid equal to 27?",
+      "What are the Laps values for rows meeting all three criteria?",
+      "What is the mean of the Laps values after filtering?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Motorcycle Race Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Laps": "count",
+      "Grid": "position_number",
+      "Time/Retired": "time_or_status"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Laps column is stored as object type but represents numeric counts",
+      "Grid column is stored as object type but represents numeric positions",
+      "Time/Retired column contains mixed values: time differences (e.g., '+46:22.971') or status strings (e.g., 'Accident')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Laps must be convertible to numeric for averaging",
+      "Grid must be convertible to numeric for comparison with 27",
+      "Time/Retired must be checked for substring 'Accident' case-insensitively"
+    ],
+    "derived_filters": [
+      "Filter where Time/Retired status is 'Accident' (not a time value)",
+      "Filter where Manufacturer matches 'Aprilia' exactly",
+      "Filter where Grid value equals 27 after numeric conversion"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value representing the average",
+      "Handle case where no records match the criteria (return null or 0)",
+      "Round to appropriate precision for lap counts"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average number of laps\",\n    \"filters\": [\n      \"Time/Retired contains 'Accident'\",\n      \"Manufacturer equals 'Aprilia'\",\n      \"Grid equals 27\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have 'Accident' in the Time/Retired column?\",\n      \"Which rows have Manufacturer as 'Aprilia'?\",\n      \"Which rows have Grid equal to 27?\",\n      \"What are the Laps values for rows meeting all three criteria?\",\n      \"What is the mean of the Laps values after filtering?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Motorcycle Race Results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Laps\": \"count\",\n      \"Grid\": \"position_number\",\n      \"Time/Retired\": \"time_or_status\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Laps column is stored as object type but represents numeric counts\",\n      \"Grid column is stored as object type but represents numeric positions\",\n      \"Time/Retired column contains mixed values: time differences (e.g., '+46:22.971') or status strings (e.g., 'Accident')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Laps must be convertible to numeric for averaging\",\n      \"Grid must be convertible to numeric for comparison with 27\",\n      \"Time/Retired must be checked for substring 'Accident' case-insensitively\"\n    ],\n    \"derived_filters\": [\n      \"Filter where Time/Retired status is 'Accident' (not a time value)\",\n      \"Filter where Manufacturer matches 'Aprilia' exactly\",\n      \"Filter where Grid value equals 27 after numeric conversion\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value representing the average\",\n      \"Handle case where no records match the criteria (return null or 0)\",\n      \"Round to appropriate precision for lap counts\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.578083753585815,
+  "token_usage": {
+    "input_tokens": 1088,
+    "output_tokens": 676
+  }
+}

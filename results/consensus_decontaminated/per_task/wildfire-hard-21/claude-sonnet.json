@@ -1,0 +1,104 @@
+{
+  "m_q": {
+    "target_metric": "Total value of residential property lost by state, ranked to identify top 3 states with highest losses",
+    "filters": [
+      "start_year >= 2005",
+      "start_year <= 2010"
+    ],
+    "grouping_variables": [
+      "state"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What metric represents residential property loss in the wildfire data?",
+      "How to filter records for years 2005-2010 inclusive?",
+      "How to aggregate property loss values by state?",
+      "How to convert state abbreviations to full state names?",
+      "How to rank states by total property loss and select top 3?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "state_abbreviation_to_state.json",
+      "noaa_wildfires_variabledescrip.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "state_abbreviation_to_state.json",
+        "left_column": "state",
+        "right_column": "state_abbreviation_keys",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "state_abbreviation_to_state.json has state codes as column names rather than as row values, requiring transpose or special handling"
+    ],
+    "column_mappings": {
+      "state": "state_abbreviation",
+      "prim_threatened_aggregate": "primary_residences_threatened"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "prim_threatened_aggregate": "count of houses",
+      "start_year": "year (YYYY)",
+      "duration": "days"
+    },
+    "scale_issues": [
+      "prim_threatened_aggregate represents houses 'at risk' or 'threatened', not necessarily destroyed or property value lost - interpretation needed",
+      "No direct property value column exists; may need to use threatened count as proxy for loss"
+    ],
+    "cross_source_conflicts": [
+      "The question asks for 'lost property in value' but dataset only contains 'prim_threatened_aggregate' (houses at risk), not actual loss or monetary value"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "noaa_wildfires.csv has 37 columns with mixed data types",
+      "state_abbreviation_to_state.json has states as column headers in a single-row structure",
+      "start_date and controlled_date are string format MM/DD/YYYY",
+      "erc_med contains float values with possible missing data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Include years 2005 through 2010 (inclusive)",
+      "Do not discard rows with missing values unnecessarily",
+      "Return state full names, not abbreviations",
+      "Return exactly top 3 states"
+    ],
+    "derived_filters": [
+      "Filter on start_year column for range [2005, 2010]",
+      "Handle missing values in prim_threatened_aggregate appropriately (treat as 0 or keep)"
+    ],
+    "statistical_tests": [
+      "Aggregate sum of prim_threatened_aggregate by state",
+      "Rank states in descending order by total"
+    ],
+    "output_format_requirements": [
+      "Return full state names (e.g., 'California', not 'CA')",
+      "Return list of 3 state names",
+      "Maintain all records unless they fail the year filter"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total value of residential property lost by state, ranked to identify top 3 states with highest losses\",\n    \"filters\": [\n      \"start_year >= 2005\",\n      \"start_year <= 2010\"\n    ],\n    \"grouping_variables\": [\n      \"state\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What metric represents residential property loss in the wildfire data?\",\n      \"How to filter records for years 2005-2010 inclusive?\",\n      \"How to aggregate property loss values by state?\",\n      \"How to convert state abbreviations to full state names?\",\n      \"How to rank states by total property loss and select top 3?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"state_abbreviation_to_state.json\",\n      \"noaa_wildfires_variabledescrip.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"noaa_wildfires.csv\",\n        \"right_source\": \"state_abbreviation_to_state.json\",\n        \"left_column\": \"state\",\n        \"right_column\": \"state_abbreviation_keys\",\n        \"join_type\": \"left\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"state_abbreviation_to_state.json has state codes as column names rather than as row values, requiring transpose or special handling\"\n    ],\n    \"column_mappings\": {\n      \"state\": \"state_abbreviation\",\n      \"prim_threatened_aggregate\": \"primary_residences_threatened\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"prim_threatened_aggregate\": \"count of houses\",\n      \"start_year\": \"year (YYYY)\",\n      \"duration\": \"days\"\n    },\n    \"scale_issues\": [\n      \"prim_threatened_aggregate represents houses 'at risk' or 'threatened', not necessarily destroyed or property value lost - interpretation needed\",\n      \"No direct property value column exists; may need to use threatened count as proxy for loss\"\n    ],\n    \"cross_source_conflicts\": [\n      \"The question asks for 'lost property in value' but dataset only contains 'prim_threatened_aggregate' (houses at risk), not actual loss or monetary value\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"\",\n      \"N/A\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"noaa_wildfires.csv has 37 columns with mixed data types\",\n      \"state_abbreviation_to_state.json has states as column headers in a single-row structure\",\n      \"start_date and controlled_date are string format MM/DD/YYYY\",\n      \"erc_med contains float values with possible missing data\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Include years 2005 through 2010 (inclusive)\",\n      \"Do not discard rows with missing values unnecessarily\",\n      \"Return state full names, not abbreviations\",\n      \"Return exactly top 3 states\"\n    ],\n    \"derived_filters\": [\n      \"Filter on start_year column for range [2005, 2010]\",\n      \"Handle missing values in prim_threatened_aggregate appropriately (treat as 0 or keep)\"\n    ],\n    \"statistical_tests\": [\n      \"Aggregate sum of prim_threatened_aggregate by state\",\n      \"Rank states in descending order by total\"\n    ],\n    \"output_format_requirements\": [\n      \"Return full state names (e.g., 'California', not 'CA')\",\n      \"Return list of 3 state names\",\n      \"Maintain all records unless they fail the year filter\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 17.519078016281128,
+  "token_usage": {
+    "input_tokens": 5256,
+    "output_tokens": 1016
+  }
+}

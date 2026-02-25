@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "Total number of represents (regions/locations)",
+    "filters": [
+      "Contestant = 'Clary Sermina Delgado Cid'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find the row(s) where Contestant is 'Clary Sermina Delgado Cid'",
+      "Count the number of distinct 'Represents' values for this contestant"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "contestants"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height (cm)": "centimeters",
+      "Height (ft)": "feet and inches",
+      "Age": "years"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Height (ft) column contains quoted values with feet and inches format",
+      "All string columns appear to be properly formatted"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Contestant name must match exactly: 'Clary Sermina Delgado Cid'",
+      "Each contestant should have only one 'Represents' value",
+      "Result should be 1 if contestant exists with one representation"
+    ],
+    "derived_filters": [
+      "Case-sensitive exact match on Contestant column"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer count",
+      "Count should be 0 if contestant not found, otherwise typically 1"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Total number of represents (regions/locations)\",\n    \"filters\": [\"Contestant = 'Clary Sermina Delgado Cid'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Find the row(s) where Contestant is 'Clary Sermina Delgado Cid'\",\n      \"Count the number of distinct 'Represents' values for this contestant\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"contestants\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Height (cm)\": \"centimeters\",\n      \"Height (ft)\": \"feet and inches\",\n      \"Age\": \"years\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Height (ft) column contains quoted values with feet and inches format\",\n      \"All string columns appear to be properly formatted\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Contestant name must match exactly: 'Clary Sermina Delgado Cid'\",\n      \"Each contestant should have only one 'Represents' value\",\n      \"Result should be 1 if contestant exists with one representation\"\n    ],\n    \"derived_filters\": [\n      \"Case-sensitive exact match on Contestant column\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer count\",\n      \"Count should be 0 if contestant not found, otherwise typically 1\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.57420301437378,
+  "token_usage": {
+    "input_tokens": 1298,
+    "output_tokens": 529
+  }
+}

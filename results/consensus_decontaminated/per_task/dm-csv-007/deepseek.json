@@ -1,0 +1,115 @@
+{
+  "m_q": {
+    "target_metric": "top 10 most popular movies using weighted rating formula from wrFormula.tex, considering only movies in top 15% by vote_count",
+    "filters": [
+      "vote_count must be in top 15% of all movies",
+      "only movies with sufficient votes considered"
+    ],
+    "grouping_variables": [
+      "title",
+      "movie_id/id"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the weighted rating formula in wrFormula.tex?",
+      "How to calculate top 15% threshold for vote_count?",
+      "How to join movie data from both files?",
+      "How to sort by calculated weighted rating?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "tmdb_5000_movies.csv",
+      "tmdb_5000_credits.csv",
+      "wrFormula.tex"
+    ],
+    "join_keys": [
+      {
+        "left_source": "tmdb_5000_movies.csv",
+        "right_source": "tmdb_5000_credits.csv",
+        "left_column": "id",
+        "right_column": "movie_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "tmdb_5000_movies.csv has 'id' column while tmdb_5000_credits.csv has 'movie_id' for same identifier",
+      "Both files have 'title' column but may have inconsistencies"
+    ],
+    "column_mappings": {
+      "movie_id": "id",
+      "id": "movie_id"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "budget": "USD",
+      "revenue": "USD",
+      "runtime": "minutes",
+      "vote_average": "scale 0-10",
+      "vote_count": "count",
+      "popularity": "TMDB proprietary score"
+    },
+    "scale_issues": [
+      "vote_average scale unknown (likely 0-10)",
+      "popularity metric scale unclear",
+      "budget/revenue may have currency inconsistencies"
+    ],
+    "cross_source_conflicts": [
+      "vote_count in movies.csv vs no vote data in credits.csv",
+      "title field may have different formatting between files"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null",
+      "NaN"
+    ],
+    "expected_columns": 20,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "JSON strings in columns: genres, keywords, production_companies, production_countries, spoken_languages, cast, crew",
+      "release_date in YYYY-MM-DD format",
+      "sample_result.csv is empty template with only 'Movie' column"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "vote_count > 0",
+      "vote_average between 0 and 10",
+      "runtime > 0",
+      "release_date valid date",
+      "top 15% vote_count threshold must be calculated from data"
+    ],
+    "derived_filters": [
+      "vote_count >= percentile_85(vote_count)",
+      "movies must have valid title",
+      "movies must have both vote_average and vote_count"
+    ],
+    "statistical_tests": [
+      "Calculate 85th percentile of vote_count",
+      "Check distribution of vote_average",
+      "Verify no duplicate movie_ids"
+    ],
+    "output_format_requirements": [
+      "CSV file with single 'Movie' column",
+      "Exactly 10 rows",
+      "Sorted by calculated weighted rating descending",
+      "Follow sample_result.csv format"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"top 10 most popular movies using weighted rating formula from wrFormula.tex, considering only movies in top 15% by vote_count\",\n        \"filters\": [\"vote_count must be in top 15% of all movies\", \"only movies with sufficient votes considered\"],\n        \"grouping_variables\": [\"title\", \"movie_id/id\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the weighted rating formula in wrFormula.tex?\", \"How to calculate top 15% threshold for vote_count?\", \"How to join movie data from both files?\", \"How to sort by calculated weighted rating?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"tmdb_5000_movies.csv\", \"tmdb_5000_credits.csv\", \"wrFormula.tex\"],\n        \"join_keys\": [\n            {\n                \"left_source\": \"tmdb_5000_movies.csv\",\n                \"right_source\": \"tmdb_5000_credits.csv\",\n                \"left_column\": \"id\",\n                \"right_column\": \"movie_id\",\n                \"join_type\": \"inner\"\n            }\n        ],\n        \"schema_conflicts\": [\"tmdb_5000_movies.csv has 'id' column while tmdb_5000_credits.csv has 'movie_id' for same identifier\", \"Both files have 'title' column but may have inconsistencies\"],\n        \"column_mappings\": {\"movie_id\": \"id\", \"id\": \"movie_id\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"budget\": \"USD\", \"revenue\": \"USD\", \"runtime\": \"minutes\", \"vote_average\": \"scale 0-10\", \"vote_count\": \"count\", \"popularity\": \"TMDB proprietary score\"},\n        \"scale_issues\": [\"vote_average scale unknown (likely 0-10)\", \"popularity metric scale unclear\", \"budget/revenue may have currency inconsistencies\"],\n        \"cross_source_conflicts\": [\"vote_count in movies.csv vs no vote data in credits.csv\", \"title field may have different formatting between files\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\", \"NaN\"],\n        \"expected_columns\": 20,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"JSON strings in columns: genres, keywords, production_companies, production_countries, spoken_languages, cast, crew\", \"release_date in YYYY-MM-DD format\", \"sample_result.csv is empty template with only 'Movie' column\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"vote_count > 0\", \"vote_average between 0 and 10\", \"runtime > 0\", \"release_date valid date\", \"top 15% vote_count threshold must be calculated from data\"],\n        \"derived_filters\": [\"vote_count >= percentile_85(vote_count)\", \"movies must have valid title\", \"movies must have both vote_average and vote_count\"],\n        \"statistical_tests\": [\"Calculate 85th percentile of vote_count\", \"Check distribution of vote_average\", \"Verify no duplicate movie_ids\"],\n        \"output_format_requirements\": [\"CSV file with single 'Movie' column\", \"Exactly 10 rows\", \"Sorted by calculated weighted rating descending\", \"Follow sample_result.csv format\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 15.335515975952148,
+  "token_usage": {
+    "input_tokens": 4931,
+    "output_tokens": 756
+  }
+}

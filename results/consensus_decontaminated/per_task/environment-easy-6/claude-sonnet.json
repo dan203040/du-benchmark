@@ -1,0 +1,106 @@
+{
+  "m_q": {
+    "target_metric": "average historical exceedance rate for marine beaches from 2002 to 2023 (inclusive), rounded to 2 decimal places",
+    "filters": [
+      "Beach Type Description == 'Marine'",
+      "Year >= 2002 AND Year <= 2023"
+    ],
+    "grouping_variables": [
+      "Beach Name",
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What constitutes an exceedance event (Violation == 'Yes' or 'yes' or 'YES')?",
+      "How is the exceedance rate calculated per beach per year (number of violations / total samples)?",
+      "How should beaches be aggregated across all years to compute historical average?",
+      "Should the average be computed as mean of yearly rates or total violations / total samples?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2002.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2022.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Violation column has inconsistent case: 'Yes'/'No', 'yes'/'no', 'YES'/'NO'",
+      "Indicator Level dtype varies: float64 in most files, int64 in 2002"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "CFU or MPN per 100mL",
+      "Year": "year",
+      "Sample Date": "datetime"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "Violation field uses different case conventions across years (Yes/yes/YES, No/no/NO)"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All files have identical column structure with 11 columns",
+      "Sample Date is stored as string in format 'YYYY-MM-DD HH:MM:SS'",
+      "Violation column values are case-insensitive strings",
+      "2023 data file is not present in the provided files list"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include records where Beach Type Description == 'Marine'",
+      "Only include years from 2002 to 2023 inclusive",
+      "Handle case-insensitive matching for Violation values ('Yes', 'yes', 'YES' all indicate violation)",
+      "Result must be rounded to exactly 2 decimal places"
+    ],
+    "derived_filters": [
+      "Filter out any records with null or missing Beach Type Description",
+      "Normalize Violation values to lowercase or uppercase for consistent comparison"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value rounded to 2 decimal places",
+      "Exceedance rate should be expressed as percentage (0-100) or proportion (0-1) - clarification needed",
+      "Handle case where 2023 data may not exist in provided files"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average historical exceedance rate for marine beaches from 2002 to 2023 (inclusive), rounded to 2 decimal places\",\n    \"filters\": [\n      \"Beach Type Description == 'Marine'\",\n      \"Year >= 2002 AND Year <= 2023\"\n    ],\n    \"grouping_variables\": [\n      \"Beach Name\",\n      \"Year\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What constitutes an exceedance event (Violation == 'Yes' or 'yes' or 'YES')?\",\n      \"How is the exceedance rate calculated per beach per year (number of violations / total samples)?\",\n      \"How should beaches be aggregated across all years to compute historical average?\",\n      \"Should the average be computed as mean of yearly rates or total violations / total samples?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2002.csv\",\n      \"water-body-testing-2003.csv\",\n      \"water-body-testing-2004.csv\",\n      \"water-body-testing-2005.csv\",\n      \"water-body-testing-2006.csv\",\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2009.csv\",\n      \"water-body-testing-2010.csv\",\n      \"water-body-testing-2011.csv\",\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2013.csv\",\n      \"water-body-testing-2014.csv\",\n      \"water-body-testing-2015.csv\",\n      \"water-body-testing-2016.csv\",\n      \"water-body-testing-2017.csv\",\n      \"water-body-testing-2018.csv\",\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2022.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Violation column has inconsistent case: 'Yes'/'No', 'yes'/'no', 'YES'/'NO'\",\n      \"Indicator Level dtype varies: float64 in most files, int64 in 2002\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"CFU or MPN per 100mL\",\n      \"Year\": \"year\",\n      \"Sample Date\": \"datetime\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"Violation field uses different case conventions across years (Yes/yes/YES, No/no/NO)\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All files have identical column structure with 11 columns\",\n      \"Sample Date is stored as string in format 'YYYY-MM-DD HH:MM:SS'\",\n      \"Violation column values are case-insensitive strings\",\n      \"2023 data file is not present in the provided files list\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include records where Beach Type Description == 'Marine'\",\n      \"Only include years from 2002 to 2023 inclusive\",\n      \"Handle case-insensitive matching for Violation values ('Yes', 'yes', 'YES' all indicate violation)\",\n      \"Result must be rounded to exactly 2 decimal places\"\n    ],\n    \"derived_filters\": [\n      \"Filter out any records with null or missing Beach Type Description\",\n      \"Normalize Violation values to lowercase or uppercase for consistent comparison\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value rounded to 2 decimal places\",\n      \"Exceedance rate should be expressed as percentage (0-100) or proportion (0-1) - clarification needed\",\n      \"Handle case where 2023 data may not exist in provided files\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 18.303693771362305,
+  "token_usage": {
+    "input_tokens": 24798,
+    "output_tokens": 1132
+  }
+}

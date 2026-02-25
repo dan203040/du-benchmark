@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "Year of the most recent pylon construction in Germany",
+    "filters": [
+      "Country = 'Germany'",
+      "Year built is not null"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the maximum Year built value for German entries?",
+      "Are there any incomplete year values that need cleaning?",
+      "Do we need to handle year ranges or ambiguous dates like 'Early 2012'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Aerial Tramway Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height": "meters"
+    },
+    "scale_issues": [
+      "Year built column contains mixed formats (numeric years, 'Early 2012', '194?')",
+      "Height column contains units in string format (e.g., '113.6 m')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year built column has object dtype but contains year values",
+      "Some year values have uncertainty markers like '194?'",
+      "Some rows have incomplete data (empty Remarks field)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year built must be interpretable as a year",
+      "Only German entries should be considered",
+      "The most recent year among German entries is needed"
+    ],
+    "derived_filters": [
+      "Extract numeric year from 'Year built' column",
+      "Filter to Country = 'Germany'",
+      "Remove rows with ambiguous/unparseable year values"
+    ],
+    "statistical_tests": [
+      "Check for outliers in Year built values",
+      "Validate that year values are within reasonable range (e.g., 1800-2024)"
+    ],
+    "output_format_requirements": [
+      "Single year value as integer",
+      "Should handle ambiguous dates by taking the year part only"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Year of the most recent pylon construction in Germany\",\n        \"filters\": [\"Country = 'Germany'\", \"Year built is not null\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the maximum Year built value for German entries?\", \"Are there any incomplete year values that need cleaning?\", \"Do we need to handle year ranges or ambiguous dates like 'Early 2012'?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Aerial Tramway Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Height\": \"meters\"},\n        \"scale_issues\": [\"Year built column contains mixed formats (numeric years, 'Early 2012', '194?')\", \"Height column contains units in string format (e.g., '113.6 m')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year built column has object dtype but contains year values\", \"Some year values have uncertainty markers like '194?'\", \"Some rows have incomplete data (empty Remarks field)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year built must be interpretable as a year\", \"Only German entries should be considered\", \"The most recent year among German entries is needed\"],\n        \"derived_filters\": [\"Extract numeric year from 'Year built' column\", \"Filter to Country = 'Germany'\", \"Remove rows with ambiguous/unparseable year values\"],\n        \"statistical_tests\": [\"Check for outliers in Year built values\", \"Validate that year values are within reasonable range (e.g., 1800-2024)\"],\n        \"output_format_requirements\": [\"Single year value as integer\", \"Should handle ambiguous dates by taking the year part only\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.0470871925354,
+  "token_usage": {
+    "input_tokens": 1195,
+    "output_tokens": 486
+  }
+}

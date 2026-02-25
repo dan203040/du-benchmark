@@ -1,0 +1,342 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "city with highest population",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "city with highest population",
+        "city with highest population",
+        "Maximum population"
+      ]
+    },
+    "filters": {
+      "value": [
+        "lat < 0 (southern hemisphere)",
+        "lng < 0 (western hemisphere)",
+        "Cities in the Southern Hemisphere (lat < 0)",
+        "Cities in the Western Hemisphere (lng < 0)"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "lat < 0 (southern hemisphere)",
+          "lng < 0 (western hemisphere)"
+        ],
+        [
+          "lat < 0 (southern hemisphere)",
+          "lng < 0 (western hemisphere)"
+        ],
+        [
+          "Cities in the Southern Hemisphere (lat < 0)",
+          "Cities in the Western Hemisphere (lng < 0)"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "city",
+        "country"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "city",
+          "country"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which cities are in southern hemisphere?",
+        "Which cities are in western hemisphere?",
+        "What is the intersection of these two sets?",
+        "Which city in the intersection has maximum population?",
+        "Which cities are in the southern hemisphere (lat < 0)?",
+        "Which cities are in the western hemisphere (lng < 0)?",
+        "Which cities satisfy both hemisphere conditions?",
+        "Among filtered cities, which has the maximum population?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which cities are in southern hemisphere?",
+          "Which cities are in western hemisphere?",
+          "What is the intersection of these two sets?",
+          "Which city in the intersection has maximum population?"
+        ],
+        [
+          "Which cities are in the southern hemisphere (lat < 0)?",
+          "Which cities are in the western hemisphere (lng < 0)?",
+          "Which cities satisfy both hemisphere conditions?",
+          "Among filtered cities, which has the maximum population?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "worldcities.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "worldcities.csv"
+        ],
+        [
+          "worldcities.csv"
+        ],
+        [
+          "worldcities.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "lat": "degrees",
+        "lng": "degrees",
+        "population": "people"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "lat": "degrees",
+          "lng": "degrees",
+          "population": "people"
+        },
+        {
+          "lat": "degrees (decimal)",
+          "lng": "degrees (decimal)",
+          "population": "count (persons)"
+        },
+        {
+          "lat": "degrees",
+          "lng": "degrees",
+          "population": "people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "population values are very large (millions)",
+        "population values appear to be actual counts, not scaled"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "population values are very large (millions)"
+        ],
+        [
+          "population values appear to be actual counts, not scaled"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.7777777777777777,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 11.0,
+      "confidence": 1.0,
+      "votes": [
+        11.0,
+        11.0,
+        11.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "population must be positive",
+        "lat between -90 and 90",
+        "lng between -180 and 180",
+        "lat < 0 AND lng < 0",
+        "population IS NOT NULL",
+        "population > 0",
+        "lat values should be between -90 and 90",
+        "lng values should be between -180 and 180",
+        "population values should be non-negative"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "population must be positive",
+          "lat between -90 and 90",
+          "lng between -180 and 180"
+        ],
+        [
+          "lat < 0 AND lng < 0",
+          "population IS NOT NULL",
+          "population > 0"
+        ],
+        [
+          "lat values should be between -90 and 90",
+          "lng values should be between -180 and 180",
+          "population values should be non-negative"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "lat < 0 AND lng < 0",
+        "Filter to southern hemisphere: lat < 0",
+        "Filter to western hemisphere: lng < 0",
+        "Exclude rows with missing or zero population",
+        "Southern Hemisphere: lat < 0",
+        "Western Hemisphere: lng < 0"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "lat < 0 AND lng < 0"
+        ],
+        [
+          "Filter to southern hemisphere: lat < 0",
+          "Filter to western hemisphere: lng < 0",
+          "Exclude rows with missing or zero population"
+        ],
+        [
+          "Southern Hemisphere: lat < 0",
+          "Western Hemisphere: lng < 0"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing population values",
+        "Verify hemisphere logic is correctly applied"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing population values",
+          "Verify hemisphere logic is correctly applied"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single city name with population",
+        "Return single city name",
+        "Include population value for verification",
+        "Include lat and lng coordinates for verification",
+        "City name",
+        "Population"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single city name with population"
+        ],
+        [
+          "Return single city name",
+          "Include population value for verification",
+          "Include lat and lng coordinates for verification"
+        ],
+        [
+          "City name",
+          "Population"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6138888888888892
+}

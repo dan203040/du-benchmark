@@ -1,0 +1,333 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Country of origin",
+      "confidence": 1.0,
+      "votes": [
+        "Country of origin",
+        "Country of origin",
+        "Country of Origin"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Type = 'Disposable'",
+        "Primary Cartridge = '105mm'",
+        "Year of Intro < 2008",
+        "Type equals 'Disposable'",
+        "Primary cartridge equals '105mm'",
+        "Year of intro is less than 2008",
+        "Type is Disposable",
+        "Primary Cartridge is 105mm"
+      ],
+      "confidence": 0.375,
+      "votes": [
+        [
+          "Type = 'Disposable'",
+          "Primary Cartridge = '105mm'",
+          "Year of Intro < 2008"
+        ],
+        [
+          "Type equals 'Disposable'",
+          "Primary cartridge equals '105mm'",
+          "Year of intro is less than 2008"
+        ],
+        [
+          "Type is Disposable",
+          "Primary Cartridge is 105mm",
+          "Year of Intro is less than 2008"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "list",
+      "confidence": 1.0,
+      "votes": [
+        "list",
+        "list",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the specific countries that produced disposable RPGs with 105mm primary cartridges introduced before 2008?",
+        "Are there multiple entries meeting these criteria?",
+        "Which records have Type = 'Disposable'?",
+        "Which records have Primary cartridge = '105mm'?",
+        "Which records have Year of intro < 2008?",
+        "What is the intersection of all three filter conditions?",
+        "What are the Country of origin values for the filtered records?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What are the specific countries that produced disposable RPGs with 105mm primary cartridges introduced before 2008?",
+          "Are there multiple entries meeting these criteria?"
+        ],
+        [
+          "Which records have Type = 'Disposable'?",
+          "Which records have Primary cartridge = '105mm'?",
+          "Which records have Year of intro < 2008?",
+          "What is the intersection of all three filter conditions?",
+          "What are the Country of origin values for the filtered records?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Rocket Propelled Grenade (RPG) Weapons"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Rocket Propelled Grenade (RPG) Weapons"
+        ],
+        [
+          "Rocket Propelled Grenade (RPG) Weapons"
+        ],
+        [
+          "Rocket Propelled Grenade (RPG) Weapons"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "primary cartridge": "millimeters (mm)",
+        "year of intro": "year"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "Primary cartridge": "millimeters (mm)",
+          "Year of intro": "year"
+        },
+        {
+          "Year of intro": "year",
+          "Primary cartridge": "millimeters"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year of intro is stored as object/string type instead of numeric, requiring type conversion for comparison operations",
+        "Year of intro stored as object type, may need conversion to numeric for comparison",
+        "Primary cartridge includes 'mm' suffix in some values, may need parsing"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year of intro is stored as object/string type instead of numeric, requiring type conversion for comparison operations"
+        ],
+        [
+          "Year of intro stored as object type, may need conversion to numeric for comparison",
+          "Primary cartridge includes 'mm' suffix in some values, may need parsing"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year of intro must be convertible to numeric for comparison",
+        "Primary cartridge values must match exactly '105mm' (case-sensitive)",
+        "Type values must match exactly 'Disposable' (case-sensitive)",
+        "Year of intro must be numeric and less than 2008",
+        "Type must exactly match 'Disposable'",
+        "Primary cartridge must exactly match '105mm'",
+        "All three conditions must be satisfied simultaneously",
+        "Year of intro must be a valid year (integer)",
+        "Primary Cartridge must be a valid cartridge size"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year of intro must be convertible to numeric for comparison",
+          "Primary cartridge values must match exactly '105mm' (case-sensitive)",
+          "Type values must match exactly 'Disposable' (case-sensitive)"
+        ],
+        [
+          "Year of intro must be numeric and less than 2008",
+          "Type must exactly match 'Disposable'",
+          "Primary cartridge must exactly match '105mm'",
+          "All three conditions must be satisfied simultaneously"
+        ],
+        [
+          "Year of intro must be a valid year (integer)",
+          "Primary Cartridge must be a valid cartridge size"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Year of intro < 2008 AND Type = 'Disposable' AND Primary Cartridge = '105mm'",
+        "Convert Year of intro from object to numeric type before applying < 2008 filter",
+        "Ensure case-sensitive matching for Type = 'Disposable'",
+        "Ensure exact string matching for Primary cartridge = '105mm'",
+        "Year of Intro < 2008"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year of intro < 2008 AND Type = 'Disposable' AND Primary Cartridge = '105mm'"
+        ],
+        [
+          "Convert Year of intro from object to numeric type before applying < 2008 filter",
+          "Ensure case-sensitive matching for Type = 'Disposable'",
+          "Ensure exact string matching for Primary cartridge = '105mm'"
+        ],
+        [
+          "Year of Intro < 2008"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate entries with same criteria",
+        "Validate year values are within reasonable range (e.g., 1900-2024)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate entries with same criteria",
+          "Validate year values are within reasonable range (e.g., 1900-2024)"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "List of distinct country names",
+        "Should include any relevant metadata like weapon names if multiple results",
+        "Return Country of origin value(s) that satisfy all filter conditions",
+        "Handle case where no records match the criteria",
+        "Return distinct Country of origin values if multiple records match"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "List of distinct country names",
+          "Should include any relevant metadata like weapon names if multiple results"
+        ],
+        [
+          "Return Country of origin value(s) that satisfy all filter conditions",
+          "Handle case where no records match the criteria",
+          "Return distinct Country of origin values if multiple records match"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6020833333333334
+}

@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Average unit price paid for items by customer groups (cohorts) defined by the month of their first purchase, tracked over time.",
+    "filters": [],
+    "grouping_variables": [
+      "CohortMonth"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Determine the first purchase month for each customer (CohortMonth).",
+      "Calculate the unit price for each transaction.",
+      "Group transactions by CohortMonth and the month of the transaction.",
+      "Calculate the average unit price for each cohort in each subsequent month.",
+      "Format the output to match the provided average_price.csv template."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "online.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "UnitPrice": "currency unit",
+      "Quantity": "number of items"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "CustomerID must be present for each transaction to determine the cohort.",
+      "InvoiceDate must be a valid date to determine the cohort month and transaction month.",
+      "UnitPrice must be greater than zero.",
+      "Quantity must be greater than zero."
+    ],
+    "derived_filters": [
+      "Filter out transactions with missing CustomerID.",
+      "Filter out transactions with invalid InvoiceDate.",
+      "Filter out transactions with UnitPrice <= 0.",
+      "Filter out transactions with Quantity <= 0."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a CSV file named average_price.csv.",
+      "The CSV file must have columns: CohortMonth, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13.",
+      "CohortMonth column must be in 'YYYY-MM-01' format.",
+      "The values in columns 1-13 represent the average unit price for each cohort in the subsequent months after their first purchase.",
+      "Missing values should be represented as empty strings or NaN."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average unit price paid for items by customer groups (cohorts) defined by the month of their first purchase, tracked over time.\",\n    \"filters\": [],\n    \"grouping_variables\": [\"CohortMonth\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Determine the first purchase month for each customer (CohortMonth).\",\n      \"Calculate the unit price for each transaction.\",\n      \"Group transactions by CohortMonth and the month of the transaction.\",\n      \"Calculate the average unit price for each cohort in each subsequent month.\",\n      \"Format the output to match the provided average_price.csv template.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"online.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"UnitPrice\": \"currency unit\",\n      \"Quantity\": \"number of items\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"CustomerID must be present for each transaction to determine the cohort.\",\n      \"InvoiceDate must be a valid date to determine the cohort month and transaction month.\",\n      \"UnitPrice must be greater than zero.\",\n      \"Quantity must be greater than zero.\"\n    ],\n    \"derived_filters\": [\n      \"Filter out transactions with missing CustomerID.\",\n      \"Filter out transactions with invalid InvoiceDate.\",\n      \"Filter out transactions with UnitPrice <= 0.\",\n      \"Filter out transactions with Quantity <= 0.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a CSV file named average_price.csv.\",\n      \"The CSV file must have columns: CohortMonth, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13.\",\n      \"CohortMonth column must be in 'YYYY-MM-01' format.\",\n      \"The values in columns 1-13 represent the average unit price for each cohort in the subsequent months after their first purchase.\",\n      \"Missing values should be represented as empty strings or NaN.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 5.263620853424072,
+  "token_usage": {}
+}

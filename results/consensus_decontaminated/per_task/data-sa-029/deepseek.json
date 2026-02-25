@@ -1,0 +1,105 @@
+{
+  "m_q": {
+    "target_metric": "beak length-to-depth ratio (length/depth) for each bird, mean ratio per year, and 99% confidence intervals using bootstrap replicates",
+    "filters": [
+      "species = G. scandens",
+      "location = Daphne Major",
+      "years = 1975 and 2012"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Compute individual bird ratios",
+      "Calculate mean ratio per year",
+      "Generate 10,000 bootstrap replicates per year",
+      "Compute 99% confidence intervals from bootstrap distribution",
+      "Output results to result.csv"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "beak length data file",
+      "beak depth data file"
+    ],
+    "join_keys": [
+      {
+        "left_source": "beak length data",
+        "right_source": "beak depth data",
+        "left_column": "bird_id",
+        "right_column": "bird_id",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Year column may exist in both files or need to be merged"
+    ],
+    "column_mappings": {
+      "beak_length": "length",
+      "beak_depth": "depth",
+      "ratio": "beak length-to-depth ratio"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "beak_length": "mm",
+      "beak_depth": "mm",
+      "ratio": "unitless"
+    },
+    "scale_issues": [
+      "Need to ensure consistent measurement units across years",
+      "Check for measurement precision differences between 1975 and 2012"
+    ],
+    "cross_source_conflicts": [
+      "Potential measurement protocol differences between years"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "NaN"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "result.csv template provided with Year, mean ratio, conf columns",
+      "Sample shows empty mean ratio and conf columns to be filled"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Bootstrap size = 10,000 replicates",
+      "Confidence level = 99%",
+      "Years limited to 1975 and 2012",
+      "Only G. scandens species"
+    ],
+    "derived_filters": [
+      "Remove birds with missing length or depth measurements",
+      "Exclude ratio outliers if beyond biological plausibility"
+    ],
+    "statistical_tests": [
+      "Bootstrap confidence interval calculation",
+      "Mean comparison between years"
+    ],
+    "output_format_requirements": [
+      "CSV file with columns: Year, mean ratio, conf",
+      "Two rows (1975 and 2012)",
+      "conf column contains confidence interval value",
+      "Format matching sample_result.csv"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"beak length-to-depth ratio (length/depth) for each bird, mean ratio per year, and 99% confidence intervals using bootstrap replicates\",\n        \"filters\": [\"species = G. scandens\", \"location = Daphne Major\", \"years = 1975 and 2012\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"Compute individual bird ratios\", \"Calculate mean ratio per year\", \"Generate 10,000 bootstrap replicates per year\", \"Compute 99% confidence intervals from bootstrap distribution\", \"Output results to result.csv\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"beak length data file\", \"beak depth data file\"],\n        \"join_keys\": [\n            {\"left_source\": \"beak length data\", \"right_source\": \"beak depth data\", \"left_column\": \"bird_id\", \"right_column\": \"bird_id\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"Year column may exist in both files or need to be merged\"],\n        \"column_mappings\": {\"beak_length\": \"length\", \"beak_depth\": \"depth\", \"ratio\": \"beak length-to-depth ratio\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"beak_length\": \"mm\", \"beak_depth\": \"mm\", \"ratio\": \"unitless\"},\n        \"scale_issues\": [\"Need to ensure consistent measurement units across years\", \"Check for measurement precision differences between 1975 and 2012\"],\n        \"cross_source_conflicts\": [\"Potential measurement protocol differences between years\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"NaN\"],\n        \"expected_columns\": 10,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"result.csv template provided with Year, mean ratio, conf columns\", \"Sample shows empty mean ratio and conf columns to be filled\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Bootstrap size = 10,000 replicates\", \"Confidence level = 99%\", \"Years limited to 1975 and 2012\", \"Only G. scandens species\"],\n        \"derived_filters\": [\"Remove birds with missing length or depth measurements\", \"Exclude ratio outliers if beyond biological plausibility\"],\n        \"statistical_tests\": [\"Bootstrap confidence interval calculation\", \"Mean comparison between years\"],\n        \"output_format_requirements\": [\"CSV file with columns: Year, mean ratio, conf\", \"Two rows (1975 and 2012)\", \"conf column contains confidence interval value\", \"Format matching sample_result.csv\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.893387079238892,
+  "token_usage": {
+    "input_tokens": 640,
+    "output_tokens": 613
+  }
+}

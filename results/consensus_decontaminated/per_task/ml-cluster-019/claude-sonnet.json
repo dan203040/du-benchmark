@@ -1,0 +1,105 @@
+{
+  "m_q": {
+    "target_metric": "Customer segmentation clusters with feature vectors and cluster labels",
+    "filters": [
+      "Data from 2009-2010 only",
+      "Valid Customer ID (non-null)"
+    ],
+    "grouping_variables": [
+      "Customer ID"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What customer-level features should be engineered for clustering (e.g., total spend, frequency, recency, average order value)?",
+      "How many customers have valid Customer ID in the 2009-2010 dataset?",
+      "What is the appropriate number of clusters for customer segmentation?",
+      "How to handle missing Customer IDs and negative quantities (returns)?",
+      "What feature scaling/normalization is needed before clustering?",
+      "Which clustering algorithm should be used (K-means, hierarchical, DBSCAN)?",
+      "How to validate cluster quality and determine optimal cluster count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Year 2009-2010.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Customer ID has float64 dtype with NaN values, should be treated as integer identifier",
+      "InvoiceDate is object type in CSV files but datetime64 in Excel file"
+    ],
+    "column_mappings": {
+      "Customer ID": "CustomerID"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Price": "currency (GBP implied from UK-based retailer)",
+      "Quantity": "count of items",
+      "InvoiceDate": "timestamp"
+    },
+    "scale_issues": [
+      "Price values vary significantly across products",
+      "Quantity can be negative (indicating returns/cancellations)",
+      "Customer purchase frequencies and amounts likely span multiple orders of magnitude"
+    ],
+    "cross_source_conflicts": [
+      "Year 2010-2011.csv contains data outside the required 2009-2010 range",
+      "Need to ensure only 2009-2010 data is used from Year 2009-2010.csv"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "NaN"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "InvoiceDate requires parsing (format: M/D/YYYY H:MM or YYYY-MM-DD HH:MM:SS)",
+      "Customer ID contains missing values as NaN floats",
+      "Invoice numbers starting with 'C' may indicate cancellations",
+      "Description field may contain special characters and quotes"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only use data from 2009-2010 period",
+      "Customer ID must not be null for clustering",
+      "Quantity and Price should be validated for data quality",
+      "Each customer should be represented by a single feature vector"
+    ],
+    "derived_filters": [
+      "Remove records with missing Customer ID",
+      "Filter InvoiceDate to ensure 2009-2010 range only",
+      "Consider filtering cancelled orders (invoices starting with 'C')",
+      "Remove or handle negative quantities appropriately"
+    ],
+    "statistical_tests": [
+      "Elbow method to determine optimal number of clusters",
+      "Silhouette score for cluster quality evaluation",
+      "Davies-Bouldin index for cluster separation",
+      "Feature correlation analysis before clustering"
+    ],
+    "output_format_requirements": [
+      "Output file must be named 'cluster.csv'",
+      "Column names must be 'Feature_1', 'Feature_2', ..., 'Feature_n', 'Cluster'",
+      "One row per customer in the feature space",
+      "Cluster labels should be integer identifiers",
+      "Feature columns should contain normalized/scaled values used for clustering"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Customer segmentation clusters with feature vectors and cluster labels\",\n    \"filters\": [\"Data from 2009-2010 only\", \"Valid Customer ID (non-null)\"],\n    \"grouping_variables\": [\"Customer ID\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What customer-level features should be engineered for clustering (e.g., total spend, frequency, recency, average order value)?\",\n      \"How many customers have valid Customer ID in the 2009-2010 dataset?\",\n      \"What is the appropriate number of clusters for customer segmentation?\",\n      \"How to handle missing Customer IDs and negative quantities (returns)?\",\n      \"What feature scaling/normalization is needed before clustering?\",\n      \"Which clustering algorithm should be used (K-means, hierarchical, DBSCAN)?\",\n      \"How to validate cluster quality and determine optimal cluster count?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Year 2009-2010.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Customer ID has float64 dtype with NaN values, should be treated as integer identifier\",\n      \"InvoiceDate is object type in CSV files but datetime64 in Excel file\"\n    ],\n    \"column_mappings\": {\n      \"Customer ID\": \"CustomerID\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Price\": \"currency (GBP implied from UK-based retailer)\",\n      \"Quantity\": \"count of items\",\n      \"InvoiceDate\": \"timestamp\"\n    },\n    \"scale_issues\": [\n      \"Price values vary significantly across products\",\n      \"Quantity can be negative (indicating returns/cancellations)\",\n      \"Customer purchase frequencies and amounts likely span multiple orders of magnitude\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Year 2010-2011.csv contains data outside the required 2009-2010 range\",\n      \"Need to ensure only 2009-2010 data is used from Year 2009-2010.csv\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"NaN\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"InvoiceDate requires parsing (format: M/D/YYYY H:MM or YYYY-MM-DD HH:MM:SS)\",\n      \"Customer ID contains missing values as NaN floats\",\n      \"Invoice numbers starting with 'C' may indicate cancellations\",\n      \"Description field may contain special characters and quotes\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only use data from 2009-2010 period\",\n      \"Customer ID must not be null for clustering\",\n      \"Quantity and Price should be validated for data quality\",\n      \"Each customer should be represented by a single feature vector\"\n    ],\n    \"derived_filters\": [\n      \"Remove records with missing Customer ID\",\n      \"Filter InvoiceDate to ensure 2009-2010 range only\",\n      \"Consider filtering cancelled orders (invoices starting with 'C')\",\n      \"Remove or handle negative quantities appropriately\"\n    ],\n    \"statistical_tests\": [\n      \"Elbow method to determine optimal number of clusters\",\n      \"Silhouette score for cluster quality evaluation\",\n      \"Davies-Bouldin index for cluster separation\",\n      \"Feature correlation analysis before clustering\"\n    ],\n    \"output_format_requirements\": [\n      \"Output file must be named 'cluster.csv'\",\n      \"Column names must be 'Feature_1', 'Feature_2', ..., 'Feature_n', 'Cluster'\",\n      \"One row per customer in the feature space\",\n      \"Cluster labels should be integer identifiers\",\n      \"Feature columns should contain normalized/scaled values used for clustering\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 19.13070511817932,
+  "token_usage": {
+    "input_tokens": 3649,
+    "output_tokens": 1007
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of episodes",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "count of episodes",
+        "count of episodes",
+        "Count of episodes that aired on Saturday, July 11, 2009"
+      ]
+    },
+    "filters": {
+      "value": [
+        "US air date = 'Saturday, July 11, 2009'"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "US air date = 'Saturday, July 11, 2009'"
+        ],
+        [
+          "US air date = 'Saturday, July 11, 2009'"
+        ],
+        [
+          "US air date = 'Saturday, July 11, 2009'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Is the date format consistent across all rows?",
+        "Are there any missing values in the US air date column?",
+        "Does the dataset contain all episodes that aired on that date?",
+        "Which rows have US air date equal to Saturday, July 11, 2009?",
+        "How many such rows exist?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Is the date format consistent across all rows?",
+          "Are there any missing values in the US air date column?",
+          "Does the dataset contain all episodes that aired on that date?"
+        ],
+        [
+          "Which rows have US air date equal to Saturday, July 11, 2009?",
+          "How many such rows exist?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Episode Ratings"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Episode Ratings"
+        ],
+        [
+          "Episode Ratings"
+        ],
+        [
+          "Episode Ratings"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "rating": "percentage points",
+        "share": "percentage points",
+        "viewers (millions)": "millions of viewers"
+      },
+      "confidence": 0.7777777777777777,
+      "votes": [
+        {
+          "Rating": "percentage points",
+          "Share": "percentage points",
+          "Viewers (millions)": "millions of viewers"
+        },
+        {
+          "Rating": "percentage points",
+          "Share": "percentage points",
+          "Viewers (millions)": "millions of viewers"
+        },
+        {
+          "Viewers (millions)": "millions"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Rating/Share (18\u201349) column contains combined values with '/' separator that need parsing"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Rating/Share (18\u201349) column contains combined values with '/' separator that need parsing"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "TBA",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "TBA"
+        ],
+        [
+          "TBA",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Episode # should be unique",
+        "US air date should be valid dates",
+        "Viewers (millions) should be numeric",
+        "US air date must exactly match 'Saturday, July 11, 2009' including formatting",
+        "Result should be a non-negative integer count"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Episode # should be unique",
+          "US air date should be valid dates",
+          "Viewers (millions) should be numeric"
+        ],
+        [
+          "US air date must exactly match 'Saturday, July 11, 2009' including formatting",
+          "Result should be a non-negative integer count"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where US air date exactly matches 'Saturday, July 11, 2009'",
+        "Parse US air date as string and perform exact match on 'Saturday, July 11, 2009'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where US air date exactly matches 'Saturday, July 11, 2009'"
+        ],
+        [
+          "Parse US air date as string and perform exact match on 'Saturday, July 11, 2009'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct Episode # values for the filtered date"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct Episode # values for the filtered date"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Single integer value representing the count of episodes"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count"
+        ],
+        [
+          "Single integer value representing the count of episodes"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5972222222222223
+}

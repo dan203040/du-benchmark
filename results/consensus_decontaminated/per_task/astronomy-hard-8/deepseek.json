@@ -1,0 +1,116 @@
+{
+  "m_q": {
+    "target_metric": "RMSE values for two single-variable linear regression models forecasting Swarm Alpha's along-track acceleration 3 hours ahead during May 11, 2024",
+    "filters": [
+      "Date = May 11, 2024",
+      "Forecast horizon = 3 hours ahead",
+      "Model 1: OMNI Kp index only",
+      "Model 2: OMNI solar wind dynamic pressure (Pdyn) only"
+    ],
+    "grouping_variables": [
+      "model_type"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the RMSE for Model 1 (Kp input)?",
+      "What is the RMSE for Model 2 (Pdyn input)?",
+      "Which model has better predictive accuracy?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "omni2_Kp_Index.lst",
+      "omni2_Flow_Pressure.lst",
+      "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf"
+    ],
+    "join_keys": [
+      {
+        "left_source": "omni2_Kp_Index.lst",
+        "right_source": "omni2_Flow_Pressure.lst",
+        "left_column": "132",
+        "right_column": "132",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "omni2_Kp_Index.lst",
+        "right_source": "SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf",
+        "left_column": "132",
+        "right_column": "timestamp_column_needed",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column names are numeric strings (e.g., '2024', '132', '0', '90') which are not descriptive",
+      "Kp file has integer values for the 4th column while Pdyn file has float values for the 4th column",
+      "CDF file appears to have parsing error with only 'error' column"
+    ],
+    "column_mappings": {
+      "2024": "year",
+      "132": "day_of_year",
+      "0": "hour",
+      "90": "Kp_index",
+      "20.76": "Pdyn"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Kp_index": "Kp index units (0-9 scale)",
+      "Pdyn": "nPa (nanopascals)"
+    },
+    "scale_issues": [
+      "Kp index is on 0-9 scale while Pdyn values range ~7-49 nPa",
+      "Need to align time scales: Kp and Pdyn data appear to be hourly while acceleration data may have different temporal resolution"
+    ],
+    "cross_source_conflicts": [
+      "Missing acceleration data from CDF file due to parsing error",
+      "Unclear how to map hourly Kp/Pdyn data to 3-hour ahead acceleration forecast"
+    ]
+  },
+  "m_f": {
+    "has_header": false,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First 3 columns appear to be datetime components: year, day_of_year, hour",
+      "Fourth column is the measurement value",
+      "No column headers in files",
+      "CDF file format requires special parsing tools"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Data limited to May 11, 2024 (day 132 of 2024)",
+      "Only 23 hourly data points available for Kp and Pdyn",
+      "Acceleration data unavailable due to CDF parsing error",
+      "Need test set definition for RMSE calculation"
+    ],
+    "derived_filters": [
+      "Filter to day_of_year = 132",
+      "Align timestamps for 3-hour forecast lag"
+    ],
+    "statistical_tests": [
+      "Linear regression coefficient significance",
+      "RMSE comparison between models",
+      "Time series stationarity check"
+    ],
+    "output_format_requirements": [
+      "List format: [RMSE_Kp, RMSE_Pdyn]",
+      "Both RMSE values as numbers"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"RMSE values for two single-variable linear regression models forecasting Swarm Alpha's along-track acceleration 3 hours ahead during May 11, 2024\",\n        \"filters\": [\"Date = May 11, 2024\", \"Forecast horizon = 3 hours ahead\", \"Model 1: OMNI Kp index only\", \"Model 2: OMNI solar wind dynamic pressure (Pdyn) only\"],\n        \"grouping_variables\": [\"model_type\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What is the RMSE for Model 1 (Kp input)?\", \"What is the RMSE for Model 2 (Pdyn input)?\", \"Which model has better predictive accuracy?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"omni2_Kp_Index.lst\", \"omni2_Flow_Pressure.lst\", \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf\"],\n        \"join_keys\": [\n            {\"left_source\": \"omni2_Kp_Index.lst\", \"right_source\": \"omni2_Flow_Pressure.lst\", \"left_column\": \"132\", \"right_column\": \"132\", \"join_type\": \"inner\"},\n            {\"left_source\": \"omni2_Kp_Index.lst\", \"right_source\": \"SW_OPER_ACCACAL_2__20240511T000000_20240511T235959_0304.cdf\", \"left_column\": \"132\", \"right_column\": \"timestamp_column_needed\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"Column names are numeric strings (e.g., '2024', '132', '0', '90') which are not descriptive\", \"Kp file has integer values for the 4th column while Pdyn file has float values for the 4th column\", \"CDF file appears to have parsing error with only 'error' column\"],\n        \"column_mappings\": {\"2024\": \"year\", \"132\": \"day_of_year\", \"0\": \"hour\", \"90\": \"Kp_index\", \"20.76\": \"Pdyn\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Kp_index\": \"Kp index units (0-9 scale)\", \"Pdyn\": \"nPa (nanopascals)\"},\n        \"scale_issues\": [\"Kp index is on 0-9 scale while Pdyn values range ~7-49 nPa\", \"Need to align time scales: Kp and Pdyn data appear to be hourly while acceleration data may have different temporal resolution\"],\n        \"cross_source_conflicts\": [\"Missing acceleration data from CDF file due to parsing error\", \"Unclear how to map hourly Kp/Pdyn data to 3-hour ahead acceleration forecast\"]\n    },\n    \"M_F\": {\n        \"has_header\": false,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First 3 columns appear to be datetime components: year, day_of_year, hour\", \"Fourth column is the measurement value\", \"No column headers in files\", \"CDF file format requires special parsing tools\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Data limited to May 11, 2024 (day 132 of 2024)\", \"Only 23 hourly data points available for Kp and Pdyn\", \"Acceleration data unavailable due to CDF parsing error\", \"Need test set definition for RMSE calculation\"],\n        \"derived_filters\": [\"Filter to day_of_year = 132\", \"Align timestamps for 3-hour forecast lag\"],\n        \"statistical_tests\": [\"Linear regression coefficient significance\", \"RMSE comparison between models\", \"Time series stationarity check\"],\n        \"output_format_requirements\": [\"List format: [RMSE_Kp, RMSE_Pdyn]\", \"Both RMSE values as numbers\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 17.263026237487793,
+  "token_usage": {
+    "input_tokens": 1251,
+    "output_tokens": 906
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "m_q": {
+    "target_metric": "Avg. Finish",
+    "filters": [
+      "Position = '70th'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the average finish position for drivers who finished in 70th place in the championship?",
+      "Is there only one record with Position = '70th'?",
+      "Does the Avg. Finish column contain numeric values that can be averaged?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Racing Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All columns are stored as object dtype, including numeric columns like Avg. Finish, Avg. Start, Winnings, Starts, Wins, Top 5, Top 10, Poles"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Avg. Start": "position",
+      "Avg. Finish": "position",
+      "Winnings": "USD",
+      "Starts": "count",
+      "Wins": "count",
+      "Top 5": "count",
+      "Top 10": "count",
+      "Poles": "count"
+    },
+    "scale_issues": [
+      "Winnings column contains currency symbols and commas that need to be removed for numeric operations",
+      "Position column contains ordinal suffixes (th, rd, nd) that need to be parsed",
+      "Avg. Finish and Avg. Start columns contain decimal numbers stored as strings"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Winnings column contains quoted values with commas and currency symbols",
+      "Team(s) column contains multiple team names separated by # symbols",
+      "Position column contains ordinal numbers with suffixes like '70th', '69th'",
+      "Year column appears to be stored as string/object type"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Position column should contain ordinal rankings",
+      "Avg. Finish should be between 1 and 43 (typical NASCAR field size)",
+      "Year should be between 1989 and 2018 based on sample data",
+      "Starts should be less than or equal to 36 (typical NASCAR season length)"
+    ],
+    "derived_filters": [
+      "Filter rows where Position = '70th'",
+      "Convert Avg. Finish from string to float",
+      "Check for missing values in Avg. Finish column"
+    ],
+    "statistical_tests": [
+      "Check if only one record exists for Position = '70th'",
+      "Validate numeric conversion of Avg. Finish column",
+      "Check for outliers in Avg. Finish values"
+    ],
+    "output_format_requirements": [
+      "Return a single numeric value representing the average finish",
+      "Handle potential data type conversion from string to numeric",
+      "Consider if multiple records exist for Position = '70th'"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Avg. Finish\",\n        \"filters\": [\"Position = '70th'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the average finish position for drivers who finished in 70th place in the championship?\", \"Is there only one record with Position = '70th'?\", \"Does the Avg. Finish column contain numeric values that can be averaged?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Racing Stats\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"All columns are stored as object dtype, including numeric columns like Avg. Finish, Avg. Start, Winnings, Starts, Wins, Top 5, Top 10, Poles\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Avg. Start\": \"position\", \"Avg. Finish\": \"position\", \"Winnings\": \"USD\", \"Starts\": \"count\", \"Wins\": \"count\", \"Top 5\": \"count\", \"Top 10\": \"count\", \"Poles\": \"count\"},\n        \"scale_issues\": [\"Winnings column contains currency symbols and commas that need to be removed for numeric operations\", \"Position column contains ordinal suffixes (th, rd, nd) that need to be parsed\", \"Avg. Finish and Avg. Start columns contain decimal numbers stored as strings\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 11,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Winnings column contains quoted values with commas and currency symbols\", \"Team(s) column contains multiple team names separated by # symbols\", \"Position column contains ordinal numbers with suffixes like '70th', '69th'\", \"Year column appears to be stored as string/object type\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Position column should contain ordinal rankings\", \"Avg. Finish should be between 1 and 43 (typical NASCAR field size)\", \"Year should be between 1989 and 2018 based on sample data\", \"Starts should be less than or equal to 36 (typical NASCAR season length)\"],\n        \"derived_filters\": [\"Filter rows where Position = '70th'\", \"Convert Avg. Finish from string to float\", \"Check for missing values in Avg. Finish column\"],\n        \"statistical_tests\": [\"Check if only one record exists for Position = '70th'\", \"Validate numeric conversion of Avg. Finish column\", \"Check for outliers in Avg. Finish values\"],\n        \"output_format_requirements\": [\"Return a single numeric value representing the average finish\", \"Handle potential data type conversion from string to numeric\", \"Consider if multiple records exist for Position = '70th'\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.929082870483398,
+  "token_usage": {
+    "input_tokens": 1262,
+    "output_tokens": 657
+  }
+}

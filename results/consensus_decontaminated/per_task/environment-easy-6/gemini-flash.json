@@ -1,0 +1,91 @@
+{
+  "m_q": {
+    "target_metric": "Average exceedance rate of marine beaches from 2002 to 2023 (inclusive), rounded to 2 decimal places",
+    "filters": [
+      "Year between 2002 and 2023 (inclusive)",
+      "Beach Type Description is 'Marine'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "For each year from 2002 to 2023, calculate the exceedance rate for marine beaches.",
+      "Calculate the total number of samples for marine beaches for each year.",
+      "Calculate the number of violations for marine beaches for each year.",
+      "Divide the number of violations by the total number of samples for each year to get the exceedance rate.",
+      "Calculate the average of the yearly exceedance rates."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2022.csv",
+      "water-body-testing-2021.csv",
+      "water-body-testing-2020.csv",
+      "water-body-testing-2019.csv",
+      "water-body-testing-2018.csv",
+      "water-body-testing-2017.csv",
+      "water-body-testing-2016.csv",
+      "water-body-testing-2015.csv",
+      "water-body-testing-2014.csv",
+      "water-body-testing-2013.csv",
+      "water-body-testing-2012.csv",
+      "water-body-testing-2011.csv",
+      "water-body-testing-2010.csv",
+      "water-body-testing-2009.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2007.csv",
+      "water-body-testing-2006.csv",
+      "water-body-testing-2005.csv",
+      "water-body-testing-2004.csv",
+      "water-body-testing-2003.csv",
+      "water-body-testing-2002.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Violation column has inconsistent casing (YES/NO, Yes/No, yes/no)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "level of indicator organism",
+      "Year": "year",
+      "Sample Date": "date"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date is in datetime format."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be an integer.",
+      "Indicator Level must be a number.",
+      "Violation must be a categorical variable (Yes/No)."
+    ],
+    "derived_filters": [
+      "Exceedance is defined as Violation = 'Yes' (case-insensitive)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output must be a single number rounded to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Average exceedance rate of marine beaches from 2002 to 2023 (inclusive), rounded to 2 decimal places\",\n    \"filters\": [\n      \"Year between 2002 and 2023 (inclusive)\",\n      \"Beach Type Description is 'Marine'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"For each year from 2002 to 2023, calculate the exceedance rate for marine beaches.\",\n      \"Calculate the total number of samples for marine beaches for each year.\",\n      \"Calculate the number of violations for marine beaches for each year.\",\n      \"Divide the number of violations by the total number of samples for each year to get the exceedance rate.\",\n      \"Calculate the average of the yearly exceedance rates.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2022.csv\",\n      \"water-body-testing-2021.csv\",\n      \"water-body-testing-2020.csv\",\n      \"water-body-testing-2019.csv\",\n      \"water-body-testing-2018.csv\",\n      \"water-body-testing-2017.csv\",\n      \"water-body-testing-2016.csv\",\n      \"water-body-testing-2015.csv\",\n      \"water-body-testing-2014.csv\",\n      \"water-body-testing-2013.csv\",\n      \"water-body-testing-2012.csv\",\n      \"water-body-testing-2011.csv\",\n      \"water-body-testing-2010.csv\",\n      \"water-body-testing-2009.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2006.csv\",\n      \"water-body-testing-2005.csv\",\n      \"water-body-testing-2004.csv\",\n      \"water-body-testing-2003.csv\",\n      \"water-body-testing-2002.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Violation column has inconsistent casing (YES/NO, Yes/No, yes/no)\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"level of indicator organism\",\n      \"Year\": \"year\",\n      \"Sample Date\": \"date\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date is in datetime format.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be an integer.\",\n      \"Indicator Level must be a number.\",\n      \"Violation must be a categorical variable (Yes/No).\"\n    ],\n    \"derived_filters\": [\n      \"Exceedance is defined as Violation = 'Yes' (case-insensitive)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output must be a single number rounded to 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 8.216262817382812,
+  "token_usage": {}
+}

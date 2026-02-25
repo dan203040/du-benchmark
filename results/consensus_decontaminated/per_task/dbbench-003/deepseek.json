@@ -1,0 +1,82 @@
+{
+  "m_q": {
+    "target_metric": "Difference between Southampton's total goals scored and Sunderland's total goals scored across all matches",
+    "filters": [
+      "Home team = 'Southampton' OR Away team = 'Southampton'",
+      "Home team = 'Sunderland' OR Away team = 'Sunderland'"
+    ],
+    "grouping_variables": [
+      "Home team",
+      "Away team"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is Southampton's total score across all matches?",
+      "What is Sunderland's total score across all matches?",
+      "How to parse the 'Score' column to extract home and away goals?",
+      "Should we consider both home and away matches for each team?",
+      "Are there any missing values in the Score column for these teams?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Score": "goals (format: home_goals\u2013away_goals)"
+    },
+    "scale_issues": [
+      "Score column contains combined home-away scores separated by '\u2013' (en dash), needs parsing"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some rows have missing 'Tie no' values (empty cells)",
+      "Date format appears as 'DD Month YYYY'",
+      "Score uses en dash '\u2013' not hyphen '-' as separator"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Score column must be parsed to extract numerical values",
+      "Teams may appear in both Home team and Away team columns",
+      "Some matches may have multiple rows (replays based on draws)"
+    ],
+    "derived_filters": [
+      "Filter rows where Home team or Away team contains 'Southampton'",
+      "Filter rows where Home team or Away team contains 'Sunderland'"
+    ],
+    "statistical_tests": [
+      "Check for missing Score values in filtered data",
+      "Validate that all Score values can be parsed into two integers"
+    ],
+    "output_format_requirements": [
+      "Numerical difference (integer)",
+      "Positive if Southampton scored more, negative if Sunderland scored more"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Difference between Southampton's total goals scored and Sunderland's total goals scored across all matches\",\n        \"filters\": [\"Home team = 'Southampton' OR Away team = 'Southampton'\", \"Home team = 'Sunderland' OR Away team = 'Sunderland'\"],\n        \"grouping_variables\": [\"Home team\", \"Away team\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is Southampton's total score across all matches?\", \"What is Sunderland's total score across all matches?\", \"How to parse the 'Score' column to extract home and away goals?\", \"Should we consider both home and away matches for each team?\", \"Are there any missing values in the Score column for these teams?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Football Matches\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Score\": \"goals (format: home_goals\u2013away_goals)\"},\n        \"scale_issues\": [\"Score column contains combined home-away scores separated by '\u2013' (en dash), needs parsing\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Some rows have missing 'Tie no' values (empty cells)\", \"Date format appears as 'DD Month YYYY'\", \"Score uses en dash '\u2013' not hyphen '-' as separator\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Score column must be parsed to extract numerical values\", \"Teams may appear in both Home team and Away team columns\", \"Some matches may have multiple rows (replays based on draws)\"],\n        \"derived_filters\": [\"Filter rows where Home team or Away team contains 'Southampton'\", \"Filter rows where Home team or Away team contains 'Sunderland'\"],\n        \"statistical_tests\": [\"Check for missing Score values in filtered data\", \"Validate that all Score values can be parsed into two integers\"],\n        \"output_format_requirements\": [\"Numerical difference (integer)\", \"Positive if Southampton scored more, negative if Sunderland scored more\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.309094905853271,
+  "token_usage": {
+    "input_tokens": 995,
+    "output_tokens": 548
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "m_q": {
+    "target_metric": "number of apps (appearances)",
+    "filters": [
+      "Team = 'Spartak Nizhny Novgorod'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Find the row where Team is 'Spartak Nizhny Novgorod'",
+      "Extract the Apps value for that row"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Football_Stats"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Apps": "count of appearances",
+      "Goals": "count of goals scored",
+      "Division": "league tier number"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Season column contains both single years (e.g., '2004') and year ranges (e.g., '2006/07')",
+      "Division, Apps, and Goals columns use Int64 dtype which allows for nullable integers"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Team name must match exactly 'Spartak Nizhny Novgorod'",
+      "Apps column should contain non-negative integer values"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer value representing the number of apps"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"number of apps (appearances)\",\n    \"filters\": [\"Team = 'Spartak Nizhny Novgorod'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\"Find the row where Team is 'Spartak Nizhny Novgorod'\", \"Extract the Apps value for that row\"]\n  },\n  \"M_S\": {\n    \"sources\": [\"Football_Stats\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Apps\": \"count of appearances\",\n      \"Goals\": \"count of goals scored\",\n      \"Division\": \"league tier number\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"Season column contains both single years (e.g., '2004') and year ranges (e.g., '2006/07')\", \"Division, Apps, and Goals columns use Int64 dtype which allows for nullable integers\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\"Team name must match exactly 'Spartak Nizhny Novgorod'\", \"Apps column should contain non-negative integer values\"],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"Return single integer value representing the number of apps\"]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.064793825149536,
+  "token_usage": {
+    "input_tokens": 1056,
+    "output_tokens": 450
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "m_q": {
+    "target_metric": "Count of NIFC Geographic Areas that each US state falls into",
+    "filters": [
+      "US states only (full names)"
+    ],
+    "grouping_variables": [
+      "US state (adm1_name)"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What are the full names of US states?",
+      "Which NIFC Geographic Areas does each state intersect with?",
+      "What is the count of geographic areas per state?",
+      "Which state(s) have the maximum count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "usa.gpkg",
+      "nifc_geographic_areas.gpkg"
+    ],
+    "join_keys": [
+      {
+        "left_source": "usa.gpkg",
+        "right_source": "nifc_geographic_areas.gpkg",
+        "left_column": "geometry",
+        "right_column": "geometry",
+        "join_type": "spatial_intersects"
+      }
+    ],
+    "schema_conflicts": [
+      "Different geometry representations between files",
+      "No common non-spatial keys for joining"
+    ],
+    "column_mappings": {
+      "adm1_name": "state_full_name",
+      "GACCName": "geographic_area_name"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "geometry": "spatial coordinates (likely WGS84)",
+      "adm1_name": "state full name text",
+      "GACCName": "NIFC geographic area name text"
+    },
+    "scale_issues": [
+      "Geometry data may be in different coordinate reference systems",
+      "Administrative boundaries (adm1) represent states",
+      "NIFC geographic areas may overlap state boundaries"
+    ],
+    "cross_source_conflicts": [
+      "Coordinate reference system alignment needed for spatial join",
+      "State boundaries may not align perfectly with NIFC geographic area boundaries"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "None"
+    ],
+    "expected_columns": 26,
+    "expected_rows": 0,
+    "file_format": "gpkg",
+    "format_notes": [
+      "Both files are GeoPackage format with geometry columns",
+      "usa.gpkg contains administrative boundaries at multiple levels (adm0, adm1, adm2)",
+      "adm1 level represents US states",
+      "nifc_geographic_areas.gpkg contains NIFC Geographic Area Coordination Center boundaries",
+      "Spatial operations required for intersection analysis"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only include adm1 (state) level records from usa.gpkg",
+      "adm0_name should be 'United States'",
+      "Count distinct NIFC Geographic Areas per state",
+      "Output must use full state names from adm1_name column"
+    ],
+    "derived_filters": [
+      "Filter usa.gpkg to state-level administrative units (adm1)",
+      "Ensure records represent US states, not territories or other subdivisions",
+      "Remove duplicate state-area intersections if any"
+    ],
+    "statistical_tests": [
+      "Maximum count of geographic areas per state",
+      "Distribution of geographic area counts across states"
+    ],
+    "output_format_requirements": [
+      "Return full state names (adm1_name), not abbreviations",
+      "Include count of NIFC Geographic Areas per state",
+      "Identify state(s) with maximum count",
+      "Results should list states falling into the most geographic areas"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of NIFC Geographic Areas that each US state falls into\",\n    \"filters\": [\"US states only (full names)\"],\n    \"grouping_variables\": [\"US state (adm1_name)\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What are the full names of US states?\",\n      \"Which NIFC Geographic Areas does each state intersect with?\",\n      \"What is the count of geographic areas per state?\",\n      \"Which state(s) have the maximum count?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"usa.gpkg\", \"nifc_geographic_areas.gpkg\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"usa.gpkg\",\n        \"right_source\": \"nifc_geographic_areas.gpkg\",\n        \"left_column\": \"geometry\",\n        \"right_column\": \"geometry\",\n        \"join_type\": \"spatial_intersects\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Different geometry representations between files\",\n      \"No common non-spatial keys for joining\"\n    ],\n    \"column_mappings\": {\n      \"adm1_name\": \"state_full_name\",\n      \"GACCName\": \"geographic_area_name\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"geometry\": \"spatial coordinates (likely WGS84)\",\n      \"adm1_name\": \"state full name text\",\n      \"GACCName\": \"NIFC geographic area name text\"\n    },\n    \"scale_issues\": [\n      \"Geometry data may be in different coordinate reference systems\",\n      \"Administrative boundaries (adm1) represent states\",\n      \"NIFC geographic areas may overlap state boundaries\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Coordinate reference system alignment needed for spatial join\",\n      \"State boundaries may not align perfectly with NIFC geographic area boundaries\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"None\"],\n    \"expected_columns\": 26,\n    \"file_format\": \"gpkg\",\n    \"format_notes\": [\n      \"Both files are GeoPackage format with geometry columns\",\n      \"usa.gpkg contains administrative boundaries at multiple levels (adm0, adm1, adm2)\",\n      \"adm1 level represents US states\",\n      \"nifc_geographic_areas.gpkg contains NIFC Geographic Area Coordination Center boundaries\",\n      \"Spatial operations required for intersection analysis\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only include adm1 (state) level records from usa.gpkg\",\n      \"adm0_name should be 'United States'\",\n      \"Count distinct NIFC Geographic Areas per state\",\n      \"Output must use full state names from adm1_name column\"\n    ],\n    \"derived_filters\": [\n      \"Filter usa.gpkg to state-level administrative units (adm1)\",\n      \"Ensure records represent US states, not territories or other subdivisions\",\n      \"Remove duplicate state-area intersections if any\"\n    ],\n    \"statistical_tests\": [\n      \"Maximum count of geographic areas per state\",\n      \"Distribution of geographic area counts across states\"\n    ],\n    \"output_format_requirements\": [\n      \"Return full state names (adm1_name), not abbreviations\",\n      \"Include count of NIFC Geographic Areas per state\",\n      \"Identify state(s) with maximum count\",\n      \"Results should list states falling into the most geographic areas\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 16.792140007019043,
+  "token_usage": {
+    "input_tokens": 5736,
+    "output_tokens": 936
+  }
+}

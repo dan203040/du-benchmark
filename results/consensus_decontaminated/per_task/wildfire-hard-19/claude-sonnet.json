@@ -1,0 +1,107 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of fires brought under control with moderate or heavy rain (>0.05 in) in the fire area on the same day or day before the control day",
+    "filters": [
+      "start_year == 2016",
+      "Fires where weather station falls within 1km (0.5km radius) of fire location",
+      "Rain > 0.05 inches on control_day or control_day - 1"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many total fires occurred in 2016?",
+      "For each 2016 fire, what is the controlled_date and control_day_of_year?",
+      "Which weather stations fall within the fire area (1km diameter circle, 0.5km radius from fire center)?",
+      "What was the precipitation at each relevant weather station on the control day?",
+      "What was the precipitation at each relevant weather station on the day before the control day?",
+      "Did any station within the fire area record >0.05 inches on control day or day before?",
+      "How many 2016 fires meet the rain criteria?",
+      "What is the percentage (to 2 decimal places) of 2016 fires with rain >0.05 in?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Need weather station data with daily precipitation observations to match with fire incidents, but only fire-level aggregated data is available in noaa_wildfires.csv",
+      "latitude and longitude columns are int64 instead of float64, which may indicate truncation or encoding issues",
+      "No explicit weather station location data provided",
+      "No daily precipitation breakdown, only rain_sum (total precipitation summary)"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "rain_sum": "unknown (possibly hundredths of inches based on question threshold of 0.05 in)",
+      "latitude": "degrees (integer representation)",
+      "longitude": "degrees (integer representation)",
+      "duration": "days",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs per square foot",
+      "avrh_mean": "percentage"
+    },
+    "scale_issues": [
+      "rain_sum appears to be total precipitation over incident duration, not daily breakdown",
+      "latitude/longitude stored as integers suggests possible scaling factor (e.g., multiplied by constant)",
+      "Fire area diameter assumption of 1km needs to be converted to radius of 0.5km for distance calculations",
+      "Threshold of 0.05 inches needs to match the unit scale of precipitation data",
+      "Need to determine if rain_sum unit allows direct comparison to 0.05 inch threshold"
+    ],
+    "cross_source_conflicts": [
+      "Missing detailed weather station data with daily precipitation required for the analysis",
+      "Cannot identify which weather stations fall within fire area without station location data",
+      "Cannot determine precipitation on specific days (control_day and control_day - 1) from aggregated rain_sum"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date columns (start_date, controlled_date) are in MM/DD/YYYY format as strings",
+      "latitude and longitude are stored as integers, requiring verification of coordinate system",
+      "erc_med has float64 type while most numeric columns are int64",
+      "station_verified_in_psa column may indicate whether weather station data is available for the fire"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Filter to start_year == 2016",
+      "Fire area diameter = 1km (radius = 0.5km)",
+      "Weather station must fall within fire area (distance from fire center <= 0.5km)",
+      "Rain threshold > 0.05 inches",
+      "Rain must occur on control_day or control_day - 1",
+      "Result must be percentage rounded to 2 decimal places"
+    ],
+    "derived_filters": [
+      "Calculate control_day as control_day_of_year",
+      "Calculate previous_day as control_day_of_year - 1, accounting for year boundaries",
+      "Compute haversine distance between fire location (latitude, longitude) and weather stations",
+      "Identify fires with at least one weather station within 0.5km radius",
+      "Check if daily precipitation on control_day or previous_day exceeds 0.05 inches at any station within fire area"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output percentage as numeric value with exactly 2 decimal places",
+      "Format: XX.XX%",
+      "Percentage = (number of 2016 fires with rain > 0.05 in on control day or day before) / (total 2016 fires) * 100"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of fires brought under control with moderate or heavy rain (>0.05 in) in the fire area on the same day or day before the control day\",\n    \"filters\": [\n      \"start_year == 2016\",\n      \"Fires where weather station falls within 1km (0.5km radius) of fire location\",\n      \"Rain > 0.05 inches on control_day or control_day - 1\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many total fires occurred in 2016?\",\n      \"For each 2016 fire, what is the controlled_date and control_day_of_year?\",\n      \"Which weather stations fall within the fire area (1km diameter circle, 0.5km radius from fire center)?\",\n      \"What was the precipitation at each relevant weather station on the control day?\",\n      \"What was the precipitation at each relevant weather station on the day before the control day?\",\n      \"Did any station within the fire area record >0.05 inches on control day or day before?\",\n      \"How many 2016 fires meet the rain criteria?\",\n      \"What is the percentage (to 2 decimal places) of 2016 fires with rain >0.05 in?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Need weather station data with daily precipitation observations to match with fire incidents, but only fire-level aggregated data is available in noaa_wildfires.csv\",\n      \"latitude and longitude columns are int64 instead of float64, which may indicate truncation or encoding issues\",\n      \"No explicit weather station location data provided\",\n      \"No daily precipitation breakdown, only rain_sum (total precipitation summary)\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"rain_sum\": \"unknown (possibly hundredths of inches based on question threshold of 0.05 in)\",\n      \"latitude\": \"degrees (integer representation)\",\n      \"longitude\": \"degrees (integer representation)\",\n      \"duration\": \"days\",\n      \"wind_med\": \"miles per hour\",\n      \"erc_med\": \"BTUs per square foot\",\n      \"avrh_mean\": \"percentage\"\n    },\n    \"scale_issues\": [\n      \"rain_sum appears to be total precipitation over incident duration, not daily breakdown\",\n      \"latitude/longitude stored as integers suggests possible scaling factor (e.g., multiplied by constant)\",\n      \"Fire area diameter assumption of 1km needs to be converted to radius of 0.5km for distance calculations\",\n      \"Threshold of 0.05 inches needs to match the unit scale of precipitation data\",\n      \"Need to determine if rain_sum unit allows direct comparison to 0.05 inch threshold\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Missing detailed weather station data with daily precipitation required for the analysis\",\n      \"Cannot identify which weather stations fall within fire area without station location data\",\n      \"Cannot determine precipitation on specific days (control_day and control_day - 1) from aggregated rain_sum\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"\",\n      \"NA\",\n      \"N/A\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date columns (start_date, controlled_date) are in MM/DD/YYYY format as strings\",\n      \"latitude and longitude are stored as integers, requiring verification of coordinate system\",\n      \"erc_med has float64 type while most numeric columns are int64\",\n      \"station_verified_in_psa column may indicate whether weather station data is available for the fire\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Filter to start_year == 2016\",\n      \"Fire area diameter = 1km (radius = 0.5km)\",\n      \"Weather station must fall within fire area (distance from fire center <= 0.5km)\",\n      \"Rain threshold > 0.05 inches\",\n      \"Rain must occur on control_day or control_day - 1\",\n      \"Result must be percentage rounded to 2 decimal places\"\n    ],\n    \"derived_filters\": [\n      \"Calculate control_day as control_day_of_year\",\n      \"Calculate previous_day as control_day_of_year - 1, accounting for year boundaries\",\n      \"Compute haversine distance between fire location (latitude, longitude) and weather stations\",\n      \"Identify fires with at least one weather station within 0.5km radius\",\n      \"Check if daily precipitation on control_day or previous_day exceeds 0.05 inches at any station within fire area\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output percentage as numeric value with exactly 2 decimal places\",\n      \"Format: XX.XX%\",\n      \"Percentage = (number of 2016 fires with rain > 0.05 in on control day or day before) / (total 2016 fires) * 100\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 25.93593978881836,
+  "token_usage": {
+    "input_tokens": 4362,
+    "output_tokens": 1324
+  }
+}

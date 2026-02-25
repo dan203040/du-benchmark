@@ -1,0 +1,399 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "correlation between fire size and median wind speed in July",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "correlation between fire size and median wind speed in July",
+        "Correlation coefficient between fire size and median wind speed for fires occurring in July",
+        "Correlation between fire size and median wind speed in July"
+      ]
+    },
+    "filters": {
+      "value": [
+        "start_date month = July",
+        "valid wind_med values",
+        "valid fire size values",
+        "Filter to fires occurring in July (month extracted from start_date)",
+        "Exclude records with missing or null values for fire size and wind_med",
+        "start_date is in July (month = 7)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "start_date month = July",
+          "valid wind_med values",
+          "valid fire size values"
+        ],
+        [
+          "Filter to fires occurring in July (month extracted from start_date)",
+          "Exclude records with missing or null values for fire size and wind_med"
+        ],
+        [
+          "start_date is in July (month = 7)"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What column represents fire size?",
+        "How to extract July data from start_date?",
+        "What correlation measure to use (Pearson/Spearman)?",
+        "What threshold defines 'strong correlation'?",
+        "What column represents fire size in the dataset?",
+        "How to extract month from start_date to filter for July fires?",
+        "What correlation threshold constitutes 'strong correlation'?",
+        "Should the answer be based on Pearson or Spearman correlation?",
+        "What p-value threshold should be used to determine statistical significance?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What column represents fire size?",
+          "How to extract July data from start_date?",
+          "What correlation measure to use (Pearson/Spearman)?",
+          "What threshold defines 'strong correlation'?"
+        ],
+        [
+          "What column represents fire size in the dataset?",
+          "How to extract month from start_date to filter for July fires?",
+          "What correlation threshold constitutes 'strong correlation'?",
+          "Should the answer be based on Pearson or Spearman correlation?",
+          "What p-value threshold should be used to determine statistical significance?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "noaa_wildfires.csv",
+        "noaa_wildfires_variabledescrip.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ],
+        [
+          "noaa_wildfires.csv",
+          "noaa_wildfires_variabledescrip.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Fire size column not clearly identified in sample data - need to check variable descriptions for size metric",
+        "Fire size column is not explicitly identified in the provided column list",
+        "Need to determine which column represents fire size (likely 'hec' for hectares or related to incident scale)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Fire size column not clearly identified in sample data - need to check variable descriptions for size metric"
+        ],
+        [
+          "Fire size column is not explicitly identified in the provided column list",
+          "Need to determine which column represents fire size (likely 'hec' for hectares or related to incident scale)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "wind_med": "miles per hour",
+        "avrh_mean": "percentage",
+        "rain_sum": "precipitation units",
+        "duration": "days",
+        "latitude": "degrees",
+        "longitude": "degrees",
+        "hec": "hectares (assumed fire size)",
+        "start_date": "MM/DD/YYYY format",
+        "erc_med": "BTUs per square foot"
+      },
+      "confidence": 0.5185185185185185,
+      "votes": [
+        {
+          "wind_med": "miles per hour",
+          "avrh_mean": "percentage",
+          "rain_sum": "precipitation units",
+          "duration": "days",
+          "latitude": "degrees",
+          "longitude": "degrees"
+        },
+        {
+          "wind_med": "miles per hour",
+          "hec": "hectares (assumed fire size)",
+          "start_date": "MM/DD/YYYY format",
+          "avrh_mean": "percentage",
+          "erc_med": "BTUs per square foot",
+          "rain_sum": "precipitation amount (units not specified)"
+        },
+        {
+          "wind_med": "miles per hour",
+          "duration": "days"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "wind_med appears as integer but may need decimal precision",
+        "erc_med has decimal values while other weather metrics are integers",
+        "Fire size unit needs confirmation (hec likely represents hectares)",
+        "Wind speed in miles per hour may need standardization for correlation analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "wind_med appears as integer but may need decimal precision",
+          "erc_med has decimal values while other weather metrics are integers"
+        ],
+        [
+          "Fire size unit needs confirmation (hec likely represents hectares)",
+          "Wind speed in miles per hour may need standardization for correlation analysis"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Variable descriptions file may clarify which column represents fire size - possibly prim_threatened_aggregate or other threatened columns",
+        "Variable description file does not provide explicit mapping for fire size variable"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Variable descriptions file may clarify which column represents fire size - possibly prim_threatened_aggregate or other threatened columns"
+        ],
+        [
+          "Variable description file does not provide explicit mapping for fire size variable"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 37.0,
+      "confidence": 1.0,
+      "votes": [
+        37.0,
+        37.0,
+        37.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "wind_med >= 0",
+        "duration >= 1",
+        "start_year consistent with start_date year",
+        "July defined as month 7 in start_date",
+        "Only include fires that started in July (month == 7)",
+        "Fire size must be non-null and non-zero",
+        "wind_med must be non-null",
+        "Correlation result must be classified as strong or not strong",
+        "start_date must be parsed to extract the month",
+        "Fire size needs to be determined.  Duration could be a proxy, or total_fire_region/total_fire_west could be used if they represent fire size.  Otherwise, this question cannot be answered.",
+        "wind_med represents the median wind speed."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "wind_med >= 0",
+          "duration >= 1",
+          "start_year consistent with start_date year",
+          "July defined as month 7 in start_date"
+        ],
+        [
+          "Only include fires that started in July (month == 7)",
+          "Fire size must be non-null and non-zero",
+          "wind_med must be non-null",
+          "Correlation result must be classified as strong or not strong"
+        ],
+        [
+          "start_date must be parsed to extract the month",
+          "Fire size needs to be determined.  Duration could be a proxy, or total_fire_region/total_fire_west could be used if they represent fire size.  Otherwise, this question cannot be answered.",
+          "wind_med represents the median wind speed."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where start_date month = 7",
+        "Exclude rows with missing wind_med or fire size values",
+        "Consider only rows with valid numeric values for both variables",
+        "Extract month from start_date column",
+        "Filter where month == 7 (July)",
+        "Remove records where hec (fire size) is null or zero",
+        "Remove records where wind_med is null",
+        "start_month = month(start_date)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where start_date month = 7",
+          "Exclude rows with missing wind_med or fire size values",
+          "Consider only rows with valid numeric values for both variables"
+        ],
+        [
+          "Extract month from start_date column",
+          "Filter where month == 7 (July)",
+          "Remove records where hec (fire size) is null or zero",
+          "Remove records where wind_med is null"
+        ],
+        [
+          "start_month = month(start_date)"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Pearson correlation coefficient",
+        "Significance test for correlation",
+        "Check for normality assumptions",
+        "Calculate Pearson correlation coefficient between fire size (hec) and wind_med",
+        "Calculate p-value for correlation significance",
+        "Apply threshold for 'strong correlation' (typically |r| > 0.7 or |r| > 0.5 depending on domain standards)",
+        "Test for statistical significance (p < 0.05)",
+        "Pearson correlation between fire size and wind_med for July fires"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Pearson correlation coefficient",
+          "Significance test for correlation",
+          "Check for normality assumptions"
+        ],
+        [
+          "Calculate Pearson correlation coefficient between fire size (hec) and wind_med",
+          "Calculate p-value for correlation significance",
+          "Apply threshold for 'strong correlation' (typically |r| > 0.7 or |r| > 0.5 depending on domain standards)",
+          "Test for statistical significance (p < 0.05)"
+        ],
+        [
+          "Pearson correlation between fire size and wind_med for July fires"
+        ]
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Binary Yes/No answer based on correlation strength threshold",
+        "May need to define 'strong correlation' threshold (e.g., |r| > 0.7)",
+        "Final answer must be 'Yes' or 'No'",
+        "Yes if correlation is strong (absolute value above threshold and statistically significant)",
+        "No if correlation is weak or not statistically significant",
+        "Output should be Yes if the absolute value of the correlation coefficient is greater than 0.7, otherwise No."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Binary Yes/No answer based on correlation strength threshold",
+          "May need to define 'strong correlation' threshold (e.g., |r| > 0.7)"
+        ],
+        [
+          "Final answer must be 'Yes' or 'No'",
+          "Yes if correlation is strong (absolute value above threshold and statistically significant)",
+          "No if correlation is weak or not statistically significant"
+        ],
+        [
+          "Output should be Yes if the absolute value of the correlation coefficient is greater than 0.7, otherwise No."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6092592592592594
+}

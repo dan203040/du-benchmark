@@ -1,0 +1,377 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "highest report density (reports per 100K population) considering all types of reports (identity theft, fraud and others)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "highest report density (reports per 100K population) considering all types of reports (identity theft, fraud and others)",
+        "highest report density (reports per 100K population) combining all types of reports (identity theft, fraud and others)",
+        "State with the highest total reports per 100K population across all report types (identity theft, fraud, and others)"
+      ]
+    },
+    "filters": {
+      "value": [
+        "include all states (including DC and PR)",
+        "include all report types",
+        "include all states, DC, and PR"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "include all states (including DC and PR)",
+          "include all report types"
+        ],
+        [
+          "include all states, DC, and PR"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "State"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "State"
+        ],
+        [
+          "State"
+        ],
+        [
+          "State"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to combine identity theft and fraud/other reports?",
+        "Should we sum reports per 100K or calculate new combined rate?",
+        "Do both files cover all 52 states (including DC and PR)?",
+        "What is the identity theft report density for each state?",
+        "What is the fraud and other report density for each state?",
+        "What is the total combined report density for each state?",
+        "Which state has the maximum combined report density?",
+        "Calculate the total reports per 100K population for each state by summing the 'Reports per 100K Population' from both datasets.",
+        "Identify the state with the maximum 'Total Reports per 100K Population'."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How to combine identity theft and fraud/other reports?",
+          "Should we sum reports per 100K or calculate new combined rate?",
+          "Do both files cover all 52 states (including DC and PR)?"
+        ],
+        [
+          "What is the identity theft report density for each state?",
+          "What is the fraud and other report density for each state?",
+          "What is the total combined report density for each state?",
+          "Which state has the maximum combined report density?"
+        ],
+        [
+          "Calculate the total reports per 100K population for each state by summing the 'Reports per 100K Population' from both datasets.",
+          "Identify the state with the maximum 'Total Reports per 100K Population'."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+        "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+          "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv"
+        ],
+        [
+          "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+          "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv"
+        ],
+        [
+          "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+          "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Reports per 100K Population has different dtypes (float64 vs int64)",
+        "Both files have same column names but different data",
+        "Both files have identical column names but represent different report types",
+        "Reports per 100K Population has different dtype: float64 in identity theft file vs int64 in fraud file",
+        "The 'Reports per 100K Population' column has different data types across the two CSV files (float64 in Identity Theft, int64 in Fraud and Other).",
+        "The 'Rank' column is not needed for the final calculation and can be dropped."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Reports per 100K Population has different dtypes (float64 vs int64)",
+          "Both files have same column names but different data"
+        ],
+        [
+          "Both files have identical column names but represent different report types",
+          "Reports per 100K Population has different dtype: float64 in identity theft file vs int64 in fraud file"
+        ],
+        [
+          "The 'Reports per 100K Population' column has different data types across the two CSV files (float64 in Identity Theft, int64 in Fraud and Other).",
+          "The 'Rank' column is not needed for the final calculation and can be dropped."
+        ]
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "reports per 100k population": "reports per 100,000 population",
+        "# of reports": "count of reports",
+        "identity_theft_reports_per_100k": "identity theft reports per 100,000 population",
+        "fraud_other_reports_per_100k": "fraud and other reports per 100,000 population"
+      },
+      "confidence": 0.6666666666666667,
+      "votes": [
+        {
+          "Reports per 100K Population": "reports per 100,000 population",
+          "# of Reports": "count of reports",
+          "Identity_Theft_Reports_per_100K": "identity theft reports per 100,000 population",
+          "Fraud_Other_Reports_per_100K": "fraud and other reports per 100,000 population"
+        },
+        {
+          "Reports per 100K Population": "reports per 100,000 population",
+          "# of Reports": "absolute count of reports"
+        },
+        {
+          "Reports per 100K Population": "reports per 100,000 people",
+          "# of Reports": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Reports per 100K values differ significantly between files (identity theft ~200-500, fraud/other ~1200-2100)",
+        "Reports per 100K Population is already normalized, can be directly summed across report types",
+        "Population denominator should be consistent across both files for the same state"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Reports per 100K values differ significantly between files (identity theft ~200-500, fraud/other ~1200-2100)"
+        ],
+        [
+          "Reports per 100K Population is already normalized, can be directly summed across report types",
+          "Population denominator should be consistent across both files for the same state"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "Different ranking systems in each file",
+        "Cannot directly sum Reports per 100K columns as they are rates based on different denominators",
+        "Need to verify that both files use the same population base for calculating per 100K rates",
+        "Both datasets should cover the same states (52 entries each including DC and PR)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Different ranking systems in each file",
+          "Cannot directly sum Reports per 100K columns as they are rates based on different denominators"
+        ],
+        [
+          "Need to verify that both files use the same population base for calculating per 100K rates",
+          "Both datasets should cover the same states (52 entries each including DC and PR)"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Total reports = identity theft reports + fraud/other reports",
+        "Combined reports per 100K must be calculated from total reports and population",
+        "Population can be derived from (# of Reports) / (Reports per 100K Population) * 100,000",
+        "Must include all 52 jurisdictions (50 states + DC + PR)",
+        "Reports per 100K Population values must be non-negative",
+        "Each state should appear exactly once in each file",
+        "Combined density is sum of identity theft density and fraud/other density",
+        "The 'State' column should contain valid U.S. state names, including DC and PR.",
+        "The 'Reports per 100K Population' and '# of Reports' columns should contain non-negative numerical values."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Total reports = identity theft reports + fraud/other reports",
+          "Combined reports per 100K must be calculated from total reports and population",
+          "Population can be derived from (# of Reports) / (Reports per 100K Population) * 100,000"
+        ],
+        [
+          "Must include all 52 jurisdictions (50 states + DC + PR)",
+          "Reports per 100K Population values must be non-negative",
+          "Each state should appear exactly once in each file",
+          "Combined density is sum of identity theft density and fraud/other density"
+        ],
+        [
+          "The 'State' column should contain valid U.S. state names, including DC and PR.",
+          "The 'Reports per 100K Population' and '# of Reports' columns should contain non-negative numerical values."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Include all 52 states from both files",
+        "No filtering required - all states should be included in analysis"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Include all 52 states from both files"
+        ],
+        [
+          "No filtering required - all states should be included in analysis"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check that state lists match between files",
+        "Verify population consistency between files using derived population calculations",
+        "Verify all 52 jurisdictions present in both files",
+        "Check for missing values in Reports per 100K Population columns",
+        "Validate that join produces 52 records"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check that state lists match between files",
+          "Verify population consistency between files using derived population calculations"
+        ],
+        [
+          "Verify all 52 jurisdictions present in both files",
+          "Check for missing values in Reports per 100K Population columns",
+          "Validate that join produces 52 records"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "State name",
+        "Combined reports per 100K population",
+        "Ranking of states by combined rate",
+        "Return the state name with highest combined report density",
+        "Optionally include the combined density value",
+        "Result should be a single state (scalar output)",
+        "The output should be a single state name."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "State name",
+          "Combined reports per 100K population",
+          "Ranking of states by combined rate"
+        ],
+        [
+          "Return the state name with highest combined report density",
+          "Optionally include the combined density value",
+          "Result should be a single state (scalar output)"
+        ],
+        [
+          "The output should be a single state name."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6500000000000001
+}

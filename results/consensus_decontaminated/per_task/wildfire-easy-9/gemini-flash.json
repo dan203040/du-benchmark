@@ -1,0 +1,59 @@
+{
+  "m_q": {
+    "target_metric": "Difference between fatalities on days with humidity less than 30% and the average fatalities, rounded to four decimal places.",
+    "filters": [
+      "avrh_mean < 30"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate the average fatalities across all days.",
+      "Calculate the total fatalities on days with humidity less than 30%.",
+      "Calculate the difference between the total fatalities on low humidity days and the average fatalities."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percent",
+      "fatalities_last": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "fatalities_last >= 0"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Round the final result to four decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Difference between fatalities on days with humidity less than 30% and the average fatalities, rounded to four decimal places.\",\n    \"filters\": [\n      \"avrh_mean < 30\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate the average fatalities across all days.\",\n      \"Calculate the total fatalities on days with humidity less than 30%.\",\n      \"Calculate the difference between the total fatalities on low humidity days and the average fatalities.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Fire_Weather_Data_2002-2014_2016.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"avrh_mean\": \"percent\",\n      \"fatalities_last\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"fatalities_last >= 0\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Round the final result to four decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.3987181186676025,
+  "token_usage": {}
+}

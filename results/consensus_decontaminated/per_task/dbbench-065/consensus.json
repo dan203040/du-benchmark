@@ -1,0 +1,323 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Band value (numerical)",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Band value (numerical)",
+        "The highest band value among records with System='gsm-450'",
+        "the band with the highest value where the system is 'GSM-450'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "System = 'GSM-450'",
+        "System equals 'gsm-450' (case-insensitive)",
+        "System is 'GSM-450'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "System = 'GSM-450'"
+        ],
+        [
+          "System equals 'gsm-450' (case-insensitive)"
+        ],
+        [
+          "System is 'GSM-450'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "System",
+        "Band"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "System",
+          "Band"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the highest band number among all rows where System is GSM-450?",
+        "Are there multiple bands with System GSM-450?",
+        "How should 'highest' be interpreted - numerically or by some other measure?",
+        "What records have System='gsm-450'?",
+        "What Band values exist for gsm-450 system?",
+        "Which band value is numerically highest?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the highest band number among all rows where System is GSM-450?",
+          "Are there multiple bands with System GSM-450?",
+          "How should 'highest' be interpreted - numerically or by some other measure?"
+        ],
+        [
+          "What records have System='gsm-450'?",
+          "What Band values exist for gsm-450 system?",
+          "Which band value is numerically highest?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "cellular_frequency_bands_table"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "cellular_frequency_bands_table"
+        ],
+        [
+          "cellular_frequency_bands_table"
+        ],
+        [
+          "cellular_frequency_bands_table"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Duplicate rows with same System and Band values (e.g., GSM-850 appears twice with different channel numbers)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Duplicate rows with same System and Band values (e.g., GSM-850 appears twice with different channel numbers)"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "uplink (mhz)": "MHz",
+        "downlink (mhz)": "MHz",
+        "band": "MHz (implied frequency band designation)"
+      },
+      "confidence": 0.7777777777777778,
+      "votes": [
+        {
+          "Uplink (MHz)": "MHz",
+          "Downlink (MHz)": "MHz"
+        },
+        {
+          "Band": "MHz (implied frequency band designation)",
+          "Uplink (MHz)": "MHz",
+          "Downlink (MHz)": "MHz"
+        },
+        {
+          "Uplink (MHz)": "MHz",
+          "Downlink (MHz)": "MHz"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Band column contains numeric values but is stored as object dtype",
+        "Uplink and Downlink columns contain range strings with commas and dashes that need parsing",
+        "Band column contains numeric values that may be stored as strings",
+        "Band values appear to be central frequencies or band designations (e.g., 450, 480)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Band column contains numeric values but is stored as object dtype",
+          "Uplink and Downlink columns contain range strings with commas and dashes that need parsing"
+        ],
+        [
+          "Band column contains numeric values that may be stored as strings",
+          "Band values appear to be central frequencies or band designations (e.g., 450, 480)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "dynamic",
+        "dynamic^",
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [
+          "dynamic",
+          "dynamic^"
+        ],
+        [
+          "dynamic",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Band should be convertible to numeric for comparison",
+        "Only rows where System exactly matches 'GSM-450' should be considered",
+        "Highest band means maximum numeric value of Band column",
+        "System value must match 'gsm-450' case-insensitively",
+        "Band column must be interpretable as numeric for comparison",
+        "The 'Band' column should be numeric or convertible to numeric for comparison."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Band should be convertible to numeric for comparison",
+          "Only rows where System exactly matches 'GSM-450' should be considered",
+          "Highest band means maximum numeric value of Band column"
+        ],
+        [
+          "System value must match 'gsm-450' case-insensitively",
+          "Band column must be interpretable as numeric for comparison"
+        ],
+        [
+          "The 'Band' column should be numeric or convertible to numeric for comparison."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "System == 'GSM-450'",
+        "Filter rows where System column equals 'GSM-450' (case-insensitive match)",
+        "Convert Band column to numeric type for comparison"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "System == 'GSM-450'"
+        ],
+        [
+          "Filter rows where System column equals 'GSM-450' (case-insensitive match)",
+          "Convert Band column to numeric type for comparison"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if Band values are unique for GSM-450 system"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if Band values are unique for GSM-450 system"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single band number as integer or float",
+        "Return single band value that is highest",
+        "Output should be the Band value (e.g., '450') not the entire row",
+        "Output should be a single band value."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single band number as integer or float"
+        ],
+        [
+          "Return single band value that is highest",
+          "Output should be the Band value (e.g., '450') not the entire row"
+        ],
+        [
+          "Output should be a single band value."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.578888888888889
+}

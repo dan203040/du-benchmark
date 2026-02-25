@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "Identify top 10 best-rated authors, most expensive authors, and authors with most ratings",
+    "filters": [],
+    "grouping_variables": [
+      "Author"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What are the top 10 authors with highest average Rating?",
+      "What are the top 10 authors with highest average Price?",
+      "What are the top 10 authors with highest total 'No. of People rated'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Books_df.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "No. of People rated": "num_ratings"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Price": "Indian Rupees (\u20b9)",
+      "Rating": "scale 0-5",
+      "No. of People rated": "count"
+    },
+    "scale_issues": [
+      "Price column contains currency symbol '\u20b9' and comma separators that need to be removed for numerical operations",
+      "Price values need conversion from string to numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "NaN"
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Price column contains Indian Rupee symbol (\u20b9) and comma separators",
+      "Rating is float64 with potential null values",
+      "No. of People rated is float64 with potential null values",
+      "Output file author.csv should have 4 columns: id, Best-Rated Author, Most Expensive Author, Most Rated Author",
+      "Output should have exactly 10 rows (id 0-9) matching sample_result.csv format"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Output must have exactly 10 rows with id column from 0 to 9",
+      "Each author ranking list must contain top 10 authors",
+      "Rating values must be valid floats between 0 and 5",
+      "Price must be positive numeric values after cleaning",
+      "No. of People rated must be non-negative"
+    ],
+    "derived_filters": [
+      "Filter out rows where Rating is null or invalid",
+      "Filter out rows where Price cannot be parsed to numeric",
+      "Filter out rows where No. of People rated is null or zero for most rated calculation"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output file must be named author.csv",
+      "Output must have columns: id, Best-Rated Author, Most Expensive Author, Most Rated Author",
+      "Output must have exactly 10 rows with id values 0-9",
+      "Each cell should contain author name or be empty if no data",
+      "Format must match sample_result.csv structure"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Identify top 10 best-rated authors, most expensive authors, and authors with most ratings\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Author\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"What are the top 10 authors with highest average Rating?\",\n      \"What are the top 10 authors with highest average Price?\",\n      \"What are the top 10 authors with highest total 'No. of People rated'?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Books_df.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"No. of People rated\": \"num_ratings\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Price\": \"Indian Rupees (\u20b9)\",\n      \"Rating\": \"scale 0-5\",\n      \"No. of People rated\": \"count\"\n    },\n    \"scale_issues\": [\n      \"Price column contains currency symbol '\u20b9' and comma separators that need to be removed for numerical operations\",\n      \"Price values need conversion from string to numeric\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"NaN\"],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Price column contains Indian Rupee symbol (\u20b9) and comma separators\",\n      \"Rating is float64 with potential null values\",\n      \"No. of People rated is float64 with potential null values\",\n      \"Output file author.csv should have 4 columns: id, Best-Rated Author, Most Expensive Author, Most Rated Author\",\n      \"Output should have exactly 10 rows (id 0-9) matching sample_result.csv format\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Output must have exactly 10 rows with id column from 0 to 9\",\n      \"Each author ranking list must contain top 10 authors\",\n      \"Rating values must be valid floats between 0 and 5\",\n      \"Price must be positive numeric values after cleaning\",\n      \"No. of People rated must be non-negative\"\n    ],\n    \"derived_filters\": [\n      \"Filter out rows where Rating is null or invalid\",\n      \"Filter out rows where Price cannot be parsed to numeric\",\n      \"Filter out rows where No. of People rated is null or zero for most rated calculation\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output file must be named author.csv\",\n      \"Output must have columns: id, Best-Rated Author, Most Expensive Author, Most Rated Author\",\n      \"Output must have exactly 10 rows with id values 0-9\",\n      \"Each cell should contain author name or be empty if no data\",\n      \"Format must match sample_result.csv structure\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 13.89110016822815,
+  "token_usage": {
+    "input_tokens": 4528,
+    "output_tokens": 795
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average (mean) of Age values",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "average (mean) of Age values",
+        "average age of patients",
+        "average age"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Histologic_type contains 'serous' (case-insensitive)",
+        "Proteomics_Tumor_Normal == 'Tumor'",
+        "Case_excluded == 'No'",
+        "Histologic_type contains 'serous'",
+        "Histologic_type is 'Serous'"
+      ],
+      "confidence": 0.4666666666666666,
+      "votes": [
+        [
+          "Histologic_type contains 'serous' (case-insensitive)",
+          "Proteomics_Tumor_Normal == 'Tumor'",
+          "Case_excluded == 'No'"
+        ],
+        [
+          "Histologic_type contains 'serous'",
+          "Proteomics_Tumor_Normal == 'Tumor'",
+          "Case_excluded == 'No'"
+        ],
+        [
+          "Histologic_type is 'Serous'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the distribution of Age for serous tumor patients?",
+        "How many serous tumor samples are in the dataset?",
+        "Are there missing Age values for serous tumor samples?",
+        "How to identify serous tumor samples from Histologic_type column?",
+        "Should excluded cases be filtered out?",
+        "Should analysis include only tumor samples or also normal samples?",
+        "How to handle missing Age values?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the distribution of Age for serous tumor patients?",
+          "How many serous tumor samples are in the dataset?",
+          "Are there missing Age values for serous tumor samples?"
+        ],
+        [
+          "How to identify serous tumor samples from Histologic_type column?",
+          "Should excluded cases be filtered out?",
+          "Should analysis include only tumor samples or also normal samples?",
+          "How to handle missing Age values?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "1-s2.0-S0092867420301070-mmc1.xlsx"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ],
+        [
+          "1-s2.0-S0092867420301070-mmc1.xlsx"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "age": "years",
+        "bmi": "kg/m\u00b2",
+        "tumor_size_cm": "centimeters",
+        "estrogen_receptor_%": "percentage",
+        "progesterone_receptor_%": "percentage"
+      },
+      "confidence": 0.6666666666666667,
+      "votes": [
+        {
+          "Age": "years",
+          "BMI": "kg/m\u00b2",
+          "Tumor_Size_cm": "centimeters"
+        },
+        {
+          "Age": "years",
+          "BMI": "kg/m^2",
+          "Tumor_Size_cm": "centimeters",
+          "Estrogen_Receptor_%": "percentage",
+          "Progesterone_Receptor_%": "percentage"
+        },
+        {
+          "Age": "years",
+          "Tumor_Size_cm": "cm"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Age is float64 but represents whole years",
+        "Some percentage columns (Estrogen_Receptor_%, Progesterone_Receptor_%) are float64 but represent percentages"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age is float64 but represents whole years",
+          "Some percentage columns (Estrogen_Receptor_%, Progesterone_Receptor_%) are float64 but represent percentages"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "Cannot be determined",
+        "Staging Incomplete",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "",
+          "Cannot be determined",
+          "Staging Incomplete"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "Cannot be determined"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 179.0,
+      "confidence": 0.33,
+      "votes": [
+        179.0,
+        179.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "csv",
+        "xlsx",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Age should be positive (typically 18+)",
+        "Histologic_type should be categorical with valid tumor types",
+        "Proteomics_Tumor_Normal should be either 'Tumor' or 'Normal'",
+        "Age must be non-null for average calculation",
+        "Histologic_type must contain 'serous' substring (case-insensitive)",
+        "Only include rows where Proteomics_Tumor_Normal == 'Tumor'",
+        "Only include rows where Case_excluded == 'No'",
+        "Age must be a valid number",
+        "Histologic_type must be a valid string"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age should be positive (typically 18+)",
+          "Histologic_type should be categorical with valid tumor types",
+          "Proteomics_Tumor_Normal should be either 'Tumor' or 'Normal'"
+        ],
+        [
+          "Age must be non-null for average calculation",
+          "Histologic_type must contain 'serous' substring (case-insensitive)",
+          "Only include rows where Proteomics_Tumor_Normal == 'Tumor'",
+          "Only include rows where Case_excluded == 'No'"
+        ],
+        [
+          "Age must be a valid number",
+          "Histologic_type must be a valid string"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Age is missing or NaN",
+        "Exclude rows where Histologic_type is missing or invalid",
+        "Filter for serous histologic type: check if 'serous' appears in Histologic_type value",
+        "Exclude cases marked as excluded in Case_excluded column",
+        "Include only tumor samples, not normal tissue samples",
+        "Patients with Histologic_type equal to 'Serous'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Age is missing or NaN",
+          "Exclude rows where Histologic_type is missing or invalid"
+        ],
+        [
+          "Filter for serous histologic type: check if 'serous' appears in Histologic_type value",
+          "Exclude cases marked as excluded in Case_excluded column",
+          "Include only tumor samples, not normal tissue samples"
+        ],
+        [
+          "Patients with Histologic_type equal to 'Serous'"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for normality of Age distribution in serous tumor subset",
+        "Compare Age distribution between serous and other histologic types"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for normality of Age distribution in serous tumor subset",
+          "Compare Age distribution between serous and other histologic types"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Report average age with appropriate precision (e.g., 64.2 years)",
+        "Include sample size (n) for serous tumor patients",
+        "Consider reporting confidence interval for the mean",
+        "Single numeric value representing mean age",
+        "Round to appropriate decimal places (1-2 decimal places)",
+        "Report sample size (number of serous tumor samples included)",
+        "Average age should be a number"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Report average age with appropriate precision (e.g., 64.2 years)",
+          "Include sample size (n) for serous tumor patients",
+          "Consider reporting confidence interval for the mean"
+        ],
+        [
+          "Single numeric value representing mean age",
+          "Round to appropriate decimal places (1-2 decimal places)",
+          "Report sample size (number of serous tumor samples included)"
+        ],
+        [
+          "Average age should be a number"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5065000000000001
+}

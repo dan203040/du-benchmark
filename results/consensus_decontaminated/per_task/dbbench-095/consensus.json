@@ -1,0 +1,319 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "average year",
+      "confidence": 1.0,
+      "votes": [
+        "average year",
+        "average year",
+        "average year"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Entrant = 'Belanger Motors'",
+        "Engine = 'Offenhauser L4'",
+        "Entrant is Belanger Motors",
+        "Engine is Offenhauser L4"
+      ],
+      "confidence": 0.49999999999999994,
+      "votes": [
+        [
+          "Entrant = 'Belanger Motors'",
+          "Engine = 'Offenhauser L4'"
+        ],
+        [
+          "Entrant = 'Belanger Motors'",
+          "Engine = 'Offenhauser L4'"
+        ],
+        [
+          "Entrant is Belanger Motors",
+          "Engine is Offenhauser L4"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What years did Belanger Motors use Offenhauser L4 engines?",
+        "How many records match both filters?",
+        "Are the Year values numeric for calculation?",
+        "Which rows have Entrant as 'Belanger Motors'?",
+        "Which rows have Engine as 'Offenhauser L4' or 'Offenhauser l4'?",
+        "What are the years that satisfy both conditions?",
+        "What is the average of those years?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What years did Belanger Motors use Offenhauser L4 engines?",
+          "How many records match both filters?",
+          "Are the Year values numeric for calculation?"
+        ],
+        [
+          "Which rows have Entrant as 'Belanger Motors'?",
+          "Which rows have Engine as 'Offenhauser L4' or 'Offenhauser l4'?",
+          "What are the years that satisfy both conditions?",
+          "What is the average of those years?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "racers_database"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "racers_database"
+        ],
+        [
+          "racers_database"
+        ],
+        [
+          "racers_database"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Year column is object dtype but contains numeric years",
+        "Points column is object dtype but appears to contain numeric values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column is object dtype but contains numeric years",
+          "Points column is object dtype but appears to contain numeric values"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "calendar year",
+        "points": "racing points (integer)"
+      },
+      "confidence": 0.8333333333333333,
+      "votes": [
+        {
+          "Year": "calendar year",
+          "Points": "racing points (integer)"
+        },
+        {
+          "Year": "calendar year",
+          "Points": "racing points"
+        },
+        {
+          "Year": "year"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year values need conversion from object to numeric for averaging"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values need conversion from object to numeric for averaging"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values must be convertible to numeric for averaging",
+        "Only one data source needed for this question",
+        "Filtered data must contain at least one record to compute average",
+        "Year must be numeric and convertible to integer",
+        "Entrant matching must be exact for 'Belanger Motors'",
+        "Engine matching should be case-insensitive to handle 'L4' vs 'l4'",
+        "Year must be a valid year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values must be convertible to numeric for averaging",
+          "Only one data source needed for this question",
+          "Filtered data must contain at least one record to compute average"
+        ],
+        [
+          "Year must be numeric and convertible to integer",
+          "Entrant matching must be exact for 'Belanger Motors'",
+          "Engine matching should be case-insensitive to handle 'L4' vs 'l4'"
+        ],
+        [
+          "Year must be a valid year"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Year should be between 1950-1969 based on sample data",
+        "Filter rows where Entrant == 'Belanger Motors' AND Engine matches 'Offenhauser L4' (case-insensitive)",
+        "Belanger Motors entries with Offenhauser L4 engine"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year should be between 1950-1969 based on sample data"
+        ],
+        [
+          "Filter rows where Entrant == 'Belanger Motors' AND Engine matches 'Offenhauser L4' (case-insensitive)"
+        ],
+        [
+          "Belanger Motors entries with Offenhauser L4 engine"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing Year values in filtered subset",
+        "Verify Year values are consistent numeric format"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing Year values in filtered subset",
+          "Verify Year values are consistent numeric format"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Average year should be presented as a numeric value",
+        "Consider rounding to appropriate precision",
+        "Return a single numeric value representing the average year",
+        "If no matching records found, handle appropriately (e.g., return null or 0)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Average year should be presented as a numeric value",
+          "Consider rounding to appropriate precision"
+        ],
+        [
+          "Return a single numeric value representing the average year",
+          "If no matching records found, handle appropriately (e.g., return null or 0)"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6333333333333334
+}

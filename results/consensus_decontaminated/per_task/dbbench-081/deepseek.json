@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "minimum release year",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the earliest year in the Release column?",
+      "Are there any missing or invalid values in the Release column that need to be handled?",
+      "Does the data contain releases from multiple artists or only specific ones?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Music Releases"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Release": "year"
+    },
+    "scale_issues": [
+      "Release column appears to contain years as strings/objects rather than numeric values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample shows Japanese and English text mixed",
+      "Some Notes column entries contain quoted text with commas",
+      "Release column values appear to be years but stored as object dtype"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Release column should contain valid year values",
+      "Each row represents a music release with associated metadata"
+    ],
+    "derived_filters": [
+      "Filter out rows with missing Release values",
+      "Convert Release column to numeric type for comparison"
+    ],
+    "statistical_tests": [
+      "Check for minimum value in Release column after conversion to numeric"
+    ],
+    "output_format_requirements": [
+      "Output should be a single year value",
+      "Year should be formatted as integer"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum release year\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the earliest year in the Release column?\", \"Are there any missing or invalid values in the Release column that need to be handled?\", \"Does the data contain releases from multiple artists or only specific ones?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Music Releases\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Release\": \"year\"},\n        \"scale_issues\": [\"Release column appears to contain years as strings/objects rather than numeric values\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Sample shows Japanese and English text mixed\", \"Some Notes column entries contain quoted text with commas\", \"Release column values appear to be years but stored as object dtype\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Release column should contain valid year values\", \"Each row represents a music release with associated metadata\"],\n        \"derived_filters\": [\"Filter out rows with missing Release values\", \"Convert Release column to numeric type for comparison\"],\n        \"statistical_tests\": [\"Check for minimum value in Release column after conversion to numeric\"],\n        \"output_format_requirements\": [\"Output should be a single year value\", \"Year should be formatted as integer\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 8.265031099319458,
+  "token_usage": {
+    "input_tokens": 1127,
+    "output_tokens": 395
+  }
+}

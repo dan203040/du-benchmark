@@ -1,0 +1,108 @@
+{
+  "m_q": {
+    "target_metric": "Comparison of correlation between monthly rainfall and exceedance rate for freshwater vs. marine beaches from 2007-2009 during summer months (Jun, Jul, Aug)",
+    "filters": [
+      "Year between 2007 and 2009 (inclusive)",
+      "Months: June, July, August",
+      "Beach Type: Fresh water or Marine",
+      "Regions for Fresh water beaches: Boston, Chatham, Amherst, Ashburnham",
+      "Regions for Marine beaches: Boston, Chatham"
+    ],
+    "grouping_variables": [
+      "Beach Type (Freshwater, Marine)"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate monthly exceedance rate for each beach type.",
+      "Impute missing rainfall data with median of the month in non-missing years.",
+      "Calculate the correlation between monthly rainfall and exceedance rate for each beach type.",
+      "Compare the correlations and determine which beach type has a higher correlation."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "water-body-testing-2007.csv",
+      "water-body-testing-2008.csv",
+      "water-body-testing-2009.csv",
+      "monthly_precipitations_boston.csv",
+      "monthly_precipitations_chatham.csv",
+      "monthly_precipitations_amherst.csv",
+      "monthly_precipitations_ashburnham.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "water-body-testing-2007.csv",
+        "right_source": "water-body-testing-2008.csv",
+        "left_column": "Community",
+        "right_column": "Community",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "water-body-testing-2008.csv",
+        "right_source": "water-body-testing-2009.csv",
+        "left_column": "Community",
+        "right_column": "Community",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Indicator Level": "cfu/100mL",
+      "Jan": "inches",
+      "Feb": "inches",
+      "Mar": "inches",
+      "Apr": "inches",
+      "May": "inches",
+      "Jun": "inches",
+      "Jul": "inches",
+      "Aug": "inches",
+      "Sep": "inches",
+      "Oct": "inches",
+      "Nov": "inches",
+      "Dec": "inches",
+      "Annual": "inches"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 11,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Sample Date in water-body-testing files needs to be parsed to extract month and year.",
+      "monthly_precipitations files have missing values."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Years should be between 2007 and 2009.",
+      "Months should be June, July, or August.",
+      "Beach Type Description should be either 'Fresh' or 'Marine'."
+    ],
+    "derived_filters": [
+      "Exceedance Rate = Number of Violations / Total Number of Samples for each month and beach type."
+    ],
+    "statistical_tests": [
+      "Pearson correlation coefficient between monthly rainfall and exceedance rate."
+    ],
+    "output_format_requirements": [
+      "Output should be either 'Freshwater' or 'Marine'."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Comparison of correlation between monthly rainfall and exceedance rate for freshwater vs. marine beaches from 2007-2009 during summer months (Jun, Jul, Aug)\",\n    \"filters\": [\n      \"Year between 2007 and 2009 (inclusive)\",\n      \"Months: June, July, August\",\n      \"Beach Type: Fresh water or Marine\",\n      \"Regions for Fresh water beaches: Boston, Chatham, Amherst, Ashburnham\",\n      \"Regions for Marine beaches: Boston, Chatham\"\n    ],\n    \"grouping_variables\": [\n      \"Beach Type (Freshwater, Marine)\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate monthly exceedance rate for each beach type.\",\n      \"Impute missing rainfall data with median of the month in non-missing years.\",\n      \"Calculate the correlation between monthly rainfall and exceedance rate for each beach type.\",\n      \"Compare the correlations and determine which beach type has a higher correlation.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"water-body-testing-2007.csv\",\n      \"water-body-testing-2008.csv\",\n      \"water-body-testing-2009.csv\",\n      \"monthly_precipitations_boston.csv\",\n      \"monthly_precipitations_chatham.csv\",\n      \"monthly_precipitations_amherst.csv\",\n      \"monthly_precipitations_ashburnham.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"water-body-testing-2007.csv\",\n        \"right_source\": \"water-body-testing-2008.csv\",\n        \"left_column\": \"Community\",\n        \"right_column\": \"Community\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"water-body-testing-2008.csv\",\n        \"right_source\": \"water-body-testing-2009.csv\",\n        \"left_column\": \"Community\",\n        \"right_column\": \"Community\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Indicator Level\": \"cfu/100mL\",\n      \"Jan\": \"inches\",\n      \"Feb\": \"inches\",\n      \"Mar\": \"inches\",\n      \"Apr\": \"inches\",\n      \"May\": \"inches\",\n      \"Jun\": \"inches\",\n      \"Jul\": \"inches\",\n      \"Aug\": \"inches\",\n      \"Sep\": \"inches\",\n      \"Oct\": \"inches\",\n      \"Nov\": \"inches\",\n      \"Dec\": \"inches\",\n      \"Annual\": \"inches\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 11,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Sample Date in water-body-testing files needs to be parsed to extract month and year.\",\n      \"monthly_precipitations files have missing values.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Years should be between 2007 and 2009.\",\n      \"Months should be June, July, or August.\",\n      \"Beach Type Description should be either 'Fresh' or 'Marine'.\"\n    ],\n    \"derived_filters\": [\n      \"Exceedance Rate = Number of Violations / Total Number of Samples for each month and beach type.\"\n    ],\n    \"statistical_tests\": [\n      \"Pearson correlation coefficient between monthly rainfall and exceedance rate.\"\n    ],\n    \"output_format_requirements\": [\n      \"Output should be either 'Freshwater' or 'Marine'.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 34.779009103775024,
+  "token_usage": {}
+}

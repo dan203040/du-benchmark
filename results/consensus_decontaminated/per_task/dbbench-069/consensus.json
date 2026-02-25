@@ -1,0 +1,313 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "sum of RR2 Pts.",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "sum of RR2 Pts.",
+        "total number of RR2 Pts.",
+        "Sum of 'RR2 Pts.' where 'Won' is equal to 11"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Won = 11",
+        "Filter rows where 'Won' equals 11"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Won = 11"
+        ],
+        [
+          "Won = 11"
+        ],
+        [
+          "Filter rows where 'Won' equals 11"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Identify rows where Won column equals 11",
+        "Extract RR2 Pts. values from those rows",
+        "Sum the RR2 Pts. values",
+        "Which teams have Won = 11?",
+        "What are the RR2 Pts. values for teams with Won = 11?",
+        "Sum all RR2 Pts. values where Won = 11"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Identify rows where Won column equals 11",
+          "Extract RR2 Pts. values from those rows",
+          "Sum the RR2 Pts. values"
+        ],
+        [
+          "Which teams have Won = 11?",
+          "What are the RR2 Pts. values for teams with Won = 11?",
+          "Sum all RR2 Pts. values where Won = 11"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "team_racing_results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "team_racing_results"
+        ],
+        [
+          "team_racing_results"
+        ],
+        [
+          "team_racing_results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "All columns are stored as object dtype despite containing numeric data"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All columns are stored as object dtype despite containing numeric data"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "rr2 pts.": "points",
+        "won": "race wins count",
+        "races": "count",
+        "rr1 pts.": "points",
+        "rr3 pts.": "points",
+        "total pts.": "points",
+        "ranking": "ordinal"
+      },
+      "confidence": 0.42857142857142855,
+      "votes": [
+        {
+          "RR2 Pts.": "points",
+          "Won": "race wins count"
+        },
+        {
+          "Races": "count",
+          "Won": "count",
+          "RR1 Pts.": "points",
+          "RR2 Pts.": "points",
+          "RR3 Pts.": "points",
+          "Total Pts.": "points",
+          "Ranking": "ordinal"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Won column contains numeric values but stored as object dtype",
+        "RR2 Pts. column contains numeric values but stored as object dtype"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Won column contains numeric values but stored as object dtype",
+          "RR2 Pts. column contains numeric values but stored as object dtype"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 8.0,
+      "confidence": 1.0,
+      "votes": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Won values should be integers",
+        "RR2 Pts. values should be numeric",
+        "Each team appears only once in the dataset",
+        "Won column must be converted to numeric for filtering",
+        "RR2 Pts. column must be converted to numeric for summation",
+        "Filter condition: Won == 11",
+        "The columns 'Won' and 'RR2 Pts.' should be of numeric type for filtering and summation."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Won values should be integers",
+          "RR2 Pts. values should be numeric",
+          "Each team appears only once in the dataset"
+        ],
+        [
+          "Won column must be converted to numeric for filtering",
+          "RR2 Pts. column must be converted to numeric for summation",
+          "Filter condition: Won == 11"
+        ],
+        [
+          "The columns 'Won' and 'RR2 Pts.' should be of numeric type for filtering and summation."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Won column equals '11' (string representation due to object dtype)",
+        "CAST(Won AS INTEGER) = 11"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Won column equals '11' (string representation due to object dtype)"
+        ],
+        [
+          "CAST(Won AS INTEGER) = 11"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Type conversion needed: Won and RR2 Pts. columns must be converted to numeric types"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Type conversion needed: Won and RR2 Pts. columns must be converted to numeric types"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single numeric value representing total RR2 points",
+        "Return a single scalar numeric value representing the total",
+        "Sum of all RR2 Pts. where Won equals 11"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single numeric value representing total RR2 points"
+        ],
+        [
+          "Return a single scalar numeric value representing the total",
+          "Sum of all RR2 Pts. where Won equals 11"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5797619047619049
+}

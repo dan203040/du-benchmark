@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "minimum year of birth among all players",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the minimum value in the 'Year born' column?",
+      "Which player has the earliest birth year?",
+      "Are there any missing or invalid birth years that need to be handled?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Players"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Height": "meters",
+      "Year born": "year"
+    },
+    "scale_issues": [
+      "Year born is stored as object/string instead of integer",
+      "Height values use decimal notation with '.' as decimal separator"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain spaces (e.g., 'Year born', 'Current Club')",
+      "Player names contain special characters (e.g., \u0160ar\u016bnas Jasikevi\u010dius)",
+      "Sample shows 21 rows but only 20 displayed"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year born values should be valid integers representing years",
+      "Year born should be within reasonable range (e.g., 1900-2024)",
+      "Each player should have exactly one birth year"
+    ],
+    "derived_filters": [
+      "Exclude rows where 'Year born' is null or non-numeric",
+      "Consider only valid year values"
+    ],
+    "statistical_tests": [
+      "Check for outliers in 'Year born' column",
+      "Verify distribution of birth years"
+    ],
+    "output_format_requirements": [
+      "Output should be a single integer year",
+      "Consider whether to output just the year or include player information"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"minimum year of birth among all players\",\n        \"filters\": [],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the minimum value in the 'Year born' column?\", \"Which player has the earliest birth year?\", \"Are there any missing or invalid birth years that need to be handled?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Basketball Players\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Height\": \"meters\", \"Year born\": \"year\"},\n        \"scale_issues\": [\"Year born is stored as object/string instead of integer\", \"Height values use decimal notation with '.' as decimal separator\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names contain spaces (e.g., 'Year born', 'Current Club')\", \"Player names contain special characters (e.g., \u0160ar\u016bnas Jasikevi\u010dius)\", \"Sample shows 21 rows but only 20 displayed\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year born values should be valid integers representing years\", \"Year born should be within reasonable range (e.g., 1900-2024)\", \"Each player should have exactly one birth year\"],\n        \"derived_filters\": [\"Exclude rows where 'Year born' is null or non-numeric\", \"Consider only valid year values\"],\n        \"statistical_tests\": [\"Check for outliers in 'Year born' column\", \"Verify distribution of birth years\"],\n        \"output_format_requirements\": [\"Output should be a single integer year\", \"Consider whether to output just the year or include player information\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.329554796218872,
+  "token_usage": {
+    "input_tokens": 1063,
+    "output_tokens": 462
+  }
+}

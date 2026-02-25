@@ -1,0 +1,312 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "lowest game number where the score is 108-85",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "lowest game number where the score is 108-85",
+        "Game number with the lowest value where the Score is 108-85",
+        "The lowest game number where the score was 108-85"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Score = '108-85'",
+        "Score equals '108-85'",
+        "Score is exactly '108-85'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score = '108-85'"
+        ],
+        [
+          "Score equals '108-85'"
+        ],
+        [
+          "Score is exactly '108-85'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the Game number when Score equals '108-85'?",
+        "Is there only one game with score 108-85?",
+        "Which game has the lowest Game number among those with score 108-85?",
+        "Which rows have Score = '108-85'?",
+        "What is the Game value for the row with Score = '108-85'?",
+        "If multiple games have Score = '108-85', what is the minimum Game number?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What is the Game number when Score equals '108-85'?",
+          "Is there only one game with score 108-85?",
+          "Which game has the lowest Game number among those with score 108-85?"
+        ],
+        [
+          "Which rows have Score = '108-85'?",
+          "What is the Game value for the row with Score = '108-85'?",
+          "If multiple games have Score = '108-85', what is the minimum Game number?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "game score"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "game score"
+        ],
+        [
+          "game score"
+        ],
+        [
+          "game score"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "game": "game number",
+        "score": "team_score-opponent_score",
+        "date": "date_string",
+        "record": "wins-losses"
+      },
+      "confidence": 0.49999999999999994,
+      "votes": [
+        {
+          "Game": "game number",
+          "Score": "team_score-opponent_score"
+        },
+        {
+          "Game": "game_number",
+          "Date": "date_string",
+          "Score": "points_home-points_away",
+          "Record": "wins-losses"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Score column contains combined score values (e.g., '108-85') that need parsing",
+        "Date values have inconsistent formatting with day abbreviations and month abbreviations"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Score column contains combined score values (e.g., '108-85') that need parsing",
+          "Date values have inconsistent formatting with day abbreviations and month abbreviations"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Game numbers should be unique",
+        "Score should follow pattern 'XXX-XXX' or 'XXX-XXX (OT)'",
+        "Record should follow pattern 'XX-XX'",
+        "Game column should be convertible to integer for comparison",
+        "Score must match exactly '108-85' format",
+        "At least one record should match the filter condition",
+        "The 'Game' column should be numeric or convertible to numeric for comparison."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Game numbers should be unique",
+          "Score should follow pattern 'XXX-XXX' or 'XXX-XXX (OT)'",
+          "Record should follow pattern 'XX-XX'"
+        ],
+        [
+          "Game column should be convertible to integer for comparison",
+          "Score must match exactly '108-85' format",
+          "At least one record should match the filter condition"
+        ],
+        [
+          "The 'Game' column should be numeric or convertible to numeric for comparison."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Score column exactly matches '108-85'",
+        "Extract numeric Game value from filtered rows",
+        "Filter rows where Score = '108-85'",
+        "Extract Game values from filtered rows",
+        "Find minimum Game number"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Score column exactly matches '108-85'",
+          "Extract numeric Game value from filtered rows"
+        ],
+        [
+          "Filter rows where Score = '108-85'",
+          "Extract Game values from filtered rows",
+          "Find minimum Game number"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if only one row has Score = '108-85'",
+        "Verify Game numbers are sequential"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if only one row has Score = '108-85'",
+          "Verify Game numbers are sequential"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return single integer value representing the Game number",
+        "If multiple games have score 108-85, return the minimum Game number",
+        "Return the Game number as an integer or numeric value",
+        "If no match found, indicate no result",
+        "If multiple matches, return the lowest Game number"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return single integer value representing the Game number",
+          "If multiple games have score 108-85, return the minimum Game number"
+        ],
+        [
+          "Return the Game number as an integer or numeric value",
+          "If no match found, indicate no result",
+          "If multiple matches, return the lowest Game number"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5416666666666667
+}

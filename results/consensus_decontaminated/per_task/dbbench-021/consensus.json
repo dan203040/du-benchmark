@@ -1,0 +1,293 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "count of locomotives with operational status",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "count of locomotives with operational status",
+        "count of locomotives",
+        "Count of locomotives with 'Operational' status"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Status = 'Operational'",
+        "Status == 'Operational'"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Status = 'Operational'"
+        ],
+        [
+          "Status == 'Operational'"
+        ],
+        [
+          "Status = 'Operational'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What does 'Operational' status mean in this dataset?",
+        "Are there any locomotives with ambiguous operational status?",
+        "Should locomotives 'Under restoration' or 'Under Repair' be considered operational?",
+        "What values exist in the Status column?",
+        "How many rows have Status equal to 'Operational'?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What does 'Operational' status mean in this dataset?",
+          "Are there any locomotives with ambiguous operational status?",
+          "Should locomotives 'Under restoration' or 'Under Repair' be considered operational?"
+        ],
+        [
+          "What values exist in the Status column?",
+          "How many rows have Status equal to 'Operational'?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Locomotive Inventory"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Locomotive Inventory"
+        ],
+        [
+          "Locomotive Inventory"
+        ],
+        [
+          "Locomotive Inventory"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "number": "locomotive identifier",
+        "status": "categorical status"
+      },
+      "confidence": 0.3333333333333333,
+      "votes": [
+        {},
+        {
+          "Number": "locomotive identifier",
+          "Status": "categorical status"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Status column contains categorical values that need consistent interpretation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Status column contains categorical values that need consistent interpretation"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "~",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.5833333333333333,
+      "votes": [
+        [
+          "",
+          "~"
+        ],
+        [
+          "~",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Status column must contain consistent values",
+        "Each locomotive should have a unique identifier (Number or Name)",
+        "Status column must contain valid operational states",
+        "Each row represents one locomotive",
+        "The 'Status' column must contain a valid status value (e.g., Operational, Under Repair, Stored, Static Display)."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Status column must contain consistent values",
+          "Each locomotive should have a unique identifier (Number or Name)"
+        ],
+        [
+          "Status column must contain valid operational states",
+          "Each row represents one locomotive"
+        ],
+        [
+          "The 'Status' column must contain a valid status value (e.g., Operational, Under Repair, Stored, Static Display)."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude rows where Status is not 'Operational'",
+        "Consider if 'Under restoration' or 'Under Repair' should be excluded",
+        "Filter rows where Status equals 'Operational' (case-sensitive)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude rows where Status is not 'Operational'",
+          "Consider if 'Under restoration' or 'Under Repair' should be excluded"
+        ],
+        [
+          "Filter rows where Status equals 'Operational' (case-sensitive)"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct values in Status column",
+        "Check for missing values in Status column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct values in Status column",
+          "Check for missing values in Status column"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Should include locomotives with empty Number but valid Name",
+        "Return a single integer count",
+        "Count only locomotives with Status='Operational'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count",
+          "Should include locomotives with empty Number but valid Name"
+        ],
+        [
+          "Return a single integer count",
+          "Count only locomotives with Status='Operational'"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5375000000000002
+}

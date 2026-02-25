@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "Player(s) with the minimum number of matches where Runs equals 276",
+    "filters": [
+      "Runs = 276"
+    ],
+    "grouping_variables": [
+      "Player",
+      "Team"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which players have exactly 276 runs?",
+      "Among those players, who has the smallest Matches value?",
+      "If multiple players have the same minimum Matches, list all of them"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Cricket Bowling Statistics"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Overs": "cricket overs (e.g., 44 means 44 overs, 34.1 means 34 overs and 1 ball)",
+      "Runs": "runs conceded",
+      "Wickets": "wickets taken",
+      "Econ": "economy rate (runs per over)",
+      "S/Rate": "bowling strike rate (balls per wicket)",
+      "Average": "bowling average (runs per wicket)"
+    },
+    "scale_issues": [
+      "All columns are stored as object/string dtypes, numerical columns need conversion for calculations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 12,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Sample shows 9 rows but shape indicates 9 rows total",
+      "Numerical values appear as strings in sample"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Runs column must be convertible to numeric",
+      "Matches column must be convertible to numeric",
+      "Only consider rows where Runs equals exactly 276"
+    ],
+    "derived_filters": [
+      "Filter dataset to rows where Runs == 276",
+      "Among filtered rows, find minimum Matches value",
+      "Return all rows with that minimum Matches value"
+    ],
+    "statistical_tests": [
+      "Check for duplicate player entries",
+      "Verify Runs values are consistent numeric format"
+    ],
+    "output_format_requirements": [
+      "Output should be list of player names",
+      "Include Team information if multiple players have same minimum matches"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Player(s) with the minimum number of matches where Runs equals 276\",\n        \"filters\": [\"Runs = 276\"],\n        \"grouping_variables\": [\"Player\", \"Team\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which players have exactly 276 runs?\", \"Among those players, who has the smallest Matches value?\", \"If multiple players have the same minimum Matches, list all of them\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Cricket Bowling Statistics\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Overs\": \"cricket overs (e.g., 44 means 44 overs, 34.1 means 34 overs and 1 ball)\",\n            \"Runs\": \"runs conceded\",\n            \"Wickets\": \"wickets taken\",\n            \"Econ\": \"economy rate (runs per over)\",\n            \"S/Rate\": \"bowling strike rate (balls per wicket)\",\n            \"Average\": \"bowling average (runs per wicket)\"\n        },\n        \"scale_issues\": [\"All columns are stored as object/string dtypes, numerical columns need conversion for calculations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 12,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Sample shows 9 rows but shape indicates 9 rows total\", \"Numerical values appear as strings in sample\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Runs column must be convertible to numeric\", \"Matches column must be convertible to numeric\", \"Only consider rows where Runs equals exactly 276\"],\n        \"derived_filters\": [\"Filter dataset to rows where Runs == 276\", \"Among filtered rows, find minimum Matches value\", \"Return all rows with that minimum Matches value\"],\n        \"statistical_tests\": [\"Check for duplicate player entries\", \"Verify Runs values are consistent numeric format\"],\n        \"output_format_requirements\": [\"Output should be list of player names\", \"Include Team information if multiple players have same minimum matches\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.896450757980347,
+  "token_usage": {
+    "input_tokens": 1033,
+    "output_tokens": 538
+  }
+}

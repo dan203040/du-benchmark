@@ -1,0 +1,104 @@
+{
+  "m_q": {
+    "target_metric": "Geographic area with the most anomalous year by Z-score of total acres burned compared to its historical annual average",
+    "filters": [],
+    "grouping_variables": [
+      "geographic_area",
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total acres burned per geographic area per year (sum of human-caused and lightning-caused)?",
+      "What is the historical annual average of total acres burned for each geographic area?",
+      "What is the standard deviation of annual acres burned for each geographic area?",
+      "What is the Z-score for each geographic area-year combination?",
+      "Which geographic area-year combination has the maximum absolute Z-score?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "nifc_human_caused_acres.csv",
+      "nifc_lightning_caused_acres.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "nifc_human_caused_acres.csv",
+        "right_source": "nifc_lightning_caused_acres.csv",
+        "left_column": "Year",
+        "right_column": "Year",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Column name mismatch: 'Western Great Basin' in human-caused vs 'Western Great Basin*' in lightning-caused"
+    ],
+    "column_mappings": {
+      "Western Great Basin*": "Western Great Basin"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Alaska": "acres",
+      "Northwest": "acres",
+      "Northern California": "acres",
+      "Southern California": "acres",
+      "Northern Rockies": "acres",
+      "Great Basin": "acres",
+      "Western Great Basin": "acres",
+      "Southwest": "acres",
+      "Rocky Mountains": "acres",
+      "Eastern Area": "acres",
+      "Southern Area": "acres",
+      "Total": "acres"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": [
+      "Human-caused 2020 Alaska value (180885) equals lightning-caused 2020 Alaska value, suggesting potential data duplication"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 13,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Western Great Basin column has missing values (empty strings) in recent years",
+      "Year 38 appears in lightning-caused data (likely should be 2018)",
+      "Both files have same structure with Year and 11 geographic areas plus Total"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be valid years (2005-2024 range expected)",
+      "Acres burned values should be non-negative",
+      "Z-score calculation requires at least 2 data points per geographic area"
+    ],
+    "derived_filters": [
+      "Exclude 'Total' column from geographic area analysis to avoid double-counting",
+      "Handle Year 38 anomaly in lightning-caused data"
+    ],
+    "statistical_tests": [
+      "Calculate Z-score = (value - mean) / standard_deviation for each geographic area across all years",
+      "Identify maximum absolute Z-score across all geographic area-year combinations"
+    ],
+    "output_format_requirements": [
+      "Output format: <geographic_area>, <year>",
+      "Geographic area should match column name from source data",
+      "Year should be 4-digit integer"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Geographic area with the most anomalous year by Z-score of total acres burned compared to its historical annual average\",\n    \"filters\": [],\n    \"grouping_variables\": [\"geographic_area\", \"Year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total acres burned per geographic area per year (sum of human-caused and lightning-caused)?\",\n      \"What is the historical annual average of total acres burned for each geographic area?\",\n      \"What is the standard deviation of annual acres burned for each geographic area?\",\n      \"What is the Z-score for each geographic area-year combination?\",\n      \"Which geographic area-year combination has the maximum absolute Z-score?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"nifc_human_caused_acres.csv\", \"nifc_lightning_caused_acres.csv\"],\n    \"join_keys\": [\n      {\n        \"left_source\": \"nifc_human_caused_acres.csv\",\n        \"right_source\": \"nifc_lightning_caused_acres.csv\",\n        \"left_column\": \"Year\",\n        \"right_column\": \"Year\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"Column name mismatch: 'Western Great Basin' in human-caused vs 'Western Great Basin*' in lightning-caused\"\n    ],\n    \"column_mappings\": {\n      \"Western Great Basin*\": \"Western Great Basin\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Alaska\": \"acres\",\n      \"Northwest\": \"acres\",\n      \"Northern California\": \"acres\",\n      \"Southern California\": \"acres\",\n      \"Northern Rockies\": \"acres\",\n      \"Great Basin\": \"acres\",\n      \"Western Great Basin\": \"acres\",\n      \"Southwest\": \"acres\",\n      \"Rocky Mountains\": \"acres\",\n      \"Eastern Area\": \"acres\",\n      \"Southern Area\": \"acres\",\n      \"Total\": \"acres\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": [\n      \"Human-caused 2020 Alaska value (180885) equals lightning-caused 2020 Alaska value, suggesting potential data duplication\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 13,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Western Great Basin column has missing values (empty strings) in recent years\",\n      \"Year 38 appears in lightning-caused data (likely should be 2018)\",\n      \"Both files have same structure with Year and 11 geographic areas plus Total\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year values should be valid years (2005-2024 range expected)\",\n      \"Acres burned values should be non-negative\",\n      \"Z-score calculation requires at least 2 data points per geographic area\"\n    ],\n    \"derived_filters\": [\n      \"Exclude 'Total' column from geographic area analysis to avoid double-counting\",\n      \"Handle Year 38 anomaly in lightning-caused data\"\n    ],\n    \"statistical_tests\": [\n      \"Calculate Z-score = (value - mean) / standard_deviation for each geographic area across all years\",\n      \"Identify maximum absolute Z-score across all geographic area-year combinations\"\n    ],\n    \"output_format_requirements\": [\n      \"Output format: <geographic_area>, <year>\",\n      \"Geographic area should match column name from source data\",\n      \"Year should be 4-digit integer\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 14.57383394241333,
+  "token_usage": {
+    "input_tokens": 2680,
+    "output_tokens": 941
+  }
+}

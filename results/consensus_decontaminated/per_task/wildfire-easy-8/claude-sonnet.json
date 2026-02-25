@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Count of fires by cause category for fires impacting above 100 acres",
+    "filters": [
+      "gt_100 == 1"
+    ],
+    "grouping_variables": [
+      "cause"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many fires with gt_100 == 1 were caused by lightning?",
+      "How many fires with gt_100 == 1 were caused by humans?",
+      "Which cause category (lightning or human) has the higher count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Fire_Weather_Data_2002-2014_2016.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "gt_100": "binary indicator (1=fire impacted above 100 acres, 0=otherwise)",
+      "cause": "categorical fire cause code"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "cause column contains single letter codes",
+      "gt_100 is binary integer (0 or 1)",
+      "Sample shows cause values: U, N, H, L"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "gt_100 must equal 1",
+      "cause values must be mapped to 'Lightning' or 'Human' categories"
+    ],
+    "derived_filters": [
+      "Filter rows where gt_100 == 1",
+      "Map cause 'L' to Lightning category",
+      "Map cause 'H' to Human category",
+      "Determine mapping for other cause codes (U, N, etc.)"
+    ],
+    "statistical_tests": [
+      "Compare count of Lightning-caused fires vs Human-caused fires where gt_100 == 1"
+    ],
+    "output_format_requirements": [
+      "Return only the word 'Lightning' or 'Human'",
+      "No explanation or additional text",
+      "Return the cause category with higher count of fires impacting above 100 acres"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of fires by cause category for fires impacting above 100 acres\",\n    \"filters\": [\"gt_100 == 1\"],\n    \"grouping_variables\": [\"cause\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many fires with gt_100 == 1 were caused by lightning?\",\n      \"How many fires with gt_100 == 1 were caused by humans?\",\n      \"Which cause category (lightning or human) has the higher count?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Fire_Weather_Data_2002-2014_2016.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"gt_100\": \"binary indicator (1=fire impacted above 100 acres, 0=otherwise)\",\n      \"cause\": \"categorical fire cause code\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\", \"N/A\"],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"cause column contains single letter codes\",\n      \"gt_100 is binary integer (0 or 1)\",\n      \"Sample shows cause values: U, N, H, L\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"gt_100 must equal 1\",\n      \"cause values must be mapped to 'Lightning' or 'Human' categories\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where gt_100 == 1\",\n      \"Map cause 'L' to Lightning category\",\n      \"Map cause 'H' to Human category\",\n      \"Determine mapping for other cause codes (U, N, etc.)\"\n    ],\n    \"statistical_tests\": [\n      \"Compare count of Lightning-caused fires vs Human-caused fires where gt_100 == 1\"\n    ],\n    \"output_format_requirements\": [\n      \"Return only the word 'Lightning' or 'Human'\",\n      \"No explanation or additional text\",\n      \"Return the cause category with higher count of fires impacting above 100 acres\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.45746898651123,
+  "token_usage": {
+    "input_tokens": 3544,
+    "output_tokens": 632
+  }
+}

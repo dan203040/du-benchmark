@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "Top 3 states with the largest decrease in residential property value between 2005 and 2010",
+    "filters": [
+      "start_year between 2005 and 2010 (inclusive)"
+    ],
+    "grouping_variables": [
+      "state"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Calculate the total residential property value for each state in 2005.",
+      "Calculate the total residential property value for each state in 2010.",
+      "Calculate the difference in total residential property value between 2005 and 2010 for each state.",
+      "Identify the top 3 states with the largest negative difference in residential property value."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "state_abbreviation_to_state.json"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "state_abbreviation_to_state.json",
+        "left_column": "state",
+        "right_column": "AK",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "prim_threatened_aggregate": "residential_property_value",
+      "state": "state_abbreviation"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "prim_threatened_aggregate": "number of houses"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'state' column in noaa_wildfires.csv contains state abbreviations. Need to map to full state names using state_abbreviation_to_state.json.",
+      "Residential property value is represented by 'prim_threatened_aggregate' column (number of houses at risk).",
+      "Missing values in 'prim_threatened_aggregate' should not be discarded if possible."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a list of 3 state full names."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Top 3 states with the largest decrease in residential property value between 2005 and 2010\",\n    \"filters\": [\n      \"start_year between 2005 and 2010 (inclusive)\"\n    ],\n    \"grouping_variables\": [\n      \"state\"\n    ],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Calculate the total residential property value for each state in 2005.\",\n      \"Calculate the total residential property value for each state in 2010.\",\n      \"Calculate the difference in total residential property value between 2005 and 2010 for each state.\",\n      \"Identify the top 3 states with the largest negative difference in residential property value.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"noaa_wildfires.csv\",\n      \"state_abbreviation_to_state.json\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"noaa_wildfires.csv\",\n        \"right_source\": \"state_abbreviation_to_state.json\",\n        \"left_column\": \"state\",\n        \"right_column\": \"AK\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"prim_threatened_aggregate\": \"residential_property_value\",\n      \"state\": \"state_abbreviation\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"prim_threatened_aggregate\": \"number of houses\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 37,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'state' column in noaa_wildfires.csv contains state abbreviations. Need to map to full state names using state_abbreviation_to_state.json.\",\n      \"Residential property value is represented by 'prim_threatened_aggregate' column (number of houses at risk).\",\n      \"Missing values in 'prim_threatened_aggregate' should not be discarded if possible.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a list of 3 state full names.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 6.4646289348602295,
+  "token_usage": {}
+}

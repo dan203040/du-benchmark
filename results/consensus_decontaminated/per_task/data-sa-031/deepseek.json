@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "95% confidence interval for the reduction in deaths due to handwashing",
+    "filters": [
+      "handwashing intervention periods",
+      "relevant death records"
+    ],
+    "grouping_variables": [
+      "handwashing status (before/after intervention)"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "What is the mean reduction in deaths?",
+      "What is the bootstrap distribution of death reduction?",
+      "What are the 2.5th and 97.5th percentiles of the bootstrap distribution?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "result.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Missing actual data files containing death records and handwashing intervention data"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Lower Bound": "number of deaths reduced",
+      "Upper Bound": "number of deaths reduced"
+    },
+    "scale_issues": [
+      "Unknown scale of death counts (absolute numbers or rates?)"
+    ],
+    "cross_source_conflicts": [
+      "Only result.csv provided - missing source data for bootstrap analysis"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Empty result file provided (0 rows)",
+      "Columns: Lower Bound, Upper Bound",
+      "Dtypes show object type - likely need numeric conversion"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Need death data before and after handwashing intervention",
+      "Need sufficient sample size for bootstrap resampling",
+      "Confidence interval must be 95%"
+    ],
+    "derived_filters": [
+      "Exclude missing death records",
+      "Match time periods for comparison"
+    ],
+    "statistical_tests": [
+      "Bootstrap resampling (typically 1000+ iterations)",
+      "Percentile method for confidence interval"
+    ],
+    "output_format_requirements": [
+      "CSV file named result.csv",
+      "Two columns: Lower Bound, Upper Bound",
+      "Single row with confidence interval bounds"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"95% confidence interval for the reduction in deaths due to handwashing\",\n        \"filters\": [\"handwashing intervention periods\", \"relevant death records\"],\n        \"grouping_variables\": [\"handwashing status (before/after intervention)\"],\n        \"output_cardinality\": \"table\",\n        \"sub_questions\": [\"What is the mean reduction in deaths?\", \"What is the bootstrap distribution of death reduction?\", \"What are the 2.5th and 97.5th percentiles of the bootstrap distribution?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"result.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"Missing actual data files containing death records and handwashing intervention data\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Lower Bound\": \"number of deaths reduced\", \"Upper Bound\": \"number of deaths reduced\"},\n        \"scale_issues\": [\"Unknown scale of death counts (absolute numbers or rates?)\"],\n        \"cross_source_conflicts\": [\"Only result.csv provided - missing source data for bootstrap analysis\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Empty result file provided (0 rows)\", \"Columns: Lower Bound, Upper Bound\", \"Dtypes show object type - likely need numeric conversion\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Need death data before and after handwashing intervention\", \"Need sufficient sample size for bootstrap resampling\", \"Confidence interval must be 95%\"],\n        \"derived_filters\": [\"Exclude missing death records\", \"Match time periods for comparison\"],\n        \"statistical_tests\": [\"Bootstrap resampling (typically 1000+ iterations)\", \"Percentile method for confidence interval\"],\n        \"output_format_requirements\": [\"CSV file named result.csv\", \"Two columns: Lower Bound, Upper Bound\", \"Single row with confidence interval bounds\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.98715591430664,
+  "token_usage": {
+    "input_tokens": 573,
+    "output_tokens": 477
+  }
+}

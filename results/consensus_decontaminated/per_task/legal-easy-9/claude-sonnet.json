@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Year with greatest relative increase (percentage change) in total reports compared to previous year",
+    "filters": [
+      "Year >= 2002",
+      "Year <= 2024"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total number of reports for each year from 2002 to 2024?",
+      "What is the year-over-year absolute change in reports for each consecutive year pair?",
+      "What is the year-over-year relative (percentage) change in reports for each consecutive year pair?",
+      "Which year has the maximum relative increase compared to its previous year?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "# of Reports": "num_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "calendar year (integer)",
+      "# of Reports": "count (integer)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Data contains float64 types but represents integer values (years and counts)",
+      "Year 2001 is present in data but should be excluded per filter requirements"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be between 2002 and 2024 inclusive",
+      "Previous year data must exist to calculate relative increase (2002 requires 2001 data)",
+      "# of Reports must be positive and non-zero for valid percentage calculation"
+    ],
+    "derived_filters": [
+      "Filter out Year = 2001 from final analysis (but retain for calculating 2002's increase)",
+      "Only consider years from 2002 to 2024 as candidates for greatest increase"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the specific year (between 2002-2024) with the greatest relative increase",
+      "Relative increase calculated as: ((current_year - previous_year) / previous_year) * 100"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Year with greatest relative increase (percentage change) in total reports compared to previous year\",\n    \"filters\": [\"Year >= 2002\", \"Year <= 2024\"],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total number of reports for each year from 2002 to 2024?\",\n      \"What is the year-over-year absolute change in reports for each consecutive year pair?\",\n      \"What is the year-over-year relative (percentage) change in reports for each consecutive year pair?\",\n      \"Which year has the maximum relative increase compared to its previous year?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Report_Count.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"# of Reports\": \"num_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"calendar year (integer)\",\n      \"# of Reports\": \"count (integer)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Data contains float64 types but represents integer values (years and counts)\",\n      \"Year 2001 is present in data but should be excluded per filter requirements\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must be between 2002 and 2024 inclusive\",\n      \"Previous year data must exist to calculate relative increase (2002 requires 2001 data)\",\n      \"# of Reports must be positive and non-zero for valid percentage calculation\"\n    ],\n    \"derived_filters\": [\n      \"Filter out Year = 2001 from final analysis (but retain for calculating 2002's increase)\",\n      \"Only consider years from 2002 to 2024 as candidates for greatest increase\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the specific year (between 2002-2024) with the greatest relative increase\",\n      \"Relative increase calculated as: ((current_year - previous_year) / previous_year) * 100\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.93694806098938,
+  "token_usage": {
+    "input_tokens": 863,
+    "output_tokens": 649
+  }
+}

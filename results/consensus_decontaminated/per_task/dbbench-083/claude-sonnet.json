@@ -1,0 +1,70 @@
+{
+  "m_q": {
+    "target_metric": "The minimum value in the 'Games played' column",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What are all the values in the 'Games played' column?",
+      "What is the minimum of those values?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_standings"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Games played": "count",
+      "Wins": "count",
+      "Draws": "count",
+      "Loses": "count",
+      "Goals scored": "count",
+      "Goals conceded": "count",
+      "Points": "count"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 9,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All columns are stored as 'object' dtype instead of numeric types",
+      "Position column contains numeric values but is stored as object",
+      "Games played, Wins, Draws, Loses, Goals scored, Goals conceded, and Points should be numeric but are stored as object"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Games played should be a positive integer",
+      "Games played = Wins + Draws + Loses",
+      "All numeric columns should be non-negative integers"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer value representing the minimum number of games played"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"The minimum value in the 'Games played' column\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What are all the values in the 'Games played' column?\",\n      \"What is the minimum of those values?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"football_standings\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Games played\": \"count\",\n      \"Wins\": \"count\",\n      \"Draws\": \"count\",\n      \"Loses\": \"count\",\n      \"Goals scored\": \"count\",\n      \"Goals conceded\": \"count\",\n      \"Points\": \"count\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 9,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All columns are stored as 'object' dtype instead of numeric types\",\n      \"Position column contains numeric values but is stored as object\",\n      \"Games played, Wins, Draws, Loses, Goals scored, Goals conceded, and Points should be numeric but are stored as object\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Games played should be a positive integer\",\n      \"Games played = Wins + Draws + Loses\",\n      \"All numeric columns should be non-negative integers\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer value representing the minimum number of games played\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.363157033920288,
+  "token_usage": {
+    "input_tokens": 1212,
+    "output_tokens": 512
+  }
+}

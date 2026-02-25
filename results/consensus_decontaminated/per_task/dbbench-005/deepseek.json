@@ -1,0 +1,83 @@
+{
+  "m_q": {
+    "target_metric": "List of leagues (excluding NPSL) that the NY men's soccer team has played in",
+    "filters": [
+      "League != 'NPSL'",
+      "Remove duplicate league entries"
+    ],
+    "grouping_variables": [
+      "League"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What distinct leagues appear in the data?",
+      "Which of those leagues are not NPSL?",
+      "Are there any leagues with incomplete or placeholder entries that should be excluded?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Soccer Team Performance Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "season/year",
+      "Division": "soccer division level"
+    },
+    "scale_issues": [
+      "Year column contains mixed formats: single years (2008) and year ranges (2010-11, 2016-17)",
+      "Some Regular Season values contain both ranking and conference information"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "N/A",
+      "Did not qualify",
+      "Did not enter",
+      "Season cancelled",
+      "In progress",
+      "Upcoming"
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Year column contains special characters (en dash) in year ranges",
+      "Regular Season column contains comma-separated ranking and conference data"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Each row represents one season/team performance",
+      "League column should contain valid league names",
+      "Division values should be integers 4 or 5 based on sample"
+    ],
+    "derived_filters": [
+      "Exclude rows where League = 'NPSL'",
+      "Exclude rows with placeholder league names if any"
+    ],
+    "statistical_tests": [
+      "Count distinct leagues",
+      "Verify no null values in League column for filtered rows"
+    ],
+    "output_format_requirements": [
+      "Alphabetical list of league names",
+      "Each league should appear only once"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"List of leagues (excluding NPSL) that the NY men's soccer team has played in\",\n        \"filters\": [\"League != 'NPSL'\", \"Remove duplicate league entries\"],\n        \"grouping_variables\": [\"League\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What distinct leagues appear in the data?\", \"Which of those leagues are not NPSL?\", \"Are there any leagues with incomplete or placeholder entries that should be excluded?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Soccer Team Performance Table\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Year\": \"season/year\", \"Division\": \"soccer division level\"},\n        \"scale_issues\": [\"Year column contains mixed formats: single years (2008) and year ranges (2010-11, 2016-17)\", \"Some Regular Season values contain both ranking and conference information\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"N/A\", \"Did not qualify\", \"Did not enter\", \"Season cancelled\", \"In progress\", \"Upcoming\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Year column contains special characters (en dash) in year ranges\", \"Regular Season column contains comma-separated ranking and conference data\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Each row represents one season/team performance\", \"League column should contain valid league names\", \"Division values should be integers 4 or 5 based on sample\"],\n        \"derived_filters\": [\"Exclude rows where League = 'NPSL'\", \"Exclude rows with placeholder league names if any\"],\n        \"statistical_tests\": [\"Count distinct leagues\", \"Verify no null values in League column for filtered rows\"],\n        \"output_format_requirements\": [\"Alphabetical list of league names\", \"Each league should appear only once\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 10.489145994186401,
+  "token_usage": {
+    "input_tokens": 945,
+    "output_tokens": 489
+  }
+}

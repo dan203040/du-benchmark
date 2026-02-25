@@ -1,0 +1,91 @@
+{
+  "m_q": {
+    "target_metric": "Number of Auto Related reports in 2007 if the category distribution matched 2024 proportions",
+    "filters": [
+      "Year == 2007"
+    ],
+    "grouping_variables": [
+      "Year",
+      "Category"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What was the total number of reports in 2007?",
+      "What is the percentage of Auto Related reports in 2024?",
+      "What is the calculated number of Auto Related reports for 2007 using 2024 percentage?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Report_Count.csv",
+      "2024_CSN_Report_Categories.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Both files have '# of Reports' column but represent different concepts (total vs category-specific)",
+      "No natural join key between files - relationship is implicit through 2024 data"
+    ],
+    "column_mappings": {
+      "# of Reports (2024_CSN_Report_Count.csv)": "Total_Reports_By_Year",
+      "# of Reports (2024_CSN_Report_Categories.csv)": "Category_Reports_2024"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count",
+      "Percentage": "percentage_string",
+      "Year": "year"
+    },
+    "scale_issues": [
+      "Percentage column in 2024_CSN_Report_Categories.csv is stored as string with '%' symbol, needs conversion to numeric"
+    ],
+    "cross_source_conflicts": [
+      "2024_CSN_Report_Categories.csv contains 2024 category distribution data",
+      "2024_CSN_Report_Count.csv contains historical yearly totals including 2007",
+      "No direct year linkage in category file"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "2024_CSN_Report_Count.csv has Year and # of Reports as float64",
+      "2024_CSN_Report_Categories.csv has Percentage as string with '%' suffix",
+      "2024_CSN_Report_Categories.csv implicitly represents 2024 data distribution"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must equal 2007 when filtering 2024_CSN_Report_Count.csv",
+      "Category must equal 'Auto Related' when filtering 2024_CSN_Report_Categories.csv",
+      "Percentage values must be converted from string format (e.g., '3.04%') to numeric decimal",
+      "Final result must be rounded to nearest integer"
+    ],
+    "derived_filters": [
+      "Extract 2007 total from 2024_CSN_Report_Count.csv where Year == 2007.0",
+      "Extract Auto Related percentage from 2024_CSN_Report_Categories.csv where Category == 'Auto Related'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Single integer value",
+      "Rounded to nearest integer",
+      "Result represents hypothetical Auto Related reports in 2007 using 2024 distribution"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of Auto Related reports in 2007 if the category distribution matched 2024 proportions\",\n    \"filters\": [\"Year == 2007\"],\n    \"grouping_variables\": [\"Year\", \"Category\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What was the total number of reports in 2007?\",\n      \"What is the percentage of Auto Related reports in 2024?\",\n      \"What is the calculated number of Auto Related reports for 2007 using 2024 percentage?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Report_Count.csv\", \"2024_CSN_Report_Categories.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Both files have '# of Reports' column but represent different concepts (total vs category-specific)\",\n      \"No natural join key between files - relationship is implicit through 2024 data\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports (2024_CSN_Report_Count.csv)\": \"Total_Reports_By_Year\",\n      \"# of Reports (2024_CSN_Report_Categories.csv)\": \"Category_Reports_2024\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\",\n      \"Percentage\": \"percentage_string\",\n      \"Year\": \"year\"\n    },\n    \"scale_issues\": [\n      \"Percentage column in 2024_CSN_Report_Categories.csv is stored as string with '%' symbol, needs conversion to numeric\"\n    ],\n    \"cross_source_conflicts\": [\n      \"2024_CSN_Report_Categories.csv contains 2024 category distribution data\",\n      \"2024_CSN_Report_Count.csv contains historical yearly totals including 2007\",\n      \"No direct year linkage in category file\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"2024_CSN_Report_Count.csv has Year and # of Reports as float64\",\n      \"2024_CSN_Report_Categories.csv has Percentage as string with '%' suffix\",\n      \"2024_CSN_Report_Categories.csv implicitly represents 2024 data distribution\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Year must equal 2007 when filtering 2024_CSN_Report_Count.csv\",\n      \"Category must equal 'Auto Related' when filtering 2024_CSN_Report_Categories.csv\",\n      \"Percentage values must be converted from string format (e.g., '3.04%') to numeric decimal\",\n      \"Final result must be rounded to nearest integer\"\n    ],\n    \"derived_filters\": [\n      \"Extract 2007 total from 2024_CSN_Report_Count.csv where Year == 2007.0\",\n      \"Extract Auto Related percentage from 2024_CSN_Report_Categories.csv where Category == 'Auto Related'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Single integer value\",\n      \"Rounded to nearest integer\",\n      \"Result represents hypothetical Auto Related reports in 2007 using 2024 distribution\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 14.102439880371094,
+  "token_usage": {
+    "input_tokens": 1307,
+    "output_tokens": 894
+  }
+}

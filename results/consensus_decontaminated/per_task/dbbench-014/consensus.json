@@ -1,0 +1,315 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Determine which team won the hockey game on December 9, 1993 between Dallas and Ottawa",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Determine which team won the hockey game on December 9, 1993 between Dallas and Ottawa",
+        "Determine which team (Dallas or Ottawa) won the game on December 9, 1993",
+        "The winning team of the hockey game played on December 9, 1993 between Dallas and Ottawa."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date = 'December 9, 1993'",
+        "Winning Team IN ('Dallas', 'Ottawa')",
+        "Losing Team IN ('Dallas', 'Ottawa')",
+        "Teams involved are Dallas and Ottawa",
+        "Date is December 9, 1993",
+        "Either Dallas or Ottawa is the Winning Team or the Losing Team"
+      ],
+      "confidence": 0.38888888888888884,
+      "votes": [
+        [
+          "Date = 'December 9, 1993'",
+          "Winning Team IN ('Dallas', 'Ottawa')",
+          "Losing Team IN ('Dallas', 'Ottawa')"
+        ],
+        [
+          "Date = 'December 9, 1993'",
+          "Teams involved are Dallas and Ottawa"
+        ],
+        [
+          "Date is December 9, 1993",
+          "Either Dallas or Ottawa is the Winning Team or the Losing Team"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What was the final score of the December 9, 1993 game?",
+        "Which team is listed as the winning team for that date?",
+        "Which team is in the 'Winning Team' column for the December 9, 1993 game?",
+        "Is Dallas the Winning Team or Losing Team for this game?",
+        "Is Ottawa the Winning Team or Losing Team for this game?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What was the final score of the December 9, 1993 game?",
+          "Which team is listed as the winning team for that date?"
+        ],
+        [
+          "Which team is in the 'Winning Team' column for the December 9, 1993 game?",
+          "Is Dallas the Winning Team or Losing Team for this game?",
+          "Is Ottawa the Winning Team or Losing Team for this game?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Hockey_Game_Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Hockey_Game_Results"
+        ],
+        [
+          "Hockey_Game_Results"
+        ],
+        [
+          "Hockey_Game_Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "winning team score": "goals",
+        "losing team score": "goals",
+        "attendance": "people"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Winning Team Score": "points",
+          "Losing Team Score": "points",
+          "Attendance": "people"
+        },
+        {
+          "Winning Team Score": "goals",
+          "Losing Team Score": "goals",
+          "Attendance": "number of people"
+        },
+        {
+          "Winning Team Score": "goals",
+          "Losing Team Score": "goals",
+          "Attendance": "people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Attendance column contains commas and asterisks in values (e.g., '7,144', '17,008*')"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Attendance column contains commas and asterisks in values (e.g., '7,144', '17,008*')"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 1.0,
+      "votes": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "For each row, Winning Team Score > Losing Team Score",
+        "Winning Team and Losing Team should be different teams",
+        "Date values should be valid dates",
+        "Date must match exactly 'December 9, 1993'",
+        "Either Dallas or Ottawa must appear in Winning Team column",
+        "Either Dallas or Ottawa must appear in Losing Team column",
+        "A game record must exist for this date with both teams",
+        "The date must be a valid date.",
+        "Winning Team and Losing Team must be different."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "For each row, Winning Team Score > Losing Team Score",
+          "Winning Team and Losing Team should be different teams",
+          "Date values should be valid dates"
+        ],
+        [
+          "Date must match exactly 'December 9, 1993'",
+          "Either Dallas or Ottawa must appear in Winning Team column",
+          "Either Dallas or Ottawa must appear in Losing Team column",
+          "A game record must exist for this date with both teams"
+        ],
+        [
+          "The date must be a valid date.",
+          "Winning Team and Losing Team must be different."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to rows where Date contains 'December 9, 1993'",
+        "Filter to rows where either Winning Team or Losing Team is 'Dallas' or 'Ottawa'",
+        "Filter rows where Date = 'December 9, 1993' AND (Winning Team IN ('Dallas', 'Ottawa') OR Losing Team IN ('Dallas', 'Ottawa'))"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to rows where Date contains 'December 9, 1993'",
+          "Filter to rows where either Winning Team or Losing Team is 'Dallas' or 'Ottawa'"
+        ],
+        [
+          "Filter rows where Date = 'December 9, 1993' AND (Winning Team IN ('Dallas', 'Ottawa') OR Losing Team IN ('Dallas', 'Ottawa'))"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check that only one row matches the date filter"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check that only one row matches the date filter"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return team name as string",
+        "Output should identify which team won: Dallas or Ottawa",
+        "Answer should be definitive based on the Winning Team column value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return team name as string"
+        ],
+        [
+          "Output should identify which team won: Dallas or Ottawa",
+          "Answer should be definitive based on the Winning Team column value"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5805555555555556
+}

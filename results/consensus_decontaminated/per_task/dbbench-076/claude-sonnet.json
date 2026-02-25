@@ -1,0 +1,69 @@
+{
+  "m_q": {
+    "target_metric": "Minimum value of 'Year born' across all players",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the data type of the 'Year born' column?",
+      "Are there any missing or invalid values in 'Year born'?",
+      "What is the range of birth years in the dataset?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Basketball Players"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year born": "year (YYYY format)",
+      "Height": "meters",
+      "No": "jersey number (unitless)"
+    },
+    "scale_issues": [
+      "'Year born' is stored as object dtype but should be numeric for minimum calculation"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "All columns are stored as object dtype including 'Year born' which contains numeric year values",
+      "Sample shows years ranging from 1976 to 1996"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "'Year born' values should be four-digit years",
+      "'Year born' should be between reasonable bounds (e.g., 1900-2010 for active players)",
+      "No missing values expected in 'Year born' column"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return earliest birth year as a single integer value",
+      "Result should be in YYYY format"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Minimum value of 'Year born' across all players\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the data type of the 'Year born' column?\",\n      \"Are there any missing or invalid values in 'Year born'?\",\n      \"What is the range of birth years in the dataset?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Basketball Players\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year born\": \"year (YYYY format)\",\n      \"Height\": \"meters\",\n      \"No\": \"jersey number (unitless)\"\n    },\n    \"scale_issues\": [\n      \"'Year born' is stored as object dtype but should be numeric for minimum calculation\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"All columns are stored as object dtype including 'Year born' which contains numeric year values\",\n      \"Sample shows years ranging from 1976 to 1996\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"'Year born' values should be four-digit years\",\n      \"'Year born' should be between reasonable bounds (e.g., 1900-2010 for active players)\",\n      \"No missing values expected in 'Year born' column\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return earliest birth year as a single integer value\",\n      \"Result should be in YYYY format\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 8.650669813156128,
+  "token_usage": {
+    "input_tokens": 1202,
+    "output_tokens": 524
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "m_q": {
+    "target_metric": "RMSE between predicted and observed Swarm Alpha atmospheric density values over a 4-hour forecast window",
+    "filters": [
+      "Training: OMNI/GOES data from 2016-10-22 to 2016-10-23, Density data from 2016-10-23 to 2016-10-24",
+      "Evaluation: OMNI/GOES data from 2016-10-25 to 2016-10-26, Density data from 2016-10-29",
+      "Use only OMNI2 variables: f10.7_index, Kp_index, Dst_index_nT",
+      "Use only GOES variables: xrsb_flux_observed, xrsa_flux_observed",
+      "16-hour context window for VAR(1) model",
+      "4-hour forecast window for linear regression"
+    ],
+    "grouping_variables": [
+      "Timestamp"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How to align 16-hour OMNI/GOES windows with 4-hour density forecasts?",
+      "How to handle the single timestamp overlap between OMNI/GOES end and Density start?",
+      "How to project time series forward using VAR(1) model?",
+      "How to fit linear regression to predict next 4 hours of density?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "omni2-wu334-20160824_to_20161023.csv",
+      "goes-wu334-20160824_to_20161023.csv",
+      "swarma-wu334-20161023_to_20161026.csv",
+      "omni2-wu335-20160827_to_20161026.csv",
+      "goes-wu335-20160827_to_20161026.csv",
+      "swarma-wu335-20161026_to_20161029.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "omni2-wu334-20160824_to_20161023.csv",
+        "right_source": "goes-wu334-20160824_to_20161023.csv",
+        "left_column": "Timestamp",
+        "right_column": "Timestamp",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "omni2-wu335-20160827_to_20161026.csv",
+        "right_source": "goes-wu335-20160827_to_20161026.csv",
+        "left_column": "Timestamp",
+        "right_column": "Timestamp",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "OMNI2 files have 57 columns, GOES files have 13 columns, Swarm files have 2 columns",
+      "OMNI2 Timestamp appears hourly, GOES Timestamp appears minutely, Swarm Timestamp appears every 10 minutes"
+    ],
+    "column_mappings": {
+      "Orbit Mean Density (kg/m^3)": "density",
+      "f10.7_index": "f10_7_index",
+      "Dst_index_nT": "dst_index"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "f10.7_index": "solar flux unit (10^-22 W\u00b7m^-2\u00b7Hz^-1)",
+      "Kp_index": "unitless (0-9)",
+      "Dst_index_nT": "nanoTesla",
+      "xrsb_flux_observed": "W/m^2",
+      "xrsa_flux_observed": "W/m^2",
+      "Orbit Mean Density (kg/m^3)": "kg/m^3"
+    },
+    "scale_issues": [
+      "OMNI2 data is hourly, GOES data is minutely, Swarm data is every 10 minutes",
+      "f10.7_index values ~79-85, Kp_index values 0-53, Dst_index_nT values -39 to -6",
+      "xrs fluxes range from 1e-09 to ~1e-07",
+      "Density values range from ~2.8e-13 to 6.8e-13"
+    ],
+    "cross_source_conflicts": [
+      "Different temporal resolutions require aggregation/resampling",
+      "Training and evaluation periods have different date ranges",
+      "GOES data has many more rows (86401) than OMNI2 (1441) for same time period"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "999999.99",
+      "99999.99",
+      "-1"
+    ],
+    "expected_columns": [
+      57,
+      13,
+      2,
+      57,
+      13,
+      2
+    ],
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "OMNI2 files contain placeholder values 999999.99 and 99999.99 for missing proton flux data",
+      "Flux_FLAG column uses -1 as sentinel",
+      "Timestamp columns are strings that need parsing",
+      "GOES files have consistent 1-minute intervals",
+      "Swarm files have consistent 10-minute intervals"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "16-hour context window must be contiguous",
+      "4-hour forecast window must immediately follow context window",
+      "Single timestamp overlap between OMNI/GOES end and Density start",
+      "All windows contain valid data (assumption)",
+      "VAR(1) model requires stationary time series",
+      "Linear regression requires aligned feature and target vectors"
+    ],
+    "derived_filters": [
+      "Extract 16-hour windows ending at training period boundaries",
+      "Extract corresponding 4-hour density windows starting immediately after",
+      "Filter OMNI2 to only f10.7_index, Kp_index, Dst_index_nT columns",
+      "Filter GOES to only xrsb_flux_observed, xrsa_flux_observed columns"
+    ],
+    "statistical_tests": [
+      "Check stationarity of OMNI/GOES variables for VAR modeling",
+      "Test autocorrelation in density time series",
+      "Evaluate linear regression assumptions (linearity, independence, homoscedasticity, normality)"
+    ],
+    "output_format_requirements": [
+      "RMSE value as scalar",
+      "Comparison of predicted vs observed density over 4-hour window",
+      "Timestamp alignment verification"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"RMSE between predicted and observed Swarm Alpha atmospheric density values over a 4-hour forecast window\",\n        \"filters\": [\"Training: OMNI/GOES data from 2016-10-22 to 2016-10-23, Density data from 2016-10-23 to 2016-10-24\", \"Evaluation: OMNI/GOES data from 2016-10-25 to 2016-10-26, Density data from 2016-10-29\", \"Use only OMNI2 variables: f10.7_index, Kp_index, Dst_index_nT\", \"Use only GOES variables: xrsb_flux_observed, xrsa_flux_observed\", \"16-hour context window for VAR(1) model\", \"4-hour forecast window for linear regression\"],\n        \"grouping_variables\": [\"Timestamp\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"How to align 16-hour OMNI/GOES windows with 4-hour density forecasts?\", \"How to handle the single timestamp overlap between OMNI/GOES end and Density start?\", \"How to project time series forward using VAR(1) model?\", \"How to fit linear regression to predict next 4 hours of density?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"omni2-wu334-20160824_to_20161023.csv\", \"goes-wu334-20160824_to_20161023.csv\", \"swarma-wu334-20161023_to_20161026.csv\", \"omni2-wu335-20160827_to_20161026.csv\", \"goes-wu335-20160827_to_20161026.csv\", \"swarma-wu335-20161026_to_20161029.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"omni2-wu334-20160824_to_20161023.csv\", \"right_source\": \"goes-wu334-20160824_to_20161023.csv\", \"left_column\": \"Timestamp\", \"right_column\": \"Timestamp\", \"join_type\": \"inner\"},\n            {\"left_source\": \"omni2-wu335-20160827_to_20161026.csv\", \"right_source\": \"goes-wu335-20160827_to_20161026.csv\", \"left_column\": \"Timestamp\", \"right_column\": \"Timestamp\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"OMNI2 files have 57 columns, GOES files have 13 columns, Swarm files have 2 columns\", \"OMNI2 Timestamp appears hourly, GOES Timestamp appears minutely, Swarm Timestamp appears every 10 minutes\"],\n        \"column_mappings\": {\"Orbit Mean Density (kg/m^3)\": \"density\", \"f10.7_index\": \"f10_7_index\", \"Dst_index_nT\": \"dst_index\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"f10.7_index\": \"solar flux unit (10^-22 W\u00b7m^-2\u00b7Hz^-1)\", \"Kp_index\": \"unitless (0-9)\", \"Dst_index_nT\": \"nanoTesla\", \"xrsb_flux_observed\": \"W/m^2\", \"xrsa_flux_observed\": \"W/m^2\", \"Orbit Mean Density (kg/m^3)\": \"kg/m^3\"},\n        \"scale_issues\": [\"OMNI2 data is hourly, GOES data is minutely, Swarm data is every 10 minutes\", \"f10.7_index values ~79-85, Kp_index values 0-53, Dst_index_nT values -39 to -6\", \"xrs fluxes range from 1e-09 to ~1e-07\", \"Density values range from ~2.8e-13 to 6.8e-13\"],\n        \"cross_source_conflicts\": [\"Different temporal resolutions require aggregation/resampling\", \"Training and evaluation periods have different date ranges\", \"GOES data has many more rows (86401) than OMNI2 (1441) for same time period\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"999999.99\", \"99999.99\", \"-1\"],\n        \"expected_columns\": [57, 13, 2, 57, 13, 2],\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"OMNI2 files contain placeholder values 999999.99 and 99999.99 for missing proton flux data\", \"Flux_FLAG column uses -1 as sentinel\", \"Timestamp columns are strings that need parsing\", \"GOES files have consistent 1-minute intervals\", \"Swarm files have consistent 10-minute intervals\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"16-hour context window must be contiguous\", \"4-hour forecast window must immediately follow context window\", \"Single timestamp overlap between OMNI/GOES end and Density start\", \"All windows contain valid data (assumption)\", \"VAR(1) model requires stationary time series\", \"Linear regression requires aligned feature and target vectors\"],\n        \"derived_filters\": [\"Extract 16-hour windows ending at training period boundaries\", \"Extract corresponding 4-hour density windows starting immediately after\", \"Filter OMNI2 to only f10.7_index, Kp_index, Dst_index_nT columns\", \"Filter GOES to only xrsb_flux_observed, xrsa_flux_observed columns\"],\n        \"statistical_tests\": [\"Check stationarity of OMNI/GOES variables for VAR modeling\", \"Test autocorrelation in density time series\", \"Evaluate linear regression assumptions (linearity, independence, homoscedasticity, normality)\"],\n        \"output_format_requirements\": [\"RMSE value as scalar\", \"Comparison of predicted vs observed density over 4-hour window\", \"Timestamp alignment verification\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 24.98721694946289,
+  "token_usage": {
+    "input_tokens": 14648,
+    "output_tokens": 1324
+  }
+}

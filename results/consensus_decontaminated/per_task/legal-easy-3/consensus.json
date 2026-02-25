@@ -1,0 +1,332 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "ratio of identity theft reports in 2024 vs 2001",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "ratio of identity theft reports in 2024 vs 2001",
+        "Ratio of identity theft reports in 2024 vs 2001",
+        "Ratio of identity theft reports in 2024 to identity theft reports in 2001, rounded to 4 decimal places"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2001",
+        "Year = 2024",
+        "Year == 2024",
+        "Year == 2001"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year = 2001",
+          "Year = 2024"
+        ],
+        [
+          "Year == 2024",
+          "Year == 2001"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What is the count of identity theft reports in 2001?",
+        "What is the count of identity theft reports in 2024?",
+        "What is the ratio of 2024 count to 2001 count?",
+        "What is the number of identity theft reports in 2024?",
+        "What is the number of identity theft reports in 2001?",
+        "What is the ratio of 2024 identity theft reports divided by 2001 identity theft reports?"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "What is the count of identity theft reports in 2001?",
+          "What is the count of identity theft reports in 2024?",
+          "What is the ratio of 2024 count to 2001 count?"
+        ],
+        [
+          "What is the number of identity theft reports in 2024?",
+          "What is the number of identity theft reports in 2001?",
+          "What is the ratio of 2024 identity theft reports divided by 2001 identity theft reports?"
+        ],
+        [
+          "What is the number of identity theft reports in 2024?",
+          "What is the number of identity theft reports in 2001?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "2024_CSN_Number_of_Reports_by_Type.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ],
+        [
+          "2024_CSN_Number_of_Reports_by_Type.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "year": "year",
+        "fraud": "count",
+        "identity theft": "count",
+        "other": "count"
+      },
+      "confidence": 1.0,
+      "votes": [
+        {
+          "Year": "year",
+          "Fraud": "count",
+          "Identity Theft": "count",
+          "Other": "count"
+        },
+        {
+          "Year": "calendar year",
+          "Fraud": "count of fraud reports",
+          "Identity Theft": "count of identity theft reports",
+          "Other": "count of other reports"
+        },
+        {
+          "Year": "year",
+          "Fraud": "number of reports",
+          "Identity Theft": "number of reports",
+          "Other": "number of reports"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Data shows significant growth in all report types over time, suggesting scale differences between early and late years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Data shows significant growth in all report types over time, suggesting scale differences between early and late years"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 4.0,
+      "confidence": 1.0,
+      "votes": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be between 2001 and 2024",
+        "Count values should be non-negative integers",
+        "2024 data must be present in the full dataset (not shown in sample)",
+        "Year 2001 must exist in dataset",
+        "Year 2024 must exist in dataset",
+        "Identity Theft column must have non-zero value for 2001 to avoid division by zero",
+        "Year must be an integer",
+        "Fraud, Identity Theft, and Other must be non-negative integers"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be between 2001 and 2024",
+          "Count values should be non-negative integers",
+          "2024 data must be present in the full dataset (not shown in sample)"
+        ],
+        [
+          "Year 2001 must exist in dataset",
+          "Year 2024 must exist in dataset",
+          "Identity Theft column must have non-zero value for 2001 to avoid division by zero"
+        ],
+        [
+          "Year must be an integer",
+          "Fraud, Identity Theft, and Other must be non-negative integers"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to only Identity Theft column",
+        "Filter to only Year 2001 and 2024",
+        "Extract Identity Theft value where Year == 2024",
+        "Extract Identity Theft value where Year == 2001",
+        "Year = 2001",
+        "Year = 2024"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to only Identity Theft column",
+          "Filter to only Year 2001 and 2024"
+        ],
+        [
+          "Extract Identity Theft value where Year == 2024",
+          "Extract Identity Theft value where Year == 2001"
+        ],
+        [
+          "Year = 2001",
+          "Year = 2024"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check if 2024 data exists in full dataset",
+        "Verify no missing values for required years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check if 2024 data exists in full dataset",
+          "Verify no missing values for required years"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Ratio must be rounded to 4 decimal places",
+        "Round result to 4 decimal places",
+        "Output should be a single numeric value"
+      ],
+      "confidence": 0.4444444444444444,
+      "votes": [
+        [
+          "Ratio must be rounded to 4 decimal places"
+        ],
+        [
+          "Round result to 4 decimal places",
+          "Output should be a single numeric value"
+        ],
+        [
+          "Ratio must be rounded to 4 decimal places"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6277777777777779
+}

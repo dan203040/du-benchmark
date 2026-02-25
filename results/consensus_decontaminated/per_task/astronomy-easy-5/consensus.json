@@ -1,0 +1,434 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total count of satellite major altitude changes (change > 1000m within 12h) for satellite 48445 during 2024",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total count of satellite major altitude changes (change > 1000m within 12h) for satellite 48445 during 2024",
+        "Total count of major altitude changes (>1000m within 12h) for satellite 48445 during 2024",
+        "Total count of satellite major altitude changes (change of altitude > 1000m within 12h) for satellite 48445 during 2024"
+      ]
+    },
+    "filters": {
+      "value": [
+        "epoch_year == 24",
+        "norad_id == '48445'",
+        "altitude_change > 1000",
+        "time_difference <= 12 hours",
+        "satellite norad_id == 48445",
+        "epoch_year == 24 (2024)",
+        "altitude change > 1000m within 12-hour window",
+        "year = 2024",
+        "norad_id = 48445",
+        "altitude change > 1000m within 12h"
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "epoch_year == 24",
+          "norad_id == '48445'",
+          "altitude_change > 1000",
+          "time_difference <= 12 hours"
+        ],
+        [
+          "satellite norad_id == 48445",
+          "epoch_year == 24 (2024)",
+          "altitude change > 1000m within 12-hour window"
+        ],
+        [
+          "year = 2024",
+          "norad_id = 48445",
+          "altitude change > 1000m within 12h"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "norad_id"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "norad_id"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to convert TLE orbital elements to ITRF XYZ coordinates?",
+        "How to calculate altitude from ITRF XYZ coordinates?",
+        "How to identify consecutive TLE epochs within 12 hours?",
+        "How to compute altitude differences between consecutive valid epochs?",
+        "How to count altitude changes exceeding 1000m threshold?",
+        "How to convert TLE orbital elements to altitude using skifield's itrf_xyz?",
+        "What is the time ordering of TLE records based on epoch_year and epoch_day?",
+        "How to compute altitude from orbital elements (mean_motion, eccentricity, inclination, etc.)?",
+        "How to identify consecutive TLE measurements within 12-hour windows?",
+        "What threshold defines a major altitude change (>1000m)?",
+        "Are there duplicate TLE entries with same epoch but different rev_number?",
+        "Calculate altitude from TLE data using skifield's itrf_xyz.",
+        "Calculate the time difference between consecutive TLE entries.",
+        "Calculate the altitude difference between TLE entries within a 12-hour window.",
+        "Count the number of altitude changes greater than 1000m."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "How to convert TLE orbital elements to ITRF XYZ coordinates?",
+          "How to calculate altitude from ITRF XYZ coordinates?",
+          "How to identify consecutive TLE epochs within 12 hours?",
+          "How to compute altitude differences between consecutive valid epochs?",
+          "How to count altitude changes exceeding 1000m threshold?"
+        ],
+        [
+          "How to convert TLE orbital elements to altitude using skifield's itrf_xyz?",
+          "What is the time ordering of TLE records based on epoch_year and epoch_day?",
+          "How to compute altitude from orbital elements (mean_motion, eccentricity, inclination, etc.)?",
+          "How to identify consecutive TLE measurements within 12-hour windows?",
+          "What threshold defines a major altitude change (>1000m)?",
+          "Are there duplicate TLE entries with same epoch but different rev_number?"
+        ],
+        [
+          "Calculate altitude from TLE data using skifield's itrf_xyz.",
+          "Calculate the time difference between consecutive TLE entries.",
+          "Calculate the altitude difference between TLE entries within a 12-hour window.",
+          "Count the number of altitude changes greater than 1000m."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "48445.tle"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "48445.tle"
+        ],
+        [
+          "48445.tle"
+        ],
+        [
+          "48445.tle"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Multiple rows with identical epoch_year and epoch_day values but different rev_number (e.g., rows 1-2, 8-9, 16-17)",
+        "Potential duplicate TLE entries for same timestamp"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Multiple rows with identical epoch_year and epoch_day values but different rev_number (e.g., rows 1-2, 8-9, 16-17)",
+          "Potential duplicate TLE entries for same timestamp"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "epoch_year": "two-digit year (24 = 2024)",
+        "epoch_day": "day of year with fractional day",
+        "inclination": "degrees",
+        "raan": "degrees",
+        "eccentricity": "unitless",
+        "arg_perigee": "degrees",
+        "mean_anomaly": "degrees",
+        "mean_motion": "revolutions per day",
+        "rev_number": "orbit revolution count",
+        "altitude": "meters (to be derived)",
+        "time_difference": "hours (for 12h window calculation)"
+      },
+      "confidence": 0.7272727272727272,
+      "votes": [
+        {
+          "epoch_year": "two-digit year (24 = 2024)",
+          "epoch_day": "day of year with fractional day",
+          "inclination": "degrees",
+          "raan": "degrees",
+          "eccentricity": "unitless",
+          "arg_perigee": "degrees",
+          "mean_anomaly": "degrees",
+          "mean_motion": "revolutions per day",
+          "rev_number": "orbit revolution count"
+        },
+        {
+          "epoch_day": "fractional day of year",
+          "inclination": "degrees",
+          "raan": "degrees (right ascension of ascending node)",
+          "eccentricity": "dimensionless",
+          "arg_perigee": "degrees (argument of perigee)",
+          "mean_anomaly": "degrees",
+          "mean_motion": "revolutions per day",
+          "altitude": "meters (to be derived)",
+          "time_difference": "hours (for 12h window calculation)"
+        },
+        {
+          "inclination": "degrees",
+          "raan": "degrees",
+          "eccentricity": "unitless",
+          "arg_perigee": "degrees",
+          "mean_anomaly": "degrees",
+          "mean_motion": "revolutions per day"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "epoch_year uses two-digit format (24 = 2024)",
+        "epoch_day includes fractional days (e.g., 1.44338999 = day 1 + fractional day)",
+        "mean_motion values around 15.06 rev/day correspond to ~96 minute orbits",
+        "eccentricity appears to be scaled (e.g., 0.0001342 likely represents actual eccentricity)",
+        "epoch_day is fractional day of year requiring conversion to absolute timestamp",
+        "mean_motion in revs/day needs conversion to orbital period and altitude",
+        "Eccentricity is a very small number, potential for precision issues."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "epoch_year uses two-digit format (24 = 2024)",
+          "epoch_day includes fractional days (e.g., 1.44338999 = day 1 + fractional day)",
+          "mean_motion values around 15.06 rev/day correspond to ~96 minute orbits"
+        ],
+        [
+          "eccentricity appears to be scaled (e.g., 0.0001342 likely represents actual eccentricity)",
+          "epoch_day is fractional day of year requiring conversion to absolute timestamp",
+          "mean_motion in revs/day needs conversion to orbital period and altitude"
+        ],
+        [
+          "Eccentricity is a very small number, potential for precision issues."
+        ]
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "No external data sources provided - requires skifield's itrf_xyz library for coordinate conversion"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No external data sources provided - requires skifield's itrf_xyz library for coordinate conversion"
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 0.8888888888888888,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 12.0,
+      "confidence": 1.0,
+      "votes": [
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "TLE epochs must be sorted chronologically for time series analysis",
+        "Altitude calculation requires Earth radius assumption (typically 6371km)",
+        "Time differences must account for day-of-year rollover in 2024",
+        "Only consider consecutive epochs within 12 hours for valid altitude change calculation",
+        "Exclude duplicate epoch entries before analysis",
+        "norad_id must equal 48445",
+        "epoch_year must equal 24 (representing 2024)",
+        "Altitude change must exceed 1000 meters",
+        "Time window must be within 12 hours between consecutive measurements",
+        "TLE records must be sorted chronologically by epoch before analysis",
+        "epoch_year must be 24 for the year 2024",
+        "norad_id must be 48445"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "TLE epochs must be sorted chronologically for time series analysis",
+          "Altitude calculation requires Earth radius assumption (typically 6371km)",
+          "Time differences must account for day-of-year rollover in 2024",
+          "Only consider consecutive epochs within 12 hours for valid altitude change calculation",
+          "Exclude duplicate epoch entries before analysis"
+        ],
+        [
+          "norad_id must equal 48445",
+          "epoch_year must equal 24 (representing 2024)",
+          "Altitude change must exceed 1000 meters",
+          "Time window must be within 12 hours between consecutive measurements",
+          "TLE records must be sorted chronologically by epoch before analysis"
+        ],
+        [
+          "epoch_year must be 24 for the year 2024",
+          "norad_id must be 48445"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Remove duplicate rows with identical epoch_year and epoch_day",
+        "Filter to only 2024 data (epoch_year == 24)",
+        "Calculate time differences between consecutive valid epochs",
+        "Filter to epoch pairs with time_difference <= 12 hours",
+        "Convert epoch_year and epoch_day to absolute datetime for 2024",
+        "Calculate altitude from TLE orbital parameters using skifield's itrf_xyz method",
+        "Compute time differences between consecutive TLE records",
+        "Identify pairs of records where time_diff <= 12 hours AND altitude_diff > 1000m",
+        "Handle duplicate TLE entries at same epoch appropriately",
+        "epoch_year = 24",
+        "time difference between consecutive TLE entries <= 12 hours",
+        "altitude difference > 1000m"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Remove duplicate rows with identical epoch_year and epoch_day",
+          "Filter to only 2024 data (epoch_year == 24)",
+          "Calculate time differences between consecutive valid epochs",
+          "Filter to epoch pairs with time_difference <= 12 hours"
+        ],
+        [
+          "Convert epoch_year and epoch_day to absolute datetime for 2024",
+          "Calculate altitude from TLE orbital parameters using skifield's itrf_xyz method",
+          "Compute time differences between consecutive TLE records",
+          "Identify pairs of records where time_diff <= 12 hours AND altitude_diff > 1000m",
+          "Handle duplicate TLE entries at same epoch appropriately"
+        ],
+        [
+          "epoch_year = 24",
+          "time difference between consecutive TLE entries <= 12 hours",
+          "altitude difference > 1000m"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for monotonic increasing epoch_day within each year",
+        "Validate altitude calculations against expected LEO range (~400-2000km)",
+        "Test for outliers in orbital elements (eccentricity should be ~0 for near-circular orbits)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for monotonic increasing epoch_day within each year",
+          "Validate altitude calculations against expected LEO range (~400-2000km)",
+          "Test for outliers in orbital elements (eccentricity should be ~0 for near-circular orbits)"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count of major altitude changes",
+        "Document altitude calculation method using skifield's itrf_xyz",
+        "Specify time window criteria (12 hours)",
+        "State altitude change threshold (1000 meters)",
+        "Output should be a single integer count",
+        "Count represents number of major altitude change events during 2024",
+        "Major altitude change defined as >1000m within 12-hour period",
+        "Integer representing the count of major altitude changes."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count of major altitude changes",
+          "Document altitude calculation method using skifield's itrf_xyz",
+          "Specify time window criteria (12 hours)",
+          "State altitude change threshold (1000 meters)"
+        ],
+        [
+          "Output should be a single integer count",
+          "Count represents number of major altitude change events during 2024",
+          "Major altitude change defined as >1000m within 12-hour period"
+        ],
+        [
+          "Integer representing the count of major altitude changes."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6141414141414142
+}

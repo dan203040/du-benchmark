@@ -1,0 +1,169 @@
+{
+  "m_q": {
+    "target_metric": "Metropolitan area with highest # of identity theft reports within the state that has the highest total # of reports (identity theft + fraud and other)",
+    "filters": [
+      "State with maximum total reports across both report types",
+      "Metropolitan areas within that state",
+      "Identity theft reports only for metropolitan areas"
+    ],
+    "grouping_variables": [
+      "State",
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total # of reports for each state (sum of identity theft reports and fraud/other reports)?",
+      "Which state has the highest total # of reports?",
+      "What are the metropolitan areas in that state?",
+      "Which metropolitan area in that state has the highest # of identity theft reports?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+      "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv",
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "2024_CSN_State_Rankings_Identity_Theft_Reports.csv",
+        "right_source": "2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv",
+        "left_column": "State",
+        "right_column": "State",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "State rankings (combined)",
+        "right_source": "State-specific metropolitan CSV",
+        "left_column": "State",
+        "right_column": "Derived from filename",
+        "join_type": "lookup"
+      }
+    ],
+    "schema_conflicts": [
+      "State name in ranking files vs state-specific CSV filenames require normalization (e.g., 'District of Columbia' vs 'DistrictofColumbia.csv')",
+      "Metropolitan area CSV files contain footer row with metadata that needs to be filtered out"
+    ],
+    "column_mappings": {
+      "# of Reports (identity theft)": "# of Reports from identity theft file",
+      "# of Reports (fraud and other)": "# of Reports from fraud and other file",
+      "# of Reports (metropolitan)": "# of Reports from state-specific CSV"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of reports",
+      "Reports per 100K Population": "reports per 100,000 population",
+      "Rank": "ordinal ranking (1 = highest)"
+    },
+    "scale_issues": [
+      "State-level reports are absolute counts, not rates",
+      "Metropolitan area reports are absolute counts, not normalized by population"
+    ],
+    "cross_source_conflicts": [
+      "State-level '# of Reports' represents identity theft only in one file, fraud and other in another file",
+      "Metropolitan area '# of Reports' may include all types of reports (identity theft + fraud + other), not specified in column header"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "NaN"
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "State ranking files have 4 columns: Rank, State, Reports per 100K Population, # of Reports",
+      "State-specific metropolitan files have 2 columns: Metropolitan Area, # of Reports",
+      "State-specific files contain a footer row starting with 'Metropolitan Areas are defined by...' which should be excluded from analysis",
+      "Float64 NaN values appear as last row in metropolitan area files",
+      "State names in filenames use camel case without spaces (e.g., 'NewYork.csv', 'NorthCarolina.csv')",
+      "Some state names differ between ranking files and filenames (e.g., 'District of Columbia' vs 'DistrictofColumbia.csv')"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only consider states present in both identity theft and fraud/other ranking files",
+      "Exclude footer rows from metropolitan area files (rows containing 'Metropolitan Areas are defined by')",
+      "Exclude rows with NaN values in '# of Reports' column from metropolitan area files",
+      "State with highest total reports must be determined before filtering metropolitan areas",
+      "Puerto Rico (PR) and District of Columbia (DC) should be included as states per question specification"
+    ],
+    "derived_filters": [
+      "Calculate total_reports = identity_theft_reports + fraud_and_other_reports for each state",
+      "Identify state with max(total_reports)",
+      "Filter metropolitan areas to only those in the identified state",
+      "Select metropolitan area with max(# of Reports) for identity theft"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the name of the metropolitan area with highest identity theft reports in the top state",
+      "Output should be a single metropolitan area name",
+      "Metropolitan area name should match the format in the CSV (e.g., 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area')"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Metropolitan area with highest # of identity theft reports within the state that has the highest total # of reports (identity theft + fraud and other)\",\n    \"filters\": [\n      \"State with maximum total reports across both report types\",\n      \"Metropolitan areas within that state\",\n      \"Identity theft reports only for metropolitan areas\"\n    ],\n    \"grouping_variables\": [\n      \"State\",\n      \"Metropolitan Area\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the total # of reports for each state (sum of identity theft reports and fraud/other reports)?\",\n      \"Which state has the highest total # of reports?\",\n      \"What are the metropolitan areas in that state?\",\n      \"Which metropolitan area in that state has the highest # of identity theft reports?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"2024_CSN_State_Rankings_Identity_Theft_Reports.csv\",\n      \"2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv\",\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"2024_CSN_State_Rankings_Identity_Theft_Reports.csv\",\n        \"right_source\": \"2024_CSN_State_Rankings_Fraud_and_Other_Reports.csv\",\n        \"left_column\": \"State\",\n        \"right_column\": \"State\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"State rankings (combined)\",\n        \"right_source\": \"State-specific metropolitan CSV\",\n        \"left_column\": \"State\",\n        \"right_column\": \"Derived from filename\",\n        \"join_type\": \"lookup\"\n      }\n    ],\n    \"schema_conflicts\": [\n      \"State name in ranking files vs state-specific CSV filenames require normalization (e.g., 'District of Columbia' vs 'DistrictofColumbia.csv')\",\n      \"Metropolitan area CSV files contain footer row with metadata that needs to be filtered out\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports (identity theft)\": \"# of Reports from identity theft file\",\n      \"# of Reports (fraud and other)\": \"# of Reports from fraud and other file\",\n      \"# of Reports (metropolitan)\": \"# of Reports from state-specific CSV\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count of reports\",\n      \"Reports per 100K Population\": \"reports per 100,000 population\",\n      \"Rank\": \"ordinal ranking (1 = highest)\"\n    },\n    \"scale_issues\": [\n      \"State-level reports are absolute counts, not rates\",\n      \"Metropolitan area reports are absolute counts, not normalized by population\"\n    ],\n    \"cross_source_conflicts\": [\n      \"State-level '# of Reports' represents identity theft only in one file, fraud and other in another file\",\n      \"Metropolitan area '# of Reports' may include all types of reports (identity theft + fraud + other), not specified in column header\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\",\n      \"NaN\"\n    ],\n    \"expected_columns\": 4,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"State ranking files have 4 columns: Rank, State, Reports per 100K Population, # of Reports\",\n      \"State-specific metropolitan files have 2 columns: Metropolitan Area, # of Reports\",\n      \"State-specific files contain a footer row starting with 'Metropolitan Areas are defined by...' which should be excluded from analysis\",\n      \"Float64 NaN values appear as last row in metropolitan area files\",\n      \"State names in filenames use camel case without spaces (e.g., 'NewYork.csv', 'NorthCarolina.csv')\",\n      \"Some state names differ between ranking files and filenames (e.g., 'District of Columbia' vs 'DistrictofColumbia.csv')\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only consider states present in both identity theft and fraud/other ranking files\",\n      \"Exclude footer rows from metropolitan area files (rows containing 'Metropolitan Areas are defined by')\",\n      \"Exclude rows with NaN values in '# of Reports' column from metropolitan area files\",\n      \"State with highest total reports must be determined before filtering metropolitan areas\",\n      \"Puerto Rico (PR) and District of Columbia (DC) should be included as states per question specification\"\n    ],\n    \"derived_filters\": [\n      \"Calculate total_reports = identity_theft_reports + fraud_and_other_reports for each state\",\n      \"Identify state with max(total_reports)\",\n      \"Filter metropolitan areas to only those in the identified state\",\n      \"Select metropolitan area with max(# of Reports) for identity theft\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the name of the metropolitan area with highest identity theft reports in the top state\",\n      \"Output should be a single metropolitan area name\",\n      \"Metropolitan area name should match the format in the CSV (e.g., 'Miami-Fort Lauderdale-West Palm Beach, FL Metropolitan Statistical Area')\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 27.664356231689453,
+  "token_usage": {
+    "input_tokens": 14828,
+    "output_tokens": 1750
+  }
+}

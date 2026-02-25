@@ -1,0 +1,292 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "maximum value of 'No. of Titles' column",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "maximum value of 'No. of Titles' column",
+        "Player with highest number of titles",
+        "maximum value of 'No. of Titles'"
+      ]
+    },
+    "filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Player Name"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Player Name"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which player(s) have the highest number of titles?",
+        "Are there multiple players tied for the highest number of titles?",
+        "What is the maximum value in 'No. of Titles' column?",
+        "Which player(s) have this maximum number of titles?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which player(s) have the highest number of titles?",
+          "Are there multiple players tied for the highest number of titles?"
+        ],
+        [
+          "What is the maximum value in 'No. of Titles' column?",
+          "Which player(s) have this maximum number of titles?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Squash Players Ranking"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Squash Players Ranking"
+        ],
+        [
+          "Squash Players Ranking"
+        ],
+        [
+          "Squash Players Ranking"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "no. of titles": "count",
+        "runner-up": "count",
+        "final appearances": "count",
+        "rank": "ordinal"
+      },
+      "confidence": 0.9166666666666666,
+      "votes": [
+        {
+          "No. of Titles": "count",
+          "Runner-up": "count",
+          "Final Appearances": "count"
+        },
+        {
+          "No. of Titles": "count",
+          "Runner-up": "count",
+          "Final Appearances": "count",
+          "Rank": "ordinal"
+        },
+        {
+          "Rank": "ranking",
+          "No. of Titles": "number of titles",
+          "Runner-up": "number of times runner-up",
+          "Final Appearances": "number of final appearances"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "No. of Titles >= 0",
+        "Final Appearances = No. of Titles + Runner-up",
+        "Rank values should be unique but data shows duplicates",
+        "No. of Titles must be non-negative integer",
+        "Rank should be unique or tied",
+        "Final Appearances should be >= No. of Titles + Runner-up",
+        "'No. of Titles', 'Runner-up', and 'Final Appearances' should be non-negative integers.",
+        "'Final Appearances' should be greater than or equal to 'No. of Titles' and 'Runner-up'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "No. of Titles >= 0",
+          "Final Appearances = No. of Titles + Runner-up",
+          "Rank values should be unique but data shows duplicates"
+        ],
+        [
+          "No. of Titles must be non-negative integer",
+          "Rank should be unique or tied",
+          "Final Appearances should be >= No. of Titles + Runner-up"
+        ],
+        [
+          "'No. of Titles', 'Runner-up', and 'Final Appearances' should be non-negative integers.",
+          "'Final Appearances' should be greater than or equal to 'No. of Titles' and 'Runner-up'"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate player names",
+        "Verify consistency: Final Appearances = No. of Titles + Runner-up"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate player names",
+          "Verify consistency: Final Appearances = No. of Titles + Runner-up"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Player name(s) with highest No. of Titles value",
+        "Include the actual number of titles",
+        "Return player name(s) with highest No. of Titles",
+        "Include the number of titles in output",
+        "player name with the highest number of titles"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Player name(s) with highest No. of Titles value",
+          "Include the actual number of titles"
+        ],
+        [
+          "Return player name(s) with highest No. of Titles",
+          "Include the number of titles in output"
+        ],
+        [
+          "player name with the highest number of titles"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5291666666666667
+}

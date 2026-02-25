@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Compare finishing positions to determine who came in earlier between Tony Maggs and Jo Siffert",
+    "filters": [
+      "Driver equals 'Tony Maggs' OR Driver equals 'Jo Siffert'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the 'Pos' value for Tony Maggs?",
+      "What is the 'Pos' value for Jo Siffert?",
+      "Which driver has the lower 'Pos' value (earlier finish)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Grand Prix Result"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Pos": "race finishing position (ordinal rank)",
+      "Time/Retired": "time difference from winner or reason for retirement",
+      "Grid": "starting grid position (ordinal rank)"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Pos column is Int64 with nullable values for drivers who did not finish (DNF)",
+      "Time/Retired column contains either time differences (e.g., '+ 22.6 s') or laps completed (e.g., '72 laps') or retirement reasons (e.g., 'Engine (66 laps)')",
+      "Rows without Pos values indicate drivers who did not complete the race"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Both Tony Maggs and Jo Siffert must exist in the Driver column",
+      "Pos values determine finishing order where lower values indicate earlier (better) finish",
+      "Null Pos values indicate did not finish (DNF) which is ranked after all finishers"
+    ],
+    "derived_filters": [
+      "Tony Maggs has Pos = 5",
+      "Jo Siffert has Pos = 11"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the name of the driver who came in earlier (had lower Pos value)",
+      "If one driver has a Pos value and the other does not, the one with Pos value came in earlier"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Compare finishing positions to determine who came in earlier between Tony Maggs and Jo Siffert\",\n    \"filters\": [\"Driver equals 'Tony Maggs' OR Driver equals 'Jo Siffert'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What is the 'Pos' value for Tony Maggs?\",\n      \"What is the 'Pos' value for Jo Siffert?\",\n      \"Which driver has the lower 'Pos' value (earlier finish)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Grand Prix Result\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Pos\": \"race finishing position (ordinal rank)\",\n      \"Time/Retired\": \"time difference from winner or reason for retirement\",\n      \"Grid\": \"starting grid position (ordinal rank)\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Pos column is Int64 with nullable values for drivers who did not finish (DNF)\",\n      \"Time/Retired column contains either time differences (e.g., '+ 22.6 s') or laps completed (e.g., '72 laps') or retirement reasons (e.g., 'Engine (66 laps)')\",\n      \"Rows without Pos values indicate drivers who did not complete the race\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Both Tony Maggs and Jo Siffert must exist in the Driver column\",\n      \"Pos values determine finishing order where lower values indicate earlier (better) finish\",\n      \"Null Pos values indicate did not finish (DNF) which is ranked after all finishers\"\n    ],\n    \"derived_filters\": [\n      \"Tony Maggs has Pos = 5\",\n      \"Jo Siffert has Pos = 11\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the name of the driver who came in earlier (had lower Pos value)\",\n      \"If one driver has a Pos value and the other does not, the one with Pos value came in earlier\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.790389776229858,
+  "token_usage": {
+    "input_tokens": 1211,
+    "output_tokens": 679
+  }
+}

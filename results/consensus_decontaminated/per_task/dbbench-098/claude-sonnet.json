@@ -1,0 +1,79 @@
+{
+  "m_q": {
+    "target_metric": "average of the 'Total' column",
+    "filters": [
+      "Player = 'Hale Irwin'",
+      "Finish = 'T52'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Filter rows where Player is 'Hale Irwin'",
+      "Further filter where Finish is 'T52'",
+      "Extract Total values from filtered rows",
+      "Calculate the average of Total values"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Golf Champions"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total": "strokes (golf score)",
+      "To par": "strokes relative to par",
+      "Year(s) won": "year(s)"
+    },
+    "scale_issues": [
+      "Total column is stored as 'object' dtype but represents numeric golf scores",
+      "To par column contains +/- symbols and is stored as 'object' dtype"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Total column appears to be numeric but stored as string/object",
+      "Year(s) won column contains multiple years separated by commas for some players",
+      "Finish column contains values like 'T52', 'T28' where 'T' indicates tied position"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Player must exactly match 'Hale Irwin'",
+      "Finish must exactly match 'T52'",
+      "Total column must be converted to numeric type for averaging",
+      "Result should handle case where no matching rows exist"
+    ],
+    "derived_filters": [
+      "Row must satisfy both Player='Hale Irwin' AND Finish='T52' simultaneously"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single numeric value representing the average",
+      "If multiple rows match, compute arithmetic mean",
+      "If no rows match, return appropriate null/empty indicator"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"average of the 'Total' column\",\n    \"filters\": [\"Player = 'Hale Irwin'\", \"Finish = 'T52'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Filter rows where Player is 'Hale Irwin'\",\n      \"Further filter where Finish is 'T52'\",\n      \"Extract Total values from filtered rows\",\n      \"Calculate the average of Total values\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Golf Champions\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total\": \"strokes (golf score)\",\n      \"To par\": \"strokes relative to par\",\n      \"Year(s) won\": \"year(s)\"\n    },\n    \"scale_issues\": [\n      \"Total column is stored as 'object' dtype but represents numeric golf scores\",\n      \"To par column contains +/- symbols and is stored as 'object' dtype\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Total column appears to be numeric but stored as string/object\",\n      \"Year(s) won column contains multiple years separated by commas for some players\",\n      \"Finish column contains values like 'T52', 'T28' where 'T' indicates tied position\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Player must exactly match 'Hale Irwin'\",\n      \"Finish must exactly match 'T52'\",\n      \"Total column must be converted to numeric type for averaging\",\n      \"Result should handle case where no matching rows exist\"\n    ],\n    \"derived_filters\": [\n      \"Row must satisfy both Player='Hale Irwin' AND Finish='T52' simultaneously\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single numeric value representing the average\",\n      \"If multiple rows match, compute arithmetic mean\",\n      \"If no rows match, return appropriate null/empty indicator\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.676905870437622,
+  "token_usage": {
+    "input_tokens": 1071,
+    "output_tokens": 642
+  }
+}

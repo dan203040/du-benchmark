@@ -1,0 +1,144 @@
+{
+  "m_q": {
+    "target_metric": "Top 5 distinct Metropolitan areas in New England with highest '# of Reports' values",
+    "filters": [
+      "Year = 2024 (implied by question)",
+      "Metropolitan areas located in New England states: Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont"
+    ],
+    "grouping_variables": [
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which states are considered New England?",
+      "How to identify metropolitan areas belonging to New England states?",
+      "How to handle metropolitan areas that span multiple states (including non-New England states)?",
+      "How to sort and limit to top 5 by '# of Reports'?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Connecticut.csv",
+      "Maine.csv",
+      "Massachusetts.csv",
+      "NewHampshire.csv",
+      "RhodeIsland.csv",
+      "Vermont.csv",
+      "new_england_states.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "Connecticut.csv",
+        "right_source": "new_england_states.csv",
+        "left_column": "State (implied by filename)",
+        "right_column": "Name",
+        "join_type": "implicit"
+      },
+      {
+        "left_source": "Maine.csv",
+        "right_source": "new_england_states.csv",
+        "left_column": "State (implied by filename)",
+        "right_column": "Name",
+        "join_type": "implicit"
+      },
+      {
+        "left_source": "Massachusetts.csv",
+        "right_source": "new_england_states.csv",
+        "left_column": "State (implied by filename)",
+        "right_column": "Name",
+        "join_type": "implicit"
+      },
+      {
+        "left_source": "NewHampshire.csv",
+        "right_source": "new_england_states.csv",
+        "left_column": "State (implied by filename)",
+        "right_column": "Name",
+        "join_type": "implicit"
+      },
+      {
+        "left_source": "RhodeIsland.csv",
+        "right_source": "new_england_states.csv",
+        "left_column": "State (implied by filename)",
+        "right_column": "Name",
+        "join_type": "implicit"
+      },
+      {
+        "left_source": "Vermont.csv",
+        "right_source": "new_england_states.csv",
+        "left_column": "State (implied by filename)",
+        "right_column": "Name",
+        "join_type": "implicit"
+      }
+    ],
+    "schema_conflicts": [
+      "All state CSV files have identical schema: ['Metropolitan Area', '# of Reports']",
+      "new_england_states.csv has different schema: ['Name'] only",
+      "No explicit state column in state CSV files - state information is in filenames"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of identity theft reports (implied to be for 2024)"
+    },
+    "scale_issues": [
+      "Values are floats but represent counts (should be integers)",
+      "Some rows contain descriptive text instead of data (e.g., 'Metropolitan Areas are defined by...')"
+    ],
+    "cross_source_conflicts": [
+      "Metropolitan areas may appear in multiple state files if they span state boundaries (e.g., 'Boston-Cambridge-Newton, MA-NH' appears in both Massachusetts.csv and NewHampshire.csv)",
+      "Need to decide whether to sum reports for cross-state areas or treat as separate entries"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Metropolitan Areas are defined by..."
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row in each state CSV contains descriptive text, not data",
+      "Column names contain special characters ('# of Reports')",
+      "State information is encoded in filenames, not in data columns",
+      "All files have consistent column structure"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "# of Reports must be non-negative",
+      "Metropolitan Area names should be unique within each state",
+      "Year is implied to be 2024 from question but not explicitly in data",
+      "New England states are defined by new_england_states.csv"
+    ],
+    "derived_filters": [
+      "Remove rows where '# of Reports' is NaN or contains text",
+      "Filter to only metropolitan areas from the 6 New England states",
+      "Handle duplicate metropolitan areas that span multiple New England states"
+    ],
+    "statistical_tests": [
+      "Check for outliers in '# of Reports' values",
+      "Verify distribution of reports across metropolitan areas",
+      "Validate that top 5 areas have significantly higher reports than others"
+    ],
+    "output_format_requirements": [
+      "List of exactly 5 metropolitan areas",
+      "Should include both area name and report count",
+      "Areas should be distinct (no duplicates)",
+      "Sorted descending by '# of Reports'"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Top 5 distinct Metropolitan areas in New England with highest '# of Reports' values\",\n        \"filters\": [\"Year = 2024 (implied by question)\", \"Metropolitan areas located in New England states: Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont\"],\n        \"grouping_variables\": [\"Metropolitan Area\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"Which states are considered New England?\", \"How to identify metropolitan areas belonging to New England states?\", \"How to handle metropolitan areas that span multiple states (including non-New England states)?\", \"How to sort and limit to top 5 by '# of Reports'?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Connecticut.csv\", \"Maine.csv\", \"Massachusetts.csv\", \"NewHampshire.csv\", \"RhodeIsland.csv\", \"Vermont.csv\", \"new_england_states.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"Connecticut.csv\", \"right_source\": \"new_england_states.csv\", \"left_column\": \"State (implied by filename)\", \"right_column\": \"Name\", \"join_type\": \"implicit\"},\n            {\"left_source\": \"Maine.csv\", \"right_source\": \"new_england_states.csv\", \"left_column\": \"State (implied by filename)\", \"right_column\": \"Name\", \"join_type\": \"implicit\"},\n            {\"left_source\": \"Massachusetts.csv\", \"right_source\": \"new_england_states.csv\", \"left_column\": \"State (implied by filename)\", \"right_column\": \"Name\", \"join_type\": \"implicit\"},\n            {\"left_source\": \"NewHampshire.csv\", \"right_source\": \"new_england_states.csv\", \"left_column\": \"State (implied by filename)\", \"right_column\": \"Name\", \"join_type\": \"implicit\"},\n            {\"left_source\": \"RhodeIsland.csv\", \"right_source\": \"new_england_states.csv\", \"left_column\": \"State (implied by filename)\", \"right_column\": \"Name\", \"join_type\": \"implicit\"},\n            {\"left_source\": \"Vermont.csv\", \"right_source\": \"new_england_states.csv\", \"left_column\": \"State (implied by filename)\", \"right_column\": \"Name\", \"join_type\": \"implicit\"}\n        ],\n        \"schema_conflicts\": [\"All state CSV files have identical schema: ['Metropolitan Area', '# of Reports']\", \"new_england_states.csv has different schema: ['Name'] only\", \"No explicit state column in state CSV files - state information is in filenames\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of identity theft reports (implied to be for 2024)\"},\n        \"scale_issues\": [\"Values are floats but represent counts (should be integers)\", \"Some rows contain descriptive text instead of data (e.g., 'Metropolitan Areas are defined by...')\"],\n        \"cross_source_conflicts\": [\"Metropolitan areas may appear in multiple state files if they span state boundaries (e.g., 'Boston-Cambridge-Newton, MA-NH' appears in both Massachusetts.csv and NewHampshire.csv)\", \"Need to decide whether to sum reports for cross-state areas or treat as separate entries\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Metropolitan Areas are defined by...\"],\n        \"expected_columns\": 2,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Last row in each state CSV contains descriptive text, not data\", \"Column names contain special characters ('# of Reports')\", \"State information is encoded in filenames, not in data columns\", \"All files have consistent column structure\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"# of Reports must be non-negative\", \"Metropolitan Area names should be unique within each state\", \"Year is implied to be 2024 from question but not explicitly in data\", \"New England states are defined by new_england_states.csv\"],\n        \"derived_filters\": [\"Remove rows where '# of Reports' is NaN or contains text\", \"Filter to only metropolitan areas from the 6 New England states\", \"Handle duplicate metropolitan areas that span multiple New England states\"],\n        \"statistical_tests\": [\"Check for outliers in '# of Reports' values\", \"Verify distribution of reports across metropolitan areas\", \"Validate that top 5 areas have significantly higher reports than others\"],\n        \"output_format_requirements\": [\"List of exactly 5 metropolitan areas\", \"Should include both area name and report count\", \"Areas should be distinct (no duplicates)\", \"Sorted descending by '# of Reports'\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 21.41729998588562,
+  "token_usage": {
+    "input_tokens": 12871,
+    "output_tokens": 1070
+  }
+}

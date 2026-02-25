@@ -1,0 +1,72 @@
+{
+  "m_q": {
+    "target_metric": "fastest time among Chinese athletes",
+    "filters": [
+      "Nationality == 'China'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which athletes have Nationality equal to 'China'?",
+      "What are the Time values for Chinese athletes?",
+      "Which Chinese athlete has the minimum Time value?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "race_results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Time": "hours:minutes:seconds (H:MM:SS)"
+    },
+    "scale_issues": [
+      "Time is stored as string object, needs parsing to compare values properly"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA"
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rank column contains missing values for some rows (empty strings)",
+      "Time column is in H:MM:SS format as string",
+      "Notes column may contain empty strings or categorical values like 'SB'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Nationality must equal 'China'",
+      "Time values must be valid and parseable",
+      "At least one Chinese athlete must exist in the dataset"
+    ],
+    "derived_filters": [
+      "Convert Time from string to comparable datetime/timedelta format",
+      "Filter rows where Nationality == 'China'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return the Athlete name with the fastest (minimum) Time value",
+      "Output should be a single athlete name"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"fastest time among Chinese athletes\",\n    \"filters\": [\"Nationality == 'China'\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which athletes have Nationality equal to 'China'?\",\n      \"What are the Time values for Chinese athletes?\",\n      \"Which Chinese athlete has the minimum Time value?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"race_results\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Time\": \"hours:minutes:seconds (H:MM:SS)\"\n    },\n    \"scale_issues\": [\n      \"Time is stored as string object, needs parsing to compare values properly\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\", \"NA\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Rank column contains missing values for some rows (empty strings)\",\n      \"Time column is in H:MM:SS format as string\",\n      \"Notes column may contain empty strings or categorical values like 'SB'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Nationality must equal 'China'\",\n      \"Time values must be valid and parseable\",\n      \"At least one Chinese athlete must exist in the dataset\"\n    ],\n    \"derived_filters\": [\n      \"Convert Time from string to comparable datetime/timedelta format\",\n      \"Filter rows where Nationality == 'China'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return the Athlete name with the fastest (minimum) Time value\",\n      \"Output should be a single athlete name\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.112478017807007,
+  "token_usage": {
+    "input_tokens": 1012,
+    "output_tokens": 523
+  }
+}

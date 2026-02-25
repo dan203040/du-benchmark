@@ -1,0 +1,57 @@
+{
+  "m_q": {
+    "target_metric": "Number of wins for Dunfermline Athletic when their total final appearances is less than 2",
+    "filters": [
+      "Club is Dunfermline Athletic",
+      "Total final appearances is less than 2"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "Scottish Challenge Cup Finalists"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Wins": "number of wins",
+      "Total final appearances": "number of appearances"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Club names should be unique",
+      "Wins, Runners-up, and Total final appearances should be non-negative integers"
+    ],
+    "derived_filters": [
+      "Total final appearances < 2"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": []
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Number of wins for Dunfermline Athletic when their total final appearances is less than 2\",\n    \"filters\": [\n      \"Club is Dunfermline Athletic\",\n      \"Total final appearances is less than 2\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Scottish Challenge Cup Finalists\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Wins\": \"number of wins\",\n      \"Total final appearances\": \"number of appearances\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Club names should be unique\",\n      \"Wins, Runners-up, and Total final appearances should be non-negative integers\"\n    ],\n    \"derived_filters\": [\n      \"Total final appearances < 2\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": []\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.1153740882873535,
+  "token_usage": {}
+}

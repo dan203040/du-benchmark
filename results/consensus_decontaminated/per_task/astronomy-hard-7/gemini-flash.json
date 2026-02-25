@@ -1,0 +1,88 @@
+{
+  "m_q": {
+    "target_metric": "RMSE between predicted and observed Swarm Alpha atmospheric density values over the 4-hour forecast window",
+    "filters": [
+      "Training data from wu334 (OMNI/GOES: 2016-10-22 to 2016-10-23; Density: 2016-10-23 to 2016-10-24)",
+      "Evaluation data from wu335 (OMNI/GOES: 2016-10-25 to 2016-10-26; Density: 2016-10-29)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Train a VAR(1) model using a 16-hour context window of OMNI2 (f10.7_index, Kp_index, Dst_index_nT) and GOES (xrsb_flux_observed, xrsa_flux_observed) variables to project the time series forward.",
+      "Fit a linear regression model to predict the next 4 hours of Swarm Alpha's atmospheric density.",
+      "Calculate the RMSE between the predicted and observed density values for the evaluation dataset."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "omni2-wu334-20160824_to_20161023.csv",
+      "goes-wu334-20160824_to_20161023.csv",
+      "swarma-wu334-20161023_to_20161026.csv",
+      "omni2-wu335-20160827_to_20161026.csv",
+      "goes-wu335-20160827_to_20161026.csv",
+      "swarma-wu335-20161026_to_20161029.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "omni2-wu334-20160824_to_20161023.csv",
+        "right_source": "goes-wu334-20160824_to_20161023.csv",
+        "left_column": "Timestamp",
+        "right_column": "Timestamp",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "omni2-wu335-20160827_to_20161026.csv",
+        "right_source": "goes-wu335-20160827_to_20161026.csv",
+        "left_column": "Timestamp",
+        "right_column": "Timestamp",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "f10.7_index": "sfu",
+      "Kp_index": "unitless",
+      "Dst_index_nT": "nT",
+      "xrsb_flux_observed": "W/m^2",
+      "xrsa_flux_observed": "W/m^2",
+      "Orbit Mean Density (kg/m^3)": "kg/m^3"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 57,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 16-hour context window must contain valid data.",
+      "The 4-hour forecast window must contain valid data."
+    ],
+    "derived_filters": [
+      "Training data: Timestamp between 2016-10-22 00:00:00 and 2016-10-23 23:00:00 for OMNI2 and GOES, and 2016-10-23 00:00:00 and 2016-10-24 03:00:00 for Swarm Alpha density.",
+      "Evaluation data: Timestamp between 2016-10-25 00:00:00 and 2016-10-26 23:00:00 for OMNI2 and GOES, and 2016-10-29 00:00:00 and 2016-10-29 03:00:00 for Swarm Alpha density."
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Report the RMSE value with appropriate units."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"RMSE between predicted and observed Swarm Alpha atmospheric density values over the 4-hour forecast window\",\n    \"filters\": [\n      \"Training data from wu334 (OMNI/GOES: 2016-10-22 to 2016-10-23; Density: 2016-10-23 to 2016-10-24)\",\n      \"Evaluation data from wu335 (OMNI/GOES: 2016-10-25 to 2016-10-26; Density: 2016-10-29)\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Train a VAR(1) model using a 16-hour context window of OMNI2 (f10.7_index, Kp_index, Dst_index_nT) and GOES (xrsb_flux_observed, xrsa_flux_observed) variables to project the time series forward.\",\n      \"Fit a linear regression model to predict the next 4 hours of Swarm Alpha's atmospheric density.\",\n      \"Calculate the RMSE between the predicted and observed density values for the evaluation dataset.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"omni2-wu334-20160824_to_20161023.csv\",\n      \"goes-wu334-20160824_to_20161023.csv\",\n      \"swarma-wu334-20161023_to_20161026.csv\",\n      \"omni2-wu335-20160827_to_20161026.csv\",\n      \"goes-wu335-20160827_to_20161026.csv\",\n      \"swarma-wu335-20161026_to_20161029.csv\"\n    ],\n    \"join_keys\": [\n      {\n        \"left_source\": \"omni2-wu334-20160824_to_20161023.csv\",\n        \"right_source\": \"goes-wu334-20160824_to_20161023.csv\",\n        \"left_column\": \"Timestamp\",\n        \"right_column\": \"Timestamp\",\n        \"join_type\": \"inner\"\n      },\n      {\n        \"left_source\": \"omni2-wu335-20160827_to_20161026.csv\",\n        \"right_source\": \"goes-wu335-20160827_to_20161026.csv\",\n        \"left_column\": \"Timestamp\",\n        \"right_column\": \"Timestamp\",\n        \"join_type\": \"inner\"\n      }\n    ],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"f10.7_index\": \"sfu\",\n      \"Kp_index\": \"unitless\",\n      \"Dst_index_nT\": \"nT\",\n      \"xrsb_flux_observed\": \"W/m^2\",\n      \"xrsa_flux_observed\": \"W/m^2\",\n      \"Orbit Mean Density (kg/m^3)\": \"kg/m^3\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 57,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 16-hour context window must contain valid data.\",\n      \"The 4-hour forecast window must contain valid data.\"\n    ],\n    \"derived_filters\": [\n      \"Training data: Timestamp between 2016-10-22 00:00:00 and 2016-10-23 23:00:00 for OMNI2 and GOES, and 2016-10-23 00:00:00 and 2016-10-24 03:00:00 for Swarm Alpha density.\",\n      \"Evaluation data: Timestamp between 2016-10-25 00:00:00 and 2016-10-26 23:00:00 for OMNI2 and GOES, and 2016-10-29 00:00:00 and 2016-10-29 03:00:00 for Swarm Alpha density.\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Report the RMSE value with appropriate units.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 12.530331134796143,
+  "token_usage": {}
+}

@@ -1,0 +1,75 @@
+{
+  "m_q": {
+    "target_metric": "total agricultural value in 2008/09",
+    "filters": [
+      "Year = 2008/09",
+      "Category contains 'Agricultural' and 'Value'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows represent agricultural value data?",
+      "Are there multiple agricultural value entries that need to be summed?",
+      "Does the dataset contain separate sections (IME Exchange vs other transaction types) that need to be considered?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "IME Exchange (Including spot, credit and forward transactions)"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "IME Exchange (Including spot, credit and forward transactions)": "Category",
+      "2008/09": "Year_2008_09"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "2008/09": "billion rials for value rows, thousand tons for volume rows"
+    },
+    "scale_issues": [
+      "Value is in billion rials",
+      "Volume is in thousand tons",
+      "Numbers contain commas as thousand separators"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Numbers contain comma thousand separators",
+      "File contains multiple sections with different transaction types",
+      "Row categories alternate between Volume and Value metrics",
+      "Agricultural Value rows appear multiple times in different sections"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must identify all rows where Category contains 'Agricultural - Value'",
+      "Must parse numeric values with comma separators",
+      "Must extract data from column '2008/09'"
+    ],
+    "derived_filters": [
+      "Filter rows where 'Agricultural - Value' appears in the category column"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single numeric value in billion rials",
+      "Sum all agricultural value entries for 2008/09 if multiple sections exist"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"total agricultural value in 2008/09\",\n    \"filters\": [\n      \"Year = 2008/09\",\n      \"Category contains 'Agricultural' and 'Value'\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows represent agricultural value data?\",\n      \"Are there multiple agricultural value entries that need to be summed?\",\n      \"Does the dataset contain separate sections (IME Exchange vs other transaction types) that need to be considered?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"IME Exchange (Including spot, credit and forward transactions)\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"IME Exchange (Including spot, credit and forward transactions)\": \"Category\",\n      \"2008/09\": \"Year_2008_09\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"2008/09\": \"billion rials for value rows, thousand tons for volume rows\"\n    },\n    \"scale_issues\": [\n      \"Value is in billion rials\",\n      \"Volume is in thousand tons\",\n      \"Numbers contain commas as thousand separators\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Numbers contain comma thousand separators\",\n      \"File contains multiple sections with different transaction types\",\n      \"Row categories alternate between Volume and Value metrics\",\n      \"Agricultural Value rows appear multiple times in different sections\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must identify all rows where Category contains 'Agricultural - Value'\",\n      \"Must parse numeric values with comma separators\",\n      \"Must extract data from column '2008/09'\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where 'Agricultural - Value' appears in the category column\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single numeric value in billion rials\",\n      \"Sum all agricultural value entries for 2008/09 if multiple sections exist\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.4144127368927,
+  "token_usage": {
+    "input_tokens": 1374,
+    "output_tokens": 620
+  }
+}

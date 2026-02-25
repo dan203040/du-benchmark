@@ -1,0 +1,149 @@
+{
+  "m_q": {
+    "target_metric": "Existence of a metropolitan area where identity theft reports exceeded fraud reports in 2024",
+    "filters": [
+      "Year = 2024",
+      "Report type = identity theft",
+      "Report type = fraud"
+    ],
+    "grouping_variables": [
+      "Metropolitan Area"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What defines identity theft vs fraud reports in these datasets?",
+      "Are there separate data sources for identity theft and fraud, or are they in the same files?",
+      "How to identify which rows represent identity theft vs fraud?",
+      "How to compare counts between the two types for each metropolitan area?",
+      "Does any metro area have identity theft count > fraud count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Alabama.csv",
+      "Alaska.csv",
+      "Arizona.csv",
+      "Arkansas.csv",
+      "California.csv",
+      "Colorado.csv",
+      "Connecticut.csv",
+      "Delaware.csv",
+      "DistrictofColumbia.csv",
+      "Florida.csv",
+      "Georgia.csv",
+      "Hawaii.csv",
+      "Idaho.csv",
+      "Illinois.csv",
+      "Indiana.csv",
+      "Iowa.csv",
+      "Kansas.csv",
+      "Kentucky.csv",
+      "Louisiana.csv",
+      "Maine.csv",
+      "Maryland.csv",
+      "Massachusetts.csv",
+      "Michigan.csv",
+      "Minnesota.csv",
+      "Mississippi.csv",
+      "Missouri.csv",
+      "Montana.csv",
+      "Nebraska.csv",
+      "Nevada.csv",
+      "NewHampshire.csv",
+      "NewJersey.csv",
+      "NewMexico.csv",
+      "NewYork.csv",
+      "NorthCarolina.csv",
+      "NorthDakota.csv",
+      "Ohio.csv",
+      "Oklahoma.csv",
+      "Oregon.csv",
+      "Pennsylvania.csv",
+      "PuertoRico.csv",
+      "RhodeIsland.csv",
+      "SouthCarolina.csv",
+      "SouthDakota.csv",
+      "Tennessee.csv",
+      "Texas.csv",
+      "Utah.csv",
+      "Vermont.csv",
+      "Virginia.csv",
+      "Washington.csv",
+      "WestVirginia.csv",
+      "Wisconsin.csv",
+      "Wyoming.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "All files have identical schema (Metropolitan Area, # of Reports)",
+      "Each file contains a footer row with metadata text that should be filtered out",
+      "No differentiation between identity theft and fraud in current schema"
+    ],
+    "column_mappings": {
+      "# of Reports": "number_of_reports"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count"
+    },
+    "scale_issues": [
+      "Metadata footer mentions 'reports per 100,000 population' but # of Reports column appears to be raw counts, not rates"
+    ],
+    "cross_source_conflicts": [
+      "Metropolitan areas may appear in multiple state files (cross-state metros)",
+      "Cannot distinguish identity theft from fraud reports - all reports appear aggregated",
+      "No temporal dimension visible - cannot confirm data is from 2024"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "nan"
+    ],
+    "expected_columns": 2,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Last row in each file is a metadata description, not data",
+      "Metropolitan Area column contains full metro area names with state abbreviations",
+      "# of Reports column is float64 type with possible NaN values",
+      "No explicit report type column to distinguish identity theft from fraud",
+      "No year or date column visible to confirm 2024 timeframe",
+      "Data structure does not support answering the question as posed - missing critical dimensions"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must identify whether reports are identity theft or fraud (not possible with current schema)",
+      "Must filter to 2024 data only (no year column available)",
+      "Must compare identity theft count vs fraud count per metropolitan area",
+      "Must return Yes or No answer only"
+    ],
+    "derived_filters": [
+      "Exclude footer rows containing 'Metropolitan Areas are defined by'",
+      "Exclude rows where # of Reports is NaN"
+    ],
+    "statistical_tests": [
+      "For each metropolitan area: identity_theft_count > fraud_count",
+      "Existence check: ANY(identity_theft_count > fraud_count)"
+    ],
+    "output_format_requirements": [
+      "Answer must be exactly 'Yes' or 'No'",
+      "No explanation needed per question instructions",
+      "Cannot be answered with available data - missing report type categorization and year information"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Existence of a metropolitan area where identity theft reports exceeded fraud reports in 2024\",\n    \"filters\": [\n      \"Year = 2024\",\n      \"Report type = identity theft\",\n      \"Report type = fraud\"\n    ],\n    \"grouping_variables\": [\n      \"Metropolitan Area\"\n    ],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"What defines identity theft vs fraud reports in these datasets?\",\n      \"Are there separate data sources for identity theft and fraud, or are they in the same files?\",\n      \"How to identify which rows represent identity theft vs fraud?\",\n      \"How to compare counts between the two types for each metropolitan area?\",\n      \"Does any metro area have identity theft count > fraud count?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"Alabama.csv\",\n      \"Alaska.csv\",\n      \"Arizona.csv\",\n      \"Arkansas.csv\",\n      \"California.csv\",\n      \"Colorado.csv\",\n      \"Connecticut.csv\",\n      \"Delaware.csv\",\n      \"DistrictofColumbia.csv\",\n      \"Florida.csv\",\n      \"Georgia.csv\",\n      \"Hawaii.csv\",\n      \"Idaho.csv\",\n      \"Illinois.csv\",\n      \"Indiana.csv\",\n      \"Iowa.csv\",\n      \"Kansas.csv\",\n      \"Kentucky.csv\",\n      \"Louisiana.csv\",\n      \"Maine.csv\",\n      \"Maryland.csv\",\n      \"Massachusetts.csv\",\n      \"Michigan.csv\",\n      \"Minnesota.csv\",\n      \"Mississippi.csv\",\n      \"Missouri.csv\",\n      \"Montana.csv\",\n      \"Nebraska.csv\",\n      \"Nevada.csv\",\n      \"NewHampshire.csv\",\n      \"NewJersey.csv\",\n      \"NewMexico.csv\",\n      \"NewYork.csv\",\n      \"NorthCarolina.csv\",\n      \"NorthDakota.csv\",\n      \"Ohio.csv\",\n      \"Oklahoma.csv\",\n      \"Oregon.csv\",\n      \"Pennsylvania.csv\",\n      \"PuertoRico.csv\",\n      \"RhodeIsland.csv\",\n      \"SouthCarolina.csv\",\n      \"SouthDakota.csv\",\n      \"Tennessee.csv\",\n      \"Texas.csv\",\n      \"Utah.csv\",\n      \"Vermont.csv\",\n      \"Virginia.csv\",\n      \"Washington.csv\",\n      \"WestVirginia.csv\",\n      \"Wisconsin.csv\",\n      \"Wyoming.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"All files have identical schema (Metropolitan Area, # of Reports)\",\n      \"Each file contains a footer row with metadata text that should be filtered out\",\n      \"No differentiation between identity theft and fraud in current schema\"\n    ],\n    \"column_mappings\": {\n      \"# of Reports\": \"number_of_reports\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"# of Reports\": \"count\"\n    },\n    \"scale_issues\": [\n      \"Metadata footer mentions 'reports per 100,000 population' but # of Reports column appears to be raw counts, not rates\"\n    ],\n    \"cross_source_conflicts\": [\n      \"Metropolitan areas may appear in multiple state files (cross-state metros)\",\n      \"Cannot distinguish identity theft from fraud reports - all reports appear aggregated\",\n      \"No temporal dimension visible - cannot confirm data is from 2024\"\n    ]\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\",\n      \"nan\"\n    ],\n    \"expected_columns\": 2,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Last row in each file is a metadata description, not data\",\n      \"Metropolitan Area column contains full metro area names with state abbreviations\",\n      \"# of Reports column is float64 type with possible NaN values\",\n      \"No explicit report type column to distinguish identity theft from fraud\",\n      \"No year or date column visible to confirm 2024 timeframe\",\n      \"Data structure does not support answering the question as posed - missing critical dimensions\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Must identify whether reports are identity theft or fraud (not possible with current schema)\",\n      \"Must filter to 2024 data only (no year column available)\",\n      \"Must compare identity theft count vs fraud count per metropolitan area\",\n      \"Must return Yes or No answer only\"\n    ],\n    \"derived_filters\": [\n      \"Exclude footer rows containing 'Metropolitan Areas are defined by'\",\n      \"Exclude rows where # of Reports is NaN\"\n    ],\n    \"statistical_tests\": [\n      \"For each metropolitan area: identity_theft_count > fraud_count\",\n      \"Existence check: ANY(identity_theft_count > fraud_count)\"\n    ],\n    \"output_format_requirements\": [\n      \"Answer must be exactly 'Yes' or 'No'\",\n      \"No explanation needed per question instructions\",\n      \"Cannot be answered with available data - missing report type categorization and year information\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 21.16167402267456,
+  "token_usage": {
+    "input_tokens": 14060,
+    "output_tokens": 1303
+  }
+}

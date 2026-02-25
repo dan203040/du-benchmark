@@ -1,0 +1,68 @@
+{
+  "m_q": {
+    "target_metric": "Mean beak length-to-depth ratio and 99% confidence interval for G. scandens birds in 1975 and 2012.",
+    "filters": [],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Calculate the beak length-to-depth ratio for each bird in 1975 and 2012.",
+      "Calculate the mean beak length-to-depth ratio for each year (1975 and 2012).",
+      "Compute the 99% confidence interval for the mean beak length-to-depth ratio for each year using bootstrap replicates (size = 10,000)."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "result.csv",
+      "1975.csv",
+      "2012.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Year": "year",
+      "mean ratio": "beak length / beak depth",
+      "conf": "beak length / beak depth"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": null,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Beak length and beak depth must be positive values to calculate the ratio.",
+      "Bootstrap replicates should be generated independently for each year."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [
+      "Bootstrap confidence interval"
+    ],
+    "output_format_requirements": [
+      "The result.csv file should contain the columns 'Year', 'mean ratio', and 'conf'.",
+      "The 'Year' column should contain the years 1975 and 2012.",
+      "The 'mean ratio' column should contain the calculated mean beak length-to-depth ratio for each year.",
+      "The 'conf' column should contain the width of the 99% confidence interval for the mean beak length-to-depth ratio for each year (e.g., half the interval width)."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Mean beak length-to-depth ratio and 99% confidence interval for G. scandens birds in 1975 and 2012.\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Year\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Calculate the beak length-to-depth ratio for each bird in 1975 and 2012.\",\n      \"Calculate the mean beak length-to-depth ratio for each year (1975 and 2012).\",\n      \"Compute the 99% confidence interval for the mean beak length-to-depth ratio for each year using bootstrap replicates (size = 10,000).\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"result.csv\", \"1975.csv\", \"2012.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Year\": \"year\",\n      \"mean ratio\": \"beak length / beak depth\",\n      \"conf\": \"beak length / beak depth\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": null,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Beak length and beak depth must be positive values to calculate the ratio.\",\n      \"Bootstrap replicates should be generated independently for each year.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [\"Bootstrap confidence interval\"],\n    \"output_format_requirements\": [\n      \"The result.csv file should contain the columns 'Year', 'mean ratio', and 'conf'.\",\n      \"The 'Year' column should contain the years 1975 and 2012.\",\n      \"The 'mean ratio' column should contain the calculated mean beak length-to-depth ratio for each year.\",\n      \"The 'conf' column should contain the width of the 99% confidence interval for the mean beak length-to-depth ratio for each year (e.g., half the interval width).\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 8.109779357910156,
+  "token_usage": {}
+}

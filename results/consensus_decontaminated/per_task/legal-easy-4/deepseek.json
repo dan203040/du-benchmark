@@ -1,0 +1,87 @@
+{
+  "m_q": {
+    "target_metric": "total number of fraud reports submitted to FTC via web between 2022 and 2024",
+    "filters": [
+      "Year between 2022 and 2024 inclusive",
+      "Data Contributor contains 'FTC - Web Reports (Fraud & Other)'"
+    ],
+    "grouping_variables": [
+      "Year"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the breakdown by year?",
+      "Are there other FTC web report categories that should be included?",
+      "Should IDT (Identity Theft) web reports be considered fraud?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Data_Contributors__FTC"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "First file has 'State Law Enforcement Agencies' column instead of 'Year' column",
+      "Different files have same column names but different data"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "count of reports",
+      "%": "percentage of total reports"
+    },
+    "scale_issues": [
+      "Percentages are stored as strings with '%' symbol",
+      "Need to convert percentage strings to numeric values if needed"
+    ],
+    "cross_source_conflicts": [
+      "Multiple files contain 'Data Contributor' column with different values",
+      "Year ranges may differ across files"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 4,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Percentages include '%' symbol in data",
+      "Some Data Contributor values contain quotes and special characters",
+      "Year column is numeric"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year must be 2022, 2023, or 2024",
+      "Data Contributor must exactly match 'FTC - Web Reports (Fraud & Other)'",
+      "Sum of # of Reports should be calculated"
+    ],
+    "derived_filters": [
+      "Filter 2024_CSN_Data_Contributors__FTC where Year in [2022, 2023, 2024]",
+      "Filter where Data Contributor = 'FTC - Web Reports (Fraud & Other)'"
+    ],
+    "statistical_tests": [
+      "Check for missing years in the range",
+      "Verify no duplicate rows for same Year and Data Contributor combination"
+    ],
+    "output_format_requirements": [
+      "Numeric total without formatting",
+      "Should be integer value"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total number of fraud reports submitted to FTC via web between 2022 and 2024\",\n        \"filters\": [\"Year between 2022 and 2024 inclusive\", \"Data Contributor contains 'FTC - Web Reports (Fraud & Other)'\"],\n        \"grouping_variables\": [\"Year\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the breakdown by year?\", \"Are there other FTC web report categories that should be included?\", \"Should IDT (Identity Theft) web reports be considered fraud?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"2024_CSN_Data_Contributors__FTC\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"First file has 'State Law Enforcement Agencies' column instead of 'Year' column\", \"Different files have same column names but different data\"],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"# of Reports\": \"count of reports\", \"%\": \"percentage of total reports\"},\n        \"scale_issues\": [\"Percentages are stored as strings with '%' symbol\", \"Need to convert percentage strings to numeric values if needed\"],\n        \"cross_source_conflicts\": [\"Multiple files contain 'Data Contributor' column with different values\", \"Year ranges may differ across files\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 4,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Percentages include '%' symbol in data\", \"Some Data Contributor values contain quotes and special characters\", \"Year column is numeric\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year must be 2022, 2023, or 2024\", \"Data Contributor must exactly match 'FTC - Web Reports (Fraud & Other)'\", \"Sum of # of Reports should be calculated\"],\n        \"derived_filters\": [\"Filter 2024_CSN_Data_Contributors__FTC where Year in [2022, 2023, 2024]\", \"Filter where Data Contributor = 'FTC - Web Reports (Fraud & Other)'\"],\n        \"statistical_tests\": [\"Check for missing years in the range\", \"Verify no duplicate rows for same Year and Data Contributor combination\"],\n        \"output_format_requirements\": [\"Numeric total without formatting\", \"Should be integer value\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.657254219055176,
+  "token_usage": {
+    "input_tokens": 2098,
+    "output_tokens": 567
+  }
+}

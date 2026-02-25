@@ -1,0 +1,121 @@
+{
+  "m_q": {
+    "target_metric": "Spearman correlation coefficient between PLK1 protein abundance and CHEK2-S163 phosphoprotein abundance in tumor samples",
+    "filters": [
+      "Proteomics_Tumor_Normal == 'Tumor'",
+      "Case_excluded == 'No'",
+      "Exclude samples with missing values in PLK1 or CHEK2-S163 abundance"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify PLK1 protein abundance values from global proteomics data",
+      "Identify CHEK2-S163 phosphoprotein abundance values from phosphoproteomics data",
+      "Filter to tumor samples only",
+      "Remove samples excluded from study",
+      "Remove samples with missing values in either protein",
+      "Calculate Spearman correlation",
+      "Round result to 4 decimal places"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx",
+      "1-s2.0-S0092867420301070-mmc2__A-global-proteomics",
+      "1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics"
+    ],
+    "join_keys": [
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "right_source": "1-s2.0-S0092867420301070-mmc2__A-global-proteomics",
+        "left_column": "idx",
+        "right_column": "idx",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "1-s2.0-S0092867420301070-mmc1.xlsx",
+        "right_source": "1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics",
+        "left_column": "idx",
+        "right_column": "idx",
+        "join_type": "inner"
+      }
+    ],
+    "schema_conflicts": [
+      "Global proteomics data has 10999 rows \u00d7 154 columns",
+      "Phosphoproteomics data has 73212 rows \u00d7 154 columns",
+      "Sample metadata has 153 rows \u00d7 179 columns",
+      "Different number of rows across datasets"
+    ],
+    "column_mappings": {
+      "idx": "sample_id",
+      "Proteomics_Tumor_Normal": "sample_type",
+      "Case_excluded": "excluded_from_study"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "PLK1 abundance": "log2 transformed intensity",
+      "CHEK2-S163 abundance": "log2 transformed intensity",
+      "TP53_CHEK2": "pathway activity score (unitless)"
+    },
+    "scale_issues": [
+      "Protein abundances are log2 transformed",
+      "Missing values represented as empty strings in some datasets",
+      "Some columns have mixed data types (object)"
+    ],
+    "cross_source_conflicts": [
+      "CHEK2 appears in multiple contexts: TP53_CHEK2 pathway activity in metadata vs CHEK2-S163 phosphosite in phosphoproteomics",
+      "Need to distinguish between CHEK2 protein and CHEK2-S163 phosphosite"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "Cannot be determined",
+      "Staging Incomplete"
+    ],
+    "expected_columns": 154,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Excel files converted to CSV format",
+      "Phosphoproteomics data has many missing values",
+      "Global proteomics data appears more complete",
+      "Sample IDs (S001-S153) match idx column in metadata"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only tumor samples (Proteomics_Tumor_Normal == 'Tumor')",
+      "Only samples not excluded (Case_excluded == 'No')",
+      "Complete cases only for PLK1 and CHEK2-S163",
+      "Sample count \u2264 153 (total samples in metadata)"
+    ],
+    "derived_filters": [
+      "Remove samples where PLK1 is missing",
+      "Remove samples where CHEK2-S163 is missing",
+      "Remove non-tumor samples",
+      "Remove excluded samples"
+    ],
+    "statistical_tests": [
+      "Spearman rank correlation test",
+      "Two-tailed significance test"
+    ],
+    "output_format_requirements": [
+      "Correlation coefficient rounded to 4 decimal places",
+      "No additional formatting or text"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Spearman correlation coefficient between PLK1 protein abundance and CHEK2-S163 phosphoprotein abundance in tumor samples\",\n        \"filters\": [\"Proteomics_Tumor_Normal == 'Tumor'\", \"Case_excluded == 'No'\", \"Exclude samples with missing values in PLK1 or CHEK2-S163 abundance\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Identify PLK1 protein abundance values from global proteomics data\", \"Identify CHEK2-S163 phosphoprotein abundance values from phosphoproteomics data\", \"Filter to tumor samples only\", \"Remove samples excluded from study\", \"Remove samples with missing values in either protein\", \"Calculate Spearman correlation\", \"Round result to 4 decimal places\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\", \"1-s2.0-S0092867420301070-mmc2__A-global-proteomics\", \"1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics\"],\n        \"join_keys\": [\n            {\"left_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\", \"right_source\": \"1-s2.0-S0092867420301070-mmc2__A-global-proteomics\", \"left_column\": \"idx\", \"right_column\": \"idx\", \"join_type\": \"inner\"},\n            {\"left_source\": \"1-s2.0-S0092867420301070-mmc1.xlsx\", \"right_source\": \"1-s2.0-S0092867420301070-mmc2__B-phospho-proteomics\", \"left_column\": \"idx\", \"right_column\": \"idx\", \"join_type\": \"inner\"}\n        ],\n        \"schema_conflicts\": [\"Global proteomics data has 10999 rows \u00d7 154 columns\", \"Phosphoproteomics data has 73212 rows \u00d7 154 columns\", \"Sample metadata has 153 rows \u00d7 179 columns\", \"Different number of rows across datasets\"],\n        \"column_mappings\": {\"idx\": \"sample_id\", \"Proteomics_Tumor_Normal\": \"sample_type\", \"Case_excluded\": \"excluded_from_study\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"PLK1 abundance\": \"log2 transformed intensity\", \"CHEK2-S163 abundance\": \"log2 transformed intensity\", \"TP53_CHEK2\": \"pathway activity score (unitless)\"},\n        \"scale_issues\": [\"Protein abundances are log2 transformed\", \"Missing values represented as empty strings in some datasets\", \"Some columns have mixed data types (object)\"],\n        \"cross_source_conflicts\": [\"CHEK2 appears in multiple contexts: TP53_CHEK2 pathway activity in metadata vs CHEK2-S163 phosphosite in phosphoproteomics\", \"Need to distinguish between CHEK2 protein and CHEK2-S163 phosphosite\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"Cannot be determined\", \"Staging Incomplete\"],\n        \"expected_columns\": 154,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Excel files converted to CSV format\", \"Phosphoproteomics data has many missing values\", \"Global proteomics data appears more complete\", \"Sample IDs (S001-S153) match idx column in metadata\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Only tumor samples (Proteomics_Tumor_Normal == 'Tumor')\", \"Only samples not excluded (Case_excluded == 'No')\", \"Complete cases only for PLK1 and CHEK2-S163\", \"Sample count \u2264 153 (total samples in metadata)\"],\n        \"derived_filters\": [\"Remove samples where PLK1 is missing\", \"Remove samples where CHEK2-S163 is missing\", \"Remove non-tumor samples\", \"Remove excluded samples\"],\n        \"statistical_tests\": [\"Spearman rank correlation test\", \"Two-tailed significance test\"],\n        \"output_format_requirements\": [\"Correlation coefficient rounded to 4 decimal places\", \"No additional formatting or text\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 19.27297592163086,
+  "token_usage": {
+    "input_tokens": 16302,
+    "output_tokens": 952
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "m_q": {
+    "target_metric": "Country with highest Agricultural Land (%) after filling missing values with mean",
+    "filters": [
+      "Remove rows where 'Agricultural Land( %)' is completely missing or invalid"
+    ],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate mean of 'Agricultural Land( %)' column",
+      "Fill missing values with calculated mean",
+      "Find maximum value of 'Agricultural Land( %)'",
+      "Identify country with maximum value"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "world-data-2023.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "'Agricultural Land( %)' column has dtype 'object' but contains percentage values with '%' symbol",
+      "Multiple numeric columns stored as 'object' dtype (e.g., 'Density\\n(P/Km2)', 'Land Area(Km2)', 'GDP')"
+    ],
+    "column_mappings": {
+      "Agricultural Land( %)": "Agricultural_Land_Percent"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Agricultural Land( %)": "percentage",
+      "Land Area(Km2)": "square kilometers",
+      "Density\\n(P/Km2)": "persons per square kilometer",
+      "GDP": "USD",
+      "Co2-Emissions": "metric tons"
+    },
+    "scale_issues": [
+      "Percentage values contain '%' symbol in data",
+      "Numeric values contain commas and currency symbols",
+      "Some values have trailing spaces (e.g., '$0.70 ')"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "",
+      "NA",
+      "N/A",
+      "null"
+    ],
+    "expected_columns": 35,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Column names contain special characters and spaces",
+      "Multi-line column name 'Density\\n(P/Km2)'",
+      "Numeric values quoted with commas (e.g., \"652,230\")",
+      "Some rows have missing values for certain columns"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Agricultural Land( %) must be between 0 and 100",
+      "Country names must be unique",
+      "Percentage values must be cleaned before calculation"
+    ],
+    "derived_filters": [
+      "Remove '%' symbol from 'Agricultural Land( %)' values",
+      "Convert cleaned values to numeric type",
+      "Exclude non-numeric values after cleaning"
+    ],
+    "statistical_tests": [
+      "Check for outliers in Agricultural Land( %) distribution",
+      "Verify mean calculation excludes missing values before imputation"
+    ],
+    "output_format_requirements": [
+      "Output must be in specified JSON format with 'highest country' and 'Agricultural Land %' keys",
+      "Agricultural Land % should be formatted as percentage"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Country with highest Agricultural Land (%) after filling missing values with mean\",\n        \"filters\": [\"Remove rows where 'Agricultural Land( %)' is completely missing or invalid\"],\n        \"grouping_variables\": [\"Country\"],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Calculate mean of 'Agricultural Land( %)' column\", \"Fill missing values with calculated mean\", \"Find maximum value of 'Agricultural Land( %)'\", \"Identify country with maximum value\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"world-data-2023.csv\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [\"'Agricultural Land( %)' column has dtype 'object' but contains percentage values with '%' symbol\", \"Multiple numeric columns stored as 'object' dtype (e.g., 'Density\\\\n(P/Km2)', 'Land Area(Km2)', 'GDP')\"],\n        \"column_mappings\": {\"Agricultural Land( %)\": \"Agricultural_Land_Percent\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Agricultural Land( %)\": \"percentage\", \"Land Area(Km2)\": \"square kilometers\", \"Density\\\\n(P/Km2)\": \"persons per square kilometer\", \"GDP\": \"USD\", \"Co2-Emissions\": \"metric tons\"},\n        \"scale_issues\": [\"Percentage values contain '%' symbol in data\", \"Numeric values contain commas and currency symbols\", \"Some values have trailing spaces (e.g., '$0.70 ')\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\", \"NA\", \"N/A\", \"null\"],\n        \"expected_columns\": 35,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Column names contain special characters and spaces\", \"Multi-line column name 'Density\\\\n(P/Km2)'\", \"Numeric values quoted with commas (e.g., \\\"652,230\\\")\", \"Some rows have missing values for certain columns\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Agricultural Land( %) must be between 0 and 100\", \"Country names must be unique\", \"Percentage values must be cleaned before calculation\"],\n        \"derived_filters\": [\"Remove '%' symbol from 'Agricultural Land( %)' values\", \"Convert cleaned values to numeric type\", \"Exclude non-numeric values after cleaning\"],\n        \"statistical_tests\": [\"Check for outliers in Agricultural Land( %) distribution\", \"Verify mean calculation excludes missing values before imputation\"],\n        \"output_format_requirements\": [\"Output must be in specified JSON format with 'highest country' and 'Agricultural Land %' keys\", \"Agricultural Land % should be formatted as percentage\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 12.582550048828125,
+  "token_usage": {
+    "input_tokens": 3638,
+    "output_tokens": 628
+  }
+}

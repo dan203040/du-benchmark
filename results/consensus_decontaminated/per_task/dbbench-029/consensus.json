@@ -1,0 +1,317 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total count of trains that operate every day",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total count of trains that operate every day",
+        "Count of trains that run daily",
+        "Total number of trains that run daily"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Day column must contain 'Daily' or equivalent daily operation indicator",
+        "Day == 'Daily'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Day column must contain 'Daily' or equivalent daily operation indicator"
+        ],
+        [
+          "Day == 'Daily'"
+        ],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many trains have 'Daily' in their Day column?",
+        "Are there any trains with multiple day patterns that include all days of the week?",
+        "Do trains with 'N/a' in Departure time still count as running?",
+        "Which column indicates the frequency/schedule of train runs?",
+        "What value in the Day column represents daily trains?",
+        "How many unique trains have 'Daily' in the Day column?",
+        "How to handle trains that run on multiple days?",
+        "How to interpret the 'Day' column to identify daily trains?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How many trains have 'Daily' in their Day column?",
+          "Are there any trains with multiple day patterns that include all days of the week?",
+          "Do trains with 'N/a' in Departure time still count as running?"
+        ],
+        [
+          "Which column indicates the frequency/schedule of train runs?",
+          "What value in the Day column represents daily trains?",
+          "How many unique trains have 'Daily' in the Day column?"
+        ],
+        [
+          "How to handle trains that run on multiple days?",
+          "How to interpret the 'Day' column to identify daily trains?"
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Train Schedule"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Train Schedule"
+        ],
+        [
+          "Train Schedule"
+        ],
+        [
+          "Train Schedule"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "arrival": "time (HH:MM)",
+        "departure": "time (HH:MM)",
+        "sr. no.": "sequential_number",
+        "train no.": "train_identifier",
+        "day": "frequency_schedule"
+      },
+      "confidence": 0.4666666666666666,
+      "votes": [
+        {
+          "Arrival": "time (HH:MM)",
+          "Departure": "time (HH:MM)"
+        },
+        {
+          "Sr. No.": "sequential_number",
+          "Train No.": "train_identifier",
+          "Arrival": "time_HH:MM",
+          "Departure": "time_HH:MM",
+          "Day": "frequency_schedule"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Day column contains inconsistent formats: single days (M), multiple days (M,Tu,W,T,F,St), 'Daily', and 'N/a' in Departure"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Day column contains inconsistent formats: single days (M), multiple days (M,Tu,W,T,F,St), 'Daily', and 'N/a' in Departure"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 0.9999999999999999,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "N/a"
+        ],
+        [
+          "N/a",
+          "NA"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Train No. should be unique",
+        "Sr. No. should be sequential",
+        "Arrival and Departure times should be valid time formats",
+        "Day column must be checked for exact match 'Daily' (case-sensitive)",
+        "Each Train No. should be unique per record",
+        "Result should be a non-negative integer count",
+        "The 'Day' column must be parsed to determine if a train runs daily. 'Daily' indicates the train runs every day.",
+        "If 'Day' contains 'M,Tu,W,T,F,St,S' or similar combinations covering all days, it should be considered a daily train."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Train No. should be unique",
+          "Sr. No. should be sequential",
+          "Arrival and Departure times should be valid time formats"
+        ],
+        [
+          "Day column must be checked for exact match 'Daily' (case-sensitive)",
+          "Each Train No. should be unique per record",
+          "Result should be a non-negative integer count"
+        ],
+        [
+          "The 'Day' column must be parsed to determine if a train runs daily. 'Daily' indicates the train runs every day.",
+          "If 'Day' contains 'M,Tu,W,T,F,St,S' or similar combinations covering all days, it should be considered a daily train."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude trains with 'N/a' in Departure if they don't actually run",
+        "Consider trains with day patterns covering all 7 days as equivalent to 'Daily'",
+        "Filter where Day column exactly equals 'Daily' (not partial match with comma-separated days)",
+        "Train runs daily: 'Day' column contains 'Daily' or 'M,Tu,W,T,F,St,S' or equivalent combinations."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude trains with 'N/a' in Departure if they don't actually run",
+          "Consider trains with day patterns covering all 7 days as equivalent to 'Daily'"
+        ],
+        [
+          "Filter where Day column exactly equals 'Daily' (not partial match with comma-separated days)"
+        ],
+        [
+          "Train runs daily: 'Day' column contains 'Daily' or 'M,Tu,W,T,F,St,S' or equivalent combinations."
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count of trains with 'Daily' vs other day patterns",
+        "Check for duplicate Train No. values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count of trains with 'Daily' vs other day patterns",
+          "Check for duplicate Train No. values"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count",
+        "Should clarify whether partial day trains are included",
+        "Return single integer value representing total count of daily trains",
+        "Include verification that count matches number of rows where Day='Daily'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count",
+          "Should clarify whether partial day trains are included"
+        ],
+        [
+          "Return single integer value representing total count of daily trains",
+          "Include verification that count matches number of rows where Day='Daily'"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5566666666666669
+}

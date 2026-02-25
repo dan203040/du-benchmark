@@ -1,0 +1,77 @@
+{
+  "m_q": {
+    "target_metric": "Team name that won the grand final in 2008",
+    "filters": [
+      "Year = 2008"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which team is listed as 'Premiers' for year 2008?",
+      "Is there only one record for year 2008?",
+      "Does the data confirm 2008 had a valid grand final result?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "AFL Cairns Grand Final Results"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Premiers Score": "Australian rules football score format (goals.behinds (total))",
+      "Runners Up Score": "Australian rules football score format (goals.behinds (total))"
+    },
+    "scale_issues": [
+      "Year column is object type instead of integer",
+      "Score columns are object type instead of numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "First row contains column headers",
+      "Score columns contain formatted strings with total in parentheses"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Year values should be unique (one grand final per year)",
+      "Premiers Score should be higher than Runners Up Score for each row",
+      "Year values should be sequential from 2003 to 2022"
+    ],
+    "derived_filters": [
+      "Filter dataset to Year = 2008",
+      "Select Premiers column value"
+    ],
+    "statistical_tests": [
+      "Check that 2008 exists in Year column",
+      "Verify only one row matches Year = 2008"
+    ],
+    "output_format_requirements": [
+      "Return team name as string",
+      "No additional formatting needed"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Team name that won the grand final in 2008\",\n        \"filters\": [\"Year = 2008\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"Which team is listed as 'Premiers' for year 2008?\", \"Is there only one record for year 2008?\", \"Does the data confirm 2008 had a valid grand final result?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"AFL Cairns Grand Final Results\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\n            \"Premiers Score\": \"Australian rules football score format (goals.behinds (total))\",\n            \"Runners Up Score\": \"Australian rules football score format (goals.behinds (total))\"\n        },\n        \"scale_issues\": [\"Year column is object type instead of integer\", \"Score columns are object type instead of numeric\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 5,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"First row contains column headers\", \"Score columns contain formatted strings with total in parentheses\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Year values should be unique (one grand final per year)\", \"Premiers Score should be higher than Runners Up Score for each row\", \"Year values should be sequential from 2003 to 2022\"],\n        \"derived_filters\": [\"Filter dataset to Year = 2008\", \"Select Premiers column value\"],\n        \"statistical_tests\": [\"Check that 2008 exists in Year column\", \"Verify only one row matches Year = 2008\"],\n        \"output_format_requirements\": [\"Return team name as string\", \"No additional formatting needed\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.548994064331055,
+  "token_usage": {
+    "input_tokens": 1102,
+    "output_tokens": 472
+  }
+}

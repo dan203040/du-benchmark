@@ -1,0 +1,307 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "total number of offensive awards for Colin Doyle",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "total number of offensive awards for Colin Doyle",
+        "total count of times Colin Doyle appears in the Offensive column",
+        "Count of rows where 'Offensive' column equals 'Colin Doyle'"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Offensive column contains 'Colin Doyle'",
+        "Offensive column equals 'Colin Doyle'",
+        "Offensive == 'Colin Doyle'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Offensive column contains 'Colin Doyle'"
+        ],
+        [
+          "Offensive column equals 'Colin Doyle'"
+        ],
+        [
+          "Offensive == 'Colin Doyle'"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How many times does 'Colin Doyle' appear in the Offensive column?",
+        "Is there any other data source needed to verify this count?",
+        "Does the data cover the entire period needed for a complete count?",
+        "Which rows have 'Colin Doyle' in the Offensive column?",
+        "How many such rows exist?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How many times does 'Colin Doyle' appear in the Offensive column?",
+          "Is there any other data source needed to verify this count?",
+          "Does the data cover the entire period needed for a complete count?"
+        ],
+        [
+          "Which rows have 'Colin Doyle' in the Offensive column?",
+          "How many such rows exist?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "lacrosse_stats"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "lacrosse_stats"
+        ],
+        [
+          "lacrosse_stats"
+        ],
+        [
+          "lacrosse_stats"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "offensive": "player name",
+        "month": "month name",
+        "week": "week number",
+        "overall": "player name",
+        "defensive": "player name",
+        "transition": "player name",
+        "rookie": "player name"
+      },
+      "confidence": 0.4761904761904763,
+      "votes": [
+        {
+          "Offensive": "player name",
+          "Month": "month name",
+          "Week": "week number"
+        },
+        {
+          "Month": "calendar month name",
+          "Week": "week number in season",
+          "Overall": "player name",
+          "Offensive": "player name",
+          "Defensive": "player name",
+          "Transition": "player name",
+          "Rookie": "player name"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "All columns stored as object/string type including Week which appears numeric",
+        "No explicit year column - temporal scope unclear"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "All columns stored as object/string type including Week which appears numeric",
+          "No explicit year column - temporal scope unclear"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 7.0,
+      "confidence": 1.0,
+      "votes": [
+        7.0,
+        7.0,
+        7.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Offensive column must contain only player names",
+        "Each row represents one week's awards",
+        "Player names should be consistent across occurrences",
+        "Offensive column must be checked for exact match with 'Colin Doyle'",
+        "Count must be non-negative integer",
+        "The 'Offensive' column must contain string values."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Offensive column must contain only player names",
+          "Each row represents one week's awards",
+          "Player names should be consistent across occurrences"
+        ],
+        [
+          "Offensive column must be checked for exact match with 'Colin Doyle'",
+          "Count must be non-negative integer"
+        ],
+        [
+          "The 'Offensive' column must contain string values."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter rows where Offensive = 'Colin Doyle'",
+        "Filter rows where Offensive == 'Colin Doyle'"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter rows where Offensive = 'Colin Doyle'"
+        ],
+        [
+          "Filter rows where Offensive == 'Colin Doyle'"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count distinct occurrences of 'Colin Doyle' in Offensive column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count distinct occurrences of 'Colin Doyle' in Offensive column"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer value representing total count",
+        "Return a single integer representing the count",
+        "Result should be the total number of occurrences"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer value representing total count"
+        ],
+        [
+          "Return a single integer representing the count",
+          "Result should be the total number of occurrences"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5571428571428573
+}

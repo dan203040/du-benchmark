@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "lowest game number where the score is 108-85",
+    "filters": [
+      "Score = '108-85'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the Game number when Score equals '108-85'?",
+      "Is there only one game with score 108-85?",
+      "Which game has the lowest Game number among those with score 108-85?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "game score"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Game": "game number",
+      "Score": "team_score-opponent_score"
+    },
+    "scale_issues": [
+      "Score column contains combined score values (e.g., '108-85') that need parsing",
+      "Date values have inconsistent formatting with day abbreviations and month abbreviations"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Score column contains overtime indicators like '(OT)' in some rows",
+      "Date values use abbreviated month names and day names",
+      "Location column uses '@' symbol to indicate away games"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Game numbers should be unique",
+      "Score should follow pattern 'XXX-XXX' or 'XXX-XXX (OT)'",
+      "Record should follow pattern 'XX-XX'"
+    ],
+    "derived_filters": [
+      "Filter rows where Score column exactly matches '108-85'",
+      "Extract numeric Game value from filtered rows"
+    ],
+    "statistical_tests": [
+      "Check if only one row has Score = '108-85'",
+      "Verify Game numbers are sequential"
+    ],
+    "output_format_requirements": [
+      "Return single integer value representing the Game number",
+      "If multiple games have score 108-85, return the minimum Game number"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"lowest game number where the score is 108-85\",\n        \"filters\": [\"Score = '108-85'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the Game number when Score equals '108-85'?\", \"Is there only one game with score 108-85?\", \"Which game has the lowest Game number among those with score 108-85?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"game score\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Game\": \"game number\", \"Score\": \"team_score-opponent_score\"},\n        \"scale_issues\": [\"Score column contains combined score values (e.g., '108-85') that need parsing\", \"Date values have inconsistent formatting with day abbreviations and month abbreviations\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Score column contains overtime indicators like '(OT)' in some rows\", \"Date values use abbreviated month names and day names\", \"Location column uses '@' symbol to indicate away games\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Game numbers should be unique\", \"Score should follow pattern 'XXX-XXX' or 'XXX-XXX (OT)'\", \"Record should follow pattern 'XX-XX'\"],\n        \"derived_filters\": [\"Filter rows where Score column exactly matches '108-85'\", \"Extract numeric Game value from filtered rows\"],\n        \"statistical_tests\": [\"Check if only one row has Score = '108-85'\", \"Verify Game numbers are sequential\"],\n        \"output_format_requirements\": [\"Return single integer value representing the Game number\", \"If multiple games have score 108-85, return the minimum Game number\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.877402067184448,
+  "token_usage": {
+    "input_tokens": 1066,
+    "output_tokens": 487
+  }
+}

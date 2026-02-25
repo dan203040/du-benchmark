@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "Most common FIGO_stage value among patients aged above 70",
+    "filters": [
+      "Age > 70"
+    ],
+    "grouping_variables": [
+      "FIGO_stage"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which patients have Age > 70?",
+      "What are the FIGO_stage values for patients above 70?",
+      "What is the frequency distribution of FIGO_stage among filtered patients?",
+      "Which FIGO_stage has the highest count?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "1-s2.0-S0092867420301070-mmc1.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Age": "years",
+      "BMI": "kg/m^2",
+      "Tumor_Size_cm": "centimeters",
+      "Estrogen_Receptor_%": "percent",
+      "Progesterone_Receptor_%": "percent"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "Cannot be determined"
+    ],
+    "expected_columns": 179,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": [
+      "Age is stored as float64",
+      "FIGO_stage is stored as object (string)",
+      "Some FIGO_stage values may be missing or null",
+      "Age values should be non-negative"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Age must be > 70",
+      "FIGO_stage must not be null or empty for counting",
+      "Age must be a valid numeric value"
+    ],
+    "derived_filters": [
+      "Exclude rows where Age is null",
+      "Exclude rows where FIGO_stage is null or empty",
+      "Filter to Age > 70 before grouping"
+    ],
+    "statistical_tests": [
+      "Count frequency of each FIGO_stage value",
+      "Identify mode (most frequent value) of FIGO_stage"
+    ],
+    "output_format_requirements": [
+      "Return the single most common FIGO_stage value",
+      "Handle ties by reporting all tied values or selecting one consistently",
+      "Report count or frequency alongside the result for context"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Most common FIGO_stage value among patients aged above 70\",\n    \"filters\": [\"Age > 70\"],\n    \"grouping_variables\": [\"FIGO_stage\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which patients have Age > 70?\",\n      \"What are the FIGO_stage values for patients above 70?\",\n      \"What is the frequency distribution of FIGO_stage among filtered patients?\",\n      \"Which FIGO_stage has the highest count?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"1-s2.0-S0092867420301070-mmc1.xlsx\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Age\": \"years\",\n      \"BMI\": \"kg/m^2\",\n      \"Tumor_Size_cm\": \"centimeters\",\n      \"Estrogen_Receptor_%\": \"percent\",\n      \"Progesterone_Receptor_%\": \"percent\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"Cannot be determined\"],\n    \"expected_columns\": 179,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": [\n      \"Age is stored as float64\",\n      \"FIGO_stage is stored as object (string)\",\n      \"Some FIGO_stage values may be missing or null\",\n      \"Age values should be non-negative\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Age must be > 70\",\n      \"FIGO_stage must not be null or empty for counting\",\n      \"Age must be a valid numeric value\"\n    ],\n    \"derived_filters\": [\n      \"Exclude rows where Age is null\",\n      \"Exclude rows where FIGO_stage is null or empty\",\n      \"Filter to Age > 70 before grouping\"\n    ],\n    \"statistical_tests\": [\n      \"Count frequency of each FIGO_stage value\",\n      \"Identify mode (most frequent value) of FIGO_stage\"\n    ],\n    \"output_format_requirements\": [\n      \"Return the single most common FIGO_stage value\",\n      \"Handle ties by reporting all tied values or selecting one consistently\",\n      \"Report count or frequency alongside the result for context\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 11.800726890563965,
+  "token_usage": {
+    "input_tokens": 7760,
+    "output_tokens": 677
+  }
+}

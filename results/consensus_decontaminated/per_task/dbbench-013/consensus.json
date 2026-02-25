@@ -1,0 +1,297 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Team name that won the grand final in 2008",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Team name that won the grand final in 2008",
+        "Team name that took first place (Premiers)",
+        "team that took first place in 2008"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Year = 2008",
+        "Year == 2008"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "Year = 2008"
+        ],
+        [
+          "Year == 2008"
+        ],
+        [
+          "Year = 2008"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which team is listed as 'Premiers' for year 2008?",
+        "Is there only one record for year 2008?",
+        "Does the data confirm 2008 had a valid grand final result?",
+        "Which team is listed in the Premiers column for the year 2008?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which team is listed as 'Premiers' for year 2008?",
+          "Is there only one record for year 2008?",
+          "Does the data confirm 2008 had a valid grand final result?"
+        ],
+        [
+          "Which team is listed in the Premiers column for the year 2008?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "AFL Cairns Grand Final Results"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "AFL Cairns Grand Final Results"
+        ],
+        [
+          "AFL Cairns Grand Final Results"
+        ],
+        [
+          "AFL Cairns Grand Final Results"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "premiers score": "Australian rules football score format (goals.behinds (total))",
+        "runners up score": "Australian rules football score format (goals.behinds (total))",
+        "year": "year"
+      },
+      "confidence": 0.5555555555555555,
+      "votes": [
+        {
+          "Premiers Score": "Australian rules football score format (goals.behinds (total))",
+          "Runners Up Score": "Australian rules football score format (goals.behinds (total))"
+        },
+        {
+          "Year": "year",
+          "Premiers Score": "goals.behinds (points)",
+          "Runners Up Score": "goals.behinds (points)"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Year column is object type instead of integer",
+        "Score columns are object type instead of numeric"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year column is object type instead of integer",
+          "Score columns are object type instead of numeric"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        ""
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 5.0,
+      "confidence": 1.0,
+      "votes": [
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Year values should be unique (one grand final per year)",
+        "Premiers Score should be higher than Runners Up Score for each row",
+        "Year values should be sequential from 2003 to 2022",
+        "Year must equal 2008",
+        "Premiers column contains the first place team",
+        "Should return exactly one team name"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Year values should be unique (one grand final per year)",
+          "Premiers Score should be higher than Runners Up Score for each row",
+          "Year values should be sequential from 2003 to 2022"
+        ],
+        [
+          "Year must equal 2008",
+          "Premiers column contains the first place team",
+          "Should return exactly one team name"
+        ],
+        []
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter dataset to Year = 2008",
+        "Select Premiers column value"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter dataset to Year = 2008",
+          "Select Premiers column value"
+        ],
+        [],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check that 2008 exists in Year column",
+        "Verify only one row matches Year = 2008"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check that 2008 exists in Year column",
+          "Verify only one row matches Year = 2008"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Return team name as string",
+        "No additional formatting needed",
+        "Return the team name as a string",
+        "Answer should be the value from the Premiers column for Year 2008"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Return team name as string",
+          "No additional formatting needed"
+        ],
+        [
+          "Return the team name as a string",
+          "Answer should be the value from the Premiers column for Year 2008"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5694444444444445
+}

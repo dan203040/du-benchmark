@@ -1,0 +1,85 @@
+{
+  "m_q": {
+    "target_metric": "Country with highest box office revenue from national films in 2013",
+    "filters": [
+      "Year == 2013",
+      "Box office from national films is not null or missing"
+    ],
+    "grouping_variables": [
+      "Country"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which rows have Year = 2013?",
+      "How to parse 'Box office from national films' to extract percentage and year?",
+      "How to calculate absolute revenue from national films using Box Office and percentage?",
+      "Which country has the maximum calculated national films revenue?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "national films"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple entries per country with different years",
+      "Box office from national films contains percentage and year in format 'XX% (YYYY)'"
+    ],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Box Office": "dollars (billions)",
+      "Box office from national films": "percentage with year annotation"
+    },
+    "scale_issues": [
+      "Box Office values are in billions (e.g., '$3.6 billion')",
+      "Need to parse dollar amounts and convert to numeric",
+      "Need to extract percentage from 'Box office from national films' format 'XX% (YYYY)'"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2013",
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 5,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Box Office column contains string values with dollar signs and 'billion' text",
+      "Box office from national films contains percentage with year in parentheses format 'XX% (YYYY)'",
+      "Some rows have '\u2013' indicating missing data for national films percentage",
+      "Special row with Country='World' appears to be a summary row"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Only consider rows where Year == 2013",
+      "Exclude rows where 'Box office from national films' is '\u2013' or missing",
+      "The year in parentheses in 'Box office from national films' should match 2013"
+    ],
+    "derived_filters": [
+      "Parse percentage from 'Box office from national films' where year annotation is (2013)",
+      "Calculate absolute revenue: Box Office * (percentage / 100)"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single country name",
+      "Country should be the one with maximum calculated national films revenue in 2013"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Country with highest box office revenue from national films in 2013\",\n    \"filters\": [\"Year == 2013\", \"Box office from national films is not null or missing\"],\n    \"grouping_variables\": [\"Country\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which rows have Year = 2013?\",\n      \"How to parse 'Box office from national films' to extract percentage and year?\",\n      \"How to calculate absolute revenue from national films using Box Office and percentage?\",\n      \"Which country has the maximum calculated national films revenue?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"national films\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Multiple entries per country with different years\",\n      \"Box office from national films contains percentage and year in format 'XX% (YYYY)'\"\n    ],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Box Office\": \"dollars (billions)\",\n      \"Box office from national films\": \"percentage with year annotation\"\n    },\n    \"scale_issues\": [\n      \"Box Office values are in billions (e.g., '$3.6 billion')\",\n      \"Need to parse dollar amounts and convert to numeric\",\n      \"Need to extract percentage from 'Box office from national films' format 'XX% (YYYY)'\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\u2013\", \"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 5,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Box Office column contains string values with dollar signs and 'billion' text\",\n      \"Box office from national films contains percentage with year in parentheses format 'XX% (YYYY)'\",\n      \"Some rows have '\u2013' indicating missing data for national films percentage\",\n      \"Special row with Country='World' appears to be a summary row\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Only consider rows where Year == 2013\",\n      \"Exclude rows where 'Box office from national films' is '\u2013' or missing\",\n      \"The year in parentheses in 'Box office from national films' should match 2013\"\n    ],\n    \"derived_filters\": [\n      \"Parse percentage from 'Box office from national films' where year annotation is (2013)\",\n      \"Calculate absolute revenue: Box Office * (percentage / 100)\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single country name\",\n      \"Country should be the one with maximum calculated national films revenue in 2013\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 14.516671419143677,
+  "token_usage": {
+    "input_tokens": 1056,
+    "output_tokens": 722
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of people in each age group",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "Count of people in each age group",
+        "Count of people in each age group who filled out the survey",
+        "Count of people in each age group"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Survey respondents only (no header rows)",
+        "Valid age responses (non-null, numeric age values)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Survey respondents only (no header rows)",
+          "Valid age responses (non-null, numeric age values)"
+        ],
+        [],
+        []
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Age Group (derived from Q2 using AgeGroup.md method)",
+        "age_group",
+        "Age Group"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age Group (derived from Q2 using AgeGroup.md method)"
+        ],
+        [
+          "age_group"
+        ],
+        [
+          "Age Group"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "plot",
+      "confidence": 1.0,
+      "votes": [
+        "plot",
+        "plot",
+        "plot"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "What are the age group boundaries defined in AgeGroup.md?",
+        "How should age values be converted from Q2 responses?",
+        "Should missing/unknown age values be included or excluded?",
+        "What column contains age data?",
+        "What are the age group definitions from AgeGroup.md?",
+        "How to categorize respondents into age groups?",
+        "How to count respondents per age group?",
+        "How to create a bar chart with specified formatting?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "What are the age group boundaries defined in AgeGroup.md?",
+          "How should age values be converted from Q2 responses?",
+          "Should missing/unknown age values be included or excluded?"
+        ],
+        [
+          "What column contains age data?",
+          "What are the age group definitions from AgeGroup.md?",
+          "How to categorize respondents into age groups?",
+          "How to count respondents per age group?",
+          "How to create a bar chart with specified formatting?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "multipleChoiceResponses.csv",
+        "SurveySchema.csv",
+        "freeFormResponses.csv",
+        "AgeGroup.md"
+      ],
+      "confidence": 0.5833333333333333,
+      "votes": [
+        [
+          "multipleChoiceResponses.csv",
+          "SurveySchema.csv",
+          "freeFormResponses.csv"
+        ],
+        [
+          "multipleChoiceResponses.csv",
+          "SurveySchema.csv",
+          "AgeGroup.md"
+        ],
+        [
+          "multipleChoiceResponses.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "SurveySchema.csv has different structure (12 rows, 52 columns) vs multipleChoiceResponses.csv (23860 rows, 395 columns)",
+        "freeFormResponses.csv has 35 columns that appear to be text responses corresponding to multipleChoiceResponses.csv columns",
+        "SurveySchema.csv appears to be metadata/schema description file, not actual survey responses",
+        "Q2 column in SurveySchema.csv is labeled as age question, but actual data is in multipleChoiceResponses.csv"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "SurveySchema.csv has different structure (12 rows, 52 columns) vs multipleChoiceResponses.csv (23860 rows, 395 columns)",
+          "freeFormResponses.csv has 35 columns that appear to be text responses corresponding to multipleChoiceResponses.csv columns"
+        ],
+        [
+          "SurveySchema.csv appears to be metadata/schema description file, not actual survey responses",
+          "Q2 column in SurveySchema.csv is labeled as age question, but actual data is in multipleChoiceResponses.csv"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "q2": "years",
+        "time from start to finish (seconds)": "seconds",
+        "age": "years"
+      },
+      "confidence": 0.4444444444444444,
+      "votes": [
+        {
+          "Q2": "years",
+          "Time from Start to Finish (seconds)": "seconds"
+        },
+        {
+          "Q2": "years"
+        },
+        {
+          "age": "years"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Age values in Q2 may be categorical ranges (e.g., '18-21', '22-24') rather than numeric",
+        "Need to check actual Q2 values in multipleChoiceResponses.csv to determine format",
+        "Age data in Q2 may be categorical ranges rather than numeric values",
+        "Need to verify format of age values (e.g., '18-21', '22-24', or numeric)"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age values in Q2 may be categorical ranges (e.g., '18-21', '22-24') rather than numeric",
+          "Need to check actual Q2 values in multipleChoiceResponses.csv to determine format"
+        ],
+        [
+          "Age data in Q2 may be categorical ranges rather than numeric values",
+          "Need to verify format of age values (e.g., '18-21', '22-24', or numeric)"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "SurveySchema.csv appears to contain question text, not response data",
+        "freeFormResponses.csv contains text responses that may not be needed for age analysis",
+        "SurveySchema.csv has 12 rows while multipleChoiceResponses.csv has 23860 rows - different purposes"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "SurveySchema.csv appears to contain question text, not response data",
+          "freeFormResponses.csv contains text responses that may not be needed for age analysis"
+        ],
+        [
+          "SurveySchema.csv has 12 rows while multipleChoiceResponses.csv has 23860 rows - different purposes"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "null",
+        "nan"
+      ],
+      "confidence": 0.7333333333333334,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "null"
+        ],
+        [
+          "NA",
+          "N/A",
+          "",
+          "nan"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 395.0,
+      "confidence": 1.0,
+      "votes": [
+        395.0,
+        395.0,
+        395.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Age values must be interpretable according to AgeGroup.md method",
+        "Counts must be non-negative integers",
+        "All age groups defined in AgeGroup.md must be represented in output",
+        "Must follow age group division method from AgeGroup.md",
+        "Exclude header/metadata rows if present in data",
+        "Handle missing or invalid age values appropriately",
+        "Age must be a valid number",
+        "Age must be positive"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Age values must be interpretable according to AgeGroup.md method",
+          "Counts must be non-negative integers",
+          "All age groups defined in AgeGroup.md must be represented in output"
+        ],
+        [
+          "Must follow age group division method from AgeGroup.md",
+          "Exclude header/metadata rows if present in data",
+          "Handle missing or invalid age values appropriately"
+        ],
+        [
+          "Age must be a valid number",
+          "Age must be positive"
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Exclude header row from SurveySchema.csv if present in data",
+        "Filter to valid age responses based on Q2 format",
+        "Filter out rows where Q2 (age) is null or invalid",
+        "Apply age group categorization based on AgeGroup.md specifications"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Exclude header row from SurveySchema.csv if present in data",
+          "Filter to valid age responses based on Q2 format"
+        ],
+        [
+          "Filter out rows where Q2 (age) is null or invalid",
+          "Apply age group categorization based on AgeGroup.md specifications"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for missing age values in Q2 column",
+        "Validate age distribution against expected survey demographics"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for missing age values in Q2 column",
+          "Validate age distribution against expected survey demographics"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Bar chart saved as 'result.png'",
+        "Title: 'Age Group Distribution'",
+        "X-axis label: 'Age Group'",
+        "Y-axis label: 'Count'",
+        "Save output as 'result.png'",
+        "Chart title: 'Age Group Distribution'",
+        "Chart type: bar chart"
+      ],
+      "confidence": 0.619047619047619,
+      "votes": [
+        [
+          "Bar chart saved as 'result.png'",
+          "Title: 'Age Group Distribution'",
+          "X-axis label: 'Age Group'",
+          "Y-axis label: 'Count'"
+        ],
+        [
+          "Save output as 'result.png'",
+          "Chart title: 'Age Group Distribution'",
+          "X-axis label: 'Age Group'",
+          "Y-axis label: 'Count'",
+          "Chart type: bar chart"
+        ],
+        [
+          "Bar chart saved as 'result.png'",
+          "Chart title: 'Age Group Distribution'",
+          "X-axis label: 'Age Group'",
+          "Y-axis label: 'Count'"
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6023412698412699
+}

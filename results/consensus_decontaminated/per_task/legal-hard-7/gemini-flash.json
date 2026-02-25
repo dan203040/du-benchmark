@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "Relative growth rate of each identity theft category between 2020 and 2024",
+    "filters": [
+      "Years 2020 and 2024"
+    ],
+    "grouping_variables": [
+      "Theft Type"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What is the number of reports for each theft type in 2020?",
+      "What is the number of reports for each theft type in 2024?",
+      "What is the relative growth rate for each theft type between 2020 and 2024?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "# of Reports": "number of reports"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Theft Type should be one of 'Bank Account', 'Credit Card', 'Loan or Lease'"
+    ],
+    "derived_filters": [
+      "Year is 2020 or 2024"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "List of theft types sorted by relative growth rate in descending order"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Relative growth rate of each identity theft category between 2020 and 2024\",\n    \"filters\": [\"Years 2020 and 2024\"],\n    \"grouping_variables\": [\"Theft Type\"],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"What is the number of reports for each theft type in 2020?\",\n      \"What is the number of reports for each theft type in 2024?\",\n      \"What is the relative growth rate for each theft type between 2020 and 2024?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"2024_CSN_Top_Three_Identity_Theft_Reports_by_Year.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\"# of Reports\": \"number of reports\"},\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\"Theft Type should be one of 'Bank Account', 'Credit Card', 'Loan or Lease'\"],\n    \"derived_filters\": [\"Year is 2020 or 2024\"],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"List of theft types sorted by relative growth rate in descending order\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 3.8287198543548584,
+  "token_usage": {}
+}

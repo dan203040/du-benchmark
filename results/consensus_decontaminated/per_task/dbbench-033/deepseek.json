@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "count of surfaces that are grass",
+    "filters": [
+      "Surface == 'Grass'"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the total count of matches?",
+      "What percentage of matches are on grass?",
+      "Are there any missing values in the Surface column?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Tennis Matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {},
+    "scale_issues": [
+      "Surface values appear to be categorical (Clay, Hard, Grass) but may have inconsistent capitalization or whitespace"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "w/o"
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date values are in 'dd MMM yyyy' format",
+      "Tournament column contains commas within quotes",
+      "Score in the final column contains special characters like '\u2013' and parentheses",
+      "Opponent in the final column contains newline characters (\\n)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Surface column should contain only valid surface types",
+      "Each row represents one tennis match",
+      "Surface values should be consistent across the dataset"
+    ],
+    "derived_filters": [
+      "Filter out rows with missing Surface values",
+      "Consider case-insensitive matching for 'Grass'"
+    ],
+    "statistical_tests": [
+      "Count distinct surface types",
+      "Check for null/missing values in Surface column"
+    ],
+    "output_format_requirements": [
+      "Integer count of grass surfaces",
+      "Should handle potential variations like 'grass', 'Grass', 'GRASS'"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"count of surfaces that are grass\",\n        \"filters\": [\"Surface == 'Grass'\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the total count of matches?\", \"What percentage of matches are on grass?\", \"Are there any missing values in the Surface column?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Tennis Matches\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {},\n        \"scale_issues\": [\"Surface values appear to be categorical (Clay, Hard, Grass) but may have inconsistent capitalization or whitespace\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"w/o\"],\n        \"expected_columns\": 7,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Date values are in 'dd MMM yyyy' format\", \"Tournament column contains commas within quotes\", \"Score in the final column contains special characters like '\u2013' and parentheses\", \"Opponent in the final column contains newline characters (\\\\n)\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Surface column should contain only valid surface types\", \"Each row represents one tennis match\", \"Surface values should be consistent across the dataset\"],\n        \"derived_filters\": [\"Filter out rows with missing Surface values\", \"Consider case-insensitive matching for 'Grass'\"],\n        \"statistical_tests\": [\"Count distinct surface types\", \"Check for null/missing values in Surface column\"],\n        \"output_format_requirements\": [\"Integer count of grass surfaces\", \"Should handle potential variations like 'grass', 'Grass', 'GRASS'\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 9.100019931793213,
+  "token_usage": {
+    "input_tokens": 1552,
+    "output_tokens": 442
+  }
+}

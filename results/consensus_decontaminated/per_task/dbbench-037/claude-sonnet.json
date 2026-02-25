@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "Episode title (name)",
+    "filters": [
+      "Directed by = 'Michael Pressman'",
+      "No. in season < 10.0"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "Which episodes were directed by Michael Pressman?",
+      "Which of those episodes have No. in season less than 10.0?",
+      "What are the titles of those episodes?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "episode_table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "No. in series": "episode number (series-wide)",
+      "No. in season": "episode number (within season)",
+      "U.S. viewers (millions)": "millions of viewers"
+    },
+    "scale_issues": [
+      "No. in season is stored as object/string type but needs numeric comparison",
+      "Question specifies comparison with 10.0 (float) but column may contain string values"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Title column contains quoted values with embedded quotes",
+      "Original air date has inconsistent spacing (e.g., 'September21,2005')",
+      "Numeric columns stored as object type rather than numeric types"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "No. in season must be convertible to numeric for comparison",
+      "Directed by must match exactly 'Michael Pressman'",
+      "No. in season < 10.0 (strict inequality)"
+    ],
+    "derived_filters": [
+      "CAST(No. in season AS FLOAT) < 10.0",
+      "Directed by = 'Michael Pressman'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return episode title(s) as list of strings",
+      "If multiple episodes match, return all matching titles",
+      "If no episodes match, return empty result"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Episode title (name)\",\n    \"filters\": [\n      \"Directed by = 'Michael Pressman'\",\n      \"No. in season < 10.0\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"list\",\n    \"sub_questions\": [\n      \"Which episodes were directed by Michael Pressman?\",\n      \"Which of those episodes have No. in season less than 10.0?\",\n      \"What are the titles of those episodes?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"episode_table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"No. in series\": \"episode number (series-wide)\",\n      \"No. in season\": \"episode number (within season)\",\n      \"U.S. viewers (millions)\": \"millions of viewers\"\n    },\n    \"scale_issues\": [\n      \"No. in season is stored as object/string type but needs numeric comparison\",\n      \"Question specifies comparison with 10.0 (float) but column may contain string values\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 8,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Title column contains quoted values with embedded quotes\",\n      \"Original air date has inconsistent spacing (e.g., 'September21,2005')\",\n      \"Numeric columns stored as object type rather than numeric types\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"No. in season must be convertible to numeric for comparison\",\n      \"Directed by must match exactly 'Michael Pressman'\",\n      \"No. in season < 10.0 (strict inequality)\"\n    ],\n    \"derived_filters\": [\n      \"CAST(No. in season AS FLOAT) < 10.0\",\n      \"Directed by = 'Michael Pressman'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return episode title(s) as list of strings\",\n      \"If multiple episodes match, return all matching titles\",\n      \"If no episodes match, return empty result\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 10.84635877609253,
+  "token_usage": {
+    "input_tokens": 1440,
+    "output_tokens": 639
+  }
+}

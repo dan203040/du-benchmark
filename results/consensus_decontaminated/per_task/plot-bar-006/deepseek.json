@@ -1,0 +1,149 @@
+{
+  "m_q": {
+    "target_metric": "Team performance metrics (likely wins/losses/draws or points) over specified period",
+    "filters": [
+      "date range (unspecified in question)",
+      "team selection (unspecified in question)"
+    ],
+    "grouping_variables": [
+      "team",
+      "period (likely date aggregation)"
+    ],
+    "output_cardinality": "plot",
+    "sub_questions": [
+      "What constitutes 'team performance'? (wins, goals, points?)",
+      "What is the specified period?",
+      "Which teams should be included?",
+      "What aggregation level for time? (year, month, tournament?)"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "goalscorers.csv",
+      "results.csv",
+      "shootouts.csv"
+    ],
+    "join_keys": [
+      {
+        "left_source": "results.csv",
+        "right_source": "goalscorers.csv",
+        "left_column": "date",
+        "right_column": "date",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "results.csv",
+        "right_source": "goalscorers.csv",
+        "left_column": "home_team",
+        "right_column": "home_team",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "results.csv",
+        "right_source": "goalscorers.csv",
+        "left_column": "away_team",
+        "right_column": "away_team",
+        "join_type": "inner"
+      },
+      {
+        "left_source": "results.csv",
+        "right_source": "shootouts.csv",
+        "left_column": "date",
+        "right_column": "date",
+        "join_type": "left"
+      },
+      {
+        "left_source": "results.csv",
+        "right_source": "shootouts.csv",
+        "left_column": "home_team",
+        "right_column": "home_team",
+        "join_type": "left"
+      },
+      {
+        "left_source": "results.csv",
+        "right_source": "shootouts.csv",
+        "left_column": "away_team",
+        "right_column": "away_team",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "date column is object type (should be datetime)",
+      "team name consistency across files needs verification",
+      "goalscorers.csv has 'team' column while results.csv has 'home_team'/'away_team'"
+    ],
+    "column_mappings": {
+      "date": "match_date",
+      "team": "scoring_team"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "date": "YYYY-MM-DD",
+      "minute": "minutes in match",
+      "home_score": "goals",
+      "away_score": "goals"
+    },
+    "scale_issues": [
+      "Data spans 1872 to present - very long time period",
+      "Tournament types vary widely",
+      "Team names may change over time"
+    ],
+    "cross_source_conflicts": [
+      "goalscorers.csv only has 44110 rows while results.csv has 46442 rows - missing goal data for some matches",
+      "shootouts.csv only has 605 rows - rare event"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "False",
+      "True"
+    ],
+    "expected_columns": 8,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Boolean columns stored as strings in goalscorers.csv",
+      "First row is header",
+      "Date format consistent YYYY-MM-DD"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "home_score >= 0",
+      "away_score >= 0",
+      "minute between 0-120 (plus extra time)",
+      "date must be valid",
+      "team names not null"
+    ],
+    "derived_filters": [
+      "Filter by date range (unspecified)",
+      "Filter by tournament type (if relevant)",
+      "Exclude own goals if calculating team performance"
+    ],
+    "statistical_tests": [
+      "Check for duplicate matches",
+      "Validate home_score + away_score matches total goals in goalscorers",
+      "Check temporal consistency of team performance"
+    ],
+    "output_format_requirements": [
+      "Save as 'team.png'",
+      "Follow settings in 'plot.yaml'",
+      "Bar chart visualization",
+      "Clear labeling of teams and performance metric"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Team performance metrics (likely wins/losses/draws or points) over specified period\",\n        \"filters\": [\"date range (unspecified in question)\", \"team selection (unspecified in question)\"],\n        \"grouping_variables\": [\"team\", \"period (likely date aggregation)\"],\n        \"output_cardinality\": \"plot\",\n        \"sub_questions\": [\"What constitutes 'team performance'? (wins, goals, points?)\", \"What is the specified period?\", \"Which teams should be included?\", \"What aggregation level for time? (year, month, tournament?)\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"goalscorers.csv\", \"results.csv\", \"shootouts.csv\"],\n        \"join_keys\": [\n            {\"left_source\": \"results.csv\", \"right_source\": \"goalscorers.csv\", \"left_column\": \"date\", \"right_column\": \"date\", \"join_type\": \"inner\"},\n            {\"left_source\": \"results.csv\", \"right_source\": \"goalscorers.csv\", \"left_column\": \"home_team\", \"right_column\": \"home_team\", \"join_type\": \"inner\"},\n            {\"left_source\": \"results.csv\", \"right_source\": \"goalscorers.csv\", \"left_column\": \"away_team\", \"right_column\": \"away_team\", \"join_type\": \"inner\"},\n            {\"left_source\": \"results.csv\", \"right_source\": \"shootouts.csv\", \"left_column\": \"date\", \"right_column\": \"date\", \"join_type\": \"left\"},\n            {\"left_source\": \"results.csv\", \"right_source\": \"shootouts.csv\", \"left_column\": \"home_team\", \"right_column\": \"home_team\", \"join_type\": \"left\"},\n            {\"left_source\": \"results.csv\", \"right_source\": \"shootouts.csv\", \"left_column\": \"away_team\", \"right_column\": \"away_team\", \"join_type\": \"left\"}\n        ],\n        \"schema_conflicts\": [\"date column is object type (should be datetime)\", \"team name consistency across files needs verification\", \"goalscorers.csv has 'team' column while results.csv has 'home_team'/'away_team'\"],\n        \"column_mappings\": {\"date\": \"match_date\", \"team\": \"scoring_team\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"date\": \"YYYY-MM-DD\", \"minute\": \"minutes in match\", \"home_score\": \"goals\", \"away_score\": \"goals\"},\n        \"scale_issues\": [\"Data spans 1872 to present - very long time period\", \"Tournament types vary widely\", \"Team names may change over time\"],\n        \"cross_source_conflicts\": [\"goalscorers.csv only has 44110 rows while results.csv has 46442 rows - missing goal data for some matches\", \"shootouts.csv only has 605 rows - rare event\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"False\", \"True\"],\n        \"expected_columns\": 8,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Boolean columns stored as strings in goalscorers.csv\", \"First row is header\", \"Date format consistent YYYY-MM-DD\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"home_score >= 0\", \"away_score >= 0\", \"minute between 0-120 (plus extra time)\", \"date must be valid\", \"team names not null\"],\n        \"derived_filters\": [\"Filter by date range (unspecified)\", \"Filter by tournament type (if relevant)\", \"Exclude own goals if calculating team performance\"],\n        \"statistical_tests\": [\"Check for duplicate matches\", \"Validate home_score + away_score matches total goals in goalscorers\", \"Check temporal consistency of team performance\"],\n        \"output_format_requirements\": [\"Save as 'team.png'\", \"Follow settings in 'plot.yaml'\", \"Bar chart visualization\", \"Clear labeling of teams and performance metric\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 18.174046993255615,
+  "token_usage": {
+    "input_tokens": 2277,
+    "output_tokens": 913
+  }
+}

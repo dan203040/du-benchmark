@@ -1,0 +1,105 @@
+{
+  "m_q": {
+    "target_metric": "total residential property value lost per state between 2005 and 2010 (inclusive)",
+    "filters": [
+      "start_year >= 2005",
+      "start_year <= 2010"
+    ],
+    "grouping_variables": [
+      "state"
+    ],
+    "output_cardinality": "list",
+    "sub_questions": [
+      "What column represents residential property value loss?",
+      "How to aggregate property loss across multiple incidents per state?",
+      "How to convert state abbreviations to full names?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "noaa_wildfires.csv",
+      "noaa_wildfires_variabledescrip.csv",
+      "state_abbreviation_to_state.json"
+    ],
+    "join_keys": [
+      {
+        "left_source": "noaa_wildfires.csv",
+        "right_source": "state_abbreviation_to_state.json",
+        "left_column": "state",
+        "right_column": "state_abbreviation",
+        "join_type": "left"
+      }
+    ],
+    "schema_conflicts": [
+      "state_abbreviation_to_state.json has non-standard format with abbreviations as column headers",
+      "noaa_wildfires.csv uses 2-letter state codes but state_abbreviation_to_state.json needs transformation"
+    ],
+    "column_mappings": {
+      "prim_threatened_aggregate": "residential_properties_threatened",
+      "state_abbreviation": "state_full_name"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "avrh_mean": "percentage",
+      "wind_med": "miles per hour",
+      "erc_med": "BTUs/square foot",
+      "rain_sum": "total precipitation units",
+      "prim_threatened_aggregate": "number of houses",
+      "comm_threatened_aggregate": "number of commercial buildings"
+    },
+    "scale_issues": [
+      "prim_threatened_aggregate counts houses at risk, not actual value lost",
+      "Need to estimate or find actual property value loss data"
+    ],
+    "cross_source_conflicts": [
+      "Analytical question asks for 'value lost' but data only has 'properties threatened' counts"
+    ]
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      "",
+      "null"
+    ],
+    "expected_columns": 37,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "state_abbreviation_to_state.json appears to be a single-row CSV with state abbreviations as column headers",
+      "Date columns use MM/DD/YYYY format",
+      "Some columns have inconsistent naming conventions"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Must include years 2005-2010 inclusive",
+      "Cannot discard rows with missing values unnecessarily",
+      "Output must be state full names",
+      "Need top 3 states only"
+    ],
+    "derived_filters": [
+      "prim_threatened_aggregate > 0 to focus on actual property threats",
+      "state not in ['NA', 'GU', 'AS', 'MP', 'PR', 'VI'] to exclude non-states"
+    ],
+    "statistical_tests": [
+      "Check distribution of prim_threatened_aggregate for outliers",
+      "Verify temporal coverage 2005-2010 has sufficient data"
+    ],
+    "output_format_requirements": [
+      "List of 3 state full names",
+      "Sorted descending by total residential property threat/loss"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"total residential property value lost per state between 2005 and 2010 (inclusive)\",\n        \"filters\": [\"start_year >= 2005\", \"start_year <= 2010\"],\n        \"grouping_variables\": [\"state\"],\n        \"output_cardinality\": \"list\",\n        \"sub_questions\": [\"What column represents residential property value loss?\", \"How to aggregate property loss across multiple incidents per state?\", \"How to convert state abbreviations to full names?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"noaa_wildfires.csv\", \"noaa_wildfires_variabledescrip.csv\", \"state_abbreviation_to_state.json\"],\n        \"join_keys\": [\n            {\"left_source\": \"noaa_wildfires.csv\", \"right_source\": \"state_abbreviation_to_state.json\", \"left_column\": \"state\", \"right_column\": \"state_abbreviation\", \"join_type\": \"left\"}\n        ],\n        \"schema_conflicts\": [\"state_abbreviation_to_state.json has non-standard format with abbreviations as column headers\", \"noaa_wildfires.csv uses 2-letter state codes but state_abbreviation_to_state.json needs transformation\"],\n        \"column_mappings\": {\"prim_threatened_aggregate\": \"residential_properties_threatened\", \"state_abbreviation\": \"state_full_name\"}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"avrh_mean\": \"percentage\", \"wind_med\": \"miles per hour\", \"erc_med\": \"BTUs/square foot\", \"rain_sum\": \"total precipitation units\", \"prim_threatened_aggregate\": \"number of houses\", \"comm_threatened_aggregate\": \"number of commercial buildings\"},\n        \"scale_issues\": [\"prim_threatened_aggregate counts houses at risk, not actual value lost\", \"Need to estimate or find actual property value loss data\"],\n        \"cross_source_conflicts\": [\"Analytical question asks for 'value lost' but data only has 'properties threatened' counts\"]\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"NA\", \"N/A\", \"\", \"null\"],\n        \"expected_columns\": 37,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"state_abbreviation_to_state.json appears to be a single-row CSV with state abbreviations as column headers\", \"Date columns use MM/DD/YYYY format\", \"Some columns have inconsistent naming conventions\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Must include years 2005-2010 inclusive\", \"Cannot discard rows with missing values unnecessarily\", \"Output must be state full names\", \"Need top 3 states only\"],\n        \"derived_filters\": [\"prim_threatened_aggregate > 0 to focus on actual property threats\", \"state not in ['NA', 'GU', 'AS', 'MP', 'PR', 'VI'] to exclude non-states\"],\n        \"statistical_tests\": [\"Check distribution of prim_threatened_aggregate for outliers\", \"Verify temporal coverage 2005-2010 has sufficient data\"],\n        \"output_format_requirements\": [\"List of 3 state full names\", \"Sorted descending by total residential property threat/loss\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 14.752425193786621,
+  "token_usage": {
+    "input_tokens": 4804,
+    "output_tokens": 733
+  }
+}

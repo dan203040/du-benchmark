@@ -1,0 +1,64 @@
+{
+  "m_q": {
+    "target_metric": "calcium concentration in ppm",
+    "filters": [
+      "ODP 967 Dust proxy is the minimum value",
+      "Minimum wet-dry index is used to break ties when multiple rows have the minimum dust proxy value"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": []
+  },
+  "m_s": {
+    "sources": [
+      "climateMeasurements.xlsx"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {
+      "Ca": "Calcium",
+      "ODP 967 Dust proxy": "Dust Proxy",
+      "ODP 967 wet-dry index": "Wet-Dry Index"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Ca": "ppm",
+      "ODP 967 Dust proxy": "arbitrary units",
+      "ODP 967 wet-dry index": "arbitrary units"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 30,
+    "expected_rows": 0,
+    "file_format": "xlsx",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "Find the minimum value of 'ODP 967 Dust proxy'",
+      "If multiple rows have the minimum 'ODP 967 Dust proxy', find the minimum 'ODP 967 wet-dry index' among those rows",
+      "Return the 'Ca' value for the row(s) that satisfy both conditions",
+      "Round the final result to 4 decimal places"
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "The output should be a single numerical value rounded to 4 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"calcium concentration in ppm\",\n    \"filters\": [\n      \"ODP 967 Dust proxy is the minimum value\",\n      \"Minimum wet-dry index is used to break ties when multiple rows have the minimum dust proxy value\"\n    ],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": []\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"climateMeasurements.xlsx\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {\n      \"Ca\": \"Calcium\",\n      \"ODP 967 Dust proxy\": \"Dust Proxy\",\n      \"ODP 967 wet-dry index\": \"Wet-Dry Index\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Ca\": \"ppm\",\n      \"ODP 967 Dust proxy\": \"arbitrary units\",\n      \"ODP 967 wet-dry index\": \"arbitrary units\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 30,\n    \"file_format\": \"xlsx\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Find the minimum value of 'ODP 967 Dust proxy'\",\n      \"If multiple rows have the minimum 'ODP 967 Dust proxy', find the minimum 'ODP 967 wet-dry index' among those rows\",\n      \"Return the 'Ca' value for the row(s) that satisfy both conditions\",\n      \"Round the final result to 4 decimal places\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"The output should be a single numerical value rounded to 4 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 44.26592516899109,
+  "token_usage": {}
+}

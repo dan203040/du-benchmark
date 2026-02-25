@@ -1,0 +1,619 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "metropolitan area with highest identity theft rate per 100,000 population",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "metropolitan area with highest identity theft rate per 100,000 population",
+        "Metropolitan area with highest rate of identity thefts per 100,000 population in 2023",
+        "Identity theft rate per 100,000 population for each metropolitan area, and the maximum of these rates"
+      ]
+    },
+    "filters": {
+      "value": [
+        "drop entries with no population match in html",
+        "ignore rows containing explanatory text like 'Metropolitan Areas are defined...'",
+        "use only city and state portion of metropolitan area names",
+        "Drop entries where metropolitan area name cannot be matched between fraud reports CSV files and HTML population data",
+        "Ignore footer rows in CSV files that contain metadata text",
+        "Drop entries where there's no match in the html for the areas fraud reports",
+        "Use only the city and state portion of the name, ignoring suffixes like 'Metropolitan Statistical Area' or 'MSA' and normalizing punctuation"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "drop entries with no population match in html",
+          "ignore rows containing explanatory text like 'Metropolitan Areas are defined...'",
+          "use only city and state portion of metropolitan area names"
+        ],
+        [
+          "Drop entries where metropolitan area name cannot be matched between fraud reports CSV files and HTML population data",
+          "Ignore footer rows in CSV files that contain metadata text"
+        ],
+        [
+          "Drop entries where there's no match in the html for the areas fraud reports",
+          "Use only the city and state portion of the name, ignoring suffixes like 'Metropolitan Statistical Area' or 'MSA' and normalizing punctuation"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "normalized_metro_area_name",
+        "Metropolitan Area"
+      ],
+      "confidence": 0.5,
+      "votes": [
+        [
+          "normalized_metro_area_name"
+        ],
+        [
+          "Metropolitan Area"
+        ],
+        [
+          "Metropolitan Area"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "extract population data from wikipedia html",
+        "normalize metropolitan area names across datasets",
+        "linearly interpolate population to 2023 if needed",
+        "calculate theft rate per 100,000 population",
+        "find maximum rate",
+        "What are the identity theft report counts for each metropolitan area from state CSV files?",
+        "What are the population sizes for each metropolitan area from the HTML file?",
+        "What census years are available in the HTML for population data?",
+        "How to linearly interpolate population to 2023 from available census years?",
+        "How to normalize metropolitan area names for matching (extract city/state, remove suffixes like 'Metropolitan Statistical Area', 'MSA', 'Micropolitan Statistical Area')?",
+        "What is the identity theft rate per 100,000 population for each matched metropolitan area?",
+        "Which metropolitan area has the maximum rate?",
+        "Extract metropolitan area names and population data from the HTML file.",
+        "Clean and normalize metropolitan area names in both the CSV files and the extracted HTML data.",
+        "Estimate 2023 population for each metropolitan area using linear interpolation if necessary.",
+        "Calculate the identity theft rate per 100,000 population for each metropolitan area.",
+        "Find the metropolitan area with the highest identity theft rate."
+      ],
+      "confidence": 0.33333333333333326,
+      "votes": [
+        [
+          "extract population data from wikipedia html",
+          "normalize metropolitan area names across datasets",
+          "linearly interpolate population to 2023 if needed",
+          "calculate theft rate per 100,000 population",
+          "find maximum rate"
+        ],
+        [
+          "What are the identity theft report counts for each metropolitan area from state CSV files?",
+          "What are the population sizes for each metropolitan area from the HTML file?",
+          "What census years are available in the HTML for population data?",
+          "How to linearly interpolate population to 2023 from available census years?",
+          "How to normalize metropolitan area names for matching (extract city/state, remove suffixes like 'Metropolitan Statistical Area', 'MSA', 'Micropolitan Statistical Area')?",
+          "What is the identity theft rate per 100,000 population for each matched metropolitan area?",
+          "Which metropolitan area has the maximum rate?"
+        ],
+        [
+          "Extract metropolitan area names and population data from the HTML file.",
+          "Clean and normalize metropolitan area names in both the CSV files and the extracted HTML data.",
+          "Estimate 2023 population for each metropolitan area using linear interpolation if necessary.",
+          "Calculate the identity theft rate per 100,000 population for each metropolitan area.",
+          "Find the metropolitan area with the highest identity theft rate."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "metropolitan_statistics.html",
+        "Alabama.csv",
+        "Alaska.csv",
+        "Arizona.csv",
+        "Arkansas.csv",
+        "California.csv",
+        "Colorado.csv",
+        "Connecticut.csv",
+        "Delaware.csv",
+        "DistrictofColumbia.csv",
+        "Florida.csv",
+        "Georgia.csv",
+        "Hawaii.csv",
+        "Idaho.csv",
+        "Illinois.csv",
+        "Indiana.csv",
+        "Iowa.csv",
+        "Kansas.csv",
+        "Kentucky.csv",
+        "Louisiana.csv",
+        "Maine.csv",
+        "Maryland.csv",
+        "Massachusetts.csv",
+        "Michigan.csv",
+        "Minnesota.csv",
+        "Mississippi.csv",
+        "Missouri.csv",
+        "Montana.csv",
+        "Nebraska.csv",
+        "Nevada.csv",
+        "NewHampshire.csv",
+        "NewJersey.csv",
+        "NewMexico.csv",
+        "NewYork.csv",
+        "NorthCarolina.csv",
+        "NorthDakota.csv",
+        "Ohio.csv",
+        "Oklahoma.csv",
+        "Oregon.csv",
+        "Pennsylvania.csv",
+        "PuertoRico.csv",
+        "RhodeIsland.csv",
+        "SouthCarolina.csv",
+        "SouthDakota.csv",
+        "Tennessee.csv",
+        "Texas.csv",
+        "Utah.csv",
+        "Vermont.csv",
+        "Virginia.csv",
+        "Washington.csv",
+        "WestVirginia.csv",
+        "Wisconsin.csv",
+        "Wyoming.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "metropolitan_statistics.html",
+          "Alabama.csv",
+          "Alaska.csv",
+          "Arizona.csv",
+          "Arkansas.csv",
+          "California.csv",
+          "Colorado.csv",
+          "Connecticut.csv",
+          "Delaware.csv",
+          "DistrictofColumbia.csv",
+          "Florida.csv",
+          "Georgia.csv",
+          "Hawaii.csv",
+          "Idaho.csv",
+          "Illinois.csv",
+          "Indiana.csv",
+          "Iowa.csv",
+          "Kansas.csv",
+          "Kentucky.csv",
+          "Louisiana.csv",
+          "Maine.csv",
+          "Maryland.csv",
+          "Massachusetts.csv",
+          "Michigan.csv",
+          "Minnesota.csv",
+          "Mississippi.csv",
+          "Missouri.csv",
+          "Montana.csv",
+          "Nebraska.csv",
+          "Nevada.csv",
+          "NewHampshire.csv",
+          "NewJersey.csv",
+          "NewMexico.csv",
+          "NewYork.csv",
+          "NorthCarolina.csv",
+          "NorthDakota.csv",
+          "Ohio.csv",
+          "Oklahoma.csv",
+          "Oregon.csv",
+          "Pennsylvania.csv",
+          "PuertoRico.csv",
+          "RhodeIsland.csv",
+          "SouthCarolina.csv",
+          "SouthDakota.csv",
+          "Tennessee.csv",
+          "Texas.csv",
+          "Utah.csv",
+          "Vermont.csv",
+          "Virginia.csv",
+          "Washington.csv",
+          "WestVirginia.csv",
+          "Wisconsin.csv",
+          "Wyoming.csv"
+        ],
+        [
+          "metropolitan_statistics.html",
+          "Alabama.csv",
+          "Alaska.csv",
+          "Arizona.csv",
+          "Arkansas.csv",
+          "California.csv",
+          "Colorado.csv",
+          "Connecticut.csv",
+          "Delaware.csv",
+          "DistrictofColumbia.csv",
+          "Florida.csv",
+          "Georgia.csv",
+          "Hawaii.csv",
+          "Idaho.csv",
+          "Illinois.csv",
+          "Indiana.csv",
+          "Iowa.csv",
+          "Kansas.csv",
+          "Kentucky.csv",
+          "Louisiana.csv",
+          "Maine.csv",
+          "Maryland.csv",
+          "Massachusetts.csv",
+          "Michigan.csv",
+          "Minnesota.csv",
+          "Mississippi.csv",
+          "Missouri.csv",
+          "Montana.csv",
+          "Nebraska.csv",
+          "Nevada.csv",
+          "NewHampshire.csv",
+          "NewJersey.csv",
+          "NewMexico.csv",
+          "NewYork.csv",
+          "NorthCarolina.csv",
+          "NorthDakota.csv",
+          "Ohio.csv",
+          "Oklahoma.csv",
+          "Oregon.csv",
+          "Pennsylvania.csv",
+          "PuertoRico.csv",
+          "RhodeIsland.csv",
+          "SouthCarolina.csv",
+          "SouthDakota.csv",
+          "Tennessee.csv",
+          "Texas.csv",
+          "Utah.csv",
+          "Vermont.csv",
+          "Virginia.csv",
+          "Washington.csv",
+          "WestVirginia.csv",
+          "Wisconsin.csv",
+          "Wyoming.csv"
+        ],
+        [
+          "metropolitan_statistics.html",
+          "Alabama.csv",
+          "Alaska.csv",
+          "Arizona.csv",
+          "Arkansas.csv",
+          "California.csv",
+          "Colorado.csv",
+          "Connecticut.csv",
+          "Delaware.csv",
+          "DistrictofColumbia.csv",
+          "Florida.csv",
+          "Georgia.csv",
+          "Hawaii.csv",
+          "Idaho.csv",
+          "Illinois.csv",
+          "Indiana.csv",
+          "Iowa.csv",
+          "Kansas.csv",
+          "Kentucky.csv",
+          "Louisiana.csv",
+          "Maine.csv",
+          "Maryland.csv",
+          "Massachusetts.csv",
+          "Michigan.csv",
+          "Minnesota.csv",
+          "Mississippi.csv",
+          "Missouri.csv",
+          "Montana.csv",
+          "Nebraska.csv",
+          "Nevada.csv",
+          "NewHampshire.csv",
+          "NewJersey.csv",
+          "NewMexico.csv",
+          "NewYork.csv",
+          "NorthCarolina.csv",
+          "NorthDakota.csv",
+          "Ohio.csv",
+          "Oklahoma.csv",
+          "Oregon.csv",
+          "Pennsylvania.csv",
+          "PuertoRico.csv",
+          "RhodeIsland.csv",
+          "SouthCarolina.csv",
+          "SouthDakota.csv",
+          "Tennessee.csv",
+          "Texas.csv",
+          "Utah.csv",
+          "Vermont.csv",
+          "Virginia.csv",
+          "Washington.csv",
+          "WestVirginia.csv",
+          "Wisconsin.csv",
+          "Wyoming.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "different state file naming conventions",
+        "html contains unstructured population data",
+        "csv files have same column names but different metro area formats",
+        "Metropolitan area names have different suffixes across sources (e.g., 'Metropolitan Statistical Area', 'MSA', 'Micropolitan Statistical Area')",
+        "HTML contains full Wikipedia page structure requiring parsing of tables",
+        "State CSV files have consistent schema but need to be unioned"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "different state file naming conventions",
+          "html contains unstructured population data",
+          "csv files have same column names but different metro area formats"
+        ],
+        [
+          "Metropolitan area names have different suffixes across sources (e.g., 'Metropolitan Statistical Area', 'MSA', 'Micropolitan Statistical Area')",
+          "HTML contains full Wikipedia page structure requiring parsing of tables",
+          "State CSV files have consistent schema but need to be unioned"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "# of reports": "count of identity theft reports",
+        "population": "number of people",
+        "theft_rate": "reports per 100,000 population",
+        "rate": "per 100,000 population",
+        "number of reports": "count"
+      },
+      "confidence": 0.5333333333333333,
+      "votes": [
+        {
+          "# of Reports": "count of identity theft reports",
+          "population": "number of people",
+          "theft_rate": "reports per 100,000 population"
+        },
+        {
+          "# of Reports": "count",
+          "population": "persons",
+          "rate": "per 100,000 population"
+        },
+        {
+          "Number of Reports": "count",
+          "Population": "people"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "population data may be in thousands or raw counts",
+        "need to normalize to per 100,000 scale",
+        "Need to convert absolute identity theft counts to rates per 100,000 population",
+        "Population estimates need to be interpolated to 2023 if not directly available"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "population data may be in thousands or raw counts",
+          "need to normalize to per 100,000 scale"
+        ],
+        [
+          "Need to convert absolute identity theft counts to rates per 100,000 population",
+          "Population estimates need to be interpolated to 2023 if not directly available"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [
+        "metro area naming conventions differ between csv files and html",
+        "population data may be from different years",
+        "Metropolitan area naming conventions differ between CSV files and HTML (suffixes, punctuation)",
+        "Population data years in HTML may not align with 2023 identity theft report year"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "metro area naming conventions differ between csv files and html",
+          "population data may be from different years"
+        ],
+        [
+          "Metropolitan area naming conventions differ between CSV files and HTML (suffixes, punctuation)",
+          "Population data years in HTML may not align with 2023 identity theft report year"
+        ],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "NA",
+        "N/A",
+        "",
+        "Metropolitan Areas are defined by the Office of Management and Budget...",
+        "NaN"
+      ],
+      "confidence": 0.6,
+      "votes": [
+        [
+          "NA",
+          "N/A",
+          "",
+          "Metropolitan Areas are defined by the Office of Management and Budget..."
+        ],
+        [
+          "",
+          "NaN"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 2.0,
+      "confidence": 1.0,
+      "votes": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "csv",
+        "csv and html",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "theft_reports must be numeric",
+        "population must be positive",
+        "metro area names must be normalized before joining",
+        "use linear interpolation for missing 2023 population",
+        "Only include metropolitan areas that can be matched between CSV files and HTML population data",
+        "Use linear interpolation between two known census years to estimate 2023 population",
+        "Normalize metropolitan area names by extracting only city and state portions, removing suffixes like 'Metropolitan Statistical Area', 'MSA', 'Micropolitan Statistical Area'",
+        "Normalize punctuation when matching names",
+        "Exclude footer rows from state CSV files",
+        "Metropolitan area names must be normalized to ensure accurate matching.",
+        "Population data from the HTML file may need cleaning and parsing.",
+        "Linear interpolation should be used only when necessary and between valid census years."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "theft_reports must be numeric",
+          "population must be positive",
+          "metro area names must be normalized before joining",
+          "use linear interpolation for missing 2023 population"
+        ],
+        [
+          "Only include metropolitan areas that can be matched between CSV files and HTML population data",
+          "Use linear interpolation between two known census years to estimate 2023 population",
+          "Normalize metropolitan area names by extracting only city and state portions, removing suffixes like 'Metropolitan Statistical Area', 'MSA', 'Micropolitan Statistical Area'",
+          "Normalize punctuation when matching names",
+          "Exclude footer rows from state CSV files"
+        ],
+        [
+          "Metropolitan area names must be normalized to ensure accurate matching.",
+          "Population data from the HTML file may need cleaning and parsing.",
+          "Linear interpolation should be used only when necessary and between valid census years."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "remove non-data rows from csv files",
+        "normalize metro names by removing suffixes and punctuation",
+        "drop areas without population match",
+        "Filter out rows where 'Metropolitan Area' field contains the text 'Metropolitan Areas are defined by'",
+        "Filter out metropolitan areas with null or missing '# of Reports'",
+        "Filter out metropolitan areas that cannot be matched to population data after normalization"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "remove non-data rows from csv files",
+          "normalize metro names by removing suffixes and punctuation",
+          "drop areas without population match"
+        ],
+        [
+          "Filter out rows where 'Metropolitan Area' field contains the text 'Metropolitan Areas are defined by'",
+          "Filter out metropolitan areas with null or missing '# of Reports'",
+          "Filter out metropolitan areas that cannot be matched to population data after normalization"
+        ],
+        []
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "check for outliers in theft rates",
+        "validate linear interpolation assumptions",
+        "Linear interpolation for 2023 population estimation from available census years"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "check for outliers in theft rates",
+          "validate linear interpolation assumptions"
+        ],
+        [
+          "Linear interpolation for 2023 population estimation from available census years"
+        ],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "single metropolitan area name as result",
+        "include theft rate calculation",
+        "document population estimation method if interpolation used",
+        "Return single metropolitan area name with highest identity theft rate per 100,000 population",
+        "Rate calculation: (# of Reports / 2023 Population) * 100,000",
+        "The output should be the name of the metropolitan area with the highest identity theft rate per 100,000 population."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "single metropolitan area name as result",
+          "include theft rate calculation",
+          "document population estimation method if interpolation used"
+        ],
+        [
+          "Return single metropolitan area name with highest identity theft rate per 100,000 population",
+          "Rate calculation: (# of Reports / 2023 Population) * 100,000"
+        ],
+        [
+          "The output should be the name of the metropolitan area with the highest identity theft rate per 100,000 population."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5816666666666668
+}

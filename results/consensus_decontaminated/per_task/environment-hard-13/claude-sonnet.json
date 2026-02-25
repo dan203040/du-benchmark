@@ -1,0 +1,94 @@
+{
+  "m_q": {
+    "target_metric": "Count of days where at least one sampling point met the standard (Enterococcus < 104) and at least one sampling point did not meet the standard (Enterococcus >= 104)",
+    "filters": [
+      "Year 2024",
+      "Constitution Beach location"
+    ],
+    "grouping_variables": [
+      "Date"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "How many sampling points exist per date?",
+      "What are the Enterococcus values for each sampling point on each date?",
+      "Which sampling points meet the standard (< 104) on each date?",
+      "Which sampling points fail the standard (>= 104) on each date?",
+      "On which dates do both conditions occur (at least one pass and at least one fail)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "constitution_beach_datasheet.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [
+      "Multiple Enterococcus measurements per date stored in separate columns (Enterococcus, Enterococcus.1, Enterococcus.2)",
+      "Tag columns appear to indicate comparison operators for corresponding Enterococcus values"
+    ],
+    "column_mappings": {
+      "Enterococcus": "Enterococcus_Point1",
+      "Enterococcus.1": "Enterococcus_Point2",
+      "Enterococcus.2": "Enterococcus_Point3",
+      "Tag": "Tag_Point1",
+      "Tag.1": "Tag_Point2",
+      "Tag.2": "Tag_Point3"
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Enterococcus": "counts per 100 milliliters",
+      "Enterococcus.1": "counts per 100 milliliters",
+      "Enterococcus.2": "counts per 100 milliliters",
+      "1-Day Rain": "inches",
+      "2-Day Rain": "inches",
+      "3-Day Rain": "inches"
+    },
+    "scale_issues": [
+      "Tag columns contain '<' symbols indicating values below detection limit",
+      "Enterococcus values with '<' tag represent upper bounds, not exact measurements"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Date format is 'Month Day, Year' (e.g., 'September 1, 2024')",
+      "Tag columns contain '<' symbols or are empty",
+      "Enterococcus columns contain numeric values",
+      "Three sampling points per date represented by column triplets (Tag, Enterococcus)"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Standard threshold is Enterococcus < 104 counts per 100 mL",
+      "Only count dates in year 2024",
+      "Must have at least one sampling point meeting standard AND at least one not meeting standard on same date",
+      "Handle '<' tags appropriately when comparing to threshold"
+    ],
+    "derived_filters": [
+      "Extract year from Date field and filter for 2024",
+      "For each date, evaluate each of the three Enterococcus measurements against 104 threshold",
+      "Consider Tag '<' symbols: if Tag='<' and value=10, actual value is <10, which meets standard"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single integer count of days meeting the mixed standard condition"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Count of days where at least one sampling point met the standard (Enterococcus < 104) and at least one sampling point did not meet the standard (Enterococcus >= 104)\",\n    \"filters\": [\"Year 2024\", \"Constitution Beach location\"],\n    \"grouping_variables\": [\"Date\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"How many sampling points exist per date?\",\n      \"What are the Enterococcus values for each sampling point on each date?\",\n      \"Which sampling points meet the standard (< 104) on each date?\",\n      \"Which sampling points fail the standard (>= 104) on each date?\",\n      \"On which dates do both conditions occur (at least one pass and at least one fail)?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"constitution_beach_datasheet.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [\n      \"Multiple Enterococcus measurements per date stored in separate columns (Enterococcus, Enterococcus.1, Enterococcus.2)\",\n      \"Tag columns appear to indicate comparison operators for corresponding Enterococcus values\"\n    ],\n    \"column_mappings\": {\n      \"Enterococcus\": \"Enterococcus_Point1\",\n      \"Enterococcus.1\": \"Enterococcus_Point2\",\n      \"Enterococcus.2\": \"Enterococcus_Point3\",\n      \"Tag\": \"Tag_Point1\",\n      \"Tag.1\": \"Tag_Point2\",\n      \"Tag.2\": \"Tag_Point3\"\n    }\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Enterococcus\": \"counts per 100 milliliters\",\n      \"Enterococcus.1\": \"counts per 100 milliliters\",\n      \"Enterococcus.2\": \"counts per 100 milliliters\",\n      \"1-Day Rain\": \"inches\",\n      \"2-Day Rain\": \"inches\",\n      \"3-Day Rain\": \"inches\"\n    },\n    \"scale_issues\": [\n      \"Tag columns contain '<' symbols indicating values below detection limit\",\n      \"Enterococcus values with '<' tag represent upper bounds, not exact measurements\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"\"],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Date format is 'Month Day, Year' (e.g., 'September 1, 2024')\",\n      \"Tag columns contain '<' symbols or are empty\",\n      \"Enterococcus columns contain numeric values\",\n      \"Three sampling points per date represented by column triplets (Tag, Enterococcus)\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Standard threshold is Enterococcus < 104 counts per 100 mL\",\n      \"Only count dates in year 2024\",\n      \"Must have at least one sampling point meeting standard AND at least one not meeting standard on same date\",\n      \"Handle '<' tags appropriately when comparing to threshold\"\n    ],\n    \"derived_filters\": [\n      \"Extract year from Date field and filter for 2024\",\n      \"For each date, evaluate each of the three Enterococcus measurements against 104 threshold\",\n      \"Consider Tag '<' symbols: if Tag='<' and value=10, actual value is <10, which meets standard\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single integer count of days meeting the mixed standard condition\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 15.669478178024292,
+  "token_usage": {
+    "input_tokens": 1560,
+    "output_tokens": 964
+  }
+}

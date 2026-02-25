@@ -1,0 +1,68 @@
+{
+  "m_q": {
+    "target_metric": "count of nations with zero silver medals",
+    "filters": [
+      "Silver = 0"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Which nations have Silver = 0?",
+      "How many such nations exist?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Olympic Medal Table"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Rank": "ordinal position",
+      "Gold": "count of gold medals",
+      "Silver": "count of silver medals",
+      "Bronze": "count of bronze medals",
+      "Total": "count of total medals"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Rank column contains Int64 values with possible ties (same rank appears multiple times)",
+      "Nation column contains country name with IOC code in parentheses",
+      "All medal count columns are Int64 type"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Silver column must be non-negative integer",
+      "Total should equal Gold + Silver + Bronze",
+      "All nations in table should have at least one medal (Total >= 1)"
+    ],
+    "derived_filters": [
+      "Filter rows where Silver = 0"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return a single integer count"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"count of nations with zero silver medals\",\n    \"filters\": [\"Silver = 0\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Which nations have Silver = 0?\",\n      \"How many such nations exist?\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Olympic Medal Table\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Rank\": \"ordinal position\",\n      \"Gold\": \"count of gold medals\",\n      \"Silver\": \"count of silver medals\",\n      \"Bronze\": \"count of bronze medals\",\n      \"Total\": \"count of total medals\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [],\n    \"expected_columns\": 6,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Rank column contains Int64 values with possible ties (same rank appears multiple times)\",\n      \"Nation column contains country name with IOC code in parentheses\",\n      \"All medal count columns are Int64 type\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Silver column must be non-negative integer\",\n      \"Total should equal Gold + Silver + Bronze\",\n      \"All nations in table should have at least one medal (Total >= 1)\"\n    ],\n    \"derived_filters\": [\n      \"Filter rows where Silver = 0\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return a single integer count\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 7.72865104675293,
+  "token_usage": {
+    "input_tokens": 980,
+    "output_tokens": 485
+  }
+}

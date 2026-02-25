@@ -1,0 +1,78 @@
+{
+  "m_q": {
+    "target_metric": "smallest crowd number",
+    "filters": [
+      "Away team score = 15.11 (101)"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Filter rows where Away team score equals 15.11 (101)",
+      "Extract Crowd values for filtered rows",
+      "Convert Crowd from string with commas to numeric",
+      "Find minimum Crowd value"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "football_matches"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Home team score": "goals.behinds (total_points)",
+      "Away team score": "goals.behinds (total_points)",
+      "Crowd": "number of people",
+      "Date": "date"
+    },
+    "scale_issues": [
+      "Crowd values contain comma separators (e.g., '16,000')",
+      "Crowd dtype is object/string, needs conversion to numeric"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 7,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Crowd column contains comma-separated thousands (e.g., '4,000', '16,000')",
+      "Score format is 'goals.behinds (total_points)'",
+      "All columns are stored as object/string dtype",
+      "Date format appears to be 'DD Month YYYY'"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Away team score must exactly match '15.11 (101)'",
+      "Crowd values must be convertible to numeric after removing commas",
+      "Result should be a single numeric value representing minimum crowd"
+    ],
+    "derived_filters": [
+      "Filter: Away team score == '15.11 (101)'"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Return single numeric value",
+      "Value should represent the minimum crowd attendance"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"smallest crowd number\",\n    \"filters\": [\"Away team score = 15.11 (101)\"],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Filter rows where Away team score equals 15.11 (101)\",\n      \"Extract Crowd values for filtered rows\",\n      \"Convert Crowd from string with commas to numeric\",\n      \"Find minimum Crowd value\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"football_matches\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Home team score\": \"goals.behinds (total_points)\",\n      \"Away team score\": \"goals.behinds (total_points)\",\n      \"Crowd\": \"number of people\",\n      \"Date\": \"date\"\n    },\n    \"scale_issues\": [\n      \"Crowd values contain comma separators (e.g., '16,000')\",\n      \"Crowd dtype is object/string, needs conversion to numeric\"\n    ],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 7,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Crowd column contains comma-separated thousands (e.g., '4,000', '16,000')\",\n      \"Score format is 'goals.behinds (total_points)'\",\n      \"All columns are stored as object/string dtype\",\n      \"Date format appears to be 'DD Month YYYY'\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Away team score must exactly match '15.11 (101)'\",\n      \"Crowd values must be convertible to numeric after removing commas\",\n      \"Result should be a single numeric value representing minimum crowd\"\n    ],\n    \"derived_filters\": [\n      \"Filter: Away team score == '15.11 (101)'\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Return single numeric value\",\n      \"Value should represent the minimum crowd attendance\"\n    ]\n  }\n}\n```",
+  "system_name": "claude-sonnet",
+  "extraction_time_s": 9.900463104248047,
+  "token_usage": {
+    "input_tokens": 1288,
+    "output_tokens": 615
+  }
+}

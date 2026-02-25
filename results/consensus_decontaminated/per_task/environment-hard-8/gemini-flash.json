@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Percentage of samples that failed to meet the swimming standard (Enterococcus > 104) at Boston Harbor beaches that had rainfall within 24 hours prior to sampling.",
+    "filters": [],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Identify samples that failed to meet the swimming standard (Enterococcus > 104).",
+      "Determine if there was rainfall within 24 hours prior to each failed sample.",
+      "Calculate the percentage of failed samples with rainfall."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "boston-harbor-beaches.txt",
+      "constitution_beach_datasheet.csv",
+      "carson_beach_datasheet.csv",
+      "pleasure_bay_and_castle_island_beach_datasheet.csv",
+      "m_street_beach_datasheet.csv",
+      "city_point_beach_datasheet.csv",
+      "malibu_beach_datasheet.csv",
+      "tenean_beach_datasheet.csv",
+      "wollaston_beach_datasheet.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "1-Day Rain": "inches",
+      "Enterococcus": "counts per 100 milliliters"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Some files have different numbers of Enterococcus columns (e.g., Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3).",
+      "The 'Tag' columns may contain '<' characters indicating values below a detection limit. These should be handled appropriately (e.g., imputing with a small value or filtering).",
+      "The boston-harbor-beaches.txt file uses comma as a delimiter."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Enterococcus values must be numeric and greater than 0.",
+      "1-Day Rain values must be numeric and greater than or equal to 0."
+    ],
+    "derived_filters": [
+      "Failed Sample: Enterococcus > 104",
+      "Rain within 24 hours: 1-Day Rain > 0"
+    ],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Percentage to 2 decimal places."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Percentage of samples that failed to meet the swimming standard (Enterococcus > 104) at Boston Harbor beaches that had rainfall within 24 hours prior to sampling.\",\n    \"filters\": [],\n    \"grouping_variables\": [],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Identify samples that failed to meet the swimming standard (Enterococcus > 104).\",\n      \"Determine if there was rainfall within 24 hours prior to each failed sample.\",\n      \"Calculate the percentage of failed samples with rainfall.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\n      \"boston-harbor-beaches.txt\",\n      \"constitution_beach_datasheet.csv\",\n      \"carson_beach_datasheet.csv\",\n      \"pleasure_bay_and_castle_island_beach_datasheet.csv\",\n      \"m_street_beach_datasheet.csv\",\n      \"city_point_beach_datasheet.csv\",\n      \"malibu_beach_datasheet.csv\",\n      \"tenean_beach_datasheet.csv\",\n      \"wollaston_beach_datasheet.csv\"\n    ],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"1-Day Rain\": \"inches\",\n      \"Enterococcus\": \"counts per 100 milliliters\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\n      \"NA\",\n      \"N/A\",\n      \"\"\n    ],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\n      \"Some files have different numbers of Enterococcus columns (e.g., Enterococcus, Enterococcus.1, Enterococcus.2, Enterococcus.3).\",\n      \"The 'Tag' columns may contain '<' characters indicating values below a detection limit. These should be handled appropriately (e.g., imputing with a small value or filtering).\",\n      \"The boston-harbor-beaches.txt file uses comma as a delimiter.\"\n    ]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Enterococcus values must be numeric and greater than 0.\",\n      \"1-Day Rain values must be numeric and greater than or equal to 0.\"\n    ],\n    \"derived_filters\": [\n      \"Failed Sample: Enterococcus > 104\",\n      \"Rain within 24 hours: 1-Day Rain > 0\"\n    ],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Percentage to 2 decimal places.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 72.06235003471375,
+  "token_usage": {}
+}

@@ -1,0 +1,73 @@
+{
+  "m_q": {
+    "target_metric": "Cumulative returns for default, equal-weight, and market value-weighted portfolios based on 2017 stock returns of the 9 biggest companies",
+    "filters": [],
+    "grouping_variables": [
+      "Date"
+    ],
+    "output_cardinality": "table",
+    "sub_questions": [
+      "Calculate daily returns for each portfolio strategy.",
+      "Calculate cumulative returns from daily returns for each strategy.",
+      "Format the output as specified in sample_result.csv."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Big9Returns2017.csv",
+      "EfficientFrontierPortfoliosSlim.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "AAPL": "return",
+      "MSFT": "return",
+      "XOM": "return",
+      "JNJ": "return",
+      "JPM": "return",
+      "AMZN": "return",
+      "GE": "return",
+      "FB": "return",
+      "T": "return"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 10,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": []
+  },
+  "m_c": {
+    "constraints": [
+      "The 'Date' column in Big9Returns2017.csv represents the trading day.",
+      "The returns in Big9Returns2017.csv are daily returns.",
+      "The weights in EfficientFrontierPortfoliosSlim.csv can be used to calculate portfolio returns."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "Output should be a CSV file named 'result.csv'.",
+      "The output CSV should contain 'Date', 'Cumulative', 'Cumulative_EW', and 'Cumulative_MCap' columns.",
+      "The 'Cumulative' column represents the cumulative return of the default portfolio (equal weights).",
+      "The 'Cumulative_EW' column represents the cumulative return of the equal-weight portfolio.",
+      "The 'Cumulative_MCap' column represents the cumulative return of the market value-weighted portfolio."
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"Cumulative returns for default, equal-weight, and market value-weighted portfolios based on 2017 stock returns of the 9 biggest companies\",\n    \"filters\": [],\n    \"grouping_variables\": [\"Date\"],\n    \"output_cardinality\": \"table\",\n    \"sub_questions\": [\n      \"Calculate daily returns for each portfolio strategy.\",\n      \"Calculate cumulative returns from daily returns for each strategy.\",\n      \"Format the output as specified in sample_result.csv.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Big9Returns2017.csv\", \"EfficientFrontierPortfoliosSlim.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"AAPL\": \"return\",\n      \"MSFT\": \"return\",\n      \"XOM\": \"return\",\n      \"JNJ\": \"return\",\n      \"JPM\": \"return\",\n      \"AMZN\": \"return\",\n      \"GE\": \"return\",\n      \"FB\": \"return\",\n      \"T\": \"return\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 10,\n    \"file_format\": \"csv\",\n    \"format_notes\": []\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"The 'Date' column in Big9Returns2017.csv represents the trading day.\",\n      \"The returns in Big9Returns2017.csv are daily returns.\",\n      \"The weights in EfficientFrontierPortfoliosSlim.csv can be used to calculate portfolio returns.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\n      \"Output should be a CSV file named 'result.csv'.\",\n      \"The output CSV should contain 'Date', 'Cumulative', 'Cumulative_EW', and 'Cumulative_MCap' columns.\",\n      \"The 'Cumulative' column represents the cumulative return of the default portfolio (equal weights).\",\n      \"The 'Cumulative_EW' column represents the cumulative return of the equal-weight portfolio.\",\n      \"The 'Cumulative_MCap' column represents the cumulative return of the market value-weighted portfolio.\"\n    ]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 4.41181492805481,
+  "token_usage": {}
+}

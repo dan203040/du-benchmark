@@ -1,0 +1,313 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Name of coach who won promotion to first tier",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Name of coach who won promotion to first tier",
+        "Name of the coach who won promotion to the first tier",
+        "coach name"
+      ]
+    },
+    "filters": {
+      "value": [
+        "Honours contains 'Won promotion to first tier'",
+        "Honours contains 'promotion to first tier' or 'promotion to the first tier'",
+        "coach won promotion to the first tier"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Honours contains 'Won promotion to first tier'"
+        ],
+        [
+          "Honours contains 'promotion to first tier' or 'promotion to the first tier'"
+        ],
+        [
+          "coach won promotion to the first tier"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Name"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Name"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 0.6666666666666666,
+      "votes": [
+        "scalar",
+        "scalar",
+        "list"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "Which coaches have honours mentioning promotion?",
+        "What tier level is mentioned in each honour?",
+        "Is there exactly one coach with first tier promotion?",
+        "Which coaches have honours related to promotion to first tier?",
+        "Is there only one coach with this specific honour?",
+        "What is the exact name of that coach?"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Which coaches have honours mentioning promotion?",
+          "What tier level is mentioned in each honour?",
+          "Is there exactly one coach with first tier promotion?"
+        ],
+        [
+          "Which coaches have honours related to promotion to first tier?",
+          "Is there only one coach with this specific honour?",
+          "What is the exact name of that coach?"
+        ],
+        []
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "Coaches"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Coaches"
+        ],
+        [
+          "Coaches"
+        ],
+        [
+          "Coaches"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "from": "date",
+        "to": "date"
+      },
+      "confidence": 0.6666666666666666,
+      "votes": [
+        {
+          "From": "date",
+          "To": "date"
+        },
+        {
+          "From": "date",
+          "To": "date"
+        },
+        {}
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Date format varies (e.g., '1 July 2012', '1996')",
+        "Some dates are year-only while others are full dates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date format varies (e.g., '1 July 2012', '1996')",
+          "Some dates are year-only while others are full dates"
+        ],
+        [],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "",
+          "NA",
+          "N/A"
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 6.0,
+      "confidence": 1.0,
+      "votes": [
+        6.0,
+        6.0,
+        6.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Honours column must be searched for promotion mentions",
+        "Coach name must be unique for identification",
+        "Only coaches with explicit 'first tier' promotion should be considered",
+        "Only one coach should match the criteria",
+        "Honours field must contain exact phrase related to first tier promotion",
+        "Result must be a single coach name",
+        "The 'Honours' column must be parsed to identify coaches who won promotion to the first tier."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Honours column must be searched for promotion mentions",
+          "Coach name must be unique for identification",
+          "Only coaches with explicit 'first tier' promotion should be considered"
+        ],
+        [
+          "Only one coach should match the criteria",
+          "Honours field must contain exact phrase related to first tier promotion",
+          "Result must be a single coach name"
+        ],
+        [
+          "The 'Honours' column must be parsed to identify coaches who won promotion to the first tier."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Honours IS NOT NULL",
+        "Honours LIKE '%promotion%'",
+        "Honours LIKE '%first tier%'",
+        "Filter Honours column where text matches 'Won promotion to first tier' (case-insensitive)",
+        "Exclude promotions to second tier, third tier, or fourth tier",
+        "coach won promotion to the first tier based on the 'Honours' column"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Honours IS NOT NULL",
+          "Honours LIKE '%promotion%'",
+          "Honours LIKE '%first tier%'"
+        ],
+        [
+          "Filter Honours column where text matches 'Won promotion to first tier' (case-insensitive)",
+          "Exclude promotions to second tier, third tier, or fourth tier"
+        ],
+        [
+          "coach won promotion to the first tier based on the 'Honours' column"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Count of coaches with first tier promotion should be exactly 1"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Count of coaches with first tier promotion should be exactly 1"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single coach name as string",
+        "Return only the coach name as a single value",
+        "Verify cardinality is exactly 1 matching record"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single coach name as string"
+        ],
+        [
+          "Return only the coach name as a single value",
+          "Verify cardinality is exactly 1 matching record"
+        ],
+        []
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.5666666666666668
+}

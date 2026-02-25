@@ -1,0 +1,62 @@
+{
+  "m_q": {
+    "target_metric": "State with the maximum fire-impacted land area (in Acres) per capita",
+    "filters": [],
+    "grouping_variables": [
+      "State"
+    ],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "Calculate fire-impacted land area per capita for each state.",
+      "Find the maximum fire-impacted land area per capita across all states.",
+      "Identify the state corresponding to the maximum fire-impacted land area per capita."
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Wildfire_Acres_by_State.csv"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Total Acres Burned": "Acres",
+      "Population": "People"
+    },
+    "scale_issues": [],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "NA",
+      "N/A",
+      ""
+    ],
+    "expected_columns": 3,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Handle missing values in 'Total Acres Burned' column."
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Population must be greater than 0.",
+      "Total Acres Burned must be non-negative."
+    ],
+    "derived_filters": [],
+    "statistical_tests": [],
+    "output_format_requirements": [
+      "State name"
+    ]
+  },
+  "raw_text": "```json\n{\n  \"M_Q\": {\n    \"target_metric\": \"State with the maximum fire-impacted land area (in Acres) per capita\",\n    \"filters\": [],\n    \"grouping_variables\": [\"State\"],\n    \"output_cardinality\": \"scalar\",\n    \"sub_questions\": [\n      \"Calculate fire-impacted land area per capita for each state.\",\n      \"Find the maximum fire-impacted land area per capita across all states.\",\n      \"Identify the state corresponding to the maximum fire-impacted land area per capita.\"\n    ]\n  },\n  \"M_S\": {\n    \"sources\": [\"Wildfire_Acres_by_State.csv\"],\n    \"join_keys\": [],\n    \"schema_conflicts\": [],\n    \"column_mappings\": {}\n  },\n  \"M_U\": {\n    \"unit_annotations\": {\n      \"Total Acres Burned\": \"Acres\",\n      \"Population\": \"People\"\n    },\n    \"scale_issues\": [],\n    \"cross_source_conflicts\": []\n  },\n  \"M_F\": {\n    \"has_header\": true,\n    \"delimiter\": \",\",\n    \"encoding\": \"utf-8\",\n    \"sentinel_values\": [\"NA\", \"N/A\", \"\"],\n    \"expected_columns\": 3,\n    \"file_format\": \"csv\",\n    \"format_notes\": [\"Handle missing values in 'Total Acres Burned' column.\"]\n  },\n  \"M_C\": {\n    \"constraints\": [\n      \"Population must be greater than 0.\",\n      \"Total Acres Burned must be non-negative.\"\n    ],\n    \"derived_filters\": [],\n    \"statistical_tests\": [],\n    \"output_format_requirements\": [\"State name\"]\n  }\n}\n```",
+  "system_name": "gemini-flash",
+  "extraction_time_s": 21.09319305419922,
+  "token_usage": {}
+}

@@ -1,0 +1,76 @@
+{
+  "m_q": {
+    "target_metric": "Count of wins for Dunfermline Athletic where total final appearances is less than 2",
+    "filters": [
+      "Club = 'Dunfermline Athletic'",
+      "Total final appearances < 2"
+    ],
+    "grouping_variables": [],
+    "output_cardinality": "scalar",
+    "sub_questions": [
+      "What is the value in the 'Wins' column for Dunfermline Athletic?",
+      "What is the value in the 'Total final appearances' column for Dunfermline Athletic?",
+      "Does the 'Total final appearances' value satisfy the condition (<2)?"
+    ]
+  },
+  "m_s": {
+    "sources": [
+      "Scottish Challenge Cup Finalists"
+    ],
+    "join_keys": [],
+    "schema_conflicts": [],
+    "column_mappings": {}
+  },
+  "m_u": {
+    "unit_annotations": {
+      "Wins": "count",
+      "Runners-up": "count",
+      "Total final appearances": "count"
+    },
+    "scale_issues": [
+      "All numeric columns (Wins, Runners-up, Total final appearances) are stored as object dtype, requiring type conversion for numerical comparison"
+    ],
+    "cross_source_conflicts": []
+  },
+  "m_f": {
+    "has_header": true,
+    "delimiter": ",",
+    "encoding": "utf-8",
+    "sentinel_values": [
+      "\u2014",
+      ""
+    ],
+    "expected_columns": 6,
+    "expected_rows": 0,
+    "file_format": "csv",
+    "format_notes": [
+      "Missing values represented by '\u2014' in 'Last final won' and 'Last final lost' columns",
+      "Sample shows 20 rows but shape indicates 31 total rows"
+    ]
+  },
+  "m_c": {
+    "constraints": [
+      "Total final appearances = Wins + Runners-up (should hold for each row)",
+      "Wins and Runners-up should be non-negative integers",
+      "Total final appearances should be positive integer"
+    ],
+    "derived_filters": [
+      "Convert 'Wins' column from string to integer",
+      "Convert 'Total final appearances' column from string to integer"
+    ],
+    "statistical_tests": [
+      "Verify data type conversion for numerical columns",
+      "Check that Dunfermline Athletic exists in the dataset"
+    ],
+    "output_format_requirements": [
+      "Return a single integer value representing the answer"
+    ]
+  },
+  "raw_text": "```json\n{\n    \"M_Q\": {\n        \"target_metric\": \"Count of wins for Dunfermline Athletic where total final appearances is less than 2\",\n        \"filters\": [\"Club = 'Dunfermline Athletic'\", \"Total final appearances < 2\"],\n        \"grouping_variables\": [],\n        \"output_cardinality\": \"scalar\",\n        \"sub_questions\": [\"What is the value in the 'Wins' column for Dunfermline Athletic?\", \"What is the value in the 'Total final appearances' column for Dunfermline Athletic?\", \"Does the 'Total final appearances' value satisfy the condition (<2)?\"]\n    },\n    \"M_S\": {\n        \"sources\": [\"Scottish Challenge Cup Finalists\"],\n        \"join_keys\": [],\n        \"schema_conflicts\": [],\n        \"column_mappings\": {}\n    },\n    \"M_U\": {\n        \"unit_annotations\": {\"Wins\": \"count\", \"Runners-up\": \"count\", \"Total final appearances\": \"count\"},\n        \"scale_issues\": [\"All numeric columns (Wins, Runners-up, Total final appearances) are stored as object dtype, requiring type conversion for numerical comparison\"],\n        \"cross_source_conflicts\": []\n    },\n    \"M_F\": {\n        \"has_header\": true,\n        \"delimiter\": \",\",\n        \"encoding\": \"utf-8\",\n        \"sentinel_values\": [\"\u2014\", \"\"],\n        \"expected_columns\": 6,\n        \"file_format\": \"csv\",\n        \"format_notes\": [\"Missing values represented by '\u2014' in 'Last final won' and 'Last final lost' columns\", \"Sample shows 20 rows but shape indicates 31 total rows\"]\n    },\n    \"M_C\": {\n        \"constraints\": [\"Total final appearances = Wins + Runners-up (should hold for each row)\", \"Wins and Runners-up should be non-negative integers\", \"Total final appearances should be positive integer\"],\n        \"derived_filters\": [\"Convert 'Wins' column from string to integer\", \"Convert 'Total final appearances' column from string to integer\"],\n        \"statistical_tests\": [\"Verify data type conversion for numerical columns\", \"Check that Dunfermline Athletic exists in the dataset\"],\n        \"output_format_requirements\": [\"Return a single integer value representing the answer\"]\n    }\n}\n```",
+  "system_name": "deepseek",
+  "extraction_time_s": 11.097883224487305,
+  "token_usage": {
+    "input_tokens": 938,
+    "output_tokens": 500
+  }
+}

@@ -1,0 +1,388 @@
+{
+  "m_q": {
+    "target_metric": {
+      "value": "Count of days in 2024 where at least one sampling point at Constitution Beach had Enterococcus count < 104 and at least one other sampling point had Enterococcus count \u2265 104",
+      "confidence": 0.3333333333333333,
+      "votes": [
+        "Count of days in 2024 where at least one sampling point at Constitution Beach had Enterococcus count < 104 and at least one other sampling point had Enterococcus count \u2265 104",
+        "Count of days where at least one sampling point met the standard (Enterococcus < 104) and at least one sampling point did not meet the standard (Enterococcus >= 104)",
+        "Number of days in 2024 at Constitution Beach where at least one sampling point had Enterococcus count < 104 and at least one sampling point had Enterococcus count >= 104."
+      ]
+    },
+    "filters": {
+      "value": [
+        "Date in 2024",
+        "Data from Constitution Beach only",
+        "Year 2024",
+        "Constitution Beach location",
+        "Year is 2024",
+        "Location is Constitution Beach"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Date in 2024",
+          "Data from Constitution Beach only"
+        ],
+        [
+          "Year 2024",
+          "Constitution Beach location"
+        ],
+        [
+          "Year is 2024",
+          "Location is Constitution Beach"
+        ]
+      ]
+    },
+    "grouping_variables": {
+      "value": [
+        "Date"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "Date"
+        ],
+        [
+          "Date"
+        ],
+        [
+          "Date"
+        ]
+      ]
+    },
+    "output_cardinality": {
+      "value": "scalar",
+      "confidence": 1.0,
+      "votes": [
+        "scalar",
+        "scalar",
+        "scalar"
+      ]
+    },
+    "sub_questions": {
+      "value": [
+        "How to interpret '<' symbol in Enterococcus columns?",
+        "How to handle missing values in Enterococcus columns?",
+        "Are all three sampling points (Enterococcus, Enterococcus.1, Enterococcus.2) always present for each date?",
+        "How to parse 'Date' column from string format 'Month Day, Year'?",
+        "How many sampling points exist per date?",
+        "What are the Enterococcus values for each sampling point on each date?",
+        "Which sampling points meet the standard (< 104) on each date?",
+        "Which sampling points fail the standard (>= 104) on each date?",
+        "On which dates do both conditions occur (at least one pass and at least one fail)?",
+        "For each day, determine if any Enterococcus count is < 104.",
+        "For each day, determine if any Enterococcus count is >= 104.",
+        "Count the number of days where both conditions are true."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "How to interpret '<' symbol in Enterococcus columns?",
+          "How to handle missing values in Enterococcus columns?",
+          "Are all three sampling points (Enterococcus, Enterococcus.1, Enterococcus.2) always present for each date?",
+          "How to parse 'Date' column from string format 'Month Day, Year'?"
+        ],
+        [
+          "How many sampling points exist per date?",
+          "What are the Enterococcus values for each sampling point on each date?",
+          "Which sampling points meet the standard (< 104) on each date?",
+          "Which sampling points fail the standard (>= 104) on each date?",
+          "On which dates do both conditions occur (at least one pass and at least one fail)?"
+        ],
+        [
+          "For each day, determine if any Enterococcus count is < 104.",
+          "For each day, determine if any Enterococcus count is >= 104.",
+          "Count the number of days where both conditions are true."
+        ]
+      ]
+    }
+  },
+  "m_s": {
+    "sources": {
+      "value": [
+        "constitution_beach_datasheet.csv"
+      ],
+      "confidence": 1.0,
+      "votes": [
+        [
+          "constitution_beach_datasheet.csv"
+        ],
+        [
+          "constitution_beach_datasheet.csv"
+        ],
+        [
+          "constitution_beach_datasheet.csv"
+        ]
+      ]
+    },
+    "schema_conflicts": {
+      "value": [
+        "Duplicate column names: 'Tag', 'Tag.1', 'Tag.2' and 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2' suggest multiple sampling points",
+        "Date column stored as object/string instead of datetime",
+        "Multiple Enterococcus measurements per date stored in separate columns (Enterococcus, Enterococcus.1, Enterococcus.2)",
+        "Tag columns appear to indicate comparison operators for corresponding Enterococcus values"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Duplicate column names: 'Tag', 'Tag.1', 'Tag.2' and 'Enterococcus', 'Enterococcus.1', 'Enterococcus.2' suggest multiple sampling points",
+          "Date column stored as object/string instead of datetime"
+        ],
+        [
+          "Multiple Enterococcus measurements per date stored in separate columns (Enterococcus, Enterococcus.1, Enterococcus.2)",
+          "Tag columns appear to indicate comparison operators for corresponding Enterococcus values"
+        ],
+        []
+      ]
+    }
+  },
+  "m_u": {
+    "unit_annotations": {
+      "value": {
+        "1-day rain": "inches",
+        "2-day rain": "inches",
+        "3-day rain": "inches",
+        "enterococcus": "counts per 100 milliliters",
+        "enterococcus.1": "counts per 100 milliliters",
+        "enterococcus.2": "counts per 100 milliliters"
+      },
+      "confidence": 0.888888888888889,
+      "votes": [
+        {
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Enterococcus": "counts per 100 milliliters",
+          "Enterococcus.1": "counts per 100 milliliters",
+          "Enterococcus.2": "counts per 100 milliliters"
+        },
+        {
+          "Enterococcus": "counts per 100 milliliters",
+          "Enterococcus.1": "counts per 100 milliliters",
+          "Enterococcus.2": "counts per 100 milliliters",
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches"
+        },
+        {
+          "1-Day Rain": "inches",
+          "2-Day Rain": "inches",
+          "3-Day Rain": "inches",
+          "Enterococcus": "counts per 100 milliliters"
+        }
+      ]
+    },
+    "scale_issues": {
+      "value": [
+        "Enterococcus values appear as floats but may represent discrete counts",
+        "Rain columns have very small values (0.0-0.89) suggesting possible unit conversion needed",
+        "Tag columns contain '<' symbols indicating values below detection limit",
+        "Enterococcus values with '<' tag represent upper bounds, not exact measurements"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Enterococcus values appear as floats but may represent discrete counts",
+          "Rain columns have very small values (0.0-0.89) suggesting possible unit conversion needed"
+        ],
+        [
+          "Tag columns contain '<' symbols indicating values below detection limit",
+          "Enterococcus values with '<' tag represent upper bounds, not exact measurements"
+        ],
+        []
+      ]
+    },
+    "cross_source_conflicts": {
+      "value": [],
+      "confidence": 0.0,
+      "votes": [
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "m_f": {
+    "has_header": {
+      "value": true,
+      "confidence": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    "delimiter": {
+      "value": ",",
+      "confidence": 1.0,
+      "votes": [
+        ",",
+        ",",
+        ","
+      ]
+    },
+    "encoding": {
+      "value": "utf-8",
+      "confidence": 1.0,
+      "votes": [
+        "utf-8",
+        "utf-8",
+        "utf-8"
+      ]
+    },
+    "sentinel_values": {
+      "value": [
+        "",
+        "NA",
+        "N/A",
+        "<"
+      ],
+      "confidence": 0.6666666666666666,
+      "votes": [
+        [
+          "",
+          "NA",
+          "N/A",
+          "<"
+        ],
+        [
+          ""
+        ],
+        [
+          "NA",
+          "N/A",
+          ""
+        ]
+      ]
+    },
+    "expected_columns": {
+      "value": 10.0,
+      "confidence": 1.0,
+      "votes": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "file_format": {
+      "value": "csv",
+      "confidence": 1.0,
+      "votes": [
+        "csv",
+        "csv",
+        "csv"
+      ]
+    }
+  },
+  "m_c": {
+    "constraints": {
+      "value": [
+        "Enterococcus values must be non-negative",
+        "Date must be parseable to valid dates in 2024",
+        "Standard threshold is <104 counts per 100ml",
+        "Each row represents one day with up to 3 sampling points",
+        "Standard threshold is Enterococcus < 104 counts per 100 mL",
+        "Only count dates in year 2024",
+        "Must have at least one sampling point meeting standard AND at least one not meeting standard on same date",
+        "Handle '<' tags appropriately when comparing to threshold",
+        "Date must be a valid date.",
+        "Enterococcus counts must be non-negative numbers."
+      ],
+      "confidence": 0.33333333333333337,
+      "votes": [
+        [
+          "Enterococcus values must be non-negative",
+          "Date must be parseable to valid dates in 2024",
+          "Standard threshold is <104 counts per 100ml",
+          "Each row represents one day with up to 3 sampling points"
+        ],
+        [
+          "Standard threshold is Enterococcus < 104 counts per 100 mL",
+          "Only count dates in year 2024",
+          "Must have at least one sampling point meeting standard AND at least one not meeting standard on same date",
+          "Handle '<' tags appropriately when comparing to threshold"
+        ],
+        [
+          "Date must be a valid date.",
+          "Enterococcus counts must be non-negative numbers."
+        ]
+      ]
+    },
+    "derived_filters": {
+      "value": [
+        "Filter to dates in 2024 only",
+        "Exclude rows where all Enterococcus values are missing",
+        "Interpret '<' in Tag columns as values below detection limit (use corresponding Enterococcus value)",
+        "Extract year from Date field and filter for 2024",
+        "For each date, evaluate each of the three Enterococcus measurements against 104 threshold",
+        "Consider Tag '<' symbols: if Tag='<' and value=10, actual value is <10, which meets standard",
+        "Year of Date is 2024",
+        "Enterococcus < 104",
+        "Enterococcus >= 104"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Filter to dates in 2024 only",
+          "Exclude rows where all Enterococcus values are missing",
+          "Interpret '<' in Tag columns as values below detection limit (use corresponding Enterococcus value)"
+        ],
+        [
+          "Extract year from Date field and filter for 2024",
+          "For each date, evaluate each of the three Enterococcus measurements against 104 threshold",
+          "Consider Tag '<' symbols: if Tag='<' and value=10, actual value is <10, which meets standard"
+        ],
+        [
+          "Year of Date is 2024",
+          "Enterococcus < 104",
+          "Enterococcus >= 104"
+        ]
+      ]
+    },
+    "statistical_tests": {
+      "value": [
+        "Check for duplicate dates",
+        "Validate that Enterococcus values <104 when corresponding Tag is '<'",
+        "Verify temporal ordering of dates"
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Check for duplicate dates",
+          "Validate that Enterococcus values <104 when corresponding Tag is '<'",
+          "Verify temporal ordering of dates"
+        ],
+        [],
+        []
+      ]
+    },
+    "output_format_requirements": {
+      "value": [
+        "Single integer count of days",
+        "Must handle partial data (some sampling points missing)",
+        "Return single integer count of days meeting the mixed standard condition",
+        "The output should be a single integer representing the number of days."
+      ],
+      "confidence": 0.3333333333333333,
+      "votes": [
+        [
+          "Single integer count of days",
+          "Must handle partial data (some sampling points missing)"
+        ],
+        [
+          "Return single integer count of days meeting the mixed standard condition"
+        ],
+        [
+          "The output should be a single integer representing the number of days."
+        ]
+      ]
+    }
+  },
+  "models_used": [
+    "deepseek",
+    "claude-sonnet",
+    "gemini-flash"
+  ],
+  "overall_confidence": 0.6277777777777779
+}
