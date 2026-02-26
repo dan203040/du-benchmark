@@ -50,7 +50,6 @@ du-benchmark/
     adapters/            # Benchmark task loaders (KramaBench, AgentBench, DACode)
     llm/                 # Minimal multi-provider LLM client
   results/               # Pre-computed results for validation
-  paper/                 # VLDB paper source and figures
   data/                  # Benchmark data (download script provided)
   scripts/               # Convenience shell scripts
 ```
@@ -150,17 +149,6 @@ The ablation experiment (Section 5 of the paper) tests the causal impact of DU q
 | LLM-only | Single LLM prompt | 0.394 |
 | DIN-SQL | Text-to-SQL | 0.371 |
 | ydata-profiling | Statistical profiler | 0.299 |
-
-## Citation
-
-```bibtex
-@article{dubenchmark2026,
-  title={Towards Principled Benchmarking of Automated Data Understanding},
-  author={...},
-  journal={Proceedings of the VLDB Endowment},
-  year={2026}
-}
-```
 
 ## License
 
