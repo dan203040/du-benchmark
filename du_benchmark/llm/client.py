@@ -88,6 +88,7 @@ class LLMProvider(str, Enum):
     GOOGLE = "google"
     OPENAI = "openai"
     DEEPSEEK = "deepseek"
+    IBM_TP_MODELS = "ibm_tp_models"
 
 
 DEFAULT_MODELS = {
@@ -95,6 +96,7 @@ DEFAULT_MODELS = {
     LLMProvider.GOOGLE: "gemini-1.5-pro",
     LLMProvider.OPENAI: "gpt-4o",
     LLMProvider.DEEPSEEK: "deepseek-chat",
+    LLMProvider.IBM_TP_MODELS: "aws/claude-sonnet-4-5",
 }
 
 
@@ -344,6 +346,66 @@ class OpenAIClient(BaseLLMClient):
                                success=False, error=str(e))
 
 
+class IBMTPModelsClient(BaseLLMClient):
+    """IBM TP Models client using OpenAI-compatible API."""
+
+    def __init__(self, model: str = "aws/claude-sonnet-4-5",
+                 max_tokens: int = 8192, temperature: float = 0.0):
+        self.model = model
+        self.max_tokens = max_tokens
+        self.temperature = temperature
+        self._client = None
+
+    def _get_client(self):
+        if self._client is None:
+            try:
+                from openai import OpenAI
+                api_key = os.environ.get("IBM_TP_API_KEY")
+                if not api_key:
+                    raise ValueError("IBM_TP_API_KEY environment variable not set")
+                self._client = OpenAI(
+                    api_key=api_key,
+                    base_url="https://ete-litellm.ai-models.vpc-int.res.ibm.com/"
+                )
+            except ImportError:
+                raise ImportError("openai package not installed. Run: pip install openai")
+        return self._client
+
+    def is_available(self) -> bool:
+        api_key = os.environ.get("IBM_TP_API_KEY")
+        return api_key is not None and len(api_key) > 0
+
+    @retry_on_transient()
+    async def generate(self, prompt: str, system: Optional[str] = None,
+                       seed: Optional[int] = None) -> LLMResponse:
+        try:
+            client = self._get_client()
+            messages = []
+            if system:
+                messages.append({"role": "system", "content": system})
+            messages.append({"role": "user", "content": prompt})
+            create_kwargs: Dict[str, Any] = dict(
+                model=self.model, messages=messages,
+                max_tokens=self.max_tokens, temperature=self.temperature,
+            )
+            if seed is not None:
+                create_kwargs["seed"] = seed
+            response = client.chat.completions.create(**create_kwargs)
+            content = response.choices[0].message.content if response.choices else ""
+            return LLMResponse(
+                content=content or "", model=response.model,
+                usage={"input_tokens": response.usage.prompt_tokens if response.usage else 0,
+                       "output_tokens": response.usage.completion_tokens if response.usage else 0},
+                success=True,
+            )
+        except Exception as e:
+            if _is_retryable(e):
+                raise
+            _logger.error("Non-retryable IBM TP Models API error: %s", e)
+            return LLMResponse(content="", model=self.model, usage={},
+                               success=False, error=str(e))
+
+
 def create_llm_client(
     provider: LLMProvider = LLMProvider.ANTHROPIC,
     model: Optional[str] = None,
@@ -370,8 +432,13 @@ def create_llm_client(
         if client.is_available():
             return client
 
+    if provider == LLMProvider.IBM_TP_MODELS:
+        client = IBMTPModelsClient(model=model or DEFAULT_MODELS[LLMProvider.IBM_TP_MODELS], **kwargs)
+        if client.is_available():
+            return client
+
     raise RuntimeError(
         f"No API key available for provider {provider.value}. "
         f"Set the appropriate environment variable "
-        f"(ANTHROPIC_API_KEY, GOOGLE_API_KEY, OPENAI_API_KEY, or DEEPSEEK_API_KEY)."
+        f"(ANTHROPIC_API_KEY, GOOGLE_API_KEY, OPENAI_API_KEY, DEEPSEEK_API_KEY, or IBM_TP_API_KEY)."
     )
